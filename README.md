@@ -10,8 +10,6 @@ It also doesn't make any output/progress reporting at the moment and doesn't wri
 
 Project is build in VS2017, .NET Framework 4.7.2, targeting x64 systems. 
 
-[TOC]
-
 ## Usage
 
 To use Gdal2Tiles class you should add this file to your project. It depends on Gdal's C# bindings, that you should reference in your project and configure before calling Gdal2Tiles.cs methods. I used [GDAL.NET](https://www.nuget.org/packages/GDAL.NET/) in my example and I recommend you to do the same, yet it would work with other versions of [Gdal](https://www.gisinternals.com/query.html?content=filelist&file=release-1911-x64-gdal-mapserver.zip) bindings too. So, the complete algorithm looks like this:
