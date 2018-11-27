@@ -18,9 +18,14 @@ namespace Gdal2Tiles
         #region Private
 
         /// <summary>
-        /// Dataset of input file. Disposed in <see cref="GenerateBaseTiles"/> method.
+        /// Dataset's x size.
         /// </summary>
-        private static Dataset InputDataset { get; set; }
+        private static int RasterXSize { get; set; }
+
+        /// <summary>
+        /// Dataset's y size.
+        /// </summary>
+        private static int RasterYSize { get; set; }
 
         /// <summary>
         /// GeoTransform of output files.
@@ -112,20 +117,27 @@ namespace Gdal2Tiles
             QuerySize = 4 * TileSize;
 
             // Open the input file
-            InputDataset = Gdal.Open(InputFile, Access.GA_ReadOnly);
-            DataBandsCount = InputDataset.RasterCount;
+            Dataset inputDataset = Gdal.Open(InputFile, Access.GA_ReadOnly);
+            DataBandsCount = inputDataset.RasterCount;
 
             // Read the georeference
             double[] outGeoTransform = new double[6];
-            InputDataset.GetGeoTransform(outGeoTransform);
+            inputDataset.GetGeoTransform(outGeoTransform);
             OutGeoTransform = outGeoTransform;
+
+            // Set x/y sizes of dataset
+            RasterXSize = inputDataset.RasterXSize;
+            RasterYSize = inputDataset.RasterYSize;
+
+            // Dispose InputDataset
+            inputDataset.Dispose();
 
             // Generate dictionary with min max tile coordinates for all zoomlevels
             foreach (int zoom in Enumerable.Range(MinZ, MaxZ - MinZ + 1))
             {
                 double xMin = OutGeoTransform[0];
-                double yMin = OutGeoTransform[3] - InputDataset.RasterYSize * OutGeoTransform[1];
-                double xMax = OutGeoTransform[0] + InputDataset.RasterXSize * OutGeoTransform[1];
+                double yMin = OutGeoTransform[3] - RasterYSize * OutGeoTransform[1];
+                double xMax = OutGeoTransform[0] + RasterXSize * OutGeoTransform[1];
                 double yMax = OutGeoTransform[3];
 
                 int[] lonLatToTile = GetTileNumbersFromCoords(xMin, yMin, xMax, yMax, TileSize, zoom);
@@ -146,23 +158,25 @@ namespace Gdal2Tiles
         /// <summary>
         /// Calculates parameters for ReadRaster() and WriteRaster().
         /// </summary>
-        /// <param name="dataset">Tile's dataset.</param>
+        /// <param name="geoTransform">Dataset's GeoTransform.</param>
         /// <param name="upperLeftX">Upper left x coordinate.</param>
         /// <param name="upperLeftY">Upper left y coordinate.</param>
         /// <param name="lowerRightX">Lower right x coordinate.</param>
         /// <param name="lowerRightY">Lower right y coordinate.</param>
+        /// <param name="rasterXSize">Dataset's x size.</param>
+        /// <param name="rasterYSize">Dataset's y size.</param>
         /// <param name="querySize">Query size,</param>
         /// <returns>Parameters in raster coordinates and x/y shifts(for border tiles).</returns>
         [SuppressMessage("ReSharper", "InvertIf")]
-        private static int[][] GeoQuery(Dataset dataset,
+        private static int[][] GeoQuery(IReadOnlyList<double> geoTransform,
             double upperLeftX,
             double upperLeftY,
             double lowerRightX,
             double lowerRightY,
+            int rasterXSize,
+            int rasterYSize,
             int querySize)
         {
-            double[] geoTransform = new double[6];
-            dataset.GetGeoTransform(geoTransform);
             int readXPos = Convert.ToInt32((upperLeftX - geoTransform[0]) / geoTransform[1] + 0.001);
             int readYPos = Convert.ToInt32((upperLeftY - geoTransform[3]) / geoTransform[5] + 0.001);
             int readXSize = Convert.ToInt32((lowerRightX - upperLeftX) / geoTransform[1] + 0.5);
@@ -181,11 +195,11 @@ namespace Gdal2Tiles
                 readXPos = 0;
             }
 
-            if (readXPos + readXSize > dataset.RasterXSize)
+            if (readXPos + readXSize > rasterXSize)
             {
                 writeXSize =
-                    Convert.ToInt32(writeXSize * Convert.ToSingle(dataset.RasterXSize - readXPos) / readXSize);
-                readXSize = dataset.RasterXSize - readXPos;
+                    Convert.ToInt32(writeXSize * Convert.ToSingle(rasterXSize - readXPos) / readXSize);
+                readXSize = rasterXSize - readXPos;
             }
 
             int writeYPos = 0;
@@ -198,11 +212,11 @@ namespace Gdal2Tiles
                 readYPos = 0;
             }
 
-            if (readYPos + readYSize > dataset.RasterYSize)
+            if (readYPos + readYSize > rasterYSize)
             {
                 writeYSize =
-                    Convert.ToInt32(writeYSize * Convert.ToSingle(dataset.RasterYSize - readYPos) / readYSize);
-                readYSize = dataset.RasterYSize - readYPos;
+                    Convert.ToInt32(writeYSize * Convert.ToSingle(rasterYSize - readYPos) / readYSize);
+                readYSize = rasterYSize - readYPos;
             }
 
             return new[]
@@ -259,7 +273,6 @@ namespace Gdal2Tiles
 
         /// <summary>
         /// Generation of the base tiles (the lowest in the pyramid) directly from the input raster.
-        /// Also Disposes <see cref="InputDataset"/>.
         /// </summary>
         private static void GenerateBaseTiles()
         {
@@ -272,7 +285,7 @@ namespace Gdal2Tiles
                     double[] bounds = TileBounds(currentX, currentY, TileSize, MaxZ);
 
                     // Tile bounds in raster coordinates for ReadRaster query
-                    int[][] geoQuery = GeoQuery(InputDataset, bounds[0], bounds[3], bounds[2], bounds[1], QuerySize);
+                    int[][] geoQuery = GeoQuery(OutGeoTransform, bounds[0], bounds[3], bounds[2], bounds[1], RasterXSize, RasterYSize, QuerySize);
                     Metadata.Add(new Dictionary<string, int>
                     {
                         {"TileX", currentX},
@@ -290,8 +303,6 @@ namespace Gdal2Tiles
                     });
                 }
             }
-
-            InputDataset.Dispose();
         }
 
         /// <summary>

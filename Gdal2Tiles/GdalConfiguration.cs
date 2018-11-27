@@ -72,7 +72,7 @@ namespace Gdal2Tiles
             //if (string.IsNullOrWhiteSpace(executingDirectory))
             //    throw new InvalidOperationException("cannot get executing directory");
 
-            string gdalPath = Path.Combine(executingDirectory, "gdal2");
+            string gdalPath = Path.Combine(executingDirectory, "gdal");
             string nativePath = Path.Combine(gdalPath, Platform);
 
             // Prepend native path to environment path, to ensure the right libs are being used.
