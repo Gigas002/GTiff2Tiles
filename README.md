@@ -19,13 +19,21 @@ To use Gdal2Tiles class you should add this file to your project. It depends on 
 
 3. Call `Gdal2Tiles.CropTifToTiles` method, which takes following parameters:
 
-4. - `string inputFile` - full path to input GeoTIFF in EPSG:4326 (current version, plan to expand functionality later); 
+   - `string inputFile` - full path to input GeoTIFF in EPSG:4326 (current version, plan to expand functionality later); 
    - `string outputDirectory` - full path to output directory, in which zoom directories with data will be created;
    - `int minZ` - minimum cropped zoom, which you want for your data;
    - `int maxZ` - maximum cropped zoom;
    - `OSGeo.Gdal.ResampleAlg resampling` - resampling algorithm (currently CubicSpline/Cubic only supported);
 
 Also, it’s worth mentioning, that `CreateBaseTile()` and `CreateOverviewTiles()` methods use `Parallel.For`/`Parallel.ForEach`, so if you don’t like it you’d probably will need to rewrite these three lines with usual `foreach`/`for` loop.
+
+## TODO
+
+- Fix tile borders error from original gdal2tiles script (error probably happens in GeoQuery method);
+- Replace gdal’s reading and writing methods with something more performant (at least System.Drawing.Image, Bitmap or Graphics);
+- In ideal, fully replace gdal (GeoTiff’s metadata probably can be read with help of [libtiff.net](https://github.com/BitMiracle/libtiff.net), need tests);
+- Support all functional of original script;
+- Progress reporting; 
 
 ## Contributing
 
