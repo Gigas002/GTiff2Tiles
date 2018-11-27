@@ -158,71 +158,71 @@ namespace Gdal2Tiles
         /// <summary>
         /// Calculates parameters for ReadRaster() and WriteRaster().
         /// </summary>
-        /// <param name="geoTransform">Dataset's GeoTransform.</param>
         /// <param name="upperLeftX">Upper left x coordinate.</param>
         /// <param name="upperLeftY">Upper left y coordinate.</param>
         /// <param name="lowerRightX">Lower right x coordinate.</param>
         /// <param name="lowerRightY">Lower right y coordinate.</param>
-        /// <param name="rasterXSize">Dataset's x size.</param>
-        /// <param name="rasterYSize">Dataset's y size.</param>
         /// <param name="querySize">Query size,</param>
         /// <returns>Parameters in raster coordinates and x/y shifts(for border tiles).</returns>
         [SuppressMessage("ReSharper", "InvertIf")]
-        private static int[][] GeoQuery(IReadOnlyList<double> geoTransform,
-            double upperLeftX,
+        private static int[][] GeoQuery(double upperLeftX,
             double upperLeftY,
             double lowerRightX,
             double lowerRightY,
-            int rasterXSize,
-            int rasterYSize,
             int querySize)
         {
-            int readXPos = Convert.ToInt32((upperLeftX - geoTransform[0]) / geoTransform[1] + 0.001);
-            int readYPos = Convert.ToInt32((upperLeftY - geoTransform[3]) / geoTransform[5] + 0.001);
-            int readXSize = Convert.ToInt32((lowerRightX - upperLeftX) / geoTransform[1] + 0.5);
-            int readYSize = Convert.ToInt32((lowerRightY - upperLeftY) / geoTransform[5] + 0.5);
-            int writeXSize = querySize;
-            int writeYSize = querySize;
+            double readXPos = (upperLeftX - OutGeoTransform[0]) / OutGeoTransform[1] + 0.001;
+            double readYPos = (upperLeftY - OutGeoTransform[3]) / OutGeoTransform[5] + 0.001;
+            double readXSize = (lowerRightX - upperLeftX) / OutGeoTransform[1] + 0.5;
+            double readYSize = (lowerRightY - upperLeftY) / OutGeoTransform[5] + 0.5;
+            double writeXSize = querySize;
+            double writeYSize = querySize;
 
             // Coordinates should not go out of the bounds of the raster
-            int writeXPos = 0;
-            if (readXPos < 0)
+            double writeXPos = 0.0;
+            if (readXPos < 0.0)
             {
-                int readXShift = Math.Abs(readXPos);
-                writeXPos = Convert.ToInt32(writeXSize * Convert.ToSingle(readXShift) / readXSize);
+                double readXShift = Math.Abs(readXPos);
+                writeXPos = writeXSize * readXShift / readXSize;
                 writeXSize = writeXSize - writeXPos;
-                readXSize = readXSize - Convert.ToInt32(readXSize * Convert.ToSingle(readXShift) / readXSize);
-                readXPos = 0;
+                readXSize = readXSize - readXSize * readXShift / readXSize;
+                readXPos = 0.0;
             }
 
-            if (readXPos + readXSize > rasterXSize)
+            if (readXPos + readXSize > RasterXSize)
             {
-                writeXSize =
-                    Convert.ToInt32(writeXSize * Convert.ToSingle(rasterXSize - readXPos) / readXSize);
-                readXSize = rasterXSize - readXPos;
+                writeXSize = writeXSize * (RasterXSize - readXPos) / readXSize;
+                readXSize = RasterXSize - readXPos;
             }
 
-            int writeYPos = 0;
-            if (readYPos < 0)
+            double writeYPos = 0.0;
+            if (readYPos < 0.0)
             {
-                int readYShift = Math.Abs(readYPos);
-                writeYPos = Convert.ToInt32(writeYSize * Convert.ToSingle(readYShift) / readYSize);
+                double readYShift = Math.Abs(readYPos);
+                writeYPos = writeYSize * readYShift / readYSize;
                 writeYSize = writeYSize - writeYPos;
-                readYSize = readYSize - Convert.ToInt32(readYSize * Convert.ToSingle(readYShift) / readYSize);
-                readYPos = 0;
+                readYSize = readYSize - readYSize * readYShift / readYSize;
+                readYPos = 0.0;
             }
 
-            if (readYPos + readYSize > rasterYSize)
+            if (readYPos + readYSize > RasterYSize)
             {
-                writeYSize =
-                    Convert.ToInt32(writeYSize * Convert.ToSingle(rasterYSize - readYPos) / readYSize);
-                readYSize = rasterYSize - readYPos;
+                writeYSize = writeYSize * (RasterYSize - readYPos) / readYSize;
+                readYSize = RasterYSize - readYPos;
             }
 
             return new[]
             {
-                new[] {readXPos, readYPos, readXSize, readYSize},
-                new[] {writeXPos, writeYPos, writeXSize, writeYSize}
+                new[]
+                {
+                    Convert.ToInt32(readXPos), Convert.ToInt32(readYPos), Convert.ToInt32(readXSize),
+                    Convert.ToInt32(readYSize)
+                },
+                new[]
+                {
+                    Convert.ToInt32(writeXPos), Convert.ToInt32(writeYPos), Convert.ToInt32(writeXSize),
+                    Convert.ToInt32(writeYSize)
+                }
             };
         }
 
@@ -285,7 +285,7 @@ namespace Gdal2Tiles
                     double[] bounds = TileBounds(currentX, currentY, TileSize, MaxZ);
 
                     // Tile bounds in raster coordinates for ReadRaster query
-                    int[][] geoQuery = GeoQuery(OutGeoTransform, bounds[0], bounds[3], bounds[2], bounds[1], RasterXSize, RasterYSize, QuerySize);
+                    int[][] geoQuery = GeoQuery(bounds[0], bounds[3], bounds[2], bounds[1], QuerySize);
                     Metadata.Add(new Dictionary<string, int>
                     {
                         {"TileX", currentX},
