@@ -78,17 +78,17 @@
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="gdalconst_csharp, Version=1.0.6785.30731, Culture=neutral, PublicKeyToken=db5a52b08dc5b321, processorArchitecture=MSIL">
-      <HintPath>..\packages\GDAL.NET.2.3.1\lib\net40\gdalconst_csharp.dll</HintPath>
+    <Reference Include="gdalconst_csharp, Version=1.0.6881.30515, Culture=neutral, PublicKeyToken=db5a52b08dc5b321, processorArchitecture=MSIL">
+      <HintPath>..\packages\GDAL.2.3.2\lib\net40\gdalconst_csharp.dll</HintPath>
     </Reference>
-    <Reference Include="gdal_csharp, Version=1.0.6785.30729, Culture=neutral, PublicKeyToken=db5a52b08dc5b321, processorArchitecture=MSIL">
-      <HintPath>..\packages\GDAL.NET.2.3.1\lib\net40\gdal_csharp.dll</HintPath>
+    <Reference Include="gdal_csharp, Version=1.0.6881.30515, Culture=neutral, PublicKeyToken=db5a52b08dc5b321, processorArchitecture=MSIL">
+      <HintPath>..\packages\GDAL.2.3.2\lib\net40\gdal_csharp.dll</HintPath>
     </Reference>
-    <Reference Include="ogr_csharp, Version=1.0.6785.30727, Culture=neutral, PublicKeyToken=db5a52b08dc5b321, processorArchitecture=MSIL">
-      <HintPath>..\packages\GDAL.NET.2.3.1\lib\net40\ogr_csharp.dll</HintPath>
+    <Reference Include="ogr_csharp, Version=1.0.6881.30514, Culture=neutral, PublicKeyToken=db5a52b08dc5b321, processorArchitecture=MSIL">
+      <HintPath>..\packages\GDAL.2.3.2\lib\net40\ogr_csharp.dll</HintPath>
     </Reference>
-    <Reference Include="osr_csharp, Version=1.0.6785.30725, Culture=neutral, PublicKeyToken=db5a52b08dc5b321, processorArchitecture=MSIL">
-      <HintPath>..\packages\GDAL.NET.2.3.1\lib\net40\osr_csharp.dll</HintPath>
+    <Reference Include="osr_csharp, Version=1.0.6881.30514, Culture=neutral, PublicKeyToken=db5a52b08dc5b321, processorArchitecture=MSIL">
+      <HintPath>..\packages\GDAL.2.3.2\lib\net40\osr_csharp.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -117,11 +117,11 @@
     </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="..\packages\GDAL.NET.Core.2.3.1\build\net40\GDAL.NET.Core.targets" Condition="Exists('..\packages\GDAL.NET.Core.2.3.1\build\net40\GDAL.NET.Core.targets')" />
+  <Import Project="..\packages\GDAL.Native.2.3.2\build\net40\GDAL.Native.targets" Condition="Exists('..\packages\GDAL.Native.2.3.2\build\net40\GDAL.Native.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\packages\GDAL.NET.Core.2.3.1\build\net40\GDAL.NET.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\GDAL.NET.Core.2.3.1\build\net40\GDAL.NET.Core.targets'))" />
+    <Error Condition="!Exists('..\packages\GDAL.Native.2.3.2\build\net40\GDAL.Native.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\GDAL.Native.2.3.2\build\net40\GDAL.Native.targets'))" />
   </Target>
 </Project>
