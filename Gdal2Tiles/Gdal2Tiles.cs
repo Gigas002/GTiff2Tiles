@@ -104,10 +104,10 @@ namespace Gdal2Tiles
         /// <param name="maxZ">Maxmimum zoom.</param>
         /// <param name="resampling">Resampling method.</param>
         private static void Initialize(string inputFile,
-            string outputDirectory,
-            int minZ,
-            int maxZ,
-            ResampleAlg resampling)
+                                       string outputDirectory,
+                                       int minZ,
+                                       int maxZ,
+                                       ResampleAlg resampling)
         {
             InputFile = inputFile;
             OutputDirectory = outputDirectory;
@@ -166,10 +166,10 @@ namespace Gdal2Tiles
         /// <returns>Parameters in raster coordinates and x/y shifts(for border tiles).</returns>
         [SuppressMessage("ReSharper", "InvertIf")]
         private static int[][] GeoQuery(double upperLeftX,
-            double upperLeftY,
-            double lowerRightX,
-            double lowerRightY,
-            int querySize)
+                                        double upperLeftY,
+                                        double lowerRightX,
+                                        double lowerRightY,
+                                        int querySize)
         {
             double readXPos = (upperLeftX - OutGeoTransform[0]) / OutGeoTransform[1] + 0.001;
             double readYPos = (upperLeftY - OutGeoTransform[3]) / OutGeoTransform[5] + 0.001;
@@ -237,11 +237,11 @@ namespace Gdal2Tiles
         /// <param name="zoom">Tile's zoom.</param>
         /// <returns>Tile numbers array.</returns>
         private static int[] GetTileNumbersFromCoords(double xMin,
-            double yMin,
-            double xMax,
-            double yMax,
-            double tileSize,
-            int zoom)
+                                                      double yMin,
+                                                      double xMax,
+                                                      double yMax,
+                                                      double tileSize,
+                                                      int zoom)
         {
             double resolution = 180.0 / tileSize / Math.Pow(2, zoom);
             int[] xs = new int[2];
@@ -335,39 +335,39 @@ namespace Gdal2Tiles
                 Parallel.ForEach(Metadata, metadata =>
                 {
                     using (Dataset tileDataset = memDriver.Create("", TileSize,
-                        TileSize,
-                        DataBandsCount + 1,
-                        DataType.GDT_Byte,
-                        null))
+                                                                  TileSize,
+                                                                  DataBandsCount + 1,
+                                                                  DataType.GDT_Byte,
+                                                                  null))
                     {
                         byte[] data = new byte[metadata["WriteXSize"]
-                                               * metadata["WriteYSize"]
-                                               * DataBandsCount];
+                                             * metadata["WriteYSize"]
+                                             * DataBandsCount];
                         byte[] alpha = new byte[metadata["WriteXSize"] * metadata["WriteYSize"]];
 
                         // We scale down the query to the tilesize by supplied algorithm.
                         if (metadata["ReadXSize"] != 0
-                            && metadata["ReadYSize"] != 0
-                            && metadata["WriteXSize"] != 0
-                            && metadata["WriteYSize"] != 0)
+                         && metadata["ReadYSize"] != 0
+                         && metadata["WriteXSize"] != 0
+                         && metadata["WriteYSize"] != 0)
                         {
                             using (Dataset inputDataset = Gdal.Open(InputFile, Access.GA_ReadOnly))
                             {
                                 inputDataset.ReadRaster(metadata["ReadPosX"], metadata["ReadPosY"],
-                                    metadata["ReadXSize"],
-                                    metadata["ReadYSize"], data, metadata["WriteXSize"],
-                                    metadata["WriteYSize"],
-                                    DataBandsCount,
-                                    Enumerable.Range(1, DataBandsCount + 1)
-                                              .ToArray(),
-                                    0, 0,
-                                    0);
+                                                        metadata["ReadXSize"],
+                                                        metadata["ReadYSize"], data, metadata["WriteXSize"],
+                                                        metadata["WriteYSize"],
+                                                        DataBandsCount,
+                                                        Enumerable.Range(1, DataBandsCount + 1)
+                                                                  .ToArray(),
+                                                        0, 0,
+                                                        0);
                                 using (Band alphaBand = inputDataset.GetRasterBand(1).GetMaskBand())
                                 {
                                     alphaBand.ReadRaster(metadata["ReadPosX"], metadata["ReadPosY"],
-                                        metadata["ReadXSize"],
-                                        metadata["ReadYSize"], alpha, metadata["WriteXSize"],
-                                        metadata["WriteYSize"], 0, 0);
+                                                         metadata["ReadXSize"],
+                                                         metadata["ReadYSize"], alpha, metadata["WriteXSize"],
+                                                         metadata["WriteYSize"], 0, 0);
                                 }
                             }
                         }
@@ -376,25 +376,25 @@ namespace Gdal2Tiles
                             return;
 
                         using (Dataset queryDataset = memDriver.Create("", metadata["QuerySize"],
-                            metadata["QuerySize"],
-                            DataBandsCount + 1,
-                            DataType.GDT_Byte,
-                            null))
+                                                                       metadata["QuerySize"],
+                                                                       DataBandsCount + 1,
+                                                                       DataType.GDT_Byte,
+                                                                       null))
                         {
                             queryDataset.WriteRaster(metadata["WritePosX"], metadata["WritePosY"],
-                                metadata["WriteXSize"],
-                                metadata["WriteYSize"], data, metadata["WriteXSize"],
-                                metadata["WriteYSize"],
-                                DataBandsCount,
-                                Enumerable.Range(1, DataBandsCount + 1).ToArray(), 0, 0,
-                                0);
+                                                     metadata["WriteXSize"],
+                                                     metadata["WriteYSize"], data, metadata["WriteXSize"],
+                                                     metadata["WriteYSize"],
+                                                     DataBandsCount,
+                                                     Enumerable.Range(1, DataBandsCount + 1).ToArray(), 0, 0,
+                                                     0);
                             queryDataset.WriteRaster(metadata["WritePosX"], metadata["WritePosY"],
-                                metadata["WriteXSize"],
-                                metadata["WriteYSize"], alpha, metadata["WriteXSize"],
-                                metadata["WriteYSize"],
-                                1,
-                                new[] {DataBandsCount + 1}, 0, 0,
-                                0);
+                                                     metadata["WriteXSize"],
+                                                     metadata["WriteYSize"], alpha, metadata["WriteXSize"],
+                                                     metadata["WriteYSize"],
+                                                     1,
+                                                     new[] {DataBandsCount + 1}, 0, 0,
+                                                     0);
                             ScaleQueryToTile(queryDataset, tileDataset, Resampling);
                         }
 
@@ -402,9 +402,9 @@ namespace Gdal2Tiles
                         using (Driver tileDriver = Gdal.GetDriverByName("PNG"))
                         {
                             tileDriver.CreateCopy(Path.Combine(OutputDirectory, $"{metadata["TileZoom"]}",
-                                    $"{metadata["TileX"]}",
-                                    $"{metadata["TileY"]}.{TileExtension}"),
-                                tileDataset, 0, null, null, null);
+                                                               $"{metadata["TileX"]}",
+                                                               $"{metadata["TileY"]}.{TileExtension}"),
+                                                  tileDataset, 0, null, null, null);
                         }
                     }
                 });
@@ -427,23 +427,23 @@ namespace Gdal2Tiles
                 Parallel.For(tileMinY, tileMaxY + 1, currentY => Parallel.For(tileMinX, tileMaxX + 1, currentX =>
                 {
                     string tileFileName = Path.Combine(OutputDirectory, $"{zoom}", $"{currentX}",
-                        $"{currentY}.{TileExtension}");
+                                                       $"{currentY}.{TileExtension}");
                     Directory.CreateDirectory(Path.GetDirectoryName(tileFileName)
-                                              ?? throw new InvalidOperationException());
+                                           ?? throw new InvalidOperationException());
 
                     // fill the null value
                     using (Driver memDriver = Gdal.GetDriverByName("MEM"))
                     {
                         using (Dataset tileDataset = memDriver.Create("", TileSize,
-                            TileSize,
-                            DataBandsCount + 1,
-                            DataType.GDT_Byte, null))
+                                                                      TileSize,
+                                                                      DataBandsCount + 1,
+                                                                      DataType.GDT_Byte, null))
                         {
                             using (Dataset queryDataset = memDriver.Create("", 2 * TileSize,
-                                2 * TileSize,
-                                DataBandsCount + 1,
-                                DataType.GDT_Byte,
-                                null))
+                                                                           2 * TileSize,
+                                                                           DataBandsCount + 1,
+                                                                           DataType.GDT_Byte,
+                                                                           null))
                             {
                                 // Read the tiles and write them to query window
                                 for (int y = currentY * 2; y < currentY * 2 + 2; y++)
@@ -456,19 +456,19 @@ namespace Gdal2Tiles
                                         int maxY = MinMax[zoom + 1][3];
                                         if (x < minX || x > maxX || y < minY || y > maxY) continue;
                                         if (!File.Exists(Path.Combine(OutputDirectory,
-                                            $"{zoom + 1}",
-                                            $"{x}",
-                                            $"{y}.{TileExtension}")))
+                                                                      $"{zoom + 1}",
+                                                                      $"{x}",
+                                                                      $"{y}.{TileExtension}")))
                                             continue;
                                         using (Dataset queryTileDataset = Gdal.Open(Path.Combine(OutputDirectory,
-                                                $"{zoom + 1}",
-                                                $"{x}",
-                                                $"{y}.{TileExtension}"),
-                                            Access.GA_ReadOnly))
+                                                                                                 $"{zoom + 1}",
+                                                                                                 $"{x}",
+                                                                                                 $"{y}.{TileExtension}"),
+                                                                                    Access.GA_ReadOnly))
                                         {
                                             int tilePosY;
                                             if (currentY == 0 && y == 1
-                                                || currentY != 0 && y % (2 * currentY) != 0)
+                                             || currentY != 0 && y % (2 * currentY) != 0)
                                                 tilePosY = 0;
                                             else
                                                 tilePosY = TileSize;
@@ -483,32 +483,32 @@ namespace Gdal2Tiles
 
                                             byte[] readRaster =
                                                 new byte[TileSize
-                                                         * TileSize
-                                                         * (DataBandsCount + 1)];
+                                                       * TileSize
+                                                       * (DataBandsCount + 1)];
                                             queryTileDataset.ReadRaster(0, 0, TileSize,
-                                                TileSize,
-                                                readRaster, TileSize,
-                                                TileSize,
-                                                DataBandsCount + 1,
-                                                Enumerable
-                                                    .Range(1, DataBandsCount + 2)
-                                                    .ToArray(),
-                                                0,
-                                                0, 0);
+                                                                        TileSize,
+                                                                        readRaster, TileSize,
+                                                                        TileSize,
+                                                                        DataBandsCount + 1,
+                                                                        Enumerable
+                                                                           .Range(1, DataBandsCount + 2)
+                                                                           .ToArray(),
+                                                                        0,
+                                                                        0, 0);
 
                                             if (readRaster.All(b => b <= 0))
                                                 continue;
 
                                             queryDataset.WriteRaster(tilePosX, tilePosY, TileSize,
-                                                TileSize,
-                                                readRaster, TileSize,
-                                                TileSize,
-                                                DataBandsCount + 1,
-                                                Enumerable
-                                                    .Range(1, DataBandsCount + 2)
-                                                    .ToArray(),
-                                                0, 0,
-                                                0);
+                                                                     TileSize,
+                                                                     readRaster, TileSize,
+                                                                     TileSize,
+                                                                     DataBandsCount + 1,
+                                                                     Enumerable
+                                                                        .Range(1, DataBandsCount + 2)
+                                                                        .ToArray(),
+                                                                     0, 0,
+                                                                     0);
                                         }
                                     }
                                 }
@@ -541,10 +541,10 @@ namespace Gdal2Tiles
         /// <param name="maxZ">Maxmimum zoom.</param>
         /// <param name="resampling">Resampling method.</param>
         public static void CropTifToTiles(string inputFile,
-            string outputDirectory,
-            int minZ,
-            int maxZ,
-            ResampleAlg resampling)
+                                          string outputDirectory,
+                                          int minZ,
+                                          int maxZ,
+                                          ResampleAlg resampling)
         {
             Initialize(inputFile, outputDirectory, minZ, maxZ, resampling);
             GenerateBaseTiles();

@@ -35,12 +35,14 @@ namespace Gdal2Tiles
             GdalConfiguration.ConfigureGdal();
 
             //Now only CubicSpline and Cubic are supported for resampling algorythm.
-            Gdal2Tiles.CropTifToTiles(InputFile, OutputDirectory, MinZ, MaxZ, ResampleAlg.GRA_CubicSpline);
+            //Gdal2Tiles.CropTifToTiles(InputFile, OutputDirectory, MinZ, MaxZ, ResampleAlg.GRA_CubicSpline);
+
+            //Works much faster (in one thread like gdal2tiles in multithreaded mode), uses less memory/cpu, better tiles borders.
+            GTiff2Tiles.GenerateTiles(InputFile, OutputDirectory, MinZ, MaxZ);
 
             Console.WriteLine("Done!");
-            Console.WriteLine(
-                $"Days:{stopwatch.Elapsed.Days} hours:{stopwatch.Elapsed.Hours} minutes:{stopwatch.Elapsed.Minutes} "
-                + $"seconds:{stopwatch.Elapsed.Seconds} ms:{stopwatch.Elapsed.Milliseconds}");
+            Console.WriteLine($"Days:{stopwatch.Elapsed.Days} hours:{stopwatch.Elapsed.Hours} minutes:{stopwatch.Elapsed.Minutes} "
+                            + $"seconds:{stopwatch.Elapsed.Seconds} ms:{stopwatch.Elapsed.Milliseconds}");
             #if DEBUG
             Console.ReadKey();
             #endif
