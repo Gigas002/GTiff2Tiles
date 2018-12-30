@@ -30,7 +30,7 @@ Table of contents generated with [markdown-toc](http://ecotrust-canada.github.io
 
 ## Current version
 
-Current stable version is 1.0.0. Information about changes since previous release can be found in [changelog](https://github.com/Gigas002/GTiff2Tiles/blob/master/CHANGELOG.md).
+Current stable can be found here: [![Release](https://img.shields.io/github/release/Gigas002/GTiff2Tiles.svg)](https://github.com/Gigas002/GTiff2Tiles/releases/latest). Information about changes since previous release can be found in [changelog](https://github.com/Gigas002/GTiff2Tiles/blob/master/CHANGELOG.md).
 
 ## Usage
 
