@@ -5,84 +5,143 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using OSGeo.GDAL;
-// ReSharper disable InvertIf
 
-//todo build overview from lowest zoom, multithreading, progress-reporting, exception handling.
+//todo build overview from lowest zoom, multithreading, progress-reporting, exception handling, use netvips instead of System.Drawing.Image, move to .net standard 2.1.
 
-namespace Gdal2Tiles
+namespace GTiff2Tiles
 {
     /// <summary>
-    /// Alternative to <see cref="Gdal2Tiles"/> class. Uses c# methods to crop tile.
+    /// Alternative to <see cref="Gdal2Tiles"/> class. Prefer to use this. Uses c# methods to crop tile.
     /// </summary>
-    public static class GTiff2Tiles
+    public class GTiff2Tiles : IDisposable
     {
+        #region IDisposable Support
+
+        /// <summary>
+        /// To detect redundant calls.
+        /// </summary>
+        private bool IsDisposed { get; set; } = false;
+
+        /// <summary>
+        /// Dispose logics.
+        /// </summary>
+        /// <param name="disposing"></param>
+        private void Dispose(bool disposing)
+        {
+            if (IsDisposed) return;
+
+            if (disposing)
+            {
+                /* Dispose() is called by programmer */
+            }
+
+            InputImage?.Dispose();
+            MinMax?.Clear();
+
+            IsDisposed = true;
+        }
+
+        /// <summary>
+        /// Finalizer.
+        /// </summary>
+        ~GTiff2Tiles() => Dispose(false);
+
+        /// <summary>
+        /// Dispose <see cref="GTiff2Tiles"/> object from your code.
+        /// </summary>
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        #endregion
+
         #region Properties
 
         /// <summary>
         /// Image's x size.
         /// </summary>
-        private static int RasterXSize { get; set; }
+        private int RasterXSize { get; set; }
 
         /// <summary>
         /// Image's y size.
         /// </summary>
-        private static int RasterYSize { get; set; }
+        private int RasterYSize { get; set; }
 
         /// <summary>
         /// Contains coordinates and pixel resolution of input image.
         /// </summary>
-        private static double[] GeoTransform { get; set; }
+        private double[] GeoTransform { get; set; }
 
         /// <summary>
         /// File extension of output tiles.
         /// </summary>
-        private static string TileExtension { get; } = "png";
+        private string TileExtension { get; } = ".png";
 
         /// <summary>
         /// Tile's size.
         /// </summary>
-        private static int TileSize { get; } = 256;
+        private int TileSize { get; } = 256;
 
         /// <summary>
         /// Dictionary with min and max tiles numbers for each zoom.
         /// </summary>
-        private static Dictionary<int, int[]> MinMax { get; } = new Dictionary<int, int[]>();
+        private Dictionary<int, int[]> MinMax { get; } = new Dictionary<int, int[]>();
 
         /// <summary>
         /// FullName of input file.
         /// </summary>
-        // ReSharper disable once UnusedAutoPropertyAccessor.Local
-        private static string InputFile { get; set; }
+        private string InputFile { get; set; }
 
         /// <summary>
         /// FullName of output directory.
         /// </summary>
-        private static string OutputDirectory { get; set; }
+        private string OutputDirectory { get; set; }
 
         /// <summary>
         /// Input geotiff in memory.
         /// </summary>
-        private static Image Image { get; set; }
+        private Image InputImage { get; set; }
 
         /// <summary>
         /// Input dataset. Needed only to get coordinates and raster sizes. Opened and disposed in <see cref="Initialize"/>.
         /// </summary>
-        private static Dataset InputDataset { get; set; }
+        private Dataset InputDataset { get; set; }
 
         /// <summary>
         /// Contains some useful metadata of input GeoTiff.
         /// </summary>
-        private static List<Dictionary<string, int>> Metadata { get; } = new List<Dictionary<string, int>>();
+        private List<Dictionary<string, int>> Metadata { get; } = new List<Dictionary<string, int>>();
 
         /// <summary>
         /// Minimum zoom.
         /// </summary>
-        private static int MinZ { get; set; }
+        private int MinZ { get; set; }
 
         /// <summary>
         /// Maximum zoom.
         /// </summary>
-        private static int MaxZ { get; set; }
+        private int MaxZ { get; set; }
+
+        #endregion
+
+        #region Constructor
+
+        /// <summary>
+        /// Creates new <see cref="GTiff2Tiles"/> object.
+        /// </summary>
+        /// <param name="inputFile">Fullname of input GeoTiff.</param>
+        /// <param name="outputDirectory">Fullname of output directory, in which tiles will be cropped.</param>
+        /// <param name="minZ">Minimum zoom.</param>
+        /// <param name="maxZ">Maxmimum zoom.</param>
+        public GTiff2Tiles(string inputFile, string outputDirectory, int minZ, int maxZ)
+        {
+            InputFile = inputFile;
+            OutputDirectory = outputDirectory;
+            MinZ = minZ;
+            MaxZ = maxZ;
+        }
 
         #endregion
 
@@ -91,27 +150,28 @@ namespace Gdal2Tiles
         #region Private
 
         /// <summary>
-        /// Initialize needed properties.
+        /// Try to initialize other properties.
         /// </summary>
-        /// <param name="inputFile">Fullname of input GeoTiff.</param>
-        /// <param name="outputDirectory">Fullname of output directory, in which tiles will be cropped.</param>
-        /// <param name="minZ">Minimum zoom.</param>
-        /// <param name="maxZ">Maxmimum zoom.</param>
-        private static void Initialize(string inputFile, string outputDirectory, int minZ, int maxZ)
+        /// <returns>True if no errors occured, false otherwise.</returns>
+        private bool Initialize()
         {
-            InputFile = inputFile;
-            OutputDirectory = outputDirectory;
-            MinZ = minZ;
-            MaxZ = maxZ;
-
             //todo read coordinates and rastersizes without gdal?
-            InputDataset = Gdal.Open(InputFile, Access.GA_ReadOnly);
+            try
+            {
+                InputDataset = Gdal.Open(InputFile, Access.GA_ReadOnly);
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
             double[] outGeoTransform = new double[6];
             InputDataset.GetGeoTransform(outGeoTransform);
             GeoTransform = outGeoTransform;
             RasterXSize = InputDataset.RasterXSize;
             RasterYSize = InputDataset.RasterYSize;
-            InputDataset.Dispose();
+
+            InputDataset?.Dispose();
 
             foreach (int zoom in Enumerable.Range(MinZ, MaxZ - MinZ + 1))
             {
@@ -132,10 +192,27 @@ namespace Gdal2Tiles
                 tileMaxX = Math.Min(Convert.ToInt32(Math.Pow(2.0, zoom + 1)) - 1, tileMaxX);
                 tileMaxY = Math.Min(Convert.ToInt32(Math.Pow(2.0, zoom)) - 1, tileMaxY);
 
-                MinMax.Add(zoom, new[] {tileMinX, tileMinY, tileMaxX, tileMaxY});
+                try
+                {
+                    MinMax.Add(zoom, new[] {tileMinX, tileMinY, tileMaxX, tileMaxY});
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
             }
 
-            Image = Image.FromFile(InputFile);
+            try
+            {
+                //todo: use NetVips.Image
+                InputImage = Image.FromFile(InputFile);
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
+            return true;
         }
 
         /// <summary>
@@ -147,11 +224,11 @@ namespace Gdal2Tiles
         /// <param name="yMax">Maximum latitude.</param>
         /// <param name="zoom">Tile's zoom.</param>
         /// <returns>Tile numbers array.</returns>
-        private static int[] GetTileNumbersFromCoords(double xMin,
-                                                      double yMin,
-                                                      double xMax,
-                                                      double yMax,
-                                                      int zoom)
+        private int[] GetTileNumbersFromCoords(double xMin,
+                                               double yMin,
+                                               double xMax,
+                                               double yMax,
+                                               int zoom)
         {
             double resolution = 180.0 / TileSize / Math.Pow(2, zoom);
             int[] xs = new int[2];
@@ -160,6 +237,7 @@ namespace Gdal2Tiles
             xs[1] = Convert.ToInt32(Math.Ceiling((180.0 + xMax) / resolution / TileSize) - 1.0);
             ys[0] = Convert.ToInt32(Math.Ceiling((90.0 + yMin) / resolution / TileSize) - 1.0);
             ys[1] = Convert.ToInt32(Math.Ceiling((90.0 + yMax) / resolution / TileSize) - 1.0);
+
             return new[] {xs.Min(), ys.Min(), xs.Max(), ys.Max()};
         }
 
@@ -170,9 +248,10 @@ namespace Gdal2Tiles
         /// <param name="tileY">Tile's y.</param>
         /// <param name="zoom">Tile's zoom.</param>
         /// <returns>Tile's angles in double array.</returns>
-        private static double[] TileBounds(int tileX, int tileY, int zoom)
+        private double[] TileBounds(int tileX, int tileY, int zoom)
         {
             double resolution = 180.0 / TileSize / Math.Pow(2.0, zoom);
+
             return new[]
             {
                 tileX * TileSize * resolution - 180.0, tileY * TileSize * resolution - 90.0,
@@ -188,10 +267,10 @@ namespace Gdal2Tiles
         /// <param name="lowerRightX">Tile's lower right x coordinate.</param>
         /// <param name="lowerRightY">Tile's lower right y coordinate.</param>
         /// <returns>Array with x/y positions and sizes to read; array with x/y positions and sizes to write tiles.</returns>
-        private static int[][] GeoQuery(double upperLeftX,
-                                        double upperLeftY,
-                                        double lowerRightX,
-                                        double lowerRightY)
+        private int[][] GeoQuery(double upperLeftX,
+                                 double upperLeftY,
+                                 double lowerRightX,
+                                 double lowerRightY)
         {
             //Geotiff coordinate borders
             double tiffXMin = GeoTransform[0];
@@ -259,32 +338,41 @@ namespace Gdal2Tiles
         /// Crops passed zoom to tiles.
         /// </summary>
         /// <param name="zoom">Current zoom to crop.</param>
-        private static void WriteOneZoom(int zoom)
+        /// <returns>True if no errors occured, false otherwise.</returns>
+        private bool WriteOneZoom(int zoom)
         {
             for (int currentY = MinMax[zoom][1]; currentY <= MinMax[zoom][3]; currentY++)
             {
                 for (int currentX = MinMax[zoom][0]; currentX <= MinMax[zoom][2]; currentX++)
                 {
-                    // Create directories for the tile
+                    //Create directories for the tile
                     Directory.CreateDirectory(Path.Combine(OutputDirectory, $"{zoom}", $"{currentX}"));
                     double[] bounds = TileBounds(currentX, currentY, zoom);
 
-                    // Tile bounds in raster coordinates for ReadRaster query
+                    //Tile bounds in raster coordinates for ReadRaster query
                     int[][] geoQuery = GeoQuery(bounds[0], bounds[3], bounds[2], bounds[1]);
-                    Metadata.Add(new Dictionary<string, int>
+
+                    try
                     {
-                        {"TileX", currentX},
-                        {"TileY", currentY},
-                        {"TileZoom", zoom},
-                        {"ReadXPos", geoQuery[0][0]},
-                        {"ReadYPos", geoQuery[0][1]},
-                        {"ReadXSize", geoQuery[0][2]},
-                        {"ReadYSize", geoQuery[0][3]},
-                        {"WriteXPos", geoQuery[1][0]},
-                        {"WriteYPos", geoQuery[1][1]},
-                        {"WriteXSize", geoQuery[1][2]},
-                        {"WriteYSize", geoQuery[1][3]}
-                    });
+                        Metadata.Add(new Dictionary<string, int>
+                        {
+                            {"TileX", currentX},
+                            {"TileY", currentY},
+                            {"TileZoom", zoom},
+                            {"ReadXPos", geoQuery[0][0]},
+                            {"ReadYPos", geoQuery[0][1]},
+                            {"ReadXSize", geoQuery[0][2]},
+                            {"ReadYSize", geoQuery[0][3]},
+                            {"WriteXPos", geoQuery[1][0]},
+                            {"WriteYPos", geoQuery[1][1]},
+                            {"WriteXSize", geoQuery[1][2]},
+                            {"WriteYSize", geoQuery[1][3]}
+                        });
+                    }
+                    catch (Exception)
+                    {
+                        return false;
+                    }
                 }
             }
 
@@ -292,28 +380,43 @@ namespace Gdal2Tiles
             {
                 string outputFileName = Path.Combine(OutputDirectory, $"{metadata["TileZoom"]}",
                                                      $"{metadata["TileX"]}",
-                                                     $"{metadata["TileY"]}.{TileExtension}");
-                using (Bitmap target = new Bitmap(TileSize, TileSize))
+                                                     $"{metadata["TileY"]}{TileExtension}");
+                using (Bitmap outputBitmap = new Bitmap(TileSize, TileSize))
                 {
-                    using (Graphics graphics = Graphics.FromImage(target))
+                    using (Graphics graphics = Graphics.FromImage(outputBitmap))
                     {
-                        graphics.DrawImage(Image,
-                                           new Rectangle(metadata["WriteXPos"],
-                                                         metadata["WriteYPos"],
-                                                         metadata["WriteXSize"],
-                                                         metadata["WriteYSize"]),
-                                           new Rectangle(metadata["ReadXPos"],
-                                                         metadata["ReadYPos"],
-                                                         metadata["ReadXSize"],
-                                                         metadata["ReadYSize"]),
-                                           GraphicsUnit.Pixel);
+                        try
+                        {
+                            graphics.DrawImage(InputImage,
+                                               new Rectangle(metadata["WriteXPos"],
+                                                             metadata["WriteYPos"],
+                                                             metadata["WriteXSize"],
+                                                             metadata["WriteYSize"]),
+                                               new Rectangle(metadata["ReadXPos"],
+                                                             metadata["ReadYPos"],
+                                                             metadata["ReadXSize"],
+                                                             metadata["ReadYSize"]),
+                                               GraphicsUnit.Pixel);
+                        }
+                        catch (Exception)
+                        {
+                            return false;
+                        }
                     }
 
-                    target.Save(outputFileName, ImageFormat.Png);
+                    try
+                    {
+                        outputBitmap.Save(outputFileName, ImageFormat.Png);
+                    }
+                    catch (Exception)
+                    {
+                        return false;
+                    }
                 }
             }
+            Metadata?.Clear();
 
-            Metadata.Clear();
+            return true;
         }
 
         #endregion
@@ -323,21 +426,18 @@ namespace Gdal2Tiles
         /// <summary>
         /// Create tiles.
         /// </summary>
-        /// <param name="inputFile">FullName of input GeoTIFF.</param>
-        /// <param name="outputDirectory">FullName of output directory.</param>
-        /// <param name="minZ">Minimum zoom.</param>
-        /// <param name="maxZ">Maxmimum zoom.</param>
-        public static void GenerateTiles(string inputFile, string outputDirectory, int minZ, int maxZ)
+        /// <returns>True if no errors occured, false otherwise.</returns>
+        public bool GenerateTiles()
         {
             //Initialize properties.
-            Initialize(inputFile, outputDirectory, minZ, maxZ);
+            if (!Initialize()) return false;
 
             //Crop tiles for each zoom.
-            for (int zoom = MaxZ; zoom >= MinZ; zoom--) WriteOneZoom(zoom);
+            for (int zoom = MaxZ; zoom >= MinZ; zoom--)
+                if (!WriteOneZoom(zoom))
+                    return false;
 
-            //Disposing used values.
-            Image.Dispose();
-            MinMax.Clear();
+            return true;
         }
 
         #endregion

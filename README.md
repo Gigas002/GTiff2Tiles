@@ -1,4 +1,4 @@
-# GDAL2TILES
+# GTIFF2TILES
 
 Analogue of [gdal2tiles.py](https://github.com/OSGeo/gdal/blob/master/gdal/swig/python/scripts/gdal2tiles.py) on C#. I've rewritten it for my university project, so now it only works like gdal2tiles.py with the following arguments (zoom values and paths are here for example):
 
@@ -10,28 +10,54 @@ It also doesn't make any output/progress reporting at the moment and doesn't wri
 
 Project is build in VS2017, .NET Framework 4.7.2, targeting x64 systems.
 
-## Table of Contents
+- [GTIFF2TILES](#gtiff2tiles)
+  * [Table of Contents](#table-of-contents)
+  * [Dependencies](#dependencies)
+  * [Current version](#current-version)
+  * [Usage](#usage)
+    + [GTiff2Tiles class](#gtiff2tiles-class)
+    + [Gdal2Tiles class](#gdal2tiles-class)
+  * [TODO](#todo)
+  * [Contributing](#contributing)
 
-- [GDAL2TILES](#gdal2tiles)
-    - [Table of Contents](#table-of-contents)
-    - [Dependencies](#dependencies)
-    - [Usage](#usage)
-    - [TODO](#todo)
-    - [Contributing](#contributing)
+Table of contents generated with [markdown-toc](http://ecotrust-canada.github.io/markdown-toc/ ).
+
 
 ## Dependencies
 
-- [GDAL](https://www.nuget.org/packages/GDAL/) - 2.3.2;
-- [GDAL.Native](https://www.nuget.org/packages/GDAL.Native/) - 2.3.2;
+- [GDAL](https://www.nuget.org/packages/GDAL/) - 2.3.3;
+- [GDAL.Native](https://www.nuget.org/packages/GDAL.Native/) - 2.3.3;
+
+## Current version
+
+Current stable version is 1.0.0. Information about changes since previous release can be found in [changelog](https://github.com/Gigas002/GTiff2Tiles/blob/master/CHANGELOG.md).
 
 ## Usage
 
-To use Gdal2Tiles class you should add this file to your project. It depends on Gdal's C# bindings, that you should reference in your project and configure before calling Gdal2Tiles.cs methods. I used GDAL and GDAL.Native in my example and I recommend you to do the same, yet it would work with other versions of [Gdal](https://www.gisinternals.com/query.html?content=filelist&file=release-1911-x64-gdal-mapserver.zip) bindings too. So, the complete algorithm looks like this:
+Reference the GTiff2Tiles.dll and then use one of the following classes:
 
-1. Add Gdal's c# bindings, Gdal2Tiles.cs file and `using OSGeo.GDAL` directive to your project;
-2. Configure Gdal in your code before calling Gdal2Tiles methods (for GDAL.NET nuget package call `GdalConfiguration.ConfigureGdal()`; and if you don't want to use GdalConfiguration class, you can call `Gdal.AllRegister()` directly, but you should specify environment variables before by yourself);
+### GTiff2Tiles class
 
-3. Call `Gdal2Tiles.CropTifToTiles` method, which takes following parameters:
+1. Reference GDAL and GDAL.Native (if you need gdal’s binaries as well) packages. It will automatically add `GdalConfiguration` class to your project, if you didn’t create it already;
+
+2. Call `GdalConfiguration.ConfigureGdal()` or `Gdal.AllRegister()` (but in that case you should add `using OSGeo.Gdal` directive and specify environment variables before by yourself) method:
+3. Create `GTiff2Tiles` object with constructor, which takes the following parameters:
+   - `string inputFile` - full path to input GeoTIFF in EPSG:4326 projection;
+   - `string outputDirectory` - full path to output directory, in which zoom directories with .png tiles will be created;
+   - `int minZ` - minimum cropped zoom;
+   - `int maxZ` - maximum cropped zoom;
+4. Call `GenerateTiles()` method to create tiles.
+
+Don't forget about `using`, when making `GTiff2Tiles` object, or manually call `Dispose()` on object, when tiles are done.
+
+### Gdal2Tiles class
+
+**Warning!** Prefer using GTiff2Tiles class. It works much faster I’ve fixed coordinates error there.
+
+1. Reference GDAL and GDAL.Native (if you need gdal’s binaries as well) packages. It will automatically add `GdalConfiguration` class to your project, if you didn’t create it already;
+2. Add `using OSGeo.GDAL` directive to your project;
+3. Call `GdalConfiguration.ConfigureGdal()` or `Gdal.AllRegister()` (but in that case you should specify environment variables before by yourself) method:
+4. Call `Gdal2Tiles.CropTifToTiles` method, which takes following parameters:
 
    - `string inputFile` - full path to input GeoTIFF in EPSG:4326 (current version, plan to expand functionality later);
    - `string outputDirectory` - full path to output directory, in which zoom directories with data will be created;
@@ -43,11 +69,13 @@ Also, it’s worth mentioning, that `CreateBaseTile()` and `CreateOverviewTiles(
 
 ## TODO
 
-- Fix tile borders error from original gdal2tiles script (error probably happens in GeoQuery method);
-- Replace gdal’s reading and writing methods with something more performant (at least System.Drawing.Image, Bitmap or Graphics);
+- Target .Net standard 2.1 as soon as possible;
+- Replace `System.Drawing.Image` class with something better, like `NetVips.Image`, because original library is not capable of working with bigtiffs;
 - In ideal, fully replace gdal (GeoTiff’s metadata probably can be read with help of [libtiff.net](https://github.com/BitMiracle/libtiff.net), need tests);
 - Support all functional of original script;
-- Progress reporting;
+- Add multithreading to `GTiff2Tiles` class;
+- Improve exception handling in `GTiff2Tiles` class;
+- Progress reporting.
 
 ## Contributing
 

@@ -6,9 +6,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using OSGeo.GDAL;
 
-namespace Gdal2Tiles
+namespace GTiff2Tiles
 {
     /// <summary>
+    /// Prefer using <see cref="GTiff2Tiles"/> instead of this class.
     /// Contains static methods and properties for cropping GeoTIFFs into tiles.
     /// </summary>
     public static class Gdal2Tiles
@@ -151,7 +152,7 @@ namespace Gdal2Tiles
                 tileMinY = Math.Max(0, tileMinY);
                 tileMaxX = Math.Min(Convert.ToInt32(Math.Pow(2, zoom + 1)) - 1, tileMaxX);
                 tileMaxY = Math.Min(Convert.ToInt32(Math.Pow(2, zoom)) - 1, tileMaxY);
-                MinMax.Add(zoom, new[] {tileMinX, tileMinY, tileMaxX, tileMaxY});
+                MinMax.Add(zoom, new[] { tileMinX, tileMinY, tileMaxX, tileMaxY });
             }
         }
 
@@ -250,7 +251,7 @@ namespace Gdal2Tiles
             xs[1] = Convert.ToInt32(Math.Ceiling((180.0 + xMax) / resolution / tileSize) - 1.0);
             ys[0] = Convert.ToInt32(Math.Ceiling((90.0 + yMin) / resolution / tileSize) - 1.0);
             ys[1] = Convert.ToInt32(Math.Ceiling((90.0 + yMax) / resolution / tileSize) - 1.0);
-            return new[] {xs.Min(), ys.Min(), xs.Max(), ys.Max()};
+            return new[] { xs.Min(), ys.Min(), xs.Max(), ys.Max() };
         }
 
         /// <summary>
@@ -320,7 +321,7 @@ namespace Gdal2Tiles
                 0.0, 0.0, 0.0,
                 Convert.ToSingle(tileDataset.RasterXSize) / queryDataset.RasterXSize
             });
-            tileDataset.SetGeoTransform(new[] {0.0, 1.0, 0.0, 0.0, 0.0, 1.0});
+            tileDataset.SetGeoTransform(new[] { 0.0, 1.0, 0.0, 0.0, 0.0, 1.0 });
             Gdal.ReprojectImage(queryDataset, tileDataset, null, null, resampling, 0.0, 0.0, null, null, null);
         }
 
@@ -393,7 +394,7 @@ namespace Gdal2Tiles
                                                      metadata["WriteYSize"], alpha, metadata["WriteXSize"],
                                                      metadata["WriteYSize"],
                                                      1,
-                                                     new[] {DataBandsCount + 1}, 0, 0,
+                                                     new[] { DataBandsCount + 1 }, 0, 0,
                                                      0);
                             ScaleQueryToTile(queryDataset, tileDataset, Resampling);
                         }
@@ -533,7 +534,7 @@ namespace Gdal2Tiles
 
         /// <summary>
         /// Crops input GeoTIFF to tiles.
-        /// Important: You should call your <see cref="GdalConfiguration.ConfigureGdal"/> method from Gdal.NET package BEFORE using this method.
+        /// Important: You should call your GdalConfiguration.ConfigureGdal() method from Gdal.NET package BEFORE using this method.
         /// </summary>
         /// <param name="inputFile">FullName of input GeoTIFF.</param>
         /// <param name="outputDirectory">FullName of output directory.</param>
