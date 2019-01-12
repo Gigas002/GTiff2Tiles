@@ -107,11 +107,6 @@ namespace GTiff2Tiles
         private Image InputImage { get; set; }
 
         /// <summary>
-        /// Input dataset. Needed only to get coordinates and raster sizes. Opened and disposed in <see cref="Initialize"/>.
-        /// </summary>
-        private Dataset InputDataset { get; set; }
-
-        /// <summary>
         /// Minimum zoom.
         /// </summary>
         private int MinZ { get; }
@@ -153,23 +148,24 @@ namespace GTiff2Tiles
         private bool Initialize()
         {
             //todo read coordinates and rastersizes without gdal?
+            Dataset inputDataset;
             try
             {
-                InputDataset = Gdal.Open(InputFile, Access.GA_ReadOnly);
+                inputDataset = Gdal.Open(InputFile, Access.GA_ReadOnly);
             }
             catch (Exception)
             {
                 return false;
             }
 
-            //Get geotransform and restr sizes.
+            //Get geotransform and raster sizes.
             double[] outGeoTransform = new double[6];
-            InputDataset.GetGeoTransform(outGeoTransform);
+            inputDataset.GetGeoTransform(outGeoTransform);
             GeoTransform = outGeoTransform;
-            RasterXSize = InputDataset.RasterXSize;
-            RasterYSize = InputDataset.RasterYSize;
+            RasterXSize = inputDataset.RasterXSize;
+            RasterYSize = inputDataset.RasterYSize;
 
-            InputDataset?.Dispose();
+            inputDataset.Dispose();
 
             //Create dictionary with tiles for each cropped zoom.
             foreach (int zoom in Enumerable.Range(MinZ, MaxZ - MinZ + 1))
