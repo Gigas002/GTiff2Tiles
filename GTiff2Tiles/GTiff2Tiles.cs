@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
-using System.Drawing.Imaging;
+//using System.Drawing;
+//using System.Drawing.Imaging;
+using NetVips;
 using System.IO;
 using System.Linq;
 using OSGeo.GDAL;
@@ -205,7 +206,7 @@ namespace GTiff2Tiles
             try
             {
                 //todo: use NetVips.Image
-                InputImage = Image.FromFile(InputFile);
+                InputImage = Image.Tiffload(InputFile, access: Enums.Access.Random); //Image.FromFile(InputFile);
             }
             catch (Exception)
             {
@@ -381,38 +382,139 @@ namespace GTiff2Tiles
                 string outputFileName = Path.Combine(OutputDirectory, $"{metadata["TileZoom"]}",
                                                      $"{metadata["TileX"]}",
                                                      $"{metadata["TileY"]}{TileExtension}");
-                using (Bitmap outputBitmap = new Bitmap(TileSize, TileSize))
+
+                // Make a transparent image
+                Image outputImage = Image.Black(TileSize, TileSize).NewFromImage(new[] { 0, 0, 0, 0 });
+
+                // Use corner sampling rather than centre convention.
+                const bool centre = false;
+
+                // Inside loop
+
+                // Crop
+                Image tile = InputImage.Crop(metadata["ReadXPos"], metadata["ReadYPos"], metadata["ReadXSize"], metadata["ReadYSize"]);
+
+                // Resize
+                // Scaling calculations
+                double xFactor = (double)metadata["ReadXSize"] / metadata["WriteXSize"];
+                double yFactor = (double)metadata["ReadYSize"] / metadata["WriteYSize"];
+
+                // Calculate integral box shrink
+                int xShrink = Math.Max(1, (int)Math.Floor(xFactor));
+                int yShrink = Math.Max(1, (int)Math.Floor(yFactor));
+
+                // Calculate residual float affine transformation
+                double xResidual = xShrink / xFactor;
+                double yResidual = yShrink / yFactor;
+
+                // Fast, integral box-shrink
+                if (xShrink > 1 || yShrink > 1)
                 {
-                    using (Graphics graphics = Graphics.FromImage(outputBitmap))
+                    if (xShrink > 1)
                     {
-                        try
+                        Console.WriteLine("shrinkv by " + yShrink);
+                        tile = tile.Shrinkv(yShrink);
+                    }
+                    if (yShrink > 1)
+                    {
+                        Console.WriteLine("shrinkh by " + yShrink);
+                        tile = tile.Shrinkh(xShrink);
+                    }
+
+                    // Recalculate residual float based on dimensions of required vs shrunk images
+                    int shrunkWidth = tile.Width;
+                    int shrunkHeight = tile.Height;
+
+                    xResidual = (double)metadata["WriteXSize"] / shrunkWidth;
+                    yResidual = (double)metadata["WriteYSize"] / shrunkHeight;
+                }
+
+                // Use affine increase or kernel reduce with the remaining float part
+                if (xResidual != 1.0 || yResidual != 1.0)
+                {
+                    // Perform kernel-based reduction
+                    if (yResidual < 1.0 || xResidual < 1.0)
+                    {
+                        if (yResidual < 1.0)
                         {
-                            graphics.DrawImage(InputImage,
-                                               new Rectangle(metadata["WriteXPos"],
-                                                             metadata["WriteYPos"],
-                                                             metadata["WriteXSize"],
-                                                             metadata["WriteYSize"]),
-                                               new Rectangle(metadata["ReadXPos"],
-                                                             metadata["ReadYPos"],
-                                                             metadata["ReadXSize"],
-                                                             metadata["ReadYSize"]),
-                                               GraphicsUnit.Pixel);
+                            Console.WriteLine("residual reducev by " + yResidual);
+                            tile = tile.Reducev(1.0 / yResidual, Enums.Kernel.Cubic, centre);
                         }
-                        catch (Exception)
+                        if (xResidual < 1.0)
                         {
-                            return false;
+                            Console.WriteLine("residual reduceh by " + xResidual);
+                            tile = tile.Reduceh(1.0 / xResidual, Enums.Kernel.Cubic, centre);
                         }
                     }
 
-                    try
+                    // Perform enlargement
+                    if (yResidual > 1.0 || xResidual > 1.0)
                     {
-                        outputBitmap.Save(outputFileName, ImageFormat.Png);
-                    }
-                    catch (Exception)
-                    {
-                        return false;
+                        // Floating point affine transformation
+                        using (Interpolate interpolator = Interpolate.NewFromName("bicubic"))
+                        {
+                            if (yResidual > 1.0 && xResidual > 1.0)
+                            {
+                                Console.WriteLine("residual scale " + xResidual + " x " + yResidual);
+                                tile = tile.Affine(new[] {xResidual, 0.0, 0.0, yResidual}, interpolator);
+                            }
+                            else if (yResidual > 1.0)
+                            {
+                                Console.WriteLine("residual scale " + yResidual);
+                                tile = tile.Affine(new[] {1.0, 0.0, 0.0, yResidual}, interpolator);
+                            }
+                            else if (xResidual > 1.0)
+                            {
+                                Console.WriteLine("residual scale " + xResidual);
+                                tile = tile.Affine(new[] {xResidual, 0.0, 0.0, 1.0}, interpolator);
+                            }
+                        }
                     }
                 }
+
+                // Add alpha channel
+                if (tile.Bands == 3)
+                    tile = tile.Bandjoin(255);
+
+                // Insert tile into output image
+                outputImage = outputImage.Insert(tile, metadata["WriteXPos"], metadata["WriteYPos"]);
+
+                outputImage.Pngsave(outputFileName);
+                tile.Dispose();
+                outputImage.Dispose();
+
+                //using (Bitmap outputBitmap = new Bitmap(TileSize, TileSize))
+                //{
+                //    using (Graphics graphics = Graphics.FromImage(outputBitmap))
+                //    {
+                //        try
+                //        {
+                //            graphics.DrawImage(InputImage,
+                //                               new Rectangle(metadata["WriteXPos"],
+                //                                             metadata["WriteYPos"],
+                //                                             metadata["WriteXSize"],
+                //                                             metadata["WriteYSize"]),
+                //                               new Rectangle(metadata["ReadXPos"],
+                //                                             metadata["ReadYPos"],
+                //                                             metadata["ReadXSize"],
+                //                                             metadata["ReadYSize"]),
+                //                               GraphicsUnit.Pixel);
+                //        }
+                //        catch (Exception)
+                //        {
+                //            return false;
+                //        }
+                //    }
+
+                //    try
+                //    {
+                //        outputBitmap.Save(outputFileName, ImageFormat.Png);
+                //    }
+                //    catch (Exception)
+                //    {
+                //        return false;
+                //    }
+                //}
             }
             Metadata?.Clear();
 

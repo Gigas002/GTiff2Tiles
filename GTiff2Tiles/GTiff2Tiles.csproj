@@ -72,6 +72,9 @@
     <PackageReference Include="GDAL.Native">
       <Version>2.3.3</Version>
     </PackageReference>
+    <PackageReference Include="NetVips">
+      <Version>1.0.6</Version>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -33,10 +33,10 @@ namespace GTiff2Tiles.Test
             Stopwatch stopwatch = Stopwatch.StartNew();
 
             //Write your parameters here, if you want to debug it without arguments.
-            InputFile = args.Length > 0 ? args[0] : "D:/Examples/test.tif";
+            InputFile = args.Length > 0 ? args[0] : "D:/Examples/test2.tif";
             OutputDirectory = args.Length > 1 ? args[1] : "D:/Result";
             MinZ = args.Length > 2 ? int.Parse(args[2]) : 10;
-            MaxZ = args.Length > 3 ? int.Parse(args[3]) : 14;
+            MaxZ = args.Length > 3 ? int.Parse(args[3]) : 17;
 
             //Configure gdal's location.
             GdalConfiguration.ConfigureGdal();
