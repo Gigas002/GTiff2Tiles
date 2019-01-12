@@ -1,18 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-//using System.Drawing;
-//using System.Drawing.Imaging;
 using NetVips;
 using System.IO;
 using System.Linq;
 using OSGeo.GDAL;
 
-//todo build overview from lowest zoom, multithreading, progress-reporting, exception handling, use netvips instead of System.Drawing.Image, move to .net standard 2.1.
+//todo build overview from lowest zoom (need tests), multithreading, progress-reporting, exception handling, use netvips instead of System.Drawing.Image, move to .net standard 2.1.
 
 namespace GTiff2Tiles
 {
+    /// <inheritdoc />
     /// <summary>
-    /// Alternative to <see cref="Gdal2Tiles"/> class. Prefer to use this. Uses c# methods to crop tile.
+    /// Alternative to <see cref="T:GTiff2Tiles.Gdal2Tiles" /> class. Prefer to use this. Uses c# methods to crop tile.
     /// </summary>
     public class GTiff2Tiles : IDisposable
     {
@@ -21,7 +20,7 @@ namespace GTiff2Tiles
         /// <summary>
         /// To detect redundant calls.
         /// </summary>
-        private bool IsDisposed { get; set; } = false;
+        private bool IsDisposed { get; set; }
 
         /// <summary>
         /// Dispose logics.
@@ -47,8 +46,9 @@ namespace GTiff2Tiles
         /// </summary>
         ~GTiff2Tiles() => Dispose(false);
 
+        /// <inheritdoc />
         /// <summary>
-        /// Dispose <see cref="GTiff2Tiles"/> object from your code.
+        /// Dispose <see cref="T:GTiff2Tiles.GTiff2Tiles" /> object from your code.
         /// </summary>
         public void Dispose()
         {
@@ -61,12 +61,12 @@ namespace GTiff2Tiles
         #region Properties
 
         /// <summary>
-        /// Image's x size.
+        /// Image's width.
         /// </summary>
         private int RasterXSize { get; set; }
 
         /// <summary>
-        /// Image's y size.
+        /// Image's height.
         /// </summary>
         private int RasterYSize { get; set; }
 
@@ -93,12 +93,12 @@ namespace GTiff2Tiles
         /// <summary>
         /// FullName of input file.
         /// </summary>
-        private string InputFile { get; set; }
+        private string InputFile { get; }
 
         /// <summary>
         /// FullName of output directory.
         /// </summary>
-        private string OutputDirectory { get; set; }
+        private string OutputDirectory { get; }
 
         /// <summary>
         /// Input geotiff in memory.
@@ -106,24 +106,14 @@ namespace GTiff2Tiles
         private Image InputImage { get; set; }
 
         /// <summary>
-        /// Input dataset. Needed only to get coordinates and raster sizes. Opened and disposed in <see cref="Initialize"/>.
-        /// </summary>
-        private Dataset InputDataset { get; set; }
-
-        /// <summary>
-        /// Contains some useful metadata of input GeoTiff.
-        /// </summary>
-        private List<Dictionary<string, int>> Metadata { get; } = new List<Dictionary<string, int>>();
-
-        /// <summary>
         /// Minimum zoom.
         /// </summary>
-        private int MinZ { get; set; }
+        private int MinZ { get; }
 
         /// <summary>
         /// Maximum zoom.
         /// </summary>
-        private int MaxZ { get; set; }
+        private int MaxZ { get; }
 
         #endregion
 
@@ -157,23 +147,26 @@ namespace GTiff2Tiles
         private bool Initialize()
         {
             //todo read coordinates and rastersizes without gdal?
+            Dataset inputDataset;
             try
             {
-                InputDataset = Gdal.Open(InputFile, Access.GA_ReadOnly);
+                inputDataset = Gdal.Open(InputFile, Access.GA_ReadOnly);
             }
             catch (Exception)
             {
                 return false;
             }
 
+            //Get geotransform and raster sizes.
             double[] outGeoTransform = new double[6];
-            InputDataset.GetGeoTransform(outGeoTransform);
+            inputDataset.GetGeoTransform(outGeoTransform);
             GeoTransform = outGeoTransform;
-            RasterXSize = InputDataset.RasterXSize;
-            RasterYSize = InputDataset.RasterYSize;
+            RasterXSize = inputDataset.RasterXSize;
+            RasterYSize = inputDataset.RasterYSize;
 
-            InputDataset?.Dispose();
+            inputDataset.Dispose();
 
+            //Create dictionary with tiles for each cropped zoom.
             foreach (int zoom in Enumerable.Range(MinZ, MaxZ - MinZ + 1))
             {
                 double xMin = GeoTransform[0];
@@ -181,13 +174,14 @@ namespace GTiff2Tiles
                 double xMax = GeoTransform[0] + RasterXSize * GeoTransform[1];
                 double yMax = GeoTransform[3];
 
+                //Convert geographical coordinates to tile numbers.
                 int[] lonLatToTile = GetTileNumbersFromCoords(xMin, yMin, xMax, yMax, zoom);
                 int tileMinX = lonLatToTile[0];
                 int tileMinY = lonLatToTile[1];
                 int tileMaxX = lonLatToTile[2];
                 int tileMaxY = lonLatToTile[3];
 
-                // crop tiles extending world limits (+-180,+-90)
+                //Crop tiles extending world limits (+-180,+-90).
                 tileMinX = Math.Max(0, tileMinX);
                 tileMinY = Math.Max(0, tileMinY);
                 tileMaxX = Math.Min(Convert.ToInt32(Math.Pow(2.0, zoom + 1)) - 1, tileMaxX);
@@ -205,8 +199,7 @@ namespace GTiff2Tiles
 
             try
             {
-                //todo: use NetVips.Image
-                InputImage = Image.Tiffload(InputFile, access: Enums.Access.Random); //Image.FromFile(InputFile);
+                InputImage = Image.Tiffload(InputFile, access: Enums.Access.Random);
             }
             catch (Exception)
             {
@@ -273,19 +266,19 @@ namespace GTiff2Tiles
                                  double lowerRightX,
                                  double lowerRightY)
         {
-            //Geotiff coordinate borders
+            //Geotiff coordinate borders.
             double tiffXMin = GeoTransform[0];
             double tiffYMin = GeoTransform[3] - RasterYSize * GeoTransform[1];
             double tiffXMax = GeoTransform[0] + RasterXSize * GeoTransform[1];
             double tiffYMax = GeoTransform[3];
 
-            //Read from input geotiff in pixels
+            //Read from input geotiff in pixels.
             double readXMin = RasterXSize * (upperLeftX - tiffXMin) / (tiffXMax - tiffXMin);
             double readYMin = RasterYSize - RasterYSize * (upperLeftY - tiffYMin) / (tiffYMax - tiffYMin);
             double readXMax = RasterXSize * (lowerRightX - tiffXMin) / (tiffXMax - tiffXMin);
             double readYMax = RasterYSize - RasterYSize * (lowerRightY - tiffYMin) / (tiffYMax - tiffYMin);
 
-            //If outside tiff
+            //If outside of tiff.
             readXMin = readXMin < 0.0 ? 0.0 :
                        readXMin > RasterXSize ? RasterXSize : readXMin;
             readYMin = readYMin < 0.0 ? 0.0 :
@@ -295,7 +288,7 @@ namespace GTiff2Tiles
             readYMax = readYMax < 0.0 ? 0.0 :
                        readYMax > RasterYSize ? RasterYSize : readYMax;
 
-            //Output tile's borders in pixels
+            //Output tile's borders in pixels.
             double tileXMin = readXMin.Equals(0.0) ? tiffXMin :
                               readXMin.Equals(RasterXSize) ? tiffXMax : upperLeftX;
             double tileYMin = readYMax.Equals(0.0) ? tiffYMax :
@@ -305,20 +298,19 @@ namespace GTiff2Tiles
             double tileYMax = readYMin.Equals(0.0) ? tiffYMax :
                               readYMin.Equals(RasterYSize) ? tiffYMin : upperLeftY;
 
-            //Positions of dataset to write in tile
+            //Positions of dataset to write in tile.
             double writeXMin = TileSize - TileSize * (lowerRightX - tileXMin) / (lowerRightX - upperLeftX);
             double writeYMin = TileSize * (upperLeftY - tileYMax) / (upperLeftY - lowerRightY);
             double writeXMax = TileSize - TileSize * (lowerRightX - tileXMax) / (lowerRightX - upperLeftX);
             double writeYMax = TileSize * (upperLeftY - tileYMin) / (upperLeftY - lowerRightY);
 
-            //Sizes to read and write
+            //Sizes to read and write.
             double readXSize = readXMax - readXMin;
             double readYSize = readYMax - readYMin;
             double writeXSize = writeXMax - writeXMin;
             double writeYSize = writeYMax - writeYMin;
 
-            //Need more tests with Convert.ToInt32 and return value. Now borders seems better with (int).
-            //Shifts
+            //Shifts.
             double readXShift = readXMin - (int) readXMin;
             readXSize += readXShift;
             double readYShift = readYMin - (int) readYMin;
@@ -342,181 +334,121 @@ namespace GTiff2Tiles
         /// <returns>True if no errors occured, false otherwise.</returns>
         private bool WriteOneZoom(int zoom)
         {
+            //For each tile on given zoom calculate positions/sizes and save as file.
             for (int currentY = MinMax[zoom][1]; currentY <= MinMax[zoom][3]; currentY++)
             {
                 for (int currentX = MinMax[zoom][0]; currentX <= MinMax[zoom][2]; currentX++)
                 {
-                    //Create directories for the tile
+                    //Create directories for the tile. The overall structure looks like: outputDirectory/zoom/x/y.png.
                     Directory.CreateDirectory(Path.Combine(OutputDirectory, $"{zoom}", $"{currentX}"));
                     double[] bounds = TileBounds(currentX, currentY, zoom);
 
-                    //Tile bounds in raster coordinates for ReadRaster query
+                    //Get postitions and sizes for current tile.
                     int[][] geoQuery = GeoQuery(bounds[0], bounds[3], bounds[2], bounds[1]);
 
+                    //Postitions/sizes to read frin input file.
+                    int readXPos = geoQuery[0][0];
+                    int readYPos = geoQuery[0][1];
+                    int readXSize = geoQuery[0][2];
+                    int readYSize = geoQuery[0][3];
+
+                    //Positions/sizes to write into tile.
+                    int writeXPos = geoQuery[1][0];
+                    int writeYPos = geoQuery[1][1];
+                    int writeXSize = geoQuery[1][2];
+                    int writeYSize = geoQuery[1][3];
+
+                    string outputFileName = Path.Combine(OutputDirectory, $"{zoom}",
+                                     $"{currentX}",
+                                     $"{currentY}{TileExtension}");
+
+                    // Make a transparent image
+                    Image outputImage;
                     try
                     {
-                        Metadata.Add(new Dictionary<string, int>
-                        {
-                            {"TileX", currentX},
-                            {"TileY", currentY},
-                            {"TileZoom", zoom},
-                            {"ReadXPos", geoQuery[0][0]},
-                            {"ReadYPos", geoQuery[0][1]},
-                            {"ReadXSize", geoQuery[0][2]},
-                            {"ReadYSize", geoQuery[0][3]},
-                            {"WriteXPos", geoQuery[1][0]},
-                            {"WriteYPos", geoQuery[1][1]},
-                            {"WriteXSize", geoQuery[1][2]},
-                            {"WriteYSize", geoQuery[1][3]}
-                        });
+                        outputImage = Image.Black(TileSize, TileSize).NewFromImage(new[] { 0, 0, 0, 0 });
                     }
                     catch (Exception)
                     {
                         return false;
                     }
+
+                    // Crop
+                    Image tile;
+                    try
+                    {
+                        tile = InputImage.Crop(readXPos, readYPos, readXSize, readYSize);
+                    }
+                    catch (Exception)
+                    {
+                        return false;
+                    }
+
+                    // Scaling calculations
+                    double xFactor = (double)readXSize / writeXSize;
+                    double yFactor = (double)readYSize / writeYSize;
+
+                    // Calculate integral box shrink
+                    int xShrink = Math.Max(1, (int)Math.Floor(xFactor));
+                    int yShrink = Math.Max(1, (int)Math.Floor(yFactor));
+
+                    // Calculate residual float affine transformation
+                    double xResidual = xShrink / xFactor;
+                    double yResidual = yShrink / yFactor;
+
+                    // Fast, integral box-shrink
+                    if (xShrink > 1 || yShrink > 1)
+                    {
+                        if (xShrink > 1) tile = tile.Shrinkv(yShrink);
+                        if (yShrink > 1) tile = tile.Shrinkh(xShrink);
+
+                        // Recalculate residual float based on dimensions of required vs shrunk images
+                        int shrunkWidth = tile.Width;
+                        int shrunkHeight = tile.Height;
+
+                        xResidual = (double)writeXSize / shrunkWidth;
+                        yResidual = (double)writeYSize / shrunkHeight;
+                    }
+
+                    // Use affine increase or kernel reduce with the remaining float part
+                    if (Math.Abs(xResidual - 1.0) > double.Epsilon || Math.Abs(yResidual - 1.0) > double.Epsilon)
+                    {
+                        // Perform kernel-based reduction
+                        if (yResidual < 1.0 || xResidual < 1.0)
+                        {
+                            if (yResidual < 1.0) tile = tile.Reducev(1.0 / yResidual, Enums.Kernel.Cubic, false);
+                            if (xResidual < 1.0) tile = tile.Reduceh(1.0 / xResidual, Enums.Kernel.Cubic, false);
+                        }
+
+                        // Perform enlargement
+                        if (yResidual > 1.0 || xResidual > 1.0)
+                        {
+                            // Floating point affine transformation
+                            using (Interpolate interpolator = Interpolate.NewFromName("bicubic"))
+                            {
+                                if (yResidual > 1.0 && xResidual > 1.0)
+                                    tile = tile.Affine(new[] {xResidual, 0.0, 0.0, yResidual}, interpolator);
+                                else if (yResidual > 1.0)
+                                    tile = tile.Affine(new[] {1.0, 0.0, 0.0, yResidual}, interpolator);
+                                else if (xResidual > 1.0)
+                                    tile = tile.Affine(new[] {xResidual, 0.0, 0.0, 1.0}, interpolator);
+                            }
+                        }
+                    }
+
+                    // Add alpha channel if needed
+                        for (;tile.Bands < 4;)
+                            tile = tile.Bandjoin(255);
+
+                    // Insert tile into output image
+                    outputImage = outputImage.Insert(tile, writeXPos, writeYPos);
+
+                    outputImage.Pngsave(outputFileName);
+
+                    tile.Dispose();
+                    outputImage.Dispose();
                 }
             }
-
-            foreach (Dictionary<string, int> metadata in Metadata)
-            {
-                string outputFileName = Path.Combine(OutputDirectory, $"{metadata["TileZoom"]}",
-                                                     $"{metadata["TileX"]}",
-                                                     $"{metadata["TileY"]}{TileExtension}");
-
-                // Make a transparent image
-                Image outputImage = Image.Black(TileSize, TileSize).NewFromImage(new[] { 0, 0, 0, 0 });
-
-                // Use corner sampling rather than centre convention.
-                const bool centre = false;
-
-                // Inside loop
-
-                // Crop
-                Image tile = InputImage.Crop(metadata["ReadXPos"], metadata["ReadYPos"], metadata["ReadXSize"], metadata["ReadYSize"]);
-
-                // Resize
-                // Scaling calculations
-                double xFactor = (double)metadata["ReadXSize"] / metadata["WriteXSize"];
-                double yFactor = (double)metadata["ReadYSize"] / metadata["WriteYSize"];
-
-                // Calculate integral box shrink
-                int xShrink = Math.Max(1, (int)Math.Floor(xFactor));
-                int yShrink = Math.Max(1, (int)Math.Floor(yFactor));
-
-                // Calculate residual float affine transformation
-                double xResidual = xShrink / xFactor;
-                double yResidual = yShrink / yFactor;
-
-                // Fast, integral box-shrink
-                if (xShrink > 1 || yShrink > 1)
-                {
-                    if (xShrink > 1)
-                    {
-                        Console.WriteLine("shrinkv by " + yShrink);
-                        tile = tile.Shrinkv(yShrink);
-                    }
-                    if (yShrink > 1)
-                    {
-                        Console.WriteLine("shrinkh by " + yShrink);
-                        tile = tile.Shrinkh(xShrink);
-                    }
-
-                    // Recalculate residual float based on dimensions of required vs shrunk images
-                    int shrunkWidth = tile.Width;
-                    int shrunkHeight = tile.Height;
-
-                    xResidual = (double)metadata["WriteXSize"] / shrunkWidth;
-                    yResidual = (double)metadata["WriteYSize"] / shrunkHeight;
-                }
-
-                // Use affine increase or kernel reduce with the remaining float part
-                if (xResidual != 1.0 || yResidual != 1.0)
-                {
-                    // Perform kernel-based reduction
-                    if (yResidual < 1.0 || xResidual < 1.0)
-                    {
-                        if (yResidual < 1.0)
-                        {
-                            Console.WriteLine("residual reducev by " + yResidual);
-                            tile = tile.Reducev(1.0 / yResidual, Enums.Kernel.Cubic, centre);
-                        }
-                        if (xResidual < 1.0)
-                        {
-                            Console.WriteLine("residual reduceh by " + xResidual);
-                            tile = tile.Reduceh(1.0 / xResidual, Enums.Kernel.Cubic, centre);
-                        }
-                    }
-
-                    // Perform enlargement
-                    if (yResidual > 1.0 || xResidual > 1.0)
-                    {
-                        // Floating point affine transformation
-                        using (Interpolate interpolator = Interpolate.NewFromName("bicubic"))
-                        {
-                            if (yResidual > 1.0 && xResidual > 1.0)
-                            {
-                                Console.WriteLine("residual scale " + xResidual + " x " + yResidual);
-                                tile = tile.Affine(new[] {xResidual, 0.0, 0.0, yResidual}, interpolator);
-                            }
-                            else if (yResidual > 1.0)
-                            {
-                                Console.WriteLine("residual scale " + yResidual);
-                                tile = tile.Affine(new[] {1.0, 0.0, 0.0, yResidual}, interpolator);
-                            }
-                            else if (xResidual > 1.0)
-                            {
-                                Console.WriteLine("residual scale " + xResidual);
-                                tile = tile.Affine(new[] {xResidual, 0.0, 0.0, 1.0}, interpolator);
-                            }
-                        }
-                    }
-                }
-
-                // Add alpha channel
-                if (tile.Bands == 3)
-                    tile = tile.Bandjoin(255);
-
-                // Insert tile into output image
-                outputImage = outputImage.Insert(tile, metadata["WriteXPos"], metadata["WriteYPos"]);
-
-                outputImage.Pngsave(outputFileName);
-                tile.Dispose();
-                outputImage.Dispose();
-
-                //using (Bitmap outputBitmap = new Bitmap(TileSize, TileSize))
-                //{
-                //    using (Graphics graphics = Graphics.FromImage(outputBitmap))
-                //    {
-                //        try
-                //        {
-                //            graphics.DrawImage(InputImage,
-                //                               new Rectangle(metadata["WriteXPos"],
-                //                                             metadata["WriteYPos"],
-                //                                             metadata["WriteXSize"],
-                //                                             metadata["WriteYSize"]),
-                //                               new Rectangle(metadata["ReadXPos"],
-                //                                             metadata["ReadYPos"],
-                //                                             metadata["ReadXSize"],
-                //                                             metadata["ReadYSize"]),
-                //                               GraphicsUnit.Pixel);
-                //        }
-                //        catch (Exception)
-                //        {
-                //            return false;
-                //        }
-                //    }
-
-                //    try
-                //    {
-                //        outputBitmap.Save(outputFileName, ImageFormat.Png);
-                //    }
-                //    catch (Exception)
-                //    {
-                //        return false;
-                //    }
-                //}
-            }
-            Metadata?.Clear();
 
             return true;
         }

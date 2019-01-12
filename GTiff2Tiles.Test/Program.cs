@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Diagnostics;
-//using OSGeo.GDAL;
 
 namespace GTiff2Tiles.Test
 {
