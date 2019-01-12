@@ -261,7 +261,7 @@ namespace GTiff2Tiles
         }
 
         /// <summary>
-        /// Ca;culate size and positions to read/write.
+        /// Calculate size and positions to read/write.
         /// </summary>
         /// <param name="upperLeftX">Tile's upper left x coordinate.</param>
         /// <param name="upperLeftY">Tile's upper left y coordinate.</param>
