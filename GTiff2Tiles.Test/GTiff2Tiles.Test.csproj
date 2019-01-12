@@ -64,15 +64,11 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GdalConfiguration.cs" />
+    <Compile Include="NetVipsConfiguration.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -81,9 +77,6 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="GDAL">
-      <Version>2.3.3</Version>
-    </PackageReference>
-    <PackageReference Include="GDAL.Native">
       <Version>2.3.3</Version>
     </PackageReference>
     <PackageReference Include="NetVips">
