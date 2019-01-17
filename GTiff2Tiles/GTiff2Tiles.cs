@@ -35,7 +35,6 @@ namespace GTiff2Tiles
                 /* Dispose() is called by programmer */
             }
 
-            InputImage?.Dispose();
             MinMax?.Clear();
 
             IsDisposed = true;
@@ -99,11 +98,6 @@ namespace GTiff2Tiles
         /// FullName of output directory.
         /// </summary>
         private string OutputDirectory { get; }
-
-        /// <summary>
-        /// Input geotiff in memory.
-        /// </summary>
-        private Image InputImage { get; set; }
 
         /// <summary>
         /// Minimum zoom.
@@ -193,15 +187,6 @@ namespace GTiff2Tiles
                 {
                     return false;
                 }
-            }
-
-            try
-            {
-                InputImage = Image.Tiffload(InputFile, access: Enums.Access.Random);
-            }
-            catch (Exception)
-            {
-                return false;
             }
 
             return true;
@@ -332,6 +317,8 @@ namespace GTiff2Tiles
         /// <returns>True if no errors occured, false otherwise.</returns>
         private bool WriteLowestZoom(int zoom)
         {
+            Image inputImage = Image.Tiffload(InputFile, access: Enums.Access.Random);
+
             //For each tile on given zoom calculate positions/sizes and save as file.
             for (int currentY = MinMax[zoom][1]; currentY <= MinMax[zoom][3]; currentY++)
             {
@@ -372,11 +359,11 @@ namespace GTiff2Tiles
                     double xResidual = xShrink / xFactor;
                     double yResidual = yShrink / yFactor;
 
-                    // Crop
+                    //Try open input image and crop tile
                     Image tile;
                     try
                     {
-                        tile = InputImage.Crop(readXPos, readYPos, readXSize, readYSize);
+                        tile = inputImage.Crop(readXPos, readYPos, readXSize, readYSize);
                     }
                     catch (Exception)
                     {
@@ -386,8 +373,8 @@ namespace GTiff2Tiles
                     // Fast, integral box-shrink
                     if (xShrink > 1 || yShrink > 1)
                     {
-                        if (xShrink > 1) tile = tile.Shrinkv(xShrink); //tile.Shrinkv(yShrink);
-                        if (yShrink > 1) tile = tile.Shrinkh(yShrink); //tile.Shrinkh(xShrink);
+                        if (xShrink > 1) tile = tile.Reducev(xShrink, Enums.Kernel.Lanczos3, false);//tile.Shrinkv(xShrink); //tile.Shrinkv(yShrink);
+                        if (yShrink > 1) tile = tile.Reduceh(yShrink, Enums.Kernel.Lanczos3, false);//tile.Shrinkh(yShrink); //tile.Shrinkh(xShrink);
 
                         // Recalculate residual float based on dimensions of required vs shrunk images
                         xResidual = (double) writeXSize / tile.Width;
@@ -400,22 +387,22 @@ namespace GTiff2Tiles
                         // Perform kernel-based reduction
                         if (yResidual < 1.0 || xResidual < 1.0)
                         {
-                            if (yResidual < 1.0) tile = tile.Reducev(1.0 / yResidual, Enums.Kernel.Cubic, false);
-                            if (xResidual < 1.0) tile = tile.Reduceh(1.0 / xResidual, Enums.Kernel.Cubic, false);
+                            if (yResidual < 1.0) tile = tile.Reducev(1.0 / yResidual, Enums.Kernel.Lanczos3, false);
+                            if (xResidual < 1.0) tile = tile.Reduceh(1.0 / xResidual, Enums.Kernel.Lanczos3, false);
                         }
 
                         // Perform enlargement
                         if (yResidual > 1.0 || xResidual > 1.0)
                         {
                             // Floating point affine transformation
-                            using (Interpolate interpolator = Interpolate.NewFromName("bicubic"))
+                            using (Interpolate interpolate = Interpolate.NewFromName("bicubic"))
                             {
                                 if (yResidual > 1.0 && xResidual > 1.0)
-                                    tile = tile.Affine(new[] {xResidual, 0.0, 0.0, yResidual}, interpolator);
+                                    tile = tile.Affine(new[] {xResidual, 0.0, 0.0, yResidual}, interpolate);
                                 else if (yResidual > 1.0)
-                                    tile = tile.Affine(new[] {1.0, 0.0, 0.0, yResidual}, interpolator);
+                                    tile = tile.Affine(new[] {1.0, 0.0, 0.0, yResidual}, interpolate);
                                 else if (xResidual > 1.0)
-                                    tile = tile.Affine(new[] {xResidual, 0.0, 0.0, 1.0}, interpolator);
+                                    tile = tile.Affine(new[] {xResidual, 0.0, 0.0, 1.0}, interpolate);
                             }
                         }
                     }
@@ -428,7 +415,7 @@ namespace GTiff2Tiles
                     Image outputImage;
                     try
                     {
-                        outputImage = Image.Black(TileSize, TileSize).NewFromImage(new[] { 0, 0, 0, 0 });
+                        outputImage = Image.Black(TileSize, TileSize).NewFromImage(new[] {0, 0, 0, 0});
                     }
                     catch (Exception)
                     {
@@ -444,6 +431,7 @@ namespace GTiff2Tiles
                 }
             }
 
+            inputImage.Dispose();
             return true;
         }
 
