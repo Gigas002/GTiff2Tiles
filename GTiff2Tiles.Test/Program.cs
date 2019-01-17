@@ -53,6 +53,8 @@ namespace GTiff2Tiles.Test
                     Console.WriteLine("Press any key to exit.");
                     Console.ReadKey();
                     #endif
+
+                    return;
                 }
             }
 

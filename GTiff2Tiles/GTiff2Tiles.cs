@@ -146,25 +146,23 @@ namespace GTiff2Tiles
         /// <returns>True if no errors occured, false otherwise.</returns>
         private bool Initialize()
         {
-            //todo read coordinates and rastersizes without gdal?
-            Dataset inputDataset;
+            //todo read coordinates and rastersizes without gdal
             try
             {
-                inputDataset = Gdal.Open(InputFile, Access.GA_ReadOnly);
+                using (Dataset inputDataset = Gdal.Open(InputFile, Access.GA_ReadOnly))
+                {
+                    //Get geotransform and raster sizes.
+                    double[] outGeoTransform = new double[6];
+                    inputDataset.GetGeoTransform(outGeoTransform);
+                    GeoTransform = outGeoTransform;
+                    RasterXSize = inputDataset.RasterXSize;
+                    RasterYSize = inputDataset.RasterYSize;
+                }
             }
             catch (Exception)
             {
                 return false;
             }
-
-            //Get geotransform and raster sizes.
-            double[] outGeoTransform = new double[6];
-            inputDataset.GetGeoTransform(outGeoTransform);
-            GeoTransform = outGeoTransform;
-            RasterXSize = inputDataset.RasterXSize;
-            RasterYSize = inputDataset.RasterYSize;
-
-            inputDataset.Dispose();
 
             //Create dictionary with tiles for each cropped zoom.
             foreach (int zoom in Enumerable.Range(MinZ, MaxZ - MinZ + 1))
@@ -332,7 +330,7 @@ namespace GTiff2Tiles
         /// </summary>
         /// <param name="zoom">Current zoom to crop.</param>
         /// <returns>True if no errors occured, false otherwise.</returns>
-        private bool WriteOneZoom(int zoom)
+        private bool WriteLowestZoom(int zoom)
         {
             //For each tile on given zoom calculate positions/sizes and save as file.
             for (int currentY = MinMax[zoom][1]; currentY <= MinMax[zoom][3]; currentY++)
@@ -359,19 +357,20 @@ namespace GTiff2Tiles
                     int writeYSize = geoQuery[1][3];
 
                     string outputFileName = Path.Combine(OutputDirectory, $"{zoom}",
-                                     $"{currentX}",
-                                     $"{currentY}{TileExtension}");
+                                                         $"{currentX}",
+                                                         $"{currentY}{TileExtension}");
 
-                    // Make a transparent image
-                    Image outputImage;
-                    try
-                    {
-                        outputImage = Image.Black(TileSize, TileSize).NewFromImage(new[] { 0, 0, 0, 0 });
-                    }
-                    catch (Exception)
-                    {
-                        return false;
-                    }
+                    // Scaling calculations
+                    double xFactor = (double) readXSize / writeXSize;
+                    double yFactor = (double) readYSize / writeYSize;
+
+                    // Calculate integral box shrink
+                    int xShrink = Math.Max(1, (int) Math.Floor(xFactor));
+                    int yShrink = Math.Max(1, (int) Math.Floor(yFactor));
+
+                    // Calculate residual float affine transformation
+                    double xResidual = xShrink / xFactor;
+                    double yResidual = yShrink / yFactor;
 
                     // Crop
                     Image tile;
@@ -384,30 +383,15 @@ namespace GTiff2Tiles
                         return false;
                     }
 
-                    // Scaling calculations
-                    double xFactor = (double)readXSize / writeXSize;
-                    double yFactor = (double)readYSize / writeYSize;
-
-                    // Calculate integral box shrink
-                    int xShrink = Math.Max(1, (int)Math.Floor(xFactor));
-                    int yShrink = Math.Max(1, (int)Math.Floor(yFactor));
-
-                    // Calculate residual float affine transformation
-                    double xResidual = xShrink / xFactor;
-                    double yResidual = yShrink / yFactor;
-
                     // Fast, integral box-shrink
                     if (xShrink > 1 || yShrink > 1)
                     {
-                        if (xShrink > 1) tile = tile.Shrinkv(yShrink);
-                        if (yShrink > 1) tile = tile.Shrinkh(xShrink);
+                        if (xShrink > 1) tile = tile.Shrinkv(xShrink); //tile.Shrinkv(yShrink);
+                        if (yShrink > 1) tile = tile.Shrinkh(yShrink); //tile.Shrinkh(xShrink);
 
                         // Recalculate residual float based on dimensions of required vs shrunk images
-                        int shrunkWidth = tile.Width;
-                        int shrunkHeight = tile.Height;
-
-                        xResidual = (double)writeXSize / shrunkWidth;
-                        yResidual = (double)writeYSize / shrunkHeight;
+                        xResidual = (double) writeXSize / tile.Width;
+                        yResidual = (double) writeYSize / tile.Height;
                     }
 
                     // Use affine increase or kernel reduce with the remaining float part
@@ -437,20 +421,36 @@ namespace GTiff2Tiles
                     }
 
                     // Add alpha channel if needed
-                        for (;tile.Bands < 4;)
-                            tile = tile.Bandjoin(255);
+                    for (; tile.Bands < 4;)
+                        tile = tile.Bandjoin(255);
+
+                    // Make a transparent image
+                    Image outputImage;
+                    try
+                    {
+                        outputImage = Image.Black(TileSize, TileSize).NewFromImage(new[] { 0, 0, 0, 0 });
+                    }
+                    catch (Exception)
+                    {
+                        return false;
+                    }
 
                     // Insert tile into output image
                     outputImage = outputImage.Insert(tile, writeXPos, writeYPos);
-
                     outputImage.Pngsave(outputFileName);
 
-                    tile.Dispose();
                     outputImage.Dispose();
+                    tile.Dispose();
                 }
             }
 
             return true;
+        }
+
+
+        private void MakeUpperTiles(int zoom)
+        {
+            //todo
         }
 
         #endregion
@@ -467,9 +467,12 @@ namespace GTiff2Tiles
             if (!Initialize()) return false;
 
             //Crop tiles for each zoom.
-            for (int zoom = MaxZ; zoom >= MinZ; zoom--)
-                if (!WriteOneZoom(zoom))
-                    return false;
+            if (!WriteLowestZoom(MaxZ))
+                return false;
+            for (int zoom = MaxZ - 1; zoom >= MinZ; zoom--)
+            {
+                MakeUpperTiles(zoom);
+            }
 
             return true;
         }
