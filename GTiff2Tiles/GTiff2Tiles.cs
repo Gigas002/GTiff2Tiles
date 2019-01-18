@@ -201,19 +201,18 @@ namespace GTiff2Tiles
         /// <param name="yMax">Maximum latitude.</param>
         /// <param name="zoom">Tile's zoom.</param>
         /// <returns>Tile numbers array.</returns>
-        private int[] GetTileNumbersFromCoords(double xMin,
-                                               double yMin,
-                                               double xMax,
-                                               double yMax,
-                                               int zoom)
+        private static int[] GetTileNumbersFromCoords(double xMin,
+                                                      double yMin,
+                                                      double xMax,
+                                                      double yMax,
+                                                      int zoom)
         {
-            double resolution = 180.0 / TileSize / Math.Pow(2, zoom);
             int[] xs = new int[2];
             int[] ys = new int[2];
-            xs[0] = Convert.ToInt32(Math.Ceiling((180.0 + xMin) / resolution / TileSize) - 1.0);
-            xs[1] = Convert.ToInt32(Math.Ceiling((180.0 + xMax) / resolution / TileSize) - 1.0);
-            ys[0] = Convert.ToInt32(Math.Ceiling((90.0 + yMin) / resolution / TileSize) - 1.0);
-            ys[1] = Convert.ToInt32(Math.Ceiling((90.0 + yMax) / resolution / TileSize) - 1.0);
+            xs[0] = Convert.ToInt32(Math.Ceiling((180.0 + xMin) * Math.Pow(2.0, zoom) / 180.0) - 1.0);
+            xs[1] = Convert.ToInt32(Math.Ceiling((180.0 + xMax) * Math.Pow(2.0, zoom) / 180.0) - 1.0);
+            ys[0] = Convert.ToInt32(Math.Ceiling((90.0 + yMin) * Math.Pow(2.0, zoom) / 180.0) - 1.0);
+            ys[1] = Convert.ToInt32(Math.Ceiling((90.0 + yMax) * Math.Pow(2.0, zoom) / 180.0) - 1.0);
 
             return new[] {xs.Min(), ys.Min(), xs.Max(), ys.Max()};
         }
