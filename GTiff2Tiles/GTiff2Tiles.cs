@@ -224,16 +224,12 @@ namespace GTiff2Tiles
         /// <param name="tileY">Tile's y.</param>
         /// <param name="zoom">Tile's zoom.</param>
         /// <returns>Tile's angles in double array.</returns>
-        private double[] TileBounds(int tileX, int tileY, int zoom)
-        {
-            double resolution = 180.0 / TileSize / Math.Pow(2.0, zoom);
-
-            return new[]
+        private static double[] TileBounds(int tileX, int tileY, int zoom) =>
+            new[]
             {
-                tileX * TileSize * resolution - 180.0, tileY * TileSize * resolution - 90.0,
-                (tileX + 1) * TileSize * resolution - 180.0, (tileY + 1) * TileSize * resolution - 90.0
+                tileX * 180.0 / Math.Pow(2.0, zoom) - 180.0, tileY * 180.0 / Math.Pow(2.0, zoom) - 90.0,
+                (tileX + 1) * 180.0 / Math.Pow(2.0, zoom) - 180.0, (tileY + 1) * 180.0 * Math.Pow(2.0, zoom) - 90.0
             };
-        }
 
         /// <summary>
         /// Calculate size and positions to read/write.
