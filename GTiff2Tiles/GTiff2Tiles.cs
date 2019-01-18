@@ -569,6 +569,19 @@ namespace GTiff2Tiles
             return true;
         }
 
+        public bool GenerateTilesOld()
+        {
+            //Initialize properties.
+            if (!Initialize()) return false;
+
+            //Crop tiles for each zoom.
+            for (int zoom = MaxZ; zoom >= MinZ; zoom--)
+                if (!WriteLowestZoom(zoom))
+                    return false;
+
+            return true;
+        }
+
         #endregion
 
         #endregion
