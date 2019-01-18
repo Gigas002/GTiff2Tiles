@@ -228,7 +228,7 @@ namespace GTiff2Tiles
             new[]
             {
                 tileX * 180.0 / Math.Pow(2.0, zoom) - 180.0, tileY * 180.0 / Math.Pow(2.0, zoom) - 90.0,
-                (tileX + 1) * 180.0 / Math.Pow(2.0, zoom) - 180.0, (tileY + 1) * 180.0 * Math.Pow(2.0, zoom) - 90.0
+                (tileX + 1) * 180.0 / Math.Pow(2.0, zoom) - 180.0, (tileY + 1) * 180.0 / Math.Pow(2.0, zoom) - 90.0
             };
 
         /// <summary>
@@ -368,8 +368,8 @@ namespace GTiff2Tiles
                     // Fast, integral box-shrink
                     if (xShrink > 1 || yShrink > 1)
                     {
-                        if (xShrink > 1) tile = tile.Reducev(xShrink, Enums.Kernel.Lanczos3, false);//tile.Shrinkv(xShrink); //tile.Shrinkv(yShrink);
-                        if (yShrink > 1) tile = tile.Reduceh(yShrink, Enums.Kernel.Lanczos3, false);//tile.Shrinkh(yShrink); //tile.Shrinkh(xShrink);
+                        if (yShrink > 1) tile = tile.Reducev(yShrink, Enums.Kernel.Lanczos3, false);
+                        if (xShrink > 1) tile = tile.Reduceh(xShrink, Enums.Kernel.Lanczos3, false);
 
                         // Recalculate residual float based on dimensions of required vs shrunk images
                         xResidual = (double) writeXSize / tile.Width;
@@ -430,10 +430,122 @@ namespace GTiff2Tiles
             return true;
         }
 
-
+        /// <summary>
+        /// Make upper tiles from the lowest zoom.
+        /// </summary>
+        /// <param name="zoom">Zoom, for which we're cropping tiles atm.</param>
         private void MakeUpperTiles(int zoom)
         {
-            //todo
+            for (int currentY = MinMax[zoom][1]; currentY <= MinMax[zoom][3]; currentY++)
+            {
+                for (int currentX = MinMax[zoom][0]; currentX <= MinMax[zoom][2]; currentX++)
+                {
+                    //Create directories for the tile. The overall structure looks like: outputDirectory/zoom/x/y.png.
+                    Directory.CreateDirectory(Path.Combine(OutputDirectory, $"{zoom}", $"{currentX}"));
+
+                    int newTileX1 = currentX * 2;
+                    int newTileY1 = currentY * 2;
+                    int newTileX2 = newTileX1 + 1;
+                    int newTileY2 = newTileY1;
+                    int newTileX3 = newTileX1;
+                    int newTileY3 = newTileY1 + 1;
+                    int newTileX4 = newTileX1 + 1;
+                    int newTileY4 = newTileY1 + 1;
+
+                    bool tilesExists = false;
+
+                    Image tile1;
+                    string tilePath1 =
+                        Path.Combine(OutputDirectory, $"{zoom + 1}", $"{newTileX1}", $"{newTileY1}.png");
+                    if (File.Exists(tilePath1))
+                    {
+                        tile1 = Image.Pngload(tilePath1);
+                        tile1 = tile1.ThumbnailImage(128, 128);
+                        tilesExists = true;
+                    }
+                    else
+                        tile1 = Image.Black(128, 128);
+
+                    Image tile2;
+                    string tilePath2 =
+                        Path.Combine(OutputDirectory, $"{zoom + 1}", $"{newTileX2}", $"{newTileY2}.png");
+                    if (File.Exists(tilePath2))
+                    {
+                        tile2 = Image.Pngload(tilePath2);
+                        tile2 = tile2.ThumbnailImage(128, 128);
+                        tilesExists = true;
+                    }
+                    else
+                        tile2 = Image.Black(128, 128);
+
+                    Image tile3;
+                    string tilePath3 =
+                        Path.Combine(OutputDirectory, $"{zoom + 1}", $"{newTileX3}", $"{newTileY3}.png");
+                    if (File.Exists(tilePath3))
+                    {
+                        tile3 = Image.Pngload(tilePath3);
+                        tile3 = tile3.ThumbnailImage(128, 128);
+                        tilesExists = true;
+                    }
+                    else
+                        tile3 = Image.Black(128, 128);
+
+                    Image tile4;
+                    string tilePath4 =
+                        Path.Combine(OutputDirectory, $"{zoom + 1}", $"{newTileX4}", $"{newTileY4}.png");
+                    if (File.Exists(tilePath4))
+                    {
+                        tile4 = Image.Pngload(tilePath4);
+                        tile4 = tile4.ThumbnailImage(128, 128);
+                        tilesExists = true;
+                    }
+                    else
+                        tile4 = Image.Black(128, 128);
+
+                    if (!tilesExists)
+                        continue;
+
+                    Image[] images = { tile3, tile4, tile1, tile2 };
+                    const int maxBands = 4;
+                    for (int i = 0; i < images.Length; i++)
+                    {
+                        int bands = images[i].Bands;
+                        switch (bands)
+                        {
+                            case maxBands:
+                                continue;
+                            case 1:
+                                {
+                                    for (int j = bands; j < maxBands; j++)
+                                        images[i] = images[i].Bandjoin(0);
+                                    break;
+                                }
+                            default:
+                                {
+                                    for (int j = bands; j < maxBands; j++)
+                                        images[i] = images[i].Bandjoin(255);
+                                    break;
+                                }
+                        }
+                    }
+
+                    Image resultImage = Image.Arrayjoin(images, 2);
+
+                    string outputFileName = Path.Combine(OutputDirectory, $"{zoom}",
+                                                         $"{currentX}",
+                                                         $"{currentY}{TileExtension}");
+
+                    resultImage.Pngsave(outputFileName);
+
+                    tile1.Dispose();
+                    tile2.Dispose();
+                    tile3.Dispose();
+                    tile4.Dispose();
+                    foreach (Image i in images)
+                        i.Dispose();
+                    resultImage.Dispose();
+                }
+            }
         }
 
         #endregion
@@ -452,10 +564,7 @@ namespace GTiff2Tiles
             //Crop tiles for each zoom.
             if (!WriteLowestZoom(MaxZ))
                 return false;
-            for (int zoom = MaxZ - 1; zoom >= MinZ; zoom--)
-            {
-                MakeUpperTiles(zoom);
-            }
+            for (int zoom = MaxZ - 1; zoom >= MinZ; zoom--) MakeUpperTiles(zoom);
 
             return true;
         }
