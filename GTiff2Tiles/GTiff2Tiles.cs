@@ -137,7 +137,7 @@ namespace GTiff2Tiles
         /// <summary>
         /// Try to initialize other properties.
         /// </summary>
-        /// <returns>True if no errors occured, false otherwise.</returns>
+        /// <returns><see langword="true"/> if no errors occured, <see langword="false"/> otherwise.</returns>
         private bool Initialize()
         {
             //todo read coordinates and rastersizes without gdal
@@ -158,14 +158,14 @@ namespace GTiff2Tiles
                 return false;
             }
 
+            double xMin = GeoTransform[0];
+            double yMin = GeoTransform[3] - RasterYSize * GeoTransform[1];
+            double xMax = GeoTransform[0] + RasterXSize * GeoTransform[1];
+            double yMax = GeoTransform[3];
+
             //Create dictionary with tiles for each cropped zoom.
             foreach (int zoom in Enumerable.Range(MinZ, MaxZ - MinZ + 1))
             {
-                double xMin = GeoTransform[0];
-                double yMin = GeoTransform[3] - RasterYSize * GeoTransform[1];
-                double xMax = GeoTransform[0] + RasterXSize * GeoTransform[1];
-                double yMax = GeoTransform[3];
-
                 //Convert geographical coordinates to tile numbers.
                 int[] lonLatToTile = GetTileNumbersFromCoords(xMin, yMin, xMax, yMax, zoom);
                 int tileMinX = lonLatToTile[0];
@@ -309,7 +309,7 @@ namespace GTiff2Tiles
         /// Crops passed zoom to tiles.
         /// </summary>
         /// <param name="zoom">Current zoom to crop.</param>
-        /// <returns>True if no errors occured, false otherwise.</returns>
+        /// <returns><see langword="true"/> if no errors occured, <see langword="false"/> otherwise.</returns>
         private bool WriteLowestZoom(int zoom)
         {
             Image inputImage = Image.Tiffload(InputFile, access: Enums.Access.Random);
@@ -553,9 +553,9 @@ namespace GTiff2Tiles
         #region Public
 
         /// <summary>
-        /// Create tiles.
+        /// Create tiles. Crops input tiff only for lowest zoom and then join the higher ones from it.
         /// </summary>
-        /// <returns>True if no errors occured, false otherwise.</returns>
+        /// <returns><see langword="true"/> if no errors occured, <see langword="false"/> otherwise.</returns>
         public bool GenerateTiles()
         {
             //Initialize properties.
@@ -569,6 +569,10 @@ namespace GTiff2Tiles
             return true;
         }
 
+        /// <summary>
+        /// Old option to create tiles. Crops input tiff for each zoom.
+        /// </summary>
+        /// <returns><see langword="true"/> if no errors occured, <see langword="false"/> otherwise.</returns>
         public bool GenerateTilesOld()
         {
             //Initialize properties.
