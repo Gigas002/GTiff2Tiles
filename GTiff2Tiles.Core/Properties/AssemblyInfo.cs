@@ -4,12 +4,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("GTiff2Tiles")]
-[assembly: AssemblyDescription("Library to create tiles from GeoTiffs.")]
+[assembly: AssemblyTitle("GTiff2Tiles.Core")]
+[assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Gigas002")]
-[assembly: AssemblyProduct("GTiff2Tiles")]
-[assembly: AssemblyCopyright("Copyright © Gigas002 2018")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("GTiff2Tiles.Core")]
+[assembly: AssemblyCopyright("Copyright ©  2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -19,7 +19,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("79237cdc-654a-4cb3-983c-5e5138e0dadc")]
+[assembly: Guid("5a6fb754-c35e-4398-9264-52456b9f8822")]
 
 // Version information for an assembly consists of the following four values:
 //
