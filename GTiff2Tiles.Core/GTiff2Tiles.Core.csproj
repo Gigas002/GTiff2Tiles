@@ -61,6 +61,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enums\Extensions.cs" />
+    <Compile Include="Enums\Image\Gdal.cs" />
+    <Compile Include="Enums\Image\Image.cs" />
     <Compile Include="Helpers\CheckHelper.cs" />
     <Compile Include="Helpers\GdalHelper.cs" />
     <Compile Include="Helpers\NetVipsHelper.cs" />

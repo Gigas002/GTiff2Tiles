@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+using System.Runtime.InteropServices;
 using OSGeo.GDAL;
 
 namespace GTiff2Tiles.Core.Image
@@ -34,6 +36,46 @@ namespace GTiff2Tiles.Core.Image
             return string.IsNullOrWhiteSpace(gdalInfoString)
                        ? throw new Exception("GdalInfo returned an empty string.")
                        : gdalInfoString;
+        }
+
+        /// <summary>
+        /// Runs GdalWarp.
+        /// </summary>
+        /// <param name="inputFilePath">Full path to input file.</param>
+        /// <param name="outputFilePath">Full path to output file.</param>
+        /// <param name="options">Options.</param>
+        /// <param name="callback">Progress reporting delegate.</param>
+        private static void Warp(string inputFilePath,
+                                 string outputFilePath,
+                                 string[] options,
+                                 OSGeo.GDAL.Gdal.GDALProgressFuncDelegate callback)
+        {
+            try
+            {
+                using (Dataset inputDataset = OSGeo.GDAL.Gdal.Open(inputFilePath, Access.GA_ReadOnly))
+                {
+                    GCHandle gcHandle =
+                        GCHandle.Alloc(new[] {Dataset.getCPtr(inputDataset).Handle}, GCHandleType.Pinned);
+                    SWIGTYPE_p_p_GDALDatasetShadow gdalDatasetShadow =
+                        new SWIGTYPE_p_p_GDALDatasetShadow(gcHandle.AddrOfPinnedObject(), false, null);
+                    // ReSharper disable once UnusedVariable
+                    using (Dataset resultDataset = OSGeo.GDAL.Gdal.wrapper_GDALWarpDestName(outputFilePath, 1,
+                                                                                            gdalDatasetShadow,
+                                                                                            new GDALWarpAppOptions(
+                                                                                                                   options),
+                                                                                            callback, string.Empty))
+                    {
+                        gcHandle.Free();
+                    }
+                }
+            }
+            catch (Exception exception)
+            {
+                throw new Exception("Unable to run GdalWarp.", exception);
+            }
+
+            if (!File.Exists(outputFilePath))
+                throw new Exception("GdalWarp couldn't create fixed file.");
         }
 
         #endregion
@@ -120,6 +162,17 @@ namespace GTiff2Tiles.Core.Image
 
             return (rasterXSize, rasterYSize);
         }
+
+        /// <summary>
+        /// Converts file using GdalWarp.
+        /// Run only on concrete file (like .vrt or .tif).
+        /// </summary>
+        /// <param name="inputFileInfo">Input file.</param>
+        /// <param name="outputFileInfo">Output file.</param>
+        /// <param name="callback">Progress reporting delegate.</param>
+        public static void RepairTif(FileInfo inputFileInfo, FileInfo outputFileInfo,
+                                     OSGeo.GDAL.Gdal.GDALProgressFuncDelegate callback) =>
+            Warp(inputFileInfo.FullName, outputFileInfo.FullName, Enums.Image.Gdal.RepairTifOptions, callback);
 
         #endregion
     }

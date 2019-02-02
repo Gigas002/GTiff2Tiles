@@ -1,0 +1,12 @@
+﻿namespace GTiff2Tiles.Tests.Enums
+{
+    public static class FileSystemEntries
+    {
+        public const string ExamplesDirectoryName = "Examples";
+        public const string BadInput = "BadInput";
+        public const string Input = "Input";
+        public const string GenerateTilesOutputDirectoryName = "GenerateTilesOutput";
+        public const string GenerateTilesOldOutputDirectoryName = "GenerateTilesOldOutput";
+        public const string Temp = "Temp";
+    }
+}

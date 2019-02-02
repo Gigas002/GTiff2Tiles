@@ -20,6 +20,12 @@ namespace GTiff2Tiles.Console
         public string OutputDirectoryPath { get; set; }
 
         /// <summary>
+        /// Full path to temp directory.
+        /// </summary>
+        [Option('t', "temp", Required = true, HelpText = "Full path to temp directory.")]
+        public string TempDirectoryPath { get; set; }
+
+        /// <summary>
         /// Full path to output directory.
         /// </summary>
         [Option("minz", Required = true, HelpText = "Minimum cropped zoom.")]
@@ -30,5 +36,11 @@ namespace GTiff2Tiles.Console
         /// </summary>
         [Option("maxz", Required = true, HelpText = "Maximum cropped zoom.")]
         public int MaxZ { get; set; }
+
+        /// <summary>
+        /// Threads count.
+        /// </summary>
+        [Option("threads", Required = false, HelpText = "Threads count.")]
+        public int ThreadsCount { get; set; } = 1;
     }
 }
