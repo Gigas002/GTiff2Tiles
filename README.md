@@ -1,81 +1,116 @@
 # GTIFF2TILES
 
-Analogue of [gdal2tiles.py](https://github.com/OSGeo/gdal/blob/master/gdal/swig/python/scripts/gdal2tiles.py) on C#. I've rewritten it for my university project, so now it only works like gdal2tiles.py with the following arguments (zoom values and paths are here for example):
+Analogue of [gdal2tiles.py](https://github.com/OSGeo/gdal/blob/master/gdal/swig/python/scripts/gdal2tiles.py) on C#. Currently support any GEOTIFF, but creates **EPSG:4325** **geodetic** tiles on output in [**tms**](https://wiki.osgeo.org/wiki/Tile_Map_Service_Specification]) structure.
 
-```con
-input.tif outputDirectory -s EPSG:4326 -p geodetic -r cubicspline --tmscompatible -z 10-14
-```
+Solution is build in VS2017, .NET Framework 4.7.2, targeting Windows x64 systems.
 
-It also doesn't make any output/progress reporting at the moment and doesn't write openlayers.html/.kml/etc, only .png tiles in tms structure. Later I plan to develop this to support all original's gdal2tiles functionality.
-
-Project is build in VS2017, .NET Framework 4.7.2, targeting x64 systems.
+## Table of contents
 
 - [GTIFF2TILES](#gtiff2tiles)
-  * [Table of Contents](#table-of-contents)
-  * [Dependencies](#dependencies)
+  * [Table of contents](#table-of-contents)
   * [Current version](#current-version)
-  * [Usage](#usage)
-    + [GTiff2Tiles class](#gtiff2tiles-class)
-    + [Gdal2Tiles class](#gdal2tiles-class)
+  * [Examples](#examples)
+  * [GTiff2Tiles.Core](#gtiff2tilescore)
+    + [Dependencies](#dependencies)
+  * [GTiff2Tiles.Console](#gtiff2tilesconsole)
+    + [Usage](#usage)
+    + [Dependencies](#dependencies-1)
+  * [GTiff2Tiles.GUI](#gtiff2tilesgui)
+    + [Dependencies](#dependencies-2)
+  * [GTiff2Tiles.Tests](#gtiff2tilestests)
+    + [Dependencies](#dependencies-3)
   * [TODO](#todo)
   * [Contributing](#contributing)
 
 Table of contents generated with [markdown-toc](http://ecotrust-canada.github.io/markdown-toc/ ).
 
-
-## Dependencies
-
-- [GDAL](https://www.nuget.org/packages/GDAL/) - 2.3.3;
-- [GDAL.Native](https://www.nuget.org/packages/GDAL.Native/) - 2.3.3;
-
 ## Current version
 
 Current stable can be found here: [![Release](https://img.shields.io/github/release/Gigas002/GTiff2Tiles.svg)](https://github.com/Gigas002/GTiff2Tiles/releases/latest). Information about changes since previous release can be found in [changelog](https://github.com/Gigas002/GTiff2Tiles/blob/master/CHANGELOG.md).
 
-## Usage
+## Examples
 
-Reference the GTiff2Tiles.dll and then use one of the following classes:
+In [Examples](https://github.com/Gigas002/GTiff2Tiles/tree/master/Examples/Input) directory you can find GEOTIFF for some tests.
 
-### GTiff2Tiles class
+## GTiff2Tiles.Core 
 
-1. Reference GDAL and GDAL.Native (if you need gdal’s binaries as well) packages. It will automatically add `GdalConfiguration` class to your project, if you didn’t create it already;
+**GTiff2Tiles.Core** is a core library. [Here’s]() (will be some day later) the API. 
 
-2. Call `GdalConfiguration.ConfigureGdal()` or `Gdal.AllRegister()` (but in that case you should add `using OSGeo.Gdal` directive and specify environment variables before by yourself) method:
-3. Create `GTiff2Tiles` object with constructor, which takes the following parameters:
-   - `string inputFile` - full path to input GeoTIFF in EPSG:4326 projection;
-   - `string outputDirectory` - full path to output directory, in which zoom directories with .png tiles will be created;
-   - `int minZ` - minimum cropped zoom;
-   - `int maxZ` - maximum cropped zoom;
-4. Call `GenerateTiles()` method to create tiles.
+Library uses 2 different algorithms to create tiles:
 
-Don't forget about `using`, when making `GTiff2Tiles` object, or manually call `Dispose()` on object, when tiles are done.
+- **Crop** - crops all the zooms from input file;
+- **Join** - crops the lowest zoom from input file and then join the upper images from built tiles.
 
-### Gdal2Tiles class
+Also I should mention, that if your input .tif is not **EPSG:4326**, it will be converted by **GdalWarp** to that projection, and saved in **temp** directory before cropping tiles.
 
-**Warning!** Prefer using GTiff2Tiles class. It works much faster I’ve fixed coordinates error there.
+### Dependencies
 
-1. Reference GDAL and GDAL.Native (if you need gdal’s binaries as well) packages. It will automatically add `GdalConfiguration` class to your project, if you didn’t create it already;
-2. Add `using OSGeo.GDAL` directive to your project;
-3. Call `GdalConfiguration.ConfigureGdal()` or `Gdal.AllRegister()` (but in that case you should specify environment variables before by yourself) method:
-4. Call `Gdal2Tiles.CropTifToTiles` method, which takes following parameters:
+- [GDAL](https://www.nuget.org/packages/GDAL/) - 2.3.3;
+- [GDAL.Native](https://www.nuget.org/packages/GDAL.Native/) - 2.3.3;
+- [NetVips](https://www.nuget.org/packages/NetVips/) - 1.0.7;
 
-   - `string inputFile` - full path to input GeoTIFF in EPSG:4326 (current version, plan to expand functionality later);
-   - `string outputDirectory` - full path to output directory, in which zoom directories with data will be created;
-   - `int minZ` - minimum cropped zoom, which you want for your data;
-   - `int maxZ` - maximum cropped zoom;
-   - `OSGeo.Gdal.ResampleAlg resampling` - resampling algorithm (currently CubicSpline/Cubic only supported);
+## GTiff2Tiles.Console
 
-Also, it’s worth mentioning, that `CreateBaseTile()` and `CreateOverviewTiles()` methods use `Parallel.For`/`Parallel.ForEach`, so if you don’t like it you’d probably will need to rewrite these three lines with usual `foreach`/`for` loop.
+**GTiff2Tiles.Console** is a console application, that uses methods from core to create tiles. 
+
+### Usage
+
+| Short |    Long     |                      Description                       | Required? |
+| :---: | :---------: | :----------------------------------------------------: | :-------: |
+|  -i   |   --input   |                Full path to input file                 |    Yes    |
+|  -o   |  --output   |             Full path to output directory              |    Yes    |
+|  -t   |   --temp    |              Full path to temp directory               |    Yes    |
+|       |   --minz    |                  Minimum cropped zoom                  |    Yes    |
+|       |   --maxz    |                  Maximum cropped zoom                  |    Yes    |
+|  -a   | --algorythm | Algorithm to create tiles. Can be \"join\" or \"crop\" |    Yes    |
+|       |  --threads  |                     Threads count                      |    No     |
+
+**Please, be aware of temp directory parameter, because this directory will be deleted after successful crop of tiles!**
+
+
+### Dependencies
+
+- [GDAL](https://www.nuget.org/packages/GDAL/) - 2.3.3;
+- [GDAL.Native](https://www.nuget.org/packages/GDAL.Native/) - 2.3.3;
+- [NetVips](https://www.nuget.org/packages/NetVips/) - 1.0.7;
+- [System.Threading.Tasks.Extensions](https://www.nuget.org/packages/System.Threading.Tasks.Extensions/) - 4.5.2;
+- [System.Runtime.CompilerServices.Unsafe](https://www.nuget.org/packages/System.Runtime.CompilerServices.Unsafe/) - 4.5.2;
+- [CommandLineParser](https://www.nuget.org/packages/CommandLineParser/) - 2.4.3;
+
+## GTiff2Tiles.GUI
+
+**GTiff2Tiles.GUI** is a very simple (and ugly!) GUI, that has the same functions, as **GTiff2Tiles.Console**.
+
+**Please, be aware that temp directory will be deleted after successful crop of tiles!**
+
+### Dependencies
+
+- [GDAL](https://www.nuget.org/packages/GDAL/) - 2.3.3;
+- [GDAL.Native](https://www.nuget.org/packages/GDAL.Native/) - 2.3.3;
+- [NetVips](https://www.nuget.org/packages/NetVips/) - 1.0.7;
+- [System.Threading.Tasks.Extensions](https://www.nuget.org/packages/System.Threading.Tasks.Extensions/) - 4.5.2;
+- [System.Runtime.CompilerServices.Unsafe](https://www.nuget.org/packages/System.Runtime.CompilerServices.Unsafe/) - 4.5.2;
+- [Caliburn.Micro](https://www.nuget.org/packages/Caliburn.Micro) - 3.2.0;
+- [Ookii.Dialogs.Wpf](https://www.nuget.org/packages/Ookii.Dialogs.Wpf/) - 1.0.0;
+
+Later I’ll probably make this look better, but first I should write docs for **GTiff2Tiles.Core**…
+
+## GTiff2Tiles.Tests
+
+**GTiff2Tiles.Tests** is a unit test project for **GTiff2Tiles.Core**. I’ll add support of CI later.
+
+### Dependencies
+
+- [GDAL](https://www.nuget.org/packages/GDAL/) - 2.3.3;
+- [GDAL.Native](https://www.nuget.org/packages/GDAL.Native/) - 2.3.3;
+- [NetVips](https://www.nuget.org/packages/NetVips/) - 1.0.7;
 
 ## TODO
 
 - Target .Net standard 2.1 as soon as possible;
-- Replace `System.Drawing.Image` class with something better, like `NetVips.Image`, because original library is not capable of working with bigtiffs;
-- In ideal, fully replace gdal (GeoTiff’s metadata probably can be read with help of [libtiff.net](https://github.com/BitMiracle/libtiff.net), need tests);
-- Support all functional of original script;
-- Add multithreading to `GTiff2Tiles` class;
-- Improve exception handling in `GTiff2Tiles` class;
-- Progress reporting.
+- Support all functional of original Gdal2Tiles.py script;
+- Write docs;
+- Add CI;
 
 ## Contributing
 
