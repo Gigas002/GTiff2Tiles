@@ -7,6 +7,8 @@ namespace GTiff2Tiles.Console
     /// </summary>
     public class Options
     {
+        #region Required
+
         /// <summary>
         /// Full path to input file.
         /// </summary>
@@ -26,21 +28,33 @@ namespace GTiff2Tiles.Console
         public string TempDirectoryPath { get; set; }
 
         /// <summary>
-        /// Full path to output directory.
+        /// Minimum cropped zoom.
         /// </summary>
         [Option("minz", Required = true, HelpText = "Minimum cropped zoom.")]
         public int MinZ { get; set; }
 
         /// <summary>
-        /// Full path to output directory.
+        /// Maximum cropped zoom.
         /// </summary>
         [Option("maxz", Required = true, HelpText = "Maximum cropped zoom.")]
         public int MaxZ { get; set; }
+
+        /// <summary>
+        /// Algorithm to create tiles. Can be "join" or "crop".
+        /// </summary>
+        [Option('a', "algorithm", Required = true, HelpText = "Algorithm to create tiles. Can be \"join\" or \"crop\".")]
+        public string Algorithm { get; set; }
+
+        #endregion
+
+        #region Optional
 
         /// <summary>
         /// Threads count.
         /// </summary>
         [Option("threads", Required = false, HelpText = "Threads count.")]
         public int ThreadsCount { get; set; } = 1;
+
+        #endregion
     }
 }

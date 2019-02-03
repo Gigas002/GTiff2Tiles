@@ -45,6 +45,11 @@ namespace GTiff2Tiles.Console
         /// </summary>
         private static int ThreadsCount { get; set; }
 
+        /// <summary>
+        /// Algorithm to create tiles.
+        /// </summary>
+        private static string Algorithm { get; set; }
+
         #endregion
 
         private static async Task Main(string[] args)
@@ -71,10 +76,22 @@ namespace GTiff2Tiles.Console
             }
 
             //Create progress-reporter.
-            ConsoleProgress<int> consoleProgress = new ConsoleProgress<int>(System.Console.WriteLine);
+            ConsoleProgress<double> consoleProgress = new ConsoleProgress<double>(System.Console.WriteLine);
 
-            //Run crop asynchroniously.
-            await GenerateTiles(InputFIleInfo, OutputDirectoryInfo, TempDirectoryInfo, MinZ, MaxZ, consoleProgress);
+            //Run tiling asynchroniously.
+            switch (Algorithm)
+            {
+                case Enums.Algorithms.Join:
+                    await GenerateTilesByJoining(InputFIleInfo, OutputDirectoryInfo, TempDirectoryInfo, MinZ, MaxZ,
+                                                 consoleProgress, ThreadsCount);
+                    break;
+                case Enums.Algorithms.Crop:
+                    await GenerateTilesByCropping(InputFIleInfo, OutputDirectoryInfo, TempDirectoryInfo, MinZ, MaxZ,
+                                                  consoleProgress, ThreadsCount);
+                    break;
+                default:
+                    throw new Exception("This algorithm is not supported.");
+            }
 
             //Try to delete temp directory.
             try
@@ -103,32 +120,50 @@ namespace GTiff2Tiles.Console
         /// Set properties values from console options.
         /// </summary>
         /// <param name="options">Console options.</param>
-        private static void ParseConsoleOptions(Options options) =>
-            (InputFIleInfo, OutputDirectoryInfo, TempDirectoryInfo, MinZ, MaxZ, ThreadsCount) =
-            (new FileInfo(options.InputFilePath), new DirectoryInfo(options.OutputDirectoryPath),
-             new DirectoryInfo(options.TempDirectoryPath), options.MinZ,
-             options.MaxZ, options.ThreadsCount);
+        private static void ParseConsoleOptions(Options options)
+        {
+            //Check if string options are empty strings.
+            if (string.IsNullOrWhiteSpace(options.InputFilePath)) throw new Exception("-i option is empty.");
+            if (string.IsNullOrWhiteSpace(options.OutputDirectoryPath)) throw new Exception("-o option is empty.");
+            if (string.IsNullOrWhiteSpace(options.TempDirectoryPath)) throw new Exception("-t option is empty.");
+            if (string.IsNullOrWhiteSpace(options.Algorithm)) throw new Exception("-a option is empty.");
+
+            //Check zooms.
+            if (options.MinZ > options.MaxZ) throw new Exception("--minz is bigger, than --maxz.");
+
+            InputFIleInfo = new FileInfo(options.InputFilePath);
+            OutputDirectoryInfo = new DirectoryInfo(options.OutputDirectoryPath);
+            TempDirectoryInfo = new DirectoryInfo(options.TempDirectoryPath);
+            MinZ = options.MinZ;
+            MaxZ = options.MaxZ;
+            Algorithm = options.Algorithm;
+            ThreadsCount = options.ThreadsCount;
+        }
 
         /// <summary>
-        /// Crops tiles.
+        /// Crops input tiff for each zoom.
         /// </summary>
-        /// <param name="inputFileInfo">Input GeoTiff.</param>
+        /// <param name="inputFileInfo">Input file.</param>
         /// <param name="outputDirectoryInfo">Output directory.</param>
         /// <param name="tempDirectoryInfo">Temp directory.</param>
         /// <param name="minZ">Minimum cropped zoom.</param>
         /// <param name="maxZ">Maximum cropped zoom.</param>
         /// <param name="progress">Progress.</param>
-        private static async ValueTask GenerateTiles(FileInfo inputFileInfo, DirectoryInfo outputDirectoryInfo,
-                                                     DirectoryInfo tempDirectoryInfo, int minZ, int maxZ,
-                                                     IProgress<int> progress)
+        /// <param name="threadsCount">Threads count.</param>
+        /// <returns></returns>
+        private static async ValueTask GenerateTilesByCropping(FileInfo inputFileInfo,
+                                                               DirectoryInfo outputDirectoryInfo,
+                                                               DirectoryInfo tempDirectoryInfo, int minZ, int maxZ,
+                                                               IProgress<double> progress, int threadsCount)
         {
             try
             {
                 Core.Image.Image image = new Core.Image.Image(inputFileInfo, outputDirectoryInfo, minZ, maxZ);
 
-                //todo progress
-                await Task.Factory.StartNew(() => image.GenerateTiles(tempDirectoryInfo),
-                                            TaskCreationOptions.LongRunning);
+                await
+                    Task.Factory
+                        .StartNew(() => image.GenerateTilesByCropping(tempDirectoryInfo, progress, threadsCount),
+                                  TaskCreationOptions.LongRunning);
             }
             catch (Exception exception)
             {
@@ -137,26 +172,27 @@ namespace GTiff2Tiles.Console
         }
 
         /// <summary>
-        /// Crops tiles.
+        /// Create tiles. Crops input tiff only for lowest zoom and then join the higher ones from it.
         /// </summary>
-        /// <param name="inputFileInfo">Input GeoTiff.</param>
+        /// <param name="inputFileInfo">Input file.</param>
         /// <param name="outputDirectoryInfo">Output directory.</param>
         /// <param name="tempDirectoryInfo">Temp directory.</param>
         /// <param name="minZ">Minimum cropped zoom.</param>
         /// <param name="maxZ">Maximum cropped zoom.</param>
         /// <param name="progress">Progress.</param>
         /// <param name="threadsCount">Threads count.</param>
-        private static async ValueTask GenerateTilesOld(FileInfo inputFileInfo, DirectoryInfo outputDirectoryInfo,
-                                                        DirectoryInfo tempDirectoryInfo, int minZ, int maxZ,
-                                                        IProgress<int> progress, int threadsCount)
+        /// <returns></returns>
+        private static async ValueTask GenerateTilesByJoining(FileInfo inputFileInfo, DirectoryInfo outputDirectoryInfo,
+                                                              DirectoryInfo tempDirectoryInfo, int minZ, int maxZ,
+                                                              IProgress<double> progress, int threadsCount)
         {
             try
             {
                 Core.Image.Image image = new Core.Image.Image(inputFileInfo, outputDirectoryInfo, minZ, maxZ);
 
-                //todo progress
-                await Task.Factory.StartNew(() => image.GenerateTilesOld(tempDirectoryInfo, threadsCount),
-                                            TaskCreationOptions.LongRunning);
+                await
+                    Task.Factory.StartNew(() => image.GenerateTilesByJoining(tempDirectoryInfo, progress, threadsCount),
+                                          TaskCreationOptions.LongRunning);
             }
             catch (Exception exception)
             {
