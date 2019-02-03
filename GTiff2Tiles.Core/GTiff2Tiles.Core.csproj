@@ -78,6 +78,11 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <PackageReference Include="docfx.console">
+      <Version>2.40.10</Version>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
     <PackageReference Include="GDAL">
       <Version>2.3.3</Version>
     </PackageReference>
