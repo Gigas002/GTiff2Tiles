@@ -64,6 +64,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enums\Algorithms.cs" />
     <Compile Include="Enums\Extensions.cs" />
     <Compile Include="Enums\Image\Gdal.cs" />
     <Compile Include="Enums\Image\Image.cs" />

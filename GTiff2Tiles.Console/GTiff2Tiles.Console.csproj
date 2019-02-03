@@ -69,7 +69,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConsoleProgress.cs" />
-    <Compile Include="Enums\Algorithms.cs" />
     <Compile Include="Helpers\ErrorHelper.cs" />
     <Compile Include="Options.cs" />
     <Compile Include="Program.cs" />

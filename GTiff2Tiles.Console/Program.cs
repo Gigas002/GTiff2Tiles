@@ -79,18 +79,27 @@ namespace GTiff2Tiles.Console
             ConsoleProgress<double> consoleProgress = new ConsoleProgress<double>(System.Console.WriteLine);
 
             //Run tiling asynchroniously.
-            switch (Algorithm)
+            try
             {
-                case Enums.Algorithms.Join:
-                    await GenerateTilesByJoining(InputFIleInfo, OutputDirectoryInfo, TempDirectoryInfo, MinZ, MaxZ,
-                                                 consoleProgress, ThreadsCount);
-                    break;
-                case Enums.Algorithms.Crop:
-                    await GenerateTilesByCropping(InputFIleInfo, OutputDirectoryInfo, TempDirectoryInfo, MinZ, MaxZ,
-                                                  consoleProgress, ThreadsCount);
-                    break;
-                default:
-                    throw new Exception("This algorithm is not supported.");
+                switch (Algorithm)
+                {
+                    case Core.Enums.Algorithms.Join:
+                        await GenerateTilesByJoining(InputFIleInfo, OutputDirectoryInfo, TempDirectoryInfo, MinZ, MaxZ,
+                                                     consoleProgress, ThreadsCount);
+                        break;
+                    case Core.Enums.Algorithms.Crop:
+                        await GenerateTilesByCropping(InputFIleInfo, OutputDirectoryInfo, TempDirectoryInfo, MinZ, MaxZ,
+                                                      consoleProgress, ThreadsCount);
+                        break;
+                    default:
+                        Helpers.ErrorHelper.PrintError("This algorithm is not supported.");
+                        return;
+                }
+            }
+            catch (Exception exception)
+            {
+                Helpers.ErrorHelper.PrintException(exception);
+                return;
             }
 
             //Try to delete temp directory.
@@ -100,7 +109,8 @@ namespace GTiff2Tiles.Console
             }
             catch (Exception exception)
             {
-                throw new Exception("Unable to delete temp directory.", exception);
+                Helpers.ErrorHelper.PrintException(exception);
+                return;
             }
 
             stopwatch.Stop();
@@ -123,13 +133,58 @@ namespace GTiff2Tiles.Console
         private static void ParseConsoleOptions(Options options)
         {
             //Check if string options are empty strings.
-            if (string.IsNullOrWhiteSpace(options.InputFilePath)) throw new Exception("-i option is empty.");
-            if (string.IsNullOrWhiteSpace(options.OutputDirectoryPath)) throw new Exception("-o option is empty.");
-            if (string.IsNullOrWhiteSpace(options.TempDirectoryPath)) throw new Exception("-t option is empty.");
-            if (string.IsNullOrWhiteSpace(options.Algorithm)) throw new Exception("-a option is empty.");
+            if (string.IsNullOrWhiteSpace(options.InputFilePath))
+            {
+                Helpers.ErrorHelper.PrintError("-i option is empty.");
+                IsParsingErrors = true;
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(options.OutputDirectoryPath))
+            {
+                Helpers.ErrorHelper.PrintError("-o option is empty.");
+                IsParsingErrors = true;
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(options.TempDirectoryPath))
+            {
+                Helpers.ErrorHelper.PrintError("-t option is empty.");
+                IsParsingErrors = true;
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(options.Algorithm))
+            {
+                Helpers.ErrorHelper.PrintError("-a option is empty.");
+                IsParsingErrors = true;
+                return;
+            }
 
             //Check zooms.
-            if (options.MinZ > options.MaxZ) throw new Exception("--minz is bigger, than --maxz.");
+            if (options.MinZ < 0)
+            {
+                Helpers.ErrorHelper.PrintError("--minz is lesser, than 0.");
+                IsParsingErrors = true;
+                return;
+            }
+            if (options.MaxZ < 0)
+            {
+                Helpers.ErrorHelper.PrintError("--maxz is lesser, than 0.");
+                IsParsingErrors = true;
+                return;
+            }
+            if (options.MinZ > options.MaxZ)
+            {
+                Helpers.ErrorHelper.PrintError("--minz is bigger, than --maxz.");
+                IsParsingErrors = true;
+                return;
+            }
+
+            //Threads check.
+            if (options.ThreadsCount <= 0)
+            {
+                Helpers.ErrorHelper.PrintError("--threads is lesser, than 0.");
+                IsParsingErrors = true;
+                return;
+            }
 
             InputFIleInfo = new FileInfo(options.InputFilePath);
             OutputDirectoryInfo = new DirectoryInfo(options.OutputDirectoryPath);
