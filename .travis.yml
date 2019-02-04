@@ -1,0 +1,4 @@
+language: csharp
+solution: GTiff2Tiles.sln
+script:
+  - msbuild /p:Configuration=Release GTiff2Tiles.sln
