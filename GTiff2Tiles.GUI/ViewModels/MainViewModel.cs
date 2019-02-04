@@ -6,9 +6,17 @@ using System.Threading.Tasks;
 using System.Windows;
 using Caliburn.Micro;
 using Ookii.Dialogs.Wpf;
+// ReSharper disable MemberCanBePrivate.Global
+// ReSharper disable once ClassNeverInstantiated.Global
+// ReSharper disable UnusedMember.Global
+
+//todo checkbox for deleting temp directory
+//todo material design. Why not?
+//todo message boxes on top of other windows
 
 namespace GTiff2Tiles.GUI.ViewModels
 {
+    /// <inheritdoc />
     /// <summary>
     /// I wanted to write there something useful, but later I decided not to do it.
     /// </summary>
@@ -32,7 +40,21 @@ namespace GTiff2Tiles.GUI.ViewModels
 
         #region TextBoxes/Blocks
 
+        #region Private backing fields
+
         private int _threadsCount;
+
+        private int _maxZ;
+
+        private int _minZ;
+
+        private string _inputFilePath;
+
+        private string _outputDirectoryPath;
+
+        private string _tempDirectoryPath;
+
+        #endregion
 
         /// <summary>
         /// Threads count.
@@ -47,8 +69,6 @@ namespace GTiff2Tiles.GUI.ViewModels
             }
         }
 
-        private int _maxZ;
-
         /// <summary>
         /// Maximum zoom.
         /// </summary>
@@ -61,8 +81,6 @@ namespace GTiff2Tiles.GUI.ViewModels
                 NotifyOfPropertyChange(() => MaxZ);
             }
         }
-
-        private int _minZ;
 
         /// <summary>
         /// Minimum zoom.
@@ -77,8 +95,6 @@ namespace GTiff2Tiles.GUI.ViewModels
             }
         }
 
-        private string _inputFilePath;
-
         /// <summary>
         /// Input file path.
         /// </summary>
@@ -92,8 +108,6 @@ namespace GTiff2Tiles.GUI.ViewModels
             }
         }
 
-        private string _outputDirectoryPath;
-
         /// <summary>
         /// Output directory path.
         /// </summary>
@@ -106,8 +120,6 @@ namespace GTiff2Tiles.GUI.ViewModels
                 NotifyOfPropertyChange(() => OutputDirectoryPath);
             }
         }
-
-        private string _tempDirectoryPath;
 
         /// <summary>
         /// Temp directory path.
@@ -128,6 +140,9 @@ namespace GTiff2Tiles.GUI.ViewModels
 
         private string _algorithm;
 
+        /// <summary>
+        /// Currently chosen algorythm.
+        /// </summary>
         public string Algorithm
         {
             get => _algorithm;
@@ -138,6 +153,10 @@ namespace GTiff2Tiles.GUI.ViewModels
             }
         }
 
+        /// <summary>
+        /// Collection of supported algorythms.
+        /// </summary>
+        // ReSharper disable once CollectionNeverQueried.Global
         public ObservableCollection<string> Algorithms { get; } = new ObservableCollection<string>();
 
         #endregion
@@ -216,8 +235,8 @@ namespace GTiff2Tiles.GUI.ViewModels
         {
             VistaFolderBrowserDialog folderBrowserDialog = new VistaFolderBrowserDialog();
             OutputDirectoryPath = folderBrowserDialog.ShowDialog() != true
-                                    ? OutputDirectoryPath
-                                    : folderBrowserDialog.SelectedPath;
+                                      ? OutputDirectoryPath
+                                      : folderBrowserDialog.SelectedPath;
         }
 
         /// <summary>
@@ -227,8 +246,8 @@ namespace GTiff2Tiles.GUI.ViewModels
         {
             VistaFolderBrowserDialog folderBrowserDialog = new VistaFolderBrowserDialog();
             TempDirectoryPath = folderBrowserDialog.ShowDialog() != true
-                                      ? TempDirectoryPath
-                                      : folderBrowserDialog.SelectedPath;
+                                    ? TempDirectoryPath
+                                    : folderBrowserDialog.SelectedPath;
         }
 
         /// <summary>
@@ -240,13 +259,13 @@ namespace GTiff2Tiles.GUI.ViewModels
 
             //Check properties for errors.
             if (!CheckProperties()) return;
-            //Disable controls.
-            IsEnabled = false;
-            ProgressBarValue = 0.0;
 
+            //Initialize FileSystemEntries from properties.
             FileInfo inputFileInfo = new FileInfo(InputFilePath);
             DirectoryInfo outputDirectoryInfo = new DirectoryInfo(OutputDirectoryPath);
             DirectoryInfo tempDirectoryInfo = new DirectoryInfo(TempDirectoryPath);
+
+            //Create progress reporter.
             IProgress<double> progress = new Progress<double>(value => ProgressBarValue = value);
 
             //Run tiling asynchroniously.
@@ -271,6 +290,7 @@ namespace GTiff2Tiles.GUI.ViewModels
             catch (Exception exception)
             {
                 Helpers.ErrorHelper.ShowException(exception);
+                IsEnabled = true;
                 return;
             }
 
@@ -288,9 +308,10 @@ namespace GTiff2Tiles.GUI.ViewModels
 
             //Enable controls.
             IsEnabled = true;
+
             stopwatch.Stop();
             MessageBox.Show($"Done by: days:{stopwatch.Elapsed.Days} hours:{stopwatch.Elapsed.Hours} minutes:{stopwatch.Elapsed.Minutes} "
-                           + $"seconds:{stopwatch.Elapsed.Seconds} ms:{stopwatch.Elapsed.Milliseconds}");
+                          + $"seconds:{stopwatch.Elapsed.Seconds} ms:{stopwatch.Elapsed.Milliseconds}");
         }
 
         #endregion
@@ -298,9 +319,9 @@ namespace GTiff2Tiles.GUI.ViewModels
         #region Other
 
         /// <summary>
-        /// Checks properties for errors.
+        /// Checks properties for errors and set some before starting.
         /// </summary>
-        /// <returns></returns>
+        /// <returns><see langword="true"/> if no errors occured, <see langword="false"/> otherwise.</returns>
         private bool CheckProperties()
         {
             if (string.IsNullOrWhiteSpace(InputFilePath))
@@ -332,6 +353,12 @@ namespace GTiff2Tiles.GUI.ViewModels
             if (ThreadsCount <= 0)
                 return Helpers.ErrorHelper.ShowError("Threads count is lesser or equal 0.", null);
 
+            //Disable controls.
+            IsEnabled = false;
+
+            //Set default progress bar value for each run.
+            ProgressBarValue = 0.0;
+
             return true;
         }
 
@@ -351,19 +378,10 @@ namespace GTiff2Tiles.GUI.ViewModels
                                                                DirectoryInfo tempDirectoryInfo, int minZ, int maxZ,
                                                                IProgress<double> progress, int threadsCount)
         {
-            try
-            {
-                Core.Image.Image image = new Core.Image.Image(inputFileInfo, outputDirectoryInfo, minZ, maxZ);
+            Core.Image.Image image = new Core.Image.Image(inputFileInfo, outputDirectoryInfo, minZ, maxZ);
 
-                await
-                    Task.Factory
-                        .StartNew(() => image.GenerateTilesByCropping(tempDirectoryInfo, progress, threadsCount),
-                                  TaskCreationOptions.LongRunning);
-            }
-            catch (Exception exception)
-            {
-                Helpers.ErrorHelper.ShowException(exception);
-            }
+            await Task.Factory.StartNew(() => image.GenerateTilesByCropping(tempDirectoryInfo, progress, threadsCount),
+                                        TaskCreationOptions.LongRunning);
         }
 
         /// <summary>
@@ -381,18 +399,10 @@ namespace GTiff2Tiles.GUI.ViewModels
                                                               DirectoryInfo tempDirectoryInfo, int minZ, int maxZ,
                                                               IProgress<double> progress, int threadsCount)
         {
-            try
-            {
-                Core.Image.Image image = new Core.Image.Image(inputFileInfo, outputDirectoryInfo, minZ, maxZ);
+            Core.Image.Image image = new Core.Image.Image(inputFileInfo, outputDirectoryInfo, minZ, maxZ);
 
-                await
-                    Task.Factory.StartNew(() => image.GenerateTilesByJoining(tempDirectoryInfo, progress, threadsCount),
-                                          TaskCreationOptions.LongRunning);
-            }
-            catch (Exception exception)
-            {
-                Helpers.ErrorHelper.ShowException(exception);
-            }
+            await Task.Factory.StartNew(() => image.GenerateTilesByJoining(tempDirectoryInfo, progress, threadsCount),
+                                        TaskCreationOptions.LongRunning);
         }
 
         #endregion

@@ -17,7 +17,7 @@ namespace GTiff2Tiles.Core.Tile
         /// <param name="yMax">Maximum latitude.</param>
         /// <param name="zoom">Tile's zoom.</param>
         /// <returns>Tile numbers array.</returns>
-        public static (int xmin, int ymin, int xmax, int ymax) GetTileNumbersFromCoords(double xMin,
+        public static (int tileMinX, int tileMinY, int tileMaxX, int tileMaxY) GetTileNumbersFromCoords(double xMin,
                                                                                         double yMin,
                                                                                         double xMax,
                                                                                         double yMax,
@@ -44,8 +44,10 @@ namespace GTiff2Tiles.Core.Tile
         public static (double xMin, double yMin, double xMax, double yMax) TileBounds(
             int tileX, int tileY, int zoom, bool isFlipY = true)
         {
+            //May be useful when using another tiling number system.
             if (isFlipY)
                 tileY = Convert.ToInt32(Math.Pow(2.0, zoom) - tileY - 1);
+
             return (tileX * 180.0 / Math.Pow(2.0, zoom) - 180.0,
                     tileY * 180.0 / Math.Pow(2.0, zoom) - 90.0,
                     (tileX + 1) * 180.0 / Math.Pow(2.0, zoom) - 180.0,

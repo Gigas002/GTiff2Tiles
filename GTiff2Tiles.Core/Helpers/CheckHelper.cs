@@ -38,7 +38,7 @@ namespace GTiff2Tiles.Core.Helpers
         /// Changes the projection and write temp.tif if can't work with this image.
         /// </summary>
         /// <param name="inputFileInfo">Input file.</param>
-        /// <param name="tempDirectoryInfo">Temp directory.</param>
+        /// <param name="tempDirectoryInfo">Temp directory for fixed tif.</param>
         /// <returns>Temp file.</returns>
         public static FileInfo CheckInputFile(FileInfo inputFileInfo, DirectoryInfo tempDirectoryInfo)
         {
@@ -73,7 +73,7 @@ namespace GTiff2Tiles.Core.Helpers
         /// <summary>
         /// Checks, if can create the output directory and it's empty.
         /// </summary>
-        /// <param name="outputDirectoryInfo"></param>
+        /// <param name="outputDirectoryInfo">Output directory.</param>
         public static void CheckOutputDirectory(DirectoryInfo outputDirectoryInfo)
         {
             try

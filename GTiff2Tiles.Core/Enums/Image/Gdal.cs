@@ -3,7 +3,7 @@
     /// <summary>
     /// Static class with Gdal enums.
     /// </summary>
-    public static class Gdal
+    public struct Gdal
     {
         #region GdalInfo
 
@@ -24,6 +24,8 @@
 
         #endregion
 
+        #region GdalWarp
+
         /// <summary>
         /// Options for GdalWarp.
         /// </summary>
@@ -37,5 +39,7 @@
         /// Name for temporary (converted) file.
         /// </summary>
         public const string TempFileName = "Temp";
+
+        #endregion
     }
 }

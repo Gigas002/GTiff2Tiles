@@ -4,10 +4,13 @@ using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using NetVips;
+// ReSharper disable AccessToDisposedClosure
 
 namespace GTiff2Tiles.Core.Image
 {
     //todo disable netvips console messages
+    //todo use input directory, not file, and create tiled .tif from .vrt if needed.
+    //todo awaitable public methods
 
     /// <summary>
     /// Class for creating raster tiles.
@@ -132,10 +135,11 @@ namespace GTiff2Tiles.Core.Image
         /// <param name="lowerRightX">Tile's lower right x coordinate.</param>
         /// <param name="lowerRightY">Tile's lower right y coordinate.</param>
         /// <returns>x/y positions and sizes to read; x/y positions and sizes to write tiles.</returns>
-        private (int readXMin, int readYMin, int readXSize, int readYSize, int writeXMin, int writeYMin, int writeXSize, int writeYSize) GeoQuery(double upperLeftX,
-                                                                                                                                                  double upperLeftY,
-                                                                                                                                                  double lowerRightX,
-                                                                                                                                                  double lowerRightY)
+        private (int readXMin, int readYMin, int readXSize, int readYSize, int writeXMin, int writeYMin, int writeXSize,
+            int writeYSize) GeoQuery(double upperLeftX,
+                                     double upperLeftY,
+                                     double lowerRightX,
+                                     double lowerRightY)
         {
             //Geotiff coordinate borders.
             double tiffXMin = GeoTransform[0];
@@ -462,28 +466,32 @@ namespace GTiff2Tiles.Core.Image
         {
             try
             {
-                NetVips.Image inputImage =
-                    NetVips.Image.Tiffload(InputFileInfo.FullName, access: NetVips.Enums.Access.Random);
-                SemaphoreSlim maxThread = new SemaphoreSlim(threadsCount);
-                List<Task> tasks = new List<Task>();
-
-                //For each tile on given zoom calculate positions/sizes and save as file.
-                for (int currentY = MinMax[zoom][1]; currentY <= MinMax[zoom][3]; currentY++)
+                NetVips.Image inputImage = NetVips.Image.Tiffload(InputFileInfo.FullName, access: NetVips.Enums.Access.Random);
+                using (SemaphoreSlim semaphoreSlim = new SemaphoreSlim(threadsCount))
                 {
-                    for (int currentX = MinMax[zoom][0]; currentX <= MinMax[zoom][2]; currentX++)
+                    List<Task> tasks = new List<Task>();
+
+                    //For each tile on given zoom calculate positions/sizes and save as file.
+                    for (int currentY = MinMax[zoom][1]; currentY <= MinMax[zoom][3]; currentY++)
                     {
-                        maxThread.Wait();
+                        for (int currentX = MinMax[zoom][0]; currentX <= MinMax[zoom][2]; currentX++)
+                        {
+                            semaphoreSlim.Wait();
 
-                        int x = currentX;
-                        int y = currentY;
-                        // ReSharper disable once AccessToDisposedClosure
-                        tasks.Add(Task.Factory.StartNew(() => WriteTile(zoom, x, y, inputImage),
-                                                        TaskCreationOptions.LongRunning)
-                                      .ContinueWith(task => maxThread.Release()));
+                            int x = currentX;
+                            int y = currentY;
+
+                            tasks.Add(Task.Factory.StartNew(() => WriteTile(zoom, x, y, inputImage),
+                                                            TaskCreationOptions.LongRunning)
+                                          .ContinueWith(task => semaphoreSlim.Release()));
+                        }
                     }
-                }
 
-                Task.WaitAll(tasks.ToArray());
+                    Task.WaitAll(tasks.ToArray());
+
+                    //Dispose tasks.
+                    foreach (Task task in tasks) task.Dispose();
+                }
 
                 inputImage.Dispose();
             }
@@ -500,23 +508,29 @@ namespace GTiff2Tiles.Core.Image
         /// <param name="threadsCount">Threads count.</param>
         private void MakeUpperTiles(int zoom, int threadsCount)
         {
-            SemaphoreSlim maxThread = new SemaphoreSlim(threadsCount);
-            List<Task> tasks = new List<Task>();
-
-            for (int currentY = MinMax[zoom][1]; currentY <= MinMax[zoom][3]; currentY++)
+            using (SemaphoreSlim semaphoreSlim = new SemaphoreSlim(threadsCount))
             {
-                for (int currentX = MinMax[zoom][0]; currentX <= MinMax[zoom][2]; currentX++)
+                List<Task> tasks = new List<Task>();
+
+                for (int currentY = MinMax[zoom][1]; currentY <= MinMax[zoom][3]; currentY++)
                 {
-                    maxThread.Wait();
+                    for (int currentX = MinMax[zoom][0]; currentX <= MinMax[zoom][2]; currentX++)
+                    {
+                        semaphoreSlim.Wait();
 
-                    int x = currentX;
-                    int y = currentY;
+                        int x = currentX;
+                        int y = currentY;
 
-                    tasks.Add(Task.Factory.StartNew(() => WriteTile(zoom, x, y), TaskCreationOptions.LongRunning).ContinueWith(task => maxThread.Release()));
+                        tasks.Add(Task.Factory.StartNew(() => WriteTile(zoom, x, y), TaskCreationOptions.LongRunning)
+                                      .ContinueWith(task => semaphoreSlim.Release()));
+                    }
                 }
-            }
 
-            Task.WaitAll(tasks.ToArray());
+                Task.WaitAll(tasks.ToArray());
+
+                //Dispose tasks.
+                foreach (Task task in tasks) task.Dispose();
+            }
         }
 
         #endregion

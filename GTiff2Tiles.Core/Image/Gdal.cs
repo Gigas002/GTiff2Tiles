@@ -61,8 +61,7 @@ namespace GTiff2Tiles.Core.Image
                     // ReSharper disable once UnusedVariable
                     using (Dataset resultDataset = OSGeo.GDAL.Gdal.wrapper_GDALWarpDestName(outputFilePath, 1,
                                                                                             gdalDatasetShadow,
-                                                                                            new GDALWarpAppOptions(
-                                                                                                                   options),
+                                                                                            new GDALWarpAppOptions(options),
                                                                                             callback, string.Empty))
                     {
                         gcHandle.Free();

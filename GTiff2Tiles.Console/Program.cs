@@ -215,10 +215,9 @@ namespace GTiff2Tiles.Console
             {
                 Core.Image.Image image = new Core.Image.Image(inputFileInfo, outputDirectoryInfo, minZ, maxZ);
 
-                await
-                    Task.Factory
-                        .StartNew(() => image.GenerateTilesByCropping(tempDirectoryInfo, progress, threadsCount),
-                                  TaskCreationOptions.LongRunning);
+                await Task.Factory
+                          .StartNew(() => image.GenerateTilesByCropping(tempDirectoryInfo, progress, threadsCount),
+                                    TaskCreationOptions.LongRunning);
             }
             catch (Exception exception)
             {
@@ -245,9 +244,9 @@ namespace GTiff2Tiles.Console
             {
                 Core.Image.Image image = new Core.Image.Image(inputFileInfo, outputDirectoryInfo, minZ, maxZ);
 
-                await
-                    Task.Factory.StartNew(() => image.GenerateTilesByJoining(tempDirectoryInfo, progress, threadsCount),
-                                          TaskCreationOptions.LongRunning);
+                await Task.Factory
+                          .StartNew(() => image.GenerateTilesByJoining(tempDirectoryInfo, progress, threadsCount),
+                                    TaskCreationOptions.LongRunning);
             }
             catch (Exception exception)
             {

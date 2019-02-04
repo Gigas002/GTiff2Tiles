@@ -2,8 +2,9 @@
 
 namespace GTiff2Tiles.Console
 {
+    /// <inheritdoc />
     /// <summary>
-    /// Implementation of <see cref="IProgress{T}"/> for console.
+    /// Implementation of <see cref="T:System.IProgress`1" /> for console.
     /// </summary>
     /// <typeparam name="T"></typeparam>
     public class ConsoleProgress<T> : IProgress<T>

@@ -1,4 +1,5 @@
 ﻿using CommandLine;
+// ReSharper disable All
 
 namespace GTiff2Tiles.Console
 {

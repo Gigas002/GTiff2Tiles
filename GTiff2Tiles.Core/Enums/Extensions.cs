@@ -3,7 +3,7 @@
     /// <summary>
     /// Used extensions.
     /// </summary>
-    public static class Extensions
+    public struct Extensions
     {
         /// <summary>
         /// .png.
