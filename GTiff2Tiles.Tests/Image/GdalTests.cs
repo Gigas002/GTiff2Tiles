@@ -15,8 +15,6 @@ namespace GTiff2Tiles.Tests.Image
         [Test]
         public void CheckAndRepairTif()
         {
-            //todo umm, get some tiffs with wrong projetions for tests
-
             Assert.Pass(); //temporary
 
             DirectoryInfo examplesDirectoryInfo = Helpers.TestHelper.GetExamplesDirectoryInfo();

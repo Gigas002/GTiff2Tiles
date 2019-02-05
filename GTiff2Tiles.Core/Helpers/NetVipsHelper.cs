@@ -9,7 +9,7 @@
 
         //public static void DisableLog()
         //{
-        //    //todo doesn't work as expected
+        //    //doesn't work as expected
         //    uint handlerId = Log.SetLogHandler("VIPS", NetVips.Enums.LogLevelFlags.Critical, (domain, level, message) =>
         //    {
         //        Console.WriteLine("Domain: '{0}' Level: {1}", domain, level);

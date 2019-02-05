@@ -8,10 +8,6 @@ using NetVips;
 
 namespace GTiff2Tiles.Core.Image
 {
-    //todo disable netvips console messages
-    //todo use input directory, not file, and create tiled .tif from .vrt if needed.
-    //todo awaitable public methods
-
     /// <summary>
     /// Class for creating raster tiles.
     /// </summary>

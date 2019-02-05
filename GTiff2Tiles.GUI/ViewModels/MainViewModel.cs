@@ -10,10 +10,6 @@ using Ookii.Dialogs.Wpf;
 // ReSharper disable once ClassNeverInstantiated.Global
 // ReSharper disable UnusedMember.Global
 
-//todo checkbox for deleting temp directory
-//todo material design. Why not?
-//todo message boxes on top of other windows
-
 namespace GTiff2Tiles.GUI.ViewModels
 {
     /// <inheritdoc />
