@@ -48,6 +48,8 @@ Also I should mention, that if your input .tif is not **EPSG:4326**, it will be 
 - [GDAL](https://www.nuget.org/packages/GDAL/) - 2.3.3;
 - [GDAL.Native](https://www.nuget.org/packages/GDAL.Native/) - 2.3.3;
 - [NetVips](https://www.nuget.org/packages/NetVips/) - 1.0.7;
+- [System.Threading.Tasks.Extensions](https://www.nuget.org/packages/System.Threading.Tasks.Extensions/) - 4.5.2;
+- [System.Runtime.CompilerServices.Unsafe](https://www.nuget.org/packages/System.Runtime.CompilerServices.Unsafe/) - 4.5.2;
 
 ## GTiff2Tiles.Console
 

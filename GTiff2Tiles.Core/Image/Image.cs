@@ -458,7 +458,8 @@ namespace GTiff2Tiles.Core.Image
         /// </summary>
         /// <param name="zoom">Current zoom to crop.</param>
         /// <param name="threadsCount">Threads count.</param>
-        private void WriteZoom(int zoom, int threadsCount)
+        /// <returns></returns>
+        private async ValueTask WriteZoom(int zoom, int threadsCount)
         {
             try
             {
@@ -483,7 +484,14 @@ namespace GTiff2Tiles.Core.Image
                         }
                     }
 
-                    Task.WaitAll(tasks.ToArray());
+                    try
+                    {
+                        await Task.WhenAll(tasks);
+                    }
+                    catch (Exception exception)
+                    {
+                        throw new Exception(exception.Message, exception);
+                    }
 
                     //Dispose tasks.
                     foreach (Task task in tasks) task.Dispose();
@@ -502,7 +510,8 @@ namespace GTiff2Tiles.Core.Image
         /// </summary>
         /// <param name="zoom">Zoom, for which we're cropping tiles atm.</param>
         /// <param name="threadsCount">Threads count.</param>
-        private void MakeUpperTiles(int zoom, int threadsCount)
+        /// <returns></returns>
+        private async ValueTask MakeUpperTiles(int zoom, int threadsCount)
         {
             using (SemaphoreSlim semaphoreSlim = new SemaphoreSlim(threadsCount))
             {
@@ -522,7 +531,14 @@ namespace GTiff2Tiles.Core.Image
                     }
                 }
 
-                Task.WaitAll(tasks.ToArray());
+                try
+                {
+                    await Task.WhenAll(tasks);
+                }
+                catch (Exception exception)
+                {
+                    throw new Exception(exception.Message, exception);
+                }
 
                 //Dispose tasks.
                 foreach (Task task in tasks) task.Dispose();
@@ -539,7 +555,8 @@ namespace GTiff2Tiles.Core.Image
         /// <param name="tempDirectoryInfo">Temp directory.</param>
         /// <param name="progress">Progress.</param>
         /// <param name="threadsCount">Threads count.</param>
-        public void GenerateTilesByJoining(DirectoryInfo tempDirectoryInfo, IProgress<double> progress, int threadsCount)
+        /// <returns></returns>
+        public async ValueTask GenerateTilesByJoining(DirectoryInfo tempDirectoryInfo, IProgress<double> progress, int threadsCount)
         {
             //Check for errors.
             InputFileInfo = Helpers.CheckHelper.CheckInputFile(InputFileInfo, tempDirectoryInfo);
@@ -549,14 +566,14 @@ namespace GTiff2Tiles.Core.Image
             Initialize();
 
             //Crop lowest zoom level.
-            WriteZoom(MaxZ, threadsCount);
+            await WriteZoom(MaxZ, threadsCount);
             double percentage = 1.0 / (MaxZ - MinZ + 1) * 100.0;
             progress.Report(percentage);
 
             //Crop upper tiles.
             for (int zoom = MaxZ - 1; zoom >= MinZ; zoom--)
             {
-                MakeUpperTiles(zoom, threadsCount);
+                await MakeUpperTiles(zoom, threadsCount);
 
                 percentage = (double)(MaxZ - zoom + 1) / (MaxZ - MinZ + 1) * 100.0;
                 progress.Report(percentage);
@@ -569,7 +586,8 @@ namespace GTiff2Tiles.Core.Image
         /// <param name="tempDirectoryInfo">Temp directory.</param>
         /// <param name="progress">Progress.</param>
         /// <param name="threadsCount">Threads count.</param>
-        public void GenerateTilesByCropping(DirectoryInfo tempDirectoryInfo, IProgress<double> progress, int threadsCount)
+        /// <returns></returns>
+        public async ValueTask GenerateTilesByCropping(DirectoryInfo tempDirectoryInfo, IProgress<double> progress, int threadsCount)
         {
             //Check for errors.
             InputFileInfo = Helpers.CheckHelper.CheckInputFile(InputFileInfo, tempDirectoryInfo);
@@ -581,7 +599,7 @@ namespace GTiff2Tiles.Core.Image
             //Crop tiles for each zoom.
             for (int zoom = MinZ; zoom <= MaxZ; zoom++)
             {
-                WriteZoom(zoom, threadsCount);
+                await WriteZoom(zoom, threadsCount);
 
                 double percentage = (double)(zoom - MinZ + 1) / (MaxZ - MinZ + 1) * 100.0;
                 progress.Report(percentage);

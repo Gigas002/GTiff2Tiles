@@ -84,12 +84,12 @@ namespace GTiff2Tiles.Console
                 switch (Algorithm)
                 {
                     case Core.Enums.Algorithms.Join:
-                        await GenerateTilesByJoining(InputFIleInfo, OutputDirectoryInfo, TempDirectoryInfo, MinZ, MaxZ,
-                                                     consoleProgress, ThreadsCount);
+                        Core.Image.Image joinImage = new Core.Image.Image(InputFIleInfo, OutputDirectoryInfo, MinZ, MaxZ);
+                        await joinImage.GenerateTilesByJoining(TempDirectoryInfo, consoleProgress, ThreadsCount);
                         break;
                     case Core.Enums.Algorithms.Crop:
-                        await GenerateTilesByCropping(InputFIleInfo, OutputDirectoryInfo, TempDirectoryInfo, MinZ, MaxZ,
-                                                      consoleProgress, ThreadsCount);
+                        Core.Image.Image cropImage = new Core.Image.Image(InputFIleInfo, OutputDirectoryInfo, MinZ, MaxZ);
+                        await cropImage.GenerateTilesByCropping(TempDirectoryInfo, consoleProgress, ThreadsCount);
                         break;
                     default:
                         Helpers.ErrorHelper.PrintError("This algorithm is not supported.");
@@ -193,65 +193,6 @@ namespace GTiff2Tiles.Console
             MaxZ = options.MaxZ;
             Algorithm = options.Algorithm;
             ThreadsCount = options.ThreadsCount;
-        }
-
-        /// <summary>
-        /// Crops input tiff for each zoom.
-        /// </summary>
-        /// <param name="inputFileInfo">Input file.</param>
-        /// <param name="outputDirectoryInfo">Output directory.</param>
-        /// <param name="tempDirectoryInfo">Temp directory.</param>
-        /// <param name="minZ">Minimum cropped zoom.</param>
-        /// <param name="maxZ">Maximum cropped zoom.</param>
-        /// <param name="progress">Progress.</param>
-        /// <param name="threadsCount">Threads count.</param>
-        /// <returns></returns>
-        private static async ValueTask GenerateTilesByCropping(FileInfo inputFileInfo,
-                                                               DirectoryInfo outputDirectoryInfo,
-                                                               DirectoryInfo tempDirectoryInfo, int minZ, int maxZ,
-                                                               IProgress<double> progress, int threadsCount)
-        {
-            try
-            {
-                Core.Image.Image image = new Core.Image.Image(inputFileInfo, outputDirectoryInfo, minZ, maxZ);
-
-                await Task.Factory
-                          .StartNew(() => image.GenerateTilesByCropping(tempDirectoryInfo, progress, threadsCount),
-                                    TaskCreationOptions.LongRunning);
-            }
-            catch (Exception exception)
-            {
-                Helpers.ErrorHelper.PrintException(exception);
-            }
-        }
-
-        /// <summary>
-        /// Create tiles. Crops input tiff only for lowest zoom and then join the higher ones from it.
-        /// </summary>
-        /// <param name="inputFileInfo">Input file.</param>
-        /// <param name="outputDirectoryInfo">Output directory.</param>
-        /// <param name="tempDirectoryInfo">Temp directory.</param>
-        /// <param name="minZ">Minimum cropped zoom.</param>
-        /// <param name="maxZ">Maximum cropped zoom.</param>
-        /// <param name="progress">Progress.</param>
-        /// <param name="threadsCount">Threads count.</param>
-        /// <returns></returns>
-        private static async ValueTask GenerateTilesByJoining(FileInfo inputFileInfo, DirectoryInfo outputDirectoryInfo,
-                                                              DirectoryInfo tempDirectoryInfo, int minZ, int maxZ,
-                                                              IProgress<double> progress, int threadsCount)
-        {
-            try
-            {
-                Core.Image.Image image = new Core.Image.Image(inputFileInfo, outputDirectoryInfo, minZ, maxZ);
-
-                await Task.Factory
-                          .StartNew(() => image.GenerateTilesByJoining(tempDirectoryInfo, progress, threadsCount),
-                                    TaskCreationOptions.LongRunning);
-            }
-            catch (Exception exception)
-            {
-                Helpers.ErrorHelper.PrintException(exception);
-            }
         }
 
         #endregion

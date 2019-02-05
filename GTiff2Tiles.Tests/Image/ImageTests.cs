@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Threading.Tasks;
 using NUnit.Framework;
 
 namespace GTiff2Tiles.Tests.Image
@@ -13,7 +14,7 @@ namespace GTiff2Tiles.Tests.Image
         }
 
         [Test]
-        public void GenerateTilesByJoining()
+        public async Task GenerateTilesByJoining()
         {
             DirectoryInfo examplesDirectoryInfo = Helpers.TestHelper.GetExamplesDirectoryInfo();
             DirectoryInfo tempDirectoryInfo = new DirectoryInfo(Path.Combine(Helpers.TestHelper.GetExamplesDirectoryInfo().FullName, Enums.FileSystemEntries.Temp));
@@ -28,7 +29,7 @@ namespace GTiff2Tiles.Tests.Image
             {
                 IProgress<double> progress = new Progress<double>(Console.WriteLine);
                 Core.Image.Image image = new Core.Image.Image(inputFileInfo, outputDirectoryInfo, Enums.Zooms.MinZ, Enums.Zooms.MaxZ);
-                image.GenerateTilesByJoining(tempDirectoryInfo, progress, Enums.Multithreading.ThreadsCount);
+                await image.GenerateTilesByJoining(tempDirectoryInfo, progress, Enums.Multithreading.ThreadsCount);
             }
             catch (Exception exception)
             {
@@ -48,7 +49,7 @@ namespace GTiff2Tiles.Tests.Image
         }
 
         [Test]
-        public void GenerateTilesByCropping()
+        public async Task GenerateTilesByCropping()
         {
             DirectoryInfo examplesDirectoryInfo = Helpers.TestHelper.GetExamplesDirectoryInfo();
             DirectoryInfo tempDirectoryInfo = new DirectoryInfo(Path.Combine(Helpers.TestHelper.GetExamplesDirectoryInfo().FullName, Enums.FileSystemEntries.Temp));
@@ -63,7 +64,7 @@ namespace GTiff2Tiles.Tests.Image
             {
                 IProgress<double> progress = new Progress<double>(Console.WriteLine);
                 Core.Image.Image image = new Core.Image.Image(inputFileInfo, outputDirectoryInfo, Enums.Zooms.MinZ, Enums.Zooms.MaxZ);
-                image.GenerateTilesByCropping(tempDirectoryInfo, progress, Enums.Multithreading.ThreadsCount);
+                await image.GenerateTilesByCropping(tempDirectoryInfo, progress, Enums.Multithreading.ThreadsCount);
             }
             catch (Exception exception)
             {

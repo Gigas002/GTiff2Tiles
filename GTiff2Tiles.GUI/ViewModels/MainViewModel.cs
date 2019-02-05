@@ -2,7 +2,6 @@
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
-using System.Threading.Tasks;
 using System.Windows;
 using Caliburn.Micro;
 using Ookii.Dialogs.Wpf;
@@ -270,12 +269,12 @@ namespace GTiff2Tiles.GUI.ViewModels
                 switch (Algorithm)
                 {
                     case Core.Enums.Algorithms.Join:
-                        await GenerateTilesByJoining(inputFileInfo, outputDirectoryInfo, tempDirectoryInfo, MinZ, MaxZ,
-                                                     progress, ThreadsCount);
+                        Core.Image.Image joinImage = new Core.Image.Image(inputFileInfo, outputDirectoryInfo, MinZ, MaxZ);
+                        await joinImage.GenerateTilesByJoining(tempDirectoryInfo, progress, ThreadsCount);
                         break;
                     case Core.Enums.Algorithms.Crop:
-                        await GenerateTilesByCropping(inputFileInfo, outputDirectoryInfo, tempDirectoryInfo, MinZ, MaxZ,
-                                                      progress, ThreadsCount);
+                        Core.Image.Image cropImage = new Core.Image.Image(inputFileInfo, outputDirectoryInfo, MinZ, MaxZ);
+                        await cropImage.GenerateTilesByCropping(tempDirectoryInfo, progress, ThreadsCount);
                         break;
                     default:
                         Helpers.ErrorHelper.ShowError("This algorithm is not supported.", null);
@@ -356,49 +355,6 @@ namespace GTiff2Tiles.GUI.ViewModels
             ProgressBarValue = 0.0;
 
             return true;
-        }
-
-        /// <summary>
-        /// Crops input tiff for each zoom.
-        /// </summary>
-        /// <param name="inputFileInfo">Input file.</param>
-        /// <param name="outputDirectoryInfo">Output directory.</param>
-        /// <param name="tempDirectoryInfo">Temp directory.</param>
-        /// <param name="minZ">Minimum cropped zoom.</param>
-        /// <param name="maxZ">Maximum cropped zoom.</param>
-        /// <param name="progress">Progress.</param>
-        /// <param name="threadsCount">Threads count.</param>
-        /// <returns></returns>
-        private static async ValueTask GenerateTilesByCropping(FileInfo inputFileInfo,
-                                                               DirectoryInfo outputDirectoryInfo,
-                                                               DirectoryInfo tempDirectoryInfo, int minZ, int maxZ,
-                                                               IProgress<double> progress, int threadsCount)
-        {
-            Core.Image.Image image = new Core.Image.Image(inputFileInfo, outputDirectoryInfo, minZ, maxZ);
-
-            await Task.Factory.StartNew(() => image.GenerateTilesByCropping(tempDirectoryInfo, progress, threadsCount),
-                                        TaskCreationOptions.LongRunning);
-        }
-
-        /// <summary>
-        /// Create tiles. Crops input tiff only for lowest zoom and then join the higher ones from it.
-        /// </summary>
-        /// <param name="inputFileInfo">Input file.</param>
-        /// <param name="outputDirectoryInfo">Output directory.</param>
-        /// <param name="tempDirectoryInfo">Temp directory.</param>
-        /// <param name="minZ">Minimum cropped zoom.</param>
-        /// <param name="maxZ">Maximum cropped zoom.</param>
-        /// <param name="progress">Progress.</param>
-        /// <param name="threadsCount">Threads count.</param>
-        /// <returns></returns>
-        private static async ValueTask GenerateTilesByJoining(FileInfo inputFileInfo, DirectoryInfo outputDirectoryInfo,
-                                                              DirectoryInfo tempDirectoryInfo, int minZ, int maxZ,
-                                                              IProgress<double> progress, int threadsCount)
-        {
-            Core.Image.Image image = new Core.Image.Image(inputFileInfo, outputDirectoryInfo, minZ, maxZ);
-
-            await Task.Factory.StartNew(() => image.GenerateTilesByJoining(tempDirectoryInfo, progress, threadsCount),
-                                        TaskCreationOptions.LongRunning);
         }
 
         #endregion
