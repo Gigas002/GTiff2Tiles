@@ -18,8 +18,8 @@ namespace GTiff2Tiles.Tests.Image
         {
             DirectoryInfo examplesDirectoryInfo = Helpers.TestHelper.GetExamplesDirectoryInfo();
             DirectoryInfo tempDirectoryInfo = new DirectoryInfo(Path.Combine(Helpers.TestHelper.GetExamplesDirectoryInfo().FullName, Enums.FileSystemEntries.Temp));
-            string inputFilePath = Path.Combine(examplesDirectoryInfo.FullName, Enums.FileSystemEntries.Input,
-                                                $"{Enums.FileSystemEntries.Input}{Core.Enums.Extensions.Tif}");
+            string inputFilePath = Path.Combine(examplesDirectoryInfo.FullName, Enums.FileSystemEntries.InputDirectoryName,
+                                                $"{Enums.FileSystemEntries.Input4326}{Core.Enums.Extensions.Tif}");
             string outputDirectoryName = Path.Combine(examplesDirectoryInfo.FullName, Enums.FileSystemEntries.GenerateTilesByJoiningOutputDirectoryName);
 
             FileInfo inputFileInfo = new FileInfo(inputFilePath);
@@ -53,8 +53,8 @@ namespace GTiff2Tiles.Tests.Image
         {
             DirectoryInfo examplesDirectoryInfo = Helpers.TestHelper.GetExamplesDirectoryInfo();
             DirectoryInfo tempDirectoryInfo = new DirectoryInfo(Path.Combine(Helpers.TestHelper.GetExamplesDirectoryInfo().FullName, Enums.FileSystemEntries.Temp));
-            string inputFilePath = Path.Combine(examplesDirectoryInfo.FullName, Enums.FileSystemEntries.Input,
-                                                $"{Enums.FileSystemEntries.Input}{Core.Enums.Extensions.Tif}");
+            string inputFilePath = Path.Combine(examplesDirectoryInfo.FullName, Enums.FileSystemEntries.InputDirectoryName,
+                                                $"{Enums.FileSystemEntries.Input4326}{Core.Enums.Extensions.Tif}");
             string outputDirectoryName = Path.Combine(examplesDirectoryInfo.FullName, Enums.FileSystemEntries.GenerateTilesByCroppingOutputDirectoryName);
 
             FileInfo inputFileInfo = new FileInfo(inputFilePath);

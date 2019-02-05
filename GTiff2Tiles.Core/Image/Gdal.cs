@@ -2,6 +2,7 @@
 using System.IO;
 using System.Runtime.InteropServices;
 using OSGeo.GDAL;
+using OSGeo.OSR;
 
 namespace GTiff2Tiles.Core.Image
 {
@@ -114,6 +115,31 @@ namespace GTiff2Tiles.Core.Image
         /// <param name="options">Options array.</param>
         /// <returns>String from GdalInfo.</returns>
         public static string GetInfo(string inputFilePath, string[] options) => Info(inputFilePath, options);
+
+        /// <summary>
+        /// Gets proj4 string of input file.
+        /// </summary>
+        /// <param name="inputFilePath">Full path to input file.</param>
+        /// <returns>Proj4 string.</returns>
+        public static string GetProj4String(string inputFilePath)
+        {
+            try
+            {
+                using (Dataset dataset = OSGeo.GDAL.Gdal.Open(inputFilePath, Access.GA_ReadOnly))
+                {
+                    string wkt = dataset.GetProjection();
+                    using (SpatialReference spatialReference = new SpatialReference(wkt))
+                    {
+                        spatialReference.ExportToProj4(out string proj4String);
+                        return proj4String;
+                    }
+                }
+            }
+            catch (Exception exception)
+            {
+                throw new Exception("Unable to read input file's projection.", exception);
+            }
+        }
 
         /// <summary>
         /// Gets the coordinates and pixel sizes of image.

@@ -5,6 +5,20 @@
     /// </summary>
     public static class Gdal
     {
+        #region Proj4
+
+        /// <summary>
+        /// +proj=longlat
+        /// </summary>
+        public const string LongLat = "+proj=longlat";
+
+        /// <summary>
+        /// +datum=WGS84
+        /// </summary>
+        public const string Wgs84 = "+datum=WGS84";
+
+        #endregion
+
         #region GdalInfo
 
         /// <summary>
@@ -31,7 +45,7 @@
         /// </summary>
         public static readonly string[] RepairTifOptions =
         {
-            "-overwrite", "-t_srs", "EPSG:4326", "-co", "TILED=YES", "-multi", "-s_srs", "EPSG:4326", "-srcnodata", "0",
+            "-overwrite", "-t_srs", "EPSG:4326", "-co", "TILED=YES", "-multi", /*"-s_srs", "EPSG:3857",*/ "-srcnodata", "0",
             "-nosrcalpha", "-dstalpha", "0"
         };
 

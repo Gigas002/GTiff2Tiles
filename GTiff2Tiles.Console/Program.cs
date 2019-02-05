@@ -102,17 +102,6 @@ namespace GTiff2Tiles.Console
                 return;
             }
 
-            //Try to delete temp directory.
-            try
-            {
-                TempDirectoryInfo.Delete(true);
-            }
-            catch (Exception exception)
-            {
-                Helpers.ErrorHelper.PrintException(exception);
-                return;
-            }
-
             stopwatch.Stop();
             System.Console.WriteLine("Done!");
             System.Console

@@ -289,18 +289,6 @@ namespace GTiff2Tiles.GUI.ViewModels
                 return;
             }
 
-            //Try to delete temp directory.
-            try
-            {
-                tempDirectoryInfo.Delete(true);
-            }
-            catch (Exception exception)
-            {
-                Helpers.ErrorHelper.ShowException(exception);
-                IsEnabled = true;
-                return;
-            }
-
             //Enable controls.
             IsEnabled = true;
 

@@ -17,16 +17,20 @@ namespace GTiff2Tiles.Core.Helpers
         /// Check GdalInfo's string.
         /// Block - if image is tiled;
         /// Byte - colors;
-        /// EPSG - projection;
         /// </summary>
         /// <param name="gdalInfoString">String from <see cref="Image.Gdal.Info"/> method.</param>
+        /// <param name="proj4String">Proj4 string.</param>
         /// <returns><see langword="true"/>, if file is OK, <see langword="false"/> otherwise.</returns>
-        private static bool CheckGdalInfo(string gdalInfoString)
+        private static bool CheckTifInfo(string gdalInfoString, string proj4String)
         {
             if (string.IsNullOrWhiteSpace(gdalInfoString)) throw new Exception("Passed GdalInfo string is empty.");
-            return gdalInfoString.Contains(Enums.Image.Gdal.Block)
-                && gdalInfoString.Contains(Enums.Image.Gdal.Byte)
-                && gdalInfoString.Contains(Enums.Image.Gdal.Projection);
+
+            //Check projection.
+            if (!proj4String.Contains(Enums.Image.Gdal.LongLat) || !proj4String.Contains(Enums.Image.Gdal.Wgs84))
+                return false;
+
+            //Other checks.
+            return gdalInfoString.Contains(Enums.Image.Gdal.Block) && gdalInfoString.Contains(Enums.Image.Gdal.Byte);
         }
 
         #endregion
@@ -60,8 +64,11 @@ namespace GTiff2Tiles.Core.Helpers
             //Configure Gdal.
             Image.Gdal.ConfigureGdal();
 
+            //Get proj4 string.
+            string proj4String = Image.Gdal.GetProj4String(inputFileInfo.FullName);
+
             //Check if input image is ready for cropping.
-            if (CheckGdalInfo(Image.Gdal.GetInfo(inputFileInfo.FullName, null)))
+            if (CheckTifInfo(Image.Gdal.GetInfo(inputFileInfo.FullName, null), proj4String))
                 return inputFileInfo;
 
             FileInfo tempFileInfo = new FileInfo(Path.Combine(tempDirectoryInfo.FullName,
