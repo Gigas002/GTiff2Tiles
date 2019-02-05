@@ -3,7 +3,7 @@
     /// <summary>
     /// Static class with Gdal enums.
     /// </summary>
-    public struct Gdal
+    public static class Gdal
     {
         #region GdalInfo
 
@@ -13,7 +13,7 @@
         public const string Block = "Block";
 
         /// <summary>
-        /// todo I don't really remember what that means.
+        /// Check type.
         /// </summary>
         public const string Byte = "Byte";
 

@@ -2,7 +2,7 @@
 
 namespace GTiff2Tiles.GUI.Enums
 {
-    public struct MainViewModel
+    public static class MainViewModel
     {
         public const string Copyright = "© Gigas002 2019";
 

@@ -3,7 +3,7 @@
     /// <summary>
     /// Image enums.
     /// </summary>
-    public struct Image
+    public static class Image
     {
         /// <summary>
         /// Number of bands in output tiles.

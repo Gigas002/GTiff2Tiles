@@ -3,7 +3,7 @@
     /// <summary>
     /// Supported algorithms.
     /// </summary>
-    public struct Algorithms
+    public static class Algorithms
     {
         /// <summary>
         /// Crop input tif for each zoom.

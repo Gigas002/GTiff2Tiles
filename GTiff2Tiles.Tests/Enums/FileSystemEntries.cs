@@ -1,6 +1,6 @@
 ﻿namespace GTiff2Tiles.Tests.Enums
 {
-    public struct FileSystemEntries
+    public static class FileSystemEntries
     {
         public const string ExamplesDirectoryName = "Examples";
         public const string BadInput = "BadInput";
