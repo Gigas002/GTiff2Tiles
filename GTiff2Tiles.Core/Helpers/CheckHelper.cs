@@ -73,7 +73,7 @@ namespace GTiff2Tiles.Core.Helpers
 
             FileInfo tempFileInfo = new FileInfo(Path.Combine(tempDirectoryInfo.FullName,
                                                               $"{Enums.Image.Gdal.TempFileName}{Enums.Extensions.Tif}"));
-            Image.Gdal.RepairTif(inputFileInfo, tempFileInfo, null);
+            Image.Gdal.RepairTif(inputFileInfo, tempFileInfo);
             return tempFileInfo;
         }
 

@@ -473,25 +473,26 @@ namespace GTiff2Tiles.Core.Image
                     {
                         for (int currentX = MinMax[zoom][0]; currentX <= MinMax[zoom][2]; currentX++)
                         {
-                            semaphoreSlim.Wait();
+                            await semaphoreSlim.WaitAsync();
 
                             int x = currentX;
                             int y = currentY;
 
-                            tasks.Add(Task.Factory.StartNew(() => WriteTile(zoom, x, y, inputImage),
-                                                            TaskCreationOptions.LongRunning)
-                                          .ContinueWith(task => semaphoreSlim.Release()));
+                            tasks.Add(Task.Run(() =>
+                            {
+                                try
+                                {
+                                    WriteTile(zoom, x, y, inputImage);
+                                }
+                                finally
+                                {
+                                    semaphoreSlim.Release();
+                                }
+                            }));
                         }
                     }
 
-                    try
-                    {
-                        await Task.WhenAll(tasks);
-                    }
-                    catch (Exception exception)
-                    {
-                        throw new Exception(exception.Message, exception);
-                    }
+                    await Task.WhenAll(tasks);
 
                     //Dispose tasks.
                     foreach (Task task in tasks) task.Dispose();
@@ -521,24 +522,26 @@ namespace GTiff2Tiles.Core.Image
                 {
                     for (int currentX = MinMax[zoom][0]; currentX <= MinMax[zoom][2]; currentX++)
                     {
-                        semaphoreSlim.Wait();
+                        await semaphoreSlim.WaitAsync();
 
                         int x = currentX;
                         int y = currentY;
 
-                        tasks.Add(Task.Factory.StartNew(() => WriteTile(zoom, x, y), TaskCreationOptions.LongRunning)
-                                      .ContinueWith(task => semaphoreSlim.Release()));
+                        tasks.Add(Task.Run(() =>
+                        {
+                            try
+                            {
+                                WriteTile(zoom, x, y);
+                            }
+                            finally
+                            {
+                                semaphoreSlim.Release();
+                            }
+                        }));
                     }
                 }
 
-                try
-                {
-                    await Task.WhenAll(tasks);
-                }
-                catch (Exception exception)
-                {
-                    throw new Exception(exception.Message, exception);
-                }
+                await Task.WhenAll(tasks);
 
                 //Dispose tasks.
                 foreach (Task task in tasks) task.Dispose();

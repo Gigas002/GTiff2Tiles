@@ -196,7 +196,7 @@ namespace GTiff2Tiles.Core.Image
         /// <param name="outputFileInfo">Output file.</param>
         /// <param name="callback">Progress reporting delegate.</param>
         public static void RepairTif(FileInfo inputFileInfo, FileInfo outputFileInfo,
-                                     OSGeo.GDAL.Gdal.GDALProgressFuncDelegate callback) =>
+                                     OSGeo.GDAL.Gdal.GDALProgressFuncDelegate callback = null) =>
             Warp(inputFileInfo.FullName, outputFileInfo.FullName, Enums.Image.Gdal.RepairTifOptions, callback);
 
         #endregion
