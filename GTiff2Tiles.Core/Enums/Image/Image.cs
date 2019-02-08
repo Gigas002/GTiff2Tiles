@@ -14,10 +14,5 @@
         /// Output tile's size.
         /// </summary>
         public const int TileSize = 256;
-
-        /// <summary>
-        /// Interpolation method.
-        /// </summary>
-        public const string Interpolation = "bicubic";
     }
 }
