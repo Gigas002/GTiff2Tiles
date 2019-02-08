@@ -4,6 +4,8 @@ Analogue of [gdal2tiles.py](https://github.com/OSGeo/gdal/blob/master/gdal/swig/
 
 Solution is build in VS2017, .NET Framework 4.7.2, targeting Windows x64 systems.
 
+[![Build status](https://ci.appveyor.com/api/projects/status/wp5bbi08sgd4i9bh?svg=true)](https://ci.appveyor.com/project/Gigas002/gtiff2tiles)
+
 ## Table of contents
 
 - [GTIFF2TILES](#gtiff2tiles)
