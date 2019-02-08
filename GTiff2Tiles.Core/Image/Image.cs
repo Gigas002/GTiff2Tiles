@@ -4,6 +4,7 @@ using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using NetVips;
+// ReSharper disable MemberCanBePrivate.Global
 // ReSharper disable AccessToDisposedClosure
 
 namespace GTiff2Tiles.Core.Image
@@ -15,30 +16,12 @@ namespace GTiff2Tiles.Core.Image
     {
         #region Properties
 
-        /// <summary>
-        /// Image's width.
-        /// </summary>
-        private int RasterXSize { get; set; }
-
-        /// <summary>
-        /// Image's height.
-        /// </summary>
-        private int RasterYSize { get; set; }
-
-        /// <summary>
-        /// Array from Gdal, contains coordinates and pixel resolutions.
-        /// </summary>
-        private double[] GeoTransform { get; set; }
+        #region Private
 
         /// <summary>
         /// Dictionary with min/max tile numbers for each zoom level.
         /// </summary>
         private Dictionary<int, int[]> MinMax { get; } = new Dictionary<int, int[]>();
-
-        /// <summary>
-        /// Input GeoTiff.
-        /// </summary>
-        private FileInfo InputFileInfo { get; set; }
 
         /// <summary>
         /// Output directory.
@@ -54,6 +37,47 @@ namespace GTiff2Tiles.Core.Image
         /// Maximum cropped zoom.
         /// </summary>
         private int MaxZ { get; }
+
+        #endregion
+
+        #region Public
+
+        /// <summary>
+        /// Image's width.
+        /// </summary>
+        public int RasterXSize { get; private set; }
+
+        /// <summary>
+        /// Image's height.
+        /// </summary>
+        public int RasterYSize { get; private set; }
+
+        /// <summary>
+        /// Input GeoTiff.
+        /// </summary>
+        public FileInfo InputFileInfo { get; private set; }
+
+        /// <summary>
+        /// Upper left X coordinate.
+        /// </summary>
+        public double MinX { get; private set; }
+
+        /// <summary>
+        /// Lower right Y coordinate.
+        /// </summary>
+        public double MinY { get; private set; }
+
+        /// <summary>
+        /// Lower right X coordinate.
+        /// </summary>
+        public double MaxX { get; private set; }
+
+        /// <summary>
+        /// Upper left Y coordinate.
+        /// </summary>
+        public double MaxY { get; private set; }
+
+        #endregion
 
         #endregion
 
@@ -83,28 +107,21 @@ namespace GTiff2Tiles.Core.Image
         {
             try
             {
-                //Get GeoTransform и raster sizes.
-                GeoTransform = Gdal.GetGeoTransform(InputFileInfo.FullName);
+                //Get border coordinates и raster sizes.
                 (RasterXSize, RasterYSize) = Gdal.GetRasterSizes(InputFileInfo.FullName);
+                (MinX, MinY, MaxX, MaxY) = Gdal.GetFileBorders(InputFileInfo.FullName, RasterXSize, RasterYSize);
             }
             catch (Exception exception)
             {
-                throw new
-                    Exception($"Unable to get {nameof(GeoTransform)} value or {nameof(RasterXSize)}/{nameof(RasterYSize)}.",
-                              exception);
+                throw new Exception("Unable to get input image's coordinate borders or  sizes.", exception);
             }
-
-            double xMin = GeoTransform[0];
-            double yMin = GeoTransform[3] - RasterYSize * GeoTransform[1];
-            double xMax = GeoTransform[0] + RasterXSize * GeoTransform[1];
-            double yMax = GeoTransform[3];
 
             //Create dictionary with tiles for each cropped zoom.
             for (int zoom = MinZ; zoom <= MaxZ; zoom++)
             {
                 //Convert coordinates to tile numbers.
                 (int tileMinX, int tileMinY, int tileMaxX, int tileMaxY) =
-                    Tile.Tile.GetTileNumbersFromCoords(xMin, yMin, xMax, yMax, zoom);
+                    Tile.Tile.GetTileNumbersFromCoords(MinX, MinY, MaxX, MaxY, zoom);
 
                 //Crop tiles extending world limits (+-180,+-90).
                 tileMinX = Math.Max(0, tileMinX);
@@ -137,17 +154,11 @@ namespace GTiff2Tiles.Core.Image
                                      double lowerRightX,
                                      double lowerRightY)
         {
-            //Geotiff coordinate borders.
-            double tiffXMin = GeoTransform[0];
-            double tiffYMin = GeoTransform[3] - RasterYSize * GeoTransform[1];
-            double tiffXMax = GeoTransform[0] + RasterXSize * GeoTransform[1];
-            double tiffYMax = GeoTransform[3];
-
             //Read from input geotiff in pixels.
-            double readXMin = RasterXSize * (upperLeftX - tiffXMin) / (tiffXMax - tiffXMin);
-            double readYMin = RasterYSize - RasterYSize * (upperLeftY - tiffYMin) / (tiffYMax - tiffYMin);
-            double readXMax = RasterXSize * (lowerRightX - tiffXMin) / (tiffXMax - tiffXMin);
-            double readYMax = RasterYSize - RasterYSize * (lowerRightY - tiffYMin) / (tiffYMax - tiffYMin);
+            double readXMin = RasterXSize * (upperLeftX - MinX) / (MaxX - MinX);
+            double readYMin = RasterYSize - RasterYSize * (upperLeftY - MinY) / (MaxY - MinY);
+            double readXMax = RasterXSize * (lowerRightX - MinX) / (MaxX - MinX);
+            double readYMax = RasterYSize - RasterYSize * (lowerRightY - MinY) / (MaxY - MinY);
 
             //If outside of tiff.
             readXMin = readXMin < 0.0 ? 0.0 :
@@ -160,14 +171,14 @@ namespace GTiff2Tiles.Core.Image
                        readYMax > RasterYSize ? RasterYSize : readYMax;
 
             //Output tile's borders in pixels.
-            double tileXMin = readXMin.Equals(0.0) ? tiffXMin :
-                              readXMin.Equals(RasterXSize) ? tiffXMax : upperLeftX;
-            double tileYMin = readYMax.Equals(0.0) ? tiffYMax :
-                              readYMax.Equals(RasterYSize) ? tiffYMin : lowerRightY;
-            double tileXMax = readXMax.Equals(0.0) ? tiffXMin :
-                              readXMax.Equals(RasterXSize) ? tiffXMax : lowerRightX;
-            double tileYMax = readYMin.Equals(0.0) ? tiffYMax :
-                              readYMin.Equals(RasterYSize) ? tiffYMin : upperLeftY;
+            double tileXMin = readXMin.Equals(0.0) ? MinX :
+                              readXMin.Equals(RasterXSize) ? MaxX : upperLeftX;
+            double tileYMin = readYMax.Equals(0.0) ? MaxY :
+                              readYMax.Equals(RasterYSize) ? MinY : lowerRightY;
+            double tileXMax = readXMax.Equals(0.0) ? MinX :
+                              readXMax.Equals(RasterXSize) ? MaxX : lowerRightX;
+            double tileYMax = readYMin.Equals(0.0) ? MaxY :
+                              readYMin.Equals(RasterYSize) ? MinY : upperLeftY;
 
             //Positions of dataset to write in tile.
             double writeXMin = Enums.Image.Image.TileSize -
@@ -214,16 +225,16 @@ namespace GTiff2Tiles.Core.Image
             //Create directories for the tile. The overall structure looks like: outputDirectory/zoom/x/y.png.
             try
             {
-                Directory.CreateDirectory(Path.Combine(OutputDirectoryInfo.FullName, $"{zoom}",
-                                                       $"{currentX}"));
+                string tileDirectoryPath = Path.Combine(OutputDirectoryInfo.FullName, $"{zoom}", $"{currentX}");
+                Directory.CreateDirectory(tileDirectoryPath);
             }
             catch (Exception exception)
             {
                 throw new Exception("Unable to create tile's directory.", exception);
             }
 
-            (double xMin, double yMin, double xMax, double yMax) =
-                Tile.Tile.TileBounds(currentX, currentY, zoom, false);
+            //Get the coordinate borders for current tile from tile numbers.
+            (double xMin, double yMin, double xMax, double yMax) = Tile.Tile.TileBounds(currentX, currentY, zoom, false);
 
             //Get postitions and sizes for current tile.
             (int readXPos, int readYPos, int readXSize, int readYSize, int writeXPos, int writeYPos,
@@ -285,7 +296,7 @@ namespace GTiff2Tiles.Core.Image
             if (yResidual > 1.0 || xResidual > 1.0)
             {
                 // Input displacement. For centre sampling, shift by 0.5 down and right.
-                double id = centreConvention ? 0.5 : 0.0;
+                const double id = 0.0; //centreConvention ? 0.5 : 0.0;
 
                 // Floating point affine transformation
                 using (Interpolate interpolate = Interpolate.NewFromName(Enums.Image.Interpolations.Bicubic))
@@ -337,37 +348,40 @@ namespace GTiff2Tiles.Core.Image
         /// <param name="currentY">Tile's y number.</param>
         private void WriteTile(int zoom, int currentX, int currentY)
         {
+            //Create directories for the tile. The overall structure looks like: outputDirectory/zoom/x/y.png.
+            string tileDirectoryPath = Path.Combine(OutputDirectoryInfo.FullName, $"{zoom}", $"{currentX}");
             try
             {
-                //Create directories for the tile. The overall structure looks like: outputDirectory/zoom/x/y.png.
-                string tileDirectoryPath = Path.Combine(OutputDirectoryInfo.FullName, $"{zoom}", $"{currentX}");
-                try
-                {
-                    Directory.CreateDirectory(tileDirectoryPath);
-                }
-                catch (Exception exception)
-                {
-                    throw new Exception($"Unable to create tile's directory here: {tileDirectoryPath}.",
-                                        exception);
-                }
+                Directory.CreateDirectory(tileDirectoryPath);
+            }
+            catch (Exception exception)
+            {
+                throw new Exception($"Unable to create tile's directory here: {tileDirectoryPath}.",
+                                    exception);
+            }
 
-                //Calculate upper tiles's positions.
-                int newTileX1 = currentX * 2;
-                int newTileY1 = currentY * 2;
-                int newTileX2 = newTileX1 + 1;
-                int newTileY2 = newTileY1;
-                int newTileX3 = newTileX1;
-                int newTileY3 = newTileY1 + 1;
-                int newTileX4 = newTileX1 + 1;
-                int newTileY4 = newTileY1 + 1;
+            //Calculate upper tiles's positions.
+            int newTileX1 = currentX * 2;
+            int newTileY1 = currentY * 2;
+            int newTileX2 = newTileX1 + 1;
+            int newTileY2 = newTileY1;
+            int newTileX3 = newTileX1;
+            int newTileY3 = newTileY1 + 1;
+            int newTileX4 = newTileX1 + 1;
+            int newTileY4 = newTileY1 + 1;
 
-                bool tilesExists = false;
+            bool tilesExists = false;
 
-                const int upperTileSize = Enums.Image.Image.TileSize / 2;
+            const int upperTileSize = Enums.Image.Image.TileSize / 2;
 
-                NetVips.Image tile1;
-                string tile1Path = Path.Combine(OutputDirectoryInfo.FullName, $"{zoom + 1}", $"{newTileX1}",
-                                                $"{newTileY1}{Enums.Extensions.Png}");
+            #region Create 4 inner tiles
+
+            NetVips.Image tile1;
+            string tile1Path = Path.Combine(OutputDirectoryInfo.FullName, $"{zoom + 1}", $"{newTileX1}",
+                                            $"{newTileY1}{Enums.Extensions.Png}");
+
+            try
+            {
                 if (File.Exists(tile1Path))
                 {
                     tile1 = NetVips.Image.Pngload(tile1Path);
@@ -376,11 +390,18 @@ namespace GTiff2Tiles.Core.Image
                 }
                 else
                     tile1 = NetVips.Image.Black(upperTileSize, upperTileSize);
+            }
+            catch (Exception exception)
+            {
+                throw new Exception($"Unable to create tile1. {nameof(currentX)}:{currentX}, {nameof(currentY)}:{currentY}.", exception);
+            }
 
-                NetVips.Image tile2;
-                string tile2Path =
-                    Path.Combine(OutputDirectoryInfo.FullName, $"{zoom + 1}", $"{newTileX2}",
-                                 $"{newTileY2}{Enums.Extensions.Png}");
+            NetVips.Image tile2;
+            string tile2Path = Path.Combine(OutputDirectoryInfo.FullName, $"{zoom + 1}", $"{newTileX2}",
+                             $"{newTileY2}{Enums.Extensions.Png}");
+
+            try
+            {
                 if (File.Exists(tile2Path))
                 {
                     tile2 = NetVips.Image.Pngload(tile2Path);
@@ -389,11 +410,18 @@ namespace GTiff2Tiles.Core.Image
                 }
                 else
                     tile2 = NetVips.Image.Black(upperTileSize, upperTileSize);
+            }
+            catch (Exception exception)
+            {
+                throw new Exception($"Unable to create tile2. {nameof(currentX)}:{currentX}, {nameof(currentY)}:{currentY}.", exception);
+            }
 
-                NetVips.Image tile3;
-                string tile3Path =
-                    Path.Combine(OutputDirectoryInfo.FullName, $"{zoom + 1}", $"{newTileX3}",
-                                 $"{newTileY3}{Enums.Extensions.Png}");
+            NetVips.Image tile3;
+            string tile3Path = Path.Combine(OutputDirectoryInfo.FullName, $"{zoom + 1}", $"{newTileX3}",
+                             $"{newTileY3}{Enums.Extensions.Png}");
+
+            try
+            {
                 if (File.Exists(tile3Path))
                 {
                     tile3 = NetVips.Image.Pngload(tile3Path);
@@ -402,11 +430,18 @@ namespace GTiff2Tiles.Core.Image
                 }
                 else
                     tile3 = NetVips.Image.Black(upperTileSize, upperTileSize);
+            }
+            catch (Exception exception)
+            {
+                throw new Exception($"Unable to create tile3. {nameof(currentX)}:{currentX}, {nameof(currentY)}:{currentY}.", exception);
+            }
 
-                NetVips.Image tile4;
-                string tile4Path =
-                    Path.Combine(OutputDirectoryInfo.FullName, $"{zoom + 1}", $"{newTileX4}",
-                                 $"{newTileY4}{Enums.Extensions.Png}");
+            NetVips.Image tile4;
+            string tile4Path = Path.Combine(OutputDirectoryInfo.FullName, $"{zoom + 1}", $"{newTileX4}",
+                             $"{newTileY4}{Enums.Extensions.Png}");
+
+            try
+            {
                 if (File.Exists(tile4Path))
                 {
                     tile4 = NetVips.Image.Pngload(tile4Path);
@@ -415,53 +450,87 @@ namespace GTiff2Tiles.Core.Image
                 }
                 else
                     tile4 = NetVips.Image.Black(upperTileSize, upperTileSize);
-
-                //We shouldn't create tiles, if they're not exist.
-                if (!tilesExists) return;
-
-                NetVips.Image[] images = { tile3, tile4, tile1, tile2 };
-                for (int i = 0; i < images.Length; i++)
-                {
-                    int bands = images[i].Bands;
-                    switch (bands)
-                    {
-                        case Enums.Image.Image.Bands:
-                            continue;
-                        case 1:
-                            {
-                                for (int j = bands; j < Enums.Image.Image.Bands; j++)
-                                    images[i] = images[i].Bandjoin(0);
-                                break;
-                            }
-                        default:
-                            {
-                                for (int j = bands; j < Enums.Image.Image.Bands; j++)
-                                    images[i] = images[i].Bandjoin(255);
-                                break;
-                            }
-                    }
-                }
-
-                NetVips.Image resultImage = NetVips.Image.Arrayjoin(images, 2);
-
-                string outputTilePath = Path.Combine(OutputDirectoryInfo.FullName, $"{zoom}",
-                                                     $"{currentX}",
-                                                     $"{currentY}{Enums.Extensions.Png}");
-
-                resultImage.Pngsave(outputTilePath);
-
-                tile1.Dispose();
-                tile2.Dispose();
-                tile3.Dispose();
-                tile4.Dispose();
-                foreach (NetVips.Image image in images)
-                    image.Dispose();
-                resultImage.Dispose();
             }
             catch (Exception exception)
             {
-                throw new Exception($"Unable to create upper level tile on zoom: {zoom}.", exception);
+                throw new Exception($"Unable to create tile4. {nameof(currentX)}:{currentX}, {nameof(currentY)}:{currentY}.", exception);
             }
+
+            #endregion
+
+            //We shouldn't create tiles, if they're not exist.
+            if (!tilesExists) return;
+
+            NetVips.Image[] images = {tile3, tile4, tile1, tile2};
+
+            //Check and write bands if needed.
+            for (int i = 0; i < images.Length; i++)
+            {
+                int bands = images[i].Bands;
+                switch (bands)
+                {
+                    case Enums.Image.Image.Bands:
+                        continue;
+                    case 1:
+                    {
+                        for (int j = bands; j < Enums.Image.Image.Bands; j++)
+                        {
+                            try
+                            {
+                                images[i] = images[i].Bandjoin(0);
+                            }
+                            catch (Exception exception)
+                            {
+                                throw new
+                                    Exception($"Unable to join band {i}. {nameof(currentX)}:{currentX}, {nameof(currentY)}:{currentY}.",
+                                              exception);
+                            }
+                        }
+                        break;
+                    }
+                    default:
+                    {
+                        for (int j = bands; j < Enums.Image.Image.Bands; j++)
+                        {
+                            try
+                            {
+                                images[i] = images[i].Bandjoin(255);
+                            }
+                            catch (Exception exception)
+                            {
+                                throw new
+                                    Exception($"Unable to join band {i}. {nameof(currentX)}:{currentX}, {nameof(currentY)}:{currentY}.",
+                                              exception);
+                            }
+                        }
+                        break;
+                    }
+                }
+            }
+
+            //Join 4 tiles.
+            try
+            {
+                using (NetVips.Image resultImage = NetVips.Image.Arrayjoin(images, 2))
+                {
+                    string outputTilePath = Path.Combine(OutputDirectoryInfo.FullName, $"{zoom}",
+                                                         $"{currentX}",
+                                                         $"{currentY}{Enums.Extensions.Png}");
+                    resultImage.Pngsave(outputTilePath);
+                }
+            }
+            catch (Exception exception)
+            {
+                throw new Exception($"Unable to join tiles. {nameof(currentX)}:{currentX}, {nameof(currentY)}:{currentY}.", exception);
+            }
+
+            //Dispose images.
+            tile1.Dispose();
+            tile2.Dispose();
+            tile3.Dispose();
+            tile4.Dispose();
+            foreach (NetVips.Image image in images)
+                image.Dispose();
         }
 
         /// <summary>
@@ -472,49 +541,52 @@ namespace GTiff2Tiles.Core.Image
         /// <returns></returns>
         private async ValueTask WriteZoom(int zoom, int threadsCount)
         {
+            //Try to open input image.
+            NetVips.Image inputImage;
             try
             {
-                NetVips.Image inputImage = NetVips.Image.Tiffload(InputFileInfo.FullName, access: NetVips.Enums.Access.Random);
-                using (SemaphoreSlim semaphoreSlim = new SemaphoreSlim(threadsCount))
-                {
-                    List<Task> tasks = new List<Task>();
-
-                    //For each tile on given zoom calculate positions/sizes and save as file.
-                    for (int currentY = MinMax[zoom][1]; currentY <= MinMax[zoom][3]; currentY++)
-                    {
-                        for (int currentX = MinMax[zoom][0]; currentX <= MinMax[zoom][2]; currentX++)
-                        {
-                            await semaphoreSlim.WaitAsync();
-
-                            int x = currentX;
-                            int y = currentY;
-
-                            tasks.Add(Task.Run(() =>
-                            {
-                                try
-                                {
-                                    WriteTile(zoom, x, y, inputImage);
-                                }
-                                finally
-                                {
-                                    semaphoreSlim.Release();
-                                }
-                            }));
-                        }
-                    }
-
-                    await Task.WhenAll(tasks);
-
-                    //Dispose tasks.
-                    foreach (Task task in tasks) task.Dispose();
-                }
-
-                inputImage.Dispose();
+                inputImage = NetVips.Image.Tiffload(InputFileInfo.FullName, access: NetVips.Enums.Access.Random);
             }
             catch (Exception exception)
             {
-                throw new Exception($"Unable to crop tiles of the following zoom:{zoom}.", exception);
+                throw new Exception("NetVips is unable to open input image.", exception);
             }
+
+            using (SemaphoreSlim semaphoreSlim = new SemaphoreSlim(threadsCount))
+            {
+                List<Task> tasks = new List<Task>();
+
+                //For each tile on given zoom calculate positions/sizes and save as file.
+                for (int currentY = MinMax[zoom][1]; currentY <= MinMax[zoom][3]; currentY++)
+                {
+                    for (int currentX = MinMax[zoom][0]; currentX <= MinMax[zoom][2]; currentX++)
+                    {
+                        await semaphoreSlim.WaitAsync();
+
+                        int x = currentX;
+                        int y = currentY;
+
+                        tasks.Add(Task.Run(() =>
+                        {
+                            try
+                            {
+                                WriteTile(zoom, x, y, inputImage);
+                            }
+                            finally
+                            {
+                                semaphoreSlim.Release();
+                            }
+                        }));
+                    }
+                }
+
+                await Task.WhenAll(tasks);
+
+                //Dispose tasks.
+                foreach (Task task in tasks) task.Dispose();
+            }
+
+            inputImage.Dispose();
         }
 
         /// <summary>
@@ -529,6 +601,7 @@ namespace GTiff2Tiles.Core.Image
             {
                 List<Task> tasks = new List<Task>();
 
+                //For each tile on current zoom.
                 for (int currentY = MinMax[zoom][1]; currentY <= MinMax[zoom][3]; currentY++)
                 {
                     for (int currentX = MinMax[zoom][0]; currentX <= MinMax[zoom][2]; currentX++)

@@ -108,6 +108,34 @@ namespace GTiff2Tiles.Core.Image
 
         #region Image
 
+        #region Private
+
+        /// <summary>
+        /// Gets the coordinates and pixel sizes of image.
+        /// </summary>
+        /// <param name="inputFilePath">Full path to image.</param>
+        /// <returns>Array of coordinates and pixel sizes.</returns>
+        private static double[] GetGeoTransform(string inputFilePath)
+        {
+            try
+            {
+                using (Dataset inputDataset = OSGeo.GDAL.Gdal.Open(inputFilePath, Access.GA_ReadOnly))
+                {
+                    double[] geoTransform = new double[6];
+                    inputDataset.GetGeoTransform(geoTransform);
+                    return geoTransform;
+                }
+            }
+            catch (Exception exception)
+            {
+                throw new Exception("Unable to get GeoTransform.", exception);
+            }
+        }
+
+        #endregion
+
+        #region Public
+
         /// <summary>
         /// Gets the information about image.
         /// </summary>
@@ -142,25 +170,16 @@ namespace GTiff2Tiles.Core.Image
         }
 
         /// <summary>
-        /// Gets the coordinates and pixel sizes of image.
+        /// Gets the coordinates borders of the input Geotiff file.
         /// </summary>
         /// <param name="inputFilePath">Full path to image.</param>
-        /// <returns>Array of coordinates and pixel sizes.</returns>
-        public static double[] GetGeoTransform(string inputFilePath)
+        /// <param name="rasterXSize">Raster's width.</param>
+        /// <param name="rasterYSize">Raster's height.</param>
+        /// <returns>Tuple with coordinates.</returns>
+        public static (double xMin, double yMin, double xMax, double yMax) GetFileBorders(string inputFilePath, int rasterXSize, int rasterYSize)
         {
-            try
-            {
-                using (Dataset inputDataset = OSGeo.GDAL.Gdal.Open(inputFilePath, Access.GA_ReadOnly))
-                {
-                    double[] geoTransform = new double[6];
-                    inputDataset.GetGeoTransform(geoTransform);
-                    return geoTransform;
-                }
-            }
-            catch (Exception exception)
-            {
-                throw new Exception("Unable to get GeoTransform.", exception);
-            }
+            double[] geoTransform = GetGeoTransform(inputFilePath);
+            return (geoTransform[0], geoTransform[3] - rasterYSize * geoTransform[1], geoTransform[0] + rasterXSize * geoTransform[1], geoTransform[3]);
         }
 
         /// <summary>
@@ -198,6 +217,8 @@ namespace GTiff2Tiles.Core.Image
         public static void RepairTif(FileInfo inputFileInfo, FileInfo outputFileInfo,
                                      OSGeo.GDAL.Gdal.GDALProgressFuncDelegate callback = null) =>
             Warp(inputFileInfo.FullName, outputFileInfo.FullName, Enums.Image.Gdal.RepairTifOptions, callback);
+
+        #endregion
 
         #endregion
     }
