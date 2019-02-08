@@ -1,0 +1,10 @@
+image: Visual Studio 2017
+
+version: 1.1.0
+
+platform: x64
+
+configuration: Release
+
+before_build:
+ - nuget restore
