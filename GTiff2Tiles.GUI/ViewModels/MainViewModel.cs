@@ -258,7 +258,11 @@ namespace GTiff2Tiles.GUI.ViewModels
             //Initialize FileSystemEntries from properties.
             FileInfo inputFileInfo = new FileInfo(InputFilePath);
             DirectoryInfo outputDirectoryInfo = new DirectoryInfo(OutputDirectoryPath);
-            DirectoryInfo tempDirectoryInfo = new DirectoryInfo(TempDirectoryPath);
+
+            //Create temp directory object.
+            string tempDirectoryPath =
+                Path.Combine(TempDirectoryPath, DateTime.Now.ToString(Core.Enums.DateTimePatterns.LongWithMs));
+            DirectoryInfo tempDirectoryInfo = new DirectoryInfo(tempDirectoryPath);
 
             //Create progress reporter.
             IProgress<double> progress = new Progress<double>(value => ProgressBarValue = value);
@@ -266,15 +270,22 @@ namespace GTiff2Tiles.GUI.ViewModels
             //Run tiling asynchroniously.
             try
             {
+                //Check for errors.
+                Core.Helpers.CheckHelper.CheckOutputDirectory(outputDirectoryInfo);
+                if (!Core.Helpers.CheckHelper.CheckInputFile(inputFileInfo))
+                    inputFileInfo = Core.Image.Gdal.RepairTif(inputFileInfo, tempDirectoryInfo);
+
+                //Create image object.
+                Core.Image.Image inputImage = new Core.Image.Image(inputFileInfo, outputDirectoryInfo, MinZ, MaxZ);
+
+                //Switch on algorithm.
                 switch (Algorithm)
                 {
                     case Core.Enums.Algorithms.Join:
-                        Core.Image.Image joinImage = new Core.Image.Image(inputFileInfo, outputDirectoryInfo, MinZ, MaxZ);
-                        await joinImage.GenerateTilesByJoining(tempDirectoryInfo, progress, ThreadsCount);
+                        await inputImage.GenerateTilesByJoining(progress, ThreadsCount);
                         break;
                     case Core.Enums.Algorithms.Crop:
-                        Core.Image.Image cropImage = new Core.Image.Image(inputFileInfo, outputDirectoryInfo, MinZ, MaxZ);
-                        await cropImage.GenerateTilesByCropping(tempDirectoryInfo, progress, ThreadsCount);
+                        await inputImage.GenerateTilesByCropping(progress, ThreadsCount);
                         break;
                     default:
                         Helpers.ErrorHelper.ShowError("This algorithm is not supported.", null);

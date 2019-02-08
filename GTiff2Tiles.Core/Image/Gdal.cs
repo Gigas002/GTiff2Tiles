@@ -62,7 +62,8 @@ namespace GTiff2Tiles.Core.Image
                     // ReSharper disable once UnusedVariable
                     using (Dataset resultDataset = OSGeo.GDAL.Gdal.wrapper_GDALWarpDestName(outputFilePath, 1,
                                                                                             gdalDatasetShadow,
-                                                                                            new GDALWarpAppOptions(options),
+                                                                                            new
+                                                                                                GDALWarpAppOptions(options),
                                                                                             callback, string.Empty))
                     {
                         gcHandle.Free();
@@ -132,6 +133,17 @@ namespace GTiff2Tiles.Core.Image
             }
         }
 
+        /// <summary>
+        /// Converts file using GdalWarp.
+        /// Run only on concrete file (like .vrt or .tif).
+        /// </summary>
+        /// <param name="inputFileInfo">Input file.</param>
+        /// <param name="outputFileInfo">Output file.</param>
+        /// <param name="callback">Progress reporting delegate.</param>
+        private static void RepairTif(FileInfo inputFileInfo, FileInfo outputFileInfo,
+                                      OSGeo.GDAL.Gdal.GDALProgressFuncDelegate callback = null) =>
+            Warp(inputFileInfo.FullName, outputFileInfo.FullName, Enums.Image.Gdal.RepairTifOptions, callback);
+
         #endregion
 
         #region Public
@@ -176,10 +188,12 @@ namespace GTiff2Tiles.Core.Image
         /// <param name="rasterXSize">Raster's width.</param>
         /// <param name="rasterYSize">Raster's height.</param>
         /// <returns>Tuple with coordinates.</returns>
-        public static (double xMin, double yMin, double xMax, double yMax) GetFileBorders(string inputFilePath, int rasterXSize, int rasterYSize)
+        public static (double xMin, double yMin, double xMax, double yMax) GetFileBorders(
+            string inputFilePath, int rasterXSize, int rasterYSize)
         {
             double[] geoTransform = GetGeoTransform(inputFilePath);
-            return (geoTransform[0], geoTransform[3] - rasterYSize * geoTransform[1], geoTransform[0] + rasterXSize * geoTransform[1], geoTransform[3]);
+            return (geoTransform[0], geoTransform[3] - rasterYSize * geoTransform[1],
+                    geoTransform[0] + rasterXSize * geoTransform[1], geoTransform[3]);
         }
 
         /// <summary>
@@ -208,15 +222,38 @@ namespace GTiff2Tiles.Core.Image
         }
 
         /// <summary>
-        /// Converts file using GdalWarp.
-        /// Run only on concrete file (like .vrt or .tif).
+        /// Changes the input file, so it can be used by <see cref="Image"/> methods.
         /// </summary>
         /// <param name="inputFileInfo">Input file.</param>
-        /// <param name="outputFileInfo">Output file.</param>
-        /// <param name="callback">Progress reporting delegate.</param>
-        public static void RepairTif(FileInfo inputFileInfo, FileInfo outputFileInfo,
-                                     OSGeo.GDAL.Gdal.GDALProgressFuncDelegate callback = null) =>
-            Warp(inputFileInfo.FullName, outputFileInfo.FullName, Enums.Image.Gdal.RepairTifOptions, callback);
+        /// <param name="tempDirectoryInfo">Temp directory for fixed tif.</param>
+        /// <returns>Fixed <see cref="FileInfo"/> object.</returns>
+        public static FileInfo RepairTif(FileInfo inputFileInfo, DirectoryInfo tempDirectoryInfo)
+        {
+            //Try to create directory for temp file.
+            try
+            {
+                tempDirectoryInfo.Create();
+            }
+            catch (Exception exception)
+            {
+                throw new Exception($"Unable to create temp directory. Path:{tempDirectoryInfo.FullName}.", exception);
+            }
+
+            string tempFilePath = Path.Combine(tempDirectoryInfo.FullName,
+                                               $"{Enums.Image.Gdal.TempFileName}{Enums.Extensions.Tif}");
+            FileInfo tempFileInfo = new FileInfo(tempFilePath);
+
+            try
+            {
+                RepairTif(inputFileInfo, tempFileInfo);
+            }
+            catch (Exception exception)
+            {
+                throw new Exception($"Unable to repair input tif. Path:{inputFileInfo.FullName}.", exception);
+            }
+
+            return tempFileInfo;
+        }
 
         #endregion
 

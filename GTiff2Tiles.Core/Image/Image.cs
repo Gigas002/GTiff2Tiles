@@ -45,37 +45,37 @@ namespace GTiff2Tiles.Core.Image
         /// <summary>
         /// Image's width.
         /// </summary>
-        public int RasterXSize { get; private set; }
+        public int RasterXSize { get; }
 
         /// <summary>
         /// Image's height.
         /// </summary>
-        public int RasterYSize { get; private set; }
+        public int RasterYSize { get; }
 
         /// <summary>
         /// Input GeoTiff.
         /// </summary>
-        public FileInfo InputFileInfo { get; private set; }
+        public FileInfo InputFileInfo { get; }
 
         /// <summary>
         /// Upper left X coordinate.
         /// </summary>
-        public double MinX { get; private set; }
+        public double MinX { get; }
 
         /// <summary>
         /// Lower right Y coordinate.
         /// </summary>
-        public double MinY { get; private set; }
+        public double MinY { get; }
 
         /// <summary>
         /// Lower right X coordinate.
         /// </summary>
-        public double MaxX { get; private set; }
+        public double MaxX { get; }
 
         /// <summary>
         /// Upper left Y coordinate.
         /// </summary>
-        public double MaxY { get; private set; }
+        public double MaxY { get; }
 
         #endregion
 
@@ -90,21 +90,12 @@ namespace GTiff2Tiles.Core.Image
         /// <param name="outputDirectoryInfo">Output directory.</param>
         /// <param name="minZ">Minimum cropped zoom.</param>
         /// <param name="maxZ">Maximum cropped zoom.</param>
-        public Image(FileInfo inputFileInfo, DirectoryInfo outputDirectoryInfo, int minZ, int maxZ) =>
-            (InputFileInfo, OutputDirectoryInfo, MinZ, MaxZ) =
-            (inputFileInfo, outputDirectoryInfo, minZ, maxZ);
-
-        #endregion
-
-        #region Methods
-
-        #region Private
-
-        /// <summary>
-        /// Initialize all properties.
-        /// </summary>
-        private void Initialize()
+        public Image(FileInfo inputFileInfo, DirectoryInfo outputDirectoryInfo, int minZ, int maxZ)
         {
+            (InputFileInfo, OutputDirectoryInfo, MinZ, MaxZ) = (inputFileInfo, outputDirectoryInfo, minZ, maxZ);
+
+            Gdal.ConfigureGdal();
+
             try
             {
                 //Get border coordinates и raster sizes.
@@ -139,6 +130,12 @@ namespace GTiff2Tiles.Core.Image
                 }
             }
         }
+
+        #endregion
+
+        #region Methods
+
+        #region Private
 
         /// <summary>
         /// Calculate size and positions to read/write.
@@ -234,7 +231,8 @@ namespace GTiff2Tiles.Core.Image
             }
 
             //Get the coordinate borders for current tile from tile numbers.
-            (double xMin, double yMin, double xMax, double yMax) = Tile.Tile.TileBounds(currentX, currentY, zoom, false);
+            (double xMin, double yMin, double xMax, double yMax) =
+                Tile.Tile.TileBounds(currentX, currentY, zoom, false);
 
             //Get postitions and sizes for current tile.
             (int readXPos, int readYPos, int readXSize, int readYSize, int writeXPos, int writeYPos,
@@ -393,12 +391,14 @@ namespace GTiff2Tiles.Core.Image
             }
             catch (Exception exception)
             {
-                throw new Exception($"Unable to create tile1. {nameof(currentX)}:{currentX}, {nameof(currentY)}:{currentY}.", exception);
+                throw new
+                    Exception($"Unable to create tile1. {nameof(currentX)}:{currentX}, {nameof(currentY)}:{currentY}.",
+                              exception);
             }
 
             NetVips.Image tile2;
             string tile2Path = Path.Combine(OutputDirectoryInfo.FullName, $"{zoom + 1}", $"{newTileX2}",
-                             $"{newTileY2}{Enums.Extensions.Png}");
+                                            $"{newTileY2}{Enums.Extensions.Png}");
 
             try
             {
@@ -413,12 +413,14 @@ namespace GTiff2Tiles.Core.Image
             }
             catch (Exception exception)
             {
-                throw new Exception($"Unable to create tile2. {nameof(currentX)}:{currentX}, {nameof(currentY)}:{currentY}.", exception);
+                throw new
+                    Exception($"Unable to create tile2. {nameof(currentX)}:{currentX}, {nameof(currentY)}:{currentY}.",
+                              exception);
             }
 
             NetVips.Image tile3;
             string tile3Path = Path.Combine(OutputDirectoryInfo.FullName, $"{zoom + 1}", $"{newTileX3}",
-                             $"{newTileY3}{Enums.Extensions.Png}");
+                                            $"{newTileY3}{Enums.Extensions.Png}");
 
             try
             {
@@ -433,12 +435,14 @@ namespace GTiff2Tiles.Core.Image
             }
             catch (Exception exception)
             {
-                throw new Exception($"Unable to create tile3. {nameof(currentX)}:{currentX}, {nameof(currentY)}:{currentY}.", exception);
+                throw new
+                    Exception($"Unable to create tile3. {nameof(currentX)}:{currentX}, {nameof(currentY)}:{currentY}.",
+                              exception);
             }
 
             NetVips.Image tile4;
             string tile4Path = Path.Combine(OutputDirectoryInfo.FullName, $"{zoom + 1}", $"{newTileX4}",
-                             $"{newTileY4}{Enums.Extensions.Png}");
+                                            $"{newTileY4}{Enums.Extensions.Png}");
 
             try
             {
@@ -453,7 +457,9 @@ namespace GTiff2Tiles.Core.Image
             }
             catch (Exception exception)
             {
-                throw new Exception($"Unable to create tile4. {nameof(currentX)}:{currentX}, {nameof(currentY)}:{currentY}.", exception);
+                throw new
+                    Exception($"Unable to create tile4. {nameof(currentX)}:{currentX}, {nameof(currentY)}:{currentY}.",
+                              exception);
             }
 
             #endregion
@@ -521,7 +527,9 @@ namespace GTiff2Tiles.Core.Image
             }
             catch (Exception exception)
             {
-                throw new Exception($"Unable to join tiles. {nameof(currentX)}:{currentX}, {nameof(currentY)}:{currentY}.", exception);
+                throw new
+                    Exception($"Unable to join tiles. {nameof(currentX)}:{currentX}, {nameof(currentY)}:{currentY}.",
+                              exception);
             }
 
             //Dispose images.
@@ -639,19 +647,11 @@ namespace GTiff2Tiles.Core.Image
         /// <summary>
         /// Create tiles. Crops input tiff only for lowest zoom and then join the higher ones from it.
         /// </summary>
-        /// <param name="tempDirectoryInfo">Temp directory.</param>
         /// <param name="progress">Progress.</param>
         /// <param name="threadsCount">Threads count.</param>
         /// <returns></returns>
-        public async ValueTask GenerateTilesByJoining(DirectoryInfo tempDirectoryInfo, IProgress<double> progress, int threadsCount)
+        public async ValueTask GenerateTilesByJoining(IProgress<double> progress, int threadsCount)
         {
-            //Check for errors.
-            InputFileInfo = Helpers.CheckHelper.CheckInputFile(InputFileInfo, tempDirectoryInfo);
-            Helpers.CheckHelper.CheckOutputDirectory(OutputDirectoryInfo);
-
-            //Initialize properties.
-            Initialize();
-
             //Crop lowest zoom level.
             await WriteZoom(MaxZ, threadsCount);
             double percentage = 1.0 / (MaxZ - MinZ + 1) * 100.0;
@@ -662,7 +662,7 @@ namespace GTiff2Tiles.Core.Image
             {
                 await MakeUpperTiles(zoom, threadsCount);
 
-                percentage = (double)(MaxZ - zoom + 1) / (MaxZ - MinZ + 1) * 100.0;
+                percentage = (double) (MaxZ - zoom + 1) / (MaxZ - MinZ + 1) * 100.0;
                 progress.Report(percentage);
             }
         }
@@ -670,25 +670,17 @@ namespace GTiff2Tiles.Core.Image
         /// <summary>
         /// Crops input tiff for each zoom.
         /// </summary>
-        /// <param name="tempDirectoryInfo">Temp directory.</param>
         /// <param name="progress">Progress.</param>
         /// <param name="threadsCount">Threads count.</param>
         /// <returns></returns>
-        public async ValueTask GenerateTilesByCropping(DirectoryInfo tempDirectoryInfo, IProgress<double> progress, int threadsCount)
+        public async ValueTask GenerateTilesByCropping(IProgress<double> progress, int threadsCount)
         {
-            //Check for errors.
-            InputFileInfo = Helpers.CheckHelper.CheckInputFile(InputFileInfo, tempDirectoryInfo);
-            Helpers.CheckHelper.CheckOutputDirectory(OutputDirectoryInfo);
-
-            //Initialize properties.
-            Initialize();
-
             //Crop tiles for each zoom.
             for (int zoom = MinZ; zoom <= MaxZ; zoom++)
             {
                 await WriteZoom(zoom, threadsCount);
 
-                double percentage = (double)(zoom - MinZ + 1) / (MaxZ - MinZ + 1) * 100.0;
+                double percentage = (double) (zoom - MinZ + 1) / (MaxZ - MinZ + 1) * 100.0;
                 progress.Report(percentage);
             }
         }

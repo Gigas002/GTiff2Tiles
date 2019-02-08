@@ -16,7 +16,7 @@ namespace GTiff2Tiles.Core.Helpers
         /// <summary>
         /// Check GdalInfo's string.
         /// Block - if image is tiled;
-        /// Byte - colors;
+        /// Byte - type;
         /// </summary>
         /// <param name="gdalInfoString">String from <see cref="Image.Gdal.Info"/> method.</param>
         /// <param name="proj4String">Proj4 string.</param>
@@ -39,27 +39,16 @@ namespace GTiff2Tiles.Core.Helpers
 
         /// <summary>
         /// Checks the existance, projection, block and byte.
-        /// Changes the projection and write temp.tif if can't work with this image.
         /// </summary>
         /// <param name="inputFileInfo">Input file.</param>
-        /// <param name="tempDirectoryInfo">Temp directory for fixed tif.</param>
-        /// <returns>Temp file.</returns>
-        public static FileInfo CheckInputFile(FileInfo inputFileInfo, DirectoryInfo tempDirectoryInfo)
+        /// <returns><see langword="true"/> if no errors in input file, <see langword="false"/> otherwise.</returns>
+        public static bool CheckInputFile(FileInfo inputFileInfo)
         {
-            try
-            {
-                tempDirectoryInfo.Create();
-            }
-            catch (Exception exception)
-            {
-                throw new Exception("Unable to create temp directory.", exception);
-            }
-
             //Check if file exists.
-            if (!inputFileInfo.Exists) throw new Exception("Input file isn't exists.");
+            if (!inputFileInfo.Exists) throw new Exception($"Input file isn't exists. Path:{inputFileInfo.FullName}");
 
             //Check if input file is not .tif.
-            if (inputFileInfo.Extension != Enums.Extensions.Tif) throw new Exception("Input file extension isn't .tif");
+            if (inputFileInfo.Extension != Enums.Extensions.Tif) throw new Exception($"Input file extension isn't .tif. Path:{inputFileInfo.FullName}");
 
             //Configure Gdal.
             Image.Gdal.ConfigureGdal();
@@ -68,13 +57,7 @@ namespace GTiff2Tiles.Core.Helpers
             string proj4String = Image.Gdal.GetProj4String(inputFileInfo.FullName);
 
             //Check if input image is ready for cropping.
-            if (CheckTifInfo(Image.Gdal.GetInfo(inputFileInfo.FullName, null), proj4String))
-                return inputFileInfo;
-
-            FileInfo tempFileInfo = new FileInfo(Path.Combine(tempDirectoryInfo.FullName,
-                                                              $"{Enums.Image.Gdal.TempFileName}{Enums.Extensions.Tif}"));
-            Image.Gdal.RepairTif(inputFileInfo, tempFileInfo);
-            return tempFileInfo;
+            return CheckTifInfo(Image.Gdal.GetInfo(inputFileInfo.FullName, null), proj4String);
         }
 
         /// <summary>
@@ -94,7 +77,7 @@ namespace GTiff2Tiles.Core.Helpers
             }
 
             if (outputDirectoryInfo.EnumerateFileSystemInfos().Any())
-                throw new Exception("Output directory isn't empty. Please, select another directory.");
+                throw new Exception($"Output directory isn't empty. Please, select another directory. Current path:{outputDirectoryInfo.FullName}.");
         }
 
         #endregion
