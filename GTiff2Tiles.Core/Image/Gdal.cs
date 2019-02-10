@@ -242,16 +242,16 @@ namespace GTiff2Tiles.Core.Image
         /// <param name="rasterYSize">Raster's height.</param>
         /// <remarks>Throws <see cref="GdalException"/>.</remarks>
         /// <returns><see cref="ValueTuple{T1, T2, T3, T4}"/> with WGS84 coordinates.</returns>
-        public static (double minX, double minY, double maxX, double maxY) GetFileBorders(FileInfo inputFileInfo, int rasterXSize, int rasterYSize)
+        public static (double minX, double minY, double maxX, double maxY) GetImageBorders(FileInfo inputFileInfo, int rasterXSize, int rasterYSize)
         {
             #region Parameters checking
 
             if (string.IsNullOrWhiteSpace(inputFileInfo.FullName))
-                throw new GdalException($"Input file's path string is empty. Method: {nameof(GetFileBorders)}.");
+                throw new GdalException($"Input file's path string is empty. Method: {nameof(GetImageBorders)}.");
             if (!inputFileInfo.Exists)
-                throw new GdalException($"Input file isn't exist. Method: {nameof(GetFileBorders)}.");
-            if (rasterXSize < 0) throw new GdalException($"Raster x size is lesser than 0. Method: {nameof(GetFileBorders)}.");
-            if (rasterYSize < 0) throw new GdalException($"Raster y size is lesser than 0. Method: {nameof(GetFileBorders)}.");
+                throw new GdalException($"Input file isn't exist. Method: {nameof(GetImageBorders)}.");
+            if (rasterXSize < 0) throw new GdalException($"Raster x size is lesser than 0. Method: {nameof(GetImageBorders)}.");
+            if (rasterYSize < 0) throw new GdalException($"Raster y size is lesser than 0. Method: {nameof(GetImageBorders)}.");
 
             #endregion
 
