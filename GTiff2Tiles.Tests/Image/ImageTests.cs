@@ -39,8 +39,13 @@ namespace GTiff2Tiles.Tests.Image
                 //Check for errors.
                 Core.Helpers.CheckHelper.CheckOutputDirectory(outputDirectoryInfo);
                 if (!Core.Helpers.CheckHelper.CheckInputFile(inputFileInfo))
-                    inputFileInfo = Core.Image.Gdal.RepairTif(inputFileInfo, tempDirectoryInfo);
+                {
+                    string tempFilePath = Path.Combine(tempDirectoryInfo.FullName, $"{Core.Enums.Image.Gdal.TempFileName}{Core.Enums.Extensions.Tif}");
+                    FileInfo tempFileInfo = new FileInfo(tempFilePath);
 
+                    Core.Image.Gdal.Warp(inputFileInfo, tempFileInfo, Core.Enums.Image.Gdal.RepairTifOptions);
+                    inputFileInfo = tempFileInfo;
+                }
                 //Create Image object and crop tiles.
                 Core.Image.Image image =
                     new Core.Image.Image(inputFileInfo, outputDirectoryInfo, Enums.Zooms.MinZ, Enums.Zooms.MaxZ);
@@ -80,8 +85,13 @@ namespace GTiff2Tiles.Tests.Image
                 //Check for errors.
                 Core.Helpers.CheckHelper.CheckOutputDirectory(outputDirectoryInfo);
                 if (!Core.Helpers.CheckHelper.CheckInputFile(inputFileInfo))
-                    inputFileInfo = Core.Image.Gdal.RepairTif(inputFileInfo, tempDirectoryInfo);
+                {
+                    string tempFilePath = Path.Combine(tempDirectoryInfo.FullName, $"{Core.Enums.Image.Gdal.TempFileName}{Core.Enums.Extensions.Tif}");
+                    FileInfo tempFileInfo = new FileInfo(tempFilePath);
 
+                    Core.Image.Gdal.Warp(inputFileInfo, tempFileInfo, Core.Enums.Image.Gdal.RepairTifOptions);
+                    inputFileInfo = tempFileInfo;
+                }
                 //Create Image object and crop tiles.
                 Core.Image.Image image =
                     new Core.Image.Image(inputFileInfo, outputDirectoryInfo, Enums.Zooms.MinZ, Enums.Zooms.MaxZ);

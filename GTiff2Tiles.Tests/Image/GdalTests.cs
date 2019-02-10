@@ -31,8 +31,12 @@ namespace GTiff2Tiles.Tests.Image
             {
                 //Check and repair.
                 if (!Core.Helpers.CheckHelper.CheckInputFile(inputFileInfo))
-                    Core.Image.Gdal.RepairTif(inputFileInfo, tempDirectoryInfo);
+                {
+                    string tempFilePath = Path.Combine(tempDirectoryInfo.FullName, $"{Core.Enums.Image.Gdal.TempFileName}{Core.Enums.Extensions.Tif}");
+                    FileInfo tempFileInfo = new FileInfo(tempFilePath);
 
+                    Core.Image.Gdal.Warp(inputFileInfo, tempFileInfo, Core.Enums.Image.Gdal.RepairTifOptions);
+                }
                 //Check if temp file was created successfuly.
                 if (!tempDirectoryInfo.EnumerateFiles().Any())
                     Assert.Fail("Temp file wasn't created.");
@@ -66,8 +70,12 @@ namespace GTiff2Tiles.Tests.Image
             {
                 //Check and repair.
                 if (!Core.Helpers.CheckHelper.CheckInputFile(inputFileInfo))
-                    Core.Image.Gdal.RepairTif(inputFileInfo, tempDirectoryInfo);
+                {
+                    string tempFilePath = Path.Combine(tempDirectoryInfo.FullName, $"{Core.Enums.Image.Gdal.TempFileName}{Core.Enums.Extensions.Tif}");
+                    FileInfo tempFileInfo = new FileInfo(tempFilePath);
 
+                    Core.Image.Gdal.Warp(inputFileInfo, tempFileInfo, Core.Enums.Image.Gdal.RepairTifOptions);
+                }
                 //Check if temp file was created successfuly.
                 if (!tempDirectoryInfo.EnumerateFiles().Any())
                     Assert.Fail("Temp file wasn't created.");

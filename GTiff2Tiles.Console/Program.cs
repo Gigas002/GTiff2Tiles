@@ -89,8 +89,13 @@ namespace GTiff2Tiles.Console
                 //Check for errors.
                 Core.Helpers.CheckHelper.CheckOutputDirectory(OutputDirectoryInfo);
                 if (!Core.Helpers.CheckHelper.CheckInputFile(InputFileInfo))
-                    InputFileInfo = Core.Image.Gdal.RepairTif(InputFileInfo, TempDirectoryInfo);
+                {
+                    string tempFilePath = Path.Combine(TempDirectoryInfo.FullName, $"{Core.Enums.Image.Gdal.TempFileName}{Core.Enums.Extensions.Tif}");
+                    FileInfo tempFileInfo = new FileInfo(tempFilePath);
 
+                    Core.Image.Gdal.Warp(InputFileInfo, tempFileInfo, Core.Enums.Image.Gdal.RepairTifOptions);
+                    InputFileInfo = tempFileInfo;
+                }
                 //Create image object.
                 Core.Image.Image inputImage = new Core.Image.Image(InputFileInfo, OutputDirectoryInfo, MinZ, MaxZ);
 

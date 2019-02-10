@@ -1,12 +1,12 @@
 ﻿using System;
 
-namespace GTiff2Tiles.Core.Exceptions.Tile
+namespace GTiff2Tiles.Core.Exceptions.Image
 {
     /// <inheritdoc />
     /// <summary>
-    /// Exceptions, happened in Tile.Tile.cs.
+    /// Exceptions, happened in Image.Gdal.cs.
     /// </summary>
-    public class TileException : Exception
+    public class GdalException : Exception
     {
         #region Constructors
 
@@ -15,7 +15,7 @@ namespace GTiff2Tiles.Core.Exceptions.Tile
         /// Creates new <see cref="Exception"/> object with passed error message.
         /// </summary>
         /// <param name="errorMessage">Error message.</param>
-        public TileException(string errorMessage) : base(errorMessage)
+        public GdalException(string errorMessage) : base(errorMessage)
         { }
 
         /// <inheritdoc />
@@ -25,7 +25,7 @@ namespace GTiff2Tiles.Core.Exceptions.Tile
         /// </summary>
         /// <param name="errorMessage">Error message.</param>
         /// <param name="innerException">Inner exception.</param>
-        public TileException(string errorMessage, Exception innerException) : base(errorMessage, innerException)
+        public GdalException(string errorMessage, Exception innerException) : base(errorMessage, innerException)
         { }
 
         #endregion

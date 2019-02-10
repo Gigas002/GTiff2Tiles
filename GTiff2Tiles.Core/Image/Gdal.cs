@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Runtime.InteropServices;
+using GTiff2Tiles.Core.Exceptions.Image;
 using OSGeo.GDAL;
 using OSGeo.OSR;
 
@@ -14,53 +15,52 @@ namespace GTiff2Tiles.Core.Image
         #region GdalApps
 
         /// <summary>
-        /// GdalInfo.
+        /// Runs GdalWarp with passed parameters.
         /// </summary>
-        /// <param name="inputFilePath">Full path to image.</param>
-        /// <param name="options">Options array.</param>
-        /// <returns>String from GdalInfo.</returns>
-        private static string Info(string inputFilePath, string[] options)
+        /// <param name="inputFileInfo">Object of <see cref="FileInfo"/> class, representing input file.</param>
+        /// <param name="outputFileInfo">Object of <see cref="FileInfo"/> class, representing output file.</param>
+        /// <param name="options">Array of <see cref="string"/> parameters.</param>
+        /// <param name="callback"><see langword="delegate"/> for progress reporting from Gdal.</param>
+        /// <remarks>Throws <see cref="GdalException"/>.</remarks>
+        public static void Warp(FileInfo inputFileInfo, FileInfo outputFileInfo,
+                                string[] options,
+                                OSGeo.GDAL.Gdal.GDALProgressFuncDelegate callback = null)
         {
-            string gdalInfoString;
+            #region Parameters checking
+
+            if (string.IsNullOrWhiteSpace(inputFileInfo.FullName))
+                throw new GdalException($"Input file's path string is empty. Method: {nameof(Warp)}.");
+            if (string.IsNullOrWhiteSpace(outputFileInfo.FullName))
+                throw new GdalException($"Output file's path string is empty. Method: {nameof(Warp)}.");
+            if (!inputFileInfo.Exists)
+                throw new GdalException($"Input file isn't exist. Method: {nameof(Warp)}.");
+
             try
             {
-                using (Dataset inputDataset = OSGeo.GDAL.Gdal.Open(inputFilePath, Access.GA_ReadOnly))
-                {
-                    gdalInfoString = OSGeo.GDAL.Gdal.GDALInfo(inputDataset, new GDALInfoOptions(options));
-                }
+                // ReSharper disable once PossibleNullReferenceException
+                outputFileInfo.Directory.Create();
             }
             catch (Exception exception)
             {
-                throw new Exception("Unable to get GdalInfo string.", exception);
+                throw new
+                    GdalException($"Unable to create output directory. Method: {nameof(Warp)}.", exception);
             }
 
-            return string.IsNullOrWhiteSpace(gdalInfoString)
-                       ? throw new Exception("GdalInfo returned an empty string.")
-                       : gdalInfoString;
-        }
+            #endregion
 
-        /// <summary>
-        /// Runs GdalWarp.
-        /// </summary>
-        /// <param name="inputFilePath">Full path to input file.</param>
-        /// <param name="outputFilePath">Full path to output file.</param>
-        /// <param name="options">Options.</param>
-        /// <param name="callback">Progress reporting delegate.</param>
-        private static void Warp(string inputFilePath,
-                                 string outputFilePath,
-                                 string[] options,
-                                 OSGeo.GDAL.Gdal.GDALProgressFuncDelegate callback)
-        {
+            //Initialize Gdal, if needed.
+            ConfigureGdal();
+
             try
             {
-                using (Dataset inputDataset = OSGeo.GDAL.Gdal.Open(inputFilePath, Access.GA_ReadOnly))
+                using (Dataset inputDataset = OSGeo.GDAL.Gdal.Open(inputFileInfo.FullName, Access.GA_ReadOnly))
                 {
                     GCHandle gcHandle =
-                        GCHandle.Alloc(new[] {Dataset.getCPtr(inputDataset).Handle}, GCHandleType.Pinned);
+                        GCHandle.Alloc(new[] { Dataset.getCPtr(inputDataset).Handle }, GCHandleType.Pinned);
                     SWIGTYPE_p_p_GDALDatasetShadow gdalDatasetShadow =
                         new SWIGTYPE_p_p_GDALDatasetShadow(gcHandle.AddrOfPinnedObject(), false, null);
                     // ReSharper disable once UnusedVariable
-                    using (Dataset resultDataset = OSGeo.GDAL.Gdal.wrapper_GDALWarpDestName(outputFilePath, 1,
+                    using (Dataset resultDataset = OSGeo.GDAL.Gdal.wrapper_GDALWarpDestName(outputFileInfo.FullName, 1,
                                                                                             gdalDatasetShadow,
                                                                                             new
                                                                                                 GDALWarpAppOptions(options),
@@ -72,11 +72,52 @@ namespace GTiff2Tiles.Core.Image
             }
             catch (Exception exception)
             {
-                throw new Exception("Unable to run GdalWarp.", exception);
+                throw new GdalException($"Unable to complete {nameof(Warp)} method.", exception);
             }
 
-            if (!File.Exists(outputFilePath))
-                throw new Exception("GdalWarp couldn't create fixed file.");
+            //Was file created?
+            if (!outputFileInfo.Exists)
+                throw new
+                    GdalException($"{nameof(Warp)} method couldn't create ready file with this path: {outputFileInfo.FullName}.");
+        }
+
+        /// <summary>
+        /// Runs GdalInfo with passed parameters.
+        /// </summary>
+        /// <param name="inputFileInfo">Object of <see cref="FileInfo"/> class, representing input file.</param>
+        /// <param name="options">Array of <see cref="string"/> parameters for GdalInfo.</param>
+        /// <remarks>Throws <see cref="GdalException"/>.</remarks>
+        /// <returns><see cref="string"/> from GdalInfo.</returns>
+        public static string Info(FileInfo inputFileInfo, string[] options = null)
+        {
+            #region Parameters checking
+
+            if (string.IsNullOrWhiteSpace(inputFileInfo.FullName))
+                throw new GdalException($"Input file's path string is empty. Method: {nameof(Info)}.");
+            if (!inputFileInfo.Exists)
+                throw new GdalException($"Input file isn't exist. Method: {nameof(Info)}.");
+
+            #endregion
+
+            //Initialize Gdal, if needed.
+            ConfigureGdal();
+
+            try
+            {
+                using (Dataset inputDataset = OSGeo.GDAL.Gdal.Open(inputFileInfo.FullName, Access.GA_ReadOnly))
+                {
+                    string gdalInfoString = OSGeo.GDAL.Gdal.GDALInfo(inputDataset, new GDALInfoOptions(options));
+
+                    if (string.IsNullOrWhiteSpace(gdalInfoString))
+                        throw new GdalException("GdalInfo returned an empty string.");
+
+                    return gdalInfoString;
+                }
+            }
+            catch (Exception exception)
+            {
+                throw new GdalException($"Unable to complete {nameof(Info)} method.", exception);
+            }
         }
 
         #endregion
@@ -86,7 +127,7 @@ namespace GTiff2Tiles.Core.Image
         /// <summary>
         /// Initialize Gdal, if it hadn't been initialized yet.
         /// </summary>
-        public static void ConfigureGdal()
+        private static void ConfigureGdal()
         {
             if (!Helpers.GdalHelper.Usable)
                 Helpers.GdalHelper.Initialize();
@@ -97,7 +138,8 @@ namespace GTiff2Tiles.Core.Image
         /// <summary>
         /// Initialize Ogr, if it hadn't been initialized yet.
         /// </summary>
-        public static void ConfigureOgr()
+        // ReSharper disable once UnusedMember.Local
+        private static void ConfigureOgr()
         {
             if (!Helpers.GdalHelper.Usable)
                 Helpers.GdalHelper.Initialize();
@@ -114,13 +156,26 @@ namespace GTiff2Tiles.Core.Image
         /// <summary>
         /// Gets the coordinates and pixel sizes of image.
         /// </summary>
-        /// <param name="inputFilePath">Full path to image.</param>
-        /// <returns>Array of coordinates and pixel sizes.</returns>
-        private static double[] GetGeoTransform(string inputFilePath)
+        /// <param name="inputFileInfo">Object of <see cref="FileInfo"/> class, representing input file.</param>
+        /// <remarks>Throws <see cref="GdalException"/>.</remarks>
+        /// <returns>Array of <see cref="double"/> coordinates and pixel sizes.</returns>
+        private static double[] GetGeoTransform(FileInfo inputFileInfo)
         {
+            #region Parameters checking
+
+            if (string.IsNullOrWhiteSpace(inputFileInfo.FullName))
+                throw new GdalException($"Input file's path string is empty. Method: {nameof(GetGeoTransform)}.");
+            if (!inputFileInfo.Exists)
+                throw new GdalException($"Input file isn't exist. Method: {nameof(GetGeoTransform)}.");
+
+            #endregion
+
+            //Initialize Gdal, if needed.
+            ConfigureGdal();
+
             try
             {
-                using (Dataset inputDataset = OSGeo.GDAL.Gdal.Open(inputFilePath, Access.GA_ReadOnly))
+                using (Dataset inputDataset = OSGeo.GDAL.Gdal.Open(inputFileInfo.FullName, Access.GA_ReadOnly))
                 {
                     double[] geoTransform = new double[6];
                     inputDataset.GetGeoTransform(geoTransform);
@@ -129,130 +184,118 @@ namespace GTiff2Tiles.Core.Image
             }
             catch (Exception exception)
             {
-                throw new Exception("Unable to get GeoTransform.", exception);
+                throw new GdalException($"Unable to complete {nameof(GetGeoTransform)} method.", exception);
             }
         }
-
-        /// <summary>
-        /// Converts file using GdalWarp.
-        /// Run only on concrete file (like .vrt or .tif).
-        /// </summary>
-        /// <param name="inputFileInfo">Input file.</param>
-        /// <param name="outputFileInfo">Output file.</param>
-        /// <param name="callback">Progress reporting delegate.</param>
-        private static void RepairTif(FileInfo inputFileInfo, FileInfo outputFileInfo,
-                                      OSGeo.GDAL.Gdal.GDALProgressFuncDelegate callback = null) =>
-            Warp(inputFileInfo.FullName, outputFileInfo.FullName, Enums.Image.Gdal.RepairTifOptions, callback);
 
         #endregion
 
         #region Public
 
         /// <summary>
-        /// Gets the information about image.
-        /// </summary>
-        /// <param name="inputFilePath">Full path to image.</param>
-        /// <param name="options">Options array.</param>
-        /// <returns>String from GdalInfo.</returns>
-        public static string GetInfo(string inputFilePath, string[] options) => Info(inputFilePath, options);
-
-        /// <summary>
         /// Gets proj4 string of input file.
         /// </summary>
-        /// <param name="inputFilePath">Full path to input file.</param>
-        /// <returns>Proj4 string.</returns>
-        public static string GetProj4String(string inputFilePath)
+        /// <param name="inputFileInfo">Object of <see cref="FileInfo"/> class, representing input file.</param>
+        /// <remarks>Throws <see cref="GdalException"/>.</remarks>
+        /// <returns><see cref="string"/> proj4.</returns>
+        public static string GetProj4String(FileInfo inputFileInfo)
         {
+            #region Parameters checking
+
+            if (string.IsNullOrWhiteSpace(inputFileInfo.FullName))
+                throw new GdalException($"Input file's path string is empty. Method: {nameof(GetProj4String)}.");
+            if (!inputFileInfo.Exists)
+                throw new GdalException($"Input file isn't exist. Method: {nameof(GetProj4String)}.");
+
+            #endregion
+
+            //Initialize Gdal, if needed.
+            ConfigureGdal();
+
             try
             {
-                using (Dataset dataset = OSGeo.GDAL.Gdal.Open(inputFilePath, Access.GA_ReadOnly))
+                using (Dataset dataset = OSGeo.GDAL.Gdal.Open(inputFileInfo.FullName, Access.GA_ReadOnly))
                 {
                     string wkt = dataset.GetProjection();
                     using (SpatialReference spatialReference = new SpatialReference(wkt))
                     {
                         spatialReference.ExportToProj4(out string proj4String);
+
+                        if (string.IsNullOrWhiteSpace(proj4String))
+                            throw new GdalException($"Proj4 string is empty. Method: {nameof(GetProj4String)}.");
+
                         return proj4String;
                     }
                 }
             }
             catch (Exception exception)
             {
-                throw new Exception("Unable to read input file's projection.", exception);
+                throw new GdalException($"Unable to complete {nameof(GetProj4String)} method.", exception);
             }
         }
 
         /// <summary>
         /// Gets the coordinates borders of the input Geotiff file.
         /// </summary>
-        /// <param name="inputFilePath">Full path to image.</param>
+        /// <param name="inputFileInfo">Object of <see cref="FileInfo"/> class, representing input file.</param>
         /// <param name="rasterXSize">Raster's width.</param>
         /// <param name="rasterYSize">Raster's height.</param>
-        /// <returns>Tuple with coordinates.</returns>
-        public static (double xMin, double yMin, double xMax, double yMax) GetFileBorders(
-            string inputFilePath, int rasterXSize, int rasterYSize)
+        /// <remarks>Throws <see cref="GdalException"/>.</remarks>
+        /// <returns><see cref="ValueTuple{T1, T2, T3, T4}"/> with WGS84 coordinates.</returns>
+        public static (double minX, double minY, double maxX, double maxY) GetFileBorders(FileInfo inputFileInfo, int rasterXSize, int rasterYSize)
         {
-            double[] geoTransform = GetGeoTransform(inputFilePath);
-            return (geoTransform[0], geoTransform[3] - rasterYSize * geoTransform[1],
-                    geoTransform[0] + rasterXSize * geoTransform[1], geoTransform[3]);
+            #region Parameters checking
+
+            if (string.IsNullOrWhiteSpace(inputFileInfo.FullName))
+                throw new GdalException($"Input file's path string is empty. Method: {nameof(GetFileBorders)}.");
+            if (!inputFileInfo.Exists)
+                throw new GdalException($"Input file isn't exist. Method: {nameof(GetFileBorders)}.");
+            if (rasterXSize < 0) throw new GdalException($"Raster x size is lesser than 0. Method: {nameof(GetFileBorders)}.");
+            if (rasterYSize < 0) throw new GdalException($"Raster y size is lesser than 0. Method: {nameof(GetFileBorders)}.");
+
+            #endregion
+
+            double[] geoTransform = GetGeoTransform(inputFileInfo);
+
+            double minX = geoTransform[0];
+            double minY = geoTransform[3] - rasterYSize * geoTransform[1];
+            double maxX = geoTransform[0] + rasterXSize * geoTransform[1];
+            double maxY = geoTransform[3];
+
+            return (minX, minY, maxX, maxY);
         }
 
         /// <summary>
-        /// Gets image sizes.
+        /// Gets image sizes in pixels.
         /// </summary>
-        /// <param name="inputFilePath">Full path to image.</param>
-        /// <returns>Image sizes.</returns>
-        public static (int rasterXSize, int rasterYSize) GetRasterSizes(string inputFilePath)
+        /// <param name="inputFileInfo">Object of <see cref="FileInfo"/> class, representing input file.</param>
+        /// <remarks>Throws <see cref="GdalException"/>.</remarks>
+        /// <returns><see cref="ValueTuple{T1, T2}"/> with image sizes in pixels.</returns>
+        public static (int rasterXSize, int rasterYSize) GetImageSizes(FileInfo inputFileInfo)
         {
-            int rasterXSize, rasterYSize;
+            #region Parameters checking.
+
+            if (string.IsNullOrWhiteSpace(inputFileInfo.FullName))
+                throw new GdalException($"Input file's path string is empty. Method: {nameof(GetProj4String)}.");
+            if (!inputFileInfo.Exists)
+                throw new GdalException($"Input file isn't exist. Method: {nameof(GetProj4String)}.");
+
+            #endregion
+
+            //Initialize Gdal, if needed.
+            ConfigureGdal();
 
             try
             {
-                using (Dataset inputDataset = OSGeo.GDAL.Gdal.Open(inputFilePath, Access.GA_ReadOnly))
+                using (Dataset inputDataset = OSGeo.GDAL.Gdal.Open(inputFileInfo.FullName, Access.GA_ReadOnly))
                 {
-                    rasterXSize = inputDataset.RasterXSize;
-                    rasterYSize = inputDataset.RasterYSize;
+                    return (inputDataset.RasterXSize, inputDataset.RasterYSize);
                 }
             }
             catch (Exception exception)
             {
-                throw new Exception("Unable to get image sizes.", exception);
+                throw new GdalException($"Unable to complete {nameof(GetImageSizes)} method.", exception);
             }
-
-            return (rasterXSize, rasterYSize);
-        }
-
-        /// <summary>
-        /// Changes the input file, so it can be used by <see cref="Image"/> methods.
-        /// </summary>
-        /// <param name="inputFileInfo">Input file.</param>
-        /// <param name="tempDirectoryInfo">Temp directory for fixed tif.</param>
-        /// <returns>Fixed <see cref="FileInfo"/> object.</returns>
-        public static FileInfo RepairTif(FileInfo inputFileInfo, DirectoryInfo tempDirectoryInfo)
-        {
-            //Try to create directory for temp file.
-            try
-            {
-                tempDirectoryInfo.Create();
-            }
-            catch (Exception exception)
-            {
-                throw new Exception($"Unable to create temp directory. Path:{tempDirectoryInfo.FullName}.", exception);
-            }
-
-            string tempFilePath = Path.Combine(tempDirectoryInfo.FullName,
-                                               $"{Enums.Image.Gdal.TempFileName}{Enums.Extensions.Tif}");
-            FileInfo tempFileInfo = new FileInfo(tempFilePath);
-
-            try
-            {
-                RepairTif(inputFileInfo, tempFileInfo);
-            }
-            catch (Exception exception)
-            {
-                throw new Exception($"Unable to repair input tif. Path:{inputFileInfo.FullName}.", exception);
-            }
-
-            return tempFileInfo;
         }
 
         #endregion

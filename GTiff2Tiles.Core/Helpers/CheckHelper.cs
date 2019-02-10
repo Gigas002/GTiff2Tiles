@@ -50,14 +50,11 @@ namespace GTiff2Tiles.Core.Helpers
             //Check if input file is not .tif.
             if (inputFileInfo.Extension != Enums.Extensions.Tif) throw new Exception($"Input file extension isn't .tif. Path:{inputFileInfo.FullName}");
 
-            //Configure Gdal.
-            Image.Gdal.ConfigureGdal();
-
             //Get proj4 string.
-            string proj4String = Image.Gdal.GetProj4String(inputFileInfo.FullName);
+            string proj4String = Image.Gdal.GetProj4String(inputFileInfo);
 
             //Check if input image is ready for cropping.
-            return CheckTifInfo(Image.Gdal.GetInfo(inputFileInfo.FullName, null), proj4String);
+            return CheckTifInfo(Image.Gdal.Info(inputFileInfo), proj4String);
         }
 
         /// <summary>

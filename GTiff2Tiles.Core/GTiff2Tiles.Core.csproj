@@ -70,6 +70,7 @@
     <Compile Include="Enums\Image\Gdal.cs" />
     <Compile Include="Enums\Image\Image.cs" />
     <Compile Include="Enums\Image\Interpolations.cs" />
+    <Compile Include="Exceptions\Image\GdalException.cs" />
     <Compile Include="Exceptions\Tile\TileException.cs" />
     <Compile Include="Helpers\CheckHelper.cs" />
     <Compile Include="Helpers\GdalHelper.cs" />

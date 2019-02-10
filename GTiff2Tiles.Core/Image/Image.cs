@@ -120,13 +120,11 @@ namespace GTiff2Tiles.Core.Image
 
             (InputFileInfo, OutputDirectoryInfo, MinZ, MaxZ) = (inputFileInfo, outputDirectoryInfo, minZ, maxZ);
 
-            Gdal.ConfigureGdal();
-
             try
             {
                 //Get border coordinates и raster sizes.
-                (RasterXSize, RasterYSize) = Gdal.GetRasterSizes(InputFileInfo.FullName);
-                (MinX, MinY, MaxX, MaxY) = Gdal.GetFileBorders(InputFileInfo.FullName, RasterXSize, RasterYSize);
+                (RasterXSize, RasterYSize) = Gdal.GetImageSizes(InputFileInfo);
+                (MinX, MinY, MaxX, MaxY) = Gdal.GetFileBorders(InputFileInfo, RasterXSize, RasterYSize);
             }
             catch (Exception exception)
             {
