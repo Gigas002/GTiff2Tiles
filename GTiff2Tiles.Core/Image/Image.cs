@@ -112,7 +112,7 @@ namespace GTiff2Tiles.Core.Image
             if (outputDirectoryInfo.EnumerateFileSystemInfos().Any())
                 throw new Exception("Output directory isn't empty.");
 
-            if (minZ < maxZ) throw new Exception("Minimum zoom is lesser than maximum zoom.");
+            if (maxZ < minZ) throw new Exception("Maximum zoom is lesser than minimum zoom.");
             if (minZ < 0) throw new Exception("Minimum zoom is lesser than 0.");
             if (maxZ < 0) throw new Exception("Maximum zoom is lesser, than 0.");
 
