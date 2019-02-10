@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using NetVips;
@@ -92,6 +93,31 @@ namespace GTiff2Tiles.Core.Image
         /// <param name="maxZ">Maximum cropped zoom.</param>
         public Image(FileInfo inputFileInfo, DirectoryInfo outputDirectoryInfo, int minZ, int maxZ)
         {
+            #region Check parameters
+
+            if (string.IsNullOrWhiteSpace(inputFileInfo.FullName)) throw new Exception("Input file's path is empty.");
+            if (!inputFileInfo.Exists) throw new Exception("Input file isn't exist.");
+            if (string.IsNullOrWhiteSpace(outputDirectoryInfo.FullName))
+                throw new Exception("Output directory path is empty.");
+
+            try
+            {
+                outputDirectoryInfo.Create();
+            }
+            catch (Exception exception)
+            {
+                throw new Exception("Unable to create output directory.", exception);
+            }
+
+            if (outputDirectoryInfo.EnumerateFileSystemInfos().Any())
+                throw new Exception("Output directory isn't empty.");
+
+            if (minZ < maxZ) throw new Exception("Minimum zoom is lesser than maximum zoom.");
+            if (minZ < 0) throw new Exception("Minimum zoom is lesser than 0.");
+            if (maxZ < 0) throw new Exception("Maximum zoom is lesser, than 0.");
+
+            #endregion
+
             (InputFileInfo, OutputDirectoryInfo, MinZ, MaxZ) = (inputFileInfo, outputDirectoryInfo, minZ, maxZ);
 
             Gdal.ConfigureGdal();
