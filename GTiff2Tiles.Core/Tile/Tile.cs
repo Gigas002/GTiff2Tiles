@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using GTiff2Tiles.Core.Exceptions.Tile;
 
 namespace GTiff2Tiles.Core.Tile
 {
@@ -11,26 +12,44 @@ namespace GTiff2Tiles.Core.Tile
         /// <summary>
         /// Calculates the tile numbers for zoom which covers given lon/lat coordinates.
         /// </summary>
-        /// <param name="xMin">Minimum longitude.</param>
-        /// <param name="yMin">Minimum latitude.</param>
-        /// <param name="xMax">Maximum longitude.</param>
-        /// <param name="yMax">Maximum latitude.</param>
+        /// <param name="minX">Minimum longitude.</param>
+        /// <param name="minY">Minimum latitude.</param>
+        /// <param name="maxX">Maximum longitude.</param>
+        /// <param name="maxY">Maximum latitude.</param>
         /// <param name="zoom">Tile's zoom.</param>
-        /// <returns>Tile numbers array.</returns>
-        public static (int tileMinX, int tileMinY, int tileMaxX, int tileMaxY) GetTileNumbersFromCoords(double xMin,
-                                                                                        double yMin,
-                                                                                        double xMax,
-                                                                                        double yMax,
-                                                                                        int zoom)
+        /// <remarks>Throws <see cref="TileException"/>.</remarks>
+        /// <returns><see cref="ValueTuple{T1, T2, T3, T4}"/> of tiles numbers.</returns>
+        public static (int tileMinX, int tileMinY, int tileMaxX, int tileMaxY) GetTileNumbersFromCoords(double minX,
+                                                                                                        double minY,
+                                                                                                        double maxX,
+                                                                                                        double maxY,
+                                                                                                        int zoom)
         {
-            int[] xs = new int[2];
-            int[] ys = new int[2];
-            xs[0] = Convert.ToInt32(Math.Ceiling((180.0 + xMin) * Math.Pow(2.0, zoom) / 180.0) - 1.0);
-            xs[1] = Convert.ToInt32(Math.Ceiling((180.0 + xMax) * Math.Pow(2.0, zoom) / 180.0) - 1.0);
-            ys[0] = Convert.ToInt32(Math.Ceiling((90.0 + yMin) * Math.Pow(2.0, zoom) / 180.0) - 1.0);
-            ys[1] = Convert.ToInt32(Math.Ceiling((90.0 + yMax) * Math.Pow(2.0, zoom) / 180.0) - 1.0);
+            #region Parameters checking
 
-            return (xs.Min(), ys.Min(), xs.Max(), ys.Max());
+            if (zoom < 0)
+                throw new TileException($"Parameter {nameof(zoom)} of method {nameof(GetTileNumbersFromCoords)} is lesser than 0.");
+
+            #endregion
+
+            int[] tilesXs = new int[2];
+            int[] tilesYs = new int[2];
+
+            try
+            {
+                tilesXs[0] = Convert.ToInt32(Math.Ceiling((180.0 + minX) * Math.Pow(2.0, zoom) / 180.0) - 1.0);
+                tilesXs[1] = Convert.ToInt32(Math.Ceiling((180.0 + maxX) * Math.Pow(2.0, zoom) / 180.0) - 1.0);
+                tilesYs[0] = Convert.ToInt32(Math.Ceiling((90.0 + minY) * Math.Pow(2.0, zoom) / 180.0) - 1.0);
+                tilesYs[1] = Convert.ToInt32(Math.Ceiling((90.0 + maxY) * Math.Pow(2.0, zoom) / 180.0) - 1.0);
+            }
+            catch (Exception exception)
+            {
+                throw new
+                    TileException($"Unable to convert coordinates into tile numbers. Method: {nameof(GetTileNumbersFromCoords)}.",
+                                  exception);
+            }
+
+            return (tilesXs.Min(), tilesYs.Min(), tilesXs.Max(), tilesYs.Max());
         }
 
         /// <summary>
@@ -40,18 +59,29 @@ namespace GTiff2Tiles.Core.Tile
         /// <param name="tileY">Tile's y number.</param>
         /// <param name="zoom">Tile's zoom.</param>
         /// <param name="isFlipY">Should flip y number?</param>
-        /// <returns>4 WGS84 coordinates.</returns>
-        public static (double xMin, double yMin, double xMax, double yMax) TileBounds(
-            int tileX, int tileY, int zoom, bool isFlipY = true)
+        /// <remarks>Выбрасывает <see cref="TileException"/>.</remarks>
+        /// <returns><see cref="ValueTuple{T1, T2, T3, T4}"/> of WGS84 coordinates.</returns>
+        public static (double minX, double minY, double maxX, double maxY) TileBounds(int tileX,
+                                                                                      int tileY,
+                                                                                      int zoom,
+                                                                                      bool isFlipY = true)
         {
-            //May be useful when using another tiling number system.
-            if (isFlipY)
-                tileY = Convert.ToInt32(Math.Pow(2.0, zoom) - tileY - 1);
+            try
+            {
+                if (isFlipY) tileY = Convert.ToInt32(Math.Pow(2.0, zoom) - tileY - 1);
 
-            return (tileX * 180.0 / Math.Pow(2.0, zoom) - 180.0,
-                    tileY * 180.0 / Math.Pow(2.0, zoom) - 90.0,
-                    (tileX + 1) * 180.0 / Math.Pow(2.0, zoom) - 180.0,
-                    (tileY + 1) * 180.0 / Math.Pow(2.0, zoom) - 90.0);
+                double minX = tileX * 180.0 / Math.Pow(2.0, zoom) - 180.0;
+                double minY = tileY * 180.0 / Math.Pow(2.0, zoom) - 90.0;
+                double maxX = (tileX + 1) * 180.0 / Math.Pow(2.0, zoom) - 180.0;
+                double maxY = (tileY + 1) * 180.0 / Math.Pow(2.0, zoom) - 90.0;
+
+                return (minX, minY, maxX, maxY);
+            }
+            catch (Exception exception)
+            {
+                throw new TileException($"Unable to calculate tile's coordinate borders. Method: {nameof(TileBounds)}.",
+                                        exception);
+            }
         }
     }
 }
