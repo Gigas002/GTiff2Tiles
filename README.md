@@ -1,6 +1,6 @@
 # GTIFF2TILES
 
-Analogue of [gdal2tiles.py](https://github.com/OSGeo/gdal/blob/master/gdal/swig/python/scripts/gdal2tiles.py) on C#. Currently support any GEOTIFF, but creates **EPSG:4325** **geodetic** tiles on output in [**tms**](https://wiki.osgeo.org/wiki/Tile_Map_Service_Specification]) structure.
+Analogue of [gdal2tiles.py](https://github.com/OSGeo/gdal/blob/master/gdal/swig/python/scripts/gdal2tiles.py) on C#. Currently support any GEOTIFF, but creates **EPSG:4325** **geodetic** tiles on output in [**tms**](https://wiki.osgeo.org/wiki/Tile_Map_Service_Specification) structure.
 
 Solution is build in VS2017, .NET Framework 4.7.2, targeting Windows x64 systems.
 
