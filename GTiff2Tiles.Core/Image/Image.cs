@@ -94,6 +94,9 @@ namespace GTiff2Tiles.Core.Image
         /// <param name="maxZ">Maximum cropped zoom.</param>
         public Image(FileInfo inputFileInfo, DirectoryInfo outputDirectoryInfo, int minZ, int maxZ)
         {
+            //Disable NetVips warnings for tiff.
+            Helpers.NetVipsHelper.DisableLog();
+
             #region Check parameters
 
             if (string.IsNullOrWhiteSpace(inputFileInfo.FullName)) throw new ImageException("Input file's path is empty.");
@@ -129,7 +132,7 @@ namespace GTiff2Tiles.Core.Image
             }
             catch (Exception exception)
             {
-                throw new Exception("Unable to get input image's coordinate borders or  sizes.", exception);
+                throw new ImageException("Unable to get input image's coordinate borders or  sizes.", exception);
             }
 
             //Create dictionary with tiles for each cropped zoom.
@@ -242,6 +245,14 @@ namespace GTiff2Tiles.Core.Image
         /// <param name="inputImage">Input image.</param>
         private void WriteTile(int zoom, int tileX, int tileY, NetVips.Image inputImage)
         {
+            #region Parameters checking
+
+            if (zoom < 0) throw new ImageException("Zoom is lesser than 0.");
+            if (tileX < 0) throw new ImageException("Tile X number is lesser than 0.");
+            if (tileY < 0) throw new ImageException("Tile Y number is lesser than 0.");
+
+            #endregion
+
             //Create directories for the tile. The overall structure looks like: outputDirectory/zoom/x/y.png.
             try
             {
@@ -298,7 +309,7 @@ namespace GTiff2Tiles.Core.Image
             }
             catch (Exception exception)
             {
-                throw new Exception("Unable to create current tile.", exception);
+                throw new ImageException("Unable to create current tile.", exception);
             }
 
             // Fast, integral box-shrink
@@ -363,7 +374,7 @@ namespace GTiff2Tiles.Core.Image
             }
             catch (Exception exception)
             {
-                throw new Exception("Unable to write tile.", exception);
+                throw new ImageException("Unable to write tile.", exception);
             }
 
             if (!File.Exists(outputFilePath)) throw new ImageException($"Method {nameof(WriteTile)} was unable to create tile. Path: {outputFilePath}.");
@@ -380,6 +391,14 @@ namespace GTiff2Tiles.Core.Image
         /// <param name="tileY">Tile's y number.</param>
         private void WriteTile(int zoom, int tileX, int tileY)
         {
+            #region Parameters checking
+
+            if (zoom < 0) throw new ImageException("Zoom is lesser than 0.");
+            if (tileX < 0) throw new ImageException("Tile X number is lesser than 0.");
+            if (tileY < 0) throw new ImageException("Tile Y number is lesser than 0.");
+
+            #endregion
+
             //Create directories for the tile. The overall structure looks like: outputDirectory/zoom/x/y.png.
             string tileDirectoryPath = Path.Combine(OutputDirectoryInfo.FullName, $"{zoom}", $"{tileX}");
             try
@@ -388,7 +407,7 @@ namespace GTiff2Tiles.Core.Image
             }
             catch (Exception exception)
             {
-                throw new Exception($"Unable to create tile's directory here: {tileDirectoryPath}.",
+                throw new ImageException($"Unable to create tile's directory here: {tileDirectoryPath}.",
                                     exception);
             }
 
@@ -583,6 +602,13 @@ namespace GTiff2Tiles.Core.Image
         /// <returns></returns>
         private async ValueTask WriteZoom(int zoom, int threadsCount)
         {
+            #region Parameters checking
+
+            if (zoom < 0) throw new ImageException("Zoom is lesser than 0.");
+            if (threadsCount <= 0) throw new ImageException("Threads couns is ledder or equal 0.");
+
+            #endregion
+
             //Try to open input image.
             NetVips.Image inputImage;
             try
@@ -591,7 +617,7 @@ namespace GTiff2Tiles.Core.Image
             }
             catch (Exception exception)
             {
-                throw new Exception("NetVips is unable to open input image.", exception);
+                throw new ImageException("NetVips is unable to open input image.", exception);
             }
 
             using (SemaphoreSlim semaphoreSlim = new SemaphoreSlim(threadsCount))
@@ -639,6 +665,13 @@ namespace GTiff2Tiles.Core.Image
         /// <returns></returns>
         private async ValueTask MakeUpperTiles(int zoom, int threadsCount)
         {
+            #region Parameters checking
+
+            if (zoom < 0) throw new ImageException("Zoom is lesser than 0.");
+            if (threadsCount <= 0) throw new ImageException("Threads couns is ledder or equal 0.");
+
+            #endregion
+
             using (SemaphoreSlim semaphoreSlim = new SemaphoreSlim(threadsCount))
             {
                 List<Task> tasks = new List<Task>();
@@ -688,7 +721,8 @@ namespace GTiff2Tiles.Core.Image
         {
             #region Parameters checking
 
-            if (threadsCount < 0) throw new ImageException("Threads count is lesser than 0.");
+            if (progress == null) throw new ImageException("Progress == null.");
+            if (threadsCount <= 0) throw new ImageException("Threads count is lesser or equal 0.");
 
             #endregion
 
@@ -717,7 +751,8 @@ namespace GTiff2Tiles.Core.Image
         {
             #region Parameters checking
 
-            if (threadsCount < 0) throw new ImageException("Threads count is lesser than 0.");
+            if (progress == null) throw new ImageException("Progress == null.");
+            if (threadsCount <= 0) throw new ImageException("Threads count is lesser or equal 0.");
 
             #endregion
 
