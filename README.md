@@ -66,8 +66,10 @@ Also I should mention, that if your input .tif is not **EPSG:4326**, it will be 
 |  -t   |   --temp    |              Full path to temp directory               |    Yes    |
 |       |   --minz    |                  Minimum cropped zoom                  |    Yes    |
 |       |   --maxz    |                  Maximum cropped zoom                  |    Yes    |
-|  -a   | --algorythm | Algorithm to create tiles. Can be \"join\" or \"crop\" |    Yes    |
+|  -a   | --algorithm | Algorithm to create tiles. Can be \"join\" or \"crop\" |    Yes    |
 |       |  --threads  |                     Threads count                      |    No     |
+|       |  --version  |                    Current version                     |           |
+|       |   --help    |             Message about console options              |           |
 
 **Please, be aware of temp directory parameter, because this directory will be deleted after successful crop of tiles!**
 
