@@ -1,7 +1,7 @@
 ﻿namespace GTiff2Tiles.Core.Enums.Image
 {
     /// <summary>
-    /// Static class with Gdal enums.
+    /// Static class with Gdal constants.
     /// </summary>
     public static class Gdal
     {
@@ -31,11 +31,6 @@
         /// </summary>
         public const string Byte = "Byte";
 
-        /// <summary>
-        /// EPSG:4326 (WGS84) projection string.
-        /// </summary>
-        public const string Projection = "AUTHORITY[\"EPSG\",\"4326\"]]";
-
         #endregion
 
         #region GdalWarp
@@ -45,7 +40,7 @@
         /// </summary>
         public static readonly string[] RepairTifOptions =
         {
-            "-overwrite", "-t_srs", "EPSG:4326", "-co", "TILED=YES", "-multi", /*"-s_srs", "EPSG:3857",*/ "-srcnodata", "0",
+            "-overwrite", "-t_srs", "EPSG:4326", "-co", "TILED=YES", "-multi", "-srcnodata", "0",
             "-nosrcalpha", "-dstalpha", "0"
         };
 

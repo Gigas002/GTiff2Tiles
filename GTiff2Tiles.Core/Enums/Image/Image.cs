@@ -1,18 +1,18 @@
 ﻿namespace GTiff2Tiles.Core.Enums.Image
 {
     /// <summary>
-    /// Image enums.
+    /// <see cref="Core.Image.Image"/> constants.
     /// </summary>
-    public static class Image
+    internal static class Image
     {
         /// <summary>
         /// Number of bands in output tiles.
         /// </summary>
-        public const int Bands = 4;
+        internal const int Bands = 4;
 
         /// <summary>
         /// Output tile's size.
         /// </summary>
-        public const int TileSize = 256;
+        internal const int TileSize = 256;
     }
 }

@@ -1,3 +1,22 @@
+# 27.02.2019 - Released 1.2.0
+
+Changes since 1.1.0:
+
+* GenerateTiles methods are now async;
+* Use static classes instead of structs;
+* Fixed black borders issue;
+* Multithreading performance improvements;
+* Replaced GeoTransform property with more obvious MinX, MinY, MaxX and MaxY;
+* Temp directory is now timestamp and not deleted;
+* Exceptions (TileException, GdalException, ImageException);
+* A lot of error checking;
+* Lots of improvements in Image.Gdal class
+* Disabled NetVips console warnings;
+* Added convertion of bad tiffs to 4326;
+* Rewritten Image.Image constructor;
+* Fixed some typos;
+* Fixed minor issues;
+
 # 03.02.2019 - Released 1.1.0
 
 Changes since 1.0.0:

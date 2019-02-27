@@ -287,10 +287,10 @@ namespace GTiff2Tiles.GUI.ViewModels
                 switch (Algorithm)
                 {
                     case Core.Enums.Algorithms.Join:
-                        await inputImage.GenerateTilesByJoining(progress, ThreadsCount, outputDirectoryInfo, MinZ, MaxZ);
+                        await inputImage.GenerateTilesByJoining(outputDirectoryInfo, MinZ, MaxZ, progress, ThreadsCount);
                         break;
                     case Core.Enums.Algorithms.Crop:
-                        await inputImage.GenerateTilesByCropping(progress, ThreadsCount, outputDirectoryInfo, MinZ, MaxZ);
+                        await inputImage.GenerateTilesByCropping(outputDirectoryInfo, MinZ, MaxZ, progress, ThreadsCount);
                         break;
                     default:
                         Helpers.ErrorHelper.ShowError("This algorithm is not supported.", null);

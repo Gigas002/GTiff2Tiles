@@ -190,7 +190,7 @@ namespace GTiff2Tiles.Core.Image
 
         #endregion
 
-        #region Public
+        #region Internal
 
         /// <summary>
         /// Gets proj4 string of input file.
@@ -198,7 +198,7 @@ namespace GTiff2Tiles.Core.Image
         /// <param name="inputFileInfo">Object of <see cref="FileInfo"/> class, representing input file.</param>
         /// <remarks>Throws <see cref="GdalException"/>.</remarks>
         /// <returns><see cref="string"/> proj4.</returns>
-        public static string GetProj4String(FileInfo inputFileInfo)
+        internal static string GetProj4String(FileInfo inputFileInfo)
         {
             #region Parameters checking
 
@@ -242,7 +242,7 @@ namespace GTiff2Tiles.Core.Image
         /// <param name="rasterYSize">Raster's height.</param>
         /// <remarks>Throws <see cref="GdalException"/>.</remarks>
         /// <returns><see cref="ValueTuple{T1, T2, T3, T4}"/> with WGS84 coordinates.</returns>
-        public static (double minX, double minY, double maxX, double maxY) GetImageBorders(FileInfo inputFileInfo, int rasterXSize, int rasterYSize)
+        internal static (double minX, double minY, double maxX, double maxY) GetImageBorders(FileInfo inputFileInfo, int rasterXSize, int rasterYSize)
         {
             #region Parameters checking
 
@@ -271,7 +271,7 @@ namespace GTiff2Tiles.Core.Image
         /// <param name="inputFileInfo">Object of <see cref="FileInfo"/> class, representing input file.</param>
         /// <remarks>Throws <see cref="GdalException"/>.</remarks>
         /// <returns><see cref="ValueTuple{T1, T2}"/> with image sizes in pixels.</returns>
-        public static (int rasterXSize, int rasterYSize) GetImageSizes(FileInfo inputFileInfo)
+        internal static (int rasterXSize, int rasterYSize) GetImageSizes(FileInfo inputFileInfo)
         {
             #region Parameters checking.
 

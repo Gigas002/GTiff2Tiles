@@ -10,24 +10,24 @@ namespace GTiff2Tiles.Core.Helpers
     /// <summary>
     /// Class for initializing gdal. Analogue of <see cref="GdalConfiguration"/> class.
     /// </summary>
-    public static class GdalHelper
+    internal static class GdalHelper
     {
         #region Fields and properties
 
         /// <summary>
         /// Shows if Ogr drivers are configured.
         /// </summary>
-        public static bool IsOgrConfigured { get; private set; }
+        internal static bool IsOgrConfigured { get; private set; }
 
         /// <summary>
         /// Shows if Gdal drivers are configured.
         /// </summary>
-        public static bool IsGdalConfigured { get; private set; }
+        internal static bool IsGdalConfigured { get; private set; }
 
         /// <summary>
         /// Shows, if Gdal's binaries are found and have system paths.
         /// </summary>
-        public static bool Usable { get; private set; }
+        internal static bool Usable { get; private set; }
 
         #region P/Invoke
 
@@ -115,12 +115,12 @@ namespace GTiff2Tiles.Core.Helpers
 
         #endregion
 
-        #region Public
+        #region internal
 
         /// <summary>
         /// Looks for Gdal's binaries and sets PATHs if needed.
         /// </summary>
-        public static void Initialize()
+        internal static void Initialize()
         {
             try
             {
@@ -186,7 +186,7 @@ namespace GTiff2Tiles.Core.Helpers
         /// Configures Ogr.
         /// </summary>
         /// <remarks>Make sure to call this method before using Ogr.</remarks>
-        public static void ConfigureOgr()
+        internal static void ConfigureOgr()
         {
             if (!Usable)
                 throw new Exception("Can't find Gdal binaries, unable to configure Ogr.");
@@ -213,7 +213,7 @@ namespace GTiff2Tiles.Core.Helpers
         /// Configures Gdal.
         /// </summary>
         /// <remarks>Make sure to call this method before using Gdal.</remarks>
-        public static void ConfigureGdal()
+        internal static void ConfigureGdal()
         {
             if (!Usable)
                 throw new Exception("Can't find Gdal binaries, unable to configure Gdal.");

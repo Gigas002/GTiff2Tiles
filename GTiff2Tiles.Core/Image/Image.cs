@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using GTiff2Tiles.Core.Exceptions.Image;
@@ -676,17 +675,7 @@ namespace GTiff2Tiles.Core.Image
             if (string.IsNullOrWhiteSpace(outputDirectoryInfo.FullName))
                 throw new ImageException("Output directory path is empty.");
 
-            try
-            {
-                outputDirectoryInfo.Create();
-            }
-            catch (Exception exception)
-            {
-                throw new ImageException("Unable to create output directory.", exception);
-            }
-
-            if (outputDirectoryInfo.EnumerateFileSystemInfos().Any())
-                throw new ImageException("Output directory isn't empty.");
+            Helpers.CheckHelper.CheckOutputDirectory(outputDirectoryInfo);
 
             if (maxZ < minZ) throw new ImageException("Maximum zoom is lesser than minimum zoom.");
             if (minZ < 0) throw new ImageException("Minimum zoom is lesser than 0.");
@@ -727,13 +716,13 @@ namespace GTiff2Tiles.Core.Image
         /// <summary>
         /// Create tiles. Crops input tiff only for lowest zoom and then join the higher ones from it.
         /// </summary>
-        /// <param name="progress">Progress.</param>
-        /// <param name="threadsCount">Threads count.</param>
         /// <param name="outputDirectoryInfo">Object of <see cref="DirectoryInfo"/> class, representing output directory.</param>
         /// <param name="minZ">Minimum cropped zoom.</param>
         /// <param name="maxZ">Maximum cropped zoom.</param>
+        /// <param name="progress">Progress.</param>
+        /// <param name="threadsCount">Threads count.</param>
         /// <returns></returns>
-        public async ValueTask GenerateTilesByJoining(IProgress<double> progress, int threadsCount, DirectoryInfo outputDirectoryInfo, int minZ, int maxZ)
+        public async ValueTask GenerateTilesByJoining(DirectoryInfo outputDirectoryInfo, int minZ, int maxZ, IProgress<double> progress, int threadsCount)
         {
             #region Parameters checking
 
@@ -762,13 +751,13 @@ namespace GTiff2Tiles.Core.Image
         /// <summary>
         /// Crops input tiff for each zoom.
         /// </summary>
-        /// <param name="progress">Progress.</param>
-        /// <param name="threadsCount">Threads count.</param>
         /// <param name="outputDirectoryInfo">Object of <see cref="DirectoryInfo"/> class, representing output directory.</param>
         /// <param name="minZ">Minimum cropped zoom.</param>
         /// <param name="maxZ">Maximum cropped zoom.</param>
+        /// <param name="progress">Progress.</param>
+        /// <param name="threadsCount">Threads count.</param>
         /// <returns></returns>
-        public async ValueTask GenerateTilesByCropping(IProgress<double> progress, int threadsCount, DirectoryInfo outputDirectoryInfo, int minZ, int maxZ)
+        public async ValueTask GenerateTilesByCropping(DirectoryInfo outputDirectoryInfo, int minZ, int maxZ, IProgress<double> progress, int threadsCount)
         {
             #region Parameters checking
 

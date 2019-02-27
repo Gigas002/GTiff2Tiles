@@ -103,10 +103,10 @@ namespace GTiff2Tiles.Console
                 switch (Algorithm)
                 {
                     case Core.Enums.Algorithms.Join:
-                        await inputImage.GenerateTilesByJoining(consoleProgress, ThreadsCount, OutputDirectoryInfo, MinZ, MaxZ);
+                        await inputImage.GenerateTilesByJoining(OutputDirectoryInfo, MinZ, MaxZ, consoleProgress, ThreadsCount);
                         break;
                     case Core.Enums.Algorithms.Crop:
-                        await inputImage.GenerateTilesByCropping(consoleProgress, ThreadsCount, OutputDirectoryInfo, MinZ, MaxZ);
+                        await inputImage.GenerateTilesByCropping(OutputDirectoryInfo, MinZ, MaxZ, consoleProgress, ThreadsCount);
                         break;
                     default:
                         Helpers.ErrorHelper.PrintError("This algorithm is not supported.");

@@ -12,7 +12,7 @@ namespace GTiff2Tiles.Core.Exceptions.Tile
 
         /// <inheritdoc />
         /// <summary>
-        /// Creates new <see cref="Exception"/> object with passed error message.
+        /// Creates new <see cref="TileException"/> object with passed error message.
         /// </summary>
         /// <param name="errorMessage">Error message.</param>
         public TileException(string errorMessage) : base(errorMessage)
@@ -20,7 +20,7 @@ namespace GTiff2Tiles.Core.Exceptions.Tile
 
         /// <inheritdoc />
         /// <summary>
-        /// Creates new <see cref="Exception"/> object with passed error message
+        /// Creates new <see cref="TileException"/> object with passed error message
         /// and a reference to the inner exception that is the cause of this exception.
         /// </summary>
         /// <param name="errorMessage">Error message.</param>

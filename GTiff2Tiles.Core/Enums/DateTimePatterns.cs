@@ -11,10 +11,5 @@ namespace GTiff2Tiles.Core.Enums
         /// yyyyMMddHHmmssfff
         /// </summary>
         public const string LongWithMs = "yyyyMMddHHmmssfff";
-
-        /// <summary>
-        /// yyyyMMdd
-        /// </summary>
-        public const string ShortToDate = "yyyyMMdd";
     }
 }
