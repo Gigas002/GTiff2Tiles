@@ -28,17 +28,17 @@ namespace GTiff2Tiles.Core.Image
         /// <summary>
         /// Output directory.
         /// </summary>
-        private DirectoryInfo OutputDirectoryInfo { get; }
+        private DirectoryInfo OutputDirectoryInfo { get; set; }
 
         /// <summary>
         /// Minimum cropped zoom.
         /// </summary>
-        private int MinZ { get; }
+        private int MinZ { get; set; }
 
         /// <summary>
         /// Maximum cropped zoom.
         /// </summary>
-        private int MaxZ { get; }
+        private int MaxZ { get; set; }
 
         #endregion
 
@@ -89,10 +89,7 @@ namespace GTiff2Tiles.Core.Image
         /// Creates new <see cref="Image"/> object.
         /// </summary>
         /// <param name="inputFileInfo">Object of <see cref="FileInfo"/> class, representing input file.</param>
-        /// <param name="outputDirectoryInfo">Object of <see cref="DirectoryInfo"/> class, representing output directory.</param>
-        /// <param name="minZ">Minimum cropped zoom.</param>
-        /// <param name="maxZ">Maximum cropped zoom.</param>
-        public Image(FileInfo inputFileInfo, DirectoryInfo outputDirectoryInfo, int minZ, int maxZ)
+        public Image(FileInfo inputFileInfo)
         {
             //Disable NetVips warnings for tiff.
             Helpers.NetVipsHelper.DisableLog();
@@ -101,61 +98,20 @@ namespace GTiff2Tiles.Core.Image
 
             if (string.IsNullOrWhiteSpace(inputFileInfo.FullName)) throw new ImageException("Input file's path is empty.");
             if (!inputFileInfo.Exists) throw new ImageException("Input file isn't exist.");
-            if (string.IsNullOrWhiteSpace(outputDirectoryInfo.FullName))
-                throw new ImageException("Output directory path is empty.");
-
-            try
-            {
-                outputDirectoryInfo.Create();
-            }
-            catch (Exception exception)
-            {
-                throw new ImageException("Unable to create output directory.", exception);
-            }
-
-            if (outputDirectoryInfo.EnumerateFileSystemInfos().Any())
-                throw new ImageException("Output directory isn't empty.");
-
-            if (maxZ < minZ) throw new ImageException("Maximum zoom is lesser than minimum zoom.");
-            if (minZ < 0) throw new ImageException("Minimum zoom is lesser than 0.");
-            if (maxZ < 0) throw new ImageException("Maximum zoom is lesser, than 0.");
 
             #endregion
 
-            (InputFileInfo, OutputDirectoryInfo, MinZ, MaxZ) = (inputFileInfo, outputDirectoryInfo, minZ, maxZ);
+            InputFileInfo = inputFileInfo;
 
+            //Get border coordinates и raster sizes.
             try
             {
-                //Get border coordinates и raster sizes.
                 (RasterXSize, RasterYSize) = Gdal.GetImageSizes(InputFileInfo);
                 (MinX, MinY, MaxX, MaxY) = Gdal.GetImageBorders(InputFileInfo, RasterXSize, RasterYSize);
             }
             catch (Exception exception)
             {
                 throw new ImageException("Unable to get input image's coordinate borders or  sizes.", exception);
-            }
-
-            //Create dictionary with tiles for each cropped zoom.
-            for (int zoom = MinZ; zoom <= MaxZ; zoom++)
-            {
-                //Convert coordinates to tile numbers.
-                (int tileMinX, int tileMinY, int tileMaxX, int tileMaxY) =
-                    Tile.Tile.GetTileNumbersFromCoords(MinX, MinY, MaxX, MaxY, zoom);
-
-                //Crop tiles extending world limits (+-180,+-90).
-                tileMinX = Math.Max(0, tileMinX);
-                tileMinY = Math.Max(0, tileMinY);
-                tileMaxX = Math.Min(Convert.ToInt32(Math.Pow(2.0, zoom + 1)) - 1, tileMaxX);
-                tileMaxY = Math.Min(Convert.ToInt32(Math.Pow(2.0, zoom)) - 1, tileMaxY);
-
-                try
-                {
-                    TilesMinMax.Add(zoom, new[] {tileMinX, tileMinY, tileMaxX, tileMaxY});
-                }
-                catch (Exception exception)
-                {
-                    throw new ImageException($"Unable to add value to {nameof(TilesMinMax)} dictionary.", exception);
-                }
             }
         }
 
@@ -707,6 +663,63 @@ namespace GTiff2Tiles.Core.Image
             }
         }
 
+        /// <summary>
+        /// Sets properties, needed for cropping current <see cref="Image"/>.
+        /// </summary>
+        /// <param name="outputDirectoryInfo">Object of <see cref="DirectoryInfo"/> class, representing output directory.</param>
+        /// <param name="minZ">Minimum cropped zoom.</param>
+        /// <param name="maxZ">Maximum cropped zoom.</param>
+        private void SetCropProperties(DirectoryInfo outputDirectoryInfo, int minZ, int maxZ)
+        {
+            #region Check parameters
+
+            if (string.IsNullOrWhiteSpace(outputDirectoryInfo.FullName))
+                throw new ImageException("Output directory path is empty.");
+
+            try
+            {
+                outputDirectoryInfo.Create();
+            }
+            catch (Exception exception)
+            {
+                throw new ImageException("Unable to create output directory.", exception);
+            }
+
+            if (outputDirectoryInfo.EnumerateFileSystemInfos().Any())
+                throw new ImageException("Output directory isn't empty.");
+
+            if (maxZ < minZ) throw new ImageException("Maximum zoom is lesser than minimum zoom.");
+            if (minZ < 0) throw new ImageException("Minimum zoom is lesser than 0.");
+            if (maxZ < 0) throw new ImageException("Maximum zoom is lesser, than 0.");
+
+            #endregion
+
+            (OutputDirectoryInfo, MinZ, MaxZ) = (outputDirectoryInfo, minZ, maxZ);
+
+            //Create dictionary with tiles for each cropped zoom.
+            for (int zoom = MinZ; zoom <= MaxZ; zoom++)
+            {
+                //Convert coordinates to tile numbers.
+                (int tileMinX, int tileMinY, int tileMaxX, int tileMaxY) =
+                    Tile.Tile.GetTileNumbersFromCoords(MinX, MinY, MaxX, MaxY, zoom);
+
+                //Crop tiles extending world limits (+-180,+-90).
+                tileMinX = Math.Max(0, tileMinX);
+                tileMinY = Math.Max(0, tileMinY);
+                tileMaxX = Math.Min(Convert.ToInt32(Math.Pow(2.0, zoom + 1)) - 1, tileMaxX);
+                tileMaxY = Math.Min(Convert.ToInt32(Math.Pow(2.0, zoom)) - 1, tileMaxY);
+
+                try
+                {
+                    TilesMinMax.Add(zoom, new[] { tileMinX, tileMinY, tileMaxX, tileMaxY });
+                }
+                catch (Exception exception)
+                {
+                    throw new ImageException($"Unable to add value to {nameof(TilesMinMax)} dictionary.", exception);
+                }
+            }
+        }
+
         #endregion
 
         #region Public
@@ -716,8 +729,11 @@ namespace GTiff2Tiles.Core.Image
         /// </summary>
         /// <param name="progress">Progress.</param>
         /// <param name="threadsCount">Threads count.</param>
+        /// <param name="outputDirectoryInfo">Object of <see cref="DirectoryInfo"/> class, representing output directory.</param>
+        /// <param name="minZ">Minimum cropped zoom.</param>
+        /// <param name="maxZ">Maximum cropped zoom.</param>
         /// <returns></returns>
-        public async ValueTask GenerateTilesByJoining(IProgress<double> progress, int threadsCount)
+        public async ValueTask GenerateTilesByJoining(IProgress<double> progress, int threadsCount, DirectoryInfo outputDirectoryInfo, int minZ, int maxZ)
         {
             #region Parameters checking
 
@@ -725,6 +741,8 @@ namespace GTiff2Tiles.Core.Image
             if (threadsCount <= 0) throw new ImageException("Threads count is lesser or equal 0.");
 
             #endregion
+
+            SetCropProperties(outputDirectoryInfo, minZ, maxZ);
 
             //Crop lowest zoom level.
             await WriteZoom(MaxZ, threadsCount);
@@ -746,8 +764,11 @@ namespace GTiff2Tiles.Core.Image
         /// </summary>
         /// <param name="progress">Progress.</param>
         /// <param name="threadsCount">Threads count.</param>
+        /// <param name="outputDirectoryInfo">Object of <see cref="DirectoryInfo"/> class, representing output directory.</param>
+        /// <param name="minZ">Minimum cropped zoom.</param>
+        /// <param name="maxZ">Maximum cropped zoom.</param>
         /// <returns></returns>
-        public async ValueTask GenerateTilesByCropping(IProgress<double> progress, int threadsCount)
+        public async ValueTask GenerateTilesByCropping(IProgress<double> progress, int threadsCount, DirectoryInfo outputDirectoryInfo, int minZ, int maxZ)
         {
             #region Parameters checking
 
@@ -755,6 +776,8 @@ namespace GTiff2Tiles.Core.Image
             if (threadsCount <= 0) throw new ImageException("Threads count is lesser or equal 0.");
 
             #endregion
+
+            SetCropProperties(outputDirectoryInfo, minZ, maxZ);
 
             //Crop tiles for each zoom.
             for (int zoom = MinZ; zoom <= MaxZ; zoom++)

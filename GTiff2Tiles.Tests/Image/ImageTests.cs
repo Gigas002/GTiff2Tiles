@@ -47,9 +47,8 @@ namespace GTiff2Tiles.Tests.Image
                     inputFileInfo = tempFileInfo;
                 }
                 //Create Image object and crop tiles.
-                Core.Image.Image image =
-                    new Core.Image.Image(inputFileInfo, outputDirectoryInfo, Enums.Zooms.MinZ, Enums.Zooms.MaxZ);
-                await image.GenerateTilesByJoining(progress, Enums.Multithreading.ThreadsCount);
+                Core.Image.Image image = new Core.Image.Image(inputFileInfo);
+                await image.GenerateTilesByJoining(progress, Enums.Multithreading.ThreadsCount, outputDirectoryInfo, Enums.Zooms.MinZ, Enums.Zooms.MaxZ);
             }
             catch (Exception exception)
             {
@@ -93,9 +92,8 @@ namespace GTiff2Tiles.Tests.Image
                     inputFileInfo = tempFileInfo;
                 }
                 //Create Image object and crop tiles.
-                Core.Image.Image image =
-                    new Core.Image.Image(inputFileInfo, outputDirectoryInfo, Enums.Zooms.MinZ, Enums.Zooms.MaxZ);
-                await image.GenerateTilesByCropping(progress, Enums.Multithreading.ThreadsCount);
+                Core.Image.Image image = new Core.Image.Image(inputFileInfo);
+                await image.GenerateTilesByCropping(progress, Enums.Multithreading.ThreadsCount, outputDirectoryInfo, Enums.Zooms.MinZ, Enums.Zooms.MaxZ);
             }
             catch (Exception exception)
             {

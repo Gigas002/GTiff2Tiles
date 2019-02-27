@@ -97,16 +97,16 @@ namespace GTiff2Tiles.Console
                     InputFileInfo = tempFileInfo;
                 }
                 //Create image object.
-                Core.Image.Image inputImage = new Core.Image.Image(InputFileInfo, OutputDirectoryInfo, MinZ, MaxZ);
+                Core.Image.Image inputImage = new Core.Image.Image(InputFileInfo);
 
                 //Switch on algorithm.
                 switch (Algorithm)
                 {
                     case Core.Enums.Algorithms.Join:
-                        await inputImage.GenerateTilesByJoining(consoleProgress, ThreadsCount);
+                        await inputImage.GenerateTilesByJoining(consoleProgress, ThreadsCount, OutputDirectoryInfo, MinZ, MaxZ);
                         break;
                     case Core.Enums.Algorithms.Crop:
-                        await inputImage.GenerateTilesByCropping(consoleProgress, ThreadsCount);
+                        await inputImage.GenerateTilesByCropping(consoleProgress, ThreadsCount, OutputDirectoryInfo, MinZ, MaxZ);
                         break;
                     default:
                         Helpers.ErrorHelper.PrintError("This algorithm is not supported.");
