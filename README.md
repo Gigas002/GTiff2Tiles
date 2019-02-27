@@ -16,6 +16,7 @@ Solution is build in VS2017, .NET Framework 4.7.2, targeting Windows x64 systems
     + [Dependencies](#dependencies)
   * [GTiff2Tiles.Console](#gtiff2tilesconsole)
     + [Usage](#usage)
+  * [Detailed options description](#detailed-options-description)
     + [Dependencies](#dependencies-1)
   * [GTiff2Tiles.GUI](#gtiff2tilesgui)
     + [Dependencies](#dependencies-2)
