@@ -86,7 +86,7 @@ Also I should mention, that if your input .tif is not **EPSG:4326**, it will be 
 
 **minz** is `int` parameter, representing minimum zoom, which you want to crop.
 
-**maxz **is `int` parameter, representing minimum zoom, which you want to crop.
+**maxz** is `int` parameter, representing minimum zoom, which you want to crop.
 
 **algorithm** is `string`, representing cropping algorithm. Can be **crop** or **join**. When using **crop**, the input image will be cropped for each zoom. When using **join**, the input image will be cropped for the lowest zoom, and the upper tiles created by joining lowest ones.
 
