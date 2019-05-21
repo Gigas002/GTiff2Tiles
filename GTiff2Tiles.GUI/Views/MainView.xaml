@@ -6,7 +6,7 @@
         xmlns:cal="http://www.caliburnproject.org"
         mc:Ignorable="d"
         TextElement.FontSize="20"
-        Title="GTIFF2TILES"
+        Title="GTiff2Tiles"
         Height="460"
         Width="675"
         MinHeight="460"
