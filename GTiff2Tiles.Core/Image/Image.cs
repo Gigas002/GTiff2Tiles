@@ -283,6 +283,7 @@ namespace GTiff2Tiles.Core.Image
                 xResidual = (double) writeXSize / tileImage.Width;
             }
 
+            //TODO: Fix bug with too small images to shrink.
             // Perform kernel-based reduction
             if (yResidual < 1.0)
                 tileImage = tileImage.Reducev(1.0 / yResidual, NetVips.Enums.Kernel.Lanczos3, centreConvention);

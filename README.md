@@ -1,8 +1,8 @@
 # GTIFF2TILES
 
-Analogue of [gdal2tiles.py](https://github.com/OSGeo/gdal/blob/master/gdal/swig/python/scripts/gdal2tiles.py) on C#. Currently support any GEOTIFF, but creates **EPSG:4326** **geodetic** tiles on output in [**tms**](https://wiki.osgeo.org/wiki/Tile_Map_Service_Specification) structure.
+Analogue of [gdal2tiles.py](https://github.com/OSGeo/gdal/blob/master/gdal/swig/python/scripts/gdal2tiles.py) on **C#**. Currently support any **GeoTIFF**, but creates **EPSG:4326** **geodetic tiles** on output in [**tms**](https://wiki.osgeo.org/wiki/Tile_Map_Service_Specification) structure.
 
-Solution is build in VS2017, .NET Framework 4.7.2, targeting Windows x64 systems.
+Solution is build in **VS2019 (16.1)**, **.NET Framework 4.7.2**, targeting **Windows x64** systems.
 
 [![Build status](https://ci.appveyor.com/api/projects/status/wp5bbi08sgd4i9bh?svg=true)](https://ci.appveyor.com/project/Gigas002/gtiff2tiles)
 
@@ -37,7 +37,7 @@ Previous versions can be found on [releases](https://github.com/Gigas002/GTiff2T
 
 ## Examples
 
-In [Examples](https://github.com/Gigas002/GTiff2Tiles/tree/master/Examples/Input) directory you can find **GEOTIFF** for some tests.
+In [Examples](https://github.com/Gigas002/GTiff2Tiles/tree/master/Examples/Input) directory you can find **GeoTIFFs** for some tests.
 
 ## GTiff2Tiles.Core 
 
@@ -45,18 +45,18 @@ In [Examples](https://github.com/Gigas002/GTiff2Tiles/tree/master/Examples/Input
 
 Library uses 2 different algorithms to create tiles:
 
-- **Crop** - crops all the zooms from input file;
-- **Join** - crops the lowest zoom from input file and then join the upper images from built tiles.
+- **Crop** – crops all the zooms from input file;
+- **Join** – crops the lowest zoom from input file and then joins the upper images from built tiles.
 
-Also I should mention, that if your input .tif is not **EPSG:4326**, it will be converted by **GdalWarp** to that projection, and saved in **temp** directory before cropping tiles.
+Also I should mention, that if your input **GeoTIFF** is not **EPSG:4326**, it will be converted by **GdalWarp** to that projection, and saved in **temp** directory before cropping tiles.
 
 ### Dependencies
 
-- [GDAL](https://www.nuget.org/packages/GDAL/) - 2.3.3;
-- [GDAL.Native](https://www.nuget.org/packages/GDAL.Native/) - 2.3.3;
-- [NetVips](https://www.nuget.org/packages/NetVips/) - 1.0.7;
-- [System.Threading.Tasks.Extensions](https://www.nuget.org/packages/System.Threading.Tasks.Extensions/) - 4.5.2;
-- [System.Runtime.CompilerServices.Unsafe](https://www.nuget.org/packages/System.Runtime.CompilerServices.Unsafe/) - 4.5.2;
+- [GDAL](https://www.nuget.org/packages/GDAL/) – 2.3.3;
+- [GDAL.Native](https://www.nuget.org/packages/GDAL.Native/) – 2.3.3;
+- [NetVips](https://www.nuget.org/packages/NetVips/) – 1.0.7;
+- [System.Threading.Tasks.Extensions](https://www.nuget.org/packages/System.Threading.Tasks.Extensions/) – 4.5.2;
+- [System.Runtime.CompilerServices.Unsafe](https://www.nuget.org/packages/System.Runtime.CompilerServices.Unsafe/) – 4.5.2;
 
 ## GTiff2Tiles.Console
 
@@ -78,42 +78,44 @@ Also I should mention, that if your input .tif is not **EPSG:4326**, it will be 
 
 ## Detailed options description
 
-**input** is `string`, representing full path to input **GEOTIFF** file.
+**input** is `string`, representing full path to input **GeoTIFF** file.
 
-**output** is `string`, representing full path to directory, where tiles in tms structure will be created. Should be empty.
+**output** is `string`, representing full path to directory, where tiles in **tms** structure will be created. **Should be empty.**
 
 **temp** is `string`, representing full path to temporary directory. Inside will be created directory, which name is a **timestamp** in format `yyyyMMddHHmmssfff`.
 
 **minz** is `int` parameter, representing minimum zoom, which you want to crop.
 
-**maxz** is `int` parameter, representing minimum zoom, which you want to crop.
+**maxz** is `int` parameter, representing maximum zoom, which you want to crop.
 
 **algorithm** is `string`, representing cropping algorithm. Can be **crop** or **join**. When using **crop**, the input image will be cropped for each zoom. When using **join**, the input image will be cropped for the lowest zoom, and the upper tiles created by joining lowest ones.
 
-**threads** is `int` parameter, representing threads count. By default (if not set) uses 5 threads.
+**threads** is `int` parameter, representing threads count. By default (if not set) uses **5 threads**.
 
 ### Dependencies
 
-- [GDAL](https://www.nuget.org/packages/GDAL/) - 2.3.3;
-- [GDAL.Native](https://www.nuget.org/packages/GDAL.Native/) - 2.3.3;
-- [NetVips](https://www.nuget.org/packages/NetVips/) - 1.0.7;
-- [System.Threading.Tasks.Extensions](https://www.nuget.org/packages/System.Threading.Tasks.Extensions/) - 4.5.2;
-- [System.Runtime.CompilerServices.Unsafe](https://www.nuget.org/packages/System.Runtime.CompilerServices.Unsafe/) - 4.5.2;
-- [CommandLineParser](https://www.nuget.org/packages/CommandLineParser/) - 2.4.3;
+- [GDAL](https://www.nuget.org/packages/GDAL/) – 2.3.3;
+- [GDAL.Native](https://www.nuget.org/packages/GDAL.Native/) – 2.3.3;
+- [NetVips](https://www.nuget.org/packages/NetVips/) – 1.0.7;
+- [System.Threading.Tasks.Extensions](https://www.nuget.org/packages/System.Threading.Tasks.Extensions/) – 4.5.2;
+- [System.Runtime.CompilerServices.Unsafe](https://www.nuget.org/packages/System.Runtime.CompilerServices.Unsafe/) – 4.5.2;
+- [CommandLineParser](https://www.nuget.org/packages/CommandLineParser/) – 2.5.0;
 
 ## GTiff2Tiles.GUI
 
 **GTiff2Tiles.GUI** is a very simple (and ugly!) GUI, that has the same methods and parameters, as **GTiff2Tiles.Console**.
 
+![](GTiff2Tiles.GUI/Screenshots/MainPage.png)
+
 ### Dependencies
 
-- [GDAL](https://www.nuget.org/packages/GDAL/) - 2.3.3;
-- [GDAL.Native](https://www.nuget.org/packages/GDAL.Native/) - 2.3.3;
-- [NetVips](https://www.nuget.org/packages/NetVips/) - 1.0.7;
-- [System.Threading.Tasks.Extensions](https://www.nuget.org/packages/System.Threading.Tasks.Extensions/) - 4.5.2;
-- [System.Runtime.CompilerServices.Unsafe](https://www.nuget.org/packages/System.Runtime.CompilerServices.Unsafe/) - 4.5.2;
-- [Caliburn.Micro](https://www.nuget.org/packages/Caliburn.Micro) - 3.2.0;
-- [Ookii.Dialogs.Wpf](https://www.nuget.org/packages/Ookii.Dialogs.Wpf/) - 1.0.0;
+- [GDAL](https://www.nuget.org/packages/GDAL/) – 2.3.3;
+- [GDAL.Native](https://www.nuget.org/packages/GDAL.Native/) – 2.3.3;
+- [NetVips](https://www.nuget.org/packages/NetVips/) – 1.0.7;
+- [System.Threading.Tasks.Extensions](https://www.nuget.org/packages/System.Threading.Tasks.Extensions/) – 4.5.2;
+- [System.Runtime.CompilerServices.Unsafe](https://www.nuget.org/packages/System.Runtime.CompilerServices.Unsafe/) – 4.5.2;
+- [Caliburn.Micro](https://www.nuget.org/packages/Caliburn.Micro) – 3.2.0;
+- [Ookii.Dialogs.Wpf](https://www.nuget.org/packages/Ookii.Dialogs.Wpf/) – 1.0.0;
 
 ## GTiff2Tiles.Tests
 
@@ -121,9 +123,12 @@ Also I should mention, that if your input .tif is not **EPSG:4326**, it will be 
 
 ### Dependencies
 
-- [GDAL](https://www.nuget.org/packages/GDAL/) - 2.3.3;
-- [GDAL.Native](https://www.nuget.org/packages/GDAL.Native/) - 2.3.3;
-- [NetVips](https://www.nuget.org/packages/NetVips/) - 1.0.7;
+- [GDAL](https://www.nuget.org/packages/GDAL/) – 2.3.3;
+- [GDAL.Native](https://www.nuget.org/packages/GDAL.Native/) – 2.3.3;
+- [NetVips](https://www.nuget.org/packages/NetVips/) – 1.0.7;
+- [System.Threading.Tasks.Extensions](https://www.nuget.org/packages/System.Threading.Tasks.Extensions/) – 4.5.2;
+- [System.Runtime.CompilerServices.Unsafe](https://www.nuget.org/packages/System.Runtime.CompilerServices.Unsafe/) – 4.5.2;
+- [NUnit](https://www.nuget.org/packages/NUnit/3.12.0) – 3.12.0;
 
 ## TODO
 
