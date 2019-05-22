@@ -323,7 +323,7 @@ namespace GTiff2Tiles.Core.Image
             try
             {
                 outputImage = NetVips.Image.Black(Enums.Image.Image.TileSize, Enums.Image.Image.TileSize)
-                                     .NewFromImage(new[] {0, 0, 0, 0});
+                                     .NewFromImage(0, 0, 0, 0);
                 // Insert tile into output image
                 outputImage = outputImage.Insert(tileImage, writePosX, writePosY);
                 outputImage.Pngsave(outputFilePath);

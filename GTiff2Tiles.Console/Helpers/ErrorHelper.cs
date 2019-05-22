@@ -26,7 +26,7 @@ namespace GTiff2Tiles.Console.Helpers
         /// <summary>
         /// Prints current error.
         /// </summary>
-        /// <param name="errorMessage"></param>
+        /// <param name="errorMessage">Your error's message.</param>
         public static void PrintError(string errorMessage)
         {
             System.Console.WriteLine(errorMessage);

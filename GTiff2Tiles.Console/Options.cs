@@ -54,7 +54,7 @@ namespace GTiff2Tiles.Console
         /// Threads count.
         /// </summary>
         [Option("threads", Required = false, HelpText = "Threads count.")]
-        public int ThreadsCount { get; set; } = 1;
+        public int ThreadsCount { get; set; } = 5;
 
         #endregion
     }

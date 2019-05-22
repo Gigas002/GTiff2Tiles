@@ -90,7 +90,10 @@
       <Version>2.3.3</Version>
     </PackageReference>
     <PackageReference Include="NetVips">
-      <Version>1.0.7</Version>
+      <Version>1.1.0-rc2</Version>
+    </PackageReference>
+    <PackageReference Include="NetVips.Native.win-x64">
+      <Version>8.8.0-rc3</Version>
     </PackageReference>
     <PackageReference Include="System.Runtime.CompilerServices.Unsafe">
       <Version>4.5.2</Version>

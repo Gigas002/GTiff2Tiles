@@ -115,7 +115,7 @@ namespace GTiff2Tiles.Core.Helpers
 
         #endregion
 
-        #region internal
+        #region Internal
 
         /// <summary>
         /// Looks for Gdal's binaries and sets PATHs if needed.
@@ -169,7 +169,7 @@ namespace GTiff2Tiles.Core.Helpers
                 Environment.SetEnvironmentVariable("PROJ_LIB", projSharePath);
                 Gdal.SetConfigOption("PROJ_LIB", projSharePath);
 
-                //todo
+                //TODO: Fix bug with cyrillic paths
                 //string gdalFileNameIsUtf8 = "NO";
                 //Gdal.SetConfigOption("GDAL_FILENAME_IS_UTF8", gdalFileNameIsUtf8);
             }

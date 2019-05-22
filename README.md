@@ -16,7 +16,7 @@ Solution is build in **VS2019 (16.1)**, **.NET Framework 4.7.2**, targeting **Wi
     + [Dependencies](#dependencies)
   * [GTiff2Tiles.Console](#gtiff2tilesconsole)
     + [Usage](#usage)
-  * [Detailed options description](#detailed-options-description)
+    + [Detailed options description](#detailed-options-description)
     + [Dependencies](#dependencies-1)
   * [GTiff2Tiles.GUI](#gtiff2tilesgui)
     + [Dependencies](#dependencies-2)
@@ -54,7 +54,8 @@ Also I should mention, that if your input **GeoTIFF** is not **EPSG:4326**, it w
 
 - [GDAL](https://www.nuget.org/packages/GDAL/) – 2.3.3;
 - [GDAL.Native](https://www.nuget.org/packages/GDAL.Native/) – 2.3.3;
-- [NetVips](https://www.nuget.org/packages/NetVips/) – 1.0.7;
+- [NetVips](https://www.nuget.org/packages/NetVips/) – 1.1.0-rc2;
+- [NetVips.Native.win-x64](https://www.nuget.org/packages/NetVips.Native.win-x64/8.8.0-rc3) – 8.8.0-rc3;
 - [System.Threading.Tasks.Extensions](https://www.nuget.org/packages/System.Threading.Tasks.Extensions/) – 4.5.2;
 - [System.Runtime.CompilerServices.Unsafe](https://www.nuget.org/packages/System.Runtime.CompilerServices.Unsafe/) – 4.5.2;
 
@@ -76,7 +77,7 @@ Also I should mention, that if your input **GeoTIFF** is not **EPSG:4326**, it w
 |       |  --version  |        Current version        |           |
 |       |   --help    | Message about console options |           |
 
-## Detailed options description
+### Detailed options description
 
 **input** is `string`, representing full path to input **GeoTIFF** file.
 
@@ -96,7 +97,8 @@ Also I should mention, that if your input **GeoTIFF** is not **EPSG:4326**, it w
 
 - [GDAL](https://www.nuget.org/packages/GDAL/) – 2.3.3;
 - [GDAL.Native](https://www.nuget.org/packages/GDAL.Native/) – 2.3.3;
-- [NetVips](https://www.nuget.org/packages/NetVips/) – 1.0.7;
+- [NetVips](https://www.nuget.org/packages/NetVips/) – 1.1.0-rc2;
+- [NetVips.Native.win-x64](https://www.nuget.org/packages/NetVips.Native.win-x64/8.8.0-rc3) – 8.8.0-rc3;
 - [System.Threading.Tasks.Extensions](https://www.nuget.org/packages/System.Threading.Tasks.Extensions/) – 4.5.2;
 - [System.Runtime.CompilerServices.Unsafe](https://www.nuget.org/packages/System.Runtime.CompilerServices.Unsafe/) – 4.5.2;
 - [CommandLineParser](https://www.nuget.org/packages/CommandLineParser/) – 2.5.0;
@@ -111,7 +113,8 @@ Also I should mention, that if your input **GeoTIFF** is not **EPSG:4326**, it w
 
 - [GDAL](https://www.nuget.org/packages/GDAL/) – 2.3.3;
 - [GDAL.Native](https://www.nuget.org/packages/GDAL.Native/) – 2.3.3;
-- [NetVips](https://www.nuget.org/packages/NetVips/) – 1.0.7;
+- [NetVips](https://www.nuget.org/packages/NetVips/) – 1.1.0-rc2;
+- [NetVips.Native.win-x64](https://www.nuget.org/packages/NetVips.Native.win-x64/8.8.0-rc3) – 8.8.0-rc3;
 - [System.Threading.Tasks.Extensions](https://www.nuget.org/packages/System.Threading.Tasks.Extensions/) – 4.5.2;
 - [System.Runtime.CompilerServices.Unsafe](https://www.nuget.org/packages/System.Runtime.CompilerServices.Unsafe/) – 4.5.2;
 - [Caliburn.Micro](https://www.nuget.org/packages/Caliburn.Micro) – 3.2.0;
@@ -125,7 +128,8 @@ Also I should mention, that if your input **GeoTIFF** is not **EPSG:4326**, it w
 
 - [GDAL](https://www.nuget.org/packages/GDAL/) – 2.3.3;
 - [GDAL.Native](https://www.nuget.org/packages/GDAL.Native/) – 2.3.3;
-- [NetVips](https://www.nuget.org/packages/NetVips/) – 1.0.7;
+- [NetVips](https://www.nuget.org/packages/NetVips/) – 1.1.0-rc2;
+- [NetVips.Native.win-x64](https://www.nuget.org/packages/NetVips.Native.win-x64/8.8.0-rc3) – 8.8.0-rc3;
 - [System.Threading.Tasks.Extensions](https://www.nuget.org/packages/System.Threading.Tasks.Extensions/) – 4.5.2;
 - [System.Runtime.CompilerServices.Unsafe](https://www.nuget.org/packages/System.Runtime.CompilerServices.Unsafe/) – 4.5.2;
 - [NUnit](https://www.nuget.org/packages/NUnit/3.12.0) – 3.12.0;

@@ -3,12 +3,10 @@
 namespace GTiff2Tiles.Core.Helpers
 {
     /// <summary>
-    /// Some methods for initializing NetVips.
+    /// Some additional methods for NetVips.
     /// </summary>
     internal static class NetVipsHelper
     {
-        //todo initialize NetVips location.
-
         /// <summary>
         /// Disables NetVips log warnings.
         /// </summary>
