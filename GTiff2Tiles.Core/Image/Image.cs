@@ -184,6 +184,10 @@ namespace GTiff2Tiles.Core.Image
             double writeYShift = writePosMinY - (int) writePosMinY;
             writeYSize += writeYShift;
 
+            //If output image sides are lesser then 1 - make image 1x1 pixels to prevent division by 0.
+            writeXSize = writeXSize > 1.0 ? writeXSize : 1.0;
+            writeYSize = writeYSize > 1.0 ? writeYSize : 1.0;
+
             return ((int) readPosMinX, (int) readPosMinY,
                     (int) readXSize, (int) readYSize,
                     (int) writePosMinX, (int) writePosMinY,
