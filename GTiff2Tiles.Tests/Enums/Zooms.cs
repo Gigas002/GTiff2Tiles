@@ -2,7 +2,7 @@
 {
     public static class Zooms
     {
-        public const int MinZ = 10;
-        public const int MaxZ = 17;
+        public const int MinZ = 0;
+        public const int MaxZ = 18;
     }
 }

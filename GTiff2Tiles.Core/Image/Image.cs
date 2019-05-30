@@ -257,52 +257,52 @@ namespace GTiff2Tiles.Core.Image
             }
 
             // Scaling calculations
-            double hScale = 1.0 / ((double)tileImage.Width / writeXSize);
-            double vScale = 1.0 / ((double)tileImage.Height / writeYSize);
+            double xScale = 1.0 / ((double)tileImage.Width / writeXSize);
+            double yScale = 1.0 / ((double)tileImage.Height / writeYSize);
 
             // Calculate integral box shrink
             // We will get the best quality (but be the slowest) if we let reduce
             // do all the work. Leave it the final 200 - 300% to do as a compromise
             // for efficiency.
-            int hShrink = Math.Max(1, (int)Math.Floor(1.0 / (hScale * 2.0)));
-            int vShrink = Math.Max(1, (int)Math.Floor(1.0 / (vScale * 2.0)));
+            int xShrink = Math.Max(1, (int)Math.Floor(1.0 / (xScale * 2.0)));
+            int yShrink = Math.Max(1, (int)Math.Floor(1.0 / (yScale * 2.0)));
 
             // Fast, integral box-shrink
-            if (vShrink > 1)
+            if (yShrink > 1)
             {
-                tileImage = tileImage.Shrinkv(vShrink);
-                vScale *= vShrink;
+                tileImage = tileImage.Shrinkv(yShrink);
+                yScale *= yShrink;
             }
-            if (hShrink > 1)
+            if (xShrink > 1)
             {
-                tileImage = tileImage.Shrinkh(hShrink);
-                hScale *= hShrink;
+                tileImage = tileImage.Shrinkh(xShrink);
+                xScale *= xShrink;
             }
 
             // Any residual downsizing
-            if (vScale < 1.0)
-                tileImage = tileImage.Reducev(1.0 / vScale, NetVips.Enums.Kernel.Lanczos3, centreConvention);
-            if (hScale < 1.0)
-                tileImage = tileImage.Reduceh(1.0 / hScale, NetVips.Enums.Kernel.Lanczos3, centreConvention);
+            if (yScale < 1.0)
+                tileImage = tileImage.Reducev(1.0 / yScale, NetVips.Enums.Kernel.Lanczos3, centreConvention);
+            if (xScale < 1.0)
+                tileImage = tileImage.Reduceh(1.0 / xScale, NetVips.Enums.Kernel.Lanczos3, centreConvention);
 
             // Any upsizing
-            if (hScale > 1.0 || vScale > 1.0)
+            if (xScale > 1.0 || yScale > 1.0)
             {
                 // Input displacement. For centre sampling, shift by 0.5 down and right.
                 //double id = centreConvention ? 0.5 : 0.0;
                 const double id = 0.0;
 
                 // Floating point affine transformation
-                using (Interpolate interpolate = Interpolate.NewFromName("bicubic"))
+                using (Interpolate interpolate = Interpolate.NewFromName(Enums.Image.Interpolations.Bicubic))
                 {
-                    if (hScale > 1.0 && vScale > 1.0)
-                        tileImage = tileImage.Affine(new[] { hScale, 0.0, 0.0, vScale }, interpolate, idx: id, idy: id,
+                    if (xScale > 1.0 && yScale > 1.0)
+                        tileImage = tileImage.Affine(new[] { xScale, 0.0, 0.0, yScale }, interpolate, idx: id, idy: id,
                                              extend: NetVips.Enums.Extend.Copy);
-                    else if (hScale > 1.0)
-                        tileImage = tileImage.Affine(new[] { hScale, 0.0, 0.0, 1.0 }, interpolate, idx: id, idy: id,
+                    else if (xScale > 1.0)
+                        tileImage = tileImage.Affine(new[] { xScale, 0.0, 0.0, 1.0 }, interpolate, idx: id, idy: id,
                                              extend: NetVips.Enums.Extend.Copy);
                     else
-                        tileImage = tileImage.Affine(new[] { 1.0, 0.0, 0.0, vScale }, interpolate, idx: id, idy: id,
+                        tileImage = tileImage.Affine(new[] { 1.0, 0.0, 0.0, yScale }, interpolate, idx: id, idy: id,
                                              extend: NetVips.Enums.Extend.Copy);
                 }
             }
