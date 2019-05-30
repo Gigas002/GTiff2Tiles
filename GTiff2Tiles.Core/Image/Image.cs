@@ -245,21 +245,6 @@ namespace GTiff2Tiles.Core.Image
                 throw new ImageException("Inable to create directory for current tile.", exception);
             }
 
-            // Scaling calculations
-            double xFactor = (double) readXSize / writeXSize;
-            double yFactor = (double) readYSize / writeYSize;
-
-            // Calculate integral box shrink
-            // We will get the best quality (but be the slowest) if we let reduce
-            // do all the work. Leave it the final 200 - 300% to do as a compromise
-            // for efficiency.
-            int xShrink = Math.Max(1, (int) Math.Floor(1.0 / (xFactor * 2.0)));
-            int yShrink = Math.Max(1, (int) Math.Floor(1.0 / (yFactor * 2.0)));
-
-            // Calculate residual float affine transformation
-            double xResidual = xShrink / xFactor;
-            double yResidual = yShrink / yFactor;
-
             //Try open input image and crop tile
             NetVips.Image tileImage;
             try
@@ -271,50 +256,54 @@ namespace GTiff2Tiles.Core.Image
                 throw new ImageException("Unable to create current tile.", exception);
             }
 
+            // Scaling calculations
+            double hScale = 1.0 / ((double)tileImage.Width / writeXSize);
+            double vScale = 1.0 / ((double)tileImage.Height / writeYSize);
+
+            // Calculate integral box shrink
+            // We will get the best quality (but be the slowest) if we let reduce
+            // do all the work. Leave it the final 200 - 300% to do as a compromise
+            // for efficiency.
+            int hShrink = Math.Max(1, (int)Math.Floor(1.0 / (hScale * 2.0)));
+            int vShrink = Math.Max(1, (int)Math.Floor(1.0 / (vScale * 2.0)));
+
             // Fast, integral box-shrink
-            if (yShrink > 1)
+            if (vShrink > 1)
             {
-                tileImage = tileImage.Shrinkv(yShrink);
-
-                //Recalculate residual float.
-                yResidual = (double) writeYSize / tileImage.Height;
+                tileImage = tileImage.Shrinkv(vShrink);
+                vScale *= vShrink;
             }
-            if (xShrink > 1)
+            if (hShrink > 1)
             {
-                tileImage = tileImage.Shrinkh(xShrink);
-
-                //Recalculate residual float.
-                xResidual = (double) writeXSize / tileImage.Width;
+                tileImage = tileImage.Shrinkh(hShrink);
+                hScale *= hShrink;
             }
 
-            //TODO: Fix bug with too small images to shrink.
-            // Perform kernel-based reduction
-            if (yResidual < 1.0)
-                tileImage = tileImage.Reducev(1.0 / yResidual, NetVips.Enums.Kernel.Lanczos3, centreConvention);
-            if (xResidual < 1.0)
-                tileImage = tileImage.Reduceh(1.0 / xResidual, NetVips.Enums.Kernel.Lanczos3, centreConvention);
+            // Any residual downsizing
+            if (vScale < 1.0)
+                tileImage = tileImage.Reducev(1.0 / vScale, NetVips.Enums.Kernel.Lanczos3, centreConvention);
+            if (hScale < 1.0)
+                tileImage = tileImage.Reduceh(1.0 / hScale, NetVips.Enums.Kernel.Lanczos3, centreConvention);
 
-            //Perform enlargement
-            if (yResidual > 1.0 || xResidual > 1.0)
+            // Any upsizing
+            if (hScale > 1.0 || vScale > 1.0)
             {
                 // Input displacement. For centre sampling, shift by 0.5 down and right.
-                const double id = 0.0; //centreConvention ? 0.5 : 0.0;
+                //double id = centreConvention ? 0.5 : 0.0;
+                const double id = 0.0;
 
                 // Floating point affine transformation
-                using (Interpolate interpolate = Interpolate.NewFromName(Enums.Image.Interpolations.Bicubic))
+                using (Interpolate interpolate = Interpolate.NewFromName("bicubic"))
                 {
-                    if (yResidual > 1.0 && xResidual > 1.0)
-                        tileImage = tileImage.Affine(new[] {xResidual, 0.0, 0.0, yResidual}, interpolate,
-                                           idx: id, idy: id,
-                                           extend: NetVips.Enums.Extend.Copy);
-                    else if (yResidual > 1.0)
-                        tileImage = tileImage.Affine(new[] {1.0, 0.0, 0.0, yResidual}, interpolate, idx: id,
-                                           idy: id,
-                                           extend: NetVips.Enums.Extend.Copy);
-                    else if (xResidual > 1.0)
-                        tileImage = tileImage.Affine(new[] {xResidual, 0.0, 0.0, 1.0}, interpolate, idx: id,
-                                           idy: id,
-                                           extend: NetVips.Enums.Extend.Copy);
+                    if (hScale > 1.0 && vScale > 1.0)
+                        tileImage = tileImage.Affine(new[] { hScale, 0.0, 0.0, vScale }, interpolate, idx: id, idy: id,
+                                             extend: NetVips.Enums.Extend.Copy);
+                    else if (hScale > 1.0)
+                        tileImage = tileImage.Affine(new[] { hScale, 0.0, 0.0, 1.0 }, interpolate, idx: id, idy: id,
+                                             extend: NetVips.Enums.Extend.Copy);
+                    else
+                        tileImage = tileImage.Affine(new[] { 1.0, 0.0, 0.0, vScale }, interpolate, idx: id, idy: id,
+                                             extend: NetVips.Enums.Extend.Copy);
                 }
             }
 
