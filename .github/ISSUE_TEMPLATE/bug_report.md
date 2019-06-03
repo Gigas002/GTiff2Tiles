@@ -1,35 +1,31 @@
 ---
 name: Bug report
 about: Create a report to help us improve
+title: ''
+labels: ''
+assignees: ''
 
 ---
 
 **Describe the bug**
-A clear and concise description of what the bug is.
+A clear and concise description of what the bug is; `Exception` text (if there was).
 
 **To Reproduce**
-Steps to reproduce the behavior:
-1. Go to '...'
-2. Click on '....'
-3. Scroll down to '....'
-4. See error
+Describe steps to reproduce the behavior.
+
+If you’re running in IDE, please also specify **exact file** and **string number** in it, that throws an `Exception`.
+
+**Input data info**
+Some info about your input **GeoTIFF**, causing error, at least projection. Would be better, if you can send **gdalinfo** screenshot.
+Ideally – upload **GeoTIFF**, that causes the error (you can use e.g. Google Drive to share it, since GitHub has some restrictions to the attachment’s size).
 
 **Expected behavior**
 A clear and concise description of what you expected to happen.
 
-**Screenshots**
-If applicable, add screenshots to help explain your problem.
+**Desktop:**
 
-**Desktop (please complete the following information):**
- - OS: [e.g. iOS]
- - Browser [e.g. chrome, safari]
- - Version [e.g. 22]
-
-**Smartphone (please complete the following information):**
- - Device: [e.g. iPhone6]
- - OS: [e.g. iOS8.1]
- - Browser [e.g. stock browser, safari]
- - Version [e.g. 22]
+- OS: [e.g. Windows 10 x64]
+- Version [e.g. 1.2.0.]. Please, also specify here, if you’re building from the source and not using the pre-compiled binaries on [releases](https://github.com/Gigas002/GTiff2Tiles/releases) page.
 
 **Additional context**
 Add any other context about the problem here.
