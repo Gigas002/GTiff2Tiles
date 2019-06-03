@@ -52,8 +52,8 @@ Also I should mention, that if your input **GeoTIFF** is not **EPSG:4326**, it w
 
 ### Dependencies
 
-- [GDAL](https://www.nuget.org/packages/GDAL/) – 2.3.3;
-- [GDAL.Native](https://www.nuget.org/packages/GDAL.Native/) – 2.3.3;
+- [GDAL](https://www.nuget.org/packages/GDAL/) – 2.4.1;
+- [GDAL.Native](https://www.nuget.org/packages/GDAL.Native/) – 2.4.1;
 - [NetVips](https://www.nuget.org/packages/NetVips/) – 1.1.0-rc2;
 - [NetVips.Native.win-x64](https://www.nuget.org/packages/NetVips.Native.win-x64/) – 8.8.0-rc3;
 - [System.Threading.Tasks.Extensions](https://www.nuget.org/packages/System.Threading.Tasks.Extensions/) – 4.5.2;
@@ -95,8 +95,8 @@ Also I should mention, that if your input **GeoTIFF** is not **EPSG:4326**, it w
 
 ### Dependencies
 
-- [GDAL](https://www.nuget.org/packages/GDAL/) – 2.3.3;
-- [GDAL.Native](https://www.nuget.org/packages/GDAL.Native/) – 2.3.3;
+- [GDAL](https://www.nuget.org/packages/GDAL/) – 2.4.1;
+- [GDAL.Native](https://www.nuget.org/packages/GDAL.Native/) – 2.4.1;
 - [NetVips](https://www.nuget.org/packages/NetVips/) – 1.1.0-rc2;
 - [NetVips.Native.win-x64](https://www.nuget.org/packages/NetVips.Native.win-x64/) – 8.8.0-rc3;
 - [System.Threading.Tasks.Extensions](https://www.nuget.org/packages/System.Threading.Tasks.Extensions/) – 4.5.2;
@@ -111,8 +111,8 @@ Also I should mention, that if your input **GeoTIFF** is not **EPSG:4326**, it w
 
 ### Dependencies
 
-- [GDAL](https://www.nuget.org/packages/GDAL/) – 2.3.3;
-- [GDAL.Native](https://www.nuget.org/packages/GDAL.Native/) – 2.3.3;
+- [GDAL](https://www.nuget.org/packages/GDAL/) – 2.4.1;
+- [GDAL.Native](https://www.nuget.org/packages/GDAL.Native/) – 2.4.1;
 - [NetVips](https://www.nuget.org/packages/NetVips/) – 1.1.0-rc2;
 - [NetVips.Native.win-x64](https://www.nuget.org/packages/NetVips.Native.win-x64/) – 8.8.0-rc3;
 - [System.Threading.Tasks.Extensions](https://www.nuget.org/packages/System.Threading.Tasks.Extensions/) – 4.5.2;
@@ -126,8 +126,8 @@ Also I should mention, that if your input **GeoTIFF** is not **EPSG:4326**, it w
 
 ### Dependencies
 
-- [GDAL](https://www.nuget.org/packages/GDAL/) – 2.3.3;
-- [GDAL.Native](https://www.nuget.org/packages/GDAL.Native/) – 2.3.3;
+- [GDAL](https://www.nuget.org/packages/GDAL/) – 2.4.1;
+- [GDAL.Native](https://www.nuget.org/packages/GDAL.Native/) – 2.4.1;
 - [NetVips](https://www.nuget.org/packages/NetVips/) – 1.1.0-rc2;
 - [NetVips.Native.win-x64](https://www.nuget.org/packages/NetVips.Native.win-x64/) – 8.8.0-rc3;
 - [System.Threading.Tasks.Extensions](https://www.nuget.org/packages/System.Threading.Tasks.Extensions/) – 4.5.2;
