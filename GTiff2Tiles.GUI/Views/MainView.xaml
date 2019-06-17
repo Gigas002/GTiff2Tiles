@@ -7,170 +7,203 @@
         mc:Ignorable="d"
         TextElement.FontSize="20"
         Title="GTiff2Tiles"
-        Height="460"
+        Height="500"
         Width="675"
-        MinHeight="460"
+        MinHeight="500"
         MinWidth="675"
-        WindowStartupLocation="CenterScreen">
-    <Grid ShowGridLines="False">
+        WindowStartupLocation="CenterScreen"
+        Icon="/GTiff2Tiles.GUI;component/Resources/icon.ico">
+    <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"/>
             <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="20"/>
         </Grid.ColumnDefinitions>
+
         <!-- Main Grid -->
-        <Grid Grid.Row="0" Grid.Column="0" IsEnabled="{Binding IsEnabled}" Margin="20 20 20 20">
+        <Grid Grid.Row="1" Grid.Column="1"
+              IsEnabled="{Binding IsEnabled}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
+                <RowDefinition Height="5"/>
                 <RowDefinition Height="Auto"/>
+                <RowDefinition Height="5"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="5"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="5"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="5"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="5"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="5"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="5"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="5"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="5"/>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="5"/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="5"/>
                 <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
+
             <!-- Grid.Row="0" -->
-            <Grid Grid.Row="0" Grid.Column="0">
-                <Grid ShowGridLines="False">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
+            <TextBlock Grid.Row="0" Grid.Column="0"
+                       Text="Input file's path:"
+                       VerticalAlignment="Center"/>
+            <TextBox Grid.Row="0" Grid.Column="2"
+                     VerticalAlignment="Center"
+                     Text="{Binding InputFilePath}"/>
+            <Button Grid.Row="0" Grid.Column="4"
+                    Content="{Binding InputFileButtonText}"
+                    cal:Message.Attach="InputFileButton"/>
+            
+            <!-- Grid.Row="2" -->
+            <TextBlock Grid.Row="2" Grid.Column="0"
+                       Text="Output directory path:"
+                       VerticalAlignment="Center"/>
+            <TextBox Grid.Row="2" Grid.Column="2"
+                     VerticalAlignment="Center"
+                     Text="{Binding OutputDirectoryPath}"/>
+            <Button Grid.Row="2" Grid.Column="4"
+                    Content="{Binding OutputDirectoryButtonText}"
+                    cal:Message.Attach="OutputDirectoryButton"/>
+            
+            <!-- Grid.Row="4" -->
+            <TextBlock Grid.Row="4" Grid.Column="0"
+                       Text="Temp directory path:"
+                       VerticalAlignment="Center"/>
+            <TextBox Grid.Row="4" Grid.Column="2"
+                     VerticalAlignment="Center"
+                     Text="{Binding TempDirectoryPath}"/>
+            <Button Grid.Row="4" Grid.Column="4"
+                    Content="{Binding TempDirectoryButtonText}"
+                    cal:Message.Attach="TempDirectoryButton"/>
 
-                    <!-- Grid.Row="0" -->
-                    <TextBlock Grid.Row="0" Grid.Column="0" Text="Input file path:" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 0 2 2"/>
-                    <TextBox Grid.Row="0" Grid.Column="1" TextAlignment="Left" VerticalAlignment="Center" Text="{Binding InputFilePath}" Margin="0 0 0 2"/>
-                    <Button Grid.Row="0" Grid.Column="2" Content="Select file" cal:Message.Attach="InputFileButton" Margin="2 0 0 2"/>
+            <!-- Grid.Row="6" -->
+            <TextBlock Grid.Row="6" Grid.Column="0"
+                       Text="Minimum zoom:"
+                       VerticalAlignment="Center"/>
+            <TextBox Grid.Row="6" Grid.Column="2"
+                     Grid.ColumnSpan="3"
+                     VerticalAlignment="Center"
+                     Text="{Binding MinZ}"/>
 
-                    <!-- Grid.Row="1" -->
-                    <TextBlock Grid.Row="1" Grid.Column="0" Text="Output directory path:" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 0 2 2"/>
-                    <TextBox Grid.Row="1" Grid.Column="1" TextAlignment="Left" VerticalAlignment="Center" Text="{Binding OutputDirectoryPath}" Margin="0 0 0 2"/>
-                    <Button Grid.Row="1" Grid.Column="2" Content="Select directory" cal:Message.Attach="OutputDirectoryButton" Margin="2 0 0 2"/>
+            <!-- Grid.Row="8" -->
+            <TextBlock Grid.Row="8" Grid.Column="0"
+                       Text="Maximum zoom:"
+                       VerticalAlignment="Center"/>
+            <TextBox Grid.Row="8" Grid.Column="2"
+                     Grid.ColumnSpan="3"
+                     VerticalAlignment="Center"
+                     Text="{Binding MaxZ}"/>
 
-                    <!-- Grid.Row="2" -->
-                    <TextBlock Grid.Row="2" Grid.Column="0" Text="Temp directory path:" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 0 2 2"/>
-                    <TextBox Grid.Row="2" Grid.Column="1" TextAlignment="Left" VerticalAlignment="Center" Text="{Binding TempDirectoryPath}" Margin="0 0 0 2"/>
-                    <Button Grid.Row="2" Grid.Column="2" Content="Select directory" cal:Message.Attach="TempDirectoryButton" Margin="2 0 0 2"/>
+            <!-- Grid.Row="10" -->
+            <TextBlock Grid.Row="10" Grid.Column="0"
+                       Text="Select algorithm:"
+                       VerticalAlignment="Center"/>
+            <ComboBox Grid.Row="10" Grid.Column="2"
+                      Grid.ColumnSpan="3"
+                      VerticalContentAlignment="Center"
+                      ItemsSource="{Binding Algorithms}"
+                      SelectedItem="{Binding Algorithm}"/>
 
-                </Grid>
-            </Grid>
+            <!-- Grid.Row="12" -->
+            <TextBlock Grid.Row="12" Grid.Column="0"
+                       Text="Number of threads:"
+                       VerticalAlignment="Center"/>
+            <TextBox Grid.Row="12" Grid.Column="2"
+                     Grid.ColumnSpan="3"
+                     VerticalAlignment="Center"
+                     Text="{Binding ThreadsCount}"/>
 
-            <!-- Grid.Row="1" -->
-            <Grid Grid.Row="1" Grid.Column="0" ShowGridLines="False">
+            <!-- Grid.Row="14" -->
+            <Button Grid.Row="14" Grid.Column="0"
+                    Grid.ColumnSpan="5"
+                    Content="{Binding StartButtonContent}"
+                    cal:Message.Attach="StartButton"/>
+
+            <!-- Grid.Row="16" -->
+            <ProgressBar Grid.Row="16" Grid.Column="0"
+                         Grid.ColumnSpan="5"
+                         Height="25"
+                         Value="{Binding ProgressBarValue}"/>
+
+            <!-- Grid.Row="18" -->
+            <Grid Grid.Row="18" Grid.Column="0">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="5"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <!-- Grid.Row="0" -->
-                <TextBlock Grid.Row="0" Grid.Column="0" Text="Minimum zoom:" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 0 2 2"/>
-                <TextBox Grid.Row="0" Grid.Column="1" TextAlignment="Left" VerticalAlignment="Center" Text="{Binding MinZ}" Margin="0 0 0 2"/>
-
-                <!-- Grid.Row="1" -->
-                <TextBlock Grid.Row="1" Grid.Column="0" Text="Maximum zoom:" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 0 2 2"/>
-                <TextBox Grid.Row="1" Grid.Column="1" TextAlignment="Left" VerticalAlignment="Center" Text="{Binding MaxZ}" Margin="0 0 0 2"/>
-
-                <!-- Grid.Row="2" -->
-                <TextBlock Grid.Row="2" Grid.Column="0" Text="Select algorithm:" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 0 2 2"/>
-                <ComboBox Grid.Row="2" Grid.Column="1" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"
-                          ItemsSource="{Binding Algorithms}"
-                          SelectedItem="{Binding Algorithm}" Margin="0 0 0 2"/>
-
-                <!-- Grid.Row="3" -->
-                <TextBlock Grid.Row="3" Grid.Column="0" Text="Number of threads:" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 0 2 2"/>
-                <TextBox Grid.Row="3" Grid.Column="1" TextAlignment="Left" VerticalAlignment="Center" Text="{Binding ThreadsCount}" Margin="0 0 0 2"/>
-
+                <TextBlock Grid.Row="0" Grid.Column="0"
+                           Text="{Binding ProgressTextBlock}"
+                           VerticalAlignment="Center"/>
+                <TextBlock Grid.Row="0" Grid.Column="2"
+                           VerticalAlignment="Center"
+                           Text="{Binding ProgressBarValue}"/>
             </Grid>
 
-            <!-- Grid.Row-"2" -->
-            <Grid Grid.Row="2" Grid.Column="0" ShowGridLines="False">
+            <!-- Grid.Row="20" -->
+            <Grid Grid.Row="20" Grid.Column="2"
+                  Grid.ColumnSpan="3"
+                  HorizontalAlignment="Right"
+                  VerticalAlignment="Bottom">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-
-                <!-- Grid.Row="0" -->
-                <Button Grid.Row="0" Grid.Column="0" Content="Start" cal:Message.Attach="StartButton" Margin="0 0 0 2"/>
-
-                <!-- Grid.Row="1" -->
-                <ProgressBar Grid.Row="1" Grid.Column="0" Height="20" x:Name="ProgressBar" Value="{Binding ProgressBarValue}" Margin="0 0 0 2"/>
-
-                <!-- Grid.Row="2" -->
-                <Grid Grid.Row="2" Grid.Column="0" ShowGridLines="False">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <!-- Grid.Row="0" -->
-                    <TextBlock Grid.Row="0" Grid.Column="0" Text="Progress:" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 0 2 2"/>
-                    <TextBlock Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Text="{Binding ElementName=ProgressBar, Path=Value}" Margin="0 0 0 2"/>
-
-                </Grid>
-
-            </Grid>
-
-            <!-- Grid.Row="3" -->
-            <Grid Grid.Row="3" Grid.Column="0" ShowGridLines="False">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="5"/>
+                    <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <!-- Grid.Row="0" -->
-                <Grid Grid.Row="0" Grid.Column="1" ShowGridLines="False" HorizontalAlignment="Right" VerticalAlignment="Bottom">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
+                <TextBlock Grid.Row="0" Grid.Column="0"
+                           Text="Version:"
+                           VerticalAlignment="Bottom"/>
+                <TextBlock Grid.Row="0" Grid.Column="2"
+                           VerticalAlignment="Bottom"
+                           Text="{Binding Version}"/>
+            </Grid>
 
-                    <TextBlock Grid.Row="0" Grid.Column="0" Text="Version:" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0 0 2 2"/>
-                    <TextBlock Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" Text="{Binding Version}" Margin="0 0 0 2"/>
+            <!-- Grid.Row="22" -->
+            <Grid Grid.Row="22" Grid.Column="2"
+                  Grid.ColumnSpan="3"
+                  HorizontalAlignment="Right"
+                  VerticalAlignment="Bottom">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="5"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
 
-                </Grid>
-
-                <!-- Grid.Row="1" -->
-                <Grid Grid.Row="1" Grid.Column="1" ShowGridLines="False" HorizontalAlignment="Right" VerticalAlignment="Bottom">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <TextBlock Grid.Row="0" Grid.Column="0" Text="Copyright" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0 0 2 2"/>
-                    <TextBlock Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" Text="{Binding Copyright}" Margin="0 0 0 0"/>
-
-                </Grid>
-
+                <TextBlock Grid.Row="0" Grid.Column="0"
+                           Text="Copyright"
+                           VerticalAlignment="Bottom"/>
+                <TextBlock Grid.Row="0" Grid.Column="2"
+                           VerticalAlignment="Bottom"
+                           Text="{Binding Copyright}"/>
             </Grid>
         </Grid>
     </Grid>

@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Drawing;
 using System.IO;
 using System.Windows;
 using Caliburn.Micro;
+using GTiff2Tiles.GUI.Properties;
 using Ookii.Dialogs.Wpf;
 // ReSharper disable MemberCanBePrivate.Global
 // ReSharper disable once ClassNeverInstantiated.Global
@@ -19,7 +21,17 @@ namespace GTiff2Tiles.GUI.ViewModels
     {
         #region Properties
 
-        #region Const
+        #region UI
+
+        public string InputFileButtonText { get; } = Strings.InputFileButtonText;
+
+        public string OutputDirectoryButtonText { get; } = Strings.OutputDirectoryButtonText;
+
+        public string TempDirectoryButtonText { get; } = Strings.TempDirectoryButtonText;
+
+        public string ProgressTextBlock { get; } = Strings.ProgressTextBlock;
+
+        public string StartButtonContent { get; } = Strings.StartButtonContent;
 
         /// <summary>
         /// Hey, it's me!

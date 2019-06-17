@@ -117,4 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="InputFileButtonText" xml:space="preserve">
+    <value>Select file</value>
+  </data>
+  <data name="OutputDirectoryButtonText" xml:space="preserve">
+    <value>Select directory</value>
+  </data>
+  <data name="ProgressTextBlock" xml:space="preserve">
+    <value>Progress:</value>
+  </data>
+  <data name="StartButtonContent" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="TempDirectoryButtonText" xml:space="preserve">
+    <value>Select directory</value>
+  </data>
 </root>
