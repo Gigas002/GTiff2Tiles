@@ -15,10 +15,12 @@ Solution is build in **VS2019 (16.1.3)**, **.NET Framework 4.7.2**, targeting **
   * [GTiff2Tiles.Core](#gtiff2tilescore)
     + [Dependencies](#dependencies)
   * [GTiff2Tiles.Console](#gtiff2tilesconsole)
+    + [Requirements](#requirements)
     + [Usage](#usage)
     + [Detailed options description](#detailed-options-description)
     + [Dependencies](#dependencies-1)
   * [GTiff2Tiles.GUI](#gtiff2tilesgui)
+    + [Requirements](#requirements-1)
     + [Dependencies](#dependencies-2)
   * [GTiff2Tiles.Tests](#gtiff2tilestests)
     + [Dependencies](#dependencies-3)
@@ -31,7 +33,7 @@ Table of contents generated with [markdown-toc](http://ecotrust-canada.github.io
 
 Current stable can be found here: [![Release](https://img.shields.io/github/release/Gigas002/GTiff2Tiles.svg)](https://github.com/Gigas002/GTiff2Tiles/releases/latest), or on NuGet: [![NuGet](https://img.shields.io/nuget/v/GTiff2Tiles.svg)](https://www.nuget.org/packages/GTiff2Tiles/).
 
-Information about changes since previous releases can be found in [changelog](https://github.com/Gigas002/GTiff2Tiles/blob/master/CHANGELOG.md). This project supports [SemVer 2.0.0](https://semver.org/).
+Information about changes since previous releases can be found in [changelog](https://github.com/Gigas002/GTiff2Tiles/blob/master/CHANGELOG.md). This project supports [SemVer 2.0.0](https://semver.org/) (template is `{MAJOR}.{MINOR}.{PATCH}.{BUILD}`).
 
 Previous versions can be found on [releases](https://github.com/Gigas002/GTiff2Tiles/releases) and [branches](https://github.com/Gigas002/GTiff2Tiles/branches) pages.
 
@@ -61,7 +63,12 @@ Also I should mention, that if your input **GeoTIFF** is not **EPSG:4326**, it w
 
 ## GTiff2Tiles.Console
 
-**GTiff2Tiles.Console** is a console application, that uses methods from core to create tiles. 
+**GTiff2Tiles.Console** is a console application, that uses methods from core to create tiles.
+
+### Requirements
+
+- Windows 7 SP1 x64 and newer;
+- [.NET Framework 4.7.2](https://dotnet.microsoft.com/download/dotnet-framework/net472);
 
 ### Usage
 
@@ -109,6 +116,11 @@ Also I should mention, that if your input **GeoTIFF** is not **EPSG:4326**, it w
 
 ![](GTiff2Tiles.GUI/Screenshots/MainPage.png)
 
+### Requirements
+
+- Windows 7 SP1 x64 and newer;
+- [.NET Framework 4.7.2](https://dotnet.microsoft.com/download/dotnet-framework/net472);
+
 ### Dependencies
 
 - [GDAL](https://www.nuget.org/packages/GDAL/) – 2.4.1;
@@ -120,6 +132,7 @@ Also I should mention, that if your input **GeoTIFF** is not **EPSG:4326**, it w
 - [Caliburn.Micro](https://www.nuget.org/packages/Caliburn.Micro) – 3.2.0;
 - [Ookii.Dialogs.Wpf](https://www.nuget.org/packages/Ookii.Dialogs.Wpf/) – 1.1.0;
 - [MahApps.Metro](<https://www.nuget.org/packages/MahApps.Metro>) – 1.6.5;
+- [ControlzEx](<https://www.nuget.org/packages/ControlzEx>) – 3.0.2.4;
 - [MaterialDesignColors](<https://www.nuget.org/packages/MaterialDesignColors>) – 1.1.3;
 - [MaterialDesignThemes](<https://www.nuget.org/packages/MaterialDesignThemes>) – 2.5.1;
 
