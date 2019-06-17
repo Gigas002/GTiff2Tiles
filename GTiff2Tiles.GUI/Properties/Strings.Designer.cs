@@ -61,20 +61,47 @@ namespace GTiff2Tiles.GUI.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select file.
+        ///   Looks up a localized string similar to Select algorithm.
         /// </summary>
-        internal static string InputFileButtonText {
+        internal static string AlgorithmsHint {
             get {
-                return ResourceManager.GetString("InputFileButtonText", resourceCulture);
+                return ResourceManager.GetString("AlgorithmsHint", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select directory.
+        ///   Looks up a localized string similar to Input file&apos;s path.
         /// </summary>
-        internal static string OutputDirectoryButtonText {
+        internal static string InputFileHint {
             get {
-                return ResourceManager.GetString("OutputDirectoryButtonText", resourceCulture);
+                return ResourceManager.GetString("InputFileHint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select maximum zoom.
+        /// </summary>
+        internal static string MaxZHint {
+            get {
+                return ResourceManager.GetString("MaxZHint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select minimum zoom.
+        /// </summary>
+        internal static string MinZHint {
+            get {
+                return ResourceManager.GetString("MinZHint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Output directory&apos;s path.
+        /// </summary>
+        internal static string OutputDirectoryHint {
+            get {
+                return ResourceManager.GetString("OutputDirectoryHint", resourceCulture);
             }
         }
         
@@ -97,11 +124,20 @@ namespace GTiff2Tiles.GUI.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select directory.
+        ///   Looks up a localized string similar to Temp directory&apos;s path.
         /// </summary>
-        internal static string TempDirectoryButtonText {
+        internal static string TempDirectoryHint {
             get {
-                return ResourceManager.GetString("TempDirectoryButtonText", resourceCulture);
+                return ResourceManager.GetString("TempDirectoryHint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select number of threads.
+        /// </summary>
+        internal static string ThreadsCountHint {
+            get {
+                return ResourceManager.GetString("ThreadsCountHint", resourceCulture);
             }
         }
     }

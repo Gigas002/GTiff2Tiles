@@ -2,7 +2,7 @@
 
 Analogue of [gdal2tiles.py](https://github.com/OSGeo/gdal/blob/master/gdal/swig/python/scripts/gdal2tiles.py) on **C#**. Currently support **only GeoTIFF** as input data and creates **only EPSG:4326 geodetic tiles** on output in [**tms**](https://wiki.osgeo.org/wiki/Tile_Map_Service_Specification) structure.
 
-Solution is build in **VS2019 (16.1.2)**, **.NET Framework 4.7.2**, targeting **Windows x64** systems.
+Solution is build in **VS2019 (16.1.3)**, **.NET Framework 4.7.2**, targeting **Windows x64** systems.
 
 [![Build status](https://ci.appveyor.com/api/projects/status/wp5bbi08sgd4i9bh?svg=true)](https://ci.appveyor.com/project/Gigas002/gtiff2tiles)
 
@@ -105,7 +105,7 @@ Also I should mention, that if your input **GeoTIFF** is not **EPSG:4326**, it w
 
 ## GTiff2Tiles.GUI
 
-**GTiff2Tiles.GUI** is a very simple (and ugly!) GUI, that has the same methods and parameters, as **GTiff2Tiles.Console**.
+**GTiff2Tiles.GUI** is a very simple GUI, that has the same methods and parameters, as **GTiff2Tiles.Console**:
 
 ![](GTiff2Tiles.GUI/Screenshots/MainPage.png)
 
@@ -119,6 +119,9 @@ Also I should mention, that if your input **GeoTIFF** is not **EPSG:4326**, it w
 - [System.Runtime.CompilerServices.Unsafe](https://www.nuget.org/packages/System.Runtime.CompilerServices.Unsafe/) – 4.5.2;
 - [Caliburn.Micro](https://www.nuget.org/packages/Caliburn.Micro) – 3.2.0;
 - [Ookii.Dialogs.Wpf](https://www.nuget.org/packages/Ookii.Dialogs.Wpf/) – 1.1.0;
+- [MahApps.Metro](<https://www.nuget.org/packages/MahApps.Metro>) – 1.6.5;
+- [MaterialDesignColors](<https://www.nuget.org/packages/MaterialDesignColors>) – 1.1.3;
+- [MaterialDesignThemes](<https://www.nuget.org/packages/MaterialDesignThemes>) – 2.5.1;
 
 ## GTiff2Tiles.Tests
 

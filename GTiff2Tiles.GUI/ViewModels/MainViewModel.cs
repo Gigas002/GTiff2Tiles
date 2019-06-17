@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
-using System.Drawing;
 using System.IO;
 using System.Windows;
 using Caliburn.Micro;
@@ -15,7 +14,7 @@ namespace GTiff2Tiles.GUI.ViewModels
 {
     /// <inheritdoc />
     /// <summary>
-    /// I wanted to write there something useful, but later I decided not to do it.
+    /// ViewModel for <see cref="Views.MainView"/>.
     /// </summary>
     public class MainViewModel : PropertyChangedBase
     {
@@ -23,14 +22,55 @@ namespace GTiff2Tiles.GUI.ViewModels
 
         #region UI
 
-        public string InputFileButtonText { get; } = Strings.InputFileButtonText;
+        //TODO: consider adding non-ui strings to resources?
+        //TODO: localize strings
+        //TODO: create material message box
+        //TODO: create material dialogs
+        //TODO: update screenshots
 
-        public string OutputDirectoryButtonText { get; } = Strings.OutputDirectoryButtonText;
+        /// <summary>
+        /// Hint for InputFile TextBox.
+        /// </summary>
+        public string InputFileHint { get; } = Strings.InputFileHint;
 
-        public string TempDirectoryButtonText { get; } = Strings.TempDirectoryButtonText;
+        /// <summary>
+        /// Hint for OutputDirectory TextBox.
+        /// </summary>
+        public string OutputDirectoryHint { get; } = Strings.OutputDirectoryHint;
 
+        /// <summary>
+        /// Hint for TempDirectory TextBox.
+        /// </summary>
+        public string TempDirectoryHint { get; } = Strings.TempDirectoryHint;
+
+        /// <summary>
+        /// Hint for MinZ TextBox.
+        /// </summary>
+        public string MinZHint { get; } = Strings.MinZHint;
+
+        /// <summary>
+        /// Hint for MaxZ TextBox.
+        /// </summary>
+        public string MaxZHint { get; } = Strings.MaxZHint;
+
+        /// <summary>
+        /// Hint for Algorithms ComboBox.
+        /// </summary>
+        public string AlgorithmsHint { get; } = Strings.AlgorithmsHint;
+
+        /// <summary>
+        /// Hint for ThreadsCount TextBox.
+        /// </summary>
+        public string ThreadsCountHint { get; } = Strings.ThreadsCountHint;
+
+        /// <summary>
+        /// Text in progress's TextBlock (e.g. "Progress:").
+        /// </summary>
         public string ProgressTextBlock { get; } = Strings.ProgressTextBlock;
 
+        /// <summary>
+        /// Text inside Start button.
+        /// </summary>
         public string StartButtonContent { get; } = Strings.StartButtonContent;
 
         /// <summary>

@@ -117,11 +117,20 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="InputFileButtonText" xml:space="preserve">
-    <value>Select file</value>
+  <data name="AlgorithmsHint" xml:space="preserve">
+    <value>Select algorithm</value>
   </data>
-  <data name="OutputDirectoryButtonText" xml:space="preserve">
-    <value>Select directory</value>
+  <data name="InputFileHint" xml:space="preserve">
+    <value>Input file's path</value>
+  </data>
+  <data name="MaxZHint" xml:space="preserve">
+    <value>Select maximum zoom</value>
+  </data>
+  <data name="MinZHint" xml:space="preserve">
+    <value>Select minimum zoom</value>
+  </data>
+  <data name="OutputDirectoryHint" xml:space="preserve">
+    <value>Output directory's path</value>
   </data>
   <data name="ProgressTextBlock" xml:space="preserve">
     <value>Progress:</value>
@@ -129,7 +138,10 @@
   <data name="StartButtonContent" xml:space="preserve">
     <value>Start</value>
   </data>
-  <data name="TempDirectoryButtonText" xml:space="preserve">
-    <value>Select directory</value>
+  <data name="TempDirectoryHint" xml:space="preserve">
+    <value>Temp directory's path</value>
+  </data>
+  <data name="ThreadsCountHint" xml:space="preserve">
+    <value>Select number of threads</value>
   </data>
 </root>
