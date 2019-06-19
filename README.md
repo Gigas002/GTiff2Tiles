@@ -70,6 +70,8 @@ Also I should mention, that if your input **GeoTIFF** is not **EPSG:4326**, it w
 - Windows 7 SP1 x64 and newer;
 - [.NET Framework 4.7.2](https://dotnet.microsoft.com/download/dotnet-framework/net472);
 
+If you’re using Windows 7 SP1, you can experience weird error with **GDAL** package. It’s recommended to install [KB2533623](<https://www.microsoft.com/en-us/download/details.aspx?id=26764>) to fix it. You can read about this Windows update on [MSDN](<https://support.microsoft.com/en-us/help/2533623/microsoft-security-advisory-insecure-library-loading-could-allow-remot>).
+
 ### Usage
 
 | Short |    Long     |          Description          | Required? |
@@ -121,6 +123,8 @@ Also I should mention, that if your input **GeoTIFF** is not **EPSG:4326**, it w
 - Windows 7 SP1 x64 and newer;
 - [.NET Framework 4.7.2](https://dotnet.microsoft.com/download/dotnet-framework/net472);
 
+If you’re using Windows 7 SP1, you can experience weird error with **GDAL** package. It’s recommended to install [KB2533623](<https://www.microsoft.com/en-us/download/details.aspx?id=26764>) to fix it. You can read about this Windows update on [MSDN](<https://support.microsoft.com/en-us/help/2533623/microsoft-security-advisory-insecure-library-loading-could-allow-remot>).
+
 ### Dependencies
 
 - [GDAL](https://www.nuget.org/packages/GDAL/) – 2.4.1;
@@ -135,6 +139,10 @@ Also I should mention, that if your input **GeoTIFF** is not **EPSG:4326**, it w
 - [ControlzEx](<https://www.nuget.org/packages/ControlzEx>) – 3.0.2.4;
 - [MaterialDesignColors](<https://www.nuget.org/packages/MaterialDesignColors>) – 1.1.3;
 - [MaterialDesignThemes](<https://www.nuget.org/packages/MaterialDesignThemes>) – 2.5.1;
+
+### Localization
+
+WIP
 
 ## GTiff2Tiles.Tests
 
