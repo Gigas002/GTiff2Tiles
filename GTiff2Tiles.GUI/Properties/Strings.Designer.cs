@@ -61,11 +61,38 @@ namespace GTiff2Tiles.GUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Accept.
+        /// </summary>
+        internal static string AcceptButtonContent {
+            get {
+                return ResourceManager.GetString("AcceptButtonContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select algorithm.
         /// </summary>
         internal static string AlgorithmsHint {
             get {
                 return ResourceManager.GetString("AlgorithmsHint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        internal static string CancelButtonContent {
+            get {
+                return ResourceManager.GetString("CancelButtonContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Copy to clipboard.
+        /// </summary>
+        internal static string CopyToClipboardToolTip {
+            get {
+                return ResourceManager.GetString("CopyToClipboardToolTip", resourceCulture);
             }
         }
         

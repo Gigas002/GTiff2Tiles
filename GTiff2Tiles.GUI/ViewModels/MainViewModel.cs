@@ -2,9 +2,10 @@
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
-using System.Windows;
+using System.Threading.Tasks;
 using Caliburn.Micro;
 using GTiff2Tiles.GUI.Properties;
+using MaterialDesignThemes.Wpf;
 using Ookii.Dialogs.Wpf;
 
 // ReSharper disable MemberCanBePrivate.Global
@@ -23,7 +24,7 @@ namespace GTiff2Tiles.GUI.ViewModels
 
         #region UI
 
-        //TODO: create material message box
+        //TODO: explicit referencies in README
         //TODO: create material dialogs
         //TODO: update screenshots
 
@@ -238,6 +239,11 @@ namespace GTiff2Tiles.GUI.ViewModels
             }
         }
 
+        /// <summary>
+        /// Identifier of DialogHost on <see cref="Views.MainView"/>.
+        /// </summary>
+        public string DialogHostId { get; } = Enums.MainViewModel.DialogHostId;
+
         #endregion
 
         #region Constructor
@@ -299,12 +305,12 @@ namespace GTiff2Tiles.GUI.ViewModels
         /// <summary>
         /// Start button.
         /// </summary>
-        public async void StartButton()
+        public async ValueTask StartButton()
         {
             Stopwatch stopwatch = Stopwatch.StartNew();
 
             //Check properties for errors.
-            if (!CheckProperties()) return;
+            if (!await CheckProperties()) return;
 
             //Initialize FileSystemEntries from properties.
             FileInfo inputFileInfo = new FileInfo(InputFilePath);
@@ -345,14 +351,14 @@ namespace GTiff2Tiles.GUI.ViewModels
                         await inputImage.GenerateTilesByCropping(outputDirectoryInfo, MinZ, MaxZ, progress, ThreadsCount);
                         break;
                     default:
-                        Helpers.ErrorHelper.ShowError("This algorithm is not supported.", null);
+                        await Helpers.ErrorHelper.ShowError("This algorithm is not supported.", null);
                         IsEnabled = true;
                         return;
                 }
             }
             catch (Exception exception)
             {
-                Helpers.ErrorHelper.ShowException(exception);
+                await Helpers.ErrorHelper.ShowException(exception);
                 IsEnabled = true;
                 return;
             }
@@ -361,8 +367,9 @@ namespace GTiff2Tiles.GUI.ViewModels
             IsEnabled = true;
 
             stopwatch.Stop();
-            MessageBox.Show($"Done by: days:{stopwatch.Elapsed.Days} hours:{stopwatch.Elapsed.Hours} minutes:{stopwatch.Elapsed.Minutes} "
-                          + $"seconds:{stopwatch.Elapsed.Seconds} ms:{stopwatch.Elapsed.Milliseconds}");
+            await DialogHost.Show(new MessageBoxDialogViewModel($"Done by: days:{stopwatch.Elapsed.Days} hours:{stopwatch.Elapsed.Hours} " +
+                                                                $"minutes:{stopwatch.Elapsed.Minutes} seconds:{stopwatch.Elapsed.Seconds} " +
+                                                                $"ms:{stopwatch.Elapsed.Milliseconds}"));
         }
 
         #endregion
@@ -373,36 +380,36 @@ namespace GTiff2Tiles.GUI.ViewModels
         /// Checks properties for errors and set some before starting.
         /// </summary>
         /// <returns><see langword="true"/> if no errors occured, <see langword="false"/> otherwise.</returns>
-        private bool CheckProperties()
+        private async ValueTask<bool> CheckProperties()
         {
             if (string.IsNullOrWhiteSpace(InputFilePath))
-                return Helpers.ErrorHelper.ShowError("Input file path is empty.", null);
+                return await Helpers.ErrorHelper.ShowError("Input file path is empty.", null);
 
             if (string.IsNullOrWhiteSpace(OutputDirectoryPath))
-                return Helpers.ErrorHelper.ShowError("Output directory path is empty.", null);
+                return await Helpers.ErrorHelper.ShowError("Output directory path is empty.", null);
 
             if (string.IsNullOrWhiteSpace(TempDirectoryPath))
-                return Helpers.ErrorHelper.ShowError("Temp directory path is empty.", null);
+                return await Helpers.ErrorHelper.ShowError("Temp directory path is empty.", null);
 
             if (MinZ < 0)
-                return Helpers.ErrorHelper.ShowError("Minimum zoom is lesser, than 0.", null);
+                return await Helpers.ErrorHelper.ShowError("Minimum zoom is lesser, than 0.", null);
 
             if (MaxZ < 0)
-                return Helpers.ErrorHelper.ShowError("Maximum zoom is lesser, than 0.", null);
+                return await Helpers.ErrorHelper.ShowError("Maximum zoom is lesser, than 0.", null);
 
             if (MaxZ < MinZ)
-                return Helpers.ErrorHelper.ShowError("Minimum zoom is bigger, than maximum.", null);
+                return await Helpers.ErrorHelper.ShowError("Minimum zoom is bigger, than maximum.", null);
 
             Algorithm = Algorithm.ToLowerInvariant();
 
             if (string.IsNullOrWhiteSpace(Algorithm))
-                return Helpers.ErrorHelper.ShowError("Please, choose the algorithm.", null);
+                return await Helpers.ErrorHelper.ShowError("Please, choose the algorithm.", null);
 
             if (Algorithm != Core.Enums.Algorithms.Join && Algorithm != Core.Enums.Algorithms.Crop)
-                return Helpers.ErrorHelper.ShowError("This algorithm is not supported.", null);
+                return await Helpers.ErrorHelper.ShowError("This algorithm is not supported.", null);
 
             if (ThreadsCount <= 0)
-                return Helpers.ErrorHelper.ShowError("Threads count is lesser or equal 0.", null);
+                return await Helpers.ErrorHelper.ShowError("Threads count is lesser or equal 0.", null);
 
             //Disable controls.
             IsEnabled = false;

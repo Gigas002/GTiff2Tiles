@@ -1,22 +1,23 @@
 ﻿using System;
-using System.Windows;
+using System.Threading.Tasks;
+using GTiff2Tiles.GUI.ViewModels;
+using MaterialDesignThemes.Wpf;
 
 namespace GTiff2Tiles.GUI.Helpers
 {
     public static class ErrorHelper
     {
-        //TODO: replace message boxes
-
         /// <summary>
         /// Shows current exception.
         /// </summary>
         /// <param name="exception">Exception.</param>
-        public static void ShowException(Exception exception)
+        /// <returns></returns>
+        public static async ValueTask ShowException(Exception exception)
         {
-            MessageBox.Show(exception.Message);
+            await DialogHost.Show(new MessageBoxDialogViewModel(exception.Message));
 
             #if DEBUG
-            if (exception.InnerException != null) MessageBox.Show(exception.InnerException.Message);
+            if (exception.InnerException != null) await DialogHost.Show(new MessageBoxDialogViewModel(exception.InnerException.Message));
             #endif
         }
 
@@ -26,12 +27,12 @@ namespace GTiff2Tiles.GUI.Helpers
         /// <param name="errorMessage">Error message.</param>
         /// <param name="exception">Exception.</param>
         /// <returns><see langword="false"/>.</returns>
-        public static bool ShowError(string errorMessage, Exception exception)
+        public static async ValueTask<bool> ShowError(string errorMessage, Exception exception)
         {
-            MessageBox.Show(errorMessage);
+            await DialogHost.Show(new MessageBoxDialogViewModel(errorMessage));
 
             #if DEBUG
-            if (exception != null) MessageBox.Show(exception.Message);
+            if (exception != null) await DialogHost.Show(new MessageBoxDialogViewModel(exception.Message));
             #endif
 
             return false;

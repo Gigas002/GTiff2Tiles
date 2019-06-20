@@ -117,8 +117,17 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AcceptButtonContent" xml:space="preserve">
+    <value>Принять</value>
+  </data>
   <data name="AlgorithmsHint" xml:space="preserve">
     <value>Выберите алгоритм</value>
+  </data>
+  <data name="CancelButtonContent" xml:space="preserve">
+    <value>Отмена</value>
+  </data>
+  <data name="CopyToClipboardToolTip" xml:space="preserve">
+    <value>Скопировать в буфер</value>
   </data>
   <data name="InputFileHint" xml:space="preserve">
     <value>Путь к исходному файлу</value>
