@@ -24,7 +24,6 @@ namespace GTiff2Tiles.GUI.ViewModels
 
         #region UI
 
-        //TODO: explicit referencies in README
         //TODO: create material dialogs
         //TODO: update screenshots
 

@@ -22,6 +22,7 @@ Solution is build in **VS2019 (16.1.3)**, **.NET Framework 4.7.2**, targeting **
   * [GTiff2Tiles.GUI](#gtiff2tilesgui)
     + [Requirements](#requirements-1)
     + [Dependencies](#dependencies-2)
+    + [Localization](#localization)
   * [GTiff2Tiles.Tests](#gtiff2tilestests)
     + [Dependencies](#dependencies-3)
   * [TODO](#todo)
@@ -59,7 +60,9 @@ Also I should mention, that if your input **GeoTIFF** is not **EPSG:4326**, it w
 - [NetVips](https://www.nuget.org/packages/NetVips/) – 1.1.0-rc2;
 - [NetVips.Native.win-x64](https://www.nuget.org/packages/NetVips.Native.win-x64/) – 8.8.0-rc3;
 - [System.Threading.Tasks.Extensions](https://www.nuget.org/packages/System.Threading.Tasks.Extensions/) – 4.5.2;
-- [System.Runtime.CompilerServices.Unsafe](https://www.nuget.org/packages/System.Runtime.CompilerServices.Unsafe/) – 4.5.2;
+- [System.Runtime.CompilerServices.Unsafe](https://www.nuget.org/packages/System.Runtime.CompilerServices.Unsafe/) – 4.5.2 (required by **System.Threading.Tasks.Extensions** and **System.Memory**);
+- [System.Memory](https://www.nuget.org/packages/System.Memory/) – 4.5.3 (required by **NetVips**);
+- [System.Buffers](https://www.nuget.org/packages/System.Buffers/) – 4.5.0 (required by **System.Memory**);
 
 ## GTiff2Tiles.Console
 
@@ -109,7 +112,9 @@ If you’re using Windows 7 SP1, you can experience weird error with **GDAL** pa
 - [NetVips](https://www.nuget.org/packages/NetVips/) – 1.1.0-rc2;
 - [NetVips.Native.win-x64](https://www.nuget.org/packages/NetVips.Native.win-x64/) – 8.8.0-rc3;
 - [System.Threading.Tasks.Extensions](https://www.nuget.org/packages/System.Threading.Tasks.Extensions/) – 4.5.2;
-- [System.Runtime.CompilerServices.Unsafe](https://www.nuget.org/packages/System.Runtime.CompilerServices.Unsafe/) – 4.5.2;
+- [System.Runtime.CompilerServices.Unsafe](https://www.nuget.org/packages/System.Runtime.CompilerServices.Unsafe/) – 4.5.2 (required by **System.Threading.Tasks.Extensions** and **System.Memory**);
+- [System.Memory](https://www.nuget.org/packages/System.Memory/) – 4.5.3 (required by **NetVips**);
+- [System.Buffers](https://www.nuget.org/packages/System.Buffers/) – 4.5.0 (required by **System.Memory**);
 - [CommandLineParser](https://www.nuget.org/packages/CommandLineParser/) – 2.5.0;
 
 ## GTiff2Tiles.GUI
@@ -132,17 +137,21 @@ If you’re using Windows 7 SP1, you can experience weird error with **GDAL** pa
 - [NetVips](https://www.nuget.org/packages/NetVips/) – 1.1.0-rc2;
 - [NetVips.Native.win-x64](https://www.nuget.org/packages/NetVips.Native.win-x64/) – 8.8.0-rc3;
 - [System.Threading.Tasks.Extensions](https://www.nuget.org/packages/System.Threading.Tasks.Extensions/) – 4.5.2;
-- [System.Runtime.CompilerServices.Unsafe](https://www.nuget.org/packages/System.Runtime.CompilerServices.Unsafe/) – 4.5.2;
+- [System.Runtime.CompilerServices.Unsafe](https://www.nuget.org/packages/System.Runtime.CompilerServices.Unsafe/) – 4.5.2 (required by **System.Threading.Tasks.Extensions** and **System.Memory**);
+- [System.Memory](https://www.nuget.org/packages/System.Memory/) – 4.5.3 (required by **NetVips**);
+- [System.Buffers](https://www.nuget.org/packages/System.Buffers/) – 4.5.0 (required by **System.Memory**);
 - [Caliburn.Micro](https://www.nuget.org/packages/Caliburn.Micro) – 3.2.0;
 - [Ookii.Dialogs.Wpf](https://www.nuget.org/packages/Ookii.Dialogs.Wpf/) – 1.1.0;
 - [MahApps.Metro](<https://www.nuget.org/packages/MahApps.Metro>) – 1.6.5;
-- [ControlzEx](<https://www.nuget.org/packages/ControlzEx>) – 3.0.2.4;
+- [ControlzEx](<https://www.nuget.org/packages/ControlzEx>) – 3.0.2.4 (required by **MahApps.Metro**);
 - [MaterialDesignColors](<https://www.nuget.org/packages/MaterialDesignColors>) – 1.1.3;
 - [MaterialDesignThemes](<https://www.nuget.org/packages/MaterialDesignThemes>) – 2.5.1;
 
 ### Localization
 
-WIP
+Localizable strings are located in `Properties/String.resx` file. You can add your translation (e.g. added `Strings.Ru.resx` file) and create pull request.
+
+Currently, application is available on **English** and **Russian** languages.
 
 ## GTiff2Tiles.Tests
 
@@ -155,7 +164,9 @@ WIP
 - [NetVips](https://www.nuget.org/packages/NetVips/) – 1.1.0-rc2;
 - [NetVips.Native.win-x64](https://www.nuget.org/packages/NetVips.Native.win-x64/) – 8.8.0-rc3;
 - [System.Threading.Tasks.Extensions](https://www.nuget.org/packages/System.Threading.Tasks.Extensions/) – 4.5.2;
-- [System.Runtime.CompilerServices.Unsafe](https://www.nuget.org/packages/System.Runtime.CompilerServices.Unsafe/) – 4.5.2;
+- [System.Runtime.CompilerServices.Unsafe](https://www.nuget.org/packages/System.Runtime.CompilerServices.Unsafe/) – 4.5.2 (required by **System.Threading.Tasks.Extensions** and **System.Memory**);
+- [System.Memory](https://www.nuget.org/packages/System.Memory/) – 4.5.3 (required by **NetVips**);
+- [System.Buffers](https://www.nuget.org/packages/System.Buffers/) – 4.5.0 (required by **System.Memory**);
 - [NUnit](https://www.nuget.org/packages/NUnit/3.12.0) – 3.12.0;
 
 ## TODO
