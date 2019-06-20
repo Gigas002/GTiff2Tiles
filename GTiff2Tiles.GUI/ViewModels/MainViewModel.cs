@@ -6,6 +6,7 @@ using System.Windows;
 using Caliburn.Micro;
 using GTiff2Tiles.GUI.Properties;
 using Ookii.Dialogs.Wpf;
+
 // ReSharper disable MemberCanBePrivate.Global
 // ReSharper disable once ClassNeverInstantiated.Global
 // ReSharper disable UnusedMember.Global
@@ -22,8 +23,6 @@ namespace GTiff2Tiles.GUI.ViewModels
 
         #region UI
 
-        //TODO: consider adding non-ui strings to resources?
-        //TODO: localize strings
         //TODO: create material message box
         //TODO: create material dialogs
         //TODO: update screenshots
@@ -227,7 +226,7 @@ namespace GTiff2Tiles.GUI.ViewModels
         private bool _isEnabled;
 
         /// <summary>
-        /// Sets control's state.
+        /// Sets grid's state.
         /// </summary>
         public bool IsEnabled
         {
@@ -252,8 +251,8 @@ namespace GTiff2Tiles.GUI.ViewModels
             OutputDirectoryPath = string.Empty;
             TempDirectoryPath = string.Empty;
             MinZ = 0;
-            MaxZ = 1;
-            ThreadsCount = 1;
+            MaxZ = 17;
+            ThreadsCount = 5;
             ProgressBarValue = 0.0;
             IsEnabled = true;
             Algorithms.Add("crop");
@@ -332,6 +331,7 @@ namespace GTiff2Tiles.GUI.ViewModels
                     Core.Image.Gdal.Warp(inputFileInfo, tempFileInfo, Core.Enums.Image.Gdal.RepairTifOptions);
                     inputFileInfo = tempFileInfo;
                 }
+
                 //Create image object.
                 Core.Image.Image inputImage = new Core.Image.Image(inputFileInfo);
 
