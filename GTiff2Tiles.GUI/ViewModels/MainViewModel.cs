@@ -5,8 +5,8 @@ using System.IO;
 using System.Threading.Tasks;
 using Caliburn.Micro;
 using GTiff2Tiles.GUI.Properties;
+using MaterialDesignExtensions.Controls;
 using MaterialDesignThemes.Wpf;
-using Ookii.Dialogs.Wpf;
 
 // ReSharper disable MemberCanBePrivate.Global
 // ReSharper disable once ClassNeverInstantiated.Global
@@ -23,9 +23,6 @@ namespace GTiff2Tiles.GUI.ViewModels
         #region Properties
 
         #region UI
-
-        //TODO: create material dialogs
-        //TODO: update screenshots
 
         /// <summary>
         /// Hint for InputFile TextBox.
@@ -273,32 +270,52 @@ namespace GTiff2Tiles.GUI.ViewModels
         /// <summary>
         /// Input directory button
         /// </summary>
-        public void InputFileButton()
+        public async ValueTask InputFileButton()
         {
-            VistaOpenFileDialog openFileDialog = new VistaOpenFileDialog();
-            InputFilePath = openFileDialog.ShowDialog() != true ? InputFilePath : openFileDialog.FileName;
+            try
+            {
+                OpenFileDialogResult dialogResult = 
+                    await OpenFileDialog.ShowDialogAsync(Enums.MainViewModel.DialogHostId, new OpenFileDialogArguments());
+                InputFilePath = dialogResult.Canceled ? InputFilePath : dialogResult.FileInfo.FullName;
+            }
+            catch (Exception exception)
+            {
+                await Helpers.ErrorHelper.ShowException(exception);
+            }
         }
 
         /// <summary>
         /// Output directory button.
         /// </summary>
-        public void OutputDirectoryButton()
+        public async ValueTask OutputDirectoryButton()
         {
-            VistaFolderBrowserDialog folderBrowserDialog = new VistaFolderBrowserDialog();
-            OutputDirectoryPath = folderBrowserDialog.ShowDialog() != true
-                                      ? OutputDirectoryPath
-                                      : folderBrowserDialog.SelectedPath;
+            try
+            {
+                OpenDirectoryDialogResult dialogResult =
+                    await OpenDirectoryDialog.ShowDialogAsync(Enums.MainViewModel.DialogHostId, new OpenDirectoryDialogArguments());
+                OutputDirectoryPath = dialogResult.Canceled ? OutputDirectoryPath : dialogResult.Directory;
+            }
+            catch (Exception exception)
+            {
+                await Helpers.ErrorHelper.ShowException(exception);
+            }
         }
 
         /// <summary>
         /// Temp directory button.
         /// </summary>
-        public void TempDirectoryButton()
+        public async ValueTask TempDirectoryButton()
         {
-            VistaFolderBrowserDialog folderBrowserDialog = new VistaFolderBrowserDialog();
-            TempDirectoryPath = folderBrowserDialog.ShowDialog() != true
-                                    ? TempDirectoryPath
-                                    : folderBrowserDialog.SelectedPath;
+            try
+            {
+                OpenDirectoryDialogResult dialogResult =
+                    await OpenDirectoryDialog.ShowDialogAsync(Enums.MainViewModel.DialogHostId, new OpenDirectoryDialogArguments());
+                TempDirectoryPath = dialogResult.Canceled ? TempDirectoryPath : dialogResult.Directory;
+            }
+            catch (Exception exception)
+            {
+                await Helpers.ErrorHelper.ShowException(exception);
+            }
         }
 
         /// <summary>
