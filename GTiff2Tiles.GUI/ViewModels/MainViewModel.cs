@@ -274,8 +274,8 @@ namespace GTiff2Tiles.GUI.ViewModels
         {
             try
             {
-                OpenFileDialogResult dialogResult = 
-                    await OpenFileDialog.ShowDialogAsync(Enums.MainViewModel.DialogHostId, new OpenFileDialogArguments());
+                OpenFileDialogResult dialogResult =  await OpenFileDialog.ShowDialogAsync(Enums.MainViewModel.DialogHostId,
+                                                                                          new OpenFileDialogArguments { CreateNewDirectoryEnabled = true });
                 InputFilePath = dialogResult.Canceled ? InputFilePath : dialogResult.FileInfo.FullName;
             }
             catch (Exception exception)
@@ -292,7 +292,9 @@ namespace GTiff2Tiles.GUI.ViewModels
             try
             {
                 OpenDirectoryDialogResult dialogResult =
-                    await OpenDirectoryDialog.ShowDialogAsync(Enums.MainViewModel.DialogHostId, new OpenDirectoryDialogArguments());
+                    await OpenDirectoryDialog.ShowDialogAsync(Enums.MainViewModel.DialogHostId,
+                                                              new OpenDirectoryDialogArguments
+                                                                  {CreateNewDirectoryEnabled = true});
                 OutputDirectoryPath = dialogResult.Canceled ? OutputDirectoryPath : dialogResult.Directory;
             }
             catch (Exception exception)
@@ -309,7 +311,9 @@ namespace GTiff2Tiles.GUI.ViewModels
             try
             {
                 OpenDirectoryDialogResult dialogResult =
-                    await OpenDirectoryDialog.ShowDialogAsync(Enums.MainViewModel.DialogHostId, new OpenDirectoryDialogArguments());
+                    await OpenDirectoryDialog.ShowDialogAsync(Enums.MainViewModel.DialogHostId,
+                                                              new OpenDirectoryDialogArguments
+                                                                  {CreateNewDirectoryEnabled = true});
                 TempDirectoryPath = dialogResult.Canceled ? TempDirectoryPath : dialogResult.Directory;
             }
             catch (Exception exception)
@@ -383,9 +387,12 @@ namespace GTiff2Tiles.GUI.ViewModels
             IsEnabled = true;
 
             stopwatch.Stop();
-            await DialogHost.Show(new MessageBoxDialogViewModel($"Done by: days:{stopwatch.Elapsed.Days} hours:{stopwatch.Elapsed.Hours} " +
-                                                                $"minutes:{stopwatch.Elapsed.Minutes} seconds:{stopwatch.Elapsed.Seconds} " +
-                                                                $"ms:{stopwatch.Elapsed.Milliseconds}"));
+            await DialogHost.Show(new MessageBoxDialogViewModel($"{Strings.Done}! {Strings.TimePassed}:{Environment.NewLine}" +
+                                                                $"{Strings.Days}:{stopwatch.Elapsed.Days} " +
+                                                                $"{Strings.Hours}:{stopwatch.Elapsed.Hours} " +
+                                                                $"{Strings.Minutes}:{stopwatch.Elapsed.Minutes} " +
+                                                                $"{Strings.Seconds}:{stopwatch.Elapsed.Seconds} " +
+                                                                $"{Strings.Milliseconds}:{stopwatch.Elapsed.Milliseconds}"));
         }
 
         #endregion

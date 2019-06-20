@@ -97,6 +97,33 @@ namespace GTiff2Tiles.GUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Days.
+        /// </summary>
+        internal static string Days {
+            get {
+                return ResourceManager.GetString("Days", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Done.
+        /// </summary>
+        internal static string Done {
+            get {
+                return ResourceManager.GetString("Done", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hours.
+        /// </summary>
+        internal static string Hours {
+            get {
+                return ResourceManager.GetString("Hours", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Input file&apos;s path.
         /// </summary>
         internal static string InputFileHint {
@@ -111,6 +138,24 @@ namespace GTiff2Tiles.GUI.Properties {
         internal static string MaxZHint {
             get {
                 return ResourceManager.GetString("MaxZHint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Milliseconds.
+        /// </summary>
+        internal static string Milliseconds {
+            get {
+                return ResourceManager.GetString("Milliseconds", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Minutes.
+        /// </summary>
+        internal static string Minutes {
+            get {
+                return ResourceManager.GetString("Minutes", resourceCulture);
             }
         }
         
@@ -142,6 +187,15 @@ namespace GTiff2Tiles.GUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Seconds.
+        /// </summary>
+        internal static string Seconds {
+            get {
+                return ResourceManager.GetString("Seconds", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Start.
         /// </summary>
         internal static string StartButtonContent {
@@ -165,6 +219,15 @@ namespace GTiff2Tiles.GUI.Properties {
         internal static string ThreadsCountHint {
             get {
                 return ResourceManager.GetString("ThreadsCountHint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Time passed.
+        /// </summary>
+        internal static string TimePassed {
+            get {
+                return ResourceManager.GetString("TimePassed", resourceCulture);
             }
         }
     }
