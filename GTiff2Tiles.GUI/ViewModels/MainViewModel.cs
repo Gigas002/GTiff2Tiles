@@ -270,6 +270,7 @@ namespace GTiff2Tiles.GUI.ViewModels
         /// <summary>
         /// Input directory button
         /// </summary>
+        /// <returns></returns>
         public async ValueTask InputFileButton()
         {
             try
@@ -287,6 +288,7 @@ namespace GTiff2Tiles.GUI.ViewModels
         /// <summary>
         /// Output directory button.
         /// </summary>
+        /// <returns></returns>
         public async ValueTask OutputDirectoryButton()
         {
             try
@@ -306,6 +308,7 @@ namespace GTiff2Tiles.GUI.ViewModels
         /// <summary>
         /// Temp directory button.
         /// </summary>
+        /// <returns></returns>
         public async ValueTask TempDirectoryButton()
         {
             try
@@ -325,6 +328,7 @@ namespace GTiff2Tiles.GUI.ViewModels
         /// <summary>
         /// Start button.
         /// </summary>
+        /// <returns></returns>
         public async ValueTask StartButton()
         {
             Stopwatch stopwatch = Stopwatch.StartNew();

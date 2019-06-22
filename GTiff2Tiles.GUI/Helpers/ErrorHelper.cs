@@ -5,6 +5,9 @@ using MaterialDesignThemes.Wpf;
 
 namespace GTiff2Tiles.GUI.Helpers
 {
+    /// <summary>
+    /// That class helps to print exceptions and custom errors.
+    /// </summary>
     public static class ErrorHelper
     {
         /// <summary>

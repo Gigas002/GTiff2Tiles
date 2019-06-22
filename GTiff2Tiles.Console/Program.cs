@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
 using CommandLine;
+using GTiff2Tiles.Console.Properties;
 
 namespace GTiff2Tiles.Console
 {
@@ -71,7 +72,7 @@ namespace GTiff2Tiles.Console
 
             if (IsParsingErrors)
             {
-                Helpers.ErrorHelper.PrintError("Unable to parse console options.");
+                Helpers.ErrorHelper.PrintError(Strings.ParsingError);
                 return;
             }
 
@@ -109,7 +110,7 @@ namespace GTiff2Tiles.Console
                         await inputImage.GenerateTilesByCropping(OutputDirectoryInfo, MinZ, MaxZ, consoleProgress, ThreadsCount);
                         break;
                     default:
-                        Helpers.ErrorHelper.PrintError("This algorithm is not supported.");
+                        Helpers.ErrorHelper.PrintError(Strings.AlgorithmNotSupported);
                         return;
                 }
             }
@@ -120,12 +121,11 @@ namespace GTiff2Tiles.Console
             }
 
             stopwatch.Stop();
-            System.Console.WriteLine("Done!");
-            System.Console
-                  .WriteLine($"Days:{stopwatch.Elapsed.Days} hours:{stopwatch.Elapsed.Hours} minutes:{stopwatch.Elapsed.Minutes} "
-                           + $"seconds:{stopwatch.Elapsed.Seconds} ms:{stopwatch.Elapsed.Milliseconds}");
+            System.Console.WriteLine(Strings.Done, Environment.NewLine, stopwatch.Elapsed.Days,
+                                     stopwatch.Elapsed.Hours, stopwatch.Elapsed.Minutes,
+                                     stopwatch.Elapsed.Seconds, stopwatch.Elapsed.Milliseconds);
             #if DEBUG
-            System.Console.WriteLine("Press any key to exit.");
+            System.Console.WriteLine(Strings.PressAnyKey);
             System.Console.ReadKey();
             #endif
         }
@@ -141,25 +141,25 @@ namespace GTiff2Tiles.Console
             //Check if string options are empty strings.
             if (string.IsNullOrWhiteSpace(options.InputFilePath))
             {
-                Helpers.ErrorHelper.PrintError("-i option is empty.");
+                Helpers.ErrorHelper.PrintError(Strings.OptionIsEmpty, "-i/--input");
                 IsParsingErrors = true;
                 return;
             }
             if (string.IsNullOrWhiteSpace(options.OutputDirectoryPath))
             {
-                Helpers.ErrorHelper.PrintError("-o option is empty.");
+                Helpers.ErrorHelper.PrintError(Strings.OptionIsEmpty, "-o/--output");
                 IsParsingErrors = true;
                 return;
             }
             if (string.IsNullOrWhiteSpace(options.TempDirectoryPath))
             {
-                Helpers.ErrorHelper.PrintError("-t option is empty.");
+                Helpers.ErrorHelper.PrintError(Strings.OptionIsEmpty, "-t/--temp");
                 IsParsingErrors = true;
                 return;
             }
             if (string.IsNullOrWhiteSpace(options.Algorithm))
             {
-                Helpers.ErrorHelper.PrintError("-a option is empty.");
+                Helpers.ErrorHelper.PrintError(Strings.OptionIsEmpty, "-a/--algorithm");
                 IsParsingErrors = true;
                 return;
             }
@@ -167,19 +167,19 @@ namespace GTiff2Tiles.Console
             //Check zooms.
             if (options.MinZ < 0)
             {
-                Helpers.ErrorHelper.PrintError("--minz is lesser, than 0.");
+                Helpers.ErrorHelper.PrintError(Strings.LesserThan, "--minz", 0);
                 IsParsingErrors = true;
                 return;
             }
             if (options.MaxZ < 0)
             {
-                Helpers.ErrorHelper.PrintError("--maxz is lesser, than 0.");
+                Helpers.ErrorHelper.PrintError(Strings.LesserThan, "--maxz", 0);
                 IsParsingErrors = true;
                 return;
             }
             if (options.MinZ > options.MaxZ)
             {
-                Helpers.ErrorHelper.PrintError("--minz is bigger, than --maxz.");
+                Helpers.ErrorHelper.PrintError(Strings.BiggerThan, "--minz", "--maxz");
                 IsParsingErrors = true;
                 return;
             }
@@ -187,11 +187,12 @@ namespace GTiff2Tiles.Console
             //Threads check.
             if (options.ThreadsCount <= 0)
             {
-                Helpers.ErrorHelper.PrintError("--threads is lesser, than 0.");
+                Helpers.ErrorHelper.PrintError(Strings.LesserThan, "--threads", 0);
                 IsParsingErrors = true;
                 return;
             }
 
+            //Set properties values.
             InputFileInfo = new FileInfo(options.InputFilePath);
             OutputDirectoryInfo = new DirectoryInfo(options.OutputDirectoryPath);
             TempDirectoryInfo = new DirectoryInfo(options.TempDirectoryPath);

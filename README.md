@@ -9,24 +9,25 @@ Solution is build in **VS2019 (16.1.3)**, **.NET Framework 4.7.2**, targeting **
 ## Table of contents
 
 - [GTiff2Tiles](#gtiff2tiles)
-  * [Table of contents](#table-of-contents)
-  * [Current version](#current-version)
-  * [Examples](#examples)
-  * [GTiff2Tiles.Core](#gtiff2tilescore)
-    + [Dependencies](#dependencies)
-  * [GTiff2Tiles.Console](#gtiff2tilesconsole)
-    + [Requirements](#requirements)
-    + [Usage](#usage)
-    + [Detailed options description](#detailed-options-description)
-    + [Dependencies](#dependencies-1)
-  * [GTiff2Tiles.GUI](#gtiff2tilesgui)
-    + [Requirements](#requirements-1)
-    + [Dependencies](#dependencies-2)
-    + [Localization](#localization)
-  * [GTiff2Tiles.Tests](#gtiff2tilestests)
-    + [Dependencies](#dependencies-3)
-  * [TODO](#todo)
-  * [Contributing](#contributing)
+  - [Table of contents](#table-of-contents)
+  - [Current version](#current-version)
+  - [Examples](#examples)
+  - [GTiff2Tiles.Core](#gtiff2tilescore)
+    - [Dependencies](#dependencies)
+  - [GTiff2Tiles.Console](#gtiff2tilesconsole)
+    - [Requirements](#requirements)
+    - [Usage](#usage)
+    - [Detailed options description](#detailed-options-description)
+    - [Dependencies](#dependencies-1)
+    - [Localization](#localization)
+  - [GTiff2Tiles.GUI](#gtiff2tilesgui)
+    - [Requirements](#requirements-1)
+    - [Dependencies](#dependencies-2)
+    - [Localization](#localization-1)
+  - [GTiff2Tiles.Tests](#gtiff2tilestests)
+    - [Dependencies](#dependencies-3)
+  - [TODO](#todo)
+  - [Contributing](#contributing)
 
 Table of contents generated with [markdown-toc](http://ecotrust-canada.github.io/markdown-toc/ ).
 
@@ -42,9 +43,9 @@ Previous versions can be found on [releases](https://github.com/Gigas002/GTiff2T
 
 In [Examples](https://github.com/Gigas002/GTiff2Tiles/tree/master/Examples/Input) directory you can find **GeoTIFFs** for some tests.
 
-## GTiff2Tiles.Core 
+## GTiff2Tiles.Core
 
-**GTiff2Tiles.Core** is a core library. [Here’s](https://github.com/Gigas002/GTiff2Tiles/wiki) the API documentation. 
+**GTiff2Tiles.Core** is a core library. [Here’s](https://github.com/Gigas002/GTiff2Tiles/wiki) the API documentation.
 
 Library uses 2 different algorithms to create tiles:
 
@@ -57,8 +58,8 @@ Also I should mention, that if your input **GeoTIFF** is not **EPSG:4326**, it w
 
 - [GDAL](https://www.nuget.org/packages/GDAL/) – 2.4.1;
 - [GDAL.Native](https://www.nuget.org/packages/GDAL.Native/) – 2.4.1;
-- [NetVips](https://www.nuget.org/packages/NetVips/) – 1.1.0-rc2;
-- [NetVips.Native.win-x64](https://www.nuget.org/packages/NetVips.Native.win-x64/) – 8.8.0-rc3;
+- [NetVips](https://www.nuget.org/packages/NetVips/) – 1.1.0-rc3;
+- [NetVips.Native.win-x64](https://www.nuget.org/packages/NetVips.Native.win-x64/) – 8.8.0;
 - [System.Threading.Tasks.Extensions](https://www.nuget.org/packages/System.Threading.Tasks.Extensions/) – 4.5.2;
 - [System.Runtime.CompilerServices.Unsafe](https://www.nuget.org/packages/System.Runtime.CompilerServices.Unsafe/) – 4.5.2 (required by **System.Threading.Tasks.Extensions** and **System.Memory**);
 - [System.Memory](https://www.nuget.org/packages/System.Memory/) – 4.5.3 (required by **NetVips**);
@@ -109,19 +110,25 @@ If you’re using Windows 7 SP1, you can experience weird error with **GDAL** pa
 
 - [GDAL](https://www.nuget.org/packages/GDAL/) – 2.4.1;
 - [GDAL.Native](https://www.nuget.org/packages/GDAL.Native/) – 2.4.1;
-- [NetVips](https://www.nuget.org/packages/NetVips/) – 1.1.0-rc2;
-- [NetVips.Native.win-x64](https://www.nuget.org/packages/NetVips.Native.win-x64/) – 8.8.0-rc3;
+- [NetVips](https://www.nuget.org/packages/NetVips/) – 1.1.0-rc3;
+- [NetVips.Native.win-x64](https://www.nuget.org/packages/NetVips.Native.win-x64/) – 8.8.0;
 - [System.Threading.Tasks.Extensions](https://www.nuget.org/packages/System.Threading.Tasks.Extensions/) – 4.5.2;
 - [System.Runtime.CompilerServices.Unsafe](https://www.nuget.org/packages/System.Runtime.CompilerServices.Unsafe/) – 4.5.2 (required by **System.Threading.Tasks.Extensions** and **System.Memory**);
 - [System.Memory](https://www.nuget.org/packages/System.Memory/) – 4.5.3 (required by **NetVips**);
 - [System.Buffers](https://www.nuget.org/packages/System.Buffers/) – 4.5.0 (required by **System.Memory**);
 - [CommandLineParser](https://www.nuget.org/packages/CommandLineParser/) – 2.5.0;
 
+### Localization
+
+Localizable strings are located in `Properties/String.resx` file. You can add your translation (e.g. added `Strings.Ru.resx` file) and create pull request.
+
+Currently, application is available on **English** and **Russian** languages.
+
 ## GTiff2Tiles.GUI
 
 **GTiff2Tiles.GUI** is a very simple GUI, that has the same methods and parameters, as **GTiff2Tiles.Console**:
 
-![](GTiff2Tiles.GUI/Screenshots/MainPage.png)
+![Main page](GTiff2Tiles.GUI/Screenshots/MainPage.png)
 
 ### Requirements
 
@@ -134,8 +141,8 @@ If you’re using Windows 7 SP1, you can experience weird error with **GDAL** pa
 
 - [GDAL](https://www.nuget.org/packages/GDAL/) – 2.4.1;
 - [GDAL.Native](https://www.nuget.org/packages/GDAL.Native/) – 2.4.1;
-- [NetVips](https://www.nuget.org/packages/NetVips/) – 1.1.0-rc2;
-- [NetVips.Native.win-x64](https://www.nuget.org/packages/NetVips.Native.win-x64/) – 8.8.0-rc3;
+- [NetVips](https://www.nuget.org/packages/NetVips/) – 1.1.0-rc3;
+- [NetVips.Native.win-x64](https://www.nuget.org/packages/NetVips.Native.win-x64/) – 8.8.0;
 - [System.Threading.Tasks.Extensions](https://www.nuget.org/packages/System.Threading.Tasks.Extensions/) – 4.5.2;
 - [System.Runtime.CompilerServices.Unsafe](https://www.nuget.org/packages/System.Runtime.CompilerServices.Unsafe/) – 4.5.2 (required by **System.Threading.Tasks.Extensions** and **System.Memory**);
 - [System.Memory](https://www.nuget.org/packages/System.Memory/) – 4.5.3 (required by **NetVips**);
@@ -161,13 +168,14 @@ Currently, application is available on **English** and **Russian** languages.
 
 - [GDAL](https://www.nuget.org/packages/GDAL/) – 2.4.1;
 - [GDAL.Native](https://www.nuget.org/packages/GDAL.Native/) – 2.4.1;
-- [NetVips](https://www.nuget.org/packages/NetVips/) – 1.1.0-rc2;
-- [NetVips.Native.win-x64](https://www.nuget.org/packages/NetVips.Native.win-x64/) – 8.8.0-rc3;
+- [NetVips](https://www.nuget.org/packages/NetVips/) – 1.1.0-rc3;
+- [NetVips.Native.win-x64](https://www.nuget.org/packages/NetVips.Native.win-x64/) – 8.8.0;
 - [System.Threading.Tasks.Extensions](https://www.nuget.org/packages/System.Threading.Tasks.Extensions/) – 4.5.2;
 - [System.Runtime.CompilerServices.Unsafe](https://www.nuget.org/packages/System.Runtime.CompilerServices.Unsafe/) – 4.5.2 (required by **System.Threading.Tasks.Extensions** and **System.Memory**);
 - [System.Memory](https://www.nuget.org/packages/System.Memory/) – 4.5.3 (required by **NetVips**);
 - [System.Buffers](https://www.nuget.org/packages/System.Buffers/) – 4.5.0 (required by **System.Memory**);
 - [NUnit](https://www.nuget.org/packages/NUnit/3.12.0) – 3.12.0;
+- [NUnit3TestAdapter](https://www.nuget.org/packages/NUnit3TestAdapter/) – 3.13.0;
 
 ## TODO
 
