@@ -120,7 +120,7 @@ If you’re using Windows 7 SP1, you can experience weird error with **GDAL** pa
 
 ### Localization
 
-Localizable strings are located in `Properties/String.resx` file. You can add your translation (e.g. added `Strings.Ru.resx` file) and create pull request.
+Localizable strings are located in `Resources/String.resx` file. You can add your translation (e.g. added `Strings.Ru.resx` file) and create pull request.
 
 Currently, application is available on **English** and **Russian** languages.
 
@@ -156,7 +156,7 @@ If you’re using Windows 7 SP1, you can experience weird error with **GDAL** pa
 
 ### Localization
 
-Localizable strings are located in `Properties/String.resx` file. You can add your translation (e.g. added `Strings.Ru.resx` file) and create pull request.
+Localizable strings are located in `Resources/String.resx` file. You can add your translation (e.g. added `Strings.Ru.resx` file) and create pull request.
 
 Currently, application is available on **English** and **Russian** languages.
 

@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
 using Caliburn.Micro;
-using GTiff2Tiles.GUI.Properties;
+using GTiff2Tiles.GUI.Resources;
 using MaterialDesignExtensions.Controls;
 using MaterialDesignThemes.Wpf;
 
