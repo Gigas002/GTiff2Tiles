@@ -117,65 +117,64 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AcceptButtonContent" xml:space="preserve">
-    <value>Принять</value>
+  <data name="DirectoryIsntEmpty" xml:space="preserve">
+    <value>{0} directory isn't empty. Please, select another directory. Path:{1}. Method:{2}</value>
   </data>
-  <data name="AlgorithmsHint" xml:space="preserve">
-    <value>Выберите алгоритм</value>
+  <data name="DoesntSupportPlatform" xml:space="preserve">
+    <value>{0} doesn't support current platform. Method:{1}</value>
   </data>
-  <data name="CancelButtonContent" xml:space="preserve">
-    <value>Отмена</value>
+  <data name="ExtensionIsnt" xml:space="preserve">
+    <value>{0} extension isn't {1}. Path:{2}. Method:{3}</value>
   </data>
-  <data name="CopyToClipboardToolTip" xml:space="preserve">
-    <value>Скопировать в буфер</value>
-    <comment>В Message box'е</comment>
+  <data name="IsntExist" xml:space="preserve">
+    <value>{0} isn't exist. Path:{1}. Method:{2}</value>
   </data>
-  <data name="InputFileHint" xml:space="preserve">
-    <value>Путь к исходному файлу</value>
-  </data>
-  <data name="MaxZHint" xml:space="preserve">
-    <value>Выберите максимальный уровень</value>
-  </data>
-  <data name="MinZHint" xml:space="preserve">
-    <value>Выберите минимальный уровень</value>
-  </data>
-  <data name="OutputDirectoryHint" xml:space="preserve">
-    <value>Путь к директории с готовыми данными</value>
-  </data>
-  <data name="ProgressTextBlock" xml:space="preserve">
-    <value>Прогресс:</value>
-  </data>
-  <data name="StartButtonContent" xml:space="preserve">
-    <value>Старт</value>
-  </data>
-  <data name="TempDirectoryHint" xml:space="preserve">
-    <value>Путь к временной директории</value>
-  </data>
-  <data name="ThreadsCountHint" xml:space="preserve">
-    <value>Выберите количество потоков</value>
-  </data>
-  <data name="Done" xml:space="preserve">
-    <value>Готово! Прошло времени:{0}Дней:{1} часов:{2} минут:{3} секунд:{4} миллисекунд:{5}</value>
-    <comment>Выводится, когда задача завершается</comment>
-  </data>
-  <data name="AlgorithmNotSupported" xml:space="preserve">
-    <value>Выбранный алгоритм не поддерживается</value>
-    <comment>Ошибка</comment>
+  <data name="IsNull" xml:space="preserve">
+    <value>{0} is null. Method:{1}</value>
   </data>
   <data name="LesserOrEqual" xml:space="preserve">
-    <value>{0} меньше или равно {1}</value>
-    <comment>Ошибка</comment>
+    <value>{0} is lesser or equal {1}. Method:{2}</value>
   </data>
   <data name="LesserThan" xml:space="preserve">
-    <value>{0} меньше, чем {1}</value>
-    <comment>Ошибка</comment>
+    <value>{0} is lesser, than {1}. Method:{2}</value>
   </data>
-  <data name="PathIsEmpty" xml:space="preserve">
-    <value>Строка пути {0} пустая</value>
-    <comment>Ошибка</comment>
+  <data name="StringIsEmpty" xml:space="preserve">
+    <value>{0} string is empty. Method:{1}</value>
   </data>
-  <data name="SelectAlgorithm" xml:space="preserve">
-    <value>Выберите алгоритм</value>
-    <comment>Ошибка</comment>
+  <data name="UnableToAddToDictionary" xml:space="preserve">
+    <value>Unable to add value to {0} dictionary. Method:{1}</value>
+  </data>
+  <data name="UnableToCalculateCoordinates" xml:space="preserve">
+    <value>Unable to calculate tile's coordinate borders. Method:{0}</value>
+  </data>
+  <data name="UnableToComplete" xml:space="preserve">
+    <value>Unable to complete {0} method</value>
+  </data>
+  <data name="UnableToConfigure" xml:space="preserve">
+    <value>Unable to configure {0}. Method:{1}</value>
+  </data>
+  <data name="UnableToConvertCoordinatesToTiles" xml:space="preserve">
+    <value>Unable to convert coordinates into tile numbers. Method:{0}</value>
+  </data>
+  <data name="UnableToCreate" xml:space="preserve">
+    <value>Unable to create {0}. Path:{1}. Method:{2}</value>
+  </data>
+  <data name="UnableToCreateTile" xml:space="preserve">
+    <value>Unable to create tile {0}. {1}:{2}, {3}:{4}. Method:{5}</value>
+  </data>
+  <data name="UnableToGetCoordinates" xml:space="preserve">
+    <value>Unable to get {0} coordinate borders or sizes. Method:{1}</value>
+  </data>
+  <data name="UnableToJoin" xml:space="preserve">
+    <value>Unable to join {0}. {1}:{2}, {3}:{4}. Method:{5}</value>
+  </data>
+  <data name="UnableToOpen" xml:space="preserve">
+    <value>{0} is unable to open {2}. Path:{3}. Method:{4}</value>
+  </data>
+  <data name="UnableToPrintDriver" xml:space="preserve">
+    <value>Unable to print current {0} driver. Method:{1}</value>
+  </data>
+  <data name="UnableToPrintDrivers" xml:space="preserve">
+    <value>Unable to print {0} drivers, because binary files wasn't found. Method:{1}</value>
   </data>
 </root>

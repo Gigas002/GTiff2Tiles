@@ -88,15 +88,6 @@ namespace GTiff2Tiles.GUI.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} is bigger, than {1}.
-        /// </summary>
-        internal static string BiggerThan {
-            get {
-                return ResourceManager.GetString("BiggerThan", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
         internal static string CancelButtonContent {

@@ -31,8 +31,10 @@ using System;
 using System.IO;
 using System.Reflection;
 using System.Runtime.InteropServices;
+using GTiff2Tiles.Core.Localization;
 using OSGeo.GDAL;
 using OSGeo.OGR;
+// ReSharper disable LocalizableElement
 
 namespace GTiff2Tiles.Core.Helpers
 {
@@ -97,7 +99,7 @@ namespace GTiff2Tiles.Core.Helpers
         {
             if (!Usable)
                 throw new
-                    Exception("Unable to print Ogr drivers because binary files wasn't found.");
+                    Exception(string.Format(Strings.UnableToPrintDrivers, "OGR", $"{nameof(GdalHelper)}.{nameof(PrintDriversOgr)}"));
 
             int driverCount = Ogr.GetDriverCount();
             for (int index = 0; index < driverCount; index++)
@@ -111,7 +113,8 @@ namespace GTiff2Tiles.Core.Helpers
                 }
                 catch (Exception exception)
                 {
-                    throw new Exception("Unable to print current Ogr driver.", exception);
+                    throw new Exception(string.Format(Strings.UnableToPrintDriver, "OGR", $"{nameof(GdalHelper)}.{nameof(PrintDriversOgr)}"),
+                                        exception);
                 }
             }
         }
@@ -123,7 +126,7 @@ namespace GTiff2Tiles.Core.Helpers
         {
             if (!Usable)
                 throw new
-                    Exception("Unable to print Gdal drivers because binary files wasn't found.");
+                    Exception(string.Format(Strings.UnableToPrintDrivers, "GDAL", $"{nameof(GdalHelper)}.{nameof(PrintDriversGdal)}"));
 
             int driverCount = Gdal.GetDriverCount();
             for (int index = 0; index < driverCount; index++)
@@ -137,7 +140,8 @@ namespace GTiff2Tiles.Core.Helpers
                 }
                 catch (Exception exception)
                 {
-                    throw new Exception("Unable to print current Gdal driver.", exception);
+                    throw new Exception(string.Format(Strings.UnableToPrintDriver, "GDAL", $"{nameof(GdalHelper)}.{nameof(PrintDriversGdal)}"),
+                                        exception);
                 }
             }
         }
@@ -158,14 +162,14 @@ namespace GTiff2Tiles.Core.Helpers
                     const string notSet = "_Not_set_";
                     string temp = Gdal.GetConfigOption("GDAL_DATA", notSet);
                     Usable = temp != notSet;
-                    throw new Exception("Gdal's binaries doesn't support current platform.");
+                    throw new Exception(string.Format(Strings.DoesntSupportPlatform, "GDAL", $"{nameof(GdalHelper)}.{nameof(Initialize)}"));
                 }
 
                 string executingAssemblyFile = Assembly.GetExecutingAssembly().Location;
                 string executingDirectory = Path.GetDirectoryName(executingAssemblyFile);
 
                 if (string.IsNullOrWhiteSpace(executingDirectory))
-                    throw new Exception("Unable to get executing directory.");
+                    throw new Exception(string.Format(Strings.StringIsEmpty, nameof(executingDirectory), $"{nameof(GdalHelper)}.{nameof(Initialize)}"));
 
                 // modify search place and order
                 SetDefaultDllDirectories(DllSearchFlags);
@@ -174,9 +178,11 @@ namespace GTiff2Tiles.Core.Helpers
                 string gdalPath = Path.Combine(executingDirectory, "gdal");
                 string nativePath = Path.Combine(gdalPath, GetPlatform());
                 if (!Directory.Exists(nativePath))
-                    throw new Exception($"Gdal's binaries weren't found on: {nativePath}.");
+                    throw new Exception(string.Format(Strings.IsntExist, "GDAL", nativePath,
+                                                      $"{nameof(GdalHelper)}.{nameof(Initialize)}"));
                 if (!File.Exists(Path.Combine(nativePath, "gdal_wrap.dll")))
-                    throw new Exception($"gdal_wrap.dll wasn't found on: {nativePath}.");
+                    throw new Exception(string.Format(Strings.IsntExist, "gdal_warp.dll", nativePath,
+                                                      $"{nameof(GdalHelper)}.{nameof(Initialize)}"));
 
                 // Add directories
                 AddDllDirectory(nativePath);
@@ -205,7 +211,7 @@ namespace GTiff2Tiles.Core.Helpers
             catch (Exception exception)
             {
                 Usable = false;
-                throw new Exception("Unable to initialize Gdal.", exception);
+                throw new Exception(string.Format(Strings.UnableToConfigure, "GDAL", $"{nameof(GdalHelper)}.{nameof(Initialize)}"), exception);
             }
 
             Usable = true;
@@ -218,7 +224,7 @@ namespace GTiff2Tiles.Core.Helpers
         internal static void ConfigureOgr()
         {
             if (!Usable)
-                throw new Exception("Can't find Gdal binaries, unable to configure Ogr.");
+                throw new Exception(string.Format(Strings.UnableToConfigure, "OGR", $"{nameof(GdalHelper)}.{nameof(ConfigureOgr)}"));
             if (IsOgrConfigured) return;
 
             // Register drivers
@@ -228,7 +234,7 @@ namespace GTiff2Tiles.Core.Helpers
             }
             catch (Exception exception)
             {
-                throw new Exception("Unabel to configure Ogr.", exception);
+                throw new Exception(string.Format(Strings.UnableToConfigure, "OGR", $"{nameof(GdalHelper)}.{nameof(ConfigureOgr)}"), exception);
             }
 
             IsOgrConfigured = true;
@@ -245,7 +251,7 @@ namespace GTiff2Tiles.Core.Helpers
         internal static void ConfigureGdal()
         {
             if (!Usable)
-                throw new Exception("Can't find Gdal binaries, unable to configure Gdal.");
+                throw new Exception(string.Format(Strings.UnableToConfigure, "GDAL", $"{nameof(GdalHelper)}.{nameof(ConfigureGdal)}"));
             if (IsGdalConfigured) return;
 
             // Register drivers
@@ -255,7 +261,7 @@ namespace GTiff2Tiles.Core.Helpers
             }
             catch (Exception exception)
             {
-                throw new Exception("Unable to configure Gdal.", exception);
+                throw new Exception(string.Format(Strings.UnableToConfigure, "GDAL", $"{nameof(GdalHelper)}.{nameof(ConfigureGdal)}"), exception);
             }
 
             IsGdalConfigured = true;

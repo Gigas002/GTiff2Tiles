@@ -70,20 +70,20 @@ namespace GTiff2Tiles.Console.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} is bigger, than {1}..
-        /// </summary>
-        internal static string BiggerThan {
-            get {
-                return ResourceManager.GetString("BiggerThan", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Done! Time passed:{0}Days:{1} hours:{2} minutes:{3} seconds:{4} milliseconds:{5}..
         /// </summary>
         internal static string Done {
             get {
                 return ResourceManager.GetString("Done", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} is lesser or equal {1}.
+        /// </summary>
+        internal static string LesserOrEqual {
+            get {
+                return ResourceManager.GetString("LesserOrEqual", resourceCulture);
             }
         }
         

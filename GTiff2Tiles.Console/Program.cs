@@ -179,7 +179,7 @@ namespace GTiff2Tiles.Console
             }
             if (options.MinZ > options.MaxZ)
             {
-                Helpers.ErrorHelper.PrintError(string.Format(Strings.BiggerThan, "--minz", "--maxz"));
+                Helpers.ErrorHelper.PrintError(string.Format(Strings.LesserThan, "--maxz", "--minz"));
                 IsParsingErrors = true;
                 return;
             }
@@ -187,7 +187,7 @@ namespace GTiff2Tiles.Console
             //Threads check.
             if (options.ThreadsCount <= 0)
             {
-                Helpers.ErrorHelper.PrintError(string.Format(Strings.LesserThan, "--threads", 0));
+                Helpers.ErrorHelper.PrintError(string.Format(Strings.LesserOrEqual, "--threads", 0));
                 IsParsingErrors = true;
                 return;
             }

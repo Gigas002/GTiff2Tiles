@@ -41,8 +41,6 @@
         public static readonly string[] RepairTifOptions =
         {
             "-overwrite", "-t_srs", "EPSG:4326", "-co", "TILED=YES", "-multi", "-srcnodata", "0",
-            //TODO: temporary
-            //"-nosrcalpha", "-dstalpha", "0"
         };
 
         /// <summary>

@@ -2,6 +2,7 @@
 using System.IO;
 using System.Runtime.InteropServices;
 using GTiff2Tiles.Core.Exceptions.Image;
+using GTiff2Tiles.Core.Localization;
 using OSGeo.GDAL;
 using OSGeo.OSR;
 
@@ -29,11 +30,14 @@ namespace GTiff2Tiles.Core.Image
             #region Parameters checking
 
             if (string.IsNullOrWhiteSpace(inputFileInfo.FullName))
-                throw new GdalException($"Input file's path string is empty. Method: {nameof(Warp)}.");
+                throw new GdalException(string.Format(Strings.StringIsEmpty, nameof(inputFileInfo),
+                                                      $"{nameof(Gdal)}.{nameof(Warp)}"));
             if (string.IsNullOrWhiteSpace(outputFileInfo.FullName))
-                throw new GdalException($"Output file's path string is empty. Method: {nameof(Warp)}.");
+                throw new GdalException(string.Format(Strings.StringIsEmpty, nameof(outputFileInfo),
+                                                      $"{nameof(Gdal)}.{nameof(Warp)}"));
             if (!inputFileInfo.Exists)
-                throw new GdalException($"Input file isn't exist. Method: {nameof(Warp)}.");
+                throw new GdalException(string.Format(Strings.IsntExist, nameof(inputFileInfo), inputFileInfo.FullName,
+                                                      $"{nameof(Gdal)}.{nameof(Warp)}"));
 
             try
             {
@@ -43,7 +47,8 @@ namespace GTiff2Tiles.Core.Image
             catch (Exception exception)
             {
                 throw new
-                    GdalException($"Unable to create output directory. Method: {nameof(Warp)}.", exception);
+                    GdalException(string.Format(Strings.UnableToCreate, nameof(outputFileInfo.Directory), outputFileInfo.DirectoryName,
+                                                $"{nameof(Gdal)}.{nameof(Warp)}"), exception);
             }
 
             #endregion
@@ -62,8 +67,7 @@ namespace GTiff2Tiles.Core.Image
                     // ReSharper disable once UnusedVariable
                     using (Dataset resultDataset = OSGeo.GDAL.Gdal.wrapper_GDALWarpDestName(outputFileInfo.FullName, 1,
                                                                                             gdalDatasetShadow,
-                                                                                            new
-                                                                                                GDALWarpAppOptions(options),
+                                                                                            new GDALWarpAppOptions(options),
                                                                                             callback, string.Empty))
                     {
                         gcHandle.Free();
@@ -72,13 +76,14 @@ namespace GTiff2Tiles.Core.Image
             }
             catch (Exception exception)
             {
-                throw new GdalException($"Unable to complete {nameof(Warp)} method.", exception);
+                throw new GdalException(string.Format(Strings.UnableToComplete, $"{nameof(Gdal)}.{nameof(Warp)}"), exception);
             }
 
             //Was file created?
             if (!outputFileInfo.Exists)
                 throw new
-                    GdalException($"{nameof(Warp)} method couldn't create ready file with this path: {outputFileInfo.FullName}.");
+                    GdalException(string.Format(Strings.UnableToCreate, nameof(outputFileInfo), outputFileInfo.FullName,
+                                                $"{nameof(Gdal)}.{nameof(Warp)}"));
         }
 
         /// <summary>
@@ -93,9 +98,11 @@ namespace GTiff2Tiles.Core.Image
             #region Parameters checking
 
             if (string.IsNullOrWhiteSpace(inputFileInfo.FullName))
-                throw new GdalException($"Input file's path string is empty. Method: {nameof(Info)}.");
+                throw new GdalException(string.Format(Strings.StringIsEmpty, nameof(inputFileInfo),
+                                                      $"{nameof(Gdal)}.{nameof(Info)}"));
             if (!inputFileInfo.Exists)
-                throw new GdalException($"Input file isn't exist. Method: {nameof(Info)}.");
+                throw new GdalException(string.Format(Strings.IsntExist, nameof(inputFileInfo), inputFileInfo.FullName,
+                                                      $"{nameof(Gdal)}.{nameof(Info)}"));
 
             #endregion
 
@@ -109,14 +116,15 @@ namespace GTiff2Tiles.Core.Image
                     string gdalInfoString = OSGeo.GDAL.Gdal.GDALInfo(inputDataset, new GDALInfoOptions(options));
 
                     if (string.IsNullOrWhiteSpace(gdalInfoString))
-                        throw new GdalException("GdalInfo returned an empty string.");
+                        throw new GdalException(string.Format(Strings.StringIsEmpty, "GdalInfo",
+                                                              $"{nameof(Gdal)}.{nameof(Info)}"));
 
                     return gdalInfoString;
                 }
             }
             catch (Exception exception)
             {
-                throw new GdalException($"Unable to complete {nameof(Info)} method.", exception);
+                throw new GdalException(string.Format(Strings.UnableToComplete, $"{nameof(Gdal)}.{nameof(Warp)}"), exception);
             }
         }
 
@@ -164,9 +172,11 @@ namespace GTiff2Tiles.Core.Image
             #region Parameters checking
 
             if (string.IsNullOrWhiteSpace(inputFileInfo.FullName))
-                throw new GdalException($"Input file's path string is empty. Method: {nameof(GetGeoTransform)}.");
+                throw new GdalException(string.Format(Strings.StringIsEmpty, nameof(inputFileInfo),
+                                                      $"{nameof(Gdal)}.{nameof(GetGeoTransform)}"));
             if (!inputFileInfo.Exists)
-                throw new GdalException($"Input file isn't exist. Method: {nameof(GetGeoTransform)}.");
+                throw new GdalException(string.Format(Strings.IsntExist, nameof(inputFileInfo), inputFileInfo.FullName,
+                                                      $"{nameof(Gdal)}.{nameof(GetGeoTransform)}"));
 
             #endregion
 
@@ -184,7 +194,7 @@ namespace GTiff2Tiles.Core.Image
             }
             catch (Exception exception)
             {
-                throw new GdalException($"Unable to complete {nameof(GetGeoTransform)} method.", exception);
+                throw new GdalException(string.Format(Strings.UnableToComplete, $"{nameof(Gdal)}.{nameof(GetGeoTransform)}"), exception);
             }
         }
 
@@ -203,9 +213,11 @@ namespace GTiff2Tiles.Core.Image
             #region Parameters checking
 
             if (string.IsNullOrWhiteSpace(inputFileInfo.FullName))
-                throw new GdalException($"Input file's path string is empty. Method: {nameof(GetProj4String)}.");
+                throw new GdalException(string.Format(Strings.StringIsEmpty, nameof(inputFileInfo),
+                                                      $"{nameof(Gdal)}.{nameof(GetProj4String)}"));
             if (!inputFileInfo.Exists)
-                throw new GdalException($"Input file isn't exist. Method: {nameof(GetProj4String)}.");
+                throw new GdalException(string.Format(Strings.IsntExist, nameof(inputFileInfo), inputFileInfo.FullName,
+                                                      $"{nameof(Gdal)}.{nameof(GetProj4String)}"));
 
             #endregion
 
@@ -222,7 +234,8 @@ namespace GTiff2Tiles.Core.Image
                         spatialReference.ExportToProj4(out string proj4String);
 
                         if (string.IsNullOrWhiteSpace(proj4String))
-                            throw new GdalException($"Proj4 string is empty. Method: {nameof(GetProj4String)}.");
+                            throw new GdalException(string.Format(Strings.StringIsEmpty, nameof(proj4String),
+                                                                  $"{nameof(Gdal)}.{nameof(GetProj4String)}"));
 
                         return proj4String;
                     }
@@ -230,7 +243,7 @@ namespace GTiff2Tiles.Core.Image
             }
             catch (Exception exception)
             {
-                throw new GdalException($"Unable to complete {nameof(GetProj4String)} method.", exception);
+                throw new GdalException(string.Format(Strings.UnableToComplete, $"{nameof(Gdal)}.{nameof(GetProj4String)}"), exception);
             }
         }
 
@@ -247,11 +260,16 @@ namespace GTiff2Tiles.Core.Image
             #region Parameters checking
 
             if (string.IsNullOrWhiteSpace(inputFileInfo.FullName))
-                throw new GdalException($"Input file's path string is empty. Method: {nameof(GetImageBorders)}.");
+                throw new GdalException(string.Format(Strings.StringIsEmpty, nameof(inputFileInfo),
+                                                      $"{nameof(Gdal)}.{nameof(GetImageBorders)}"));
             if (!inputFileInfo.Exists)
-                throw new GdalException($"Input file isn't exist. Method: {nameof(GetImageBorders)}.");
-            if (rasterXSize < 0) throw new GdalException($"Raster x size is lesser than 0. Method: {nameof(GetImageBorders)}.");
-            if (rasterYSize < 0) throw new GdalException($"Raster y size is lesser than 0. Method: {nameof(GetImageBorders)}.");
+                throw new GdalException(string.Format(Strings.IsntExist, nameof(inputFileInfo), inputFileInfo.FullName,
+                                                      $"{nameof(Gdal)}.{nameof(GetImageBorders)}"));
+            if (rasterXSize < 0)
+                throw new GdalException(string.Format(Strings.LesserThan, nameof(rasterXSize), 0,
+                                                      $"{nameof(Gdal)}.{nameof(GetImageBorders)}"));
+            if (rasterYSize < 0) throw new GdalException(string.Format(Strings.LesserThan, nameof(rasterYSize), 0,
+                                                                       $"{nameof(Gdal)}.{nameof(GetImageBorders)}"));
 
             #endregion
 
@@ -276,9 +294,11 @@ namespace GTiff2Tiles.Core.Image
             #region Parameters checking.
 
             if (string.IsNullOrWhiteSpace(inputFileInfo.FullName))
-                throw new GdalException($"Input file's path string is empty. Method: {nameof(GetProj4String)}.");
+                throw new GdalException(string.Format(Strings.StringIsEmpty, nameof(inputFileInfo),
+                                                      $"{nameof(Gdal)}.{nameof(GetProj4String)}"));
             if (!inputFileInfo.Exists)
-                throw new GdalException($"Input file isn't exist. Method: {nameof(GetProj4String)}.");
+                throw new GdalException(string.Format(Strings.IsntExist, nameof(inputFileInfo), inputFileInfo.FullName,
+                                                      $"{nameof(Gdal)}.{nameof(GetProj4String)}"));
 
             #endregion
 
@@ -294,7 +314,7 @@ namespace GTiff2Tiles.Core.Image
             }
             catch (Exception exception)
             {
-                throw new GdalException($"Unable to complete {nameof(GetImageSizes)} method.", exception);
+                throw new GdalException(string.Format(Strings.UnableToComplete, $"{nameof(Gdal)}.{nameof(GetProj4String)}"), exception);
             }
         }
 

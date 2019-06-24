@@ -422,7 +422,7 @@ namespace GTiff2Tiles.GUI.ViewModels
                 return await Helpers.ErrorHelper.ShowError(string.Format(Strings.LesserThan, nameof(MaxZ), 0));
 
             if (MaxZ < MinZ)
-                return await Helpers.ErrorHelper.ShowError(string.Format(Strings.BiggerThan, nameof(MinZ), nameof(MaxZ)));
+                return await Helpers.ErrorHelper.ShowError(string.Format(Strings.LesserThan, nameof(MaxZ), nameof(MinZ)));
 
             Algorithm = Algorithm.ToLowerInvariant();
 

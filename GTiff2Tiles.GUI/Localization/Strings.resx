@@ -162,10 +162,6 @@
     <value>Selected algorithm is not supported</value>
     <comment>Error</comment>
   </data>
-  <data name="BiggerThan" xml:space="preserve">
-    <value>{0} is bigger, than {1}</value>
-    <comment>Error</comment>
-  </data>
   <data name="LesserOrEqual" xml:space="preserve">
     <value>{0} is lesser or equal {1}</value>
     <comment>Error</comment>

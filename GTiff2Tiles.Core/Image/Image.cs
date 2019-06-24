@@ -4,6 +4,7 @@ using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using GTiff2Tiles.Core.Exceptions.Image;
+using GTiff2Tiles.Core.Localization;
 using NetVips;
 // ReSharper disable MemberCanBePrivate.Global
 // ReSharper disable AccessToDisposedClosure
@@ -95,8 +96,12 @@ namespace GTiff2Tiles.Core.Image
 
             #region Check parameters
 
-            if (string.IsNullOrWhiteSpace(inputFileInfo.FullName)) throw new ImageException("Input file's path is empty.");
-            if (!inputFileInfo.Exists) throw new ImageException("Input file isn't exist.");
+            if (string.IsNullOrWhiteSpace(inputFileInfo.FullName))
+                throw new ImageException(string.Format(Strings.StringIsEmpty, nameof(inputFileInfo),
+                                                       $"{nameof(Image)}.{nameof(Image)}"));
+            if (!inputFileInfo.Exists)
+                throw new ImageException(string.Format(Strings.IsntExist, nameof(inputFileInfo), inputFileInfo.FullName,
+                                                       $"{nameof(Image)}.{nameof(Image)}"));
 
             #endregion
 
@@ -110,7 +115,9 @@ namespace GTiff2Tiles.Core.Image
             }
             catch (Exception exception)
             {
-                throw new ImageException("Unable to get input image's coordinate borders or  sizes.", exception);
+                throw new
+                    ImageException(string.Format(Strings.UnableToGetCoordinates, nameof(inputFileInfo), $"{nameof(Image)}.{nameof(Image)}"),
+                                   exception);
             }
         }
 
@@ -206,21 +213,27 @@ namespace GTiff2Tiles.Core.Image
         {
             #region Parameters checking
 
-            if (zoom < 0) throw new ImageException("Zoom is lesser than 0.");
-            if (tileX < 0) throw new ImageException("Tile X number is lesser than 0.");
-            if (tileY < 0) throw new ImageException("Tile Y number is lesser than 0.");
+            if (zoom < 0) throw new ImageException(string.Format(Strings.LesserThan, nameof(zoom), 0,
+                                                                 $"{nameof(Image)}.{nameof(WriteTile)}"));
+            if (tileX < 0) throw new ImageException(string.Format(Strings.LesserThan, nameof(tileX), 0,
+                                                                  $"{nameof(Image)}.{nameof(WriteTile)}"));
+            if (tileY < 0) throw new ImageException(string.Format(Strings.LesserThan, nameof(tileY), 0,
+                                                                  $"{nameof(Image)}.{nameof(WriteTile)}"));
 
             #endregion
 
             //Create directories for the tile. The overall structure looks like: outputDirectory/zoom/x/y.png.
+            string tileDirectoryPath = string.Empty;
             try
             {
-                string tileDirectoryPath = Path.Combine(OutputDirectoryInfo.FullName, $"{zoom}", $"{tileX}");
+                tileDirectoryPath = Path.Combine(OutputDirectoryInfo.FullName, $"{zoom}", $"{tileX}");
                 Directory.CreateDirectory(tileDirectoryPath);
             }
             catch (Exception exception)
             {
-                throw new ImageException("Unable to create tile's directory.", exception);
+                throw new
+                    ImageException(string.Format(Strings.UnableToCreate, nameof(tileDirectoryPath), tileDirectoryPath, $"{nameof(Image)}.{nameof(WriteTile)}"),
+                                   exception);
             }
 
             const bool centreConvention = false;
@@ -232,18 +245,8 @@ namespace GTiff2Tiles.Core.Image
             (int readPosX, int readPosY, int readXSize, int readYSize, int writePosX, int writePosY,
              int writeXSize, int writeYSize) = GeoQuery(minX, maxY, maxX, minY);
 
-            string outputFilePath = Path.Combine(OutputDirectoryInfo.FullName, $"{zoom}",
-                                                 $"{tileX}",
+            string outputTilePath = Path.Combine(tileDirectoryPath,
                                                  $"{tileY}{Enums.Extensions.Png}");
-
-            try
-            {
-                Directory.CreateDirectory(Path.Combine(OutputDirectoryInfo.FullName, $"{zoom}", $"{tileX}"));
-            }
-            catch (Exception exception)
-            {
-                throw new ImageException("Inable to create directory for current tile.", exception);
-            }
 
             //Try open input image and crop tile
             NetVips.Image tileImage;
@@ -253,7 +256,8 @@ namespace GTiff2Tiles.Core.Image
             }
             catch (Exception exception)
             {
-                throw new ImageException("Unable to create current tile.", exception);
+                throw new ImageException(string.Format(Strings.UnableToCreate, nameof(outputTilePath), outputTilePath, $"{nameof(Image)}.{nameof(WriteTile)}"),
+                                         exception);
             }
 
             // Scaling calculations
@@ -319,14 +323,16 @@ namespace GTiff2Tiles.Core.Image
                                      .NewFromImage(0, 0, 0, 0);
                 // Insert tile into output image
                 outputImage = outputImage.Insert(tileImage, writePosX, writePosY);
-                outputImage.Pngsave(outputFilePath);
+                outputImage.Pngsave(outputTilePath);
             }
             catch (Exception exception)
             {
-                throw new ImageException("Unable to write tile.", exception);
+                throw new ImageException(string.Format(Strings.UnableToCreate, nameof(outputTilePath), outputTilePath, $"{nameof(Image)}.{nameof(WriteTile)}"),
+                                         exception);
             }
 
-            if (!File.Exists(outputFilePath)) throw new ImageException($"Method {nameof(WriteTile)} was unable to create tile. Path: {outputFilePath}.");
+            if (!File.Exists(outputTilePath))
+                throw new ImageException(string.Format(Strings.UnableToCreate, nameof(outputTilePath), outputTilePath, $"{nameof(Image)}.{nameof(WriteTile)}"));
 
             outputImage.Dispose();
             tileImage.Dispose();
@@ -342,22 +348,27 @@ namespace GTiff2Tiles.Core.Image
         {
             #region Parameters checking
 
-            if (zoom < 0) throw new ImageException("Zoom is lesser than 0.");
-            if (tileX < 0) throw new ImageException("Tile X number is lesser than 0.");
-            if (tileY < 0) throw new ImageException("Tile Y number is lesser than 0.");
+            if (zoom < 0) throw new ImageException(string.Format(Strings.LesserThan, nameof(zoom), 0,
+                                                                 $"{nameof(Image)}.{nameof(WriteTile)}"));
+            if (tileX < 0) throw new ImageException(string.Format(Strings.LesserThan, nameof(tileX), 0,
+                                                                  $"{nameof(Image)}.{nameof(WriteTile)}"));
+            if (tileY < 0) throw new ImageException(string.Format(Strings.LesserThan, nameof(tileY), 0,
+                                                                  $"{nameof(Image)}.{nameof(WriteTile)}"));
 
             #endregion
 
             //Create directories for the tile. The overall structure looks like: outputDirectory/zoom/x/y.png.
-            string tileDirectoryPath = Path.Combine(OutputDirectoryInfo.FullName, $"{zoom}", $"{tileX}");
+            string tileDirectoryPath = string.Empty;
             try
             {
+                tileDirectoryPath = Path.Combine(OutputDirectoryInfo.FullName, $"{zoom}", $"{tileX}");
                 Directory.CreateDirectory(tileDirectoryPath);
             }
             catch (Exception exception)
             {
-                throw new ImageException($"Unable to create tile's directory here: {tileDirectoryPath}.",
-                                    exception);
+                throw new
+                    ImageException(string.Format(Strings.UnableToCreate, nameof(tileDirectoryPath), tileDirectoryPath, $"{nameof(Image)}.{nameof(WriteTile)}"),
+                                   exception);
             }
 
             //Calculate upper tiles's positions.
@@ -394,8 +405,8 @@ namespace GTiff2Tiles.Core.Image
             catch (Exception exception)
             {
                 throw new
-                    Exception($"Unable to create tile1. {nameof(tileX)}:{tileX}, {nameof(tileY)}:{tileY}.",
-                              exception);
+                    ImageException(string.Format(Strings.UnableToCreateTile, 1, nameof(tileX), tileX, nameof(tileY), tileY, $"{nameof(Image)}.{nameof(WriteTile)}"),
+                                   exception);
             }
 
             NetVips.Image upperTileImage2;
@@ -416,8 +427,8 @@ namespace GTiff2Tiles.Core.Image
             catch (Exception exception)
             {
                 throw new
-                    Exception($"Unable to create tile2. {nameof(tileX)}:{tileX}, {nameof(tileY)}:{tileY}.",
-                              exception);
+                    ImageException(string.Format(Strings.UnableToCreateTile, 2, nameof(tileX), tileX, nameof(tileY), tileY, $"{nameof(Image)}.{nameof(WriteTile)}"),
+                                   exception);
             }
 
             NetVips.Image upperTileImage3;
@@ -438,8 +449,8 @@ namespace GTiff2Tiles.Core.Image
             catch (Exception exception)
             {
                 throw new
-                    Exception($"Unable to create tile3. {nameof(tileX)}:{tileX}, {nameof(tileY)}:{tileY}.",
-                              exception);
+                    ImageException(string.Format(Strings.UnableToCreateTile, 3, nameof(tileX), tileX, nameof(tileY), tileY, $"{nameof(Image)}.{nameof(WriteTile)}"),
+                                   exception);
             }
 
             NetVips.Image upperTileImage4;
@@ -460,8 +471,8 @@ namespace GTiff2Tiles.Core.Image
             catch (Exception exception)
             {
                 throw new
-                    Exception($"Unable to create tile4. {nameof(tileX)}:{tileX}, {nameof(tileY)}:{tileY}.",
-                              exception);
+                    ImageException(string.Format(Strings.UnableToCreateTile, 4, nameof(tileX), tileX, nameof(tileY), tileY, $"{nameof(Image)}.{nameof(WriteTile)}"),
+                                   exception);
             }
 
             #endregion
@@ -490,8 +501,8 @@ namespace GTiff2Tiles.Core.Image
                             catch (Exception exception)
                             {
                                 throw new
-                                    Exception($"Unable to join band {i}. {nameof(tileX)}:{tileX}, {nameof(tileY)}:{tileY}.",
-                                              exception);
+                                    ImageException(string.Format(Strings.UnableToJoin, $"band {i}", nameof(tileX), tileX, nameof(tileY), tileY, $"{nameof(Image)}.{nameof(WriteTile)}"),
+                                                   exception);
                             }
                         }
                         break;
@@ -507,8 +518,8 @@ namespace GTiff2Tiles.Core.Image
                             catch (Exception exception)
                             {
                                 throw new
-                                    Exception($"Unable to join band {i}. {nameof(tileX)}:{tileX}, {nameof(tileY)}:{tileY}.",
-                                              exception);
+                                    ImageException(string.Format(Strings.UnableToJoin, $"band {i}", nameof(tileX), tileX, nameof(tileY), tileY, $"{nameof(Image)}.{nameof(WriteTile)}"),
+                                                   exception);
                             }
                         }
                         break;
@@ -528,11 +539,12 @@ namespace GTiff2Tiles.Core.Image
             catch (Exception exception)
             {
                 throw new
-                    Exception($"Unable to join tiles. {nameof(tileX)}:{tileX}, {nameof(tileY)}:{tileY}.",
-                              exception);
+                    ImageException(string.Format(Strings.UnableToJoin, nameof(outputTilePath), nameof(tileX), tileX, nameof(tileY), tileY, $"{nameof(Image)}.{nameof(WriteTile)}"),
+                                   exception);
             }
 
-            if (!File.Exists(outputTilePath)) throw new ImageException($"Method {nameof(WriteTile)} was unable to create tile. Path: {outputTilePath}.");
+            if (!File.Exists(outputTilePath))
+                throw new ImageException(string.Format(Strings.UnableToCreate, nameof(outputTilePath), outputTilePath, $"{nameof(Image)}.{nameof(WriteTile)}"));
 
             //Dispose images.
             upperTileImage1.Dispose();
@@ -553,8 +565,10 @@ namespace GTiff2Tiles.Core.Image
         {
             #region Parameters checking
 
-            if (zoom < 0) throw new ImageException("Zoom is lesser than 0.");
-            if (threadsCount <= 0) throw new ImageException("Threads couns is ledder or equal 0.");
+            if (zoom < 0) throw new ImageException(string.Format(Strings.LesserThan, nameof(zoom), 0,
+                                                                 $"{nameof(Image)}.{nameof(WriteZoom)}"));
+            if (threadsCount <= 0) throw new ImageException(string.Format(Strings.LesserOrEqual, nameof(threadsCount), 0,
+                                                                          $"{nameof(Image)}.{nameof(WriteZoom)}"));
 
             #endregion
 
@@ -566,7 +580,9 @@ namespace GTiff2Tiles.Core.Image
             }
             catch (Exception exception)
             {
-                throw new ImageException("NetVips is unable to open input image.", exception);
+                throw new ImageException(string.Format(Strings.UnableToOpen, nameof(NetVips), nameof(inputImage),
+                                                       InputFileInfo.FullName,
+                                                       $"{nameof(Image)}.{nameof(WriteZoom)}"), exception);
             }
 
             using (SemaphoreSlim semaphoreSlim = new SemaphoreSlim(threadsCount))
@@ -616,8 +632,10 @@ namespace GTiff2Tiles.Core.Image
         {
             #region Parameters checking
 
-            if (zoom < 0) throw new ImageException("Zoom is lesser than 0.");
-            if (threadsCount <= 0) throw new ImageException("Threads couns is ledder or equal 0.");
+            if (zoom < 0) throw new ImageException(string.Format(Strings.LesserThan, nameof(zoom), 0,
+                                                                 $"{nameof(Image)}.{nameof(MakeUpperTiles)}"));
+            if (threadsCount <= 0) throw new ImageException(string.Format(Strings.LesserOrEqual, nameof(threadsCount), 0,
+                                                                          $"{nameof(Image)}.{nameof(MakeUpperTiles)}"));
 
             #endregion
 
@@ -667,13 +685,17 @@ namespace GTiff2Tiles.Core.Image
             #region Check parameters
 
             if (string.IsNullOrWhiteSpace(outputDirectoryInfo.FullName))
-                throw new ImageException("Output directory path is empty.");
+                throw new ImageException(string.Format(Strings.StringIsEmpty, nameof(outputDirectoryInfo),
+                                                       $"{nameof(Image)}.{nameof(SetCropProperties)}"));
 
             Helpers.CheckHelper.CheckOutputDirectory(outputDirectoryInfo);
 
-            if (maxZ < minZ) throw new ImageException("Maximum zoom is lesser than minimum zoom.");
-            if (minZ < 0) throw new ImageException("Minimum zoom is lesser than 0.");
-            if (maxZ < 0) throw new ImageException("Maximum zoom is lesser, than 0.");
+            if (maxZ < minZ) throw new ImageException(string.Format(Strings.LesserThan, nameof(maxZ), nameof(minZ),
+                                                                    $"{nameof(Image)}.{nameof(SetCropProperties)}"));
+            if (minZ < 0) throw new ImageException(string.Format(Strings.LesserThan, nameof(minZ), 0,
+                                                                 $"{nameof(Image)}.{nameof(SetCropProperties)}"));
+            if (maxZ < 0) throw new ImageException(string.Format(Strings.LesserThan, nameof(maxZ), 0,
+                                                                 $"{nameof(Image)}.{nameof(SetCropProperties)}"));
 
             #endregion
 
@@ -698,7 +720,9 @@ namespace GTiff2Tiles.Core.Image
                 }
                 catch (Exception exception)
                 {
-                    throw new ImageException($"Unable to add value to {nameof(TilesMinMax)} dictionary.", exception);
+                    throw new
+                        ImageException(string.Format(Strings.UnableToAddToDictionary, nameof(TilesMinMax), $"{nameof(Image)}.{nameof(SetCropProperties)}"),
+                                       exception);
                 }
             }
         }
@@ -720,8 +744,11 @@ namespace GTiff2Tiles.Core.Image
         {
             #region Parameters checking
 
-            if (progress == null) throw new ImageException("Progress == null.");
-            if (threadsCount <= 0) throw new ImageException("Threads count is lesser or equal 0.");
+            if (progress == null)
+                throw new ImageException(string.Format(Strings.IsNull, nameof(progress),
+                                                       $"{nameof(Image)}.{nameof(GenerateTilesByJoining)}"));
+            if (threadsCount <= 0) throw new ImageException(string.Format(Strings.LesserOrEqual, nameof(threadsCount), 0,
+                                                                          $"{nameof(Image)}.{nameof(MakeUpperTiles)}"));
 
             #endregion
 
@@ -755,8 +782,11 @@ namespace GTiff2Tiles.Core.Image
         {
             #region Parameters checking
 
-            if (progress == null) throw new ImageException("Progress == null.");
-            if (threadsCount <= 0) throw new ImageException("Threads count is lesser or equal 0.");
+            if (progress == null)
+                throw new ImageException(string.Format(Strings.IsNull, nameof(progress),
+                                                       $"{nameof(Image)}.{nameof(GenerateTilesByJoining)}"));
+            if (threadsCount <= 0) throw new ImageException(string.Format(Strings.LesserOrEqual, nameof(threadsCount), 0,
+                                                                          $"{nameof(Image)}.{nameof(MakeUpperTiles)}"));
 
             #endregion
 

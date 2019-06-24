@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using GTiff2Tiles.Core.Exceptions.Tile;
+using GTiff2Tiles.Core.Localization;
 
 namespace GTiff2Tiles.Core.Tile
 {
@@ -28,7 +29,8 @@ namespace GTiff2Tiles.Core.Tile
             #region Parameters checking
 
             if (zoom < 0)
-                throw new TileException($"Parameter {nameof(zoom)} of method {nameof(GetTileNumbersFromCoords)} is lesser than 0.");
+                throw new TileException(string.Format(Strings.LesserThan, nameof(zoom), 0,
+                                                      $"{nameof(Tile)}.{nameof(GetTileNumbersFromCoords)}"));
 
             #endregion
 
@@ -45,7 +47,7 @@ namespace GTiff2Tiles.Core.Tile
             catch (Exception exception)
             {
                 throw new
-                    TileException($"Unable to convert coordinates into tile numbers. Method: {nameof(GetTileNumbersFromCoords)}.",
+                    TileException(string.Format(Strings.UnableToConvertCoordinatesToTiles, $"{nameof(Tile)}.{nameof(GetTileNumbersFromCoords)}"),
                                   exception);
             }
 
@@ -79,7 +81,7 @@ namespace GTiff2Tiles.Core.Tile
             }
             catch (Exception exception)
             {
-                throw new TileException($"Unable to calculate tile's coordinate borders. Method: {nameof(TileBounds)}.",
+                throw new TileException(string.Format(Strings.UnableToCalculateCoordinates, $"{nameof(Tile)}.{nameof(GetTileNumbersFromCoords)}"),
                                         exception);
             }
         }

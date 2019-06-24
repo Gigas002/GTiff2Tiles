@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using GTiff2Tiles.Core.Localization;
 
 namespace GTiff2Tiles.Core.Helpers
 {
@@ -23,7 +24,8 @@ namespace GTiff2Tiles.Core.Helpers
         /// <returns><see langword="true"/>, if file is OK, <see langword="false"/> otherwise.</returns>
         private static bool CheckTifInfo(string gdalInfoString, string proj4String)
         {
-            if (string.IsNullOrWhiteSpace(gdalInfoString)) throw new Exception("Passed GdalInfo string is empty.");
+            if (string.IsNullOrWhiteSpace(gdalInfoString))
+                throw new Exception(string.Format(Strings.StringIsEmpty, "GdalInfo", $"{nameof(CheckHelper)}.{nameof(CheckTifInfo)}"));
 
             //Check projection.
             if (!proj4String.Contains(Enums.Image.Gdal.LongLat) || !proj4String.Contains(Enums.Image.Gdal.Wgs84))
@@ -45,10 +47,14 @@ namespace GTiff2Tiles.Core.Helpers
         public static bool CheckInputFile(FileInfo inputFileInfo)
         {
             //Check if file exists.
-            if (!inputFileInfo.Exists) throw new Exception($"Input file isn't exists. Path:{inputFileInfo.FullName}");
+            if (!inputFileInfo.Exists)
+                throw new Exception(string.Format(Strings.IsntExist, nameof(inputFileInfo), inputFileInfo.FullName,
+                                                  $"{nameof(CheckHelper)}.{nameof(CheckInputFile)}"));
 
             //Check if input file is not .tif.
-            if (inputFileInfo.Extension != Enums.Extensions.Tif) throw new Exception($"Input file extension isn't .tif. Path:{inputFileInfo.FullName}");
+            if (inputFileInfo.Extension != Enums.Extensions.Tif)
+                throw new Exception(string.Format(Strings.ExtensionIsnt, nameof(inputFileInfo), Enums.Extensions.Tif,
+                                                  inputFileInfo.FullName, $"{nameof(CheckHelper)}.{nameof(CheckInputFile)}"));
 
             //Get proj4 string.
             string proj4String = Image.Gdal.GetProj4String(inputFileInfo);
@@ -69,12 +75,14 @@ namespace GTiff2Tiles.Core.Helpers
             }
             catch (Exception exception)
             {
-                throw new Exception($"Unable to create output directory here:{outputDirectoryInfo.FullName}.",
+                throw new Exception(string.Format(Strings.UnableToCreate, nameof(outputDirectoryInfo),
+                                                  outputDirectoryInfo.FullName, $"{nameof(CheckHelper)}.{nameof(CheckOutputDirectory)}"),
                                     exception);
             }
 
             if (outputDirectoryInfo.EnumerateFileSystemInfos().Any())
-                throw new Exception($"Output directory isn't empty. Please, select another directory. Current path:{outputDirectoryInfo.FullName}.");
+                throw new Exception(string.Format(Strings.DirectoryIsntEmpty, nameof(outputDirectoryInfo),
+                                                  outputDirectoryInfo.FullName, $"{nameof(CheckHelper)}.{nameof(CheckOutputDirectory)}"));
         }
 
         #endregion
