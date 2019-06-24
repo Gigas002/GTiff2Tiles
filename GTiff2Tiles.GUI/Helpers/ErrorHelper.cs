@@ -30,7 +30,7 @@ namespace GTiff2Tiles.GUI.Helpers
         /// <param name="errorMessage">Error message.</param>
         /// <param name="exception">Exception.</param>
         /// <returns><see langword="false"/>.</returns>
-        public static async ValueTask<bool> ShowError(string errorMessage, Exception exception)
+        public static async ValueTask<bool> ShowError(string errorMessage, Exception exception = null)
         {
             await DialogHost.Show(new MessageBoxDialogViewModel(errorMessage));
 

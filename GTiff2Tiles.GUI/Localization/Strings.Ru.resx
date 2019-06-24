@@ -128,27 +128,13 @@
   </data>
   <data name="CopyToClipboardToolTip" xml:space="preserve">
     <value>Скопировать в буфер</value>
-  </data>
-  <data name="Days" xml:space="preserve">
-    <value>Дней</value>
-  </data>
-  <data name="Done" xml:space="preserve">
-    <value>Готово</value>
-  </data>
-  <data name="Hours" xml:space="preserve">
-    <value>Часов</value>
+    <comment>В Message box'е</comment>
   </data>
   <data name="InputFileHint" xml:space="preserve">
     <value>Путь к исходному файлу</value>
   </data>
   <data name="MaxZHint" xml:space="preserve">
     <value>Выберите максимальный уровень</value>
-  </data>
-  <data name="Milliseconds" xml:space="preserve">
-    <value>Миллисекунд</value>
-  </data>
-  <data name="Minutes" xml:space="preserve">
-    <value>Минут</value>
   </data>
   <data name="MinZHint" xml:space="preserve">
     <value>Выберите минимальный уровень</value>
@@ -159,9 +145,6 @@
   <data name="ProgressTextBlock" xml:space="preserve">
     <value>Прогресс:</value>
   </data>
-  <data name="Seconds" xml:space="preserve">
-    <value>Секунд</value>
-  </data>
   <data name="StartButtonContent" xml:space="preserve">
     <value>Старт</value>
   </data>
@@ -171,7 +154,32 @@
   <data name="ThreadsCountHint" xml:space="preserve">
     <value>Выберите количество потоков</value>
   </data>
-  <data name="TimePassed" xml:space="preserve">
-    <value>Прошло времени</value>
+  <data name="Done" xml:space="preserve">
+    <value>Готово! Прошло времени:{0}Дней:{1} часов:{2} минут:{3} секунд:{4} миллисекунд:{5}</value>
+    <comment>Выводится, когда задача завершается</comment>
+  </data>
+  <data name="AlgorithmNotSupported" xml:space="preserve">
+    <value>Выбранный алгоритм не поддерживается</value>
+    <comment>Ошибка</comment>
+  </data>
+  <data name="BiggerThan" xml:space="preserve">
+    <value>{0} больше, чем {1}</value>
+    <comment>Ошибка</comment>
+  </data>
+  <data name="LesserOrEqual" xml:space="preserve">
+    <value>{0} меньше или равно {1}</value>
+    <comment>Ошибка</comment>
+  </data>
+  <data name="LesserThan" xml:space="preserve">
+    <value>{0} меньше, чем {1}</value>
+    <comment>Ошибка</comment>
+  </data>
+  <data name="PathIsEmpty" xml:space="preserve">
+    <value>Строка пути {0} пустая</value>
+    <comment>Ошибка</comment>
+  </data>
+  <data name="SelectAlgorithm" xml:space="preserve">
+    <value>Выберите алгоритм</value>
+    <comment>Ошибка</comment>
   </data>
 </root>

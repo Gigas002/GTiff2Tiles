@@ -70,11 +70,29 @@ namespace GTiff2Tiles.GUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Selected algorithm is not supported.
+        /// </summary>
+        internal static string AlgorithmNotSupported {
+            get {
+                return ResourceManager.GetString("AlgorithmNotSupported", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select algorithm.
         /// </summary>
         internal static string AlgorithmsHint {
             get {
                 return ResourceManager.GetString("AlgorithmsHint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} is bigger, than {1}.
+        /// </summary>
+        internal static string BiggerThan {
+            get {
+                return ResourceManager.GetString("BiggerThan", resourceCulture);
             }
         }
         
@@ -97,29 +115,11 @@ namespace GTiff2Tiles.GUI.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Days.
-        /// </summary>
-        internal static string Days {
-            get {
-                return ResourceManager.GetString("Days", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Done.
+        ///   Looks up a localized string similar to Done! Time passed:{0}Days:{1} hours:{2} minutes:{3} seconds:{4} milliseconds:{5}.
         /// </summary>
         internal static string Done {
             get {
                 return ResourceManager.GetString("Done", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Hours.
-        /// </summary>
-        internal static string Hours {
-            get {
-                return ResourceManager.GetString("Hours", resourceCulture);
             }
         }
         
@@ -133,29 +133,29 @@ namespace GTiff2Tiles.GUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} is lesser or equal {1}.
+        /// </summary>
+        internal static string LesserOrEqual {
+            get {
+                return ResourceManager.GetString("LesserOrEqual", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} is lesser, than {1}.
+        /// </summary>
+        internal static string LesserThan {
+            get {
+                return ResourceManager.GetString("LesserThan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select maximum zoom.
         /// </summary>
         internal static string MaxZHint {
             get {
                 return ResourceManager.GetString("MaxZHint", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Milliseconds.
-        /// </summary>
-        internal static string Milliseconds {
-            get {
-                return ResourceManager.GetString("Milliseconds", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Minutes.
-        /// </summary>
-        internal static string Minutes {
-            get {
-                return ResourceManager.GetString("Minutes", resourceCulture);
             }
         }
         
@@ -178,6 +178,15 @@ namespace GTiff2Tiles.GUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} path if empty.
+        /// </summary>
+        internal static string PathIsEmpty {
+            get {
+                return ResourceManager.GetString("PathIsEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Progress:.
         /// </summary>
         internal static string ProgressTextBlock {
@@ -187,11 +196,11 @@ namespace GTiff2Tiles.GUI.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Seconds.
+        ///   Looks up a localized string similar to Please, select the algorithm.
         /// </summary>
-        internal static string Seconds {
+        internal static string SelectAlgorithm {
             get {
-                return ResourceManager.GetString("Seconds", resourceCulture);
+                return ResourceManager.GetString("SelectAlgorithm", resourceCulture);
             }
         }
         
@@ -219,15 +228,6 @@ namespace GTiff2Tiles.GUI.Localization {
         internal static string ThreadsCountHint {
             get {
                 return ResourceManager.GetString("ThreadsCountHint", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Time passed.
-        /// </summary>
-        internal static string TimePassed {
-            get {
-                return ResourceManager.GetString("TimePassed", resourceCulture);
             }
         }
     }

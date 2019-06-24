@@ -375,7 +375,7 @@ namespace GTiff2Tiles.GUI.ViewModels
                         await inputImage.GenerateTilesByCropping(outputDirectoryInfo, MinZ, MaxZ, progress, ThreadsCount);
                         break;
                     default:
-                        await Helpers.ErrorHelper.ShowError("This algorithm is not supported.", null);
+                        await Helpers.ErrorHelper.ShowError(Strings.AlgorithmNotSupported);
                         IsEnabled = true;
                         return;
                 }
@@ -391,12 +391,9 @@ namespace GTiff2Tiles.GUI.ViewModels
             IsEnabled = true;
 
             stopwatch.Stop();
-            await DialogHost.Show(new MessageBoxDialogViewModel($"{Strings.Done}! {Strings.TimePassed}:{Environment.NewLine}" +
-                                                                $"{Strings.Days}:{stopwatch.Elapsed.Days} " +
-                                                                $"{Strings.Hours}:{stopwatch.Elapsed.Hours} " +
-                                                                $"{Strings.Minutes}:{stopwatch.Elapsed.Minutes} " +
-                                                                $"{Strings.Seconds}:{stopwatch.Elapsed.Seconds} " +
-                                                                $"{Strings.Milliseconds}:{stopwatch.Elapsed.Milliseconds}"));
+            await DialogHost.Show(new MessageBoxDialogViewModel(string.Format(Strings.Done, Environment.NewLine, stopwatch.Elapsed.Days,
+                                                                              stopwatch.Elapsed.Hours, stopwatch.Elapsed.Minutes,
+                                                                              stopwatch.Elapsed.Seconds, stopwatch.Elapsed.Milliseconds)));
         }
 
         #endregion
@@ -410,33 +407,33 @@ namespace GTiff2Tiles.GUI.ViewModels
         private async ValueTask<bool> CheckProperties()
         {
             if (string.IsNullOrWhiteSpace(InputFilePath))
-                return await Helpers.ErrorHelper.ShowError("Input file path is empty.", null);
+                return await Helpers.ErrorHelper.ShowError(string.Format(Strings.PathIsEmpty, nameof(InputFilePath)));
 
             if (string.IsNullOrWhiteSpace(OutputDirectoryPath))
-                return await Helpers.ErrorHelper.ShowError("Output directory path is empty.", null);
+                return await Helpers.ErrorHelper.ShowError(string.Format(Strings.PathIsEmpty, nameof(OutputDirectoryPath)));
 
             if (string.IsNullOrWhiteSpace(TempDirectoryPath))
-                return await Helpers.ErrorHelper.ShowError("Temp directory path is empty.", null);
+                return await Helpers.ErrorHelper.ShowError(string.Format(Strings.PathIsEmpty, nameof(TempDirectoryPath)));
 
             if (MinZ < 0)
-                return await Helpers.ErrorHelper.ShowError("Minimum zoom is lesser, than 0.", null);
+                return await Helpers.ErrorHelper.ShowError(string.Format(Strings.LesserThan, nameof(MinZ), 0));
 
             if (MaxZ < 0)
-                return await Helpers.ErrorHelper.ShowError("Maximum zoom is lesser, than 0.", null);
+                return await Helpers.ErrorHelper.ShowError(string.Format(Strings.LesserThan, nameof(MaxZ), 0));
 
             if (MaxZ < MinZ)
-                return await Helpers.ErrorHelper.ShowError("Minimum zoom is bigger, than maximum.", null);
+                return await Helpers.ErrorHelper.ShowError(string.Format(Strings.BiggerThan, nameof(MinZ), nameof(MaxZ)));
 
             Algorithm = Algorithm.ToLowerInvariant();
 
             if (string.IsNullOrWhiteSpace(Algorithm))
-                return await Helpers.ErrorHelper.ShowError("Please, choose the algorithm.", null);
+                return await Helpers.ErrorHelper.ShowError(Strings.SelectAlgorithm);
 
             if (Algorithm != Core.Enums.Algorithms.Join && Algorithm != Core.Enums.Algorithms.Crop)
-                return await Helpers.ErrorHelper.ShowError("This algorithm is not supported.", null);
+                return await Helpers.ErrorHelper.ShowError(Strings.AlgorithmNotSupported);
 
             if (ThreadsCount <= 0)
-                return await Helpers.ErrorHelper.ShowError("Threads count is lesser or equal 0.", null);
+                return await Helpers.ErrorHelper.ShowError(string.Format(Strings.LesserOrEqual, nameof(ThreadsCount), 0));
 
             //Disable controls.
             IsEnabled = false;

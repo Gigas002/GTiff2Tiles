@@ -141,25 +141,25 @@ namespace GTiff2Tiles.Console
             //Check if string options are empty strings.
             if (string.IsNullOrWhiteSpace(options.InputFilePath))
             {
-                Helpers.ErrorHelper.PrintError(Strings.OptionIsEmpty, "-i/--input");
+                Helpers.ErrorHelper.PrintError(string.Format(Strings.OptionIsEmpty, "-i/--input"));
                 IsParsingErrors = true;
                 return;
             }
             if (string.IsNullOrWhiteSpace(options.OutputDirectoryPath))
             {
-                Helpers.ErrorHelper.PrintError(Strings.OptionIsEmpty, "-o/--output");
+                Helpers.ErrorHelper.PrintError(string.Format(Strings.OptionIsEmpty, "-o/--output"));
                 IsParsingErrors = true;
                 return;
             }
             if (string.IsNullOrWhiteSpace(options.TempDirectoryPath))
             {
-                Helpers.ErrorHelper.PrintError(Strings.OptionIsEmpty, "-t/--temp");
+                Helpers.ErrorHelper.PrintError(string.Format(Strings.OptionIsEmpty, "-t/--temp"));
                 IsParsingErrors = true;
                 return;
             }
             if (string.IsNullOrWhiteSpace(options.Algorithm))
             {
-                Helpers.ErrorHelper.PrintError(Strings.OptionIsEmpty, "-a/--algorithm");
+                Helpers.ErrorHelper.PrintError(string.Format(Strings.OptionIsEmpty, "-a/--algorithm"));
                 IsParsingErrors = true;
                 return;
             }
@@ -167,19 +167,19 @@ namespace GTiff2Tiles.Console
             //Check zooms.
             if (options.MinZ < 0)
             {
-                Helpers.ErrorHelper.PrintError(Strings.LesserThan, "--minz", 0);
+                Helpers.ErrorHelper.PrintError(string.Format(Strings.LesserThan, "--minz", 0));
                 IsParsingErrors = true;
                 return;
             }
             if (options.MaxZ < 0)
             {
-                Helpers.ErrorHelper.PrintError(Strings.LesserThan, "--maxz", 0);
+                Helpers.ErrorHelper.PrintError(string.Format(Strings.LesserThan, "--maxz", 0));
                 IsParsingErrors = true;
                 return;
             }
             if (options.MinZ > options.MaxZ)
             {
-                Helpers.ErrorHelper.PrintError(Strings.BiggerThan, "--minz", "--maxz");
+                Helpers.ErrorHelper.PrintError(string.Format(Strings.BiggerThan, "--minz", "--maxz"));
                 IsParsingErrors = true;
                 return;
             }
@@ -187,7 +187,7 @@ namespace GTiff2Tiles.Console
             //Threads check.
             if (options.ThreadsCount <= 0)
             {
-                Helpers.ErrorHelper.PrintError(Strings.LesserThan, "--threads", 0);
+                Helpers.ErrorHelper.PrintError(string.Format(Strings.LesserThan, "--threads", 0));
                 IsParsingErrors = true;
                 return;
             }

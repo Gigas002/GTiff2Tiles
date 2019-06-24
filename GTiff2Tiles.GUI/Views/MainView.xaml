@@ -1,37 +1,38 @@
-﻿<controls:MetroWindow
-        x:Class="GTiff2Tiles.GUI.Views.MainView"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:cal="http://www.caliburnproject.org"
-        xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        xmlns:vms="clr-namespace:GTiff2Tiles.GUI.ViewModels"
-        xmlns:vs="clr-namespace:GTiff2Tiles.GUI.Views"
-        mc:Ignorable="d"
-        Background="{DynamicResource MaterialDesignPaper}"
-        FontFamily="{DynamicResource MaterialDesignFont}"
-        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
-        TextElement.FontSize="18"
-        TextOptions.TextFormattingMode="Ideal"
-        TextOptions.TextRenderingMode="Auto"
-        GlowBrush="Black"
-        TitleCharacterCasing="Normal"
-        ResizeMode="CanMinimize"
-        Title="GTiff2Tiles"
-        Height="550"
-        Width="675"
-        WindowStartupLocation="CenterScreen"
-        Icon="/GTiff2Tiles.GUI;component/Resources/Icon.ico">
-    <controls:MetroWindow.Resources>
+﻿<mahApps:MetroWindow
+    x:Class="GTiff2Tiles.GUI.Views.MainView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:caliburnMicro="http://www.caliburnproject.org"
+    xmlns:mahApps="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:materialDesignThemes="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:viewModels="clr-namespace:GTiff2Tiles.GUI.ViewModels"
+    xmlns:views="clr-namespace:GTiff2Tiles.GUI.Views"
+    mc:Ignorable="d"
+
+    Background="{DynamicResource MaterialDesignPaper}"
+    FontFamily="{DynamicResource MaterialDesignFont}"
+    TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+    TextElement.FontSize="18"
+    TextOptions.TextFormattingMode="Ideal"
+    TextOptions.TextRenderingMode="Auto"
+    GlowBrush="Black"
+    TitleCharacterCasing="Normal"
+    ResizeMode="CanMinimize"
+    Title="GTiff2Tiles"
+    Height="600"
+    Width="675"
+    WindowStartupLocation="CenterScreen"
+    Icon="/GTiff2Tiles.GUI;component/Resources/Icon.ico">
+    <mahApps:MetroWindow.Resources>
         <ResourceDictionary>
-            <DataTemplate DataType="{x:Type vms:MessageBoxDialogViewModel}">
-                <vs:MessageBoxDialogView/>
+            <DataTemplate DataType="{x:Type viewModels:MessageBoxDialogViewModel}">
+                <views:MessageBoxDialogView/>
             </DataTemplate>
         </ResourceDictionary>
-    </controls:MetroWindow.Resources>
-    <materialDesign:DialogHost Identifier="{Binding DialogHostId}">
+    </mahApps:MetroWindow.Resources>
+    <materialDesignThemes:DialogHost Identifier="{Binding DialogHostId}">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="20"/>
@@ -49,150 +50,150 @@
               IsEnabled="{Binding IsEnabled}">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="5"/>
+                    <RowDefinition Height="10"/>
                     <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="5"/>
+                    <RowDefinition Height="10"/>
                     <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="5"/>
+                    <RowDefinition Height="10"/>
                     <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="5"/>
+                    <RowDefinition Height="10"/>
                     <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="5"/>
+                    <RowDefinition Height="10"/>
                     <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="5"/>
+                    <RowDefinition Height="10"/>
                     <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="5"/>
+                    <RowDefinition Height="10"/>
                     <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="5"/>
+                    <RowDefinition Height="10"/>
                     <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="5"/>
+                    <RowDefinition Height="10"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="5"/>
+                    <ColumnDefinition Width="10"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
 
                 <!-- Grid.Row="0" -->
                 <TextBox Grid.Row="0" Grid.Column="0"
-                     VerticalContentAlignment="Center"
-                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                     Text="{Binding InputFilePath}">
-                    <materialDesign:HintAssist.Hint>
+                         VerticalContentAlignment="Center"
+                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                         Text="{Binding InputFilePath}">
+                    <materialDesignThemes:HintAssist.Hint>
                         <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="Image"/>
+                            <materialDesignThemes:PackIcon Kind="Image"/>
                             <TextBlock Text="{Binding InputFileHint}"/>
                         </StackPanel>
-                    </materialDesign:HintAssist.Hint>
+                    </materialDesignThemes:HintAssist.Hint>
                 </TextBox>
                 <Button Grid.Row="0" Grid.Column="2"
-                    Content="{materialDesign:PackIcon Image}"
-                    cal:Message.Attach="InputFileButton"/>
+                        Content="{materialDesignThemes:PackIcon Image}"
+                        caliburnMicro:Message.Attach="InputFileButton"/>
 
                 <!-- Grid.Row="2" -->
                 <TextBox Grid.Row="2" Grid.Column="0"
-                     VerticalContentAlignment="Center"
-                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                     Text="{Binding OutputDirectoryPath}">
-                    <materialDesign:HintAssist.Hint>
+                         VerticalContentAlignment="Center"
+                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                         Text="{Binding OutputDirectoryPath}">
+                    <materialDesignThemes:HintAssist.Hint>
                         <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="Folder"/>
+                            <materialDesignThemes:PackIcon Kind="Folder"/>
                             <TextBlock Text="{Binding OutputDirectoryHint}"/>
                         </StackPanel>
-                    </materialDesign:HintAssist.Hint>
+                    </materialDesignThemes:HintAssist.Hint>
                 </TextBox>
                 <Button Grid.Row="2" Grid.Column="2"
-                    Content="{materialDesign:PackIcon Folder}"
-                    cal:Message.Attach="OutputDirectoryButton"/>
+                        Content="{materialDesignThemes:PackIcon Folder}"
+                        caliburnMicro:Message.Attach="OutputDirectoryButton"/>
 
                 <!-- Grid.Row="4" -->
                 <TextBox Grid.Row="4" Grid.Column="0"
-                     VerticalContentAlignment="Center"
-                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                     Text="{Binding TempDirectoryPath}">
-                    <materialDesign:HintAssist.Hint>
+                         VerticalContentAlignment="Center"
+                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                         Text="{Binding TempDirectoryPath}">
+                    <materialDesignThemes:HintAssist.Hint>
                         <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="Folder"/>
+                            <materialDesignThemes:PackIcon Kind="Folder"/>
                             <TextBlock Text="{Binding TempDirectoryHint}"/>
                         </StackPanel>
-                    </materialDesign:HintAssist.Hint>
+                    </materialDesignThemes:HintAssist.Hint>
                 </TextBox>
                 <Button Grid.Row="4" Grid.Column="2"
-                    Content="{materialDesign:PackIcon Folder}"
-                    cal:Message.Attach="TempDirectoryButton"/>
+                        Content="{materialDesignThemes:PackIcon Folder}"
+                        caliburnMicro:Message.Attach="TempDirectoryButton"/>
 
                 <!-- Grid.Row="6" -->
                 <TextBox Grid.Row="6" Grid.Column="0"
-                     Grid.ColumnSpan="3"
-                     VerticalContentAlignment="Center"
-                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                     Text="{Binding MinZ}">
-                    <materialDesign:HintAssist.Hint>
+                         Grid.ColumnSpan="3"
+                         VerticalContentAlignment="Center"
+                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                         Text="{Binding MinZ}">
+                    <materialDesignThemes:HintAssist.Hint>
                         <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="ZoomOut"/>
+                            <materialDesignThemes:PackIcon Kind="ZoomOut"/>
                             <TextBlock Text="{Binding MinZHint}"/>
                         </StackPanel>
-                    </materialDesign:HintAssist.Hint>
+                    </materialDesignThemes:HintAssist.Hint>
                 </TextBox>
 
                 <!-- Grid.Row="8" -->
                 <TextBox Grid.Row="8" Grid.Column="0"
-                     Grid.ColumnSpan="3"
-                     VerticalContentAlignment="Center"
-                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                     Text="{Binding MaxZ}">
-                    <materialDesign:HintAssist.Hint>
+                         Grid.ColumnSpan="3"
+                         VerticalContentAlignment="Center"
+                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                         Text="{Binding MaxZ}">
+                    <materialDesignThemes:HintAssist.Hint>
                         <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="ZoomIn"/>
+                            <materialDesignThemes:PackIcon Kind="ZoomIn"/>
                             <TextBlock Text="{Binding MaxZHint}"/>
                         </StackPanel>
-                    </materialDesign:HintAssist.Hint>
+                    </materialDesignThemes:HintAssist.Hint>
                 </TextBox>
 
                 <!-- Grid.Row="10" -->
                 <ComboBox Grid.Row="10" Grid.Column="0"
-                      Grid.ColumnSpan="3"
-                      VerticalContentAlignment="Center"
-                      Style="{StaticResource MaterialDesignFloatingHintComboBox}"
-                      ItemsSource="{Binding Algorithms}"
-                      SelectedItem="{Binding Algorithm}">
-                    <materialDesign:HintAssist.Hint>
+                          Grid.ColumnSpan="3"
+                          VerticalContentAlignment="Center"
+                          Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                          ItemsSource="{Binding Algorithms}"
+                          SelectedItem="{Binding Algorithm}">
+                    <materialDesignThemes:HintAssist.Hint>
                         <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="ViewList"/>
+                            <materialDesignThemes:PackIcon Kind="ViewList"/>
                             <TextBlock Text="{Binding AlgorithmsHint}"/>
                         </StackPanel>
-                    </materialDesign:HintAssist.Hint>
+                    </materialDesignThemes:HintAssist.Hint>
                 </ComboBox>
 
                 <!-- Grid.Row="12" -->
                 <TextBox Grid.Row="12" Grid.Column="0"
-                     Grid.ColumnSpan="3"
-                     VerticalContentAlignment="Center"
-                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                     Text="{Binding ThreadsCount}">
-                    <materialDesign:HintAssist.Hint>
+                         Grid.ColumnSpan="3"
+                         VerticalContentAlignment="Center"
+                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                         Text="{Binding ThreadsCount}">
+                    <materialDesignThemes:HintAssist.Hint>
                         <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="Memory"/>
+                            <materialDesignThemes:PackIcon Kind="Memory"/>
                             <TextBlock Text="{Binding ThreadsCountHint}"/>
                         </StackPanel>
-                    </materialDesign:HintAssist.Hint>
+                    </materialDesignThemes:HintAssist.Hint>
                 </TextBox>
 
                 <!-- Grid.Row="14" -->
                 <Button Grid.Row="14" Grid.Column="0"
-                    Grid.ColumnSpan="3"
-                    FontSize="18"
-                    Content="{Binding StartButtonContent}"
-                    cal:Message.Attach="StartButton"/>
+                        Grid.ColumnSpan="3"
+                        FontSize="18"
+                        Content="{Binding StartButtonContent}"
+                        caliburnMicro:Message.Attach="StartButton"/>
 
                 <!-- Grid.Row="16" -->
                 <ProgressBar Grid.Row="16" Grid.Column="0"
-                         Grid.ColumnSpan="3"
-                         Height="25"
-                         Value="{Binding ProgressBarValue}"/>
+                             Grid.ColumnSpan="3"
+                             Height="25"
+                             Value="{Binding ProgressBarValue}"/>
 
                 <!-- Grid.Row="18" -->
                 <Grid Grid.Row="18" Grid.Column="0">
@@ -201,16 +202,16 @@
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="5"/>
+                        <ColumnDefinition Width="10"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
                     <TextBlock Grid.Row="0" Grid.Column="0"
-                           Text="{Binding ProgressTextBlock}"
-                           VerticalAlignment="Center"/>
+                               Text="{Binding ProgressTextBlock}"
+                               VerticalAlignment="Center"/>
                     <TextBlock Grid.Row="0" Grid.Column="2"
-                           VerticalAlignment="Center"
-                           Text="{Binding ProgressBarValue}"/>
+                               VerticalAlignment="Center"
+                               Text="{Binding ProgressBarValue}"/>
                 </Grid>
 
                 <!-- Grid.Row="20" -->
@@ -225,5 +226,5 @@
                            Text="{Binding Version}"/>
             </Grid>
         </Grid>
-    </materialDesign:DialogHost>
-</controls:MetroWindow>
+    </materialDesignThemes:DialogHost>
+</mahApps:MetroWindow>

@@ -36,20 +36,5 @@ namespace GTiff2Tiles.Console.Helpers
             System.Console.ReadKey();
             #endif
         }
-
-        /// <summary>
-        /// Prints current error and waits for input (in DEBUG mode).
-        /// </summary>
-        /// <param name="errorMessage">Your error's message.</param>
-        /// <param name="args">An array of objects to write using <paramref name="errorMessage" />.</param>
-        internal static void PrintError(string errorMessage, params object[] args)
-        {
-            System.Console.WriteLine(errorMessage, args);
-
-            #if DEBUG
-            System.Console.WriteLine(Strings.PressAnyKey);
-            System.Console.ReadKey();
-            #endif
-        }
     }
 }

@@ -3,8 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:materialDesign="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
-             xmlns:cal="http://www.caliburnproject.org"
+             xmlns:materialDesignThemes="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
+             xmlns:caliburnMicro="http://www.caliburnproject.org"
              mc:Ignorable="d"
              Background="{DynamicResource MaterialDesignPaper}"
              FontFamily="{DynamicResource MaterialDesignFont}"
@@ -27,21 +27,21 @@
     <Grid>
         <!-- Message box's borders -->
         <Grid.RowDefinitions>
-            <RowDefinition Height="20"/>
+            <RowDefinition Height="10"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="20"/>
+            <RowDefinition Height="10"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="10"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="10"/>
         </Grid.ColumnDefinitions>
 
         <!-- Inner grid -->
         <Grid Row="1" Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="20"/>
+                <RowDefinition Height="10"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
@@ -63,7 +63,7 @@
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="20"/>
+                    <ColumnDefinition Width="10"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
 
@@ -72,14 +72,14 @@
                         Width="30"
                         ToolTip="{Binding CopyToClipboardToolTip}"
                         Style="{DynamicResource MaterialDesignFloatingActionMiniButton}"
-                        cal:Message.Attach="CopyToClipboardButton"
-                        Content="{materialDesign:PackIcon ContentCopy}"/>
+                        caliburnMicro:Message.Attach="CopyToClipboardButton"
+                        Content="{materialDesignThemes:PackIcon ContentCopy}"/>
                 <Button Grid.Column="2"
                         Style="{DynamicResource MaterialDesignFlatButton}"
-                        cal:Message.Attach="AcceptButton"
+                        caliburnMicro:Message.Attach="AcceptButton"
                         Content="{Binding AcceptButtonContent}"/>
                 <Button Grid.Column="4"
-                        cal:Message.Attach="CancelButton"
+                        caliburnMicro:Message.Attach="CancelButton"
                         Visibility="{Binding CancelButtonVisibility}"
                         Style="{DynamicResource MaterialDesignFlatButton}"
                         Content="{Binding CancelButtonContent}"/>
