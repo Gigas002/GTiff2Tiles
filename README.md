@@ -14,16 +14,17 @@ Solution is build in **VS2019 (16.1.3)**, **.NET Framework 4.7.2**, targeting **
   - [Examples](#examples)
   - [GTiff2Tiles.Core](#gtiff2tilescore)
     - [Dependencies](#dependencies)
+    - [Localization](#localization)
   - [GTiff2Tiles.Console](#gtiff2tilesconsole)
     - [Requirements](#requirements)
     - [Usage](#usage)
     - [Detailed options description](#detailed-options-description)
     - [Dependencies](#dependencies-1)
-    - [Localization](#localization)
+    - [Localization](#localization-1)
   - [GTiff2Tiles.GUI](#gtiff2tilesgui)
     - [Requirements](#requirements-1)
     - [Dependencies](#dependencies-2)
-    - [Localization](#localization-1)
+    - [Localization](#localization-2)
   - [GTiff2Tiles.Tests](#gtiff2tilestests)
     - [Dependencies](#dependencies-3)
   - [TODO](#todo)
@@ -64,6 +65,12 @@ Also I should mention, that if your input **GeoTIFF** is not **EPSG:4326**, it w
 - [System.Runtime.CompilerServices.Unsafe](https://www.nuget.org/packages/System.Runtime.CompilerServices.Unsafe/) – 4.5.2 (required by **System.Threading.Tasks.Extensions** and **System.Memory**);
 - [System.Memory](https://www.nuget.org/packages/System.Memory/) – 4.5.3 (required by **NetVips**);
 - [System.Buffers](https://www.nuget.org/packages/System.Buffers/) – 4.5.0 (required by **System.Memory**);
+
+### Localization
+
+Localizable strings are located in `Localization/Strings.resx` file. You can add your translation (e.g. added `Strings.Ru.resx` file) and create pull request.
+
+Currently, application is available on **English** and **Russian** languages.
 
 ## GTiff2Tiles.Console
 
@@ -120,7 +127,7 @@ If you’re using Windows 7 SP1, you can experience weird error with **GDAL** pa
 
 ### Localization
 
-Localizable strings are located in `Localization/String.resx` file. You can add your translation (e.g. added `Strings.Ru.resx` file) and create pull request.
+Localizable strings are located in `Localization/Strings.resx` file. You can add your translation (e.g. added `Strings.Ru.resx` file) and create pull request.
 
 Currently, application is available on **English** and **Russian** languages.
 
@@ -156,7 +163,7 @@ If you’re using Windows 7 SP1, you can experience weird error with **GDAL** pa
 
 ### Localization
 
-Localizable strings are located in `Localization/String.resx` file. You can add your translation (e.g. added `Strings.Ru.resx` file) and create pull request.
+Localizable strings are located in `Localization/Strings.resx` file. You can add your translation (e.g. added `Strings.Ru.resx` file) and create pull request.
 
 Currently, application is available on **English** and **Russian** languages.
 

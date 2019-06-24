@@ -2,18 +2,18 @@
 
 Changes since 1.1.0:
 
-* GenerateTiles methods are now async;
+* `GenerateTiles` methods are now `async`;
 * Use static classes instead of structs;
 * Fixed black borders issue;
 * Multithreading performance improvements;
-* Replaced GeoTransform property with more obvious MinX, MinY, MaxX and MaxY;
-* Temp directory is now timestamp and not deleted;
-* Exceptions (TileException, GdalException, ImageException);
+* Replaced `GeoTransform` property with more obvious `MinX`, `MinY`, `MaxX` and `MaxY`;
+* *Temp* directory is now *timestamp* and not deleted;
+* Exceptions (`TileException`, `GdalException`, `ImageException`);
 * A lot of error checking;
-* Lots of improvements in Image.Gdal class
+* Lots of improvements in `Image.Gdal` class
 * Disabled NetVips console warnings;
-* Added convertion of bad tiffs to 4326;
-* Rewritten Image.Image constructor;
+* Added conversion of bad tiffs to **4326**;
+* Rewritten `Image.Image` constructor;
 * Fixed some typos;
 * Fixed minor issues;
 
@@ -21,7 +21,7 @@ Changes since 1.1.0:
 
 Changes since 1.0.0:
 
-- Changed solution archeticture (again). Think now it'll last longer, since everything is organized. Now there's **Core** library, **Console** and **GUI** applications and unit **Tests** project;
+- Changed solution architecture (again). Think now it'll last longer, since everything is organized. Now there's **Core** library, **Console** and **GUI** applications and unit **Tests** project;
 - Fixed lots of typos;
 - Removed **Gdal2Tiles.cs**;
 - Use `NetVips.Image` instead of `Drawing.Imaging.Image`;
