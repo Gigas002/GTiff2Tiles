@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 using Caliburn.Micro;
-using GTiff2Tiles.GUI.Resources;
+using GTiff2Tiles.GUI.Localization;
 using MaterialDesignThemes.Wpf;
 
 // ReSharper disable MemberCanBePrivate.Global

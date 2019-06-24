@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
 using CommandLine;
-using GTiff2Tiles.Console.Resources;
+using GTiff2Tiles.Console.Localization;
 
 namespace GTiff2Tiles.Console
 {

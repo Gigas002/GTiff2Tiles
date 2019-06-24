@@ -22,10 +22,8 @@
         Title="GTiff2Tiles"
         Height="550"
         Width="675"
-        MinHeight="550"
-        MinWidth="675"
         WindowStartupLocation="CenterScreen"
-        Icon="/GTiff2Tiles.GUI;component/Resources/icon.ico">
+        Icon="/GTiff2Tiles.GUI;component/Resources/Icon.ico">
     <controls:MetroWindow.Resources>
         <ResourceDictionary>
             <DataTemplate DataType="{x:Type vms:MessageBoxDialogViewModel}">
@@ -69,9 +67,7 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="5"/>
                     <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="5"/>
                     <RowDefinition Height="*"/>
-                    <RowDefinition Height="5"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
@@ -218,48 +214,15 @@
                 </Grid>
 
                 <!-- Grid.Row="20" -->
-                <Grid Grid.Row="20" Grid.Column="0"
-                  Grid.ColumnSpan="3"
-                  HorizontalAlignment="Right"
-                  VerticalAlignment="Bottom">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="5"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <TextBlock Grid.Row="0" Grid.Column="0"
-                           Text="Version:"
-                           VerticalAlignment="Bottom"/>
-                    <TextBlock Grid.Row="0" Grid.Column="2"
-                           VerticalAlignment="Bottom"
-                           Text="{Binding Version}"/>
-                </Grid>
-
-                <!-- Grid.Row="22" -->
-                <Grid Grid.Row="22" Grid.Column="0"
-                  Grid.ColumnSpan="3"
-                  HorizontalAlignment="Right"
-                  VerticalAlignment="Bottom">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="5"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <TextBlock Grid.Row="0" Grid.Column="0"
-                           Text="Copyright"
-                           VerticalAlignment="Bottom"/>
-                    <TextBlock Grid.Row="0" Grid.Column="2"
+                <TextBlock Grid.Row="20" Grid.Column="0"
+                           HorizontalAlignment="Left"
                            VerticalAlignment="Bottom"
                            Text="{Binding Copyright}"/>
-                </Grid>
+                <TextBlock Grid.Row="20" Grid.Column="0"
+                           Grid.ColumnSpan="3"
+                           HorizontalAlignment="Right"
+                           VerticalAlignment="Bottom"
+                           Text="{Binding Version}"/>
             </Grid>
         </Grid>
     </materialDesign:DialogHost>
