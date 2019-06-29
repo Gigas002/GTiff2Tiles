@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using GTiff2Tiles.Core.Exceptions.Image;
 using GTiff2Tiles.Core.Localization;
 using NetVips;
+
 // ReSharper disable MemberCanBePrivate.Global
 // ReSharper disable AccessToDisposedClosure
 
@@ -88,7 +89,7 @@ namespace GTiff2Tiles.Core.Image
         /// <summary>
         /// Creates new <see cref="Image"/> object.
         /// </summary>
-        /// <param name="inputFileInfo">Object of <see cref="FileInfo"/> class, representing input file.</param>
+        /// <param name="inputFileInfo">Input GeoTiff image.</param>
         public Image(FileInfo inputFileInfo)
         {
             //Disable NetVips warnings for tiff.
@@ -677,7 +678,7 @@ namespace GTiff2Tiles.Core.Image
         /// <summary>
         /// Sets properties, needed for cropping current <see cref="Image"/>.
         /// </summary>
-        /// <param name="outputDirectoryInfo">Object of <see cref="DirectoryInfo"/> class, representing output directory.</param>
+        /// <param name="outputDirectoryInfo">Output directory.</param>
         /// <param name="minZ">Minimum cropped zoom.</param>
         /// <param name="maxZ">Maximum cropped zoom.</param>
         private void SetCropProperties(DirectoryInfo outputDirectoryInfo, int minZ, int maxZ)
@@ -734,7 +735,7 @@ namespace GTiff2Tiles.Core.Image
         /// <summary>
         /// Create tiles. Crops input tiff only for lowest zoom and then join the higher ones from it.
         /// </summary>
-        /// <param name="outputDirectoryInfo">Object of <see cref="DirectoryInfo"/> class, representing output directory.</param>
+        /// <param name="outputDirectoryInfo">Output directory.</param>
         /// <param name="minZ">Minimum cropped zoom.</param>
         /// <param name="maxZ">Maximum cropped zoom.</param>
         /// <param name="progress">Progress.</param>
@@ -772,7 +773,7 @@ namespace GTiff2Tiles.Core.Image
         /// <summary>
         /// Crops input tiff for each zoom.
         /// </summary>
-        /// <param name="outputDirectoryInfo">Object of <see cref="DirectoryInfo"/> class, representing output directory.</param>
+        /// <param name="outputDirectoryInfo">Output directory.</param>
         /// <param name="minZ">Minimum cropped zoom.</param>
         /// <param name="maxZ">Maximum cropped zoom.</param>
         /// <param name="progress">Progress.</param>

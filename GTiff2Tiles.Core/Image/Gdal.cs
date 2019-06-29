@@ -18,10 +18,10 @@ namespace GTiff2Tiles.Core.Image
         /// <summary>
         /// Runs GdalWarp with passed parameters.
         /// </summary>
-        /// <param name="inputFileInfo">Object of <see cref="FileInfo"/> class, representing input file.</param>
-        /// <param name="outputFileInfo">Object of <see cref="FileInfo"/> class, representing output file.</param>
-        /// <param name="options">Array of <see cref="string"/> parameters.</param>
-        /// <param name="callback"><see langword="delegate"/> for progress reporting from Gdal.</param>
+        /// <param name="inputFileInfo">Input GeoTiff file.</param>
+        /// <param name="outputFileInfo">Output file.</param>
+        /// <param name="options">Array of string parameters.</param>
+        /// <param name="callback">Delegate for progress reporting from Gdal.</param>
         /// <remarks>Throws <see cref="GdalException"/>.</remarks>
         public static void Warp(FileInfo inputFileInfo, FileInfo outputFileInfo,
                                 string[] options,
@@ -65,10 +65,11 @@ namespace GTiff2Tiles.Core.Image
                     SWIGTYPE_p_p_GDALDatasetShadow gdalDatasetShadow =
                         new SWIGTYPE_p_p_GDALDatasetShadow(gcHandle.AddrOfPinnedObject(), false, null);
                     // ReSharper disable once UnusedVariable
-                    using (Dataset resultDataset = OSGeo.GDAL.Gdal.wrapper_GDALWarpDestName(outputFileInfo.FullName, 1,
-                                                                                            gdalDatasetShadow,
-                                                                                            new GDALWarpAppOptions(options),
-                                                                                            callback, string.Empty))
+                    using (Dataset resultDataset =
+                        OSGeo.GDAL.Gdal.wrapper_GDALWarpDestName(outputFileInfo.FullName, 1,
+                                                                 gdalDatasetShadow,
+                                                                 new GDALWarpAppOptions(options),
+                                                                 callback, string.Empty))
                     {
                         gcHandle.Free();
                     }
@@ -89,8 +90,8 @@ namespace GTiff2Tiles.Core.Image
         /// <summary>
         /// Runs GdalInfo with passed parameters.
         /// </summary>
-        /// <param name="inputFileInfo">Object of <see cref="FileInfo"/> class, representing input file.</param>
-        /// <param name="options">Array of <see cref="string"/> parameters for GdalInfo.</param>
+        /// <param name="inputFileInfo">Input GeoTiff file.</param>
+        /// <param name="options">Array of string parameters for GdalInfo.</param>
         /// <remarks>Throws <see cref="GdalException"/>.</remarks>
         /// <returns><see cref="string"/> from GdalInfo.</returns>
         public static string Info(FileInfo inputFileInfo, string[] options = null)
@@ -164,9 +165,9 @@ namespace GTiff2Tiles.Core.Image
         /// <summary>
         /// Gets the coordinates and pixel sizes of image.
         /// </summary>
-        /// <param name="inputFileInfo">Object of <see cref="FileInfo"/> class, representing input file.</param>
+        /// <param name="inputFileInfo">Input GeoTiff file.</param>
         /// <remarks>Throws <see cref="GdalException"/>.</remarks>
-        /// <returns>Array of <see cref="double"/> coordinates and pixel sizes.</returns>
+        /// <returns>Array of double coordinates and pixel sizes.</returns>
         private static double[] GetGeoTransform(FileInfo inputFileInfo)
         {
             #region Parameters checking
@@ -205,9 +206,9 @@ namespace GTiff2Tiles.Core.Image
         /// <summary>
         /// Gets proj4 string of input file.
         /// </summary>
-        /// <param name="inputFileInfo">Object of <see cref="FileInfo"/> class, representing input file.</param>
+        /// <param name="inputFileInfo">Input GeoTiff file.</param>
         /// <remarks>Throws <see cref="GdalException"/>.</remarks>
-        /// <returns><see cref="string"/> proj4.</returns>
+        /// <returns>Proj4 string.</returns>
         internal static string GetProj4String(FileInfo inputFileInfo)
         {
             #region Parameters checking
@@ -250,7 +251,7 @@ namespace GTiff2Tiles.Core.Image
         /// <summary>
         /// Gets the coordinates borders of the input Geotiff file.
         /// </summary>
-        /// <param name="inputFileInfo">Object of <see cref="FileInfo"/> class, representing input file.</param>
+        /// <param name="inputFileInfo">Input GeoTiff file.</param>
         /// <param name="rasterXSize">Raster's width.</param>
         /// <param name="rasterYSize">Raster's height.</param>
         /// <remarks>Throws <see cref="GdalException"/>.</remarks>
@@ -286,7 +287,7 @@ namespace GTiff2Tiles.Core.Image
         /// <summary>
         /// Gets image sizes in pixels.
         /// </summary>
-        /// <param name="inputFileInfo">Object of <see cref="FileInfo"/> class, representing input file.</param>
+        /// <param name="inputFileInfo">Input GeoTiff file.</param>
         /// <remarks>Throws <see cref="GdalException"/>.</remarks>
         /// <returns><see cref="ValueTuple{T1, T2}"/> with image sizes in pixels.</returns>
         internal static (int rasterXSize, int rasterYSize) GetImageSizes(FileInfo inputFileInfo)

@@ -34,6 +34,7 @@ using System.Runtime.InteropServices;
 using GTiff2Tiles.Core.Localization;
 using OSGeo.GDAL;
 using OSGeo.OGR;
+
 // ReSharper disable LocalizableElement
 
 namespace GTiff2Tiles.Core.Helpers
