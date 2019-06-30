@@ -32,7 +32,9 @@
             </DataTemplate>
         </ResourceDictionary>
     </mahApps:MetroWindow.Resources>
-    <materialDesignThemes:DialogHost Identifier="{Binding DialogHostId}">
+    <materialDesignThemes:DialogHost 
+        Identifier="{Binding DialogHostId}"
+        DialogTheme="Dark">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="20"/>
