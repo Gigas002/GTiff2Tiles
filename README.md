@@ -62,9 +62,6 @@ Also I should mention, that if your input **GeoTIFF** is not **EPSG:4326**, it w
 - [NetVips](https://www.nuget.org/packages/NetVips/) – 1.1.0-rc3;
 - [NetVips.Native.win-x64](https://www.nuget.org/packages/NetVips.Native.win-x64/) – 8.8.0;
 - [System.Threading.Tasks.Extensions](https://www.nuget.org/packages/System.Threading.Tasks.Extensions/) – 4.5.2;
-- [System.Runtime.CompilerServices.Unsafe](https://www.nuget.org/packages/System.Runtime.CompilerServices.Unsafe/) – 4.5.2 (required by **System.Threading.Tasks.Extensions** and **System.Memory**);
-- [System.Memory](https://www.nuget.org/packages/System.Memory/) – 4.5.3 (required by **NetVips**);
-- [System.Buffers](https://www.nuget.org/packages/System.Buffers/) – 4.5.0 (required by **System.Memory**);
 
 ### Localization
 
@@ -115,14 +112,10 @@ If you’re using Windows 7 SP1, you can experience weird error with **GDAL** pa
 
 ### Dependencies
 
-- [GDAL](https://www.nuget.org/packages/GDAL/) – 2.4.1;
+- GTiff2Tiles.Core;
 - [GDAL.Native](https://www.nuget.org/packages/GDAL.Native/) – 2.4.1;
-- [NetVips](https://www.nuget.org/packages/NetVips/) – 1.1.0-rc3;
 - [NetVips.Native.win-x64](https://www.nuget.org/packages/NetVips.Native.win-x64/) – 8.8.0;
 - [System.Threading.Tasks.Extensions](https://www.nuget.org/packages/System.Threading.Tasks.Extensions/) – 4.5.2;
-- [System.Runtime.CompilerServices.Unsafe](https://www.nuget.org/packages/System.Runtime.CompilerServices.Unsafe/) – 4.5.2 (required by **System.Threading.Tasks.Extensions** and **System.Memory**);
-- [System.Memory](https://www.nuget.org/packages/System.Memory/) – 4.5.3 (required by **NetVips**);
-- [System.Buffers](https://www.nuget.org/packages/System.Buffers/) – 4.5.0 (required by **System.Memory**);
 - [CommandLineParser](https://www.nuget.org/packages/CommandLineParser/) – 2.5.0;
 
 ### Localization
@@ -146,17 +139,12 @@ If you’re using Windows 7 SP1, you can experience weird error with **GDAL** pa
 
 ### Dependencies
 
-- [GDAL](https://www.nuget.org/packages/GDAL/) – 2.4.1;
+- GTiff2Tiles.Core;
 - [GDAL.Native](https://www.nuget.org/packages/GDAL.Native/) – 2.4.1;
-- [NetVips](https://www.nuget.org/packages/NetVips/) – 1.1.0-rc3;
 - [NetVips.Native.win-x64](https://www.nuget.org/packages/NetVips.Native.win-x64/) – 8.8.0;
 - [System.Threading.Tasks.Extensions](https://www.nuget.org/packages/System.Threading.Tasks.Extensions/) – 4.5.2;
-- [System.Runtime.CompilerServices.Unsafe](https://www.nuget.org/packages/System.Runtime.CompilerServices.Unsafe/) – 4.5.2 (required by **System.Threading.Tasks.Extensions** and **System.Memory**);
-- [System.Memory](https://www.nuget.org/packages/System.Memory/) – 4.5.3 (required by **NetVips**);
-- [System.Buffers](https://www.nuget.org/packages/System.Buffers/) – 4.5.0 (required by **System.Memory**);
 - [Caliburn.Micro](https://www.nuget.org/packages/Caliburn.Micro) – 3.2.0;
 - [MahApps.Metro](<https://www.nuget.org/packages/MahApps.Metro>) – 1.6.5;
-- [ControlzEx](<https://www.nuget.org/packages/ControlzEx>) – 3.0.2.4 (required by **MahApps.Metro**);
 - [MaterialDesignColors](<https://www.nuget.org/packages/MaterialDesignColors>) – 1.1.3;
 - [MaterialDesignThemes](<https://www.nuget.org/packages/MaterialDesignThemes>) – 2.5.1;
 - [MaterialDesignExtensions](https://www.nuget.org/packages/MaterialDesignExtensions) – 2.6.0;
@@ -173,14 +161,9 @@ Currently, application is available on **English** and **Russian** languages.
 
 ### Dependencies
 
-- [GDAL](https://www.nuget.org/packages/GDAL/) – 2.4.1;
+- GTiff2Tiles.Core;
 - [GDAL.Native](https://www.nuget.org/packages/GDAL.Native/) – 2.4.1;
-- [NetVips](https://www.nuget.org/packages/NetVips/) – 1.1.0-rc3;
 - [NetVips.Native.win-x64](https://www.nuget.org/packages/NetVips.Native.win-x64/) – 8.8.0;
-- [System.Threading.Tasks.Extensions](https://www.nuget.org/packages/System.Threading.Tasks.Extensions/) – 4.5.2;
-- [System.Runtime.CompilerServices.Unsafe](https://www.nuget.org/packages/System.Runtime.CompilerServices.Unsafe/) – 4.5.2 (required by **System.Threading.Tasks.Extensions** and **System.Memory**);
-- [System.Memory](https://www.nuget.org/packages/System.Memory/) – 4.5.3 (required by **NetVips**);
-- [System.Buffers](https://www.nuget.org/packages/System.Buffers/) – 4.5.0 (required by **System.Memory**);
 - [NUnit](https://www.nuget.org/packages/NUnit/3.12.0) – 3.12.0;
 - [NUnit3TestAdapter](https://www.nuget.org/packages/NUnit3TestAdapter/) – 3.13.0;
 

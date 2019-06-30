@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>GTiff2Tiles</id>
+    <version>1.2.0</version>
+    <title>GTiff2Tiles</title>
+    <authors>Gigas002</authors>
+    <owners>Gigas002</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <licenseUrl>http://www.wtfpl.net/</licenseUrl>
+    <projectUrl>https://github.com/Gigas002/GTiff2Tiles</projectUrl>
+    <description>Analogue of gdal2tiles.py on C#.</description>
+    <summary></summary>
+    <copyright>Gigas002</copyright>
+    <tags>gtiff2tiles gdal2tiles tif tiff geotiff gdal tile maptiler</tags>
+    <dependencies>
+      <group targetFramework=".NETFramework4.7.2">
+        <dependency id="GDAL" version="2.3.3" />
+        <dependency id="GDAL.Native" version="2.3.3" />
+        <dependency id="NetVips" version="1.0.7" />
+        <dependency id="System.Threading.Tasks.Extensions" version="4.5.2" />
+        <dependency id="System.Runtime.CompilerServices.Unsafe" version="4.5.2" />
+      </group>
+    </dependencies>
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="System" targetFramework=".NETFramework4.7.2" />
+      <frameworkAssembly assemblyName="System.Core" targetFramework=".NETFramework4.7.2" />
+      <frameworkAssembly assemblyName="System.Xml" targetFramework=".NETFramework4.7.2" />
+    </frameworkAssemblies>
+  </metadata>
+  <files>
+    <file src="lib\net472\GTiff2Tiles.Core.dll" target="lib\net472\GTiff2Tiles.Core.dll" />
+    <file src="lib\net472\GTiff2Tiles.Core.xml" target="lib\net472\GTiff2Tiles.Core.xml" />
+  </files>
+</package>
