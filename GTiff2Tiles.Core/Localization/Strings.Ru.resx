@@ -117,64 +117,67 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AlreadyExists" xml:space="preserve">
+    <value>{0} уже существует. Путь:{1}</value>
+  </data>
+  <data name="DirectoryIsEmpty" xml:space="preserve">
+    <value>Директория пустая. Пожалуйста, выберите другую директорию. Путь:{0}</value>
+  </data>
   <data name="DirectoryIsntEmpty" xml:space="preserve">
-    <value>Директория {0} не пустая. Пожалуйста, выберите другую директорию. Путь:{1}. Метод:{2}</value>
+    <value>Директория не пустая. Пожалуйста, выберите другую директорию. Путь:{0}</value>
+  </data>
+  <data name="DoesntExist" xml:space="preserve">
+    <value>{0} не существует. Путь:{1}</value>
   </data>
   <data name="DoesntSupportPlatform" xml:space="preserve">
-    <value>{0} не поддерживается текущей платформой. Метод:{1}</value>
-  </data>
-  <data name="ExtensionIsnt" xml:space="preserve">
-    <value>Расширение {0} не {1}. Путь:{2}. Метод:{3}</value>
-  </data>
-  <data name="IsntExist" xml:space="preserve">
-    <value>{0} не существует. Путь:{1}. Метод:{2}</value>
+    <value>{0} не поддерживается текущей платформой</value>
   </data>
   <data name="IsNull" xml:space="preserve">
-    <value>Параметр {0} не задан. Метод:{1}</value>
+    <value>{0} равен null</value>
   </data>
   <data name="LesserOrEqual" xml:space="preserve">
-    <value>{0} меньше, или равно {1}. Метод:{2}</value>
+    <value>Параметр {0} меньше, или равен {1}</value>
   </data>
   <data name="LesserThan" xml:space="preserve">
-    <value>{0} меньше, чем {1}. Метод:{2}</value>
+    <value>Параметр {0} меньше, чем {1}</value>
   </data>
   <data name="StringIsEmpty" xml:space="preserve">
-    <value>Строка {0} пустая. Метод:{1}</value>
+    <value>Строка {0} пустая</value>
   </data>
   <data name="UnableToAddToDictionary" xml:space="preserve">
-    <value>Невозможно добавить значение в словарь {0}. Метод:{1}</value>
+    <value>Невозможно добавить значение в словарь {0}</value>
   </data>
   <data name="UnableToCalculateCoordinates" xml:space="preserve">
-    <value>Невозможно вычислить координаты границ тайла. Метод:{0}</value>
-  </data>
-  <data name="UnableToComplete" xml:space="preserve">
-    <value>Невозможно выполнить метод {0}</value>
+    <value>Невозможно вычислить границы координат тайла</value>
   </data>
   <data name="UnableToConfigure" xml:space="preserve">
-    <value>Невозможно настроить {0}. Метод:{1}</value>
+    <value>Невозможно настроить {0}</value>
   </data>
   <data name="UnableToConvertCoordinatesToTiles" xml:space="preserve">
-    <value>Невозможно конвертировать координаты в номера тайлов. Метод:{0}</value>
+    <value>Невозможно конвертировать координаты в номера тайлов</value>
   </data>
   <data name="UnableToCreate" xml:space="preserve">
-    <value>Невозможно создать {0}. Путь:{1}. Метод:{2}</value>
+    <value>Невозможно создать {0}. Путь:{1}</value>
   </data>
   <data name="UnableToCreateTile" xml:space="preserve">
-    <value>Невозможно создать тайл {0}. {1}:{2}, {3}:{4}. Метод:{5}</value>
+    <value>Невозможно создать тайл. X:{0}, Y:{1}</value>
   </data>
   <data name="UnableToGetCoordinates" xml:space="preserve">
-    <value>Невозможно получить координаты или размеры {0}. Метод:{1}</value>
+    <value>Невозможно получить координаты или размеры объекта {0}</value>
   </data>
   <data name="UnableToJoin" xml:space="preserve">
-    <value>Невозможно склеить {0}. {1}:{2}, {3}:{4}. Метод:{5}</value>
+    <value>Невозможно склеить {0}. X:{1}, Y:{2}</value>
   </data>
   <data name="UnableToOpen" xml:space="preserve">
-    <value>{0} не может открыть {2}. Путь:{3}. Метод:{4}</value>
+    <value>Невозможно открыть {0}. Путь:{1}</value>
   </data>
   <data name="UnableToPrintDriver" xml:space="preserve">
-    <value>Невозможно вывести текущий драйвер {0}. Метод:{1}</value>
+    <value>Невозможно вывести драйвер {0}</value>
   </data>
   <data name="UnableToPrintDrivers" xml:space="preserve">
-    <value>Невозможно вывести драйверы {0}, потому что бинарные файлы не были найдены. Метод:{1}</value>
+    <value>Невозможно вывести драйвера {0}, так как не были найдены бинарные файлы</value>
+  </data>
+  <data name="WrongExtension" xml:space="preserve">
+    <value>Расширение файла {0} не {1}. Путь:{2}</value>
   </data>
 </root>

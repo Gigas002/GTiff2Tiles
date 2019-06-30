@@ -47,6 +47,9 @@ namespace GTiff2Tiles.Core.Helpers
         /// <param name="fileExtension">Checks file extension.</param>
         internal static void CheckFile(FileInfo fileInfo, bool shouldExist, string fileExtension = null)
         {
+            //Update file state.
+            fileInfo.Refresh();
+
             //Check file's path.
             if (string.IsNullOrWhiteSpace(fileInfo.FullName))
             {

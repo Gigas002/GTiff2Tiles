@@ -216,7 +216,7 @@ namespace GTiff2Tiles.Core.Image
         {
             #region Parameters checking.
 
-            CheckHelper.CheckFile(inputFileInfo, false);
+            CheckHelper.CheckFile(inputFileInfo, true);
 
             #endregion
 
