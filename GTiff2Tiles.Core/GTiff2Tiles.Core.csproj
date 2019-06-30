@@ -120,7 +120,7 @@
     </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-    <PropertyGroup>
+  <PropertyGroup>
     <TargetFrameworkSDKToolsDirectory Condition=" '$(PlatformTarget)' == 'x64'">$(TargetFrameworkSDKToolsDirectory)$(PlatformTarget)\</TargetFrameworkSDKToolsDirectory>
   </PropertyGroup>
 </Project>

@@ -29,8 +29,7 @@ namespace GTiff2Tiles.Core.Tile
             #region Parameters checking
 
             if (zoom < 0)
-                throw new TileException(string.Format(Strings.LesserThan, nameof(zoom), 0,
-                                                      $"{nameof(Tile)}.{nameof(GetTileNumbersFromCoords)}"));
+                throw new TileException(string.Format(Strings.LesserThan, nameof(zoom), 0));
 
             #endregion
 
@@ -47,7 +46,7 @@ namespace GTiff2Tiles.Core.Tile
             catch (Exception exception)
             {
                 throw new
-                    TileException(string.Format(Strings.UnableToConvertCoordinatesToTiles, $"{nameof(Tile)}.{nameof(GetTileNumbersFromCoords)}"),
+                    TileException(string.Format(Strings.UnableToConvertCoordinatesToTiles),
                                   exception);
             }
 
@@ -81,7 +80,7 @@ namespace GTiff2Tiles.Core.Tile
             }
             catch (Exception exception)
             {
-                throw new TileException(string.Format(Strings.UnableToCalculateCoordinates, $"{nameof(Tile)}.{nameof(GetTileNumbersFromCoords)}"),
+                throw new TileException(string.Format(Strings.UnableToCalculateCoordinates),
                                         exception);
             }
         }

@@ -61,7 +61,25 @@ namespace GTiff2Tiles.Core.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} directory isn&apos;t empty. Please, select another directory. Path:{1}. Method:{2}.
+        ///   Looks up a localized string similar to {0} is already exists. Path:{1}.
+        /// </summary>
+        internal static string AlreadyExists {
+            get {
+                return ResourceManager.GetString("AlreadyExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Directory is empty. Please, select another directory. Path:{0}.
+        /// </summary>
+        internal static string DirectoryIsEmpty {
+            get {
+                return ResourceManager.GetString("DirectoryIsEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Directory isn&apos;t empty. Please, select another directory. Path:{0}.
         /// </summary>
         internal static string DirectoryIsntEmpty {
             get {
@@ -70,7 +88,16 @@ namespace GTiff2Tiles.Core.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} doesn&apos;t support current platform. Method:{1}.
+        ///   Looks up a localized string similar to {0} isn&apos;t exist. Path:{1}.
+        /// </summary>
+        internal static string DoesntExist {
+            get {
+                return ResourceManager.GetString("DoesntExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} doesn&apos;t support current platform.
         /// </summary>
         internal static string DoesntSupportPlatform {
             get {
@@ -79,25 +106,7 @@ namespace GTiff2Tiles.Core.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} extension isn&apos;t {1}. Path:{2}. Method:{3}.
-        /// </summary>
-        internal static string ExtensionIsnt {
-            get {
-                return ResourceManager.GetString("ExtensionIsnt", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to {0} isn&apos;t exist. Path:{1}. Method:{2}.
-        /// </summary>
-        internal static string IsntExist {
-            get {
-                return ResourceManager.GetString("IsntExist", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to {0} is null. Method:{1}.
+        ///   Looks up a localized string similar to {0} is null.
         /// </summary>
         internal static string IsNull {
             get {
@@ -106,7 +115,7 @@ namespace GTiff2Tiles.Core.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} is lesser or equal {1}. Method:{2}.
+        ///   Looks up a localized string similar to {0} is lesser or equal {1}.
         /// </summary>
         internal static string LesserOrEqual {
             get {
@@ -115,7 +124,7 @@ namespace GTiff2Tiles.Core.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} is lesser, than {1}. Method:{2}.
+        ///   Looks up a localized string similar to {0} is lesser, than {1}.
         /// </summary>
         internal static string LesserThan {
             get {
@@ -124,7 +133,7 @@ namespace GTiff2Tiles.Core.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} string is empty. Method:{1}.
+        ///   Looks up a localized string similar to {0} string is empty.
         /// </summary>
         internal static string StringIsEmpty {
             get {
@@ -133,7 +142,7 @@ namespace GTiff2Tiles.Core.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unable to add value to {0} dictionary. Method:{1}.
+        ///   Looks up a localized string similar to Unable to add value to {0} dictionary.
         /// </summary>
         internal static string UnableToAddToDictionary {
             get {
@@ -142,7 +151,7 @@ namespace GTiff2Tiles.Core.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unable to calculate tile&apos;s coordinate borders. Method:{0}.
+        ///   Looks up a localized string similar to Unable to calculate tile&apos;s coordinate borders.
         /// </summary>
         internal static string UnableToCalculateCoordinates {
             get {
@@ -151,16 +160,7 @@ namespace GTiff2Tiles.Core.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unable to complete {0} method.
-        /// </summary>
-        internal static string UnableToComplete {
-            get {
-                return ResourceManager.GetString("UnableToComplete", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Unable to configure {0}. Method:{1}.
+        ///   Looks up a localized string similar to Unable to configure {0}.
         /// </summary>
         internal static string UnableToConfigure {
             get {
@@ -169,7 +169,7 @@ namespace GTiff2Tiles.Core.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unable to convert coordinates into tile numbers. Method:{0}.
+        ///   Looks up a localized string similar to Unable to convert coordinates into tile numbers.
         /// </summary>
         internal static string UnableToConvertCoordinatesToTiles {
             get {
@@ -178,7 +178,7 @@ namespace GTiff2Tiles.Core.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unable to create {0}. Path:{1}. Method:{2}.
+        ///   Looks up a localized string similar to Unable to create {0}. Path:{1}.
         /// </summary>
         internal static string UnableToCreate {
             get {
@@ -187,7 +187,7 @@ namespace GTiff2Tiles.Core.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unable to create tile {0}. {1}:{2}, {3}:{4}. Method:{5}.
+        ///   Looks up a localized string similar to Unable to create tile. X:{0}, Y:{1}.
         /// </summary>
         internal static string UnableToCreateTile {
             get {
@@ -196,7 +196,7 @@ namespace GTiff2Tiles.Core.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unable to get {0} coordinate borders or sizes. Method:{1}.
+        ///   Looks up a localized string similar to Unable to get {0} coordinate borders or sizes.
         /// </summary>
         internal static string UnableToGetCoordinates {
             get {
@@ -205,7 +205,7 @@ namespace GTiff2Tiles.Core.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unable to join {0}. {1}:{2}, {3}:{4}. Method:{5}.
+        ///   Looks up a localized string similar to Unable to join {0}. X:{1}, Y:{2}.
         /// </summary>
         internal static string UnableToJoin {
             get {
@@ -214,7 +214,7 @@ namespace GTiff2Tiles.Core.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} is unable to open {2}. Path:{3}. Method:{4}.
+        ///   Looks up a localized string similar to Unable to open {0}. Path:{1}.
         /// </summary>
         internal static string UnableToOpen {
             get {
@@ -223,7 +223,7 @@ namespace GTiff2Tiles.Core.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unable to print current {0} driver. Method:{1}.
+        ///   Looks up a localized string similar to Unable to print current {0} driver.
         /// </summary>
         internal static string UnableToPrintDriver {
             get {
@@ -232,11 +232,20 @@ namespace GTiff2Tiles.Core.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unable to print {0} drivers, because binary files wasn&apos;t found. Method:{1}.
+        ///   Looks up a localized string similar to Unable to print {0} drivers, because binary files wasn&apos;t found.
         /// </summary>
         internal static string UnableToPrintDrivers {
             get {
                 return ResourceManager.GetString("UnableToPrintDrivers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} extension isn&apos;t {1}. Path:{2}.
+        /// </summary>
+        internal static string WrongExtension {
+            get {
+                return ResourceManager.GetString("WrongExtension", resourceCulture);
             }
         }
     }
