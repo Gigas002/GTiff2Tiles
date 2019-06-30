@@ -61,7 +61,7 @@ namespace GTiff2Tiles.Console.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This algorithm is not supported..
+        ///   Looks up a localized string similar to This algorithm is not supported.
         /// </summary>
         internal static string AlgorithmNotSupported {
             get {
@@ -70,7 +70,7 @@ namespace GTiff2Tiles.Console.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Done! Time passed:{0}Days:{1} hours:{2} minutes:{3} seconds:{4} milliseconds:{5}..
+        ///   Looks up a localized string similar to Done! Time passed:{0}Days:{1} hours:{2} minutes:{3} seconds:{4} milliseconds:{5}.
         /// </summary>
         internal static string Done {
             get {
@@ -88,7 +88,7 @@ namespace GTiff2Tiles.Console.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} is lesser, than {1}..
+        ///   Looks up a localized string similar to {0} is lesser, than {1}.
         /// </summary>
         internal static string LesserThan {
             get {
@@ -97,7 +97,7 @@ namespace GTiff2Tiles.Console.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} option is empty..
+        ///   Looks up a localized string similar to {0} option is empty.
         /// </summary>
         internal static string OptionIsEmpty {
             get {
@@ -106,7 +106,7 @@ namespace GTiff2Tiles.Console.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unable to parse console options..
+        ///   Looks up a localized string similar to Unable to parse console options.
         /// </summary>
         internal static string ParsingError {
             get {
@@ -115,7 +115,7 @@ namespace GTiff2Tiles.Console.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Press any key to exit..
+        ///   Looks up a localized string similar to Press any key to exit.
         /// </summary>
         internal static string PressAnyKey {
             get {
