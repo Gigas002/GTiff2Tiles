@@ -670,7 +670,7 @@ namespace GTiff2Tiles.Core.Image
                 }
                 catch (Exception exception)
                 {
-                    throw new ImageException(string.Format(Strings.UnableToAddToDictionary,
+                    throw new ImageException(string.Format(Strings.UnableToAddToCollection,
                                                            nameof(TilesMinMax)), exception);
                 }
             }

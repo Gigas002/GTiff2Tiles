@@ -276,7 +276,7 @@ namespace GTiff2Tiles.GUI.ViewModels
             try
             {
                 OpenFileDialogResult dialogResult =  await OpenFileDialog.ShowDialogAsync(Enums.MainViewModel.DialogHostId,
-                                                                                          new OpenFileDialogArguments { CreateNewDirectoryEnabled = true });
+                                                                                          new OpenFileDialogArguments());
                 InputFilePath = dialogResult.Canceled ? InputFilePath : dialogResult.FileInfo.FullName;
             }
             catch (Exception exception)

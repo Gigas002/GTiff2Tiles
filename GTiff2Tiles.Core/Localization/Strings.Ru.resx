@@ -117,7 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AlreadyExists" xml:space="preserve">
+  <data name="AlreadyExist" xml:space="preserve">
     <value>{0} уже существует. Путь:{1}</value>
   </data>
   <data name="DirectoryIsEmpty" xml:space="preserve">
@@ -144,8 +144,8 @@
   <data name="StringIsEmpty" xml:space="preserve">
     <value>Строка {0} пустая</value>
   </data>
-  <data name="UnableToAddToDictionary" xml:space="preserve">
-    <value>Невозможно добавить значение в словарь {0}</value>
+  <data name="UnableToAddToCollection" xml:space="preserve">
+    <value>Невозможно добавить значение в коллекцию {0}</value>
   </data>
   <data name="UnableToCalculateCoordinates" xml:space="preserve">
     <value>Невозможно вычислить границы координат тайла</value>
@@ -172,10 +172,7 @@
     <value>Невозможно открыть {0}. Путь:{1}</value>
   </data>
   <data name="UnableToPrintDriver" xml:space="preserve">
-    <value>Невозможно вывести драйвер {0}</value>
-  </data>
-  <data name="UnableToPrintDrivers" xml:space="preserve">
-    <value>Невозможно вывести драйвера {0}, так как не были найдены бинарные файлы</value>
+    <value>Невозможно вывести драйвера {0}</value>
   </data>
   <data name="WrongExtension" xml:space="preserve">
     <value>Расширение файла {0} не {1}. Путь:{2}</value>

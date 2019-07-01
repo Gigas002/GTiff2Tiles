@@ -61,11 +61,11 @@ namespace GTiff2Tiles.Core.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} is already exists. Path:{1}.
+        ///   Looks up a localized string similar to {0} is already exist. Path:{1}.
         /// </summary>
-        internal static string AlreadyExists {
+        internal static string AlreadyExist {
             get {
-                return ResourceManager.GetString("AlreadyExists", resourceCulture);
+                return ResourceManager.GetString("AlreadyExist", resourceCulture);
             }
         }
         
@@ -88,7 +88,7 @@ namespace GTiff2Tiles.Core.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} isn&apos;t exist. Path:{1}.
+        ///   Looks up a localized string similar to {0} doesn&apos;t exist. Path:{1}.
         /// </summary>
         internal static string DoesntExist {
             get {
@@ -142,11 +142,11 @@ namespace GTiff2Tiles.Core.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unable to add value to {0} dictionary.
+        ///   Looks up a localized string similar to Unable to add value to {0} collection.
         /// </summary>
-        internal static string UnableToAddToDictionary {
+        internal static string UnableToAddToCollection {
             get {
-                return ResourceManager.GetString("UnableToAddToDictionary", resourceCulture);
+                return ResourceManager.GetString("UnableToAddToCollection", resourceCulture);
             }
         }
         
@@ -223,16 +223,7 @@ namespace GTiff2Tiles.Core.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unable to print current {0} driver.
-        /// </summary>
-        internal static string UnableToPrintDriver {
-            get {
-                return ResourceManager.GetString("UnableToPrintDriver", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Unable to print {0} drivers, because binary files wasn&apos;t found.
+        ///   Looks up a localized string similar to Unable to print {0} drivers.
         /// </summary>
         internal static string UnableToPrintDrivers {
             get {

@@ -52,18 +52,13 @@ namespace GTiff2Tiles.Core.Helpers
 
             //Check file's path.
             if (string.IsNullOrWhiteSpace(fileInfo.FullName))
-            {
                 throw new Exception(string.Format(Strings.StringIsEmpty,
                                                   nameof(fileInfo.FullName)));
-            }
-
             //Check file's extension.
             if (!string.IsNullOrWhiteSpace(fileExtension))
-            {
                 if (fileInfo.Extension != fileExtension)
                     throw new Exception(string.Format(Strings.WrongExtension, nameof(fileInfo),
                                                       fileExtension, fileInfo.FullName));
-            }
 
             //Check file's existance.
             if (shouldExist)
@@ -73,7 +68,7 @@ namespace GTiff2Tiles.Core.Helpers
                                                       nameof(fileInfo), fileInfo.FullName));
             }
             else if (fileInfo.Exists)
-                throw new Exception(string.Format(Strings.AlreadyExists,
+                throw new Exception(string.Format(Strings.AlreadyExist,
                                                   nameof(fileInfo), fileInfo.FullName));
         }
 
@@ -96,10 +91,19 @@ namespace GTiff2Tiles.Core.Helpers
                                                   nameof(directoryInfo.FullName)));
 
             //Try to create directory.
-            directoryInfo.Create();
-            directoryInfo.Refresh();
+            try
+            {
+                directoryInfo.Create();
+                directoryInfo.Refresh();
+            }
+            catch (Exception exception)
+            {
+                throw new Exception(string.Format(Strings.UnableToCreate, nameof(directoryInfo),
+                                                  directoryInfo.FullName), exception);
+            }
 
             //Check directory's emptyness.
+            // ReSharper disable once ConvertIfStatementToSwitchStatement
             if (shouldBeEmpty == true)
             {
                 if (directoryInfo.EnumerateFileSystemInfos().Any())
@@ -107,11 +111,9 @@ namespace GTiff2Tiles.Core.Helpers
                                                       directoryInfo.FullName));
             }
             else if (shouldBeEmpty == false)
-            {
                 if (!directoryInfo.EnumerateFileSystemInfos().Any())
                     throw new Exception(string.Format(Strings.DirectoryIsEmpty,
                                                       directoryInfo.FullName));
-            }
         }
 
         /// <summary>

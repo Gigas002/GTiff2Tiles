@@ -117,8 +117,8 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AlreadyExists" xml:space="preserve">
-    <value>{0} is already exists. Path:{1}</value>
+  <data name="AlreadyExist" xml:space="preserve">
+    <value>{0} is already exist. Path:{1}</value>
   </data>
   <data name="DirectoryIsEmpty" xml:space="preserve">
     <value>Directory is empty. Please, select another directory. Path:{0}</value>
@@ -127,7 +127,7 @@
     <value>Directory isn't empty. Please, select another directory. Path:{0}</value>
   </data>
   <data name="DoesntExist" xml:space="preserve">
-    <value>{0} isn't exist. Path:{1}</value>
+    <value>{0} doesn't exist. Path:{1}</value>
   </data>
   <data name="DoesntSupportPlatform" xml:space="preserve">
     <value>{0} doesn't support current platform</value>
@@ -144,8 +144,8 @@
   <data name="StringIsEmpty" xml:space="preserve">
     <value>{0} string is empty</value>
   </data>
-  <data name="UnableToAddToDictionary" xml:space="preserve">
-    <value>Unable to add value to {0} dictionary</value>
+  <data name="UnableToAddToCollection" xml:space="preserve">
+    <value>Unable to add value to {0} collection</value>
   </data>
   <data name="UnableToCalculateCoordinates" xml:space="preserve">
     <value>Unable to calculate tile's coordinate borders</value>
@@ -171,11 +171,8 @@
   <data name="UnableToOpen" xml:space="preserve">
     <value>Unable to open {0}. Path:{1}</value>
   </data>
-  <data name="UnableToPrintDriver" xml:space="preserve">
-    <value>Unable to print current {0} driver</value>
-  </data>
   <data name="UnableToPrintDrivers" xml:space="preserve">
-    <value>Unable to print {0} drivers, because binary files wasn't found</value>
+    <value>Unable to print {0} drivers</value>
   </data>
   <data name="WrongExtension" xml:space="preserve">
     <value>{0} extension isn't {1}. Path:{2}</value>

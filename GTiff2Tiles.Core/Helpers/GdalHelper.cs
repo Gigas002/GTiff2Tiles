@@ -114,7 +114,7 @@ namespace GTiff2Tiles.Core.Helpers
                 }
                 catch (Exception exception)
                 {
-                    throw new Exception(string.Format(Strings.UnableToPrintDriver, "OGR"),
+                    throw new Exception(string.Format(Strings.UnableToPrintDrivers, "OGR"),
                                         exception);
                 }
             }
@@ -141,7 +141,7 @@ namespace GTiff2Tiles.Core.Helpers
                 }
                 catch (Exception exception)
                 {
-                    throw new Exception(string.Format(Strings.UnableToPrintDriver),
+                    throw new Exception(string.Format(Strings.UnableToPrintDrivers),
                                         exception);
                 }
             }
