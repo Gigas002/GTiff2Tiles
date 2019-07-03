@@ -1,8 +1,12 @@
 # GTiff2Tiles
 
+![Icon](GTiff2Tiles.GUI/Resources/Icon.ico)
+
 Analogue of [gdal2tiles.py](https://github.com/OSGeo/gdal/blob/master/gdal/swig/python/scripts/gdal2tiles.py) on **C#**. Currently support **only GeoTIFF** as input data and creates **only EPSG:4326 geodetic tiles** on output in [**tms**](https://wiki.osgeo.org/wiki/Tile_Map_Service_Specification) structure.
 
 Solution is build in **VS2019 (16.1.5)**, **.NET Framework 4.7.2**, targeting **Windows x64** systems.
+
+Icon is taken from [here](https://material.io/tools/icons/?icon=image&style=baseline) and is used in **GTiff2Tiles.GUI** and **GTiff2Tiles.Console**.
 
 [![Build status](https://ci.appveyor.com/api/projects/status/wp5bbi08sgd4i9bh?svg=true)](https://ci.appveyor.com/project/Gigas002/gtiff2tiles)
 

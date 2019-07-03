@@ -1,4 +1,46 @@
-# 27.02.2019 - Released 1.2.0
+# WIP – Released 1.3.0
+
+Changes since 1.2.0:
+
+## Overall
+
+- Solution rebuilt in **VS2019**;
+- Removed explicitly unused packages;
+- Added **NetVips.Native 8.8.0** package with **Windows x64** binaries;
+- Updated **NetVips** package to **1.1.0-rc3**;
+- Updated **GDAL** and **GDAL.Native** to **2.4.1**;
+- Moved all strings to **Strings.resx** file in **Localization** directory;
+- Added support for Russian language;
+- *New feature:* Option to create non-tms tiles (*WIP*);
+
+## Core
+
+- Fix **NetVips** issue (#3, #4), when trying to shrink image, lesser than 1px (see https://github.com/Gigas002/GTiff2Tiles/commit/e086568ab1fcc528d9a49ee9fead2ade476815e7 and https://github.com/Gigas002/GTiff2Tiles/commit/e42e5aecc9bf42e2329dade4a9bc1575f006a4fc);
+- Fix additional band creation issue (#5) (see https://github.com/Gigas002/GTiff2Tiles/commit/514ecd912b1e9f3c7a1eb5db8c3fe1770a365a6b);
+- Cleaned up some code;
+
+**Breaking changes:**
+
+- `Image.Tile.GetTileNumbersFromCoords` method now also takes `bool tmsCompatible` parameter;
+- `Image.Tile.TileBounds` method now takes `bool tmsCompatible` parameter, instead of `bool isFlipY = true)`, which was working the opposite. So, set the `tmsCompatible` value to `true` if you want to have the previous behaviour (creation of `tms` tiles).
+
+## GUI
+
+- Added screenshot;
+- Added [icon](https://material.io/tools/icons/?icon=image&style=baseline);
+- Added **material design**, including dialogs and message boxes;
+- Removed **Ookii.Dialogs.Wpf** package (replaced by **MaterialDesignExtensions**);
+
+## Console
+
+- Added [icon](https://material.io/tools/icons/?icon=image&style=baseline);
+
+## Test
+
+- Added more zoom levels to test (from 0 to 18);
+- Improved code coverage (*WIP*);
+
+# 27.02.2019 – Released 1.2.0
 
 Changes since 1.1.0:
 
@@ -17,7 +59,7 @@ Changes since 1.1.0:
 * Fixed some typos;
 * Fixed minor issues;
 
-# 03.02.2019 - Released 1.1.0
+# 03.02.2019 – Released 1.1.0
 
 Changes since 1.0.0:
 
@@ -34,7 +76,7 @@ Changes since 1.0.0:
 - Fixed some minor issues;
 
 
-# 30.12.2018 - Released 1.0.0
+# 30.12.2018 – Released 1.0.0
 
 Changes since beta:
 
