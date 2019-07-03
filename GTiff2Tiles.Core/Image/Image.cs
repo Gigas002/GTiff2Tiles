@@ -42,6 +42,11 @@ namespace GTiff2Tiles.Core.Image
         /// </summary>
         private int MaxZ { get; set; }
 
+        /// <summary>
+        /// Shows if tms tiles on output are created.
+        /// </summary>
+        private bool TmsCompatible { get; set; }
+
         #endregion
 
         #region Public
@@ -223,12 +228,13 @@ namespace GTiff2Tiles.Core.Image
             const bool centreConvention = false;
 
             //Get the coordinate borders for current tile from tile numbers.
-            (double minX, double minY, double maxX, double maxY) = Tile.Tile.TileBounds(tileX, tileY, zoom, false);
+            (double minX, double minY, double maxX, double maxY) = Tile.Tile.TileBounds(tileX, tileY, zoom, TmsCompatible);
 
             //Get postitions and sizes for current tile.
             (int readPosX, int readPosY, int readXSize, int readYSize, int writePosX, int writePosY,
              int writeXSize, int writeYSize) = GeoQuery(minX, maxY, maxX, minY);
 
+            //todo openlayers tileY+1
             FileInfo outputTileFileInfo = new FileInfo(Path.Combine(tileDirectoryInfo.FullName,
                                                                     $"{tileY}{Enums.Extensions.Png}"));
 
@@ -637,7 +643,8 @@ namespace GTiff2Tiles.Core.Image
         /// <param name="outputDirectoryInfo">Output directory.</param>
         /// <param name="minZ">Minimum cropped zoom.</param>
         /// <param name="maxZ">Maximum cropped zoom.</param>
-        private void SetCropProperties(DirectoryInfo outputDirectoryInfo, int minZ, int maxZ)
+        /// <param name="tmsCompatible">Do you want tms tiles on output?</param>
+        private void SetCropProperties(DirectoryInfo outputDirectoryInfo, int minZ, int maxZ, bool tmsCompatible)
         {
             #region Check parameters
 
@@ -650,13 +657,14 @@ namespace GTiff2Tiles.Core.Image
             #endregion
 
             (OutputDirectoryInfo, MinZ, MaxZ) = (outputDirectoryInfo, minZ, maxZ);
+            TmsCompatible = tmsCompatible;
 
             //Create dictionary with tiles for each cropped zoom.
             for (int zoom = MinZ; zoom <= MaxZ; zoom++)
             {
                 //Convert coordinates to tile numbers.
                 (int tileMinX, int tileMinY, int tileMaxX, int tileMaxY) =
-                    Tile.Tile.GetTileNumbersFromCoords(MinX, MinY, MaxX, MaxY, zoom);
+                    Tile.Tile.GetTileNumbersFromCoords(MinX, MinY, MaxX, MaxY, zoom, tmsCompatible);
 
                 //Crop tiles extending world limits (+-180,+-90).
                 tileMinX = Math.Max(0, tileMinX);
@@ -692,6 +700,9 @@ namespace GTiff2Tiles.Core.Image
         public async ValueTask GenerateTilesByJoining(DirectoryInfo outputDirectoryInfo, int minZ, int maxZ,
                                                       IProgress<double> progress, int threadsCount)
         {
+            //todo bool tmsCompatible argument
+            const bool tmsCompatible = true;
+
             #region Parameters checking
 
             if (progress == null) throw new ImageException(string.Format(Strings.IsNull, nameof(progress)));
@@ -700,7 +711,7 @@ namespace GTiff2Tiles.Core.Image
 
             #endregion
 
-            SetCropProperties(outputDirectoryInfo, minZ, maxZ);
+            SetCropProperties(outputDirectoryInfo, minZ, maxZ, tmsCompatible);
 
             //Crop lowest zoom level.
             await WriteZoom(MaxZ, threadsCount);
@@ -729,6 +740,9 @@ namespace GTiff2Tiles.Core.Image
         public async ValueTask GenerateTilesByCropping(DirectoryInfo outputDirectoryInfo, int minZ, int maxZ,
                                                        IProgress<double> progress, int threadsCount)
         {
+            //todo bool tmsCompatible argument
+            const bool tmsCompatible = true;
+
             #region Parameters checking
 
             if (progress == null) throw new ImageException(string.Format(Strings.IsNull, nameof(progress)));
@@ -737,7 +751,7 @@ namespace GTiff2Tiles.Core.Image
 
             #endregion
 
-            SetCropProperties(outputDirectoryInfo, minZ, maxZ);
+            SetCropProperties(outputDirectoryInfo, minZ, maxZ, tmsCompatible);
 
             //Crop tiles for each zoom.
             for (int zoom = MinZ; zoom <= MaxZ; zoom++)
