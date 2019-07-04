@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Runtime.InteropServices;
+using System.Threading.Tasks;
 using GTiff2Tiles.Core.Exceptions.Image;
 using GTiff2Tiles.Core.Helpers;
 using GTiff2Tiles.Core.Localization;
@@ -23,7 +24,8 @@ namespace GTiff2Tiles.Core.Image
         /// <param name="outputFileInfo">Output file.</param>
         /// <param name="options">Array of string parameters.</param>
         /// <param name="callback">Delegate for progress reporting from Gdal.</param>
-        public static void Warp(FileInfo inputFileInfo, FileInfo outputFileInfo,
+        /// <returns></returns>
+        public static async ValueTask Warp(FileInfo inputFileInfo, FileInfo outputFileInfo,
                                 string[] options,
                                 OSGeo.GDAL.Gdal.GDALProgressFuncDelegate callback = null)
         {
@@ -45,14 +47,17 @@ namespace GTiff2Tiles.Core.Image
                 SWIGTYPE_p_p_GDALDatasetShadow gdalDatasetShadow =
                     new SWIGTYPE_p_p_GDALDatasetShadow(gcHandle.AddrOfPinnedObject(), false, null);
                 // ReSharper disable once UnusedVariable
-                using (Dataset resultDataset =
-                    OSGeo.GDAL.Gdal.wrapper_GDALWarpDestName(outputFileInfo.FullName, 1,
-                                                             gdalDatasetShadow,
-                                                             new GDALWarpAppOptions(options),
-                                                             callback, string.Empty))
+                await Task.Run(() =>
                 {
-                    gcHandle.Free();
-                }
+                    using (Dataset resultDataset =
+                        OSGeo.GDAL.Gdal.wrapper_GDALWarpDestName(outputFileInfo.FullName, 1,
+                                                                 gdalDatasetShadow,
+                                                                 new GDALWarpAppOptions(options),
+                                                                 callback, string.Empty))
+                    {
+                        gcHandle.Free();
+                    }
+                });
             }
 
             //Was file created?

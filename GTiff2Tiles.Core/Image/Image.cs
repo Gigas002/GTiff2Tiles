@@ -700,6 +700,7 @@ namespace GTiff2Tiles.Core.Image
         public async ValueTask GenerateTilesByJoining(DirectoryInfo outputDirectoryInfo, int minZ, int maxZ,
                                                       IProgress<double> progress, int threadsCount)
         {
+            //todo 1.4.0 - profile argument (geodetic/mercator)
             //todo bool tmsCompatible argument
             const bool tmsCompatible = true;
 
@@ -740,6 +741,7 @@ namespace GTiff2Tiles.Core.Image
         public async ValueTask GenerateTilesByCropping(DirectoryInfo outputDirectoryInfo, int minZ, int maxZ,
                                                        IProgress<double> progress, int threadsCount)
         {
+            //todo 1.4.0 - profile argument (geodetic/mercator)
             //todo bool tmsCompatible argument
             const bool tmsCompatible = true;
 

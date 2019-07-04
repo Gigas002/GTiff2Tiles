@@ -43,7 +43,7 @@ namespace GTiff2Tiles.Tests.Image
                     string tempFilePath = Path.Combine(tempDirectoryInfo.FullName, $"{Core.Enums.Image.Gdal.TempFileName}{Core.Enums.Extensions.Tif}");
                     FileInfo tempFileInfo = new FileInfo(tempFilePath);
 
-                    Core.Image.Gdal.Warp(inputFileInfo, tempFileInfo, Core.Enums.Image.Gdal.RepairTifOptions);
+                    await Core.Image.Gdal.Warp(inputFileInfo, tempFileInfo, Core.Enums.Image.Gdal.RepairTifOptions);
                     inputFileInfo = tempFileInfo;
                 }
                 //Create Image object and crop tiles.
@@ -88,7 +88,7 @@ namespace GTiff2Tiles.Tests.Image
                     string tempFilePath = Path.Combine(tempDirectoryInfo.FullName, $"{Core.Enums.Image.Gdal.TempFileName}{Core.Enums.Extensions.Tif}");
                     FileInfo tempFileInfo = new FileInfo(tempFilePath);
 
-                    Core.Image.Gdal.Warp(inputFileInfo, tempFileInfo, Core.Enums.Image.Gdal.RepairTifOptions);
+                    await Core.Image.Gdal.Warp(inputFileInfo, tempFileInfo, Core.Enums.Image.Gdal.RepairTifOptions);
                     inputFileInfo = tempFileInfo;
                 }
                 //Create Image object and crop tiles.

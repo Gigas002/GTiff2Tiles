@@ -17,6 +17,7 @@ Changes since 1.2.0:
 
 - Fix **NetVips** issue ([#3](https://github.com/Gigas002/GTiff2Tiles/issues/3) and [#4](https://github.com/Gigas002/GTiff2Tiles/issues/4)), when trying to shrink image, lesser than 1px (see [e086568](https://github.com/Gigas002/GTiff2Tiles/commit/e086568ab1fcc528d9a49ee9fead2ade476815e7) and [e42e5ae](https://github.com/Gigas002/GTiff2Tiles/commit/e42e5aecc9bf42e2329dade4a9bc1575f006a4fc));
 - Fix additional band creation issue ([#5](https://github.com/Gigas002/GTiff2Tiles/issues/5)) (see [514ecd9](https://github.com/Gigas002/GTiff2Tiles/commit/514ecd912b1e9f3c7a1eb5db8c3fe1770a365a6b));
+- `Image.Gdal.Warp` method is now `async`;
 - Cleaned up some code;
 
 **Breaking changes:**
@@ -34,10 +35,13 @@ Changes since 1.2.0:
 ## Console
 
 - Added [icon](https://material.io/tools/icons/?icon=image&style=baseline);
+- Updated **CommandLineParser** to 2.5.0;
 
 ## Test
 
 - Added more zoom levels to test (from 0 to 18);
+- Updated **NUnit** to 3.12.0;
+- Added **NUnit3TestAdapter** package;
 - Improved code coverage (*WIP*);
 
 # 27.02.2019 – Released 1.2.0

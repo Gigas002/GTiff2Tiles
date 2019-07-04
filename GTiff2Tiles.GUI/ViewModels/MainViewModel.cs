@@ -358,7 +358,7 @@ namespace GTiff2Tiles.GUI.ViewModels
                     string tempFilePath = Path.Combine(tempDirectoryInfo.FullName, $"{Core.Enums.Image.Gdal.TempFileName}{Core.Enums.Extensions.Tif}");
                     FileInfo tempFileInfo = new FileInfo(tempFilePath);
 
-                    Core.Image.Gdal.Warp(inputFileInfo, tempFileInfo, Core.Enums.Image.Gdal.RepairTifOptions);
+                    await Core.Image.Gdal.Warp(inputFileInfo, tempFileInfo, Core.Enums.Image.Gdal.RepairTifOptions);
                     inputFileInfo = tempFileInfo;
                 }
 
@@ -424,10 +424,10 @@ namespace GTiff2Tiles.GUI.ViewModels
             if (MaxZ < MinZ)
                 return await Helpers.ErrorHelper.ShowError(string.Format(Strings.LesserThan, nameof(MaxZ), nameof(MinZ)));
 
-            Algorithm = Algorithm.ToLowerInvariant();
-
             if (string.IsNullOrWhiteSpace(Algorithm))
                 return await Helpers.ErrorHelper.ShowError(Strings.SelectAlgorithm);
+
+            Algorithm = Algorithm.ToLowerInvariant();
 
             if (Algorithm != Core.Enums.Algorithms.Join && Algorithm != Core.Enums.Algorithms.Crop)
                 return await Helpers.ErrorHelper.ShowError(Strings.AlgorithmNotSupported);
