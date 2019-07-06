@@ -22,14 +22,9 @@
         #region GdalInfo
 
         /// <summary>
-        /// Input image is tiled.
+        /// Type=Byte
         /// </summary>
-        public const string Block = "Block";
-
-        /// <summary>
-        /// Check type.
-        /// </summary>
-        public const string Byte = "Byte";
+        public const string Byte = "Type=Byte";
 
         #endregion
 
@@ -40,7 +35,9 @@
         /// </summary>
         public static readonly string[] RepairTifOptions =
         {
-            "-overwrite", "-t_srs", "EPSG:4326", "-co", "TILED=YES", "-multi", "-srcnodata", "0",
+            "-overwrite", "-t_srs", "EPSG:4326", "-multi", "-srcnodata", "0",
+            "-of", "GTiff", "-ot", "Byte"
+            //"-co", "TILED=YES",
         };
 
         /// <summary>

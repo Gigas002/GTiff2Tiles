@@ -32,7 +32,7 @@ namespace GTiff2Tiles.Core.Helpers
                 return false;
 
             //Other checks.
-            return gdalInfoString.Contains(Enums.Image.Gdal.Block) && gdalInfoString.Contains(Enums.Image.Gdal.Byte);
+            return gdalInfoString.Contains(Enums.Image.Gdal.Byte);
         }
 
         #endregion

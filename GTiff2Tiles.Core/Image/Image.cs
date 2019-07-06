@@ -323,8 +323,8 @@ namespace GTiff2Tiles.Core.Image
             //Check if tile was created successfuly.
             CheckHelper.CheckFile(outputTileFileInfo, true);
 
-            outputImage.Dispose();
             tileImage.Dispose();
+            outputImage.Dispose();
         }
 
         /// <summary>

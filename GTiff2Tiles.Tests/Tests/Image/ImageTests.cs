@@ -3,25 +3,24 @@ using System.IO;
 using System.Threading.Tasks;
 using NUnit.Framework;
 
-namespace GTiff2Tiles.Tests.Image
+namespace GTiff2Tiles.Tests.Tests.Image
 {
     public class ImageTests
     {
         [SetUp]
-        public void Setup()
-        {
+        public void Setup() { }
 
-        }
+        //todo tms and non-tms tests
 
         [Test]
         public async Task GenerateTilesByJoining()
         {
             DirectoryInfo examplesDirectoryInfo = Helpers.TestHelper.GetExamplesDirectoryInfo();
 
-            DirectoryInfo tempDirectoryInfo =
-                new DirectoryInfo(Path.Combine(Helpers.TestHelper.GetExamplesDirectoryInfo().FullName,
-                                               Enums.FileSystemEntries.Temp,
-                                               DateTime.Now.ToString(Core.Enums.DateTimePatterns.LongWithMs)));
+            DirectoryInfo tempDirectoryInfo = new DirectoryInfo(
+                Path.Combine(Helpers.TestHelper.GetExamplesDirectoryInfo().FullName,
+                             Enums.FileSystemEntries.Temp,
+                             DateTime.Now.ToString(Core.Enums.DateTimePatterns.LongWithMs)));
 
             string inputFilePath = Path.Combine(examplesDirectoryInfo.FullName,
                                                 Enums.FileSystemEntries.InputDirectoryName,
@@ -40,20 +39,23 @@ namespace GTiff2Tiles.Tests.Image
                 Core.Helpers.CheckHelper.CheckDirectory(outputDirectoryInfo, true);
                 if (!Core.Helpers.CheckHelper.CheckInputFile(inputFileInfo))
                 {
-                    string tempFilePath = Path.Combine(tempDirectoryInfo.FullName, $"{Core.Enums.Image.Gdal.TempFileName}{Core.Enums.Extensions.Tif}");
+                    string tempFilePath = Path.Combine(tempDirectoryInfo.FullName,
+                                                       $"{Core.Enums.Image.Gdal.TempFileName}{Core.Enums.Extensions.Tif}");
                     FileInfo tempFileInfo = new FileInfo(tempFilePath);
 
                     await Core.Image.Gdal.Warp(inputFileInfo, tempFileInfo, Core.Enums.Image.Gdal.RepairTifOptions);
                     inputFileInfo = tempFileInfo;
                 }
+
                 //Create Image object and crop tiles.
                 Core.Image.Image image = new Core.Image.Image(inputFileInfo);
-                await image.GenerateTilesByJoining(outputDirectoryInfo, Enums.Zooms.MinZ, Enums.Zooms.MaxZ, progress, Enums.Multithreading.ThreadsCount);
+                const int minZ = Enums.Zooms.MinZ;
+                const int maxZ = Enums.Zooms.MaxZ;
+                const int threadsCount = Enums.Multithreading.ThreadsCount;
+                await image.GenerateTilesByJoining(outputDirectoryInfo, minZ, maxZ, progress,
+                                                   threadsCount);
             }
-            catch (Exception exception)
-            {
-                Assert.Fail(exception.Message);
-            }
+            catch (Exception exception) { Assert.Fail(exception.Message); }
 
             Assert.Pass();
         }
@@ -63,10 +65,10 @@ namespace GTiff2Tiles.Tests.Image
         {
             DirectoryInfo examplesDirectoryInfo = Helpers.TestHelper.GetExamplesDirectoryInfo();
 
-            DirectoryInfo tempDirectoryInfo =
-                new DirectoryInfo(Path.Combine(Helpers.TestHelper.GetExamplesDirectoryInfo().FullName,
-                                               Enums.FileSystemEntries.Temp,
-                                               DateTime.Now.ToString(Core.Enums.DateTimePatterns.LongWithMs)));
+            DirectoryInfo tempDirectoryInfo = new DirectoryInfo(
+                Path.Combine(Helpers.TestHelper.GetExamplesDirectoryInfo().FullName,
+                             Enums.FileSystemEntries.Temp,
+                             DateTime.Now.ToString(Core.Enums.DateTimePatterns.LongWithMs)));
 
             string inputFilePath = Path.Combine(examplesDirectoryInfo.FullName,
                                                 Enums.FileSystemEntries.InputDirectoryName,
@@ -85,20 +87,23 @@ namespace GTiff2Tiles.Tests.Image
                 Core.Helpers.CheckHelper.CheckDirectory(outputDirectoryInfo, true);
                 if (!Core.Helpers.CheckHelper.CheckInputFile(inputFileInfo))
                 {
-                    string tempFilePath = Path.Combine(tempDirectoryInfo.FullName, $"{Core.Enums.Image.Gdal.TempFileName}{Core.Enums.Extensions.Tif}");
+                    string tempFilePath = Path.Combine(tempDirectoryInfo.FullName,
+                                                       $"{Core.Enums.Image.Gdal.TempFileName}{Core.Enums.Extensions.Tif}");
                     FileInfo tempFileInfo = new FileInfo(tempFilePath);
 
                     await Core.Image.Gdal.Warp(inputFileInfo, tempFileInfo, Core.Enums.Image.Gdal.RepairTifOptions);
                     inputFileInfo = tempFileInfo;
                 }
+
                 //Create Image object and crop tiles.
                 Core.Image.Image image = new Core.Image.Image(inputFileInfo);
-                await image.GenerateTilesByCropping(outputDirectoryInfo, Enums.Zooms.MinZ, Enums.Zooms.MaxZ, progress, Enums.Multithreading.ThreadsCount);
+                const int minZ = Enums.Zooms.MinZ;
+                const int maxZ = Enums.Zooms.MaxZ;
+                const int threadsCount = Enums.Multithreading.ThreadsCount;
+                await image.GenerateTilesByCropping(outputDirectoryInfo, minZ, maxZ, progress,
+                                                    threadsCount);
             }
-            catch (Exception exception)
-            {
-                Assert.Fail(exception.Message);
-            }
+            catch (Exception exception) { Assert.Fail(exception.Message); }
 
             Assert.Pass();
         }

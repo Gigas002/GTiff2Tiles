@@ -12,6 +12,7 @@ Changes since 1.2.0:
 - Moved all strings to **Strings.resx** file in **Localization** directory;
 - Added support for Russian language;
 - *New feature:* Option to create non-tms tiles (*WIP*);
+- *New feature:* Now **GTiff2Tiles** is able to process non-8 bit images (see []());
 
 ## Core
 
@@ -23,7 +24,11 @@ Changes since 1.2.0:
 **Breaking changes:**
 
 - `Image.Tile.GetTileNumbersFromCoords` method now also takes `bool tmsCompatible` parameter;
-- `Image.Tile.TileBounds` method now takes `bool tmsCompatible` parameter, instead of `bool isFlipY = true)`, which was working the opposite. So, set the `tmsCompatible` value to `true` if you want to have the previous behaviour (creation of `tms` tiles).
+- `Image.Tile.TileBounds` method now takes `bool tmsCompatible` parameter, instead of `bool isFlipY = true)`, which was working the opposite. So, set the `tmsCompatible` value to `true` if you want to have the previous behaviour (creation of `tms` tiles);
+- `Enums.Image.Gdal.Block` property has been removed;
+- `Enums.Image.Gdal.Byte` property value has been changed to `Type=Byte` for more correct checks from  `Image.Gdal.Info`;
+- `Enums.Image.Gdal.RepairTifOptions` array now also has options `“-of”, “GTiff”` and `“-ot”, “Byte”` for processing non-8 bit images;
+- Option `“-co”, “TILED=YES”` was removed from `Enums.Image.Gdal.RepairTifOptions` array. You should explicitly add this option to your array if you want to convert input image to `TILED` image;
 
 ## GUI
 
@@ -42,7 +47,7 @@ Changes since 1.2.0:
 - Added more zoom levels to test (from 0 to 18);
 - Updated **NUnit** to 3.12.0;
 - Added **NUnit3TestAdapter** package;
-- Improved code coverage (*WIP*);
+- Slightly improved code coverage;
 
 # 27.02.2019 – Released 1.2.0
 
@@ -86,7 +91,7 @@ Changes since beta:
 
 - Changed solution architecture: previous project split upon GTiff2Tiles library and GTiff2Tiles. Test console application for running tests;
 - Fixed typo;
-- Updated GDAL and GDAL.Native from 2.3.2 to 2.3.3;
+- Updated **GDAL** and **GDAL.Native** from 2.3.2 to 2.3.3;
 - Moved from packages.config to PackageReference;
 - Updated README;
 - `GTiff2Tiles` class is no longer static and implements `IDisposable`;

@@ -72,9 +72,12 @@
     <Compile Include="Enums\Multithreading.cs" />
     <Compile Include="Enums\Zooms.cs" />
     <Compile Include="Helpers\TestHelper.cs" />
-    <Compile Include="Image\GdalTests.cs" />
-    <Compile Include="Image\ImageTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tests\EnumsTests.cs" />
+    <Compile Include="Tests\ExceptionsTests.cs" />
+    <Compile Include="Tests\HelpersTests.cs" />
+    <Compile Include="Tests\Image\GdalTests.cs" />
+    <Compile Include="Tests\Image\ImageTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="GDAL.Native">

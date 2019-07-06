@@ -4,27 +4,25 @@ using System.Linq;
 using System.Threading.Tasks;
 using NUnit.Framework;
 
-namespace GTiff2Tiles.Tests.Image
+namespace GTiff2Tiles.Tests.Tests.Image
 {
     public class GdalTests
     {
         [SetUp]
-        public void Setup()
-        {
-
-        }
+        public void Setup() { }
 
         [Test]
         public async Task CheckAndRepair3785()
         {
             DirectoryInfo examplesDirectoryInfo = Helpers.TestHelper.GetExamplesDirectoryInfo();
 
-            DirectoryInfo tempDirectoryInfo =
-                new DirectoryInfo(Path.Combine(Helpers.TestHelper.GetExamplesDirectoryInfo().FullName,
-                                               Enums.FileSystemEntries.Temp,
-                                               DateTime.Now.ToString(Core.Enums.DateTimePatterns.LongWithMs)));
+            DirectoryInfo tempDirectoryInfo = new DirectoryInfo(
+                Path.Combine(Helpers.TestHelper.GetExamplesDirectoryInfo().FullName,
+                             Enums.FileSystemEntries.Temp,
+                             DateTime.Now.ToString(Core.Enums.DateTimePatterns.LongWithMs)));
 
-            string inputFilePath = Path.Combine(examplesDirectoryInfo.FullName, Enums.FileSystemEntries.InputDirectoryName,
+            string inputFilePath = Path.Combine(examplesDirectoryInfo.FullName,
+                                                Enums.FileSystemEntries.InputDirectoryName,
                                                 $"{Enums.FileSystemEntries.Input3785}{Core.Enums.Extensions.Tif}");
             FileInfo inputFileInfo = new FileInfo(inputFilePath);
 
@@ -33,11 +31,13 @@ namespace GTiff2Tiles.Tests.Image
                 //Check and repair.
                 if (!Core.Helpers.CheckHelper.CheckInputFile(inputFileInfo))
                 {
-                    string tempFilePath = Path.Combine(tempDirectoryInfo.FullName, $"{Core.Enums.Image.Gdal.TempFileName}{Core.Enums.Extensions.Tif}");
+                    string tempFilePath = Path.Combine(tempDirectoryInfo.FullName,
+                                                       $"{Core.Enums.Image.Gdal.TempFileName}{Core.Enums.Extensions.Tif}");
                     FileInfo tempFileInfo = new FileInfo(tempFilePath);
 
                     await Core.Image.Gdal.Warp(inputFileInfo, tempFileInfo, Core.Enums.Image.Gdal.RepairTifOptions);
                 }
+
                 //Check if temp file was created successfuly.
                 if (!tempDirectoryInfo.EnumerateFiles().Any())
                     Assert.Fail("Temp file wasn't created.");
@@ -45,10 +45,7 @@ namespace GTiff2Tiles.Tests.Image
                 //Delete temp directory.
                 tempDirectoryInfo.Delete(true);
             }
-            catch (Exception exception)
-            {
-                Assert.Fail(exception.Message);
-            }
+            catch (Exception exception) { Assert.Fail(exception.Message); }
 
             Assert.Pass();
         }
@@ -58,12 +55,13 @@ namespace GTiff2Tiles.Tests.Image
         {
             DirectoryInfo examplesDirectoryInfo = Helpers.TestHelper.GetExamplesDirectoryInfo();
 
-            DirectoryInfo tempDirectoryInfo =
-                new DirectoryInfo(Path.Combine(Helpers.TestHelper.GetExamplesDirectoryInfo().FullName,
-                                               Enums.FileSystemEntries.Temp,
-                                               DateTime.Now.ToString(Core.Enums.DateTimePatterns.LongWithMs)));
+            DirectoryInfo tempDirectoryInfo = new DirectoryInfo(
+                Path.Combine(Helpers.TestHelper.GetExamplesDirectoryInfo().FullName,
+                             Enums.FileSystemEntries.Temp,
+                             DateTime.Now.ToString(Core.Enums.DateTimePatterns.LongWithMs)));
 
-            string inputFilePath = Path.Combine(examplesDirectoryInfo.FullName, Enums.FileSystemEntries.InputDirectoryName,
+            string inputFilePath = Path.Combine(examplesDirectoryInfo.FullName,
+                                                Enums.FileSystemEntries.InputDirectoryName,
                                                 $"{Enums.FileSystemEntries.Input3395}{Core.Enums.Extensions.Tif}");
             FileInfo inputFileInfo = new FileInfo(inputFilePath);
 
@@ -72,11 +70,13 @@ namespace GTiff2Tiles.Tests.Image
                 //Check and repair.
                 if (!Core.Helpers.CheckHelper.CheckInputFile(inputFileInfo))
                 {
-                    string tempFilePath = Path.Combine(tempDirectoryInfo.FullName, $"{Core.Enums.Image.Gdal.TempFileName}{Core.Enums.Extensions.Tif}");
+                    string tempFilePath = Path.Combine(tempDirectoryInfo.FullName,
+                                                       $"{Core.Enums.Image.Gdal.TempFileName}{Core.Enums.Extensions.Tif}");
                     FileInfo tempFileInfo = new FileInfo(tempFilePath);
 
                     await Core.Image.Gdal.Warp(inputFileInfo, tempFileInfo, Core.Enums.Image.Gdal.RepairTifOptions);
                 }
+
                 //Check if temp file was created successfuly.
                 if (!tempDirectoryInfo.EnumerateFiles().Any())
                     Assert.Fail("Temp file wasn't created.");
@@ -84,10 +84,7 @@ namespace GTiff2Tiles.Tests.Image
                 //Delete temp directory.
                 tempDirectoryInfo.Delete(true);
             }
-            catch (Exception exception)
-            {
-                Assert.Fail(exception.Message);
-            }
+            catch (Exception exception) { Assert.Fail(exception.Message); }
 
             Assert.Pass();
         }
