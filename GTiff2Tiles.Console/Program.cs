@@ -51,6 +51,11 @@ namespace GTiff2Tiles.Console
         /// </summary>
         private static string Algorithm { get; set; }
 
+        /// <summary>
+        /// Do you want to create tms-compatible tiles?
+        /// </summary>
+        private static bool TmsCompatible { get; set; }
+
         #endregion
 
         private static async Task Main(string[] args)
@@ -104,10 +109,10 @@ namespace GTiff2Tiles.Console
                 switch (Algorithm)
                 {
                     case Core.Enums.Algorithms.Join:
-                        await inputImage.GenerateTilesByJoining(OutputDirectoryInfo, MinZ, MaxZ, consoleProgress, ThreadsCount);
+                        await inputImage.GenerateTilesByJoining(OutputDirectoryInfo, MinZ, MaxZ, TmsCompatible, consoleProgress, ThreadsCount);
                         break;
                     case Core.Enums.Algorithms.Crop:
-                        await inputImage.GenerateTilesByCropping(OutputDirectoryInfo, MinZ, MaxZ, consoleProgress, ThreadsCount);
+                        await inputImage.GenerateTilesByCropping(OutputDirectoryInfo, MinZ, MaxZ, TmsCompatible, consoleProgress, ThreadsCount);
                         break;
                     default:
                         Helpers.ErrorHelper.PrintError(Strings.AlgorithmNotSupported);
@@ -200,6 +205,13 @@ namespace GTiff2Tiles.Console
             MaxZ = options.MaxZ;
             Algorithm = options.Algorithm;
             ThreadsCount = options.ThreadsCount;
+            if (!bool.TryParse(options.TmsCompatible, out bool tmsComptaible))
+            {
+                Helpers.ErrorHelper.PrintError(string.Format(Strings.OptionIsEmpty, "--tms"));
+                IsParsingErrors = true;
+                return;
+            }
+            TmsCompatible = tmsComptaible;
         }
 
         #endregion

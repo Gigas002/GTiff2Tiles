@@ -79,6 +79,11 @@ namespace GTiff2Tiles.GUI.ViewModels
         /// </summary>
         public string Version { get; } = Enums.MainViewModel.Version;
 
+        /// <summary>
+        /// Text near tms check box.
+        /// </summary>
+        public string TmsCheckBoxContent { get; } = Strings.TmsCheckBoxContent;
+
         #endregion
 
         #region TextBoxes/Blocks
@@ -174,6 +179,29 @@ namespace GTiff2Tiles.GUI.ViewModels
             {
                 _tempDirectoryPath = value;
                 NotifyOfPropertyChange(() => TempDirectoryPath);
+            }
+        }
+
+        #endregion
+
+        #region CheckBox
+
+        #region Backing fields
+
+        private bool _tmsCompatible;
+
+        #endregion
+
+        /// <summary>
+        /// Shows if you want to create tms-compatible tiles.
+        /// </summary>
+        public bool TmsCompatible
+        {
+            get => _tmsCompatible;
+            set
+            {
+                _tmsCompatible = value;
+                NotifyOfPropertyChange(() => TmsCompatible);
             }
         }
 
@@ -369,10 +397,10 @@ namespace GTiff2Tiles.GUI.ViewModels
                 switch (Algorithm)
                 {
                     case Core.Enums.Algorithms.Join:
-                        await inputImage.GenerateTilesByJoining(outputDirectoryInfo, MinZ, MaxZ, progress, ThreadsCount);
+                        await inputImage.GenerateTilesByJoining(outputDirectoryInfo, MinZ, MaxZ, TmsCompatible, progress, ThreadsCount);
                         break;
                     case Core.Enums.Algorithms.Crop:
-                        await inputImage.GenerateTilesByCropping(outputDirectoryInfo, MinZ, MaxZ, progress, ThreadsCount);
+                        await inputImage.GenerateTilesByCropping(outputDirectoryInfo, MinZ, MaxZ, TmsCompatible, progress, ThreadsCount);
                         break;
                     default:
                         await Helpers.ErrorHelper.ShowError(Strings.AlgorithmNotSupported);

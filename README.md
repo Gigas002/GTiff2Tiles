@@ -2,11 +2,13 @@
 
 ![Icon](Icon/Icon.png)
 
-Analogue of [gdal2tiles.py](https://github.com/OSGeo/gdal/blob/master/gdal/swig/python/scripts/gdal2tiles.py) on **C#**. Currently support **only GeoTIFF** as input data and creates **only EPSG:4326 geodetic tiles** on output in [**tms**](https://wiki.osgeo.org/wiki/Tile_Map_Service_Specification) structure.
+Analogue of [gdal2tiles.py](https://github.com/OSGeo/gdal/blob/master/gdal/swig/python/scripts/gdal2tiles.py) on **C#**. Currently support **only GeoTIFF** as input data and creates **only geodetic tiles** on output in [**tms**](https://wiki.osgeo.org/wiki/Tile_Map_Service_Specification) or **non-tms** (Google maps like) structure.
 
 Solution is build in **VS2019 (16.1.5)**, **.NET Framework 4.7.2**, targeting **Windows x64** systems.
 
 Icon is kindly provided by [Google’s material design](https://material.io/tools/icons/?icon=image&style=baseline) and is used in **GTiff2Tiles.GUI** and **GTiff2Tiles.Console**.
+
+**GTiff2Tiles** support any **GeoTIFF** on input. If it’s not **EPSG:4326** or not **8 bit**, then it will be converted by `Image.Gdal.Warp`, and saved to **temp** directory before cropping tiles.
 
 [![Build status](https://ci.appveyor.com/api/projects/status/wp5bbi08sgd4i9bh?svg=true)](https://ci.appveyor.com/project/Gigas002/gtiff2tiles)
 
@@ -57,8 +59,6 @@ Library uses 2 different algorithms to create tiles:
 - **Crop** – crops all the zooms from input file;
 - **Join** – crops the lowest zoom from input file and then joins the upper images from built tiles.
 
-Also I should mention, that if your input **GeoTIFF** is not **EPSG:4326**, it will be converted by **GdalWarp** to that projection, and saved in **temp** directory before cropping tiles.
-
 ### Dependencies
 
 - [GDAL](https://www.nuget.org/packages/GDAL/) – 2.4.1;
@@ -86,31 +86,36 @@ If you’re using Windows 7 SP1, you can experience weird error with **GDAL** pa
 
 ### Usage
 
-| Short |    Long     |          Description          | Required? |
-| :---: | :---------: | :---------------------------: | :-------: |
-|  -i   |   --input   |    Full path to input file    |    Yes    |
-|  -o   |  --output   | Full path to output directory |    Yes    |
-|  -t   |   --temp    |  Full path to temp directory  |    Yes    |
-|       |   --minz    |     Minimum cropped zoom      |    Yes    |
-|       |   --maxz    |     Maximum cropped zoom      |    Yes    |
-|  -a   | --algorithm |   Algorithm to create tiles   |    Yes    |
-|       |  --threads  |         Threads count         |    No     |
-|       |  --version  |        Current version        |           |
-|       |   --help    | Message about console options |           |
+| Short |    Long     |                 Description                 | Required? |
+| :---: | :---------: | :-----------------------------------------: | :-------: |
+|  -i   |   --input   |           Full path to input file           |    Yes    |
+|  -o   |  --output   |        Full path to output directory        |    Yes    |
+|  -t   |   --temp    |         Full path to temp directory         |    Yes    |
+|       |   --minz    |            Minimum cropped zoom             |    Yes    |
+|       |   --maxz    |            Maximum cropped zoom             |    Yes    |
+|  -a   | --algorithm |          Algorithm to create tiles          |    Yes    |
+|       |    --tms    | Do you want to create tms-compatible tiles? |    Yes    |
+|       |  --threads  |                Threads count                |    No     |
+|       |  --version  |               Current version               |           |
+|       |   --help    |        Message about console options        |           |
+
+Simple example looks like this: `GTiff2Tiles.Console -i D:/Examples/Input.tif -o D:/Examples/Output -t D:/Examples/Temp --minz 8 –maxz 11 -a crop --tms true --threads 3`
 
 ### Detailed options description
 
-**input** is `string`, representing full path to input **GeoTIFF** file.
+**input** is `string`, representing full path to input **GeoTIFF** file. Please, specify the path in double quotes (`“like this”`) if it contains spaces. 
 
-**output** is `string`, representing full path to directory, where tiles in **tms** structure will be created. **Should be empty.**
+**output** is `string`, representing full path to directory, where tiles in will be created. Please, specify the path in double quotes (`“like this”`) if it contains spaces. **Directory should be empty.**
 
-**temp** is `string`, representing full path to temporary directory. Inside will be created directory, which name is a **timestamp** in format `yyyyMMddHHmmssfff`.
+**temp** is `string`, representing full path to temporary directory. Please, specify the path in double quotes (`“like this”`) if it contains spaces. Inside will be created directory, which name is a **timestamp** in format `yyyyMMddHHmmssfff`.
 
 **minz** is `int` parameter, representing minimum zoom, which you want to crop.
 
 **maxz** is `int` parameter, representing maximum zoom, which you want to crop.
 
 **algorithm** is `string`, representing cropping algorithm. Can be **crop** or **join**. When using **crop**, the input image will be cropped for each zoom. When using **join**, the input image will be cropped for the lowest zoom, and the upper tiles created by joining lowest ones.
+
+**tms** is `string`, which shows if you want to create tms-compatible or non-tms-compatible tiles on output. Can have values `true` or `false`.
 
 **threads** is `int` parameter, representing threads count. By default (if not set) uses **5 threads**.
 

@@ -234,7 +234,7 @@ namespace GTiff2Tiles.Core.Image
             (int readPosX, int readPosY, int readXSize, int readYSize, int writePosX, int writePosY,
              int writeXSize, int writeYSize) = GeoQuery(minX, maxY, maxX, minY);
 
-            //todo openlayers tileY+1
+            //Warning: OpenLayers requires replacement of tileY to tileY+1
             FileInfo outputTileFileInfo = new FileInfo(Path.Combine(tileDirectoryInfo.FullName,
                                                                     $"{tileY}{Enums.Extensions.Png}"));
 
@@ -347,6 +347,8 @@ namespace GTiff2Tiles.Core.Image
             DirectoryInfo tileDirectoryInfo = new DirectoryInfo(Path.Combine(OutputDirectoryInfo.FullName,
                                                                              $"{zoom}", $"{tileX}"));
             CheckHelper.CheckDirectory(tileDirectoryInfo);
+
+            //Warning: OpenLayers requires replacement of tileY to tileY+1
 
             //Calculate upper tiles's positions.
             int upperTileX1 = tileX * 2;
@@ -694,15 +696,15 @@ namespace GTiff2Tiles.Core.Image
         /// <param name="outputDirectoryInfo">Output directory.</param>
         /// <param name="minZ">Minimum cropped zoom.</param>
         /// <param name="maxZ">Maximum cropped zoom.</param>
+        /// <param name="tmsCompatible">Do you want to create tms-compatible tiles?</param>
         /// <param name="progress">Progress.</param>
         /// <param name="threadsCount">Threads count.</param>
         /// <returns></returns>
         public async ValueTask GenerateTilesByJoining(DirectoryInfo outputDirectoryInfo, int minZ, int maxZ,
+                                                      bool tmsCompatible,
                                                       IProgress<double> progress, int threadsCount)
         {
             //todo 1.4.0 - profile argument (geodetic/mercator)
-            //todo bool tmsCompatible argument
-            const bool tmsCompatible = true;
 
             #region Parameters checking
 
@@ -735,15 +737,15 @@ namespace GTiff2Tiles.Core.Image
         /// <param name="outputDirectoryInfo">Output directory.</param>
         /// <param name="minZ">Minimum cropped zoom.</param>
         /// <param name="maxZ">Maximum cropped zoom.</param>
+        /// <param name="tmsCompatible">Do you want to create tms-compatible tiles?</param>
         /// <param name="progress">Progress.</param>
         /// <param name="threadsCount">Threads count.</param>
         /// <returns></returns>
         public async ValueTask GenerateTilesByCropping(DirectoryInfo outputDirectoryInfo, int minZ, int maxZ,
+                                                       bool tmsCompatible,
                                                        IProgress<double> progress, int threadsCount)
         {
             //todo 1.4.0 - profile argument (geodetic/mercator)
-            //todo bool tmsCompatible argument
-            const bool tmsCompatible = true;
 
             #region Parameters checking
 

@@ -4,27 +4,28 @@ Changes since 1.2.0:
 
 ## Overall
 
-- Solution rebuilt in **VS2019**;
+- Solution rebuilt in **Visual Studio 2019**;
 - Removed explicitly unused packages;
-- Added **NetVips.Native 8.8.0** package with **Windows x64** binaries;
+- Added **NetVips.Native.win-x64 8.8.0** package with **Windows x64** binaries;
 - Updated **NetVips** package to **1.1.0-rc3**;
 - Updated **GDAL** and **GDAL.Native** to **2.4.1**;
 - Moved all strings to **Strings.resx** file in **Localization** directory;
 - Added support for Russian language;
-- *New feature:* Option to create non-tms tiles (*WIP*);
+- *New feature:* Option to create non-tms tiles (see [#9](https://github.com/Gigas002/GTiff2Tiles/issues/9) and []());
 - *New feature:* Now **GTiff2Tiles** is able to process non-8 bit images (see [#9](https://github.com/Gigas002/GTiff2Tiles/issues/9) and [f08f690](https://github.com/Gigas002/GTiff2Tiles/commit/f08f690f5d08cd604dc0ffa46171fd98d0c4a8ee));
 
 ## Core
 
 - Fix **NetVips** issue ([#3](https://github.com/Gigas002/GTiff2Tiles/issues/3) and [#4](https://github.com/Gigas002/GTiff2Tiles/issues/4)), when trying to shrink image, lesser than 1px (see [e086568](https://github.com/Gigas002/GTiff2Tiles/commit/e086568ab1fcc528d9a49ee9fead2ade476815e7) and [e42e5ae](https://github.com/Gigas002/GTiff2Tiles/commit/e42e5aecc9bf42e2329dade4a9bc1575f006a4fc));
-- Fix additional band creation issue ([#5](https://github.com/Gigas002/GTiff2Tiles/issues/5)) (see [514ecd9](https://github.com/Gigas002/GTiff2Tiles/commit/514ecd912b1e9f3c7a1eb5db8c3fe1770a365a6b));
+- Fix additional band creation issue (see [#5](https://github.com/Gigas002/GTiff2Tiles/issues/5) and [514ecd9](https://github.com/Gigas002/GTiff2Tiles/commit/514ecd912b1e9f3c7a1eb5db8c3fe1770a365a6b));
 - `Image.Gdal.Warp` method is now `async`;
 - Cleaned up some code;
 
 **Breaking changes:**
 
-- `Image.Tile.GetTileNumbersFromCoords` method now also takes `bool tmsCompatible` parameter;
-- `Image.Tile.TileBounds` method now takes `bool tmsCompatible` parameter, instead of `bool isFlipY = true)`, which was working the opposite. So, set the `tmsCompatible` value to `true` if you want to have the previous behaviour (creation of `tms` tiles);
+- `Image.Image.GenerateTilesByJoining` and `Image.Image.GenerateTilesByCropping` now takes `bool tmsCompatible` as 4th argument;
+- `Tile.Tile.GetTileNumbersFromCoords` method now also takes `bool tmsCompatible` parameter;
+- `Tile.Tile.TileBounds` method now takes `bool tmsCompatible` parameter, instead of `bool isFlipY = true)`, which was working the opposite. So, set the `tmsCompatible` value to `true` if you want to have the previous behaviour (creation of `tms` tiles);
 - `Enums.Image.Gdal.Block` property has been removed;
 - `Enums.Image.Gdal.Byte` property value has been changed to `Type=Byte` for more correct checks from  `Image.Gdal.Info`;
 - `Enums.Image.Gdal.RepairTifOptions` array now also has options `“-of”, “GTiff”` and `“-ot”, “Byte”` for processing non-8 bit images;
@@ -35,16 +36,19 @@ Changes since 1.2.0:
 - Added screenshot;
 - Added [icon](https://material.io/tools/icons/?icon=image&style=baseline);
 - Added **material design**, including dialogs and message boxes;
+- Added `TmsCompatible` check box;
 - Removed **Ookii.Dialogs.Wpf** package (replaced by **MaterialDesignExtensions**);
 
 ## Console
 
 - Added [icon](https://material.io/tools/icons/?icon=image&style=baseline);
+- Added `--tms` console option. Read more about using it in updated **README**;
 - Updated **CommandLineParser** to 2.5.0;
 
 ## Test
 
 - Added more zoom levels to test (from 0 to 18);
+- Added tests for tms-compatible/non tms-compatible tiles creation;
 - Updated **NUnit** to 3.12.0;
 - Added **NUnit3TestAdapter** package;
 - Slightly improved code coverage;

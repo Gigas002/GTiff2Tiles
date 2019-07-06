@@ -221,5 +221,14 @@ namespace GTiff2Tiles.GUI.Localization {
                 return ResourceManager.GetString("ThreadsCountHint", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tms compatible.
+        /// </summary>
+        internal static string TmsCheckBoxContent {
+            get {
+                return ResourceManager.GetString("TmsCheckBoxContent", resourceCulture);
+            }
+        }
     }
 }

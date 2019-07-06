@@ -10,5 +10,7 @@
         public const string GenerateTilesByJoiningOutputDirectoryName = "GenerateTilesByJoiningOutput";
         public const string GenerateTilesByCroppingOutputDirectoryName = "GenerateTilesByCroppingOutput";
         public const string Temp = "Temp";
+        public const string TmsCompatible = "TmsCompatible";
+        public const string NonTmsCompatible = "NonTmsCompatible";
     }
 }

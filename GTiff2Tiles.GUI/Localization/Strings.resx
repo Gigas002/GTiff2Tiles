@@ -178,4 +178,7 @@
     <value>Please, select the algorithm</value>
     <comment>Error</comment>
   </data>
+  <data name="TmsCheckBoxContent" xml:space="preserve">
+    <value>Tms compatible</value>
+  </data>
 </root>

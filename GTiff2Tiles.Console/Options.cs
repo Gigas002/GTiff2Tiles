@@ -46,6 +46,12 @@ namespace GTiff2Tiles.Console
         [Option('a', "algorithm", Required = true, HelpText = "Algorithm to create tiles. Can be \"join\" or \"crop\".")]
         public string Algorithm { get; set; }
 
+        /// <summary>
+        /// Do you want to create tms-compatible tiles?
+        /// </summary>
+        [Option("tms", Required = true, HelpText = "Do you want to create tms-compatible tiles?")]
+        public string TmsCompatible { get; set; }
+
         #endregion
 
         #region Optional

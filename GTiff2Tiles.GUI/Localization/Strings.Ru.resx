@@ -178,4 +178,7 @@
     <value>Выберите алгоритм</value>
     <comment>Ошибка</comment>
   </data>
+  <data name="TmsCheckBoxContent" xml:space="preserve">
+    <value>Совместимо с tms</value>
+  </data>
 </root>
