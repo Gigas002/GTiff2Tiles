@@ -11,6 +11,7 @@ Changes since 1.2.0:
 - Updated **GDAL** and **GDAL.Native** to **2.4.1**;
 - Moved all strings to **Strings.resx** file in **Localization** directory;
 - Added support for Russian language;
+- Added **GTiff2Tiles.Benchmarks** project and **README** section;
 - *New feature:* Option to create non-tms tiles (see [#9](https://github.com/Gigas002/GTiff2Tiles/issues/9) and [162e3a2](https://github.com/Gigas002/GTiff2Tiles/commit/162e3a28043006af71e9eac150ed150a7596ee8a));
 - *New feature:* Now **GTiff2Tiles** is able to process non-8 bit images (see [#9](https://github.com/Gigas002/GTiff2Tiles/issues/9) and [f08f690](https://github.com/Gigas002/GTiff2Tiles/commit/f08f690f5d08cd604dc0ffa46171fd98d0c4a8ee));
 
@@ -57,20 +58,20 @@ Changes since 1.2.0:
 
 Changes since 1.1.0:
 
-* `GenerateTiles` methods are now `async`;
-* Use static classes instead of structs;
-* Fixed black borders issue;
-* Multithreading performance improvements;
-* Replaced `GeoTransform` property with more obvious `MinX`, `MinY`, `MaxX` and `MaxY`;
-* *Temp* directory is now *timestamp* and not deleted;
-* Exceptions (`TileException`, `GdalException`, `ImageException`);
-* A lot of error checking;
-* Lots of improvements in `Image.Gdal` class
-* Disabled NetVips console warnings;
-* Added conversion of bad tiffs to **4326**;
-* Rewritten `Image.Image` constructor;
-* Fixed some typos;
-* Fixed minor issues;
+- `GenerateTiles` methods are now `async`;
+- Use static classes instead of structs;
+- Fixed black borders issue;
+- Multithreading performance improvements;
+- Replaced `GeoTransform` property with more obvious `MinX`, `MinY`, `MaxX` and `MaxY`;
+- *Temp* directory is now *timestamp* and not deleted;
+- Exceptions (`TileException`, `GdalException`, `ImageException`);
+- A lot of error checking;
+- Lots of improvements in `Image.Gdal` class
+- Disabled NetVips console warnings;
+- Added conversion of bad tiffs to **4326**;
+- Rewritten `Image.Image` constructor;
+- Fixed some typos;
+- Fixed minor issues;
 
 # 03.02.2019 – Released 1.1.0
 
@@ -88,7 +89,6 @@ Changes since 1.0.0:
 - Updated README;
 - Fixed some minor issues;
 
-
 # 30.12.2018 – Released 1.0.0
 
 Changes since beta:
@@ -100,4 +100,3 @@ Changes since beta:
 - Updated README;
 - `GTiff2Tiles` class is no longer static and implements `IDisposable`;
 - FIxed some minor issues.
-

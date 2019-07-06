@@ -2,11 +2,11 @@
 
 ![Icon](Icon/Icon.png)
 
-Analogue of [gdal2tiles.py](https://github.com/OSGeo/gdal/blob/master/gdal/swig/python/scripts/gdal2tiles.py) on **C#**. Currently support **only GeoTIFF** as input data and creates **only geodetic tiles** on output in [**tms**](https://wiki.osgeo.org/wiki/Tile_Map_Service_Specification) or **non-tms** (Google maps like) structure.
+Analogue of [gdal2tiles.py](https://github.com/OSGeo/gdal/blob/master/gdal/swig/python/scripts/gdal2tiles.py)/[MapTiler](https://www.maptiler.com/) on **C#**. Support **only GeoTIFF** as input data and creates **only geodetic tiles** on output in [**tms**](https://wiki.osgeo.org/wiki/Tile_Map_Service_Specification)/**non-tms** (Google maps like) structure.
 
 Solution is build in **VS2019 (16.1.5)**, **.NET Framework 4.7.2**, targeting **Windows x64** systems.
 
-Icon is kindly provided by [Google’s material design](https://material.io/tools/icons/?icon=image&style=baseline) and is used in **GTiff2Tiles.GUI** and **GTiff2Tiles.Console**.
+Icon is kindly provided by [Google’s material design](https://material.io/tools/icons/?icon=image&style=baseline) and is used in **GTiff2Tiles.GUI**, **GTiff2Tiles.Console** and **GTiff2Tiles.Benchmarks** projects.
 
 **GTiff2Tiles** support any **GeoTIFF** on input. If it’s not **EPSG:4326** or not **8 bit**, then it will be converted by `Image.Gdal.Warp`, and saved to **temp** directory before cropping tiles.
 
@@ -33,6 +33,15 @@ Icon is kindly provided by [Google’s material design](https://material.io/tool
     - [Localization](#localization-2)
   - [GTiff2Tiles.Tests](#gtiff2tilestests)
     - [Dependencies](#dependencies-3)
+  - [GTiff2Tiles.Benchmarks](#gtiff2tilesbenchmarks)
+    - [Versions](#versions)
+    - [Requirements](#requirements-2)
+    - [Dependencies](#dependencies-4)
+    - [Usage](#usage-1)
+    - [Detailed options description](#detailed-options-description-1)
+    - [Input data](#input-data)
+    - [Arguments](#arguments)
+    - [Results](#results)
   - [TODO](#todo)
   - [Contributing](#contributing)
 
@@ -103,7 +112,7 @@ Simple example looks like this: `GTiff2Tiles.Console -i D:/Examples/Input.tif -o
 
 ### Detailed options description
 
-**input** is `string`, representing full path to input **GeoTIFF** file. Please, specify the path in double quotes (`“like this”`) if it contains spaces. 
+**input** is `string`, representing full path to input **GeoTIFF** file. Please, specify the path in double quotes (`“like this”`) if it contains spaces.
 
 **output** is `string`, representing full path to directory, where tiles in will be created. Please, specify the path in double quotes (`“like this”`) if it contains spaces. **Directory should be empty.**
 
@@ -172,6 +181,109 @@ Currently, application is available on **English** and **Russian** languages.
 - [GDAL.Native](https://www.nuget.org/packages/GDAL.Native/) – 2.4.1;
 - [NUnit](https://www.nuget.org/packages/NUnit/3.12.0) – 3.12.0;
 - [NUnit3TestAdapter](https://www.nuget.org/packages/NUnit3TestAdapter/) – 3.13.0;
+
+## GTiff2Tiles.Benchmarks
+
+The following benchmarks were made at **06.07.2019**.
+
+**MapTiler Pro** was running as process *maptiler.exe*, **GTiff2Tiles** tiling was called from library and **gdal2tiles.py** was converted by **PyInstaller** into *Gdal2Tiles.exe* and was running as process.
+
+Unfortunately, I couldn’t create *Gdal2Tiles.exe* with **multiprocessing**, so it’s only in **single-threaded** tests at the moment. I’ll try to fix that moment in the future and update tests as well.
+
+Time format in tables: `{minutes}:{seconds}:{milliseconds}`.
+
+### Versions
+
+Used **MapTiler Pro** version is **0.5.3**. Used **Gdal2Tiles** version is a script from **[GDAL repo](https://github.com/OSGeo/gdal/blob/master/gdal/swig/python/scripts/gdal2tiles.py)** (GDAL’s version **3.0.0**). Used **GTiff2Tiles.Core** version is **1.2.0.139**.
+
+### Requirements
+
+- MapTiler Pro 0.5.3 or newer;
+- Windows 7 SP1 x64 and newer;
+- Gdal2Tiles.py, converted to `.exe` and placed in directory `Gdal2Tiles` near benchmarks binaraies;
+- [.NET Framework 4.7.2](https://dotnet.microsoft.com/download/dotnet-framework/net472);
+
+If you’re using Windows 7 SP1, you can experience weird error with **GDAL** package. It’s recommended to install [KB2533623](<https://www.microsoft.com/en-us/download/details.aspx?id=26764>) to fix it. You can read about this Windows update on [MSDN](<https://support.microsoft.com/en-us/help/2533623/microsoft-security-advisory-insecure-library-loading-could-allow-remot>).
+
+### Dependencies
+
+- GTiff2Tiles.Core;
+- [GDAL.Native](https://www.nuget.org/packages/GDAL.Native/) – 2.4.1;
+- [System.Threading.Tasks.Extensions](https://www.nuget.org/packages/System.Threading.Tasks.Extensions/) – 4.5.2;
+- [CommandLineParser](https://www.nuget.org/packages/CommandLineParser/) – 2.5.0;
+
+### Usage
+
+| Short |   Long    |          Description          | Required? |
+| :---: | :-------: | :---------------------------: | :-------: |
+|  -i   |  --input  |    Full path to input file    |    Yes    |
+|  -o   | --output  | Full path to output directory |    Yes    |
+|  -t   |  --temp   |  Full path to temp directory  |    Yes    |
+|       |  --minz   |     Minimum cropped zoom      |    Yes    |
+|       |  --maxz   |     Maximum cropped zoom      |    Yes    |
+|       | --threads |         Threads count         |    No     |
+|       | --version |        Current version        |           |
+|       |  --help   | Message about console options |           |
+
+Simple example looks like this: `GTiff2Tiles.Benchmarks -i D:/Examples/Input.tif -o D:/Examples/Output -t D:/Examples/Temp --minz 8 –maxz 11 --threads 3`
+
+### Detailed options description
+
+**input** is `string`, representing full path to input **GeoTIFF** file. Please, specify the path in double quotes (`“like this”`) if it contains spaces.
+
+**output** is `string`, representing full path to directory, where tiles in will be created. Please, specify the path in double quotes (`“like this”`) if it contains spaces. **Directory should be empty.**
+
+**temp** is `string`, representing full path to temporary directory. Please, specify the path in double quotes (`“like this”`) if it contains spaces. Inside will be created directory, which name is a **timestamp** in format `yyyyMMddHHmmssfff`.
+
+**minz** is `int` parameter, representing minimum zoom, which you want to crop.
+
+**maxz** is `int` parameter, representing maximum zoom, which you want to crop.
+
+**threads** is `int` parameter, representing threads count. By default (if not set) uses **5 threads**.
+
+### Input data
+
+As input data was used **4326** GeoTIFF, located in repo’s directory: `Examples/Input/Benchmark.tif`.
+
+### Arguments
+
+The differences between tests are only in **maximum zoom** and **threads count** values.
+
+**GTiff2Tiles** was running with the following arguments: `-i {inputFilePath} -o {outputDirectoryPath} -t {tempDirectoryPath} --tms true --minz 0 --maxz 16 --threads 1`.
+
+**MapTiler Pro** was running with the following arguments: `-geodetic -tms -resampling cubic -f png32 -P 1 -o {outputDirectoryPath} -work_dir {tempDirectoryPath} -srs EPSG:4326 -zoom 0 16 {inputFilePath}`.
+
+**Gdal2Tiles** was running with the following arguments: `-s EPSG:4326 -p geodetic -r cubic --tmscompatible -z 0-16 {inputFilePath} {outputDirectoryPath}`.
+
+### Results
+
+- Threads count = 1;
+- Maximum zoom = 16;
+
+| GTiff2Tiles | MapTiler Pro | Gdal2Tiles |
+| :---------: | :----------: | :--------: |
+|  00:27:061  |  00:33:901   | 01:45:901  |
+
+- Threads count = 5;
+- Maximum zoom = 16;
+
+| GTiff2Tiles | MapTiler Pro |
+| :---------: | :----------: |
+|  00:07:723  |  00:15:057   |
+
+- Threads count = 1;
+- Maximum zoom = 17;
+
+| GTiff2Tiles | MapTiler Pro | Gdal2Tiles |
+| :---------: | :----------: | :--------: |
+|  01:41:500  |  02:13:183   | 06:43:683  |
+
+- Threads count = 5;
+- Maximum zoom = 17;
+
+| GTiff2Tiles | MapTiler Pro |
+| :---------: | :----------: |
+|  00:30:915  |  00:53:502   |
 
 ## TODO
 
