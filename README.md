@@ -123,7 +123,6 @@ Simple example looks like this: `GTiff2Tiles.Console -i D:/Examples/Input.tif -o
 
 - GTiff2Tiles.Core;
 - [GDAL.Native](https://www.nuget.org/packages/GDAL.Native/) – 2.4.1;
-- [NetVips.Native.win-x64](https://www.nuget.org/packages/NetVips.Native.win-x64/) – 8.8.0;
 - [System.Threading.Tasks.Extensions](https://www.nuget.org/packages/System.Threading.Tasks.Extensions/) – 4.5.2;
 - [CommandLineParser](https://www.nuget.org/packages/CommandLineParser/) – 2.5.0;
 
@@ -150,7 +149,6 @@ If you’re using Windows 7 SP1, you can experience weird error with **GDAL** pa
 
 - GTiff2Tiles.Core;
 - [GDAL.Native](https://www.nuget.org/packages/GDAL.Native/) – 2.4.1;
-- [NetVips.Native.win-x64](https://www.nuget.org/packages/NetVips.Native.win-x64/) – 8.8.0;
 - [System.Threading.Tasks.Extensions](https://www.nuget.org/packages/System.Threading.Tasks.Extensions/) – 4.5.2;
 - [Caliburn.Micro](https://www.nuget.org/packages/Caliburn.Micro) – 3.2.0;
 - [MahApps.Metro](<https://www.nuget.org/packages/MahApps.Metro>) – 1.6.5;
@@ -172,7 +170,6 @@ Currently, application is available on **English** and **Russian** languages.
 
 - GTiff2Tiles.Core;
 - [GDAL.Native](https://www.nuget.org/packages/GDAL.Native/) – 2.4.1;
-- [NetVips.Native.win-x64](https://www.nuget.org/packages/NetVips.Native.win-x64/) – 8.8.0;
 - [NUnit](https://www.nuget.org/packages/NUnit/3.12.0) – 3.12.0;
 - [NUnit3TestAdapter](https://www.nuget.org/packages/NUnit3TestAdapter/) – 3.13.0;
 
