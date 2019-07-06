@@ -12,7 +12,7 @@ Changes since 1.2.0:
 - Moved all strings to **Strings.resx** file in **Localization** directory;
 - Added support for Russian language;
 - *New feature:* Option to create non-tms tiles (*WIP*);
-- *New feature:* Now **GTiff2Tiles** is able to process non-8 bit images (see []());
+- *New feature:* Now **GTiff2Tiles** is able to process non-8 bit images (see [#9](https://github.com/Gigas002/GTiff2Tiles/issues/9) and [f08f690](https://github.com/Gigas002/GTiff2Tiles/commit/f08f690f5d08cd604dc0ffa46171fd98d0c4a8ee));
 
 ## Core
 
