@@ -55,7 +55,6 @@ namespace GTiff2Tiles.Core.Tile
         /// <param name="maxY">Maximum latitude.</param>
         /// <param name="zoom">Tile's zoom.</param>
         /// <param name="tmsCompatible">Do you want tms tiles on output?</param>
-        /// <remarks>Throws <see cref="TileException"/>.</remarks>
         /// <returns><see cref="ValueTuple{T1, T2, T3, T4}"/> of tiles numbers.</returns>
         public static (int tileMinX, int tileMinY, int tileMaxX, int tileMaxY) GetTileNumbersFromCoords(double minX,
                                                                                                         double minY,
@@ -110,7 +109,6 @@ namespace GTiff2Tiles.Core.Tile
         /// <param name="tileY">Tile's y number.</param>
         /// <param name="zoom">Tile's zoom.</param>
         /// <param name="tmsCompatible">Do you want tms tiles on output?</param>
-        /// <remarks>Throws <see cref="TileException"/>.</remarks>
         /// <returns><see cref="ValueTuple{T1, T2, T3, T4}"/> of WGS84 coordinates.</returns>
         public static (double minX, double minY, double maxX, double maxY) TileBounds(int tileX,
                                                                                       int tileY,

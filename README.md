@@ -2,13 +2,13 @@
 
 ![Icon](Icon/Icon.png)
 
-Analogue of [gdal2tiles.py](https://github.com/OSGeo/gdal/blob/master/gdal/swig/python/scripts/gdal2tiles.py)/[MapTiler](https://www.maptiler.com/) on **C#**. Support **only GeoTIFF** as input data and creates **only geodetic tiles** on output in [**tms**](https://wiki.osgeo.org/wiki/Tile_Map_Service_Specification)/**non-tms** (Google maps like) structure.
+Analogue of [gdal2tiles.py](https://github.com/OSGeo/gdal/blob/master/gdal/swig/python/scripts/gdal2tiles.py)/[MapTiler](https://www.maptiler.com/) on **C#**. Support **only GeoTIFF** as input data and creates **only geodetic 4 bands tiles** on output in [**tms**](https://wiki.osgeo.org/wiki/Tile_Map_Service_Specification)/**non-tms** (Google maps like) structure.
 
 Solution is build in **VS2019 (16.1.5)**, **.NET Framework 4.7.2**, targeting **Windows x64** systems.
 
 Icon is kindly provided by [Google’s material design](https://material.io/tools/icons/?icon=image&style=baseline) and is used in **GTiff2Tiles.GUI**, **GTiff2Tiles.Console** and **GTiff2Tiles.Benchmarks** projects.
 
-**GTiff2Tiles** support any **GeoTIFF** on input. If it’s not **EPSG:4326** or not **8 bit**, then it will be converted by `Image.Gdal.Warp`, and saved to **temp** directory before cropping tiles.
+**GTiff2Tiles** support any **GeoTIFF** (with less, than **5 bands**) on input. If it’s not **EPSG:4326** or not **8 bit**, then it will be converted by `Image.Gdal.Warp`, and saved to **temp** directory before cropping tiles.
 
 [![Build status](https://ci.appveyor.com/api/projects/status/wp5bbi08sgd4i9bh?svg=true)](https://ci.appveyor.com/project/Gigas002/gtiff2tiles)
 
@@ -70,8 +70,8 @@ Library uses 2 different algorithms to create tiles:
 
 ### Dependencies
 
-- [GDAL](https://www.nuget.org/packages/GDAL/) – 2.4.1;
-- [GDAL.Native](https://www.nuget.org/packages/GDAL.Native/) – 2.4.1;
+- [GDAL](https://www.nuget.org/packages/GDAL/) – 2.4.2;
+- [GDAL.Native](https://www.nuget.org/packages/GDAL.Native/) – 2.4.2;
 - [NetVips](https://www.nuget.org/packages/NetVips/) – 1.1.0-rc3;
 - [NetVips.Native.win-x64](https://www.nuget.org/packages/NetVips.Native.win-x64/) – 8.8.0;
 - [System.Threading.Tasks.Extensions](https://www.nuget.org/packages/System.Threading.Tasks.Extensions/) – 4.5.2;
@@ -131,7 +131,7 @@ Simple example looks like this: `GTiff2Tiles.Console -i D:/Examples/Input.tif -o
 ### Dependencies
 
 - GTiff2Tiles.Core;
-- [GDAL.Native](https://www.nuget.org/packages/GDAL.Native/) – 2.4.1;
+- [GDAL.Native](https://www.nuget.org/packages/GDAL.Native/) – 2.4.2;
 - [System.Threading.Tasks.Extensions](https://www.nuget.org/packages/System.Threading.Tasks.Extensions/) – 4.5.2;
 - [CommandLineParser](https://www.nuget.org/packages/CommandLineParser/) – 2.5.0;
 
@@ -157,7 +157,7 @@ If you’re using Windows 7 SP1, you can experience weird error with **GDAL** pa
 ### Dependencies
 
 - GTiff2Tiles.Core;
-- [GDAL.Native](https://www.nuget.org/packages/GDAL.Native/) – 2.4.1;
+- [GDAL.Native](https://www.nuget.org/packages/GDAL.Native/) – 2.4.2;
 - [System.Threading.Tasks.Extensions](https://www.nuget.org/packages/System.Threading.Tasks.Extensions/) – 4.5.2;
 - [Caliburn.Micro](https://www.nuget.org/packages/Caliburn.Micro) – 3.2.0;
 - [MahApps.Metro](<https://www.nuget.org/packages/MahApps.Metro>) – 1.6.5;
@@ -178,7 +178,7 @@ Currently, application is available on **English** and **Russian** languages.
 ### Dependencies
 
 - GTiff2Tiles.Core;
-- [GDAL.Native](https://www.nuget.org/packages/GDAL.Native/) – 2.4.1;
+- [GDAL.Native](https://www.nuget.org/packages/GDAL.Native/) – 2.4.2;
 - [NUnit](https://www.nuget.org/packages/NUnit/3.12.0) – 3.12.0;
 - [NUnit3TestAdapter](https://www.nuget.org/packages/NUnit3TestAdapter/) – 3.13.0;
 
@@ -208,7 +208,7 @@ If you’re using Windows 7 SP1, you can experience weird error with **GDAL** pa
 ### Dependencies
 
 - GTiff2Tiles.Core;
-- [GDAL.Native](https://www.nuget.org/packages/GDAL.Native/) – 2.4.1;
+- [GDAL.Native](https://www.nuget.org/packages/GDAL.Native/) – 2.4.2;
 - [System.Threading.Tasks.Extensions](https://www.nuget.org/packages/System.Threading.Tasks.Extensions/) – 4.5.2;
 - [CommandLineParser](https://www.nuget.org/packages/CommandLineParser/) – 2.5.0;
 

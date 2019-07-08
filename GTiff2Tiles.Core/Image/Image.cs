@@ -204,7 +204,7 @@ namespace GTiff2Tiles.Core.Image
 
         /// <summary>
         /// Writes one tile of current zoom.
-        /// Crops zoom directly from input image.
+        /// <para/>Crops zoom directly from input image.
         /// </summary>
         /// <param name="zoom">Zoom level.</param>
         /// <param name="tileX">Tile x.</param>
@@ -454,24 +454,29 @@ namespace GTiff2Tiles.Core.Image
             NetVips.Image[] images = {upperTileImage3, upperTileImage4, upperTileImage1, upperTileImage2};
 
             //Check and write bands if needed.
-            for (int i = 0; i < images.Length; i++)
+            for (int imagesIndex = 0; imagesIndex < images.Length; imagesIndex++)
             {
-                int bands = images[i].Bands;
+                int bands = images[imagesIndex].Bands;
+
+                //Check number before switching on it.
+                if (bands > Enums.Image.Image.Bands)
+                    throw new ImageException(string.Format(Strings.TooMuchBands));
+
                 switch (bands)
                 {
                     case Enums.Image.Image.Bands:
                         continue;
                     case 1:
                     {
-                        for (int j = bands; j < Enums.Image.Image.Bands; j++)
+                        for (int bandsIndex = bands; bandsIndex < Enums.Image.Image.Bands; bandsIndex++)
                         {
                             try
                             {
-                                images[i] = images[i].Bandjoin(0);
+                                images[imagesIndex] = images[imagesIndex].Bandjoin(0);
                             }
                             catch (Exception exception)
                             {
-                                throw new ImageException(string.Format(Strings.UnableToJoin, $"band {i}",
+                                throw new ImageException(string.Format(Strings.UnableToJoin, $"band {bandsIndex}",
                                                                        tileX, tileY), exception);
                             }
                         }
@@ -479,15 +484,15 @@ namespace GTiff2Tiles.Core.Image
                     }
                     default:
                     {
-                        for (int j = bands; j < Enums.Image.Image.Bands; j++)
+                        for (int bandsIndex = bands; bandsIndex < Enums.Image.Image.Bands; bandsIndex++)
                         {
                             try
                             {
-                                images[i] = images[i].Bandjoin(255);
+                                images[imagesIndex] = images[imagesIndex].Bandjoin(255);
                             }
                             catch (Exception exception)
                             {
-                                throw new ImageException(string.Format(Strings.UnableToJoin, $"band {i}",
+                                throw new ImageException(string.Format(Strings.UnableToJoin, $"band {bandsIndex}",
                                                                        tileX, tileY), exception);
                             }
                         }
@@ -646,7 +651,7 @@ namespace GTiff2Tiles.Core.Image
         /// <param name="minZ">Minimum cropped zoom.</param>
         /// <param name="maxZ">Maximum cropped zoom.</param>
         /// <param name="tmsCompatible">Do you want tms tiles on output?</param>
-        private void SetCropProperties(DirectoryInfo outputDirectoryInfo, int minZ, int maxZ, bool tmsCompatible)
+        private void SetGenerateTilesProperties(DirectoryInfo outputDirectoryInfo, int minZ, int maxZ, bool tmsCompatible)
         {
             #region Check parameters
 
@@ -714,7 +719,7 @@ namespace GTiff2Tiles.Core.Image
 
             #endregion
 
-            SetCropProperties(outputDirectoryInfo, minZ, maxZ, tmsCompatible);
+            SetGenerateTilesProperties(outputDirectoryInfo, minZ, maxZ, tmsCompatible);
 
             //Crop lowest zoom level.
             await WriteZoom(MaxZ, threadsCount);
@@ -755,7 +760,7 @@ namespace GTiff2Tiles.Core.Image
 
             #endregion
 
-            SetCropProperties(outputDirectoryInfo, minZ, maxZ, tmsCompatible);
+            SetGenerateTilesProperties(outputDirectoryInfo, minZ, maxZ, tmsCompatible);
 
             //Crop tiles for each zoom.
             for (int zoom = MinZ; zoom <= MaxZ; zoom++)

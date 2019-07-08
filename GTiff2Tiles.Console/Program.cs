@@ -94,7 +94,7 @@ namespace GTiff2Tiles.Console
             {
                 //Check for errors.
                 Core.Helpers.CheckHelper.CheckDirectory(OutputDirectoryInfo, true);
-                if (!Core.Helpers.CheckHelper.CheckInputFile(InputFileInfo))
+                if (!await Core.Helpers.CheckHelper.CheckInputFile(InputFileInfo))
                 {
                     string tempFilePath = Path.Combine(TempDirectoryInfo.FullName, $"{Core.Enums.Image.Gdal.TempFileName}{Core.Enums.Extensions.Tif}");
                     FileInfo tempFileInfo = new FileInfo(tempFilePath);

@@ -26,8 +26,8 @@ namespace GTiff2Tiles.Core.Image
         /// <param name="callback">Delegate for progress reporting from Gdal.</param>
         /// <returns></returns>
         public static async ValueTask Warp(FileInfo inputFileInfo, FileInfo outputFileInfo,
-                                string[] options,
-                                OSGeo.GDAL.Gdal.GDALProgressFuncDelegate callback = null)
+                                           string[] options,
+                                           OSGeo.GDAL.Gdal.GDALProgressFuncDelegate callback = null)
         {
             #region Parameters checking
 
@@ -40,15 +40,15 @@ namespace GTiff2Tiles.Core.Image
             //Initialize Gdal, if needed.
             ConfigureGdal();
 
-            using (Dataset inputDataset = OSGeo.GDAL.Gdal.Open(inputFileInfo.FullName, Access.GA_ReadOnly))
+            await Task.Run(() =>
             {
-                GCHandle gcHandle =
-                    GCHandle.Alloc(new[] {Dataset.getCPtr(inputDataset).Handle}, GCHandleType.Pinned);
-                SWIGTYPE_p_p_GDALDatasetShadow gdalDatasetShadow =
-                    new SWIGTYPE_p_p_GDALDatasetShadow(gcHandle.AddrOfPinnedObject(), false, null);
-                // ReSharper disable once UnusedVariable
-                await Task.Run(() =>
+                using (Dataset inputDataset = OSGeo.GDAL.Gdal.Open(inputFileInfo.FullName, Access.GA_ReadOnly))
                 {
+                    GCHandle gcHandle =
+                        GCHandle.Alloc(new[] {Dataset.getCPtr(inputDataset).Handle}, GCHandleType.Pinned);
+                    SWIGTYPE_p_p_GDALDatasetShadow gdalDatasetShadow =
+                        new SWIGTYPE_p_p_GDALDatasetShadow(gcHandle.AddrOfPinnedObject(), false, null);
+                    // ReSharper disable once UnusedVariable
                     using (Dataset resultDataset =
                         OSGeo.GDAL.Gdal.wrapper_GDALWarpDestName(outputFileInfo.FullName, 1,
                                                                  gdalDatasetShadow,
@@ -57,8 +57,8 @@ namespace GTiff2Tiles.Core.Image
                     {
                         gcHandle.Free();
                     }
-                });
-            }
+                }
+            });
 
             //Was file created?
             CheckHelper.CheckFile(outputFileInfo, true);
@@ -70,7 +70,7 @@ namespace GTiff2Tiles.Core.Image
         /// <param name="inputFileInfo">Input GeoTiff file.</param>
         /// <param name="options">Array of string parameters for GdalInfo.</param>
         /// <returns><see cref="string"/> from GdalInfo.</returns>
-        public static string Info(FileInfo inputFileInfo, string[] options = null)
+        public static async ValueTask<string> Info(FileInfo inputFileInfo, string[] options = null)
         {
             #region Parameters checking
 
@@ -81,15 +81,20 @@ namespace GTiff2Tiles.Core.Image
             //Initialize Gdal, if needed.
             ConfigureGdal();
 
-            using (Dataset inputDataset = OSGeo.GDAL.Gdal.Open(inputFileInfo.FullName, Access.GA_ReadOnly))
+            string gdalInfoString = string.Empty;
+
+            await Task.Run(() =>
             {
-                string gdalInfoString = OSGeo.GDAL.Gdal.GDALInfo(inputDataset, new GDALInfoOptions(options));
+                using (Dataset inputDataset = OSGeo.GDAL.Gdal.Open(inputFileInfo.FullName, Access.GA_ReadOnly))
+                {
+                    gdalInfoString = OSGeo.GDAL.Gdal.GDALInfo(inputDataset, new GDALInfoOptions(options));
 
-                if (string.IsNullOrWhiteSpace(gdalInfoString))
-                    throw new GdalException(string.Format(Strings.StringIsEmpty, nameof(gdalInfoString)));
+                    if (string.IsNullOrWhiteSpace(gdalInfoString))
+                        throw new GdalException(string.Format(Strings.StringIsEmpty, nameof(gdalInfoString)));
+                }
+            });
 
-                return gdalInfoString;
-            }
+            return gdalInfoString;
         }
 
         #endregion
@@ -158,7 +163,7 @@ namespace GTiff2Tiles.Core.Image
         /// </summary>
         /// <param name="inputFileInfo">Input GeoTiff file.</param>
         /// <returns>Proj4 string.</returns>
-        internal static string GetProj4String(FileInfo inputFileInfo)
+        internal static async ValueTask<string> GetProj4String(FileInfo inputFileInfo)
         {
             #region Parameters checking
 
@@ -169,19 +174,24 @@ namespace GTiff2Tiles.Core.Image
             //Initialize Gdal, if needed.
             ConfigureGdal();
 
-            using (Dataset dataset = OSGeo.GDAL.Gdal.Open(inputFileInfo.FullName, Access.GA_ReadOnly))
+            string proj4String = string.Empty;
+
+            await Task.Run(() =>
             {
-                string wkt = dataset.GetProjection();
-                using (SpatialReference spatialReference = new SpatialReference(wkt))
+                using (Dataset dataset = OSGeo.GDAL.Gdal.Open(inputFileInfo.FullName, Access.GA_ReadOnly))
                 {
-                    spatialReference.ExportToProj4(out string proj4String);
+                    string wkt = dataset.GetProjection();
+                    using (SpatialReference spatialReference = new SpatialReference(wkt))
+                    {
+                        spatialReference.ExportToProj4(out proj4String);
 
-                    if (string.IsNullOrWhiteSpace(proj4String))
-                        throw new GdalException(string.Format(Strings.StringIsEmpty, nameof(proj4String)));
-
-                    return proj4String;
+                        if (string.IsNullOrWhiteSpace(proj4String))
+                            throw new GdalException(string.Format(Strings.StringIsEmpty, nameof(proj4String)));
+                    }
                 }
-            }
+            });
+
+            return proj4String;
         }
 
         /// <summary>

@@ -95,10 +95,10 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="GDAL">
-      <Version>2.4.1</Version>
+      <Version>2.4.2</Version>
     </PackageReference>
     <PackageReference Include="GDAL.Native">
-      <Version>2.4.1</Version>
+      <Version>2.4.2</Version>
     </PackageReference>
     <PackageReference Include="NetVips">
       <Version>1.1.0-rc3</Version>

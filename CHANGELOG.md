@@ -8,7 +8,7 @@ Changes since 1.2.0:
 - Removed explicitly unused packages;
 - Added **NetVips.Native.win-x64 8.8.0** package with **Windows x64** binaries;
 - Updated **NetVips** package to **1.1.0-rc3**;
-- Updated **GDAL** and **GDAL.Native** to **2.4.1**;
+- Updated **GDAL** and **GDAL.Native** to **2.4.2**;
 - Moved all strings to **Strings.resx** file in **Localization** directory;
 - Added support for Russian language;
 - Added **GTiff2Tiles.Benchmarks** project and **README** section;
@@ -19,7 +19,9 @@ Changes since 1.2.0:
 
 - Fix **NetVips** issue ([#3](https://github.com/Gigas002/GTiff2Tiles/issues/3) and [#4](https://github.com/Gigas002/GTiff2Tiles/issues/4)), when trying to shrink image, lesser than 1px (see [e086568](https://github.com/Gigas002/GTiff2Tiles/commit/e086568ab1fcc528d9a49ee9fead2ade476815e7) and [e42e5ae](https://github.com/Gigas002/GTiff2Tiles/commit/e42e5aecc9bf42e2329dade4a9bc1575f006a4fc));
 - Fix additional band creation issue (see [#5](https://github.com/Gigas002/GTiff2Tiles/issues/5) and [514ecd9](https://github.com/Gigas002/GTiff2Tiles/commit/514ecd912b1e9f3c7a1eb5db8c3fe1770a365a6b));
-- `Image.Gdal.Warp` method is now `async`;
+- `Image.Gdal.Warp` method is now `async` and returns `ValueTask`;
+- `Image.Gdal.Info` method is now `async` and returns `ValueTask<string>`;
+- `Helpers.CheckHelper.CheckInputFile` method is now `async` and returns `ValueTask<bool>`;
 - Cleaned up some code;
 
 **Breaking changes:**

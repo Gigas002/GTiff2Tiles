@@ -144,6 +144,9 @@
   <data name="StringIsEmpty" xml:space="preserve">
     <value>{0} string is empty</value>
   </data>
+  <data name="TooMuchBands" xml:space="preserve">
+    <value>In the result tile is too much bands (&gt;5)</value>
+  </data>
   <data name="UnableToAddToCollection" xml:space="preserve">
     <value>Unable to add value to {0} collection</value>
   </data>

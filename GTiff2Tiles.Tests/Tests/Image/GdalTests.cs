@@ -29,7 +29,7 @@ namespace GTiff2Tiles.Tests.Tests.Image
             try
             {
                 //Check and repair.
-                if (!Core.Helpers.CheckHelper.CheckInputFile(inputFileInfo))
+                if (!await Core.Helpers.CheckHelper.CheckInputFile(inputFileInfo))
                 {
                     string tempFilePath = Path.Combine(tempDirectoryInfo.FullName,
                                                        $"{Core.Enums.Image.Gdal.TempFileName}{Core.Enums.Extensions.Tif}");
@@ -68,7 +68,7 @@ namespace GTiff2Tiles.Tests.Tests.Image
             try
             {
                 //Check and repair.
-                if (!Core.Helpers.CheckHelper.CheckInputFile(inputFileInfo))
+                if (!await Core.Helpers.CheckHelper.CheckInputFile(inputFileInfo))
                 {
                     string tempFilePath = Path.Combine(tempDirectoryInfo.FullName,
                                                        $"{Core.Enums.Image.Gdal.TempFileName}{Core.Enums.Extensions.Tif}");

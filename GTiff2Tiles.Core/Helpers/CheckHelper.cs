@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using GTiff2Tiles.Core.Localization;
 
 namespace GTiff2Tiles.Core.Helpers
@@ -15,8 +16,7 @@ namespace GTiff2Tiles.Core.Helpers
         #region Private
 
         /// <summary>
-        /// Check GdalInfo's string.
-        /// Block - if image is tiled;
+        /// Check GdalInfo's strings.
         /// Byte - type;
         /// </summary>
         /// <param name="gdalInfoString">String from <see cref="Image.Gdal.Info"/> method.</param>
@@ -121,15 +121,16 @@ namespace GTiff2Tiles.Core.Helpers
         /// </summary>
         /// <param name="inputFileInfo">Input file.</param>
         /// <returns><see langword="true"/> if no errors in input file, <see langword="false"/> otherwise.</returns>
-        public static bool CheckInputFile(FileInfo inputFileInfo)
+        public static async ValueTask<bool> CheckInputFile(FileInfo inputFileInfo)
         {
             CheckFile(inputFileInfo, true, Enums.Extensions.Tif);
 
-            //Get proj4 string.
-            string proj4String = Image.Gdal.GetProj4String(inputFileInfo);
+            //Get proj4 and gdalInfo strings.
+            string proj4String = await Image.Gdal.GetProj4String(inputFileInfo);
+            string gdalInfoString = await Image.Gdal.Info(inputFileInfo);
 
             //Check if input image is ready for cropping.
-            return CheckTifInfo(Image.Gdal.Info(inputFileInfo), proj4String);
+            return CheckTifInfo(gdalInfoString, proj4String);
         }
 
         #endregion

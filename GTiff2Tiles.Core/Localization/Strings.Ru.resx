@@ -144,6 +144,9 @@
   <data name="StringIsEmpty" xml:space="preserve">
     <value>Строка {0} пустая</value>
   </data>
+  <data name="TooMuchBands" xml:space="preserve">
+    <value>В готовом тайле больше 5 каналов</value>
+  </data>
   <data name="UnableToAddToCollection" xml:space="preserve">
     <value>Невозможно добавить значение в коллекцию {0}</value>
   </data>

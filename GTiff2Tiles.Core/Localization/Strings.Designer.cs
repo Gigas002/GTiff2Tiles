@@ -142,6 +142,15 @@ namespace GTiff2Tiles.Core.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to In the result tile is too much bands (&gt;5).
+        /// </summary>
+        internal static string TooMuchBands {
+            get {
+                return ResourceManager.GetString("TooMuchBands", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unable to add value to {0} collection.
         /// </summary>
         internal static string UnableToAddToCollection {
