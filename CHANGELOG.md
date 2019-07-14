@@ -23,6 +23,7 @@ Changes since 1.2.0:
 - `Image.Gdal.Warp` method is now `async` and returns `ValueTask`;
 - `Image.Gdal.Info` method is now `async` and returns `ValueTask<string>`;
 - `Helpers.CheckHelper.CheckInputFile` method is now `async` and returns `ValueTask<bool>`;
+- `Helpers.CheckHelper.CheckDirectory` method now also takes optional nullable parameter `shouldBeEmpty`. Read more about it’s using in project [wiki page](https://github.com/Gigas002/GTiff2Tiles/wiki/Helpers.CheckHelper);
 - Cleaned up some code;
 
 **Breaking changes:**

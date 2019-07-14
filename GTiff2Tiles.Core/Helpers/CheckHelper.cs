@@ -81,7 +81,7 @@ namespace GTiff2Tiles.Core.Helpers
         /// and checks if it's empty or not.
         /// </summary>
         /// <param name="directoryInfo">Directory to check.</param>
-        /// <param name="shouldBeEmpty">Should it be empty?
+        /// <param name="shouldBeEmpty">Should directory be empty?
         /// <para/>If set <see keyword="null"/>, emptyness doesn't check.</param>
         public static void CheckDirectory(DirectoryInfo directoryInfo, bool? shouldBeEmpty = null)
         {
@@ -117,7 +117,7 @@ namespace GTiff2Tiles.Core.Helpers
         }
 
         /// <summary>
-        /// Checks the existance, projection, block and byte.
+        /// Checks the existance, projection and type.
         /// </summary>
         /// <param name="inputFileInfo">Input file.</param>
         /// <returns><see langword="true"/> if no errors in input file, <see langword="false"/> otherwise.</returns>
