@@ -9,10 +9,11 @@ Changes since 1.2.0:
 - Added **NetVips.Native.win-x64 8.8.0** package with **Windows x64** binaries;
 - Updated **NetVips** package to **1.1.0-rc3**;
 - Updated **GDAL** and **GDAL.Native** to **2.4.2**;
+- Updated **System.Threading.Tasks.Extension** to **4.5.3**;
 - Moved all strings to **Strings.resx** file in **Localization** directory;
 - Added support for Russian language;
 - Added **GTiff2Tiles.Benchmarks** project and **README** section;
-- *New feature:* Option to create non-tms tiles (see [#9](https://github.com/Gigas002/GTiff2Tiles/issues/9) and [162e3a2](https://github.com/Gigas002/GTiff2Tiles/commit/162e3a28043006af71e9eac150ed150a7596ee8a));
+- *New feature:* Option to create **non-tms tiles** (see [#9](https://github.com/Gigas002/GTiff2Tiles/issues/9) and [162e3a2](https://github.com/Gigas002/GTiff2Tiles/commit/162e3a28043006af71e9eac150ed150a7596ee8a));
 - *New feature:* Now **GTiff2Tiles** is able to process non-8 bit images (see [#9](https://github.com/Gigas002/GTiff2Tiles/issues/9) and [f08f690](https://github.com/Gigas002/GTiff2Tiles/commit/f08f690f5d08cd604dc0ffa46171fd98d0c4a8ee));
 
 ## Core
