@@ -4,7 +4,7 @@
 
 Analogue of [gdal2tiles.py](https://github.com/OSGeo/gdal/blob/master/gdal/swig/python/scripts/gdal2tiles.py)/[MapTiler](https://www.maptiler.com/) on **C#**. Support **only GeoTIFF** as input data and creates **only geodetic 4 bands tiles** on output in [**tms**](https://wiki.osgeo.org/wiki/Tile_Map_Service_Specification)/**non-tms** (Google maps like) structure.
 
-Solution is build in **VS2019 (16.1.5)**, **.NET Framework 4.7.2**, targeting **Windows x64** systems.
+Solution is build in **VS2019 (16.1.6)**, **.NET Framework 4.7.2**, targeting **Windows x64** systems.
 
 Icon is kindly provided by [Google’s material design](https://material.io/tools/icons/?icon=image&style=baseline) and is used in **GTiff2Tiles.GUI**, **GTiff2Tiles.Console** and **GTiff2Tiles.Benchmarks** projects.
 
@@ -74,7 +74,7 @@ Library uses 2 different algorithms to create tiles:
 - [GDAL.Native](https://www.nuget.org/packages/GDAL.Native/) – 2.4.2;
 - [NetVips](https://www.nuget.org/packages/NetVips/) – 1.1.0-rc3;
 - [NetVips.Native.win-x64](https://www.nuget.org/packages/NetVips.Native.win-x64/) – 8.8.0;
-- [System.Threading.Tasks.Extensions](https://www.nuget.org/packages/System.Threading.Tasks.Extensions/) – 4.5.2;
+- [System.Threading.Tasks.Extensions](https://www.nuget.org/packages/System.Threading.Tasks.Extensions/) – 4.5.3;
 
 ### Localization
 
@@ -132,7 +132,7 @@ Simple example looks like this: `GTiff2Tiles.Console -i D:/Examples/Input.tif -o
 
 - GTiff2Tiles.Core;
 - [GDAL.Native](https://www.nuget.org/packages/GDAL.Native/) – 2.4.2;
-- [System.Threading.Tasks.Extensions](https://www.nuget.org/packages/System.Threading.Tasks.Extensions/) – 4.5.2;
+- [System.Threading.Tasks.Extensions](https://www.nuget.org/packages/System.Threading.Tasks.Extensions/) – 4.5.3;
 - [CommandLineParser](https://www.nuget.org/packages/CommandLineParser/) – 2.5.0;
 
 ### Localization
@@ -158,7 +158,7 @@ If you’re using Windows 7 SP1, you can experience weird error with **GDAL** pa
 
 - GTiff2Tiles.Core;
 - [GDAL.Native](https://www.nuget.org/packages/GDAL.Native/) – 2.4.2;
-- [System.Threading.Tasks.Extensions](https://www.nuget.org/packages/System.Threading.Tasks.Extensions/) – 4.5.2;
+- [System.Threading.Tasks.Extensions](https://www.nuget.org/packages/System.Threading.Tasks.Extensions/) – 4.5.3;
 - [Caliburn.Micro](https://www.nuget.org/packages/Caliburn.Micro) – 3.2.0;
 - [MahApps.Metro](<https://www.nuget.org/packages/MahApps.Metro>) – 1.6.5;
 - [MaterialDesignColors](<https://www.nuget.org/packages/MaterialDesignColors>) – 1.1.3;
@@ -192,6 +192,8 @@ Unfortunately, I couldn’t create *Gdal2Tiles.exe* with **multiprocessing**, so
 
 Time format in tables: `{minutes}:{seconds}:{milliseconds}`.
 
+Benchmarks were made on PC with Windows 10 x64 (18362.239) equipped with Intel Core i7 6700K 4.0 GHz.
+
 ### Versions
 
 Used **MapTiler Pro** version is **0.5.3**. Used **Gdal2Tiles** version is a script from **[GDAL repo](https://github.com/OSGeo/gdal/blob/master/gdal/swig/python/scripts/gdal2tiles.py)** (GDAL’s version **3.0.0**). Used **GTiff2Tiles.Core** version is **1.2.0.139**.
@@ -209,7 +211,7 @@ If you’re using Windows 7 SP1, you can experience weird error with **GDAL** pa
 
 - GTiff2Tiles.Core;
 - [GDAL.Native](https://www.nuget.org/packages/GDAL.Native/) – 2.4.2;
-- [System.Threading.Tasks.Extensions](https://www.nuget.org/packages/System.Threading.Tasks.Extensions/) – 4.5.2;
+- [System.Threading.Tasks.Extensions](https://www.nuget.org/packages/System.Threading.Tasks.Extensions/) – 4.5.3;
 - [CommandLineParser](https://www.nuget.org/packages/CommandLineParser/) – 2.5.0;
 
 ### Usage

@@ -1,4 +1,5 @@
 ﻿using System;
+using GTiff2Tiles.Console.Localization;
 
 namespace GTiff2Tiles.Console.Helpers
 {

@@ -84,7 +84,7 @@
       <Version>2.4.2</Version>
     </PackageReference>
     <PackageReference Include="System.Threading.Tasks.Extensions">
-      <Version>4.5.2</Version>
+      <Version>4.5.3</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
