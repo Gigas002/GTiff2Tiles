@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Threading.Tasks;
 using GTiff2Tiles.Core.Helpers;
 using NUnit.Framework;
 
@@ -11,7 +12,7 @@ namespace GTiff2Tiles.Tests.Tests
         public void SetUp() { }
 
         [Test]
-        public void CheckHelperTests()
+        public async Task CheckHelperTests()
         {
             try
             {
@@ -21,7 +22,7 @@ namespace GTiff2Tiles.Tests.Tests
                                                     $"{Enums.FileSystemEntries.Input4326}{Core.Enums.Extensions.Tif}");
                 FileInfo inputFileInfo = new FileInfo(inputFilePath);
                 CheckHelper.CheckDirectory(examplesDirectoryInfo, false);
-                CheckHelper.CheckInputFile(inputFileInfo);
+                await CheckHelper.CheckInputFile(inputFileInfo);
             }
             catch (Exception exception) { Assert.Fail(exception.Message); }
 
