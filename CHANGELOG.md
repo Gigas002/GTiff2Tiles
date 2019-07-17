@@ -43,6 +43,8 @@ Changes since 1.2.0:
 - Added **material design**, including dialogs and message boxes;
 - Added `TmsCompatible` check box;
 - Removed **Ookii.Dialogs.Wpf** package (replaced by **MaterialDesignExtensions**);
+- Updated **MaterialDesignThemes** package to **2.6.0**;
+- Updated **MaterialDesignColors** package to **1.2.0**;
 
 ## Console
 
