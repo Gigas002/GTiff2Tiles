@@ -5,6 +5,9 @@ using System.IO;
 using System.Threading.Tasks;
 using Caliburn.Micro;
 using GTiff2Tiles.GUI.Localization;
+using GTiff2Tiles.GUI.Models;
+using GTiff2Tiles.GUI.Properties;
+using GTiff2Tiles.GUI.Enums;
 using MaterialDesignExtensions.Controls;
 using MaterialDesignThemes.Wpf;
 
@@ -21,6 +24,15 @@ namespace GTiff2Tiles.GUI.ViewModels
     public class MainViewModel : PropertyChangedBase
     {
         #region Properties
+
+        #region Settings
+
+        /// <summary>
+        /// Shows if dark theme selected.
+        /// </summary>
+        public bool IsDarkTheme { get; } = Settings.Default.IsDarkTheme;
+
+        #endregion
 
         #region UI
 
@@ -83,6 +95,12 @@ namespace GTiff2Tiles.GUI.ViewModels
         /// Text near tms check box.
         /// </summary>
         public string TmsCheckBoxContent { get; } = Strings.TmsCheckBoxContent;
+
+        /// <summary>
+        /// Theme string for DialogHosts.
+        /// </summary>
+        // ReSharper disable once UnusedAutoPropertyAccessor.Global
+        public string Theme { get; }
 
         #endregion
 
@@ -277,6 +295,10 @@ namespace GTiff2Tiles.GUI.ViewModels
         /// </summary>
         public MainViewModel()
         {
+            //Setting the theme.
+            ChangeThemeModel.ChangeTheme(IsDarkTheme);
+            Theme = IsDarkTheme ? Themes.Dark : Themes.Light;
+
             InputFilePath = string.Empty;
             OutputDirectoryPath = string.Empty;
             TempDirectoryPath = string.Empty;

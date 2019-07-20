@@ -34,7 +34,7 @@
     </mahApps:MetroWindow.Resources>
     <materialDesignThemes:DialogHost 
         Identifier="{Binding DialogHostId}"
-        DialogTheme="Dark">
+        DialogTheme="{Binding Theme}">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="20"/>

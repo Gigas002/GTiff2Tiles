@@ -6,24 +6,13 @@
              xmlns:materialDesignThemes="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
              xmlns:caliburnMicro="http://www.caliburnproject.org"
              mc:Ignorable="d"
+
              Background="{DynamicResource MaterialDesignPaper}"
              FontFamily="{DynamicResource MaterialDesignFont}"
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+             TextElement.FontSize="18"
              Height="{Binding Height}"
              Width="{Binding Width}">
-    <UserControl.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <!-- Material Design -->
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Dark.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.Cyan.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Cyan.xaml" />
-                <!-- Controls -->
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBlock.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </UserControl.Resources>
     <Grid>
         <!-- Message box's borders -->
         <Grid.RowDefinitions>
@@ -51,9 +40,7 @@
                           Padding="3">
                 <TextBlock VerticalAlignment="Top"
                            TextWrapping="Wrap"
-                           Foreground="{DynamicResource MaterialDesignBody}"
                            MinHeight="100"
-                           FontSize="18"
                            Text="{Binding Message}"/>
             </ScrollViewer>
 
