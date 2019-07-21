@@ -296,7 +296,7 @@ namespace GTiff2Tiles.GUI.ViewModels
         public MainViewModel()
         {
             //Setting the theme.
-            ChangeThemeModel.ChangeTheme(IsDarkTheme);
+            SetThemeModel.SetTheme(IsDarkTheme);
             Theme = IsDarkTheme ? Themes.Dark : Themes.Light;
 
             InputFilePath = string.Empty;
