@@ -163,7 +163,7 @@ If you’re using Windows 7 SP1, you can experience weird error with **GDAL** pa
 - [MahApps.Metro](<https://www.nuget.org/packages/MahApps.Metro>) – 1.6.5;
 - [MaterialDesignColors](<https://www.nuget.org/packages/MaterialDesignColors>) – 1.2.0;
 - [MaterialDesignThemes](<https://www.nuget.org/packages/MaterialDesignThemes>) – 2.6.0;
-- [MaterialDesignExtensions](https://www.nuget.org/packages/MaterialDesignExtensions) – 2.6.0;
+- [MaterialDesignExtensions](https://www.nuget.org/packages/MaterialDesignExtensions) – 2.7.0;
 
 ### Localization
 
