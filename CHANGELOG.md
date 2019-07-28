@@ -1,4 +1,4 @@
-# WIP – Released 1.3.0
+# 28.07.2019 – Released 1.3.0
 
 Changes since 1.2.0:
 
