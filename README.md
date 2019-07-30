@@ -72,8 +72,8 @@ Library uses 2 different algorithms to create tiles:
 
 - [GDAL](https://www.nuget.org/packages/GDAL/) – 2.4.2;
 - [GDAL.Native](https://www.nuget.org/packages/GDAL.Native/) – 2.4.2;
-- [NetVips](https://www.nuget.org/packages/NetVips/) – 1.1.0-rc3;
-- [NetVips.Native.win-x64](https://www.nuget.org/packages/NetVips.Native.win-x64/) – 8.8.0;
+- [NetVips](https://www.nuget.org/packages/NetVips/) – 1.1.0;
+- [NetVips.Native.win-x64](https://www.nuget.org/packages/NetVips.Native.win-x64/) – 8.8.1;
 - [System.Threading.Tasks.Extensions](https://www.nuget.org/packages/System.Threading.Tasks.Extensions/) – 4.5.3;
 
 ### Localization

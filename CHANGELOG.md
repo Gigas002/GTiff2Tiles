@@ -1,3 +1,10 @@
+# 30.07.2019 – Released 1.3.1
+
+Changes since 1.3.1:
+
+- Updated **NetVips** to stable **1.1.0**;
+- Updated **NetVips.Native.win-x64** to 8.8.1;
+
 # 28.07.2019 – Released 1.3.0
 
 Changes since 1.2.0:
