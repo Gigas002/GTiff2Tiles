@@ -133,7 +133,7 @@ Simple example looks like this: `GTiff2Tiles.Console -i D:/Examples/Input.tif -o
 - GTiff2Tiles.Core;
 - [GDAL.Native](https://www.nuget.org/packages/GDAL.Native/) – 2.4.2;
 - [System.Threading.Tasks.Extensions](https://www.nuget.org/packages/System.Threading.Tasks.Extensions/) – 4.5.3;
-- [CommandLineParser](https://www.nuget.org/packages/CommandLineParser/) – 2.5.0;
+- [CommandLineParser](https://www.nuget.org/packages/CommandLineParser/) – 2.6.0;
 
 ### Localization
 
@@ -212,7 +212,7 @@ If you’re using Windows 7 SP1, you can experience weird error with **GDAL** pa
 - GTiff2Tiles.Core;
 - [GDAL.Native](https://www.nuget.org/packages/GDAL.Native/) – 2.4.2;
 - [System.Threading.Tasks.Extensions](https://www.nuget.org/packages/System.Threading.Tasks.Extensions/) – 4.5.3;
-- [CommandLineParser](https://www.nuget.org/packages/CommandLineParser/) – 2.5.0;
+- [CommandLineParser](https://www.nuget.org/packages/CommandLineParser/) – 2.6.0;
 
 ### Usage
 

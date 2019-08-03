@@ -1,9 +1,17 @@
-# 30.07.2019 – Released 1.3.1
+# WIP
 
 Changes since 1.3.1:
 
+## Overall
+
+- Updated **CommandLineParser** package to **2.6.0**;
+
+# 30.07.2019 – Released 1.3.1
+
+Changes since 1.3.0:
+
 - Updated **NetVips** to stable **1.1.0**;
-- Updated **NetVips.Native.win-x64** to 8.8.1;
+- Updated **NetVips.Native.win-x64** to **8.8.1**;
 
 # 28.07.2019 – Released 1.3.0
 
@@ -57,13 +65,13 @@ Changes since 1.2.0:
 
 - Added [icon](https://material.io/tools/icons/?icon=image&style=baseline);
 - Added `--tms` console option. Read more about using it in updated **README**;
-- Updated **CommandLineParser** to 2.5.0;
+- Updated **CommandLineParser** to **2.5.0**;
 
 ## Test
 
 - Added more zoom levels to test (from 0 to 18);
 - Added tests for tms-compatible/non tms-compatible tiles creation;
-- Updated **NUnit** to 3.12.0;
+- Updated **NUnit** to **3.12.0**;
 - Added **NUnit3TestAdapter** package;
 - Slightly improved code coverage;
 
@@ -99,7 +107,7 @@ Changes since 1.0.0:
 - Added `Examples` directory with `Input.tif` for you to test;
 - Added multithreading and `ThreadsCount` properties here and there;
 - Added progress reporting;
-- Updated README;
+- Updated **README**;
 - Fixed some minor issues;
 
 # 30.12.2018 – Released 1.0.0
@@ -108,8 +116,8 @@ Changes since beta:
 
 - Changed solution architecture: previous project split upon GTiff2Tiles library and GTiff2Tiles. Test console application for running tests;
 - Fixed typo;
-- Updated **GDAL** and **GDAL.Native** from 2.3.2 to 2.3.3;
-- Moved from packages.config to PackageReference;
-- Updated README;
+- Updated **GDAL** and **GDAL.Native** from **2.3.2** to **2.3.3**;
+- Moved from `packages.config` to `PackageReference`;
+- Updated **README**;
 - `GTiff2Tiles` class is no longer static and implements `IDisposable`;
 - FIxed some minor issues.
