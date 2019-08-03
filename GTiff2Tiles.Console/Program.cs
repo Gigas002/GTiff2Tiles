@@ -94,12 +94,12 @@ namespace GTiff2Tiles.Console
             {
                 //Check for errors.
                 Core.Helpers.CheckHelper.CheckDirectory(OutputDirectoryInfo, true);
-                if (!await Core.Helpers.CheckHelper.CheckInputFile(InputFileInfo))
+                if (!await Core.Helpers.CheckHelper.CheckInputFile(InputFileInfo).ConfigureAwait(false))
                 {
                     string tempFilePath = Path.Combine(TempDirectoryInfo.FullName, $"{Core.Enums.Image.Gdal.TempFileName}{Core.Enums.Extensions.Tif}");
                     FileInfo tempFileInfo = new FileInfo(tempFilePath);
 
-                    await Core.Image.Gdal.Warp(InputFileInfo, tempFileInfo, Core.Enums.Image.Gdal.RepairTifOptions);
+                    await Core.Image.Gdal.Warp(InputFileInfo, tempFileInfo, Core.Enums.Image.Gdal.RepairTifOptions).ConfigureAwait(false);
                     InputFileInfo = tempFileInfo;
                 }
                 //Create image object.
@@ -109,10 +109,10 @@ namespace GTiff2Tiles.Console
                 switch (Algorithm)
                 {
                     case Core.Enums.Algorithms.Join:
-                        await inputImage.GenerateTilesByJoining(OutputDirectoryInfo, MinZ, MaxZ, TmsCompatible, consoleProgress, ThreadsCount);
+                        await inputImage.GenerateTilesByJoining(OutputDirectoryInfo, MinZ, MaxZ, TmsCompatible, consoleProgress, ThreadsCount).ConfigureAwait(false);
                         break;
                     case Core.Enums.Algorithms.Crop:
-                        await inputImage.GenerateTilesByCropping(OutputDirectoryInfo, MinZ, MaxZ, TmsCompatible, consoleProgress, ThreadsCount);
+                        await inputImage.GenerateTilesByCropping(OutputDirectoryInfo, MinZ, MaxZ, TmsCompatible, consoleProgress, ThreadsCount).ConfigureAwait(false);
                         break;
                     default:
                         Helpers.ErrorHelper.PrintError(Strings.AlgorithmNotSupported);

@@ -63,7 +63,7 @@ namespace GTiff2Tiles.Benchmarks
             if (IsParsingErrors)
                 throw new Exception("Error while parsing occured");
 
-            await RunTiling();
+            await RunTiling().ConfigureAwait(false);
 
             Console.WriteLine("Tests ended. Press any button to close the application.");
             Console.ReadKey();
@@ -134,7 +134,7 @@ namespace GTiff2Tiles.Benchmarks
             Directory.CreateDirectory(gtiff2TilesTempDirectoryPath);
             Image image = new Image(InputFileInfo);
             await image.GenerateTilesByCropping(new DirectoryInfo(gtiff2TilesOutputDirectoryPath), MinZ, MaxZ, true,
-                                                new Progress<double>(), ThreadsCount);
+                                                new Progress<double>(), ThreadsCount).ConfigureAwait(false);
             stopwatch.Stop();
             Console.WriteLine("GTiff2Tiles process ended.");
             Console.WriteLine("Time passed:");
@@ -153,8 +153,8 @@ namespace GTiff2Tiles.Benchmarks
             Directory.CreateDirectory(maptilerOutputDirectoryPath);
             Directory.CreateDirectory(maptilerTempDirectoryPath);
             await Task.Run(() => RunMapTiler(InputFileInfo.FullName, maptilerOutputDirectoryPath,
-                                       maptilerTempDirectoryPath, MinZ, MaxZ,
-                                       ThreadsCount));
+                                             maptilerTempDirectoryPath, MinZ, MaxZ,
+                                             ThreadsCount)).ConfigureAwait(false);
 
             stopwatch.Stop();
             Console.WriteLine("MapTiler process ended.");
@@ -172,7 +172,7 @@ namespace GTiff2Tiles.Benchmarks
             string gdal2TilesOutputDirectoryPath = Path.Combine(OutputDirectoryInfo.FullName, "gdal2tiles");
             Directory.CreateDirectory(gdal2TilesOutputDirectoryPath);
             await Task.Run(() => RunGdal2Tiles(InputFileInfo.FullName, gdal2TilesOutputDirectoryPath, MinZ, MaxZ,
-                                               ThreadsCount));
+                                               ThreadsCount)).ConfigureAwait(false);
 
             stopwatch.Stop();
             Console.WriteLine("Gdal2Tiles process ended.");
