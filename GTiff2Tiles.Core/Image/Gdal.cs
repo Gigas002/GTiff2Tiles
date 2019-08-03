@@ -58,7 +58,7 @@ namespace GTiff2Tiles.Core.Image
                         gcHandle.Free();
                     }
                 }
-            });
+            }).ConfigureAwait(false);
 
             //Was file created?
             CheckHelper.CheckFile(outputFileInfo, true);
@@ -92,7 +92,7 @@ namespace GTiff2Tiles.Core.Image
                     if (string.IsNullOrWhiteSpace(gdalInfoString))
                         throw new GdalException(string.Format(Strings.StringIsEmpty, nameof(gdalInfoString)));
                 }
-            });
+            }).ConfigureAwait(false);
 
             return gdalInfoString;
         }
@@ -189,7 +189,7 @@ namespace GTiff2Tiles.Core.Image
                             throw new GdalException(string.Format(Strings.StringIsEmpty, nameof(proj4String)));
                     }
                 }
-            });
+            }).ConfigureAwait(false);
 
             return proj4String;
         }

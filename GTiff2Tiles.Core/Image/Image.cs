@@ -565,7 +565,7 @@ namespace GTiff2Tiles.Core.Image
                 {
                     for (int tileX = TilesMinMax[zoom][0]; tileX <= TilesMinMax[zoom][2]; tileX++)
                     {
-                        await semaphoreSlim.WaitAsync();
+                        await semaphoreSlim.WaitAsync().ConfigureAwait(false);
 
                         int x = tileX;
                         int y = tileY;
@@ -584,7 +584,7 @@ namespace GTiff2Tiles.Core.Image
                     }
                 }
 
-                await Task.WhenAll(tasks);
+                await Task.WhenAll(tasks).ConfigureAwait(false);
 
                 //Dispose tasks.
                 foreach (Task task in tasks) task.Dispose();
@@ -618,7 +618,7 @@ namespace GTiff2Tiles.Core.Image
                 {
                     for (int tileX = TilesMinMax[zoom][0]; tileX <= TilesMinMax[zoom][2]; tileX++)
                     {
-                        await semaphoreSlim.WaitAsync();
+                        await semaphoreSlim.WaitAsync().ConfigureAwait(false);
 
                         int x = tileX;
                         int y = tileY;
@@ -637,7 +637,7 @@ namespace GTiff2Tiles.Core.Image
                     }
                 }
 
-                await Task.WhenAll(tasks);
+                await Task.WhenAll(tasks).ConfigureAwait(false);
 
                 //Dispose tasks.
                 foreach (Task task in tasks) task.Dispose();
@@ -722,14 +722,14 @@ namespace GTiff2Tiles.Core.Image
             SetGenerateTilesProperties(outputDirectoryInfo, minZ, maxZ, tmsCompatible);
 
             //Crop lowest zoom level.
-            await WriteZoom(MaxZ, threadsCount);
+            await WriteZoom(MaxZ, threadsCount).ConfigureAwait(false);
             double percentage = 1.0 / (MaxZ - MinZ + 1) * 100.0;
             progress.Report(percentage);
 
             //Crop upper tiles.
             for (int zoom = MaxZ - 1; zoom >= MinZ; zoom--)
             {
-                await MakeUpperTiles(zoom, threadsCount);
+                await MakeUpperTiles(zoom, threadsCount).ConfigureAwait(false);
 
                 percentage = (double) (MaxZ - zoom + 1) / (MaxZ - MinZ + 1) * 100.0;
                 progress.Report(percentage);
@@ -765,7 +765,7 @@ namespace GTiff2Tiles.Core.Image
             //Crop tiles for each zoom.
             for (int zoom = MinZ; zoom <= MaxZ; zoom++)
             {
-                await WriteZoom(zoom, threadsCount);
+                await WriteZoom(zoom, threadsCount).ConfigureAwait(false);
 
                 double percentage = (double) (zoom - MinZ + 1) / (MaxZ - MinZ + 1) * 100.0;
                 progress.Report(percentage);

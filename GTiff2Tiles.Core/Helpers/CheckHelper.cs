@@ -126,8 +126,8 @@ namespace GTiff2Tiles.Core.Helpers
             CheckFile(inputFileInfo, true, Enums.Extensions.Tif);
 
             //Get proj4 and gdalInfo strings.
-            string proj4String = await Image.Gdal.GetProj4String(inputFileInfo);
-            string gdalInfoString = await Image.Gdal.Info(inputFileInfo);
+            string proj4String = await Image.Gdal.GetProj4String(inputFileInfo).ConfigureAwait(false);
+            string gdalInfoString = await Image.Gdal.Info(inputFileInfo).ConfigureAwait(false);
 
             //Check if input image is ready for cropping.
             return CheckTifInfo(gdalInfoString, proj4String);
