@@ -180,7 +180,7 @@ Currently, application is available on **English** and **Russian** languages.
 - GTiff2Tiles.Core;
 - [GDAL.Native](https://www.nuget.org/packages/GDAL.Native/) – 2.4.2;
 - [NUnit](https://www.nuget.org/packages/NUnit/3.12.0) – 3.12.0;
-- [NUnit3TestAdapter](https://www.nuget.org/packages/NUnit3TestAdapter/) – 3.13.0;
+- [NUnit3TestAdapter](https://www.nuget.org/packages/NUnit3TestAdapter/) – 3.14.0;
 
 ## GTiff2Tiles.Benchmarks
 
