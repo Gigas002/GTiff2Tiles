@@ -290,6 +290,7 @@ namespace GTiff2Tiles.GUI.ViewModels
 
         #region Constructor
 
+        /// <inheritdoc />
         /// <summary>
         /// Initialize all needed properties.
         /// </summary>
@@ -325,14 +326,13 @@ namespace GTiff2Tiles.GUI.ViewModels
         {
             try
             {
-                OpenFileDialogResult dialogResult =  await OpenFileDialog.ShowDialogAsync(Enums.MainViewModel.DialogHostId,
-                                                                                          new OpenFileDialogArguments()).ConfigureAwait(false);
+                OpenFileDialogResult dialogResult = await OpenFileDialog
+                                                         .ShowDialogAsync(Enums.MainViewModel.DialogHostId,
+                                                                          new OpenFileDialogArguments())
+                                                         .ConfigureAwait(false);
                 InputFilePath = dialogResult.Canceled ? InputFilePath : dialogResult.FileInfo.FullName;
             }
-            catch (Exception exception)
-            {
-                await Helpers.ErrorHelper.ShowException(exception).ConfigureAwait(false);
-            }
+            catch (Exception exception) { await Helpers.ErrorHelper.ShowException(exception).ConfigureAwait(false); }
         }
 
         /// <summary>
@@ -346,13 +346,12 @@ namespace GTiff2Tiles.GUI.ViewModels
                 OpenDirectoryDialogResult dialogResult =
                     await OpenDirectoryDialog.ShowDialogAsync(Enums.MainViewModel.DialogHostId,
                                                               new OpenDirectoryDialogArguments
-                                                                  {CreateNewDirectoryEnabled = true}).ConfigureAwait(false);
+                                                              {
+                                                                  CreateNewDirectoryEnabled = true
+                                                              }).ConfigureAwait(false);
                 OutputDirectoryPath = dialogResult.Canceled ? OutputDirectoryPath : dialogResult.Directory;
             }
-            catch (Exception exception)
-            {
-                await Helpers.ErrorHelper.ShowException(exception).ConfigureAwait(false);
-            }
+            catch (Exception exception) { await Helpers.ErrorHelper.ShowException(exception).ConfigureAwait(false); }
         }
 
         /// <summary>
@@ -366,13 +365,12 @@ namespace GTiff2Tiles.GUI.ViewModels
                 OpenDirectoryDialogResult dialogResult =
                     await OpenDirectoryDialog.ShowDialogAsync(Enums.MainViewModel.DialogHostId,
                                                               new OpenDirectoryDialogArguments
-                                                                  {CreateNewDirectoryEnabled = true}).ConfigureAwait(false);
+                                                              {
+                                                                  CreateNewDirectoryEnabled = true
+                                                              }).ConfigureAwait(false);
                 TempDirectoryPath = dialogResult.Canceled ? TempDirectoryPath : dialogResult.Directory;
             }
-            catch (Exception exception)
-            {
-                await Helpers.ErrorHelper.ShowException(exception).ConfigureAwait(false);
-            }
+            catch (Exception exception) { await Helpers.ErrorHelper.ShowException(exception).ConfigureAwait(false); }
         }
 
         /// <summary>
@@ -403,12 +401,15 @@ namespace GTiff2Tiles.GUI.ViewModels
             {
                 //Check for errors.
                 Core.Helpers.CheckHelper.CheckDirectory(outputDirectoryInfo, true);
+
                 if (!await Core.Helpers.CheckHelper.CheckInputFile(inputFileInfo).ConfigureAwait(false))
                 {
-                    string tempFilePath = Path.Combine(tempDirectoryInfo.FullName, $"{Core.Enums.Image.Gdal.TempFileName}{Core.Enums.Extensions.Tif}");
+                    string tempFilePath = Path.Combine(tempDirectoryInfo.FullName,
+                                                       $"{Core.Enums.Image.Gdal.TempFileName}{Core.Enums.Extensions.Tif}");
                     FileInfo tempFileInfo = new FileInfo(tempFilePath);
 
-                    await Core.Image.Gdal.Warp(inputFileInfo, tempFileInfo, Core.Enums.Image.Gdal.RepairTifOptions).ConfigureAwait(false);
+                    await Core.Image.Gdal.Warp(inputFileInfo, tempFileInfo, Core.Enums.Image.Gdal.RepairTifOptions)
+                              .ConfigureAwait(false);
                     inputFileInfo = tempFileInfo;
                 }
 
@@ -422,15 +423,18 @@ namespace GTiff2Tiles.GUI.ViewModels
                         await inputImage
                              .GenerateTilesByJoining(outputDirectoryInfo, MinZ, MaxZ, TmsCompatible, progress,
                                                      ThreadsCount).ConfigureAwait(false);
+
                         break;
                     case Core.Enums.Algorithms.Crop:
                         await inputImage
                              .GenerateTilesByCropping(outputDirectoryInfo, MinZ, MaxZ, TmsCompatible, progress,
                                                       ThreadsCount).ConfigureAwait(false);
+
                         break;
                     default:
                         await Helpers.ErrorHelper.ShowError(Strings.AlgorithmNotSupported).ConfigureAwait(false);
                         IsEnabled = true;
+
                         return;
                 }
             }
@@ -438,6 +442,7 @@ namespace GTiff2Tiles.GUI.ViewModels
             {
                 await Helpers.ErrorHelper.ShowException(exception).ConfigureAwait(false);
                 IsEnabled = true;
+
                 return;
             }
 
@@ -445,10 +450,12 @@ namespace GTiff2Tiles.GUI.ViewModels
             IsEnabled = true;
 
             stopwatch.Stop();
-            await DialogHost.Show(new MessageBoxDialogViewModel(string.Format(Strings.Done, Environment.NewLine, stopwatch.Elapsed.Days,
-                                                                              stopwatch.Elapsed.Hours, stopwatch.Elapsed.Minutes,
-                                                                              stopwatch.Elapsed.Seconds, stopwatch.Elapsed.Milliseconds)))
-                            .ConfigureAwait(false);
+            await DialogHost
+                 .Show(new MessageBoxDialogViewModel(string.Format(Strings.Done, Environment.NewLine,
+                                                                   stopwatch.Elapsed.Days, stopwatch.Elapsed.Hours,
+                                                                   stopwatch.Elapsed.Minutes, stopwatch.Elapsed.Seconds,
+                                                                   stopwatch.Elapsed.Milliseconds)))
+                 .ConfigureAwait(false);
         }
 
         #endregion
@@ -462,22 +469,31 @@ namespace GTiff2Tiles.GUI.ViewModels
         private async ValueTask<bool> CheckProperties()
         {
             if (string.IsNullOrWhiteSpace(InputFilePath))
-                return await Helpers.ErrorHelper.ShowError(string.Format(Strings.PathIsEmpty, nameof(InputFilePath))).ConfigureAwait(false);
+                return await Helpers.ErrorHelper.ShowError(string.Format(Strings.PathIsEmpty, nameof(InputFilePath)))
+                                    .ConfigureAwait(false);
 
             if (string.IsNullOrWhiteSpace(OutputDirectoryPath))
-                return await Helpers.ErrorHelper.ShowError(string.Format(Strings.PathIsEmpty, nameof(OutputDirectoryPath))).ConfigureAwait(false);
+                return await Helpers
+                            .ErrorHelper.ShowError(string.Format(Strings.PathIsEmpty, nameof(OutputDirectoryPath)))
+                            .ConfigureAwait(false);
 
             if (string.IsNullOrWhiteSpace(TempDirectoryPath))
-                return await Helpers.ErrorHelper.ShowError(string.Format(Strings.PathIsEmpty, nameof(TempDirectoryPath))).ConfigureAwait(false);
+                return await Helpers
+                            .ErrorHelper.ShowError(string.Format(Strings.PathIsEmpty, nameof(TempDirectoryPath)))
+                            .ConfigureAwait(false);
 
             if (MinZ < 0)
-                return await Helpers.ErrorHelper.ShowError(string.Format(Strings.LesserThan, nameof(MinZ), 0)).ConfigureAwait(false);
+                return await Helpers.ErrorHelper.ShowError(string.Format(Strings.LesserThan, nameof(MinZ), 0))
+                                    .ConfigureAwait(false);
 
             if (MaxZ < 0)
-                return await Helpers.ErrorHelper.ShowError(string.Format(Strings.LesserThan, nameof(MaxZ), 0)).ConfigureAwait(false);
+                return await Helpers.ErrorHelper.ShowError(string.Format(Strings.LesserThan, nameof(MaxZ), 0))
+                                    .ConfigureAwait(false);
 
             if (MaxZ < MinZ)
-                return await Helpers.ErrorHelper.ShowError(string.Format(Strings.LesserThan, nameof(MaxZ), nameof(MinZ))).ConfigureAwait(false);
+                return await Helpers
+                            .ErrorHelper.ShowError(string.Format(Strings.LesserThan, nameof(MaxZ), nameof(MinZ)))
+                            .ConfigureAwait(false);
 
             if (string.IsNullOrWhiteSpace(Algorithm))
                 return await Helpers.ErrorHelper.ShowError(Strings.SelectAlgorithm).ConfigureAwait(false);
@@ -488,7 +504,9 @@ namespace GTiff2Tiles.GUI.ViewModels
                 return await Helpers.ErrorHelper.ShowError(Strings.AlgorithmNotSupported).ConfigureAwait(false);
 
             if (ThreadsCount <= 0)
-                return await Helpers.ErrorHelper.ShowError(string.Format(Strings.LesserOrEqual, nameof(ThreadsCount), 0)).ConfigureAwait(false);
+                return await Helpers
+                            .ErrorHelper.ShowError(string.Format(Strings.LesserOrEqual, nameof(ThreadsCount), 0))
+                            .ConfigureAwait(false);
 
             //Disable controls.
             IsEnabled = false;

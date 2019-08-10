@@ -56,12 +56,10 @@ namespace GTiff2Tiles.Benchmarks
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
 
-            Parser.Default.ParseArguments<Options>(args)
-                  .WithParsed(ParseConsoleOptions)
+            Parser.Default.ParseArguments<Options>(args).WithParsed(ParseConsoleOptions)
                   .WithNotParsed(error => IsParsingErrors = true);
 
-            if (IsParsingErrors)
-                throw new Exception("Error while parsing occured");
+            if (IsParsingErrors) throw new Exception("Error while parsing occured");
 
             await RunTiling().ConfigureAwait(false);
 
@@ -75,16 +73,21 @@ namespace GTiff2Tiles.Benchmarks
             if (string.IsNullOrWhiteSpace(options.InputFilePath))
             {
                 IsParsingErrors = true;
+
                 return;
             }
+
             if (string.IsNullOrWhiteSpace(options.OutputDirectoryPath))
             {
                 IsParsingErrors = true;
+
                 return;
             }
+
             if (string.IsNullOrWhiteSpace(options.TempDirectoryPath))
             {
                 IsParsingErrors = true;
+
                 return;
             }
 
@@ -92,16 +95,21 @@ namespace GTiff2Tiles.Benchmarks
             if (options.MinZ < 0)
             {
                 IsParsingErrors = true;
+
                 return;
             }
+
             if (options.MaxZ < 0)
             {
                 IsParsingErrors = true;
+
                 return;
             }
+
             if (options.MinZ > options.MaxZ)
             {
                 IsParsingErrors = true;
+
                 return;
             }
 
@@ -109,6 +117,7 @@ namespace GTiff2Tiles.Benchmarks
             if (options.ThreadsCount <= 0)
             {
                 IsParsingErrors = true;
+
                 return;
             }
 
@@ -138,10 +147,8 @@ namespace GTiff2Tiles.Benchmarks
             stopwatch.Stop();
             Console.WriteLine("GTiff2Tiles process ended.");
             Console.WriteLine("Time passed:");
-            Console.WriteLine($"Hours:{stopwatch.Elapsed.Hours}, " +
-                              $"Minutes:{stopwatch.Elapsed.Minutes}, " +
-                              $"Seconds:{stopwatch.Elapsed.Seconds}, " +
-                              $"$Ms:{stopwatch.Elapsed.Milliseconds}.");
+            Console.WriteLine($"Hours:{stopwatch.Elapsed.Hours}, Minutes:{stopwatch.Elapsed.Minutes}, " +
+                              $"Seconds:{stopwatch.Elapsed.Seconds}, Ms:{stopwatch.Elapsed.Milliseconds}.");
             stopwatch.Restart();
 
             #endregion
@@ -153,16 +160,14 @@ namespace GTiff2Tiles.Benchmarks
             Directory.CreateDirectory(maptilerOutputDirectoryPath);
             Directory.CreateDirectory(maptilerTempDirectoryPath);
             await Task.Run(() => RunMapTiler(InputFileInfo.FullName, maptilerOutputDirectoryPath,
-                                             maptilerTempDirectoryPath, MinZ, MaxZ,
-                                             ThreadsCount)).ConfigureAwait(false);
+                                             maptilerTempDirectoryPath, MinZ, MaxZ, ThreadsCount))
+                      .ConfigureAwait(false);
 
             stopwatch.Stop();
             Console.WriteLine("MapTiler process ended.");
             Console.WriteLine("Time passed:");
-            Console.WriteLine($"Hours:{stopwatch.Elapsed.Hours}, " +
-                              $"Minutes:{stopwatch.Elapsed.Minutes}, " +
-                              $"Seconds:{stopwatch.Elapsed.Seconds}, " +
-                              $"$Ms:{stopwatch.Elapsed.Milliseconds}.");
+            Console.WriteLine($"Hours:{stopwatch.Elapsed.Hours}, Minutes:{stopwatch.Elapsed.Minutes}, " +
+                              $"Seconds:{stopwatch.Elapsed.Seconds}, Ms:{stopwatch.Elapsed.Milliseconds}.");
             stopwatch.Restart();
 
             #endregion
@@ -177,10 +182,8 @@ namespace GTiff2Tiles.Benchmarks
             stopwatch.Stop();
             Console.WriteLine("Gdal2Tiles process ended.");
             Console.WriteLine("Time passed:");
-            Console.WriteLine($"Hours:{stopwatch.Elapsed.Hours}, " +
-                              $"Minutes:{stopwatch.Elapsed.Minutes}, " +
-                              $"Seconds:{stopwatch.Elapsed.Seconds}, " +
-                              $"$Ms:{stopwatch.Elapsed.Milliseconds}.");
+            Console.WriteLine($"Hours:{stopwatch.Elapsed.Hours}, Minutes:{stopwatch.Elapsed.Minutes}, " +
+                              $"Seconds:{stopwatch.Elapsed.Seconds}, Ms:{stopwatch.Elapsed.Milliseconds}.");
 
             #endregion
         }
@@ -192,17 +195,10 @@ namespace GTiff2Tiles.Benchmarks
             {
                 StartInfo = new ProcessStartInfo("maptiler")
                 {
-                    Arguments = "-geodetic -tms " +
-                                $"-resampling cubic_spline -f png32 -P {threadsCount} " +
-                                $"-o \"{outputDirectoryPath}\" " +
-                                $"-work_dir \"{tempDirectoryPath}\" " +
-                                "-srs EPSG:4326 " +
-                                $"-zoom {minZ} {maxZ} " +
-                                $"\"{inputFilePath}\"",
-                    CreateNoWindow = true,
-                    RedirectStandardInput = true,
-                    RedirectStandardOutput = true,
-                    UseShellExecute = false
+                    Arguments = $"-geodetic -tms -resampling cubic_spline -f png32 -P {threadsCount} " +
+                                $"-o \"{outputDirectoryPath}\" -work_dir \"{tempDirectoryPath}\" " +
+                                $"-srs EPSG:4326 -zoom {minZ} {maxZ} \"{inputFilePath}\"",
+                    CreateNoWindow = true, RedirectStandardInput = true, RedirectStandardOutput = true, UseShellExecute = false
                 }
             })
             {
@@ -219,19 +215,13 @@ namespace GTiff2Tiles.Benchmarks
                 //Should be placed in Gdal2Tiles directory near Benchmarks binaries.
                 StartInfo = new ProcessStartInfo("Gdal2Tiles/Gdal2Tiles")
                 {
-                    Arguments = "-s EPSG:4326 -p geodetic -r cubicspline --tmscompatible " +
-                                $"-z {minZ}-{maxZ} " +
+                    Arguments = $"-s EPSG:4326 -p geodetic -r cubicspline --tmscompatible -z {minZ}-{maxZ} " +
                                 //$"--processes={threadsCount} " + //todo doesn't work
-                                $"\"{inputFilePath}\" " +
-                                $"\"{outputDirectoryPath}\"",
-                    CreateNoWindow = true,
-                    RedirectStandardInput = true,
-                    RedirectStandardOutput = true,
-                    UseShellExecute = false
+                                $"\"{inputFilePath}\" \"{outputDirectoryPath}\"",
+                    CreateNoWindow = true, RedirectStandardInput = true, RedirectStandardOutput = true, UseShellExecute = false
                 }
             })
             {
-
                 gdal2TilesProcess.Start();
                 gdal2TilesProcess.WaitForExit();
             }

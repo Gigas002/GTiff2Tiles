@@ -4,7 +4,7 @@ using GTiff2Tiles.GUI.ViewModels;
 
 namespace GTiff2Tiles.GUI
 {
-    internal class Bootstrapper : BootstrapperBase
+    internal sealed class Bootstrapper : BootstrapperBase
     {
         public Bootstrapper() => Initialize();
 

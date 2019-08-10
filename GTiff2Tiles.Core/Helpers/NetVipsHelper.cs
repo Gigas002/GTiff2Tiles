@@ -10,6 +10,7 @@ namespace GTiff2Tiles.Core.Helpers
         /// <summary>
         /// Disables NetVips log warnings.
         /// </summary>
-        internal static void DisableLog() => Log.SetLogHandler("VIPS", NetVips.Enums.LogLevelFlags.Warning, (domain, level, message) => { });
+        internal static void DisableLog() =>
+            Log.SetLogHandler("VIPS", NetVips.Enums.LogLevelFlags.Warning, (domain, level, message) => { });
     }
 }

@@ -5,7 +5,7 @@ namespace GTiff2Tiles.GUI.Enums
     /// <summary>
     /// Some const values for <see cref="ViewModels.MainViewModel"/> class.
     /// </summary>
-    public static class MainViewModel
+    internal static class MainViewModel
     {
         #region UI
 

@@ -52,24 +52,24 @@ namespace GTiff2Tiles.Core.Helpers
 
             //Check file's path.
             if (string.IsNullOrWhiteSpace(fileInfo.FullName))
-                throw new Exception(string.Format(Strings.StringIsEmpty,
-                                                  nameof(fileInfo.FullName)));
+                throw new Exception(string.Format(Strings.StringIsEmpty, nameof(fileInfo.FullName)));
+
             //Check file's extension.
             if (!string.IsNullOrWhiteSpace(fileExtension))
                 if (fileInfo.Extension != fileExtension)
-                    throw new Exception(string.Format(Strings.WrongExtension, nameof(fileInfo),
-                                                      fileExtension, fileInfo.FullName));
+                    throw new Exception(string.Format(Strings.WrongExtension, nameof(fileInfo), fileExtension,
+                                                      fileInfo.FullName));
 
             //Check file's existance.
             if (shouldExist)
             {
                 if (!fileInfo.Exists)
-                    throw new Exception(string.Format(Strings.DoesntExist,
-                                                      nameof(fileInfo), fileInfo.FullName));
+                    throw new Exception(string.Format(Strings.DoesntExist, nameof(fileInfo), fileInfo.FullName));
             }
             else if (fileInfo.Exists)
-                throw new Exception(string.Format(Strings.AlreadyExist,
-                                                  nameof(fileInfo), fileInfo.FullName));
+            {
+                throw new Exception(string.Format(Strings.AlreadyExist, nameof(fileInfo), fileInfo.FullName));
+            }
         }
 
         #endregion
@@ -87,8 +87,7 @@ namespace GTiff2Tiles.Core.Helpers
         {
             //Check directory's path.
             if (string.IsNullOrWhiteSpace(directoryInfo.FullName))
-                throw new Exception(string.Format(Strings.StringIsEmpty,
-                                                  nameof(directoryInfo.FullName)));
+                throw new Exception(string.Format(Strings.StringIsEmpty, nameof(directoryInfo.FullName)));
 
             //Try to create directory.
             try
@@ -98,8 +97,9 @@ namespace GTiff2Tiles.Core.Helpers
             }
             catch (Exception exception)
             {
-                throw new Exception(string.Format(Strings.UnableToCreate, nameof(directoryInfo),
-                                                  directoryInfo.FullName), exception);
+                throw new
+                    Exception(string.Format(Strings.UnableToCreate, nameof(directoryInfo), directoryInfo.FullName),
+                              exception);
             }
 
             //Check directory's emptyness.
@@ -107,13 +107,13 @@ namespace GTiff2Tiles.Core.Helpers
             if (shouldBeEmpty == true)
             {
                 if (directoryInfo.EnumerateFileSystemInfos().Any())
-                    throw new Exception(string.Format(Strings.DirectoryIsntEmpty,
-                                                      directoryInfo.FullName));
+                    throw new Exception(string.Format(Strings.DirectoryIsntEmpty, directoryInfo.FullName));
             }
             else if (shouldBeEmpty == false)
+            {
                 if (!directoryInfo.EnumerateFileSystemInfos().Any())
-                    throw new Exception(string.Format(Strings.DirectoryIsEmpty,
-                                                      directoryInfo.FullName));
+                    throw new Exception(string.Format(Strings.DirectoryIsEmpty, directoryInfo.FullName));
+            }
         }
 
         /// <summary>

@@ -15,8 +15,7 @@ namespace GTiff2Tiles.Core.Exceptions.Image
         /// Creates new <see cref="GdalException"/> object with passed error message.
         /// </summary>
         /// <param name="errorMessage">Error message.</param>
-        public GdalException(string errorMessage) : base(errorMessage)
-        { }
+        public GdalException(string errorMessage) : base(errorMessage) { }
 
         /// <inheritdoc />
         /// <summary>
@@ -25,8 +24,7 @@ namespace GTiff2Tiles.Core.Exceptions.Image
         /// </summary>
         /// <param name="errorMessage">Error message.</param>
         /// <param name="innerException">Inner exception.</param>
-        public GdalException(string errorMessage, Exception innerException) : base(errorMessage, innerException)
-        { }
+        public GdalException(string errorMessage, Exception innerException) : base(errorMessage, innerException) { }
 
         #endregion
     }

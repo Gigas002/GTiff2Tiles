@@ -1,8 +1,9 @@
 ﻿namespace GTiff2Tiles.Tests.Enums
 {
-    public static class Zooms
+    internal static class Zooms
     {
-        public const int MinZ = 0;
-        public const int MaxZ = 18;
+        internal const int MinZ = 0;
+
+        internal const int MaxZ = 18;
     }
 }

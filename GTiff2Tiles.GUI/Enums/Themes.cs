@@ -3,7 +3,7 @@
     /// <summary>
     /// Themes strings for DialogHosts.
     /// </summary>
-    internal class Themes
+    internal static class Themes
     {
         /// <summary>
         /// Dark

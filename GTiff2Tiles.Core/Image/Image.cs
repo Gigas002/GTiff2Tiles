@@ -137,10 +137,7 @@ namespace GTiff2Tiles.Core.Image
         /// <param name="lowerRightY">Tile's lower right y coordinate.</param>
         /// <returns><see cref="ValueTuple{T1, T2, T3, T4, T5, T6, T7, T8}"/> of x/y positions and sizes to read and write tiles.</returns>
         private (int readPosX, int readPosY, int readXSize, int readYSize, int writePosX, int writePosY, int writeXSize,
-            int writeYSize) GeoQuery(double upperLeftX,
-                                     double upperLeftY,
-                                     double lowerRightX,
-                                     double lowerRightY)
+            int writeYSize) GeoQuery(double upperLeftX, double upperLeftY, double lowerRightX, double lowerRightY)
         {
             //Read from input geotiff in pixels.
             double readPosMinX = RasterXSize * (upperLeftX - MinX) / (MaxX - MinX);
@@ -149,24 +146,16 @@ namespace GTiff2Tiles.Core.Image
             double readPosMaxY = RasterYSize - RasterYSize * (lowerRightY - MinY) / (MaxY - MinY);
 
             //If outside of tiff.
-            readPosMinX = readPosMinX < 0.0 ? 0.0 :
-                          readPosMinX > RasterXSize ? RasterXSize : readPosMinX;
-            readPosMinY = readPosMinY < 0.0 ? 0.0 :
-                          readPosMinY > RasterYSize ? RasterYSize : readPosMinY;
-            readPosMaxX = readPosMaxX < 0.0 ? 0.0 :
-                          readPosMaxX > RasterXSize ? RasterXSize : readPosMaxX;
-            readPosMaxY = readPosMaxY < 0.0 ? 0.0 :
-                          readPosMaxY > RasterYSize ? RasterYSize : readPosMaxY;
+            readPosMinX = readPosMinX < 0.0 ? 0.0 : readPosMinX > RasterXSize ? RasterXSize : readPosMinX;
+            readPosMinY = readPosMinY < 0.0 ? 0.0 : readPosMinY > RasterYSize ? RasterYSize : readPosMinY;
+            readPosMaxX = readPosMaxX < 0.0 ? 0.0 : readPosMaxX > RasterXSize ? RasterXSize : readPosMaxX;
+            readPosMaxY = readPosMaxY < 0.0 ? 0.0 : readPosMaxY > RasterYSize ? RasterYSize : readPosMaxY;
 
             //Output tile's borders in pixels.
-            double tilePixMinX = readPosMinX.Equals(0.0) ? MinX :
-                                 readPosMinX.Equals(RasterXSize) ? MaxX : upperLeftX;
-            double tilePixMinY = readPosMaxY.Equals(0.0) ? MaxY :
-                                 readPosMaxY.Equals(RasterYSize) ? MinY : lowerRightY;
-            double tilePixMaxX = readPosMaxX.Equals(0.0) ? MinX :
-                                 readPosMaxX.Equals(RasterXSize) ? MaxX : lowerRightX;
-            double tilePixMaxY = readPosMinY.Equals(0.0) ? MaxY :
-                                 readPosMinY.Equals(RasterYSize) ? MinY : upperLeftY;
+            double tilePixMinX = readPosMinX.Equals(0.0) ? MinX : readPosMinX.Equals(RasterXSize) ? MaxX : upperLeftX;
+            double tilePixMinY = readPosMaxY.Equals(0.0) ? MaxY : readPosMaxY.Equals(RasterYSize) ? MinY : lowerRightY;
+            double tilePixMaxX = readPosMaxX.Equals(0.0) ? MinX : readPosMaxX.Equals(RasterXSize) ? MaxX : lowerRightX;
+            double tilePixMaxY = readPosMinY.Equals(0.0) ? MaxY : readPosMinY.Equals(RasterYSize) ? MinY : upperLeftY;
 
             //Positions of dataset to write in tile.
             double writePosMinX = Enums.Image.Image.TileSize -
@@ -196,10 +185,8 @@ namespace GTiff2Tiles.Core.Image
             writeXSize = writeXSize > 1.0 ? writeXSize : 1.0;
             writeYSize = writeYSize > 1.0 ? writeYSize : 1.0;
 
-            return ((int) readPosMinX, (int) readPosMinY,
-                    (int) readXSize, (int) readYSize,
-                    (int) writePosMinX, (int) writePosMinY,
-                    (int) writeXSize, (int) writeYSize);
+            return ((int) readPosMinX, (int) readPosMinY, (int) readXSize, (int) readYSize, (int) writePosMinX,
+                    (int) writePosMinY, (int) writeXSize, (int) writeYSize);
         }
 
         /// <summary>
@@ -221,18 +208,19 @@ namespace GTiff2Tiles.Core.Image
             #endregion
 
             //Create directories for the tile. The overall structure looks like: outputDirectory/zoom/x/y.png.
-            DirectoryInfo tileDirectoryInfo = new DirectoryInfo(Path.Combine(OutputDirectoryInfo.FullName,
-                                                                             $"{zoom}", $"{tileX}"));
+            DirectoryInfo tileDirectoryInfo =
+                new DirectoryInfo(Path.Combine(OutputDirectoryInfo.FullName, $"{zoom}", $"{tileX}"));
             CheckHelper.CheckDirectory(tileDirectoryInfo);
 
             const bool centreConvention = false;
 
             //Get the coordinate borders for current tile from tile numbers.
-            (double minX, double minY, double maxX, double maxY) = Tile.Tile.TileBounds(tileX, tileY, zoom, TmsCompatible);
+            (double minX, double minY, double maxX, double maxY) =
+                Tile.Tile.TileBounds(tileX, tileY, zoom, TmsCompatible);
 
             //Get postitions and sizes for current tile.
-            (int readPosX, int readPosY, int readXSize, int readYSize, int writePosX, int writePosY,
-             int writeXSize, int writeYSize) = GeoQuery(minX, maxY, maxX, minY);
+            (int readPosX, int readPosY, int readXSize, int readYSize, int writePosX, int writePosY, int writeXSize,
+             int writeYSize) = GeoQuery(minX, maxY, maxX, minY);
 
             //Warning: OpenLayers requires replacement of tileY to tileY+1
             FileInfo outputTileFileInfo = new FileInfo(Path.Combine(tileDirectoryInfo.FullName,
@@ -240,10 +228,8 @@ namespace GTiff2Tiles.Core.Image
 
             //Try open input image and crop tile
             NetVips.Image tileImage;
-            try
-            {
-                tileImage = inputImage.Crop(readPosX, readPosY, readXSize, readYSize);
-            }
+
+            try { tileImage = inputImage.Crop(readPosX, readPosY, readXSize, readYSize); }
             catch (Exception exception)
             {
                 throw new ImageException(string.Format(Strings.UnableToCreateTile, tileX, tileY), exception);
@@ -266,6 +252,7 @@ namespace GTiff2Tiles.Core.Image
                 tileImage = tileImage.Shrinkv(yShrink);
                 yScale *= yShrink;
             }
+
             if (xShrink > 1)
             {
                 tileImage = tileImage.Shrinkh(xShrink);
@@ -289,23 +276,23 @@ namespace GTiff2Tiles.Core.Image
                 using (Interpolate interpolate = Interpolate.NewFromName(Enums.Image.Interpolations.Bicubic))
                 {
                     if (xScale > 1.0 && yScale > 1.0)
-                        tileImage = tileImage.Affine(new[] {xScale, 0.0, 0.0, yScale}, interpolate, idx: id, idy: id,
+                        tileImage = tileImage.Affine(new[] { xScale, 0.0, 0.0, yScale }, interpolate, idx: id, idy: id,
                                                      extend: NetVips.Enums.Extend.Copy);
                     else if (xScale > 1.0)
-                        tileImage = tileImage.Affine(new[] {xScale, 0.0, 0.0, 1.0}, interpolate, idx: id, idy: id,
+                        tileImage = tileImage.Affine(new[] { xScale, 0.0, 0.0, 1.0 }, interpolate, idx: id, idy: id,
                                                      extend: NetVips.Enums.Extend.Copy);
                     else
-                        tileImage = tileImage.Affine(new[] {1.0, 0.0, 0.0, yScale}, interpolate, idx: id, idy: id,
+                        tileImage = tileImage.Affine(new[] { 1.0, 0.0, 0.0, yScale }, interpolate, idx: id, idy: id,
                                                      extend: NetVips.Enums.Extend.Copy);
                 }
             }
 
             // Add alpha channel if needed
-            for (; tileImage.Bands < Enums.Image.Image.Bands;)
-                tileImage = tileImage.Bandjoin(255);
+            for (; tileImage.Bands < Enums.Image.Image.Bands;) tileImage = tileImage.Bandjoin(255);
 
             // Make a transparent image
             NetVips.Image outputImage;
+
             try
             {
                 outputImage = NetVips.Image.Black(Enums.Image.Image.TileSize, Enums.Image.Image.TileSize)
@@ -344,8 +331,8 @@ namespace GTiff2Tiles.Core.Image
             #endregion
 
             //Create directories for the tile. The overall structure looks like: outputDirectory/zoom/x/y.png.
-            DirectoryInfo tileDirectoryInfo = new DirectoryInfo(Path.Combine(OutputDirectoryInfo.FullName,
-                                                                             $"{zoom}", $"{tileX}"));
+            DirectoryInfo tileDirectoryInfo =
+                new DirectoryInfo(Path.Combine(OutputDirectoryInfo.FullName, $"{zoom}", $"{tileX}"));
             CheckHelper.CheckDirectory(tileDirectoryInfo);
 
             //Warning: OpenLayers requires replacement of tileY to tileY+1
@@ -378,8 +365,7 @@ namespace GTiff2Tiles.Core.Image
                     upperTileImage1 = upperTileImage1.ThumbnailImage(upperTileSize, upperTileSize);
                     tilesExists = true;
                 }
-                else
-                    upperTileImage1 = NetVips.Image.Black(upperTileSize, upperTileSize);
+                else { upperTileImage1 = NetVips.Image.Black(upperTileSize, upperTileSize); }
             }
             catch (Exception exception)
             {
@@ -398,8 +384,7 @@ namespace GTiff2Tiles.Core.Image
                     upperTileImage2 = upperTileImage2.ThumbnailImage(upperTileSize, upperTileSize);
                     tilesExists = true;
                 }
-                else
-                    upperTileImage2 = NetVips.Image.Black(upperTileSize, upperTileSize);
+                else { upperTileImage2 = NetVips.Image.Black(upperTileSize, upperTileSize); }
             }
             catch (Exception exception)
             {
@@ -418,8 +403,7 @@ namespace GTiff2Tiles.Core.Image
                     upperTileImage3 = upperTileImage3.ThumbnailImage(upperTileSize, upperTileSize);
                     tilesExists = true;
                 }
-                else
-                    upperTileImage3 = NetVips.Image.Black(upperTileSize, upperTileSize);
+                else { upperTileImage3 = NetVips.Image.Black(upperTileSize, upperTileSize); }
             }
             catch (Exception exception)
             {
@@ -438,8 +422,7 @@ namespace GTiff2Tiles.Core.Image
                     upperTileImage4 = upperTileImage4.ThumbnailImage(upperTileSize, upperTileSize);
                     tilesExists = true;
                 }
-                else
-                    upperTileImage4 = NetVips.Image.Black(upperTileSize, upperTileSize);
+                else { upperTileImage4 = NetVips.Image.Black(upperTileSize, upperTileSize); }
             }
             catch (Exception exception)
             {
@@ -451,7 +434,7 @@ namespace GTiff2Tiles.Core.Image
             //We shouldn't create tiles, if they're not exist.
             if (!tilesExists) return;
 
-            NetVips.Image[] images = {upperTileImage3, upperTileImage4, upperTileImage1, upperTileImage2};
+            NetVips.Image[] images = { upperTileImage3, upperTileImage4, upperTileImage1, upperTileImage2 };
 
             //Check and write bands if needed.
             for (int imagesIndex = 0; imagesIndex < images.Length; imagesIndex++)
@@ -459,43 +442,35 @@ namespace GTiff2Tiles.Core.Image
                 int bands = images[imagesIndex].Bands;
 
                 //Check number before switching on it.
-                if (bands > Enums.Image.Image.Bands)
-                    throw new ImageException(string.Format(Strings.TooMuchBands));
+                if (bands > Enums.Image.Image.Bands) throw new ImageException(string.Format(Strings.TooMuchBands));
 
                 switch (bands)
                 {
-                    case Enums.Image.Image.Bands:
-                        continue;
+                    case Enums.Image.Image.Bands: continue;
                     case 1:
                     {
                         for (int bandsIndex = bands; bandsIndex < Enums.Image.Image.Bands; bandsIndex++)
-                        {
-                            try
-                            {
-                                images[imagesIndex] = images[imagesIndex].Bandjoin(0);
-                            }
+                            try { images[imagesIndex] = images[imagesIndex].Bandjoin(0); }
                             catch (Exception exception)
                             {
-                                throw new ImageException(string.Format(Strings.UnableToJoin, $"band {bandsIndex}",
-                                                                       tileX, tileY), exception);
+                                throw new
+                                    ImageException(string.Format(Strings.UnableToJoin, $"band {bandsIndex}", tileX, tileY),
+                                                   exception);
                             }
-                        }
+
                         break;
                     }
                     default:
                     {
                         for (int bandsIndex = bands; bandsIndex < Enums.Image.Image.Bands; bandsIndex++)
-                        {
-                            try
-                            {
-                                images[imagesIndex] = images[imagesIndex].Bandjoin(255);
-                            }
+                            try { images[imagesIndex] = images[imagesIndex].Bandjoin(255); }
                             catch (Exception exception)
                             {
-                                throw new ImageException(string.Format(Strings.UnableToJoin, $"band {bandsIndex}",
-                                                                       tileX, tileY), exception);
+                                throw new
+                                    ImageException(string.Format(Strings.UnableToJoin, $"band {bandsIndex}", tileX, tileY),
+                                                   exception);
                             }
-                        }
+
                         break;
                     }
                 }
@@ -504,6 +479,7 @@ namespace GTiff2Tiles.Core.Image
             //Join 4 tiles.
             FileInfo outputTileFileInfo = new FileInfo(Path.Combine(tileDirectoryInfo.FullName,
                                                                     $"{tileY}{Enums.Extensions.Png}"));
+
             try
             {
                 using (NetVips.Image resultImage = NetVips.Image.Arrayjoin(images, 2))
@@ -513,8 +489,8 @@ namespace GTiff2Tiles.Core.Image
             }
             catch (Exception exception)
             {
-                throw new ImageException(string.Format(Strings.UnableToJoin, nameof(outputTileFileInfo),
-                                                       tileX, tileY), exception);
+                throw new ImageException(string.Format(Strings.UnableToJoin, nameof(outputTileFileInfo), tileX, tileY),
+                                         exception);
             }
 
             CheckHelper.CheckFile(outputTileFileInfo, true);
@@ -524,8 +500,7 @@ namespace GTiff2Tiles.Core.Image
             upperTileImage2.Dispose();
             upperTileImage3.Dispose();
             upperTileImage4.Dispose();
-            foreach (NetVips.Image image in images)
-                image.Dispose();
+            foreach (NetVips.Image image in images) image.Dispose();
         }
 
         /// <summary>
@@ -539,21 +514,20 @@ namespace GTiff2Tiles.Core.Image
             #region Parameters checking
 
             if (zoom < 0) throw new ImageException(string.Format(Strings.LesserThan, nameof(zoom), 0));
-            if (threadsCount <= 0) throw new ImageException(string.Format(Strings.LesserOrEqual,
-                                                                          nameof(threadsCount), 0));
+            if (threadsCount <= 0)
+                throw new ImageException(string.Format(Strings.LesserOrEqual, nameof(threadsCount), 0));
 
             #endregion
 
             //Try to open input image.
             NetVips.Image inputImage;
-            try
-            {
-                inputImage = NetVips.Image.Tiffload(InputFileInfo.FullName, access: NetVips.Enums.Access.Random);
-            }
+
+            try { inputImage = NetVips.Image.Tiffload(InputFileInfo.FullName, access: NetVips.Enums.Access.Random); }
             catch (Exception exception)
             {
-                throw new ImageException(string.Format(Strings.UnableToOpen, nameof(inputImage),
-                                                       InputFileInfo.FullName), exception);
+                throw new
+                    ImageException(string.Format(Strings.UnableToOpen, nameof(inputImage), InputFileInfo.FullName),
+                                   exception);
             }
 
             using (SemaphoreSlim semaphoreSlim = new SemaphoreSlim(threadsCount))
@@ -572,14 +546,8 @@ namespace GTiff2Tiles.Core.Image
 
                         tasks.Add(Task.Run(() =>
                         {
-                            try
-                            {
-                                WriteTile(zoom, x, y, inputImage);
-                            }
-                            finally
-                            {
-                                semaphoreSlim.Release();
-                            }
+                            try { WriteTile(zoom, x, y, inputImage); }
+                            finally { semaphoreSlim.Release(); }
                         }));
                     }
                 }
@@ -604,8 +572,8 @@ namespace GTiff2Tiles.Core.Image
             #region Parameters checking
 
             if (zoom < 0) throw new ImageException(string.Format(Strings.LesserThan, nameof(zoom), 0));
-            if (threadsCount <= 0) throw new ImageException(string.Format(Strings.LesserOrEqual,
-                                                                          nameof(threadsCount), 0));
+            if (threadsCount <= 0)
+                throw new ImageException(string.Format(Strings.LesserOrEqual, nameof(threadsCount), 0));
 
             #endregion
 
@@ -625,14 +593,8 @@ namespace GTiff2Tiles.Core.Image
 
                         tasks.Add(Task.Run(() =>
                         {
-                            try
-                            {
-                                WriteTile(zoom, x, y);
-                            }
-                            finally
-                            {
-                                semaphoreSlim.Release();
-                            }
+                            try { WriteTile(zoom, x, y); }
+                            finally { semaphoreSlim.Release(); }
                         }));
                     }
                 }
@@ -651,7 +613,8 @@ namespace GTiff2Tiles.Core.Image
         /// <param name="minZ">Minimum cropped zoom.</param>
         /// <param name="maxZ">Maximum cropped zoom.</param>
         /// <param name="tmsCompatible">Do you want tms tiles on output?</param>
-        private void SetGenerateTilesProperties(DirectoryInfo outputDirectoryInfo, int minZ, int maxZ, bool tmsCompatible)
+        private void SetGenerateTilesProperties(DirectoryInfo outputDirectoryInfo, int minZ, int maxZ,
+                                                bool tmsCompatible)
         {
             #region Check parameters
 
@@ -679,14 +642,11 @@ namespace GTiff2Tiles.Core.Image
                 tileMaxX = Math.Min(Convert.ToInt32(Math.Pow(2.0, zoom + 1)) - 1, tileMaxX);
                 tileMaxY = Math.Min(Convert.ToInt32(Math.Pow(2.0, zoom)) - 1, tileMaxY);
 
-                try
-                {
-                    TilesMinMax.Add(zoom, new[] {tileMinX, tileMinY, tileMaxX, tileMaxY});
-                }
+                try { TilesMinMax.Add(zoom, new[] { tileMinX, tileMinY, tileMaxX, tileMaxY }); }
                 catch (Exception exception)
                 {
-                    throw new ImageException(string.Format(Strings.UnableToAddToCollection,
-                                                           nameof(TilesMinMax)), exception);
+                    throw new ImageException(string.Format(Strings.UnableToAddToCollection, nameof(TilesMinMax)),
+                                             exception);
                 }
             }
         }
@@ -706,16 +666,15 @@ namespace GTiff2Tiles.Core.Image
         /// <param name="threadsCount">Threads count.</param>
         /// <returns></returns>
         public async ValueTask GenerateTilesByJoining(DirectoryInfo outputDirectoryInfo, int minZ, int maxZ,
-                                                      bool tmsCompatible,
-                                                      IProgress<double> progress, int threadsCount)
+                                                      bool tmsCompatible, IProgress<double> progress, int threadsCount)
         {
             //todo 1.4.0 - profile argument (geodetic/mercator)
 
             #region Parameters checking
 
             if (progress == null) throw new ImageException(string.Format(Strings.IsNull, nameof(progress)));
-            if (threadsCount <= 0) throw new ImageException(string.Format(Strings.LesserOrEqual,
-                                                                          nameof(threadsCount), 0));
+            if (threadsCount <= 0)
+                throw new ImageException(string.Format(Strings.LesserOrEqual, nameof(threadsCount), 0));
 
             #endregion
 
@@ -747,16 +706,15 @@ namespace GTiff2Tiles.Core.Image
         /// <param name="threadsCount">Threads count.</param>
         /// <returns></returns>
         public async ValueTask GenerateTilesByCropping(DirectoryInfo outputDirectoryInfo, int minZ, int maxZ,
-                                                       bool tmsCompatible,
-                                                       IProgress<double> progress, int threadsCount)
+                                                       bool tmsCompatible, IProgress<double> progress, int threadsCount)
         {
             //todo 1.4.0 - profile argument (geodetic/mercator)
 
             #region Parameters checking
 
             if (progress == null) throw new ImageException(string.Format(Strings.IsNull, nameof(progress)));
-            if (threadsCount <= 0) throw new ImageException(string.Format(Strings.LesserOrEqual,
-                                                                          nameof(threadsCount), 0));
+            if (threadsCount <= 0)
+                throw new ImageException(string.Format(Strings.LesserOrEqual, nameof(threadsCount), 0));
 
             #endregion
 

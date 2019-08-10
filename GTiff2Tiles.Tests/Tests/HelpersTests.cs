@@ -6,7 +6,7 @@ using NUnit.Framework;
 
 namespace GTiff2Tiles.Tests.Tests
 {
-    public class HelpersTests
+    public sealed class HelpersTests
     {
         [SetUp]
         public void SetUp() { }

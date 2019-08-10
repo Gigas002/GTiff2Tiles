@@ -35,8 +35,7 @@
         /// </summary>
         public static readonly string[] RepairTifOptions =
         {
-            "-overwrite", "-t_srs", "EPSG:4326", "-multi", "-srcnodata", "0",
-            "-of", "GTiff", "-ot", "Byte"
+            "-overwrite", "-t_srs", "EPSG:4326", "-multi", "-srcnodata", "0", "-of", "GTiff", "-ot", "Byte"
             //"-co", "TILED=YES",
         };
 

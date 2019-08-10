@@ -1,16 +1,25 @@
 ﻿namespace GTiff2Tiles.Tests.Enums
 {
-    public static class FileSystemEntries
+    internal static class FileSystemEntries
     {
-        public const string ExamplesDirectoryName = "Examples";
-        public const string InputDirectoryName = "Input";
-        public const string Input4326 = "Input4326";
-        public const string Input3785 = "Input3785";
-        public const string Input3395 = "Input3395";
-        public const string GenerateTilesByJoiningOutputDirectoryName = "GenerateTilesByJoiningOutput";
-        public const string GenerateTilesByCroppingOutputDirectoryName = "GenerateTilesByCroppingOutput";
-        public const string Temp = "Temp";
-        public const string TmsCompatible = "TmsCompatible";
-        public const string NonTmsCompatible = "NonTmsCompatible";
+        internal const string ExamplesDirectoryName = "Examples";
+
+        internal const string InputDirectoryName = "Input";
+
+        internal const string Input4326 = "Input4326";
+
+        internal const string Input3785 = "Input3785";
+
+        internal const string Input3395 = "Input3395";
+
+        internal const string GenerateTilesByJoiningOutputDirectoryName = "GenerateTilesByJoiningOutput";
+
+        internal const string GenerateTilesByCroppingOutputDirectoryName = "GenerateTilesByCroppingOutput";
+
+        internal const string Temp = "Temp";
+
+        internal const string TmsCompatible = "TmsCompatible";
+
+        internal const string NonTmsCompatible = "NonTmsCompatible";
     }
 }

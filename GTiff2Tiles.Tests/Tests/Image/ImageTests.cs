@@ -7,7 +7,7 @@ using NUnit.Framework;
 
 namespace GTiff2Tiles.Tests.Tests.Image
 {
-    public class ImageTests
+    public sealed class ImageTests
     {
         [SetUp]
         public void Setup() { }
@@ -17,10 +17,10 @@ namespace GTiff2Tiles.Tests.Tests.Image
         {
             DirectoryInfo examplesDirectoryInfo = Helpers.TestHelper.GetExamplesDirectoryInfo();
 
-            DirectoryInfo tempDirectoryInfo = new DirectoryInfo(
-                Path.Combine(Helpers.TestHelper.GetExamplesDirectoryInfo().FullName,
-                             Enums.FileSystemEntries.Temp,
-                             DateTime.Now.ToString(Core.Enums.DateTimePatterns.LongWithMs)));
+            DirectoryInfo tempDirectoryInfo =
+                new DirectoryInfo(Path.Combine(Helpers.TestHelper.GetExamplesDirectoryInfo().FullName,
+                                               Enums.FileSystemEntries.Temp,
+                                               DateTime.Now.ToString(Core.Enums.DateTimePatterns.LongWithMs)));
 
             string inputFilePath = Path.Combine(examplesDirectoryInfo.FullName,
                                                 Enums.FileSystemEntries.InputDirectoryName,
@@ -39,6 +39,7 @@ namespace GTiff2Tiles.Tests.Tests.Image
             {
                 //Check for errors.
                 Core.Helpers.CheckHelper.CheckDirectory(outputDirectoryInfo, true);
+
                 if (!await Core.Helpers.CheckHelper.CheckInputFile(inputFileInfo))
                 {
                     string tempFilePath = Path.Combine(tempDirectoryInfo.FullName,
@@ -67,10 +68,10 @@ namespace GTiff2Tiles.Tests.Tests.Image
         {
             DirectoryInfo examplesDirectoryInfo = Helpers.TestHelper.GetExamplesDirectoryInfo();
 
-            DirectoryInfo tempDirectoryInfo = new DirectoryInfo(
-                Path.Combine(Helpers.TestHelper.GetExamplesDirectoryInfo().FullName,
-                             Enums.FileSystemEntries.Temp,
-                             DateTime.Now.ToString(Core.Enums.DateTimePatterns.LongWithMs)));
+            DirectoryInfo tempDirectoryInfo =
+                new DirectoryInfo(Path.Combine(Helpers.TestHelper.GetExamplesDirectoryInfo().FullName,
+                                               Enums.FileSystemEntries.Temp,
+                                               DateTime.Now.ToString(Core.Enums.DateTimePatterns.LongWithMs)));
 
             string inputFilePath = Path.Combine(examplesDirectoryInfo.FullName,
                                                 Enums.FileSystemEntries.InputDirectoryName,
@@ -89,6 +90,7 @@ namespace GTiff2Tiles.Tests.Tests.Image
             {
                 //Check for errors.
                 Core.Helpers.CheckHelper.CheckDirectory(outputDirectoryInfo, true);
+
                 if (!await Core.Helpers.CheckHelper.CheckInputFile(inputFileInfo))
                 {
                     string tempFilePath = Path.Combine(tempDirectoryInfo.FullName,
@@ -117,10 +119,10 @@ namespace GTiff2Tiles.Tests.Tests.Image
         {
             DirectoryInfo examplesDirectoryInfo = Helpers.TestHelper.GetExamplesDirectoryInfo();
 
-            DirectoryInfo tempDirectoryInfo = new DirectoryInfo(
-                Path.Combine(Helpers.TestHelper.GetExamplesDirectoryInfo().FullName,
-                             Enums.FileSystemEntries.Temp,
-                             DateTime.Now.ToString(Core.Enums.DateTimePatterns.LongWithMs)));
+            DirectoryInfo tempDirectoryInfo =
+                new DirectoryInfo(Path.Combine(Helpers.TestHelper.GetExamplesDirectoryInfo().FullName,
+                                               Enums.FileSystemEntries.Temp,
+                                               DateTime.Now.ToString(Core.Enums.DateTimePatterns.LongWithMs)));
 
             string inputFilePath = Path.Combine(examplesDirectoryInfo.FullName,
                                                 Enums.FileSystemEntries.InputDirectoryName,
@@ -139,6 +141,7 @@ namespace GTiff2Tiles.Tests.Tests.Image
             {
                 //Check for errors.
                 Core.Helpers.CheckHelper.CheckDirectory(outputDirectoryInfo, true);
+
                 if (!await Core.Helpers.CheckHelper.CheckInputFile(inputFileInfo))
                 {
                     string tempFilePath = Path.Combine(tempDirectoryInfo.FullName,
@@ -167,10 +170,10 @@ namespace GTiff2Tiles.Tests.Tests.Image
         {
             DirectoryInfo examplesDirectoryInfo = Helpers.TestHelper.GetExamplesDirectoryInfo();
 
-            DirectoryInfo tempDirectoryInfo = new DirectoryInfo(
-                Path.Combine(Helpers.TestHelper.GetExamplesDirectoryInfo().FullName,
-                             Enums.FileSystemEntries.Temp,
-                             DateTime.Now.ToString(Core.Enums.DateTimePatterns.LongWithMs)));
+            DirectoryInfo tempDirectoryInfo =
+                new DirectoryInfo(Path.Combine(Helpers.TestHelper.GetExamplesDirectoryInfo().FullName,
+                                               Enums.FileSystemEntries.Temp,
+                                               DateTime.Now.ToString(Core.Enums.DateTimePatterns.LongWithMs)));
 
             string inputFilePath = Path.Combine(examplesDirectoryInfo.FullName,
                                                 Enums.FileSystemEntries.InputDirectoryName,
@@ -189,6 +192,7 @@ namespace GTiff2Tiles.Tests.Tests.Image
             {
                 //Check for errors.
                 Core.Helpers.CheckHelper.CheckDirectory(outputDirectoryInfo, true);
+
                 if (!await Core.Helpers.CheckHelper.CheckInputFile(inputFileInfo))
                 {
                     string tempFilePath = Path.Combine(tempDirectoryInfo.FullName,

@@ -8,19 +8,21 @@ namespace GTiff2Tiles.GUI.Helpers
     /// <summary>
     /// That class helps to print exceptions and custom errors.
     /// </summary>
-    public static class ErrorHelper
+    internal static class ErrorHelper
     {
         /// <summary>
         /// Shows current exception.
         /// </summary>
         /// <param name="exception">Exception.</param>
         /// <returns></returns>
-        public static async ValueTask ShowException(Exception exception)
+        internal static async ValueTask ShowException(Exception exception)
         {
             await DialogHost.Show(new MessageBoxDialogViewModel(exception.Message)).ConfigureAwait(false);
 
             #if DEBUG
-            if (exception.InnerException != null) await DialogHost.Show(new MessageBoxDialogViewModel(exception.InnerException.Message)).ConfigureAwait(false);
+            if (exception.InnerException != null)
+                await DialogHost.Show(new MessageBoxDialogViewModel(exception.InnerException.Message))
+                                .ConfigureAwait(false);
             #endif
         }
 
@@ -30,12 +32,13 @@ namespace GTiff2Tiles.GUI.Helpers
         /// <param name="errorMessage">Error message.</param>
         /// <param name="exception">Exception.</param>
         /// <returns><see langword="false"/>.</returns>
-        public static async ValueTask<bool> ShowError(string errorMessage, Exception exception = null)
+        internal static async ValueTask<bool> ShowError(string errorMessage, Exception exception = null)
         {
             await DialogHost.Show(new MessageBoxDialogViewModel(errorMessage)).ConfigureAwait(false);
 
             #if DEBUG
-            if (exception != null) await DialogHost.Show(new MessageBoxDialogViewModel(exception.Message)).ConfigureAwait(false);
+            if (exception != null)
+                await DialogHost.Show(new MessageBoxDialogViewModel(exception.Message)).ConfigureAwait(false);
             #endif
 
             return false;

@@ -6,7 +6,7 @@ using NUnit.Framework;
 
 namespace GTiff2Tiles.Tests.Tests.Image
 {
-    public class GdalTests
+    public sealed class GdalTests
     {
         [SetUp]
         public void Setup() { }
@@ -16,10 +16,10 @@ namespace GTiff2Tiles.Tests.Tests.Image
         {
             DirectoryInfo examplesDirectoryInfo = Helpers.TestHelper.GetExamplesDirectoryInfo();
 
-            DirectoryInfo tempDirectoryInfo = new DirectoryInfo(
-                Path.Combine(Helpers.TestHelper.GetExamplesDirectoryInfo().FullName,
-                             Enums.FileSystemEntries.Temp,
-                             DateTime.Now.ToString(Core.Enums.DateTimePatterns.LongWithMs)));
+            DirectoryInfo tempDirectoryInfo =
+                new DirectoryInfo(Path.Combine(Helpers.TestHelper.GetExamplesDirectoryInfo().FullName,
+                                               Enums.FileSystemEntries.Temp,
+                                               DateTime.Now.ToString(Core.Enums.DateTimePatterns.LongWithMs)));
 
             string inputFilePath = Path.Combine(examplesDirectoryInfo.FullName,
                                                 Enums.FileSystemEntries.InputDirectoryName,
@@ -39,8 +39,7 @@ namespace GTiff2Tiles.Tests.Tests.Image
                 }
 
                 //Check if temp file was created successfuly.
-                if (!tempDirectoryInfo.EnumerateFiles().Any())
-                    Assert.Fail("Temp file wasn't created.");
+                if (!tempDirectoryInfo.EnumerateFiles().Any()) Assert.Fail("Temp file wasn't created.");
 
                 //Delete temp directory.
                 tempDirectoryInfo.Delete(true);
@@ -55,10 +54,10 @@ namespace GTiff2Tiles.Tests.Tests.Image
         {
             DirectoryInfo examplesDirectoryInfo = Helpers.TestHelper.GetExamplesDirectoryInfo();
 
-            DirectoryInfo tempDirectoryInfo = new DirectoryInfo(
-                Path.Combine(Helpers.TestHelper.GetExamplesDirectoryInfo().FullName,
-                             Enums.FileSystemEntries.Temp,
-                             DateTime.Now.ToString(Core.Enums.DateTimePatterns.LongWithMs)));
+            DirectoryInfo tempDirectoryInfo =
+                new DirectoryInfo(Path.Combine(Helpers.TestHelper.GetExamplesDirectoryInfo().FullName,
+                                               Enums.FileSystemEntries.Temp,
+                                               DateTime.Now.ToString(Core.Enums.DateTimePatterns.LongWithMs)));
 
             string inputFilePath = Path.Combine(examplesDirectoryInfo.FullName,
                                                 Enums.FileSystemEntries.InputDirectoryName,
@@ -78,8 +77,7 @@ namespace GTiff2Tiles.Tests.Tests.Image
                 }
 
                 //Check if temp file was created successfuly.
-                if (!tempDirectoryInfo.EnumerateFiles().Any())
-                    Assert.Fail("Temp file wasn't created.");
+                if (!tempDirectoryInfo.EnumerateFiles().Any()) Assert.Fail("Temp file wasn't created.");
 
                 //Delete temp directory.
                 tempDirectoryInfo.Delete(true);

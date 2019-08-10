@@ -7,7 +7,7 @@ namespace GTiff2Tiles.Console
     /// Implementation of <see cref="T:System.IProgress`1" /> for console.
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class ConsoleProgress<T> : IProgress<T>
+    internal sealed class ConsoleProgress<T> : IProgress<T>
     {
         private readonly Action<T> _action;
 

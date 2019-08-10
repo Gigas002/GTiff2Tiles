@@ -1,4 +1,5 @@
 ﻿using CommandLine;
+
 // ReSharper disable All
 
 namespace GTiff2Tiles.Console
@@ -43,7 +44,8 @@ namespace GTiff2Tiles.Console
         /// <summary>
         /// Algorithm to create tiles. Can be "join" or "crop".
         /// </summary>
-        [Option('a', "algorithm", Required = true, HelpText = "Algorithm to create tiles. Can be \"join\" or \"crop\".")]
+        [Option('a', "algorithm", Required = true,
+            HelpText = "Algorithm to create tiles. Can be \"join\" or \"crop\".")]
         public string Algorithm { get; set; }
 
         /// <summary>

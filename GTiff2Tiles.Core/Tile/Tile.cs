@@ -65,8 +65,7 @@ namespace GTiff2Tiles.Core.Tile
         {
             #region Parameters checking
 
-            if (zoom < 0)
-                throw new TileException(string.Format(Strings.LesserThan, nameof(zoom), 0));
+            if (zoom < 0) throw new TileException(string.Format(Strings.LesserThan, nameof(zoom), 0));
 
             #endregion
 
@@ -75,20 +74,18 @@ namespace GTiff2Tiles.Core.Tile
 
             try
             {
-                tilesXs[0] = Convert.ToInt32(Math.Ceiling((180.0 + minX) / Resolution(zoom)
-                                                                         / Enums.Image.Image.TileSize) - 1.0);
-                tilesXs[1] = Convert.ToInt32(Math.Ceiling((180.0 + maxX) / Resolution(zoom)
-                                                                         / Enums.Image.Image.TileSize) - 1.0);
-                tilesYs[0] = Convert.ToInt32(Math.Ceiling((90.0 + minY) / Resolution(zoom)
-                                                                        / Enums.Image.Image.TileSize) - 1.0);
-                tilesYs[1] = Convert.ToInt32(Math.Ceiling((90.0 + maxY) / Resolution(zoom)
-                                                                        / Enums.Image.Image.TileSize) - 1.0);
+                tilesXs[0] =
+                    Convert.ToInt32(Math.Ceiling((180.0 + minX) / Resolution(zoom) / Enums.Image.Image.TileSize) - 1.0);
+                tilesXs[1] =
+                    Convert.ToInt32(Math.Ceiling((180.0 + maxX) / Resolution(zoom) / Enums.Image.Image.TileSize) - 1.0);
+                tilesYs[0] =
+                    Convert.ToInt32(Math.Ceiling((90.0 + minY) / Resolution(zoom) / Enums.Image.Image.TileSize) - 1.0);
+                tilesYs[1] =
+                    Convert.ToInt32(Math.Ceiling((90.0 + maxY) / Resolution(zoom) / Enums.Image.Image.TileSize) - 1.0);
             }
             catch (Exception exception)
             {
-                throw new
-                    TileException(string.Format(Strings.UnableToConvertCoordinatesToTiles),
-                                  exception);
+                throw new TileException(string.Format(Strings.UnableToConvertCoordinatesToTiles), exception);
             }
 
             //Flip y's
@@ -110,10 +107,7 @@ namespace GTiff2Tiles.Core.Tile
         /// <param name="zoom">Tile's zoom.</param>
         /// <param name="tmsCompatible">Do you want tms tiles on output?</param>
         /// <returns><see cref="ValueTuple{T1, T2, T3, T4}"/> of WGS84 coordinates.</returns>
-        public static (double minX, double minY, double maxX, double maxY) TileBounds(int tileX,
-                                                                                      int tileY,
-                                                                                      int zoom,
-                                                                                      bool tmsCompatible)
+        public static (double minX, double minY, double maxX, double maxY) TileBounds(int tileX, int tileY, int zoom, bool tmsCompatible)
         {
             try
             {
@@ -129,8 +123,7 @@ namespace GTiff2Tiles.Core.Tile
             }
             catch (Exception exception)
             {
-                throw new TileException(string.Format(Strings.UnableToCalculateCoordinates),
-                                        exception);
+                throw new TileException(string.Format(Strings.UnableToCalculateCoordinates), exception);
             }
         }
 

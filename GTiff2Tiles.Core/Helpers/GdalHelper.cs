@@ -91,20 +91,19 @@ namespace GTiff2Tiles.Core.Helpers
         /// Shows, if we're running on windows.
         /// </summary>
         /// <returns><see langword="true"/> if Windows, <see langword="false"/> otherwise.</returns>
-        private static bool IsWindows => !(Environment.OSVersion.Platform == PlatformID.Unix || Environment.OSVersion.Platform == PlatformID.MacOSX);
+        private static bool IsWindows => !(Environment.OSVersion.Platform == PlatformID.Unix ||
+                                           Environment.OSVersion.Platform == PlatformID.MacOSX);
 
         /// <summary>
         /// Prints initialized Ogr drivers.
         /// </summary>
         private static void PrintDriversOgr()
         {
-            if (!Usable)
-                throw new
-                    Exception(string.Format(Strings.UnableToPrintDrivers, "OGR"));
+            if (!Usable) throw new Exception(string.Format(Strings.UnableToPrintDrivers, "OGR"));
 
             int driverCount = Ogr.GetDriverCount();
+
             for (int index = 0; index < driverCount; index++)
-            {
                 try
                 {
                     using (OSGeo.OGR.Driver driver = Ogr.GetDriver(index))
@@ -114,10 +113,8 @@ namespace GTiff2Tiles.Core.Helpers
                 }
                 catch (Exception exception)
                 {
-                    throw new Exception(string.Format(Strings.UnableToPrintDrivers, "OGR"),
-                                        exception);
+                    throw new Exception(string.Format(Strings.UnableToPrintDrivers, "OGR"), exception);
                 }
-            }
         }
 
         /// <summary>
@@ -125,13 +122,11 @@ namespace GTiff2Tiles.Core.Helpers
         /// </summary>
         private static void PrintDriversGdal()
         {
-            if (!Usable)
-                throw new
-                    Exception(string.Format(Strings.UnableToPrintDrivers, "GDAL"));
+            if (!Usable) throw new Exception(string.Format(Strings.UnableToPrintDrivers, "GDAL"));
 
             int driverCount = Gdal.GetDriverCount();
+
             for (int index = 0; index < driverCount; index++)
-            {
                 try
                 {
                     using (OSGeo.GDAL.Driver driver = Gdal.GetDriver(index))
@@ -141,10 +136,8 @@ namespace GTiff2Tiles.Core.Helpers
                 }
                 catch (Exception exception)
                 {
-                    throw new Exception(string.Format(Strings.UnableToPrintDrivers),
-                                        exception);
+                    throw new Exception(string.Format(Strings.UnableToPrintDrivers), exception);
                 }
-            }
         }
 
         #endregion
@@ -163,6 +156,7 @@ namespace GTiff2Tiles.Core.Helpers
                     const string notSet = "_Not_set_";
                     string temp = Gdal.GetConfigOption("GDAL_DATA", notSet);
                     Usable = temp != notSet;
+
                     throw new Exception(string.Format(Strings.DoesntSupportPlatform, "GDAL"));
                 }
 
@@ -178,6 +172,7 @@ namespace GTiff2Tiles.Core.Helpers
                 // ReSharper disable once AssignNullToNotNullAttribute
                 string gdalPath = Path.Combine(executingDirectory, "gdal");
                 string nativePath = Path.Combine(gdalPath, GetPlatform());
+
                 if (!Directory.Exists(nativePath))
                     throw new Exception(string.Format(Strings.DoesntExist, "GDAL", nativePath));
                 if (!File.Exists(Path.Combine(nativePath, "gdal_wrap.dll")))
@@ -210,6 +205,7 @@ namespace GTiff2Tiles.Core.Helpers
             catch (Exception exception)
             {
                 Usable = false;
+
                 throw new Exception(string.Format(Strings.UnableToConfigure, "GDAL"), exception);
             }
 
@@ -222,15 +218,12 @@ namespace GTiff2Tiles.Core.Helpers
         /// <remarks>Make sure to call this method before using Ogr.</remarks>
         internal static void ConfigureOgr()
         {
-            if (!Usable)
-                throw new Exception(string.Format(Strings.UnableToConfigure, "OGR"));
+            if (!Usable) throw new Exception(string.Format(Strings.UnableToConfigure, "OGR"));
+
             if (IsOgrConfigured) return;
 
             // Register drivers
-            try
-            {
-                Ogr.RegisterAll();
-            }
+            try { Ogr.RegisterAll(); }
             catch (Exception exception)
             {
                 throw new Exception(string.Format(Strings.UnableToConfigure, "OGR"), exception);
@@ -249,15 +242,12 @@ namespace GTiff2Tiles.Core.Helpers
         /// <remarks>Make sure to call this method before using Gdal.</remarks>
         internal static void ConfigureGdal()
         {
-            if (!Usable)
-                throw new Exception(string.Format(Strings.UnableToConfigure, "GDAL"));
+            if (!Usable) throw new Exception(string.Format(Strings.UnableToConfigure, "GDAL"));
+
             if (IsGdalConfigured) return;
 
             // Register drivers
-            try
-            {
-                Gdal.AllRegister();
-            }
+            try { Gdal.AllRegister(); }
             catch (Exception exception)
             {
                 throw new Exception(string.Format(Strings.UnableToConfigure, "GDAL"), exception);

@@ -8,10 +8,11 @@ using MaterialDesignThemes.Wpf;
 
 namespace GTiff2Tiles.GUI.ViewModels
 {
+    /// <inheritdoc />
     /// <summary>
-    /// Custom message box dialog. <see cref="Views.MessageBoxDialogView"/>.
+    /// Custom message box dialog. <see cref="T:GTiff2Tiles.GUI.Views.MessageBoxDialogView" />.
     /// </summary>
-    public class MessageBoxDialogViewModel : PropertyChangedBase
+    public sealed class MessageBoxDialogViewModel : PropertyChangedBase
     {
         #region Properties and fields
 

@@ -1,7 +1,7 @@
 ﻿namespace GTiff2Tiles.Tests.Enums
 {
-    public static class Multithreading
+    internal static class Multithreading
     {
-        public const int ThreadsCount = 5;
+        internal const int ThreadsCount = 5;
     }
 }

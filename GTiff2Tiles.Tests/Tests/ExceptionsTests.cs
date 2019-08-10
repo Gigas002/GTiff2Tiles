@@ -7,7 +7,7 @@ using NUnit.Framework;
 
 namespace GTiff2Tiles.Tests.Tests
 {
-    public class ExceptionsTests
+    public sealed class ExceptionsTests
     {
         [SetUp]
         public void Setup() { }

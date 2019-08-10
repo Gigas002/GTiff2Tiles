@@ -6,7 +6,7 @@ using NUnit.Framework;
 
 namespace GTiff2Tiles.Tests.Tests
 {
-    public class EnumsTests
+    public sealed class EnumsTests
     {
         [SetUp]
         public void Setup() { }

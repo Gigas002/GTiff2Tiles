@@ -25,8 +25,7 @@ namespace GTiff2Tiles.Core.Image
         /// <param name="options">Array of string parameters.</param>
         /// <param name="callback">Delegate for progress reporting from Gdal.</param>
         /// <returns></returns>
-        public static async ValueTask Warp(FileInfo inputFileInfo, FileInfo outputFileInfo,
-                                           string[] options,
+        public static async ValueTask Warp(FileInfo inputFileInfo, FileInfo outputFileInfo, string[] options,
                                            OSGeo.GDAL.Gdal.GDALProgressFuncDelegate callback = null)
         {
             #region Parameters checking
@@ -44,19 +43,16 @@ namespace GTiff2Tiles.Core.Image
             {
                 using (Dataset inputDataset = OSGeo.GDAL.Gdal.Open(inputFileInfo.FullName, Access.GA_ReadOnly))
                 {
-                    GCHandle gcHandle =
-                        GCHandle.Alloc(new[] {Dataset.getCPtr(inputDataset).Handle}, GCHandleType.Pinned);
+                    GCHandle gcHandle = GCHandle.Alloc(new[] { Dataset.getCPtr(inputDataset).Handle },
+                                                       GCHandleType.Pinned);
                     SWIGTYPE_p_p_GDALDatasetShadow gdalDatasetShadow =
                         new SWIGTYPE_p_p_GDALDatasetShadow(gcHandle.AddrOfPinnedObject(), false, null);
+
                     // ReSharper disable once UnusedVariable
                     using (Dataset resultDataset =
-                        OSGeo.GDAL.Gdal.wrapper_GDALWarpDestName(outputFileInfo.FullName, 1,
-                                                                 gdalDatasetShadow,
-                                                                 new GDALWarpAppOptions(options),
-                                                                 callback, string.Empty))
-                    {
-                        gcHandle.Free();
-                    }
+                        OSGeo.GDAL.Gdal.wrapper_GDALWarpDestName(outputFileInfo.FullName, 1, gdalDatasetShadow,
+                                                                 new GDALWarpAppOptions(options), callback,
+                                                                 string.Empty)) { gcHandle.Free(); }
                 }
             }).ConfigureAwait(false);
 
@@ -106,9 +102,10 @@ namespace GTiff2Tiles.Core.Image
         /// </summary>
         private static void ConfigureGdal()
         {
-            if (!GdalHelper.Usable)
-                GdalHelper.Initialize();
+            if (!GdalHelper.Usable) GdalHelper.Initialize();
+
             if (GdalHelper.IsGdalConfigured) return;
+
             GdalHelper.ConfigureGdal();
         }
 
@@ -118,9 +115,10 @@ namespace GTiff2Tiles.Core.Image
         // ReSharper disable once UnusedMember.Local
         private static void ConfigureOgr()
         {
-            if (!GdalHelper.Usable)
-                GdalHelper.Initialize();
+            if (!GdalHelper.Usable) GdalHelper.Initialize();
+
             if (GdalHelper.IsOgrConfigured) return;
+
             GdalHelper.ConfigureOgr();
         }
 
@@ -150,6 +148,7 @@ namespace GTiff2Tiles.Core.Image
             {
                 double[] geoTransform = new double[6];
                 inputDataset.GetGeoTransform(geoTransform);
+
                 return geoTransform;
             }
         }
@@ -181,6 +180,7 @@ namespace GTiff2Tiles.Core.Image
                 using (Dataset dataset = OSGeo.GDAL.Gdal.Open(inputFileInfo.FullName, Access.GA_ReadOnly))
                 {
                     string wkt = dataset.GetProjection();
+
                     using (SpatialReference spatialReference = new SpatialReference(wkt))
                     {
                         spatialReference.ExportToProj4(out proj4String);
@@ -201,12 +201,12 @@ namespace GTiff2Tiles.Core.Image
         /// <param name="rasterXSize">Raster's width.</param>
         /// <param name="rasterYSize">Raster's height.</param>
         /// <returns><see cref="ValueTuple{T1, T2, T3, T4}"/> with WGS84 coordinates.</returns>
-        internal static (double minX, double minY, double maxX, double maxY) GetImageBorders(
-            FileInfo inputFileInfo, int rasterXSize, int rasterYSize)
+        internal static (double minX, double minY, double maxX, double maxY) GetImageBorders(FileInfo inputFileInfo, int rasterXSize, int rasterYSize)
         {
             #region Parameters checking
 
             CheckHelper.CheckFile(inputFileInfo, true);
+
             if (rasterXSize < 0) throw new GdalException(string.Format(Strings.LesserThan, nameof(rasterXSize), 0));
             if (rasterYSize < 0) throw new GdalException(string.Format(Strings.LesserThan, nameof(rasterYSize), 0));
 

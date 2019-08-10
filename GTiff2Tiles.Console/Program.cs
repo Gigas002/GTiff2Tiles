@@ -64,20 +64,21 @@ namespace GTiff2Tiles.Console
 
             try
             {
-                Parser.Default.ParseArguments<Options>(args)
-                      .WithParsed(ParseConsoleOptions)
+                Parser.Default.ParseArguments<Options>(args).WithParsed(ParseConsoleOptions)
                       .WithNotParsed(error => IsParsingErrors = true);
             }
             catch (Exception exception)
             {
                 //Catch some uncaught parsing errors.
                 Helpers.ErrorHelper.PrintException(exception);
+
                 return;
             }
 
             if (IsParsingErrors)
             {
                 Helpers.ErrorHelper.PrintError(Strings.ParsingError);
+
                 return;
             }
 
@@ -94,14 +95,18 @@ namespace GTiff2Tiles.Console
             {
                 //Check for errors.
                 Core.Helpers.CheckHelper.CheckDirectory(OutputDirectoryInfo, true);
+
                 if (!await Core.Helpers.CheckHelper.CheckInputFile(InputFileInfo).ConfigureAwait(false))
                 {
-                    string tempFilePath = Path.Combine(TempDirectoryInfo.FullName, $"{Core.Enums.Image.Gdal.TempFileName}{Core.Enums.Extensions.Tif}");
+                    string tempFilePath = Path.Combine(TempDirectoryInfo.FullName,
+                                                       $"{Core.Enums.Image.Gdal.TempFileName}{Core.Enums.Extensions.Tif}");
                     FileInfo tempFileInfo = new FileInfo(tempFilePath);
 
-                    await Core.Image.Gdal.Warp(InputFileInfo, tempFileInfo, Core.Enums.Image.Gdal.RepairTifOptions).ConfigureAwait(false);
+                    await Core.Image.Gdal.Warp(InputFileInfo, tempFileInfo, Core.Enums.Image.Gdal.RepairTifOptions)
+                              .ConfigureAwait(false);
                     InputFileInfo = tempFileInfo;
                 }
+
                 //Create image object.
                 Core.Image.Image inputImage = new Core.Image.Image(InputFileInfo);
 
@@ -109,26 +114,34 @@ namespace GTiff2Tiles.Console
                 switch (Algorithm)
                 {
                     case Core.Enums.Algorithms.Join:
-                        await inputImage.GenerateTilesByJoining(OutputDirectoryInfo, MinZ, MaxZ, TmsCompatible, consoleProgress, ThreadsCount).ConfigureAwait(false);
+                        await inputImage
+                             .GenerateTilesByJoining(OutputDirectoryInfo, MinZ, MaxZ, TmsCompatible, consoleProgress,
+                                                     ThreadsCount).ConfigureAwait(false);
+
                         break;
                     case Core.Enums.Algorithms.Crop:
-                        await inputImage.GenerateTilesByCropping(OutputDirectoryInfo, MinZ, MaxZ, TmsCompatible, consoleProgress, ThreadsCount).ConfigureAwait(false);
+                        await inputImage
+                             .GenerateTilesByCropping(OutputDirectoryInfo, MinZ, MaxZ, TmsCompatible, consoleProgress,
+                                                      ThreadsCount).ConfigureAwait(false);
+
                         break;
                     default:
                         Helpers.ErrorHelper.PrintError(Strings.AlgorithmNotSupported);
+
                         return;
                 }
             }
             catch (Exception exception)
             {
                 Helpers.ErrorHelper.PrintException(exception);
+
                 return;
             }
 
             stopwatch.Stop();
-            System.Console.WriteLine(Strings.Done, Environment.NewLine, stopwatch.Elapsed.Days,
-                                     stopwatch.Elapsed.Hours, stopwatch.Elapsed.Minutes,
-                                     stopwatch.Elapsed.Seconds, stopwatch.Elapsed.Milliseconds);
+            System.Console.WriteLine(Strings.Done, Environment.NewLine, stopwatch.Elapsed.Days, stopwatch.Elapsed.Hours,
+                                     stopwatch.Elapsed.Minutes, stopwatch.Elapsed.Seconds,
+                                     stopwatch.Elapsed.Milliseconds);
             #if DEBUG
             System.Console.WriteLine(Strings.PressAnyKey);
             System.Console.ReadKey();
@@ -148,24 +161,31 @@ namespace GTiff2Tiles.Console
             {
                 Helpers.ErrorHelper.PrintError(string.Format(Strings.OptionIsEmpty, "-i/--input"));
                 IsParsingErrors = true;
+
                 return;
             }
+
             if (string.IsNullOrWhiteSpace(options.OutputDirectoryPath))
             {
                 Helpers.ErrorHelper.PrintError(string.Format(Strings.OptionIsEmpty, "-o/--output"));
                 IsParsingErrors = true;
+
                 return;
             }
+
             if (string.IsNullOrWhiteSpace(options.TempDirectoryPath))
             {
                 Helpers.ErrorHelper.PrintError(string.Format(Strings.OptionIsEmpty, "-t/--temp"));
                 IsParsingErrors = true;
+
                 return;
             }
+
             if (string.IsNullOrWhiteSpace(options.Algorithm))
             {
                 Helpers.ErrorHelper.PrintError(string.Format(Strings.OptionIsEmpty, "-a/--algorithm"));
                 IsParsingErrors = true;
+
                 return;
             }
 
@@ -174,18 +194,23 @@ namespace GTiff2Tiles.Console
             {
                 Helpers.ErrorHelper.PrintError(string.Format(Strings.LesserThan, "--minz", 0));
                 IsParsingErrors = true;
+
                 return;
             }
+
             if (options.MaxZ < 0)
             {
                 Helpers.ErrorHelper.PrintError(string.Format(Strings.LesserThan, "--maxz", 0));
                 IsParsingErrors = true;
+
                 return;
             }
+
             if (options.MinZ > options.MaxZ)
             {
                 Helpers.ErrorHelper.PrintError(string.Format(Strings.LesserThan, "--maxz", "--minz"));
                 IsParsingErrors = true;
+
                 return;
             }
 
@@ -194,6 +219,7 @@ namespace GTiff2Tiles.Console
             {
                 Helpers.ErrorHelper.PrintError(string.Format(Strings.LesserOrEqual, "--threads", 0));
                 IsParsingErrors = true;
+
                 return;
             }
 
@@ -205,12 +231,15 @@ namespace GTiff2Tiles.Console
             MaxZ = options.MaxZ;
             Algorithm = options.Algorithm;
             ThreadsCount = options.ThreadsCount;
+
             if (!bool.TryParse(options.TmsCompatible, out bool tmsComptaible))
             {
                 Helpers.ErrorHelper.PrintError(string.Format(Strings.OptionIsEmpty, "--tms"));
                 IsParsingErrors = true;
+
                 return;
             }
+
             TmsCompatible = tmsComptaible;
         }
 

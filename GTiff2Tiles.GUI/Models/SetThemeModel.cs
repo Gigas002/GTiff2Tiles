@@ -16,9 +16,9 @@ namespace GTiff2Tiles.GUI.Models
         {
             ITheme theme = new Theme();
 
-            theme.SetBaseTheme(isDarkTheme ?
-                                   new MaterialDesignDarkTheme() :
-                                   new MaterialDesignLightTheme() as IBaseTheme);
+            theme.SetBaseTheme(isDarkTheme
+                                   ? new MaterialDesignDarkTheme()
+                                   : new MaterialDesignLightTheme() as IBaseTheme);
 
             theme.SetPrimaryColor(SwatchHelper.Lookup[MaterialDesignColor.Cyan]);
             //theme.SetSecondaryColor(SwatchHelper.Lookup[MaterialDesignColor.Teal]);
