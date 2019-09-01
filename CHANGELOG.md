@@ -1,30 +1,32 @@
-# WIP
+# CHANGELOG
+
+## WIP
 
 Changes since 1.3.1:
 
-## Overall
+### Overall
 
 - Updated **CommandLineParser** package to **2.6.0**;
 - Updated **NUnit3TestAdapter** package to **3.15.1**;
 
-## GUI
+### GUI
 
 - Updated **MaterialDesignExtensions** package to **2.8.0-a1**;
 - Removed **MahApps.Metro** package;
 - Replaced **MahApps.Metro.MetroWindow** with **MaterialDesignExtensions.MaterialWindow**;
 
-# 30.07.2019 – Released 1.3.1
+## 30.07.2019 – Released 1.3.1
 
 Changes since 1.3.0:
 
 - Updated **NetVips** to stable **1.1.0**;
 - Updated **NetVips.Native.win-x64** to **8.8.1**;
 
-# 28.07.2019 – Released 1.3.0
+## 28.07.2019 – Released 1.3.0
 
 Changes since 1.2.0:
 
-## Overall
+### Overall
 
 - Solution rebuilt in **Visual Studio 2019**;
 - Removed explicitly unused packages;
@@ -38,7 +40,7 @@ Changes since 1.2.0:
 - *New feature:* Option to create **non-tms tiles** (see [#9](https://github.com/Gigas002/GTiff2Tiles/issues/9) and [162e3a2](https://github.com/Gigas002/GTiff2Tiles/commit/162e3a28043006af71e9eac150ed150a7596ee8a));
 - *New feature:* Now **GTiff2Tiles** is able to process non-8 bit images (see [#9](https://github.com/Gigas002/GTiff2Tiles/issues/9) and [f08f690](https://github.com/Gigas002/GTiff2Tiles/commit/f08f690f5d08cd604dc0ffa46171fd98d0c4a8ee));
 
-## Core
+### Core
 
 - Fix **NetVips** issue ([#3](https://github.com/Gigas002/GTiff2Tiles/issues/3) and [#4](https://github.com/Gigas002/GTiff2Tiles/issues/4)), when trying to shrink image, lesser than 1px (see [e086568](https://github.com/Gigas002/GTiff2Tiles/commit/e086568ab1fcc528d9a49ee9fead2ade476815e7) and [e42e5ae](https://github.com/Gigas002/GTiff2Tiles/commit/e42e5aecc9bf42e2329dade4a9bc1575f006a4fc));
 - Fix additional band creation issue (see [#5](https://github.com/Gigas002/GTiff2Tiles/issues/5) and [514ecd9](https://github.com/Gigas002/GTiff2Tiles/commit/514ecd912b1e9f3c7a1eb5db8c3fe1770a365a6b));
@@ -58,7 +60,7 @@ Changes since 1.2.0:
 - `Enums.Image.Gdal.RepairTifOptions` array now also has options `“-of”, “GTiff”` and `“-ot”, “Byte”` for processing non-8 bit images;
 - Option `“-co”, “TILED=YES”` was removed from `Enums.Image.Gdal.RepairTifOptions` array. You should explicitly add this option to your array if you want to convert input image to `TILED` image;
 
-## GUI
+### GUI
 
 - Added screenshot;
 - Added [icon](https://material.io/tools/icons/?icon=image&style=baseline);
@@ -68,13 +70,13 @@ Changes since 1.2.0:
 - Updated **MaterialDesignThemes** package to **2.6.0**;
 - Updated **MaterialDesignColors** package to **1.2.0**;
 
-## Console
+### Console
 
 - Added [icon](https://material.io/tools/icons/?icon=image&style=baseline);
 - Added `--tms` console option. Read more about using it in updated **README**;
 - Updated **CommandLineParser** to **2.5.0**;
 
-## Test
+### Test
 
 - Added more zoom levels to test (from 0 to 18);
 - Added tests for tms-compatible/non tms-compatible tiles creation;
@@ -82,7 +84,7 @@ Changes since 1.2.0:
 - Added **NUnit3TestAdapter** package;
 - Slightly improved code coverage;
 
-# 27.02.2019 – Released 1.2.0
+## 27.02.2019 – Released 1.2.0
 
 Changes since 1.1.0:
 
@@ -101,7 +103,7 @@ Changes since 1.1.0:
 - Fixed some typos;
 - Fixed minor issues;
 
-# 03.02.2019 – Released 1.1.0
+## 03.02.2019 – Released 1.1.0
 
 Changes since 1.0.0:
 
@@ -117,7 +119,7 @@ Changes since 1.0.0:
 - Updated **README**;
 - Fixed some minor issues;
 
-# 30.12.2018 – Released 1.0.0
+## 30.12.2018 – Released 1.0.0
 
 Changes since beta:
 
