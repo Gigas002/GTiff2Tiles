@@ -5,6 +5,7 @@ Changes since 1.3.1:
 ## Overall
 
 - Updated **CommandLineParser** package to **2.6.0**;
+- Updated **NUnit3TestAdapter** package to **3.15.1**;
 
 # 30.07.2019 – Released 1.3.1
 

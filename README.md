@@ -4,7 +4,7 @@
 
 Analogue of [gdal2tiles.py](https://github.com/OSGeo/gdal/blob/master/gdal/swig/python/scripts/gdal2tiles.py)/[MapTiler](https://www.maptiler.com/) on **C#**. Support **only GeoTIFF** as input data and creates **only geodetic 4 bands tiles** on output in [**tms**](https://wiki.osgeo.org/wiki/Tile_Map_Service_Specification)/**non-tms** (Google maps like) structure.
 
-Solution is build in **VS2019 (16.2.1)**, **.NET Framework 4.7.2**, targeting **Windows x64** systems.
+Solution is build in **VS2019 (16.2.3)**, **.NET Framework 4.7.2**, targeting **Windows x64** systems.
 
 Icon is kindly provided by [Google’s material design](https://material.io/tools/icons/?icon=image&style=baseline) and is used in **GTiff2Tiles.GUI**, **GTiff2Tiles.Console** and **GTiff2Tiles.Benchmarks** projects.
 
@@ -180,7 +180,7 @@ Currently, application is available on **English** and **Russian** languages.
 - GTiff2Tiles.Core;
 - [GDAL.Native](https://www.nuget.org/packages/GDAL.Native/) – 2.4.2;
 - [NUnit](https://www.nuget.org/packages/NUnit/3.12.0) – 3.12.0;
-- [NUnit3TestAdapter](https://www.nuget.org/packages/NUnit3TestAdapter/) – 3.14.0;
+- [NUnit3TestAdapter](https://www.nuget.org/packages/NUnit3TestAdapter/) – 3.15.1;
 
 ## GTiff2Tiles.Benchmarks
 
