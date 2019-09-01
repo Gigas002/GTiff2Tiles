@@ -7,6 +7,12 @@ Changes since 1.3.1:
 - Updated **CommandLineParser** package to **2.6.0**;
 - Updated **NUnit3TestAdapter** package to **3.15.1**;
 
+## GUI
+
+- Updated **MaterialDesignExtensions** package to **2.8.0-a1**;
+- Removed **MahApps.Metro** package;
+- Replaced **MahApps.Metro.MetroWindow** with **MaterialDesignExtensions.MaterialWindow**;
+
 # 30.07.2019 – Released 1.3.1
 
 Changes since 1.3.0:

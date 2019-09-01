@@ -1,12 +1,12 @@
-﻿<mahApps:MetroWindow
+﻿<materialDesignExtensions:MaterialWindow
     x:Class="GTiff2Tiles.GUI.Views.MainView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:caliburnMicro="http://www.caliburnproject.org"
-    xmlns:mahApps="http://metro.mahapps.com/winfx/xaml/controls"
     xmlns:materialDesignThemes="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:materialDesignExtensions="clr-namespace:MaterialDesignExtensions.Controls;assembly=MaterialDesignExtensions"
     xmlns:viewModels="clr-namespace:GTiff2Tiles.GUI.ViewModels"
     xmlns:views="clr-namespace:GTiff2Tiles.GUI.Views"
     mc:Ignorable="d"
@@ -17,21 +17,19 @@
     TextElement.FontSize="18"
     TextOptions.TextFormattingMode="Ideal"
     TextOptions.TextRenderingMode="Auto"
-    GlowBrush="Black"
-    TitleCharacterCasing="Normal"
     ResizeMode="CanMinimize"
     Title="GTiff2Tiles"
     Height="615"
     Width="675"
     WindowStartupLocation="CenterScreen"
     Icon="/GTiff2Tiles.GUI;component/Resources/Icon.ico">
-    <mahApps:MetroWindow.Resources>
+    <materialDesignExtensions:MaterialWindow.Resources>
         <ResourceDictionary>
             <DataTemplate DataType="{x:Type viewModels:MessageBoxDialogViewModel}">
                 <views:MessageBoxDialogView/>
             </DataTemplate>
         </ResourceDictionary>
-    </mahApps:MetroWindow.Resources>
+    </materialDesignExtensions:MaterialWindow.Resources>
     <materialDesignThemes:DialogHost 
         Identifier="{Binding DialogHostId}"
         DialogTheme="{Binding Theme}">
@@ -238,4 +236,4 @@
             </Grid>
         </Grid>
     </materialDesignThemes:DialogHost>
-</mahApps:MetroWindow>
+</materialDesignExtensions:MaterialWindow>
