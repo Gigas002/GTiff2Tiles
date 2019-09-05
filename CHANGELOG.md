@@ -8,6 +8,7 @@ Changes since 1.3.1:
 
 - Updated **CommandLineParser** package to **2.6.0**;
 - Updated **NUnit3TestAdapter** package to **3.15.1**;
+- Updated **NetVips.Native.win-x64** package to **8.8.2**;
 
 ### GUI
 
