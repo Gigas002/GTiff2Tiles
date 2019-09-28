@@ -8,6 +8,8 @@ using GTiff2Tiles.Core.Localization;
 using OSGeo.GDAL;
 using OSGeo.OSR;
 
+// ReSharper disable MemberCanBeInternal
+
 namespace GTiff2Tiles.Core.Image
 {
     /// <summary>
@@ -41,19 +43,20 @@ namespace GTiff2Tiles.Core.Image
 
             await Task.Run(() =>
             {
-                using (Dataset inputDataset = OSGeo.GDAL.Gdal.Open(inputFileInfo.FullName, Access.GA_ReadOnly))
-                {
-                    GCHandle gcHandle = GCHandle.Alloc(new[] { Dataset.getCPtr(inputDataset).Handle },
-                                                       GCHandleType.Pinned);
-                    SWIGTYPE_p_p_GDALDatasetShadow gdalDatasetShadow =
-                        new SWIGTYPE_p_p_GDALDatasetShadow(gcHandle.AddrOfPinnedObject(), false, null);
+                using Dataset inputDataset = OSGeo.GDAL.Gdal.Open(inputFileInfo.FullName, Access.GA_ReadOnly);
 
-                    // ReSharper disable once UnusedVariable
-                    using (Dataset resultDataset =
-                        OSGeo.GDAL.Gdal.wrapper_GDALWarpDestName(outputFileInfo.FullName, 1, gdalDatasetShadow,
-                                                                 new GDALWarpAppOptions(options), callback,
-                                                                 string.Empty)) { gcHandle.Free(); }
-                }
+                GCHandle gcHandle = GCHandle.Alloc(new[] { Dataset.getCPtr(inputDataset).Handle },
+                                                   GCHandleType.Pinned);
+                SWIGTYPE_p_p_GDALDatasetShadow gdalDatasetShadow =
+                    new SWIGTYPE_p_p_GDALDatasetShadow(gcHandle.AddrOfPinnedObject(), false, null);
+
+                // ReSharper disable once UnusedVariable
+                using Dataset resultDataset =
+                    OSGeo.GDAL.Gdal.wrapper_GDALWarpDestName(outputFileInfo.FullName, 1, gdalDatasetShadow,
+                                                             new GDALWarpAppOptions(options), callback,
+                                                             string.Empty);
+
+                gcHandle.Free();
             }).ConfigureAwait(false);
 
             //Was file created?
@@ -81,13 +84,12 @@ namespace GTiff2Tiles.Core.Image
 
             await Task.Run(() =>
             {
-                using (Dataset inputDataset = OSGeo.GDAL.Gdal.Open(inputFileInfo.FullName, Access.GA_ReadOnly))
-                {
-                    gdalInfoString = OSGeo.GDAL.Gdal.GDALInfo(inputDataset, new GDALInfoOptions(options));
+                using Dataset inputDataset = OSGeo.GDAL.Gdal.Open(inputFileInfo.FullName, Access.GA_ReadOnly);
 
-                    if (string.IsNullOrWhiteSpace(gdalInfoString))
-                        throw new GdalException(string.Format(Strings.StringIsEmpty, nameof(gdalInfoString)));
-                }
+                gdalInfoString = OSGeo.GDAL.Gdal.GDALInfo(inputDataset, new GDALInfoOptions(options));
+
+                if (string.IsNullOrWhiteSpace(gdalInfoString))
+                    throw new GdalException(string.Format(Strings.StringIsEmpty, nameof(gdalInfoString)));
             }).ConfigureAwait(false);
 
             return gdalInfoString;
@@ -144,13 +146,12 @@ namespace GTiff2Tiles.Core.Image
             //Initialize Gdal, if needed.
             ConfigureGdal();
 
-            using (Dataset inputDataset = OSGeo.GDAL.Gdal.Open(inputFileInfo.FullName, Access.GA_ReadOnly))
-            {
-                double[] geoTransform = new double[6];
-                inputDataset.GetGeoTransform(geoTransform);
+            using Dataset inputDataset = OSGeo.GDAL.Gdal.Open(inputFileInfo.FullName, Access.GA_ReadOnly);
 
-                return geoTransform;
-            }
+            double[] geoTransform = new double[6];
+            inputDataset.GetGeoTransform(geoTransform);
+
+            return geoTransform;
         }
 
         #endregion
@@ -177,18 +178,16 @@ namespace GTiff2Tiles.Core.Image
 
             await Task.Run(() =>
             {
-                using (Dataset dataset = OSGeo.GDAL.Gdal.Open(inputFileInfo.FullName, Access.GA_ReadOnly))
-                {
-                    string wkt = dataset.GetProjection();
+                using Dataset dataset = OSGeo.GDAL.Gdal.Open(inputFileInfo.FullName, Access.GA_ReadOnly);
 
-                    using (SpatialReference spatialReference = new SpatialReference(wkt))
-                    {
-                        spatialReference.ExportToProj4(out proj4String);
+                string wkt = dataset.GetProjection();
 
-                        if (string.IsNullOrWhiteSpace(proj4String))
-                            throw new GdalException(string.Format(Strings.StringIsEmpty, nameof(proj4String)));
-                    }
-                }
+                using SpatialReference spatialReference = new SpatialReference(wkt);
+
+                spatialReference.ExportToProj4(out proj4String);
+
+                if (string.IsNullOrWhiteSpace(proj4String))
+                    throw new GdalException(string.Format(Strings.StringIsEmpty, nameof(proj4String)));
             }).ConfigureAwait(false);
 
             return proj4String;
@@ -238,10 +237,9 @@ namespace GTiff2Tiles.Core.Image
             //Initialize Gdal, if needed.
             ConfigureGdal();
 
-            using (Dataset inputDataset = OSGeo.GDAL.Gdal.Open(inputFileInfo.FullName, Access.GA_ReadOnly))
-            {
-                return (inputDataset.RasterXSize, inputDataset.RasterYSize);
-            }
+            using Dataset inputDataset = OSGeo.GDAL.Gdal.Open(inputFileInfo.FullName, Access.GA_ReadOnly);
+
+            return (inputDataset.RasterXSize, inputDataset.RasterYSize);
         }
 
         #endregion

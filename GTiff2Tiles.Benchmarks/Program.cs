@@ -216,7 +216,7 @@ namespace GTiff2Tiles.Benchmarks
                 StartInfo = new ProcessStartInfo("Gdal2Tiles/Gdal2Tiles")
                 {
                     Arguments = $"-s EPSG:4326 -p geodetic -r cubicspline --tmscompatible -z {minZ}-{maxZ} " +
-                                //$"--processes={threadsCount} " + //todo doesn't work
+                                //$"--processes={threadsCount} " + //TODO: doesn't work
                                 $"\"{inputFilePath}\" \"{outputDirectoryPath}\"",
                     CreateNoWindow = true, RedirectStandardInput = true, RedirectStandardOutput = true, UseShellExecute = false
                 }

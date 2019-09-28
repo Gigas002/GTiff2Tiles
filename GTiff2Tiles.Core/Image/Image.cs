@@ -273,18 +273,16 @@ namespace GTiff2Tiles.Core.Image
                 const double id = 0.0;
 
                 // Floating point affine transformation
-                using (Interpolate interpolate = Interpolate.NewFromName(Enums.Image.Interpolations.Bicubic))
-                {
-                    if (xScale > 1.0 && yScale > 1.0)
-                        tileImage = tileImage.Affine(new[] { xScale, 0.0, 0.0, yScale }, interpolate, idx: id, idy: id,
-                                                     extend: NetVips.Enums.Extend.Copy);
-                    else if (xScale > 1.0)
-                        tileImage = tileImage.Affine(new[] { xScale, 0.0, 0.0, 1.0 }, interpolate, idx: id, idy: id,
-                                                     extend: NetVips.Enums.Extend.Copy);
-                    else
-                        tileImage = tileImage.Affine(new[] { 1.0, 0.0, 0.0, yScale }, interpolate, idx: id, idy: id,
-                                                     extend: NetVips.Enums.Extend.Copy);
-                }
+                using Interpolate interpolate = Interpolate.NewFromName(Enums.Image.Interpolations.Bicubic);
+                if (xScale > 1.0 && yScale > 1.0)
+                    tileImage = tileImage.Affine(new[] { xScale, 0.0, 0.0, yScale }, interpolate, idx: id, idy: id,
+                                                 extend: NetVips.Enums.Extend.Copy);
+                else if (xScale > 1.0)
+                    tileImage = tileImage.Affine(new[] { xScale, 0.0, 0.0, 1.0 }, interpolate, idx: id, idy: id,
+                                                 extend: NetVips.Enums.Extend.Copy);
+                else
+                    tileImage = tileImage.Affine(new[] { 1.0, 0.0, 0.0, yScale }, interpolate, idx: id, idy: id,
+                                                 extend: NetVips.Enums.Extend.Copy);
             }
 
             // Add alpha channel if needed
@@ -482,10 +480,9 @@ namespace GTiff2Tiles.Core.Image
 
             try
             {
-                using (NetVips.Image resultImage = NetVips.Image.Arrayjoin(images, 2))
-                {
-                    resultImage.Pngsave(outputTileFileInfo.FullName);
-                }
+                using NetVips.Image resultImage = NetVips.Image.Arrayjoin(images, 2);
+
+                resultImage.Pngsave(outputTileFileInfo.FullName);
             }
             catch (Exception exception)
             {
@@ -577,33 +574,32 @@ namespace GTiff2Tiles.Core.Image
 
             #endregion
 
-            using (SemaphoreSlim semaphoreSlim = new SemaphoreSlim(threadsCount))
+            using SemaphoreSlim semaphoreSlim = new SemaphoreSlim(threadsCount);
+
+            List<Task> tasks = new List<Task>();
+
+            //For each tile on current zoom.
+            for (int tileY = TilesMinMax[zoom][1]; tileY <= TilesMinMax[zoom][3]; tileY++)
             {
-                List<Task> tasks = new List<Task>();
-
-                //For each tile on current zoom.
-                for (int tileY = TilesMinMax[zoom][1]; tileY <= TilesMinMax[zoom][3]; tileY++)
+                for (int tileX = TilesMinMax[zoom][0]; tileX <= TilesMinMax[zoom][2]; tileX++)
                 {
-                    for (int tileX = TilesMinMax[zoom][0]; tileX <= TilesMinMax[zoom][2]; tileX++)
+                    await semaphoreSlim.WaitAsync().ConfigureAwait(false);
+
+                    int x = tileX;
+                    int y = tileY;
+
+                    tasks.Add(Task.Run(() =>
                     {
-                        await semaphoreSlim.WaitAsync().ConfigureAwait(false);
-
-                        int x = tileX;
-                        int y = tileY;
-
-                        tasks.Add(Task.Run(() =>
-                        {
-                            try { WriteTile(zoom, x, y); }
-                            finally { semaphoreSlim.Release(); }
-                        }));
-                    }
+                        try { WriteTile(zoom, x, y); }
+                        finally { semaphoreSlim.Release(); }
+                    }));
                 }
-
-                await Task.WhenAll(tasks).ConfigureAwait(false);
-
-                //Dispose tasks.
-                foreach (Task task in tasks) task.Dispose();
             }
+
+            await Task.WhenAll(tasks).ConfigureAwait(false);
+
+            //Dispose tasks.
+            foreach (Task task in tasks) task.Dispose();
         }
 
         /// <summary>
@@ -668,7 +664,7 @@ namespace GTiff2Tiles.Core.Image
         public async ValueTask GenerateTilesByJoining(DirectoryInfo outputDirectoryInfo, int minZ, int maxZ,
                                                       bool tmsCompatible, IProgress<double> progress, int threadsCount)
         {
-            //todo 1.4.0 - profile argument (geodetic/mercator)
+            //TODO: profile argument (geodetic/mercator)
 
             #region Parameters checking
 
@@ -708,7 +704,7 @@ namespace GTiff2Tiles.Core.Image
         public async ValueTask GenerateTilesByCropping(DirectoryInfo outputDirectoryInfo, int minZ, int maxZ,
                                                        bool tmsCompatible, IProgress<double> progress, int threadsCount)
         {
-            //todo 1.4.0 - profile argument (geodetic/mercator)
+            //TODO: profile argument (geodetic/mercator)
 
             #region Parameters checking
 

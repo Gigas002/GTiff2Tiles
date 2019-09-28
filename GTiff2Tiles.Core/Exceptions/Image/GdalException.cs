@@ -6,7 +6,7 @@ namespace GTiff2Tiles.Core.Exceptions.Image
     /// <summary>
     /// Exceptions, happened in Image.Gdal.cs.
     /// </summary>
-    public class GdalException : Exception
+    public sealed class GdalException : Exception
     {
         #region Constructors
 

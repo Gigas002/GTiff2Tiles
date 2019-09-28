@@ -12,6 +12,7 @@ namespace GTiff2Tiles.GUI.ViewModels
     /// <summary>
     /// Custom message box dialog. <see cref="T:GTiff2Tiles.GUI.Views.MessageBoxDialogView" />.
     /// </summary>
+    // ReSharper disable once MemberCanBeInternal
     public sealed class MessageBoxDialogViewModel : PropertyChangedBase
     {
         #region Properties and fields

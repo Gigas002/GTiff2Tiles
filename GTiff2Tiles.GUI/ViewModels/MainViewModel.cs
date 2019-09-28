@@ -21,6 +21,7 @@ namespace GTiff2Tiles.GUI.ViewModels
     /// <summary>
     /// ViewModel for <see cref="Views.MainView"/>.
     /// </summary>
+    // ReSharper disable once MemberCanBeInternal
     public class MainViewModel : PropertyChangedBase
     {
         #region Properties
@@ -254,6 +255,9 @@ namespace GTiff2Tiles.GUI.ViewModels
 
         private double _progressBarValue;
 
+        /// <summary>
+        /// Progress bar value.
+        /// </summary>
         public double ProgressBarValue
         {
             get => _progressBarValue;
