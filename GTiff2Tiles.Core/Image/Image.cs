@@ -8,6 +8,7 @@ using GTiff2Tiles.Core.Helpers;
 using GTiff2Tiles.Core.Localization;
 using NetVips;
 
+// ReSharper disable ClassCanBeSealed.Global
 // ReSharper disable MemberCanBePrivate.Global
 // ReSharper disable AccessToDisposedClosure
 
