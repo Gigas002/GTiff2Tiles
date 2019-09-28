@@ -10,6 +10,13 @@ Changes since 1.3.1:
 - Updated **NUnit3TestAdapter** package to **3.15.1**;
 - Updated **NetVips.Native.win-x64** package to **8.8.2**;
 - Update target framework to **.NET Framework 4.8**;
+- Renamed all async methods to `methodNameAsync`;
+
+## Core
+
+**Breaking changes:**
+
+- Renamed all async methods to `methodNameAsync`;
 
 ### GUI
 

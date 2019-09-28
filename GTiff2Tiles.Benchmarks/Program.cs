@@ -61,7 +61,7 @@ namespace GTiff2Tiles.Benchmarks
 
             if (IsParsingErrors) throw new Exception("Error while parsing occured");
 
-            await RunTiling().ConfigureAwait(false);
+            await RunTilingAsync().ConfigureAwait(false);
 
             Console.WriteLine("Tests ended. Press any button to close the application.");
             Console.ReadKey();
@@ -130,7 +130,7 @@ namespace GTiff2Tiles.Benchmarks
             ThreadsCount = options.ThreadsCount;
         }
 
-        private static async ValueTask RunTiling()
+        private static async ValueTask RunTilingAsync()
         {
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
@@ -142,7 +142,7 @@ namespace GTiff2Tiles.Benchmarks
             Directory.CreateDirectory(gtiff2TilesOutputDirectoryPath);
             Directory.CreateDirectory(gtiff2TilesTempDirectoryPath);
             Image image = new Image(InputFileInfo);
-            await image.GenerateTilesByCropping(new DirectoryInfo(gtiff2TilesOutputDirectoryPath), MinZ, MaxZ, true,
+            await image.GenerateTilesByCroppingAsync(new DirectoryInfo(gtiff2TilesOutputDirectoryPath), MinZ, MaxZ, true,
                                                 new Progress<double>(), ThreadsCount).ConfigureAwait(false);
             stopwatch.Stop();
             Console.WriteLine("GTiff2Tiles process ended.");

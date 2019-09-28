@@ -27,7 +27,7 @@ namespace GTiff2Tiles.Core.Image
         /// <param name="options">Array of string parameters.</param>
         /// <param name="callback">Delegate for progress reporting from Gdal.</param>
         /// <returns></returns>
-        public static async ValueTask Warp(FileInfo inputFileInfo, FileInfo outputFileInfo, string[] options,
+        public static async ValueTask WarpAsync(FileInfo inputFileInfo, FileInfo outputFileInfo, string[] options,
                                            OSGeo.GDAL.Gdal.GDALProgressFuncDelegate callback = null)
         {
             #region Parameters checking
@@ -69,7 +69,7 @@ namespace GTiff2Tiles.Core.Image
         /// <param name="inputFileInfo">Input GeoTiff file.</param>
         /// <param name="options">Array of string parameters for GdalInfo.</param>
         /// <returns><see cref="string"/> from GdalInfo.</returns>
-        public static async ValueTask<string> Info(FileInfo inputFileInfo, string[] options = null)
+        public static async ValueTask<string> InfoAsync(FileInfo inputFileInfo, string[] options = null)
         {
             #region Parameters checking
 
@@ -163,7 +163,7 @@ namespace GTiff2Tiles.Core.Image
         /// </summary>
         /// <param name="inputFileInfo">Input GeoTiff file.</param>
         /// <returns>Proj4 string.</returns>
-        internal static async ValueTask<string> GetProj4String(FileInfo inputFileInfo)
+        internal static async ValueTask<string> GetProj4StringAsync(FileInfo inputFileInfo)
         {
             #region Parameters checking
 

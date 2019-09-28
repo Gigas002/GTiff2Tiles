@@ -15,7 +15,7 @@ namespace GTiff2Tiles.GUI.Helpers
         /// </summary>
         /// <param name="exception">Exception.</param>
         /// <returns></returns>
-        internal static async ValueTask ShowException(Exception exception)
+        internal static async ValueTask ShowExceptionAsync(Exception exception)
         {
             await DialogHost.Show(new MessageBoxDialogViewModel(exception.Message)).ConfigureAwait(false);
 
@@ -32,7 +32,7 @@ namespace GTiff2Tiles.GUI.Helpers
         /// <param name="errorMessage">Error message.</param>
         /// <param name="exception">Exception.</param>
         /// <returns><see langword="false"/>.</returns>
-        internal static async ValueTask<bool> ShowError(string errorMessage, Exception exception = null)
+        internal static async ValueTask<bool> ShowErrorAsync(string errorMessage, Exception exception = null)
         {
             await DialogHost.Show(new MessageBoxDialogViewModel(errorMessage)).ConfigureAwait(false);
 

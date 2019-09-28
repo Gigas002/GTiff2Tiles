@@ -12,7 +12,7 @@ namespace GTiff2Tiles.Tests.Tests.Image
         public void Setup() { }
 
         [Test]
-        public async Task CheckAndRepair3785()
+        public async Task CheckAndRepair3785Async()
         {
             DirectoryInfo examplesDirectoryInfo = Helpers.TestHelper.GetExamplesDirectoryInfo();
 
@@ -29,13 +29,13 @@ namespace GTiff2Tiles.Tests.Tests.Image
             try
             {
                 //Check and repair.
-                if (!await Core.Helpers.CheckHelper.CheckInputFile(inputFileInfo))
+                if (!await Core.Helpers.CheckHelper.CheckInputFileAsync(inputFileInfo))
                 {
                     string tempFilePath = Path.Combine(tempDirectoryInfo.FullName,
                                                        $"{Core.Enums.Image.Gdal.TempFileName}{Core.Enums.Extensions.Tif}");
                     FileInfo tempFileInfo = new FileInfo(tempFilePath);
 
-                    await Core.Image.Gdal.Warp(inputFileInfo, tempFileInfo, Core.Enums.Image.Gdal.RepairTifOptions);
+                    await Core.Image.Gdal.WarpAsync(inputFileInfo, tempFileInfo, Core.Enums.Image.Gdal.RepairTifOptions);
                 }
 
                 //Check if temp file was created successfuly.
@@ -50,7 +50,7 @@ namespace GTiff2Tiles.Tests.Tests.Image
         }
 
         [Test]
-        public async Task CheckAndRepair3395()
+        public async Task CheckAndRepair3395Async()
         {
             DirectoryInfo examplesDirectoryInfo = Helpers.TestHelper.GetExamplesDirectoryInfo();
 
@@ -67,13 +67,13 @@ namespace GTiff2Tiles.Tests.Tests.Image
             try
             {
                 //Check and repair.
-                if (!await Core.Helpers.CheckHelper.CheckInputFile(inputFileInfo))
+                if (!await Core.Helpers.CheckHelper.CheckInputFileAsync(inputFileInfo))
                 {
                     string tempFilePath = Path.Combine(tempDirectoryInfo.FullName,
                                                        $"{Core.Enums.Image.Gdal.TempFileName}{Core.Enums.Extensions.Tif}");
                     FileInfo tempFileInfo = new FileInfo(tempFilePath);
 
-                    await Core.Image.Gdal.Warp(inputFileInfo, tempFileInfo, Core.Enums.Image.Gdal.RepairTifOptions);
+                    await Core.Image.Gdal.WarpAsync(inputFileInfo, tempFileInfo, Core.Enums.Image.Gdal.RepairTifOptions);
                 }
 
                 //Check if temp file was created successfuly.

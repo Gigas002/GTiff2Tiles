@@ -507,7 +507,7 @@ namespace GTiff2Tiles.Core.Image
         /// <param name="zoom">Current zoom to crop.</param>
         /// <param name="threadsCount">Threads count.</param>
         /// <returns></returns>
-        private async ValueTask WriteZoom(int zoom, int threadsCount)
+        private async ValueTask WriteZoomAsync(int zoom, int threadsCount)
         {
             #region Parameters checking
 
@@ -565,7 +565,7 @@ namespace GTiff2Tiles.Core.Image
         /// <param name="zoom">Zoom, for which we're cropping tiles atm.</param>
         /// <param name="threadsCount">Threads count.</param>
         /// <returns></returns>
-        private async ValueTask MakeUpperTiles(int zoom, int threadsCount)
+        private async ValueTask MakeUpperTilesAsync(int zoom, int threadsCount)
         {
             #region Parameters checking
 
@@ -662,7 +662,7 @@ namespace GTiff2Tiles.Core.Image
         /// <param name="progress">Progress.</param>
         /// <param name="threadsCount">Threads count.</param>
         /// <returns></returns>
-        public async ValueTask GenerateTilesByJoining(DirectoryInfo outputDirectoryInfo, int minZ, int maxZ,
+        public async ValueTask GenerateTilesByJoiningAsync(DirectoryInfo outputDirectoryInfo, int minZ, int maxZ,
                                                       bool tmsCompatible, IProgress<double> progress, int threadsCount)
         {
             //TODO: profile argument (geodetic/mercator)
@@ -678,14 +678,14 @@ namespace GTiff2Tiles.Core.Image
             SetGenerateTilesProperties(outputDirectoryInfo, minZ, maxZ, tmsCompatible);
 
             //Crop lowest zoom level.
-            await WriteZoom(MaxZ, threadsCount).ConfigureAwait(false);
+            await WriteZoomAsync(MaxZ, threadsCount).ConfigureAwait(false);
             double percentage = 1.0 / (MaxZ - MinZ + 1) * 100.0;
             progress.Report(percentage);
 
             //Crop upper tiles.
             for (int zoom = MaxZ - 1; zoom >= MinZ; zoom--)
             {
-                await MakeUpperTiles(zoom, threadsCount).ConfigureAwait(false);
+                await MakeUpperTilesAsync(zoom, threadsCount).ConfigureAwait(false);
 
                 percentage = (double) (MaxZ - zoom + 1) / (MaxZ - MinZ + 1) * 100.0;
                 progress.Report(percentage);
@@ -702,7 +702,7 @@ namespace GTiff2Tiles.Core.Image
         /// <param name="progress">Progress.</param>
         /// <param name="threadsCount">Threads count.</param>
         /// <returns></returns>
-        public async ValueTask GenerateTilesByCropping(DirectoryInfo outputDirectoryInfo, int minZ, int maxZ,
+        public async ValueTask GenerateTilesByCroppingAsync(DirectoryInfo outputDirectoryInfo, int minZ, int maxZ,
                                                        bool tmsCompatible, IProgress<double> progress, int threadsCount)
         {
             //TODO: profile argument (geodetic/mercator)
@@ -720,7 +720,7 @@ namespace GTiff2Tiles.Core.Image
             //Crop tiles for each zoom.
             for (int zoom = MinZ; zoom <= MaxZ; zoom++)
             {
-                await WriteZoom(zoom, threadsCount).ConfigureAwait(false);
+                await WriteZoomAsync(zoom, threadsCount).ConfigureAwait(false);
 
                 double percentage = (double) (zoom - MinZ + 1) / (MaxZ - MinZ + 1) * 100.0;
                 progress.Report(percentage);
