@@ -4,7 +4,7 @@
 
 Analogue of [gdal2tiles.py](https://github.com/OSGeo/gdal/blob/master/gdal/swig/python/scripts/gdal2tiles.py)/[MapTiler](https://www.maptiler.com/) on **C#**. Support **only GeoTIFF** as input data and creates **only geodetic 4 bands tiles** on output in [**tms**](https://wiki.osgeo.org/wiki/Tile_Map_Service_Specification)/**non-tms** (Google maps like) structure.
 
-Solution is build in **VS2019 (16.2.4)**, **.NET Framework 4.7.2**, targeting **Windows x64** systems.
+Solution is build in **VS2019 (16.3.1)**, **.NET Framework 4.8**, targeting **Windows x64** systems.
 
 Icon is kindly provided by [Google’s material design](https://material.io/tools/icons/?icon=image&style=baseline) and is used in **GTiff2Tiles.GUI**, **GTiff2Tiles.Console** and **GTiff2Tiles.Benchmarks** projects.
 
@@ -89,7 +89,7 @@ Currently, application is available on **English** and **Russian** languages.
 ### Requirements
 
 - Windows 7 SP1 x64 and newer;
-- [.NET Framework 4.7.2](https://dotnet.microsoft.com/download/dotnet-framework/net472);
+- [.NET Framework 4.8](https://dotnet.microsoft.com/download/dotnet-framework/net48);
 
 If you’re using Windows 7 SP1, you can experience weird error with **GDAL** package. It’s recommended to install [KB2533623](<https://www.microsoft.com/en-us/download/details.aspx?id=26764>) to fix it. You can read about this Windows update on [MSDN](<https://support.microsoft.com/en-us/help/2533623/microsoft-security-advisory-insecure-library-loading-could-allow-remot>).
 
@@ -150,7 +150,7 @@ Currently, application is available on **English** and **Russian** languages.
 ### Requirements
 
 - Windows 7 SP1 x64 and newer;
-- [.NET Framework 4.7.2](https://dotnet.microsoft.com/download/dotnet-framework/net472);
+- [.NET Framework 4.8](https://dotnet.microsoft.com/download/dotnet-framework/net48);
 
 If you’re using Windows 7 SP1, you can experience weird error with **GDAL** package. It’s recommended to install [KB2533623](<https://www.microsoft.com/en-us/download/details.aspx?id=26764>) to fix it. You can read about this Windows update on [MSDN](<https://support.microsoft.com/en-us/help/2533623/microsoft-security-advisory-insecure-library-loading-could-allow-remot>).
 
