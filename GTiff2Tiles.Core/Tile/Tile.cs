@@ -26,6 +26,8 @@ using System.Linq;
 using GTiff2Tiles.Core.Exceptions.Tile;
 using GTiff2Tiles.Core.Localization;
 
+// ReSharper disable MemberCanBeInternal
+
 namespace GTiff2Tiles.Core.Tile
 {
     /// <summary>

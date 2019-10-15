@@ -12,7 +12,7 @@ namespace GTiff2Tiles.Tests.Tests
         public void SetUp() { }
 
         [Test]
-        public async Task CheckHelperTests()
+        public async Task CheckHelperTestsAsync()
         {
             try
             {
@@ -22,7 +22,7 @@ namespace GTiff2Tiles.Tests.Tests
                                                     $"{Enums.FileSystemEntries.Input4326}{Core.Enums.Extensions.Tif}");
                 FileInfo inputFileInfo = new FileInfo(inputFilePath);
                 CheckHelper.CheckDirectory(examplesDirectoryInfo, false);
-                await CheckHelper.CheckInputFile(inputFileInfo);
+                await CheckHelper.CheckInputFileAsync(inputFileInfo);
             }
             catch (Exception exception) { Assert.Fail(exception.Message); }
 

@@ -96,13 +96,13 @@ namespace GTiff2Tiles.Console
                 //Check for errors.
                 Core.Helpers.CheckHelper.CheckDirectory(OutputDirectoryInfo, true);
 
-                if (!await Core.Helpers.CheckHelper.CheckInputFile(InputFileInfo).ConfigureAwait(false))
+                if (!await Core.Helpers.CheckHelper.CheckInputFileAsync(InputFileInfo).ConfigureAwait(false))
                 {
                     string tempFilePath = Path.Combine(TempDirectoryInfo.FullName,
                                                        $"{Core.Enums.Image.Gdal.TempFileName}{Core.Enums.Extensions.Tif}");
                     FileInfo tempFileInfo = new FileInfo(tempFilePath);
 
-                    await Core.Image.Gdal.Warp(InputFileInfo, tempFileInfo, Core.Enums.Image.Gdal.RepairTifOptions)
+                    await Core.Image.Gdal.WarpAsync(InputFileInfo, tempFileInfo, Core.Enums.Image.Gdal.RepairTifOptions)
                               .ConfigureAwait(false);
                     InputFileInfo = tempFileInfo;
                 }
@@ -115,13 +115,13 @@ namespace GTiff2Tiles.Console
                 {
                     case Core.Enums.Algorithms.Join:
                         await inputImage
-                             .GenerateTilesByJoining(OutputDirectoryInfo, MinZ, MaxZ, TmsCompatible, consoleProgress,
+                             .GenerateTilesByJoiningAsync(OutputDirectoryInfo, MinZ, MaxZ, TmsCompatible, consoleProgress,
                                                      ThreadsCount).ConfigureAwait(false);
 
                         break;
                     case Core.Enums.Algorithms.Crop:
                         await inputImage
-                             .GenerateTilesByCropping(OutputDirectoryInfo, MinZ, MaxZ, TmsCompatible, consoleProgress,
+                             .GenerateTilesByCroppingAsync(OutputDirectoryInfo, MinZ, MaxZ, TmsCompatible, consoleProgress,
                                                       ThreadsCount).ConfigureAwait(false);
 
                         break;

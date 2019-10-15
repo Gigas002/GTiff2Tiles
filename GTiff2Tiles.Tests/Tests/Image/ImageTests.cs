@@ -13,7 +13,7 @@ namespace GTiff2Tiles.Tests.Tests.Image
         public void Setup() { }
 
         [Test]
-        public async Task GenerateTmsTilesByJoining()
+        public async Task GenerateTmsTilesByJoiningAsync()
         {
             DirectoryInfo examplesDirectoryInfo = Helpers.TestHelper.GetExamplesDirectoryInfo();
 
@@ -40,13 +40,13 @@ namespace GTiff2Tiles.Tests.Tests.Image
                 //Check for errors.
                 Core.Helpers.CheckHelper.CheckDirectory(outputDirectoryInfo, true);
 
-                if (!await Core.Helpers.CheckHelper.CheckInputFile(inputFileInfo))
+                if (!await Core.Helpers.CheckHelper.CheckInputFileAsync(inputFileInfo))
                 {
                     string tempFilePath = Path.Combine(tempDirectoryInfo.FullName,
                                                        $"{Core.Enums.Image.Gdal.TempFileName}{Core.Enums.Extensions.Tif}");
                     FileInfo tempFileInfo = new FileInfo(tempFilePath);
 
-                    await Core.Image.Gdal.Warp(inputFileInfo, tempFileInfo, Core.Enums.Image.Gdal.RepairTifOptions);
+                    await Core.Image.Gdal.WarpAsync(inputFileInfo, tempFileInfo, Core.Enums.Image.Gdal.RepairTifOptions);
                     inputFileInfo = tempFileInfo;
                 }
 
@@ -55,7 +55,7 @@ namespace GTiff2Tiles.Tests.Tests.Image
                 const int minZ = Enums.Zooms.MinZ;
                 const int maxZ = Enums.Zooms.MaxZ;
                 const int threadsCount = Enums.Multithreading.ThreadsCount;
-                await image.GenerateTilesByJoining(outputDirectoryInfo, minZ, maxZ, tmsCompatible, progress,
+                await image.GenerateTilesByJoiningAsync(outputDirectoryInfo, minZ, maxZ, tmsCompatible, progress,
                                                    threadsCount);
             }
             catch (Exception exception) { Assert.Fail(exception.Message); }
@@ -64,7 +64,7 @@ namespace GTiff2Tiles.Tests.Tests.Image
         }
 
         [Test]
-        public async Task GenerateTmsTilesByCropping()
+        public async Task GenerateTmsTilesByCroppingAsync()
         {
             DirectoryInfo examplesDirectoryInfo = Helpers.TestHelper.GetExamplesDirectoryInfo();
 
@@ -91,13 +91,13 @@ namespace GTiff2Tiles.Tests.Tests.Image
                 //Check for errors.
                 Core.Helpers.CheckHelper.CheckDirectory(outputDirectoryInfo, true);
 
-                if (!await Core.Helpers.CheckHelper.CheckInputFile(inputFileInfo))
+                if (!await Core.Helpers.CheckHelper.CheckInputFileAsync(inputFileInfo))
                 {
                     string tempFilePath = Path.Combine(tempDirectoryInfo.FullName,
                                                        $"{Core.Enums.Image.Gdal.TempFileName}{Core.Enums.Extensions.Tif}");
                     FileInfo tempFileInfo = new FileInfo(tempFilePath);
 
-                    await Core.Image.Gdal.Warp(inputFileInfo, tempFileInfo, Core.Enums.Image.Gdal.RepairTifOptions);
+                    await Core.Image.Gdal.WarpAsync(inputFileInfo, tempFileInfo, Core.Enums.Image.Gdal.RepairTifOptions);
                     inputFileInfo = tempFileInfo;
                 }
 
@@ -106,7 +106,7 @@ namespace GTiff2Tiles.Tests.Tests.Image
                 const int minZ = Enums.Zooms.MinZ;
                 const int maxZ = Enums.Zooms.MaxZ;
                 const int threadsCount = Enums.Multithreading.ThreadsCount;
-                await image.GenerateTilesByCropping(outputDirectoryInfo, minZ, maxZ, tmsCompatible, progress,
+                await image.GenerateTilesByCroppingAsync(outputDirectoryInfo, minZ, maxZ, tmsCompatible, progress,
                                                     threadsCount);
             }
             catch (Exception exception) { Assert.Fail(exception.Message); }
@@ -115,7 +115,7 @@ namespace GTiff2Tiles.Tests.Tests.Image
         }
 
         [Test]
-        public async Task GenerateNonTmsTilesByJoining()
+        public async Task GenerateNonTmsTilesByJoiningAsync()
         {
             DirectoryInfo examplesDirectoryInfo = Helpers.TestHelper.GetExamplesDirectoryInfo();
 
@@ -142,13 +142,13 @@ namespace GTiff2Tiles.Tests.Tests.Image
                 //Check for errors.
                 Core.Helpers.CheckHelper.CheckDirectory(outputDirectoryInfo, true);
 
-                if (!await Core.Helpers.CheckHelper.CheckInputFile(inputFileInfo))
+                if (!await Core.Helpers.CheckHelper.CheckInputFileAsync(inputFileInfo))
                 {
                     string tempFilePath = Path.Combine(tempDirectoryInfo.FullName,
                                                        $"{Core.Enums.Image.Gdal.TempFileName}{Core.Enums.Extensions.Tif}");
                     FileInfo tempFileInfo = new FileInfo(tempFilePath);
 
-                    await Core.Image.Gdal.Warp(inputFileInfo, tempFileInfo, Core.Enums.Image.Gdal.RepairTifOptions);
+                    await Core.Image.Gdal.WarpAsync(inputFileInfo, tempFileInfo, Core.Enums.Image.Gdal.RepairTifOptions);
                     inputFileInfo = tempFileInfo;
                 }
 
@@ -157,7 +157,7 @@ namespace GTiff2Tiles.Tests.Tests.Image
                 const int minZ = Enums.Zooms.MinZ;
                 const int maxZ = Enums.Zooms.MaxZ;
                 const int threadsCount = Enums.Multithreading.ThreadsCount;
-                await image.GenerateTilesByJoining(outputDirectoryInfo, minZ, maxZ, tmsCompatible, progress,
+                await image.GenerateTilesByJoiningAsync(outputDirectoryInfo, minZ, maxZ, tmsCompatible, progress,
                                                    threadsCount);
             }
             catch (Exception exception) { Assert.Fail(exception.Message); }
@@ -166,7 +166,7 @@ namespace GTiff2Tiles.Tests.Tests.Image
         }
 
         [Test]
-        public async Task GenerateNonTmsTilesByCropping()
+        public async Task GenerateNonTmsTilesByCroppingAsync()
         {
             DirectoryInfo examplesDirectoryInfo = Helpers.TestHelper.GetExamplesDirectoryInfo();
 
@@ -193,13 +193,13 @@ namespace GTiff2Tiles.Tests.Tests.Image
                 //Check for errors.
                 Core.Helpers.CheckHelper.CheckDirectory(outputDirectoryInfo, true);
 
-                if (!await Core.Helpers.CheckHelper.CheckInputFile(inputFileInfo))
+                if (!await Core.Helpers.CheckHelper.CheckInputFileAsync(inputFileInfo))
                 {
                     string tempFilePath = Path.Combine(tempDirectoryInfo.FullName,
                                                        $"{Core.Enums.Image.Gdal.TempFileName}{Core.Enums.Extensions.Tif}");
                     FileInfo tempFileInfo = new FileInfo(tempFilePath);
 
-                    await Core.Image.Gdal.Warp(inputFileInfo, tempFileInfo, Core.Enums.Image.Gdal.RepairTifOptions);
+                    await Core.Image.Gdal.WarpAsync(inputFileInfo, tempFileInfo, Core.Enums.Image.Gdal.RepairTifOptions);
                     inputFileInfo = tempFileInfo;
                 }
 
@@ -208,7 +208,7 @@ namespace GTiff2Tiles.Tests.Tests.Image
                 const int minZ = Enums.Zooms.MinZ;
                 const int maxZ = Enums.Zooms.MaxZ;
                 const int threadsCount = Enums.Multithreading.ThreadsCount;
-                await image.GenerateTilesByCropping(outputDirectoryInfo, minZ, maxZ, tmsCompatible, progress,
+                await image.GenerateTilesByCroppingAsync(outputDirectoryInfo, minZ, maxZ, tmsCompatible, progress,
                                                     threadsCount);
             }
             catch (Exception exception) { Assert.Fail(exception.Message); }

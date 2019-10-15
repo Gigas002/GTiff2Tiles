@@ -6,7 +6,7 @@ namespace GTiff2Tiles.Core.Exceptions.Tile
     /// <summary>
     /// Exceptions, happened in Tile.Tile.cs.
     /// </summary>
-    public class TileException : Exception
+    public sealed class TileException : Exception
     {
         #region Constructors
 

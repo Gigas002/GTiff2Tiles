@@ -93,7 +93,7 @@
                 </TextBox>
                 <Button Grid.Row="0" Grid.Column="2"
                         Content="{materialDesignThemes:PackIcon Image}"
-                        caliburnMicro:Message.Attach="InputFileButton"/>
+                        caliburnMicro:Message.Attach="InputFileButtonAsync"/>
 
                 <!-- Grid.Row="2" -->
                 <TextBox Grid.Row="2" Grid.Column="0"
@@ -109,7 +109,7 @@
                 </TextBox>
                 <Button Grid.Row="2" Grid.Column="2"
                         Content="{materialDesignThemes:PackIcon Folder}"
-                        caliburnMicro:Message.Attach="OutputDirectoryButton"/>
+                        caliburnMicro:Message.Attach="OutputDirectoryButtonAsyncTem"/>
 
                 <!-- Grid.Row="4" -->
                 <TextBox Grid.Row="4" Grid.Column="0"
@@ -125,7 +125,7 @@
                 </TextBox>
                 <Button Grid.Row="4" Grid.Column="2"
                         Content="{materialDesignThemes:PackIcon Folder}"
-                        caliburnMicro:Message.Attach="TempDirectoryButton"/>
+                        caliburnMicro:Message.Attach="TempDirectoryButtonAsync"/>
 
                 <!-- Grid.Row="6" -->
                 <TextBox Grid.Row="6" Grid.Column="0"
@@ -196,7 +196,7 @@
                         Grid.ColumnSpan="3"
                         FontSize="18"
                         Content="{Binding StartButtonContent}"
-                        caliburnMicro:Message.Attach="StartButton"/>
+                        caliburnMicro:Message.Attach="StartButtonAsync"/>
 
                 <!-- Grid.Row="18" -->
                 <ProgressBar Grid.Row="18" Grid.Column="0"

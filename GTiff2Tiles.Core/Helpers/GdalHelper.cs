@@ -106,10 +106,9 @@ namespace GTiff2Tiles.Core.Helpers
             for (int index = 0; index < driverCount; index++)
                 try
                 {
-                    using (OSGeo.OGR.Driver driver = Ogr.GetDriver(index))
-                    {
-                        Console.WriteLine($"OGR {index}: {driver.GetName()}", "Debug");
-                    }
+                    using OSGeo.OGR.Driver driver = Ogr.GetDriver(index);
+
+                    Console.WriteLine($"OGR {index}: {driver.GetName()}", "Debug");
                 }
                 catch (Exception exception)
                 {
@@ -129,10 +128,9 @@ namespace GTiff2Tiles.Core.Helpers
             for (int index = 0; index < driverCount; index++)
                 try
                 {
-                    using (OSGeo.GDAL.Driver driver = Gdal.GetDriver(index))
-                    {
-                        Console.WriteLine($"GDAL {index}: {driver.ShortName}-{driver.LongName}");
-                    }
+                    using OSGeo.GDAL.Driver driver = Gdal.GetDriver(index);
+
+                    Console.WriteLine($"GDAL {index}: {driver.ShortName}-{driver.LongName}");
                 }
                 catch (Exception exception)
                 {
