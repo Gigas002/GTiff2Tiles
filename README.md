@@ -4,7 +4,7 @@
 
 Analogue of [gdal2tiles.py](https://github.com/OSGeo/gdal/blob/master/gdal/swig/python/scripts/gdal2tiles.py)/[MapTiler](https://www.maptiler.com/) on **C#**. Support **only GeoTIFF** as input data and creates **only geodetic 4 bands tiles** on output in [**tms**](https://wiki.osgeo.org/wiki/Tile_Map_Service_Specification)/**non-tms** (Google maps like) structure.
 
-Solution is build in **VS2019 (16.3.1)**, **.NET Framework 4.8**, targeting **Windows x64** systems.
+Solution is build in **VS2019 (16.3.5)**, **.NET Framework 4.8**, targeting **Windows x64** systems.
 
 Icon is kindly provided by [Google’s material design](https://material.io/tools/icons/?icon=image&style=baseline) and is used in **GTiff2Tiles.GUI**, **GTiff2Tiles.Console** and **GTiff2Tiles.Benchmarks** projects.
 
@@ -73,7 +73,7 @@ Library uses 2 different algorithms to create tiles:
 - [GDAL](https://www.nuget.org/packages/GDAL/) – 2.4.2;
 - [GDAL.Native](https://www.nuget.org/packages/GDAL.Native/) – 2.4.2;
 - [NetVips](https://www.nuget.org/packages/NetVips/) – 1.1.0;
-- [NetVips.Native.win-x64](https://www.nuget.org/packages/NetVips.Native.win-x64/) – 8.8.2;
+- [NetVips.Native.win-x64](https://www.nuget.org/packages/NetVips.Native.win-x64/) – 8.8.3;
 - [System.Threading.Tasks.Extensions](https://www.nuget.org/packages/System.Threading.Tasks.Extensions/) – 4.5.3;
 
 ### Localization
