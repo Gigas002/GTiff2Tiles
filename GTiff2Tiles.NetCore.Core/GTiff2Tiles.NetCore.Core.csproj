@@ -1,15 +1,16 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
     <Platforms>AnyCPU;x64</Platforms>
-    <AssemblyVersion>1.0.0.12</AssemblyVersion>
-    <FileVersion>1.0.0.12</FileVersion>
+    <AssemblyVersion>1.0.0.22</AssemblyVersion>
+    <FileVersion>1.0.0.22</FileVersion>
+    <LangVersion>8</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="MaxRev.Gdal.Core" Version="3.0.1.2" />
-    <PackageReference Include="MaxRev.Gdal.WindowsRuntime.Minimal" Version="3.0.1.2" />
+    <PackageReference Include="MaxRev.Gdal.WindowsRuntime.Minimal" Version="3.0.1.25" />
     <PackageReference Include="NetVips" Version="1.1.0" />
     <PackageReference Include="NetVips.Native" Version="8.8.3" />
   </ItemGroup>
