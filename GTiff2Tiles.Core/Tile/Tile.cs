@@ -21,6 +21,11 @@
  DEALINGS IN THE SOFTWARE.
 *******************************************************************************/
 
+/*******************************************************************************
+ I don't really know about that licensing stuff, but I used some code with this license in files above, so I included it here just in case.
+ All the C# code (except for GdalHelper) in this project is written by me (https://github.com/Gigas002).
+*******************************************************************************/
+
 using System;
 using System.Linq;
 using GTiff2Tiles.Core.Exceptions.Tile;

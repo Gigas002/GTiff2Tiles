@@ -528,33 +528,32 @@ namespace GTiff2Tiles.Core.Image
                                    exception);
             }
 
-            using (SemaphoreSlim semaphoreSlim = new SemaphoreSlim(threadsCount))
+            using SemaphoreSlim semaphoreSlim = new SemaphoreSlim(threadsCount);
+
+            List<Task> tasks = new List<Task>();
+
+            //For each tile on given zoom calculate positions/sizes and save as file.
+            for (int tileY = TilesMinMax[zoom][1]; tileY <= TilesMinMax[zoom][3]; tileY++)
             {
-                List<Task> tasks = new List<Task>();
-
-                //For each tile on given zoom calculate positions/sizes and save as file.
-                for (int tileY = TilesMinMax[zoom][1]; tileY <= TilesMinMax[zoom][3]; tileY++)
+                for (int tileX = TilesMinMax[zoom][0]; tileX <= TilesMinMax[zoom][2]; tileX++)
                 {
-                    for (int tileX = TilesMinMax[zoom][0]; tileX <= TilesMinMax[zoom][2]; tileX++)
+                    await semaphoreSlim.WaitAsync().ConfigureAwait(false);
+
+                    int x = tileX;
+                    int y = tileY;
+
+                    tasks.Add(Task.Run(() =>
                     {
-                        await semaphoreSlim.WaitAsync().ConfigureAwait(false);
-
-                        int x = tileX;
-                        int y = tileY;
-
-                        tasks.Add(Task.Run(() =>
-                        {
-                            try { WriteTile(zoom, x, y, inputImage); }
-                            finally { semaphoreSlim.Release(); }
-                        }));
-                    }
+                        try { WriteTile(zoom, x, y, inputImage); }
+                        finally { semaphoreSlim.Release(); }
+                    }));
                 }
-
-                await Task.WhenAll(tasks).ConfigureAwait(false);
-
-                //Dispose tasks.
-                foreach (Task task in tasks) task.Dispose();
             }
+
+            await Task.WhenAll(tasks).ConfigureAwait(false);
+
+            //Dispose tasks.
+            foreach (Task task in tasks) task.Dispose();
 
             inputImage.Dispose();
         }

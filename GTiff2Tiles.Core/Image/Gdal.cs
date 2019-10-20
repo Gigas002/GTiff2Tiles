@@ -105,6 +105,7 @@ namespace GTiff2Tiles.Core.Image
         /// </summary>
         private static void ConfigureGdal()
         {
+            //TODO test cyrillic paths
             //if (!GdalHelper.Usable) GdalHelper.Initialize();
 
             //if (GdalHelper.IsGdalConfigured) return;
@@ -112,19 +113,6 @@ namespace GTiff2Tiles.Core.Image
             //GdalHelper.ConfigureGdal();
             Proj6.Configure();
             GdalBase.ConfigureAll();
-        }
-
-        /// <summary>
-        /// Initialize Ogr, if it hadn't been initialized yet.
-        /// </summary>
-        // ReSharper disable once UnusedMember.Local
-        private static void ConfigureOgr()
-        {
-            //if (!GdalHelper.Usable) GdalHelper.Initialize();
-
-            //if (GdalHelper.IsOgrConfigured) return;
-
-            //GdalHelper.ConfigureOgr();
         }
 
         #endregion
