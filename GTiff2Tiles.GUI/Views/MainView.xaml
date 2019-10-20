@@ -109,7 +109,7 @@
                 </TextBox>
                 <Button Grid.Row="2" Grid.Column="2"
                         Content="{materialDesignThemes:PackIcon Folder}"
-                        caliburnMicro:Message.Attach="OutputDirectoryButtonAsyncTem"/>
+                        caliburnMicro:Message.Attach="OutputDirectoryButtonAsync"/>
 
                 <!-- Grid.Row="4" -->
                 <TextBox Grid.Row="4" Grid.Column="0"

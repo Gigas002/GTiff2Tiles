@@ -17,12 +17,12 @@ namespace GTiff2Tiles.GUI.Helpers
         /// <returns></returns>
         internal static async ValueTask ShowExceptionAsync(Exception exception)
         {
-            await DialogHost.Show(new MessageBoxDialogViewModel(exception.Message)).ConfigureAwait(false);
+            await DialogHost.Show(new MessageBoxDialogViewModel(exception.Message)).ConfigureAwait(true);
 
             #if DEBUG
             if (exception.InnerException != null)
                 await DialogHost.Show(new MessageBoxDialogViewModel(exception.InnerException.Message))
-                                .ConfigureAwait(false);
+                                .ConfigureAwait(true);
             #endif
         }
 
@@ -34,11 +34,11 @@ namespace GTiff2Tiles.GUI.Helpers
         /// <returns><see langword="false"/>.</returns>
         internal static async ValueTask<bool> ShowErrorAsync(string errorMessage, Exception exception = null)
         {
-            await DialogHost.Show(new MessageBoxDialogViewModel(errorMessage)).ConfigureAwait(false);
+            await DialogHost.Show(new MessageBoxDialogViewModel(errorMessage)).ConfigureAwait(true);
 
             #if DEBUG
             if (exception != null)
-                await DialogHost.Show(new MessageBoxDialogViewModel(exception.Message)).ConfigureAwait(false);
+                await DialogHost.Show(new MessageBoxDialogViewModel(exception.Message)).ConfigureAwait(true);
             #endif
 
             return false;

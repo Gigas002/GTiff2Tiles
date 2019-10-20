@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using Caliburn.Micro;
 using GTiff2Tiles.Core.Enums;
 using GTiff2Tiles.Core.Helpers;
-using GTiff2Tiles.Core.Image;
 using GTiff2Tiles.GUI.Enums;
 using GTiff2Tiles.GUI.Localization;
 using GTiff2Tiles.GUI.Models;
@@ -14,7 +13,6 @@ using GTiff2Tiles.GUI.Properties;
 using GTiff2Tiles.GUI.Views;
 using MaterialDesignExtensions.Controls;
 using MaterialDesignThemes.Wpf;
-using Gdal = GTiff2Tiles.Core.Enums.Image.Gdal;
 
 // ReSharper disable MemberCanBePrivate.Global
 // ReSharper disable once ClassNeverInstantiated.Global
@@ -338,10 +336,10 @@ namespace GTiff2Tiles.GUI.ViewModels
                 OpenFileDialogResult dialogResult = await OpenFileDialog
                                                          .ShowDialogAsync(Enums.MainViewModel.DialogHostId,
                                                                           new OpenFileDialogArguments())
-                                                         .ConfigureAwait(false);
+                                                         .ConfigureAwait(true);
                 InputFilePath = dialogResult.Canceled ? InputFilePath : dialogResult.FileInfo.FullName;
             }
-            catch (Exception exception) { await Helpers.ErrorHelper.ShowExceptionAsync(exception).ConfigureAwait(false); }
+            catch (Exception exception) { await Helpers.ErrorHelper.ShowExceptionAsync(exception).ConfigureAwait(true); }
         }
 
         /// <summary>
@@ -357,10 +355,10 @@ namespace GTiff2Tiles.GUI.ViewModels
                                                               new OpenDirectoryDialogArguments
                                                               {
                                                                   CreateNewDirectoryEnabled = true
-                                                              }).ConfigureAwait(false);
+                                                              }).ConfigureAwait(true);
                 OutputDirectoryPath = dialogResult.Canceled ? OutputDirectoryPath : dialogResult.Directory;
             }
-            catch (Exception exception) { await Helpers.ErrorHelper.ShowExceptionAsync(exception).ConfigureAwait(false); }
+            catch (Exception exception) { await Helpers.ErrorHelper.ShowExceptionAsync(exception).ConfigureAwait(true); }
         }
 
         /// <summary>
@@ -376,10 +374,10 @@ namespace GTiff2Tiles.GUI.ViewModels
                                                               new OpenDirectoryDialogArguments
                                                               {
                                                                   CreateNewDirectoryEnabled = true
-                                                              }).ConfigureAwait(false);
+                                                              }).ConfigureAwait(true);
                 TempDirectoryPath = dialogResult.Canceled ? TempDirectoryPath : dialogResult.Directory;
             }
-            catch (Exception exception) { await Helpers.ErrorHelper.ShowExceptionAsync(exception).ConfigureAwait(false); }
+            catch (Exception exception) { await Helpers.ErrorHelper.ShowExceptionAsync(exception).ConfigureAwait(true); }
         }
 
         /// <summary>
@@ -391,7 +389,7 @@ namespace GTiff2Tiles.GUI.ViewModels
             Stopwatch stopwatch = Stopwatch.StartNew();
 
             //Check properties for errors.
-            if (!await CheckPropertiesAsync().ConfigureAwait(false)) return;
+            if (!await CheckPropertiesAsync().ConfigureAwait(true)) return;
 
             //Initialize FileSystemEntries from properties.
             FileInfo inputFileInfo = new FileInfo(InputFilePath);
@@ -411,19 +409,19 @@ namespace GTiff2Tiles.GUI.ViewModels
                 //Check for errors.
                 CheckHelper.CheckDirectory(outputDirectoryInfo, true);
 
-                if (!await CheckHelper.CheckInputFileAsync(inputFileInfo).ConfigureAwait(false))
+                if (!await CheckHelper.CheckInputFileAsync(inputFileInfo).ConfigureAwait(true))
                 {
                     string tempFilePath = Path.Combine(tempDirectoryInfo.FullName,
-                                                       $"{Gdal.TempFileName}{Extensions.Tif}");
+                                                       $"{Core.Enums.Image.Gdal.TempFileName}{Extensions.Tif}");
                     FileInfo tempFileInfo = new FileInfo(tempFilePath);
 
-                    await Core.Image.Gdal.WarpAsync(inputFileInfo, tempFileInfo, Gdal.RepairTifOptions)
-                              .ConfigureAwait(false);
+                    await Core.Image.Gdal.WarpAsync(inputFileInfo, tempFileInfo, Core.Enums.Image.Gdal.RepairTifOptions)
+                              .ConfigureAwait(true);
                     inputFileInfo = tempFileInfo;
                 }
 
                 //Create image object.
-                Image inputImage = new Image(inputFileInfo);
+                Core.Image.Image inputImage = new Core.Image.Image(inputFileInfo);
 
                 //Switch on algorithm.
                 switch (Algorithm)
@@ -431,17 +429,17 @@ namespace GTiff2Tiles.GUI.ViewModels
                     case Core.Enums.Algorithms.Join:
                         await inputImage
                              .GenerateTilesByJoiningAsync(outputDirectoryInfo, MinZ, MaxZ, TmsCompatible, progress,
-                                                     ThreadsCount).ConfigureAwait(false);
+                                                     ThreadsCount).ConfigureAwait(true);
 
                         break;
                     case Core.Enums.Algorithms.Crop:
                         await inputImage
                              .GenerateTilesByCroppingAsync(outputDirectoryInfo, MinZ, MaxZ, TmsCompatible, progress,
-                                                      ThreadsCount).ConfigureAwait(false);
+                                                      ThreadsCount).ConfigureAwait(true);
 
                         break;
                     default:
-                        await Helpers.ErrorHelper.ShowErrorAsync(Strings.AlgorithmNotSupported).ConfigureAwait(false);
+                        await Helpers.ErrorHelper.ShowErrorAsync(Strings.AlgorithmNotSupported).ConfigureAwait(true);
                         IsEnabled = true;
 
                         return;
@@ -449,7 +447,7 @@ namespace GTiff2Tiles.GUI.ViewModels
             }
             catch (Exception exception)
             {
-                await Helpers.ErrorHelper.ShowExceptionAsync(exception).ConfigureAwait(false);
+                await Helpers.ErrorHelper.ShowExceptionAsync(exception).ConfigureAwait(true);
                 IsEnabled = true;
 
                 return;
@@ -464,7 +462,7 @@ namespace GTiff2Tiles.GUI.ViewModels
                                                                    stopwatch.Elapsed.Days, stopwatch.Elapsed.Hours,
                                                                    stopwatch.Elapsed.Minutes, stopwatch.Elapsed.Seconds,
                                                                    stopwatch.Elapsed.Milliseconds)))
-                 .ConfigureAwait(false);
+                 .ConfigureAwait(true);
         }
 
         #endregion
@@ -479,43 +477,43 @@ namespace GTiff2Tiles.GUI.ViewModels
         {
             if (string.IsNullOrWhiteSpace(InputFilePath))
                 return await Helpers.ErrorHelper.ShowErrorAsync(string.Format(Strings.PathIsEmpty, nameof(InputFilePath)))
-                                    .ConfigureAwait(false);
+                                    .ConfigureAwait(true);
 
             if (string.IsNullOrWhiteSpace(OutputDirectoryPath))
                 return await Helpers
                             .ErrorHelper.ShowErrorAsync(string.Format(Strings.PathIsEmpty, nameof(OutputDirectoryPath)))
-                            .ConfigureAwait(false);
+                            .ConfigureAwait(true);
 
             if (string.IsNullOrWhiteSpace(TempDirectoryPath))
                 return await Helpers
                             .ErrorHelper.ShowErrorAsync(string.Format(Strings.PathIsEmpty, nameof(TempDirectoryPath)))
-                            .ConfigureAwait(false);
+                            .ConfigureAwait(true);
 
             if (MinZ < 0)
                 return await Helpers.ErrorHelper.ShowErrorAsync(string.Format(Strings.LesserThan, nameof(MinZ), 0))
-                                    .ConfigureAwait(false);
+                                    .ConfigureAwait(true);
 
             if (MaxZ < 0)
                 return await Helpers.ErrorHelper.ShowErrorAsync(string.Format(Strings.LesserThan, nameof(MaxZ), 0))
-                                    .ConfigureAwait(false);
+                                    .ConfigureAwait(true);
 
             if (MaxZ < MinZ)
                 return await Helpers
                             .ErrorHelper.ShowErrorAsync(string.Format(Strings.LesserThan, nameof(MaxZ), nameof(MinZ)))
-                            .ConfigureAwait(false);
+                            .ConfigureAwait(true);
 
             if (string.IsNullOrWhiteSpace(Algorithm))
-                return await Helpers.ErrorHelper.ShowErrorAsync(Strings.SelectAlgorithm).ConfigureAwait(false);
+                return await Helpers.ErrorHelper.ShowErrorAsync(Strings.SelectAlgorithm).ConfigureAwait(true);
 
             Algorithm = Algorithm.ToLowerInvariant();
 
             if (Algorithm != Core.Enums.Algorithms.Join && Algorithm != Core.Enums.Algorithms.Crop)
-                return await Helpers.ErrorHelper.ShowErrorAsync(Strings.AlgorithmNotSupported).ConfigureAwait(false);
+                return await Helpers.ErrorHelper.ShowErrorAsync(Strings.AlgorithmNotSupported).ConfigureAwait(true);
 
             if (ThreadsCount <= 0)
                 return await Helpers
                             .ErrorHelper.ShowErrorAsync(string.Format(Strings.LesserOrEqual, nameof(ThreadsCount), 0))
-                            .ConfigureAwait(false);
+                            .ConfigureAwait(true);
 
             //Disable controls.
             IsEnabled = false;

@@ -3,8 +3,8 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
     <Platforms>AnyCPU;x64</Platforms>
-    <AssemblyVersion>1.4.0.37</AssemblyVersion>
-    <FileVersion>1.4.0.37</FileVersion>
+    <AssemblyVersion>1.4.0.38</AssemblyVersion>
+    <FileVersion>1.4.0.38</FileVersion>
     <Version>1.4.0</Version>
     <Company>Gigas002</Company>
     <Authors>Gigas002</Authors>

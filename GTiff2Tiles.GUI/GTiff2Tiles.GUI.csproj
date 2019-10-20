@@ -4,8 +4,8 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp3.0</TargetFramework>
     <UseWPF>true</UseWPF>
-    <AssemblyVersion>1.4.0.34</AssemblyVersion>
-    <FileVersion>1.4.0.34</FileVersion>
+    <AssemblyVersion>1.4.0.49</AssemblyVersion>
+    <FileVersion>1.4.0.49</FileVersion>
     <StartupObject>GTiff2Tiles.GUI.App</StartupObject>
     <ApplicationIcon>Resources\Icon.ico</ApplicationIcon>
     <Platforms>AnyCPU;x64</Platforms>
