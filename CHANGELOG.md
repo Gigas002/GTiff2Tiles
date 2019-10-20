@@ -9,7 +9,7 @@ Changes since 1.3.1:
 **BREAKING CHANGES:**
 
 - Solution is rebuild with **.NET Core 3.0 SDK**;
-- Library and some other projects now supports **Linux x64**, **OSX x64** and **Windows x64** and **Windows x86** operating systems. Read more below;
+- Library and some other projects now supports **Linux x64**, **OSX x64** and **Windows x64** operating systems. Read more below;
 - Renamed all async methods to `methodNameAsync`;
 
 **Other:**
@@ -35,12 +35,11 @@ Changes since 1.3.1:
 
 ### Console
 
-- Now supports **Linux x64**, **OSX x64** and **Windows x64** and **Windows x86** operating systems;
+- Now supports **Linux x64**, **OSX x64** and **Windows x64** operating systems;
 - Removed **System.Threading.Tasks.Extensions** package;
 
 ### GUI
 
-- Now supports **Windows x64** and **Windows x86** operating systems;
 - Updated **MaterialDesignExtensions** package to **2.8.0**;
 - Removed **MahApps.Metro** package;
 - Replaced **MahApps.Metro.MetroWindow** with **MaterialDesignExtensions.MaterialWindow**;
@@ -52,7 +51,7 @@ Changes since 1.3.1:
 
 ### Benchmarks
 
-- Now supports **Linux x64**, **OSX x64** and **Windows x64** and **Windows x86** operating systems;
+- Now supports **Linux x64**, **OSX x64** and **Windows x64** operating systems;
 - Removed **System.Threading.Tasks.Extensions** package;
 
 ## 30.07.2019 – Released 1.3.1
