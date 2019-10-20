@@ -4,11 +4,9 @@
 
 Analogue of [gdal2tiles.py](https://github.com/OSGeo/gdal/blob/master/gdal/swig/python/scripts/gdal2tiles.py)/[MapTiler](https://www.maptiler.com/) on **C#**. Support **only GeoTIFF** as input data and creates **only geodetic 4 bands tiles** on output in [**tms**](https://wiki.osgeo.org/wiki/Tile_Map_Service_Specification)/**non-tms** (Google maps like) structure.
 
-Solution can be build in **VS2019 (16.3.5+)**. You can also build projects in **VSCode (1.39.2+)** with **omnisharp-vscode (1.21.5+)** extensions. Projects targets **.NET Core 3.0**, so you’ll need **.NET Core 3.0 SDK**.
+**GTiff2Tiles** support any **GeoTIFF** (with less, than **5 bands**) on input. If it’s not **EPSG:4326** or not **8 bit**, then it will be converted by `Image.Gdal.Warp`, and saved to **temp** directory before cropping tiles.
 
 Icon is kindly provided by [Google’s material design](https://material.io/tools/icons/?icon=image&style=baseline) and is used in **GTiff2Tiles.GUI**, **GTiff2Tiles.Console** and **GTiff2Tiles.Benchmarks** projects.
-
-**GTiff2Tiles** support any **GeoTIFF** (with less, than **5 bands**) on input. If it’s not **EPSG:4326** or not **8 bit**, then it will be converted by `Image.Gdal.Warp`, and saved to **temp** directory before cropping tiles.
 
 [![Build status](https://ci.appveyor.com/api/projects/status/wp5bbi08sgd4i9bh/branch/master?svg=true)](https://ci.appveyor.com/project/Gigas002/gtiff2tiles/branch/master)
 
@@ -17,6 +15,7 @@ Icon is kindly provided by [Google’s material design](https://material.io/tool
 - [GTiff2Tiles](#gtiff2tiles)
   - [Table of contents](#table-of-contents)
   - [Current version](#current-version)
+  - [Build](#build)
   - [Examples](#examples)
   - [GTiff2Tiles.Core](#gtiff2tilescore)
     - [Dependencies](#dependencies)
@@ -24,7 +23,6 @@ Icon is kindly provided by [Google’s material design](https://material.io/tool
   - [GTiff2Tiles.Console](#gtiff2tilesconsole)
     - [Requirements](#requirements)
     - [Usage](#usage)
-    - [Detailed options description](#detailed-options-description)
     - [Dependencies](#dependencies-1)
     - [Localization](#localization-1)
   - [GTiff2Tiles.GUI](#gtiff2tilesgui)
@@ -38,24 +36,29 @@ Icon is kindly provided by [Google’s material design](https://material.io/tool
     - [Requirements](#requirements-2)
     - [Dependencies](#dependencies-4)
     - [Usage](#usage-1)
-    - [Detailed options description](#detailed-options-description-1)
     - [Input data](#input-data)
     - [Arguments](#arguments)
     - [Results](#results)
   - [TODO](#todo)
   - [Contributing](#contributing)
 
-Table of contents generated with [markdown-toc](http://ecotrust-canada.github.io/markdown-toc/ ).
+Table of contents generated with [markdown-toc](http://ecotrust-canada.github.io/markdown-toc/).
 
 ## Current version
 
 **Starting from 1.4.0 solution is rewritten on .NET Core 3.0 instead of .NET Framework 4.7.2/4.8!**
 
-Current stable can be found here: [![Release](https://img.shields.io/github/release/Gigas002/GTiff2Tiles.svg)](https://github.com/Gigas002/GTiff2Tiles/releases/latest), or on NuGet: [![NuGet](https://img.shields.io/nuget/v/GTiff2Tiles.svg)](https://www.nuget.org/packages/GTiff2Tiles/).
+Current stable can be found here: [![Release](https://img.shields.io/github/release/Gigas002/GTiff2Tiles.svg)](https://github.com/Gigas002/GTiff2Tiles/releases/latest), or on NuGet (library only): [![NuGet](https://img.shields.io/nuget/v/GTiff2Tiles.svg)](https://www.nuget.org/packages/GTiff2Tiles/).
 
 Information about changes since previous releases can be found in [changelog](https://github.com/Gigas002/GTiff2Tiles/blob/master/CHANGELOG.md). This project supports [SemVer 2.0.0](https://semver.org/) (template is `{MAJOR}.{MINOR}.{PATCH}.{BUILD}`).
 
 Previous versions can be found on [releases](https://github.com/Gigas002/GTiff2Tiles/releases) and [branches](https://github.com/Gigas002/GTiff2Tiles/branches) pages.
+
+## Build
+
+Solution can be build in **VS2019 (16.3.5+)**. You can also build projects in **VSCode (1.39.2+)** with **omnisharp-vscode (1.21.5+)** extensions. Projects targets **.NET Core 3.0**, so you’ll need **.NET Core 3.0 SDK**.
+
+Some of **Release** binaries are made by `Publish.ps1` script. Take a look at it in the repo. Note, that running this script requires installed **PowerShell** or **[PowerShell Core](https://github.com/PowerShell/PowerShell)** for **Linux**/**OSX** systems.
 
 ## Examples
 
@@ -96,38 +99,7 @@ If you’re using Windows 7 SP1, you can experience weird error with **GDAL** pa
 
 ### Usage
 
-| Short |    Long     |                 Description                 | Required? |
-| :---: | :---------: | :-----------------------------------------: | :-------: |
-|  -i   |   --input   |           Full path to input file           |    Yes    |
-|  -o   |  --output   |        Full path to output directory        |    Yes    |
-|  -t   |   --temp    |         Full path to temp directory         |    Yes    |
-|       |   --minz    |            Minimum cropped zoom             |    Yes    |
-|       |   --maxz    |            Maximum cropped zoom             |    Yes    |
-|  -a   | --algorithm |          Algorithm to create tiles          |    Yes    |
-|       |    --tms    | Do you want to create tms-compatible tiles? |    Yes    |
-|       |  --threads  |                Threads count                |    No     |
-|       |  --version  |               Current version               |           |
-|       |   --help    |        Message about console options        |           |
-
-Simple example looks like this: `./GTiff2Tiles.Console -i "D:/Examples/Input.tif" -o "D:/Examples/Output" -t "D:/Examples/Temp" --minz 8 –maxz 11 -a crop --tms true --threads 3`
-
-### Detailed options description
-
-**input** is `string`, representing full path to input **GeoTIFF** file. Please, specify the path in double quotes (`“like this”`) if it contains spaces.
-
-**output** is `string`, representing full path to directory, where tiles in will be created. Please, specify the path in double quotes (`“like this”`) if it contains spaces. **Directory should be empty.**
-
-**temp** is `string`, representing full path to temporary directory. Please, specify the path in double quotes (`“like this”`) if it contains spaces. Inside will be created directory, which name is a **timestamp** in format `yyyyMMddHHmmssfff`.
-
-**minz** is `int` parameter, representing minimum zoom, which you want to crop.
-
-**maxz** is `int` parameter, representing maximum zoom, which you want to crop.
-
-**algorithm** is `string`, representing cropping algorithm. Can be **crop** or **join**. When using **crop**, the input image will be cropped for each zoom. When using **join**, the input image will be cropped for the lowest zoom, and the upper tiles created by joining lowest ones.
-
-**tms** is `string`, which shows if you want to create tms-compatible or non-tms-compatible tiles on output. Can have values `true` or `false`.
-
-**threads** is `int` parameter, representing threads count. By default (if not set) uses **5 threads**.
+Full documentation is inside of [GTiff2Tiles.Console.Doc.md](GTiff2Tiles.Console/GTiff2Tiles.Console.Doc.md) or it’s `.pdf` analog.
 
 ### Dependencies
 
@@ -207,32 +179,7 @@ If you’re using Windows 7 SP1, you can experience weird error with **GDAL** pa
 
 ### Usage
 
-| Short |   Long    |          Description          | Required? |
-| :---: | :-------: | :---------------------------: | :-------: |
-|  -i   |  --input  |    Full path to input file    |    Yes    |
-|  -o   | --output  | Full path to output directory |    Yes    |
-|  -t   |  --temp   |  Full path to temp directory  |    Yes    |
-|       |  --minz   |     Minimum cropped zoom      |    Yes    |
-|       |  --maxz   |     Maximum cropped zoom      |    Yes    |
-|       | --threads |         Threads count         |    No     |
-|       | --version |        Current version        |           |
-|       |  --help   | Message about console options |           |
-
-Simple example looks like this: `./GTiff2Tiles.Benchmarks -i "D:/Examples/Input.tif" -o "D:/Examples/Output" -t "D:/Examples/Temp" --minz 8 –maxz 11 --threads 3`
-
-### Detailed options description
-
-**input** is `string`, representing full path to input **GeoTIFF** file. Please, specify the path in double quotes (`“like this”`) if it contains spaces.
-
-**output** is `string`, representing full path to directory, where tiles in will be created. Please, specify the path in double quotes (`“like this”`) if it contains spaces. **Directory should be empty.**
-
-**temp** is `string`, representing full path to temporary directory. Please, specify the path in double quotes (`“like this”`) if it contains spaces. Inside will be created directory, which name is a **timestamp** in format `yyyyMMddHHmmssfff`.
-
-**minz** is `int` parameter, representing minimum zoom, which you want to crop.
-
-**maxz** is `int` parameter, representing maximum zoom, which you want to crop.
-
-**threads** is `int` parameter, representing threads count. By default (if not set) uses **5 threads**.
+Full documentation is inside of [GTiff2Tiles.Benchmarks.Doc.md](GTiff2Tiles.Benchmarks/GTiff2Tiles.Benchmarks.Doc.md) or it’s `.pdf` analog.
 
 ### Input data
 
