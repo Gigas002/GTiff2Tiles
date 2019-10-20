@@ -6,8 +6,6 @@ using CommandLine;
 using GTiff2Tiles.Console.Localization;
 using GTiff2Tiles.Core.Enums;
 using GTiff2Tiles.Core.Helpers;
-using GTiff2Tiles.Core.Image;
-using Gdal = GTiff2Tiles.Core.Enums.Image.Gdal;
 
 namespace GTiff2Tiles.Console
 {
@@ -103,16 +101,16 @@ namespace GTiff2Tiles.Console
                 if (!await CheckHelper.CheckInputFileAsync(InputFileInfo).ConfigureAwait(false))
                 {
                     string tempFilePath = Path.Combine(TempDirectoryInfo.FullName,
-                                                       $"{Gdal.TempFileName}{Extensions.Tif}");
+                                                       $"{Core.Enums.Image.Gdal.TempFileName}{Extensions.Tif}");
                     FileInfo tempFileInfo = new FileInfo(tempFilePath);
 
-                    await Core.Image.Gdal.WarpAsync(InputFileInfo, tempFileInfo, Gdal.RepairTifOptions)
+                    await Core.Image.Gdal.WarpAsync(InputFileInfo, tempFileInfo, Core.Enums.Image.Gdal.RepairTifOptions)
                               .ConfigureAwait(false);
                     InputFileInfo = tempFileInfo;
                 }
 
                 //Create image object.
-                Image inputImage = new Image(InputFileInfo);
+                Core.Image.Image inputImage = new Core.Image.Image(InputFileInfo);
 
                 //Switch on algorithm.
                 switch (Algorithm)
