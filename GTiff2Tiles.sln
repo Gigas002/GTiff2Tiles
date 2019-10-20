@@ -13,9 +13,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GTiff2Tiles.Tests", "GTiff2
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GTiff2Tiles.Benchmarks", "GTiff2Tiles.Benchmarks\GTiff2Tiles.Benchmarks.csproj", "{7130C1FA-85F0-44BE-B9D8-87D4BA4E1CB5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GTiff2Tiles.NetCore.Core", "GTiff2Tiles.NetCore.Core\GTiff2Tiles.NetCore.Core.csproj", "{87DDD819-F1C6-4FAC-BD32-1ABE38D40CB3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GTiff2Tiles.NetCore.Core", "GTiff2Tiles.NetCore.Core\GTiff2Tiles.NetCore.Core.csproj", "{87DDD819-F1C6-4FAC-BD32-1ABE38D40CB3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GTiff2Tiles.NetCore.Console", "GTiff2Tiles.NetCore.Console\GTiff2Tiles.NetCore.Console.csproj", "{45B0AF47-821B-4E27-A631-7092976CE6E3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GTiff2Tiles.NetCore.Console", "GTiff2Tiles.NetCore.Console\GTiff2Tiles.NetCore.Console.csproj", "{45B0AF47-821B-4E27-A631-7092976CE6E3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GTiff2Tiles.NetCore.GUI", "GTiff2Tiles.NetCore.GUI\GTiff2Tiles.NetCore.GUI.csproj", "{50F657F0-B57B-4559-8E0B-B8CBFB37D16B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -81,6 +83,14 @@ Global
 		{45B0AF47-821B-4E27-A631-7092976CE6E3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{45B0AF47-821B-4E27-A631-7092976CE6E3}.Release|x64.ActiveCfg = Release|Any CPU
 		{45B0AF47-821B-4E27-A631-7092976CE6E3}.Release|x64.Build.0 = Release|Any CPU
+		{50F657F0-B57B-4559-8E0B-B8CBFB37D16B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{50F657F0-B57B-4559-8E0B-B8CBFB37D16B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{50F657F0-B57B-4559-8E0B-B8CBFB37D16B}.Debug|x64.ActiveCfg = Debug|x64
+		{50F657F0-B57B-4559-8E0B-B8CBFB37D16B}.Debug|x64.Build.0 = Debug|x64
+		{50F657F0-B57B-4559-8E0B-B8CBFB37D16B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{50F657F0-B57B-4559-8E0B-B8CBFB37D16B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{50F657F0-B57B-4559-8E0B-B8CBFB37D16B}.Release|x64.ActiveCfg = Release|Any CPU
+		{50F657F0-B57B-4559-8E0B-B8CBFB37D16B}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
