@@ -176,8 +176,8 @@ namespace GTiff2Tiles.Benchmarks
 
             string gdal2TilesOutputDirectoryPath = Path.Combine(OutputDirectoryInfo.FullName, "gdal2tiles");
             Directory.CreateDirectory(gdal2TilesOutputDirectoryPath);
-            await Task.Run(() => RunGdal2Tiles(InputFileInfo.FullName, gdal2TilesOutputDirectoryPath, MinZ, MaxZ,
-                                               ThreadsCount)).ConfigureAwait(false);
+            await Task.Run(() => RunGdal2Tiles(InputFileInfo.FullName, gdal2TilesOutputDirectoryPath, MinZ, MaxZ /*,
+                                               ThreadsCount*/)).ConfigureAwait(false);
 
             stopwatch.Stop();
             Console.WriteLine("Gdal2Tiles process ended.");
@@ -191,7 +191,7 @@ namespace GTiff2Tiles.Benchmarks
         private static void RunMapTiler(string inputFilePath, string outputDirectoryPath, string tempDirectoryPath,
                                         int minZ, int maxZ, int threadsCount)
         {
-            using (Process maptilerProcess = new Process
+            using Process maptilerProcess = new Process
             {
                 StartInfo = new ProcessStartInfo("maptiler")
                 {
@@ -200,17 +200,16 @@ namespace GTiff2Tiles.Benchmarks
                                 $"-srs EPSG:4326 -zoom {minZ} {maxZ} \"{inputFilePath}\"",
                     CreateNoWindow = true, RedirectStandardInput = true, RedirectStandardOutput = true, UseShellExecute = false
                 }
-            })
-            {
-                maptilerProcess.Start();
-                maptilerProcess.WaitForExit();
-            }
+            };
+
+            maptilerProcess.Start();
+            maptilerProcess.WaitForExit();
         }
 
-        private static void RunGdal2Tiles(string inputFilePath, string outputDirectoryPath, int minZ, int maxZ,
-                                          int threadsCount)
+        private static void RunGdal2Tiles(string inputFilePath, string outputDirectoryPath, int minZ, int maxZ /*,
+            int threadsCount*/)
         {
-            using (Process gdal2TilesProcess = new Process
+            using Process gdal2TilesProcess = new Process
             {
                 //Should be placed in Gdal2Tiles directory near Benchmarks binaries.
                 StartInfo = new ProcessStartInfo("Gdal2Tiles/Gdal2Tiles")
@@ -220,11 +219,10 @@ namespace GTiff2Tiles.Benchmarks
                                 $"\"{inputFilePath}\" \"{outputDirectoryPath}\"",
                     CreateNoWindow = true, RedirectStandardInput = true, RedirectStandardOutput = true, UseShellExecute = false
                 }
-            })
-            {
-                gdal2TilesProcess.Start();
-                gdal2TilesProcess.WaitForExit();
-            }
+            };
+
+            gdal2TilesProcess.Start();
+            gdal2TilesProcess.WaitForExit();
         }
     }
 }

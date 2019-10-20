@@ -3,9 +3,28 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
     <Platforms>AnyCPU;x64</Platforms>
-    <AssemblyVersion>1.0.0.31</AssemblyVersion>
-    <FileVersion>1.0.0.31</FileVersion>
-    <LangVersion>8</LangVersion>
+    <AssemblyVersion>1.4.0.34</AssemblyVersion>
+    <FileVersion>1.4.0.34</FileVersion>
+    <Version>1.4.0</Version>
+    <Company>Gigas002</Company>
+    <Authors>Gigas002</Authors>
+    <Copyright>Copyright © Gigas002 2019</Copyright>
+    <PackageProjectUrl>https://github.com/Gigas002/GTiff2Tiles</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Gigas002/GTiff2Tiles</RepositoryUrl>
+    <PackageIconUrl>https://raw.githubusercontent.com/Gigas002/GTiff2Tiles/master/Icon/Icon.png</PackageIconUrl>
+    <PackageTags>gtiff2tiles gdal2tiles tif tiff geotiff gdal tile maptiler</PackageTags>
+    <Description>Library to create tiles from GeoTiff images. Analogue of gdal2tiles.py on C#. Currently supports only x64 systems.</Description>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+    <DebugType>none</DebugType>
+    <DebugSymbols>false</DebugSymbols>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
   </PropertyGroup>
 
   <ItemGroup>

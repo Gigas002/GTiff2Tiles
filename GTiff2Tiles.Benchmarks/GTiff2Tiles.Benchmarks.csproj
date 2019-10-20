@@ -1,13 +1,31 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.0</TargetFramework>
-    <AssemblyVersion>1.0.0.9</AssemblyVersion>
-    <FileVersion>1.0.0.9</FileVersion>
+    <AssemblyVersion>1.4.0.13</AssemblyVersion>
+    <FileVersion>1.4.0.13</FileVersion>
     <Platforms>AnyCPU;x64</Platforms>
     <AssemblyName>GTiff2Tiles.Benchmarks</AssemblyName>
     <RootNamespace>GTiff2Tiles.Benchmarks</RootNamespace>
+    <ApplicationIcon>Resources\Icon.ico</ApplicationIcon>
+    <Copyright>Copyright © Gigas002 2019</Copyright>
+    <Version>1.4.0</Version>
+    <Authors>Gigas002</Authors>
+    <Description>Benchmarks project for GTiff2Tiles</Description>
+    <PackageProjectUrl>https://github.com/Gigas002/GTiff2Tiles</PackageProjectUrl>
+    <PackageIconUrl>https://raw.githubusercontent.com/Gigas002/GTiff2Tiles/master/Icon/Icon.png</PackageIconUrl>
+    <RepositoryUrl>https://github.com/Gigas002/GTiff2Tiles</RepositoryUrl>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+    <DebugType>none</DebugType>
+    <DebugSymbols>false</DebugSymbols>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
   </PropertyGroup>
 
   <ItemGroup>
