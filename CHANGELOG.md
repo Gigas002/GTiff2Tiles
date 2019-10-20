@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## WIP – Released 1.4.0
+## 20.10.2019 – Released 1.4.0
 
 Changes since 1.3.1:
 
