@@ -38,19 +38,3 @@ dotnet publish "GTiff2Tiles.GUI/GTiff2Tiles.GUI.csproj" -c Release -r win-x64 -o
 
 #Win-x86
 dotnet publish "GTiff2Tiles.GUI/GTiff2Tiles.GUI.csproj" -c Release -r win-x86 -o Publish/GTiff2Tiles.GUI/win-x86 /p:PublishSingleFile=true /p:PublishTrimmed=true --self-contained
-
-
-# GTiff2Tiles.Core
-
-
-#Win-x64
-dotnet publish "GTiff2Tiles.Core/GTiff2Tiles.Core.csproj" -c Release -r win-x64 -o Publish/GTiff2Tiles.Core/win-x64 /p:PublishSingleFile=true /p:PublishTrimmed=true --self-contained
-
-#Win-x86
-dotnet publish "GTiff2Tiles.Core/GTiff2Tiles.Core.csproj" -c Release -r win-x86 -o Publish/GTiff2Tiles.Core/win-x86 /p:PublishSingleFile=true /p:PublishTrimmed=true --self-contained
-
-#osx-x64
-dotnet publish "GTiff2Tiles.Core/GTiff2Tiles.Core.csproj" -c Release -r osx-x64 -o Publish/GTiff2Tiles.Core/osx-x64 /p:PublishSingleFile=true /p:PublishTrimmed=true --self-contained
-
-#linux-x64
-dotnet publish "GTiff2Tiles.Core/GTiff2Tiles.Core.csproj" -c Release -r linux-x64 -o Publish/GTiff2Tiles.Core/linux-x64 /p:PublishSingleFile=true /p:PublishTrimmed=true --self-contained
