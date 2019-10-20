@@ -1,7 +1,7 @@
 ﻿namespace GTiff2Tiles.Core.Enums.Image
 {
     /// <summary>
-    /// <see cref="Core.Image.Image"/> constants.
+    /// <see cref="GTiff2Tiles.Core.Image.Image"/> constants.
     /// </summary>
     internal static class Image
     {

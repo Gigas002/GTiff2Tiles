@@ -100,19 +100,19 @@ namespace GTiff2Tiles.GUI.ViewModels
         #region Buttons methods
 
         /// <summary>
-        /// Method for Cancel button on <see cref="Views.MessageBoxDialogView"/>.
+        /// Method for Cancel button on <see cref="GTiff2Tiles.GUI.Views.MessageBoxDialogView"/>.
         /// <para>Closes the UserControl and returns <see langword="false"/> to the message box's caller.</para>
         /// </summary>
         public void CancelButton() => DialogHost.CloseDialogCommand.Execute(false, null);
 
         /// <summary>
-        /// Method for Accept button on <see cref="Views.MessageBoxDialogView"/>.
+        /// Method for Accept button on <see cref="GTiff2Tiles.GUI.Views.MessageBoxDialogView"/>.
         /// <para>Closes the UserControl and returns <see langword="true"/> to the message box's caller.</para>
         /// </summary>
         public void AcceptButton() => DialogHost.CloseDialogCommand.Execute(true, null);
 
         /// <summary>
-        /// Method for CopyToClipboard button on <see cref="Views.MessageBoxDialogView"/>.
+        /// Method for CopyToClipboard button on <see cref="GTiff2Tiles.GUI.Views.MessageBoxDialogView"/>.
         /// <para>Copies the message to clipboard.</para>
         /// </summary>
         public void CopyToClipboardButton() => Clipboard.SetText(Message);

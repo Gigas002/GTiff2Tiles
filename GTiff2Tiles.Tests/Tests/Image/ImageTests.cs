@@ -1,6 +1,9 @@
 ﻿using System;
 using System.IO;
 using System.Threading.Tasks;
+using GTiff2Tiles.Core.Enums;
+using GTiff2Tiles.Core.Enums.Image;
+using GTiff2Tiles.Core.Helpers;
 using NUnit.Framework;
 
 // ReSharper disable ConditionIsAlwaysTrueOrFalse
@@ -20,11 +23,11 @@ namespace GTiff2Tiles.Tests.Tests.Image
             DirectoryInfo tempDirectoryInfo =
                 new DirectoryInfo(Path.Combine(Helpers.TestHelper.GetExamplesDirectoryInfo().FullName,
                                                Enums.FileSystemEntries.Temp,
-                                               DateTime.Now.ToString(Core.Enums.DateTimePatterns.LongWithMs)));
+                                               DateTime.Now.ToString(DateTimePatterns.LongWithMs)));
 
             string inputFilePath = Path.Combine(examplesDirectoryInfo.FullName,
                                                 Enums.FileSystemEntries.InputDirectoryName,
-                                                $"{Enums.FileSystemEntries.Input4326}{Core.Enums.Extensions.Tif}");
+                                                $"{Enums.FileSystemEntries.Input4326}{Extensions.Tif}");
             string outputDirectoryName = Path.Combine(examplesDirectoryInfo.FullName,
                                                       Enums.FileSystemEntries.TmsCompatible,
                                                       Enums.FileSystemEntries
@@ -38,15 +41,15 @@ namespace GTiff2Tiles.Tests.Tests.Image
             try
             {
                 //Check for errors.
-                Core.Helpers.CheckHelper.CheckDirectory(outputDirectoryInfo, true);
+                CheckHelper.CheckDirectory(outputDirectoryInfo, true);
 
-                if (!await Core.Helpers.CheckHelper.CheckInputFileAsync(inputFileInfo))
+                if (!await CheckHelper.CheckInputFileAsync(inputFileInfo))
                 {
                     string tempFilePath = Path.Combine(tempDirectoryInfo.FullName,
-                                                       $"{Core.Enums.Image.Gdal.TempFileName}{Core.Enums.Extensions.Tif}");
+                                                       $"{Gdal.TempFileName}{Extensions.Tif}");
                     FileInfo tempFileInfo = new FileInfo(tempFilePath);
 
-                    await Core.Image.Gdal.WarpAsync(inputFileInfo, tempFileInfo, Core.Enums.Image.Gdal.RepairTifOptions);
+                    await Core.Image.Gdal.WarpAsync(inputFileInfo, tempFileInfo, Gdal.RepairTifOptions);
                     inputFileInfo = tempFileInfo;
                 }
 
@@ -71,11 +74,11 @@ namespace GTiff2Tiles.Tests.Tests.Image
             DirectoryInfo tempDirectoryInfo =
                 new DirectoryInfo(Path.Combine(Helpers.TestHelper.GetExamplesDirectoryInfo().FullName,
                                                Enums.FileSystemEntries.Temp,
-                                               DateTime.Now.ToString(Core.Enums.DateTimePatterns.LongWithMs)));
+                                               DateTime.Now.ToString(DateTimePatterns.LongWithMs)));
 
             string inputFilePath = Path.Combine(examplesDirectoryInfo.FullName,
                                                 Enums.FileSystemEntries.InputDirectoryName,
-                                                $"{Enums.FileSystemEntries.Input4326}{Core.Enums.Extensions.Tif}");
+                                                $"{Enums.FileSystemEntries.Input4326}{Extensions.Tif}");
             string outputDirectoryName = Path.Combine(examplesDirectoryInfo.FullName,
                                                       Enums.FileSystemEntries.TmsCompatible,
                                                       Enums.FileSystemEntries
@@ -89,15 +92,15 @@ namespace GTiff2Tiles.Tests.Tests.Image
             try
             {
                 //Check for errors.
-                Core.Helpers.CheckHelper.CheckDirectory(outputDirectoryInfo, true);
+                CheckHelper.CheckDirectory(outputDirectoryInfo, true);
 
-                if (!await Core.Helpers.CheckHelper.CheckInputFileAsync(inputFileInfo))
+                if (!await CheckHelper.CheckInputFileAsync(inputFileInfo))
                 {
                     string tempFilePath = Path.Combine(tempDirectoryInfo.FullName,
-                                                       $"{Core.Enums.Image.Gdal.TempFileName}{Core.Enums.Extensions.Tif}");
+                                                       $"{Gdal.TempFileName}{Extensions.Tif}");
                     FileInfo tempFileInfo = new FileInfo(tempFilePath);
 
-                    await Core.Image.Gdal.WarpAsync(inputFileInfo, tempFileInfo, Core.Enums.Image.Gdal.RepairTifOptions);
+                    await Core.Image.Gdal.WarpAsync(inputFileInfo, tempFileInfo, Gdal.RepairTifOptions);
                     inputFileInfo = tempFileInfo;
                 }
 
@@ -122,11 +125,11 @@ namespace GTiff2Tiles.Tests.Tests.Image
             DirectoryInfo tempDirectoryInfo =
                 new DirectoryInfo(Path.Combine(Helpers.TestHelper.GetExamplesDirectoryInfo().FullName,
                                                Enums.FileSystemEntries.Temp,
-                                               DateTime.Now.ToString(Core.Enums.DateTimePatterns.LongWithMs)));
+                                               DateTime.Now.ToString(DateTimePatterns.LongWithMs)));
 
             string inputFilePath = Path.Combine(examplesDirectoryInfo.FullName,
                                                 Enums.FileSystemEntries.InputDirectoryName,
-                                                $"{Enums.FileSystemEntries.Input4326}{Core.Enums.Extensions.Tif}");
+                                                $"{Enums.FileSystemEntries.Input4326}{Extensions.Tif}");
             string outputDirectoryName = Path.Combine(examplesDirectoryInfo.FullName,
                                                       Enums.FileSystemEntries.NonTmsCompatible,
                                                       Enums.FileSystemEntries
@@ -140,15 +143,15 @@ namespace GTiff2Tiles.Tests.Tests.Image
             try
             {
                 //Check for errors.
-                Core.Helpers.CheckHelper.CheckDirectory(outputDirectoryInfo, true);
+                CheckHelper.CheckDirectory(outputDirectoryInfo, true);
 
-                if (!await Core.Helpers.CheckHelper.CheckInputFileAsync(inputFileInfo))
+                if (!await CheckHelper.CheckInputFileAsync(inputFileInfo))
                 {
                     string tempFilePath = Path.Combine(tempDirectoryInfo.FullName,
-                                                       $"{Core.Enums.Image.Gdal.TempFileName}{Core.Enums.Extensions.Tif}");
+                                                       $"{Gdal.TempFileName}{Extensions.Tif}");
                     FileInfo tempFileInfo = new FileInfo(tempFilePath);
 
-                    await Core.Image.Gdal.WarpAsync(inputFileInfo, tempFileInfo, Core.Enums.Image.Gdal.RepairTifOptions);
+                    await Core.Image.Gdal.WarpAsync(inputFileInfo, tempFileInfo, Gdal.RepairTifOptions);
                     inputFileInfo = tempFileInfo;
                 }
 
@@ -173,11 +176,11 @@ namespace GTiff2Tiles.Tests.Tests.Image
             DirectoryInfo tempDirectoryInfo =
                 new DirectoryInfo(Path.Combine(Helpers.TestHelper.GetExamplesDirectoryInfo().FullName,
                                                Enums.FileSystemEntries.Temp,
-                                               DateTime.Now.ToString(Core.Enums.DateTimePatterns.LongWithMs)));
+                                               DateTime.Now.ToString(DateTimePatterns.LongWithMs)));
 
             string inputFilePath = Path.Combine(examplesDirectoryInfo.FullName,
                                                 Enums.FileSystemEntries.InputDirectoryName,
-                                                $"{Enums.FileSystemEntries.Input4326}{Core.Enums.Extensions.Tif}");
+                                                $"{Enums.FileSystemEntries.Input4326}{Extensions.Tif}");
             string outputDirectoryName = Path.Combine(examplesDirectoryInfo.FullName,
                                                       Enums.FileSystemEntries.NonTmsCompatible,
                                                       Enums.FileSystemEntries
@@ -191,15 +194,15 @@ namespace GTiff2Tiles.Tests.Tests.Image
             try
             {
                 //Check for errors.
-                Core.Helpers.CheckHelper.CheckDirectory(outputDirectoryInfo, true);
+                CheckHelper.CheckDirectory(outputDirectoryInfo, true);
 
-                if (!await Core.Helpers.CheckHelper.CheckInputFileAsync(inputFileInfo))
+                if (!await CheckHelper.CheckInputFileAsync(inputFileInfo))
                 {
                     string tempFilePath = Path.Combine(tempDirectoryInfo.FullName,
-                                                       $"{Core.Enums.Image.Gdal.TempFileName}{Core.Enums.Extensions.Tif}");
+                                                       $"{Gdal.TempFileName}{Extensions.Tif}");
                     FileInfo tempFileInfo = new FileInfo(tempFilePath);
 
-                    await Core.Image.Gdal.WarpAsync(inputFileInfo, tempFileInfo, Core.Enums.Image.Gdal.RepairTifOptions);
+                    await Core.Image.Gdal.WarpAsync(inputFileInfo, tempFileInfo, Gdal.RepairTifOptions);
                     inputFileInfo = tempFileInfo;
                 }
 

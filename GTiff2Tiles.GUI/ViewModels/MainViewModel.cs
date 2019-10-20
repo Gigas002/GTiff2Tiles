@@ -4,12 +4,17 @@ using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
 using Caliburn.Micro;
+using GTiff2Tiles.Core.Enums;
+using GTiff2Tiles.Core.Helpers;
+using GTiff2Tiles.Core.Image;
+using GTiff2Tiles.GUI.Enums;
 using GTiff2Tiles.GUI.Localization;
 using GTiff2Tiles.GUI.Models;
 using GTiff2Tiles.GUI.Properties;
-using GTiff2Tiles.GUI.Enums;
+using GTiff2Tiles.GUI.Views;
 using MaterialDesignExtensions.Controls;
 using MaterialDesignThemes.Wpf;
+using Gdal = GTiff2Tiles.Core.Enums.Image.Gdal;
 
 // ReSharper disable MemberCanBePrivate.Global
 // ReSharper disable once ClassNeverInstantiated.Global
@@ -19,7 +24,7 @@ namespace GTiff2Tiles.GUI.ViewModels
 {
     /// <inheritdoc />
     /// <summary>
-    /// ViewModel for <see cref="Views.MainView"/>.
+    /// ViewModel for <see cref="MainView"/>.
     /// </summary>
     // ReSharper disable once MemberCanBeInternal
     public class MainViewModel : PropertyChangedBase
@@ -286,7 +291,7 @@ namespace GTiff2Tiles.GUI.ViewModels
         }
 
         /// <summary>
-        /// Identifier of DialogHost on <see cref="Views.MainView"/>.
+        /// Identifier of DialogHost on <see cref="MainView"/>.
         /// </summary>
         public string DialogHostId { get; } = Enums.MainViewModel.DialogHostId;
 
@@ -394,7 +399,7 @@ namespace GTiff2Tiles.GUI.ViewModels
 
             //Create temp directory object.
             string tempDirectoryPath =
-                Path.Combine(TempDirectoryPath, DateTime.Now.ToString(Core.Enums.DateTimePatterns.LongWithMs));
+                Path.Combine(TempDirectoryPath, DateTime.Now.ToString(DateTimePatterns.LongWithMs));
             DirectoryInfo tempDirectoryInfo = new DirectoryInfo(tempDirectoryPath);
 
             //Create progress reporter.
@@ -404,21 +409,21 @@ namespace GTiff2Tiles.GUI.ViewModels
             try
             {
                 //Check for errors.
-                Core.Helpers.CheckHelper.CheckDirectory(outputDirectoryInfo, true);
+                CheckHelper.CheckDirectory(outputDirectoryInfo, true);
 
-                if (!await Core.Helpers.CheckHelper.CheckInputFileAsync(inputFileInfo).ConfigureAwait(false))
+                if (!await CheckHelper.CheckInputFileAsync(inputFileInfo).ConfigureAwait(false))
                 {
                     string tempFilePath = Path.Combine(tempDirectoryInfo.FullName,
-                                                       $"{Core.Enums.Image.Gdal.TempFileName}{Core.Enums.Extensions.Tif}");
+                                                       $"{Gdal.TempFileName}{Extensions.Tif}");
                     FileInfo tempFileInfo = new FileInfo(tempFilePath);
 
-                    await Core.Image.Gdal.WarpAsync(inputFileInfo, tempFileInfo, Core.Enums.Image.Gdal.RepairTifOptions)
+                    await Core.Image.Gdal.WarpAsync(inputFileInfo, tempFileInfo, Gdal.RepairTifOptions)
                               .ConfigureAwait(false);
                     inputFileInfo = tempFileInfo;
                 }
 
                 //Create image object.
-                Core.Image.Image inputImage = new Core.Image.Image(inputFileInfo);
+                Image inputImage = new Image(inputFileInfo);
 
                 //Switch on algorithm.
                 switch (Algorithm)

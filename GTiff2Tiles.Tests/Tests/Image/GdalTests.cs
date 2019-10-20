@@ -2,6 +2,9 @@
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using GTiff2Tiles.Core.Enums;
+using GTiff2Tiles.Core.Enums.Image;
+using GTiff2Tiles.Core.Helpers;
 using NUnit.Framework;
 
 namespace GTiff2Tiles.Tests.Tests.Image
@@ -19,23 +22,23 @@ namespace GTiff2Tiles.Tests.Tests.Image
             DirectoryInfo tempDirectoryInfo =
                 new DirectoryInfo(Path.Combine(Helpers.TestHelper.GetExamplesDirectoryInfo().FullName,
                                                Enums.FileSystemEntries.Temp,
-                                               DateTime.Now.ToString(Core.Enums.DateTimePatterns.LongWithMs)));
+                                               DateTime.Now.ToString(DateTimePatterns.LongWithMs)));
 
             string inputFilePath = Path.Combine(examplesDirectoryInfo.FullName,
                                                 Enums.FileSystemEntries.InputDirectoryName,
-                                                $"{Enums.FileSystemEntries.Input3785}{Core.Enums.Extensions.Tif}");
+                                                $"{Enums.FileSystemEntries.Input3785}{Extensions.Tif}");
             FileInfo inputFileInfo = new FileInfo(inputFilePath);
 
             try
             {
                 //Check and repair.
-                if (!await Core.Helpers.CheckHelper.CheckInputFileAsync(inputFileInfo))
+                if (!await CheckHelper.CheckInputFileAsync(inputFileInfo))
                 {
                     string tempFilePath = Path.Combine(tempDirectoryInfo.FullName,
-                                                       $"{Core.Enums.Image.Gdal.TempFileName}{Core.Enums.Extensions.Tif}");
+                                                       $"{Gdal.TempFileName}{Extensions.Tif}");
                     FileInfo tempFileInfo = new FileInfo(tempFilePath);
 
-                    await Core.Image.Gdal.WarpAsync(inputFileInfo, tempFileInfo, Core.Enums.Image.Gdal.RepairTifOptions);
+                    await Core.Image.Gdal.WarpAsync(inputFileInfo, tempFileInfo, Gdal.RepairTifOptions);
                 }
 
                 //Check if temp file was created successfuly.
@@ -57,23 +60,23 @@ namespace GTiff2Tiles.Tests.Tests.Image
             DirectoryInfo tempDirectoryInfo =
                 new DirectoryInfo(Path.Combine(Helpers.TestHelper.GetExamplesDirectoryInfo().FullName,
                                                Enums.FileSystemEntries.Temp,
-                                               DateTime.Now.ToString(Core.Enums.DateTimePatterns.LongWithMs)));
+                                               DateTime.Now.ToString(DateTimePatterns.LongWithMs)));
 
             string inputFilePath = Path.Combine(examplesDirectoryInfo.FullName,
                                                 Enums.FileSystemEntries.InputDirectoryName,
-                                                $"{Enums.FileSystemEntries.Input3395}{Core.Enums.Extensions.Tif}");
+                                                $"{Enums.FileSystemEntries.Input3395}{Extensions.Tif}");
             FileInfo inputFileInfo = new FileInfo(inputFilePath);
 
             try
             {
                 //Check and repair.
-                if (!await Core.Helpers.CheckHelper.CheckInputFileAsync(inputFileInfo))
+                if (!await CheckHelper.CheckInputFileAsync(inputFileInfo))
                 {
                     string tempFilePath = Path.Combine(tempDirectoryInfo.FullName,
-                                                       $"{Core.Enums.Image.Gdal.TempFileName}{Core.Enums.Extensions.Tif}");
+                                                       $"{Gdal.TempFileName}{Extensions.Tif}");
                     FileInfo tempFileInfo = new FileInfo(tempFilePath);
 
-                    await Core.Image.Gdal.WarpAsync(inputFileInfo, tempFileInfo, Core.Enums.Image.Gdal.RepairTifOptions);
+                    await Core.Image.Gdal.WarpAsync(inputFileInfo, tempFileInfo, Gdal.RepairTifOptions);
                 }
 
                 //Check if temp file was created successfuly.

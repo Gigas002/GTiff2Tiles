@@ -19,7 +19,7 @@ namespace GTiff2Tiles.Core.Helpers
         /// Check GdalInfo's strings.
         /// Byte - type;
         /// </summary>
-        /// <param name="gdalInfoString">String from <see cref="Image.Gdal.InfoAsync"/> method.</param>
+        /// <param name="gdalInfoString">String from <see cref="GTiff2Tiles.Core.Image.Gdal.InfoAsync"/> method.</param>
         /// <param name="proj4String">Proj4 string.</param>
         /// <returns><see langword="true"/>, if file is OK, <see langword="false"/> otherwise.</returns>
         private static bool CheckTifInfo(string gdalInfoString, string proj4String)

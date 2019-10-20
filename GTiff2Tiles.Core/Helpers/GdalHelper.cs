@@ -171,10 +171,10 @@ namespace GTiff2Tiles.Core.Helpers
                 string gdalPath = Path.Combine(executingDirectory, "gdal");
                 string nativePath = Path.Combine(gdalPath, GetPlatform());
 
-                if (!Directory.Exists(nativePath))
-                    throw new Exception(string.Format(Strings.DoesntExist, "GDAL", nativePath));
-                if (!File.Exists(Path.Combine(nativePath, "gdal_wrap.dll")))
-                    throw new Exception(string.Format(Strings.DoesntExist, "gdal_warp.dll", nativePath));
+                //if (!Directory.Exists(nativePath))
+                //    throw new Exception(string.Format(Strings.DoesntExist, "GDAL", nativePath));
+                //if (!File.Exists(Path.Combine(nativePath, "gdal_wrap.dll")))
+                //    throw new Exception(string.Format(Strings.DoesntExist, "gdal_warp.dll", nativePath));
 
                 // Add directories
                 AddDllDirectory(nativePath);

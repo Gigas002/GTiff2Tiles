@@ -4,6 +4,10 @@ using System.IO;
 using System.Threading.Tasks;
 using CommandLine;
 using GTiff2Tiles.Console.Localization;
+using GTiff2Tiles.Core.Enums;
+using GTiff2Tiles.Core.Helpers;
+using GTiff2Tiles.Core.Image;
+using Gdal = GTiff2Tiles.Core.Enums.Image.Gdal;
 
 namespace GTiff2Tiles.Console
 {
@@ -87,39 +91,39 @@ namespace GTiff2Tiles.Console
 
             //Create temp directory object.
             string tempDirectoryPath = Path.Combine(TempDirectoryInfo.FullName,
-                                                    DateTime.Now.ToString(Core.Enums.DateTimePatterns.LongWithMs));
+                                                    DateTime.Now.ToString(DateTimePatterns.LongWithMs));
             TempDirectoryInfo = new DirectoryInfo(tempDirectoryPath);
 
             //Run tiling asynchroniously.
             try
             {
                 //Check for errors.
-                Core.Helpers.CheckHelper.CheckDirectory(OutputDirectoryInfo, true);
+                CheckHelper.CheckDirectory(OutputDirectoryInfo, true);
 
-                if (!await Core.Helpers.CheckHelper.CheckInputFileAsync(InputFileInfo).ConfigureAwait(false))
+                if (!await CheckHelper.CheckInputFileAsync(InputFileInfo).ConfigureAwait(false))
                 {
                     string tempFilePath = Path.Combine(TempDirectoryInfo.FullName,
-                                                       $"{Core.Enums.Image.Gdal.TempFileName}{Core.Enums.Extensions.Tif}");
+                                                       $"{Gdal.TempFileName}{Extensions.Tif}");
                     FileInfo tempFileInfo = new FileInfo(tempFilePath);
 
-                    await Core.Image.Gdal.WarpAsync(InputFileInfo, tempFileInfo, Core.Enums.Image.Gdal.RepairTifOptions)
+                    await Core.Image.Gdal.WarpAsync(InputFileInfo, tempFileInfo, Gdal.RepairTifOptions)
                               .ConfigureAwait(false);
                     InputFileInfo = tempFileInfo;
                 }
 
                 //Create image object.
-                Core.Image.Image inputImage = new Core.Image.Image(InputFileInfo);
+                Image inputImage = new Image(InputFileInfo);
 
                 //Switch on algorithm.
                 switch (Algorithm)
                 {
-                    case Core.Enums.Algorithms.Join:
+                    case Algorithms.Join:
                         await inputImage
                              .GenerateTilesByJoiningAsync(OutputDirectoryInfo, MinZ, MaxZ, TmsCompatible, consoleProgress,
                                                      ThreadsCount).ConfigureAwait(false);
 
                         break;
-                    case Core.Enums.Algorithms.Crop:
+                    case Algorithms.Crop:
                         await inputImage
                              .GenerateTilesByCroppingAsync(OutputDirectoryInfo, MinZ, MaxZ, TmsCompatible, consoleProgress,
                                                       ThreadsCount).ConfigureAwait(false);

@@ -10,9 +10,9 @@ namespace GTiff2Tiles.Tests.Helpers
         {
             string examplesDirectoryPath = Environment.Is64BitProcess
                                                ? new DirectoryInfo(Assembly.GetExecutingAssembly().Location)
-                                                .Parent?.Parent?.Parent?.Parent?.Parent?.FullName
+                                                .Parent?.Parent?.Parent?.Parent?.Parent?.Parent?.FullName
                                                : new DirectoryInfo(Assembly.GetExecutingAssembly().Location)
-                                                .Parent?.Parent?.Parent?.Parent?.FullName;
+                                                .Parent?.Parent?.Parent?.Parent?.Parent?.FullName;
 
             if (string.IsNullOrWhiteSpace(examplesDirectoryPath))
                 throw new Exception("Unable to locate Examples directory.");

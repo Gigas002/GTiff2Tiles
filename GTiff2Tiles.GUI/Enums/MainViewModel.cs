@@ -3,7 +3,7 @@
 namespace GTiff2Tiles.GUI.Enums
 {
     /// <summary>
-    /// Some const values for <see cref="ViewModels.MainViewModel"/> class.
+    /// Some const values for <see cref="GTiff2Tiles.GUI.ViewModels.MainViewModel"/> class.
     /// </summary>
     internal static class MainViewModel
     {
@@ -20,7 +20,7 @@ namespace GTiff2Tiles.GUI.Enums
         internal static string Version { get; } = Assembly.GetExecutingAssembly().GetName().Version.ToString();
 
         /// <summary>
-        /// Identifier of DialogHost on <see cref="Views.MainView"/>.
+        /// Identifier of DialogHost on <see cref="GTiff2Tiles.GUI.Views.MainView"/>.
         /// </summary>
         internal const string DialogHostId = "DialogHost";
 

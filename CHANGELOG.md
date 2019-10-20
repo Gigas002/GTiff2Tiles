@@ -1,28 +1,59 @@
 # CHANGELOG
 
-## WIP
+## WIP – Released 1.4.0
 
 Changes since 1.3.1:
 
 ### Overall
 
+**BREAKING CHANGES:**
+
+- Solution is rebuild with **.NET Core 3.0 SDK**;
+- Library and some other projects now supports **Linux x64**, **OSX x64** and **Windows x64** and **Windows x86** operating systems. Read more below;
+- Renamed all async methods to `methodNameAsync`;
+
+**Other:**
+
 - Updated **CommandLineParser** package to **2.6.0**;
 - Updated **NUnit3TestAdapter** package to **3.15.1**;
-- Updated **NetVips.Native.win-x64** package to **8.8.3**;
-- Update target framework to **.NET Framework 4.8**;
-- Renamed all async methods to `methodNameAsync`;
+- Replaced **NetVips.Native.win-x64** package with cross-platform **NetVips.Native** package;
+- Updated **NetVips.Native** package to **8.8.3**;
+- Replaced **GDAL** and **GDAL.Native** packages with **MaxRev.Gdal.Core**, **MaxRev.Gdal.LinuxRuntime.Minimal** and **MaxRev.Gdal.WindowsRuntime.Minimal** packages;
+- As result of the above change, **gdal’s binaries** updated from **2.4.2** to **3.0.1**;
 
-## Core
+### Core
 
-**Breaking changes:**
+**BREAKING CHANGES:**
 
-- Renamed all async methods to `methodNameAsync`;
+- Removed **Image.Gdal.ConfigureOgr** method (now everything initializes with **Image.Gdal.ConfigureGdal** method);
+
+**Other:**
+
+- Now supports **Linux x64**, **OSX x64** and **Windows x64** operating systems;
+
+- Removed **System.Threading.Tasks.Extensions** package;
+
+### Console
+
+- Now supports **Linux x64**, **OSX x64** and **Windows x64** and **Windows x86** operating systems;
+- Removed **System.Threading.Tasks.Extensions** package;
 
 ### GUI
 
-- Updated **MaterialDesignExtensions** package to **2.8.0-a1**;
+- Now supports **Windows x64** and **Windows x86** operating systems;
+- Updated **MaterialDesignExtensions** package to **2.8.0**;
 - Removed **MahApps.Metro** package;
 - Replaced **MahApps.Metro.MetroWindow** with **MaterialDesignExtensions.MaterialWindow**;
+- Removed **System.Threading.Tasks.Extensions** package;
+
+### Tests
+
+- Add **Microsoft.NET.Test.Sdk** package;
+
+### Benchmarks
+
+- Now supports **Linux x64**, **OSX x64** and **Windows x64** and **Windows x86** operating systems;
+- Removed **System.Threading.Tasks.Extensions** package;
 
 ## 30.07.2019 – Released 1.3.1
 

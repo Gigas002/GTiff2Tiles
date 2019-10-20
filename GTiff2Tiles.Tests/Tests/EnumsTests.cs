@@ -1,4 +1,5 @@
 ﻿using System;
+using GTiff2Tiles.Core.Enums.Image;
 using NUnit.Framework;
 
 // ReSharper disable UnusedVariable
@@ -16,11 +17,11 @@ namespace GTiff2Tiles.Tests.Tests
         {
             try
             {
-                string lonLat = Core.Enums.Image.Gdal.LongLat;
-                string wgs84 = Core.Enums.Image.Gdal.Wgs84;
-                string typeByte = Core.Enums.Image.Gdal.Byte;
-                string[] repairTifOptions = Core.Enums.Image.Gdal.RepairTifOptions;
-                string tempFileName = Core.Enums.Image.Gdal.TempFileName;
+                string lonLat = Gdal.LongLat;
+                string wgs84 = Gdal.Wgs84;
+                string typeByte = Gdal.Byte;
+                string[] repairTifOptions = Gdal.RepairTifOptions;
+                string tempFileName = Gdal.TempFileName;
             }
             catch (Exception exception) { Assert.Fail(exception.Message); }
 
