@@ -4,7 +4,7 @@ The following documentation is written for **1.4.0** release of application.
 
 ## Requirements
 
-Application runs on **Linux x64**, **OSX x64**, **Windows x64** and **Windows x86** operating systems.
+Application runs on **Linux x64**, **OSX x64** and **Windows x64** operating systems.
 
 If you’re using Windows 7 SP1, you can experience weird error with **GDAL** package. It’s recommended to install [KB2533623](<https://www.microsoft.com/en-us/download/details.aspx?id=26764>) to fix it. You can read about this Windows update on [MSDN](<https://support.microsoft.com/en-us/help/2533623/microsoft-security-advisory-insecure-library-loading-could-allow-remot>).
 
