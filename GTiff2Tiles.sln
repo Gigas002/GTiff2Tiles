@@ -19,6 +19,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GTiff2Tiles.NetCore.Console
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GTiff2Tiles.NetCore.GUI", "GTiff2Tiles.NetCore.GUI\GTiff2Tiles.NetCore.GUI.csproj", "{50F657F0-B57B-4559-8E0B-B8CBFB37D16B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GTiff2Tiles.NetCore.Benchmarks", "GTiff2Tiles.NetCore.Benchmarks\GTiff2Tiles.NetCore.Benchmarks.csproj", "{DE322FD8-FE2A-4E51-A46E-71127B7885B8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -91,6 +93,14 @@ Global
 		{50F657F0-B57B-4559-8E0B-B8CBFB37D16B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{50F657F0-B57B-4559-8E0B-B8CBFB37D16B}.Release|x64.ActiveCfg = Release|Any CPU
 		{50F657F0-B57B-4559-8E0B-B8CBFB37D16B}.Release|x64.Build.0 = Release|Any CPU
+		{DE322FD8-FE2A-4E51-A46E-71127B7885B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE322FD8-FE2A-4E51-A46E-71127B7885B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE322FD8-FE2A-4E51-A46E-71127B7885B8}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{DE322FD8-FE2A-4E51-A46E-71127B7885B8}.Debug|x64.Build.0 = Debug|Any CPU
+		{DE322FD8-FE2A-4E51-A46E-71127B7885B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE322FD8-FE2A-4E51-A46E-71127B7885B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE322FD8-FE2A-4E51-A46E-71127B7885B8}.Release|x64.ActiveCfg = Release|Any CPU
+		{DE322FD8-FE2A-4E51-A46E-71127B7885B8}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
