@@ -4,7 +4,7 @@
 
 Analogue of [gdal2tiles.py](https://github.com/OSGeo/gdal/blob/master/gdal/swig/python/scripts/gdal2tiles.py)/[MapTiler](https://www.maptiler.com/) on **C#**. Support **only GeoTIFF** as input data and creates **only geodetic 4 bands tiles** on output in [**tms**](https://wiki.osgeo.org/wiki/Tile_Map_Service_Specification)/**non-tms** (Google maps like) structure.
 
-Solution is build in **VS2019 (16.3.5)**, **.NET Framework 4.8**, targeting **Windows x64** systems.
+Solution can be build in **VS2019 (16.3.5+)**. You can also build projects in **VSCode (1.39.2+)** with **omnisharp-vscode (1.21.5+)** extensions. Projects targets **.NET Core 3.0**, so you’ll need **.NET Core 3.0 SDK**.
 
 Icon is kindly provided by [Google’s material design](https://material.io/tools/icons/?icon=image&style=baseline) and is used in **GTiff2Tiles.GUI**, **GTiff2Tiles.Console** and **GTiff2Tiles.Benchmarks** projects.
 
@@ -49,6 +49,8 @@ Table of contents generated with [markdown-toc](http://ecotrust-canada.github.io
 
 ## Current version
 
+**Starting from 1.4.0 solution is rewritten on .NET Core 3.0 instead of .NET Framework 4.7.2/4.8!**
+
 Current stable can be found here: [![Release](https://img.shields.io/github/release/Gigas002/GTiff2Tiles.svg)](https://github.com/Gigas002/GTiff2Tiles/releases/latest), or on NuGet: [![NuGet](https://img.shields.io/nuget/v/GTiff2Tiles.svg)](https://www.nuget.org/packages/GTiff2Tiles/).
 
 Information about changes since previous releases can be found in [changelog](https://github.com/Gigas002/GTiff2Tiles/blob/master/CHANGELOG.md). This project supports [SemVer 2.0.0](https://semver.org/) (template is `{MAJOR}.{MINOR}.{PATCH}.{BUILD}`).
@@ -70,11 +72,11 @@ Library uses 2 different algorithms to create tiles:
 
 ### Dependencies
 
-- [GDAL](https://www.nuget.org/packages/GDAL/) – 2.4.2;
-- [GDAL.Native](https://www.nuget.org/packages/GDAL.Native/) – 2.4.2;
+- [MaxRev.Gdal.Core](https://www.nuget.org/packages/MaxRev.Gdal.Core/) – 3.0.1.2;
+- [MaxRev.Gdal.LinuxRuntime.Minimal](https://www.nuget.org/packages/MaxRev.Gdal.LinuxRuntime.Minimal/) – 3.0.1.2;
+- [MaxRev.Gdal.WindowsRuntime.Minimal](https://www.nuget.org/packages/MaxRev.Gdal.WindowsRuntime.Minimal/) – 3.0.1.25;
 - [NetVips](https://www.nuget.org/packages/NetVips/) – 1.1.0;
-- [NetVips.Native.win-x64](https://www.nuget.org/packages/NetVips.Native.win-x64/) – 8.8.3;
-- [System.Threading.Tasks.Extensions](https://www.nuget.org/packages/System.Threading.Tasks.Extensions/) – 4.5.3;
+- [NetVips.Native](https://www.nuget.org/packages/NetVips.Native/) – 8.8.3;
 
 ### Localization
 
@@ -88,8 +90,7 @@ Currently, application is available on **English** and **Russian** languages.
 
 ### Requirements
 
-- Windows 7 SP1 x64 and newer;
-- [.NET Framework 4.8](https://dotnet.microsoft.com/download/dotnet-framework/net48);
+Application runs on **Linux x64**, **OSX x64**, **Windows x64** and **Windows x86** operating systems.
 
 If you’re using Windows 7 SP1, you can experience weird error with **GDAL** package. It’s recommended to install [KB2533623](<https://www.microsoft.com/en-us/download/details.aspx?id=26764>) to fix it. You can read about this Windows update on [MSDN](<https://support.microsoft.com/en-us/help/2533623/microsoft-security-advisory-insecure-library-loading-could-allow-remot>).
 
@@ -108,7 +109,7 @@ If you’re using Windows 7 SP1, you can experience weird error with **GDAL** pa
 |       |  --version  |               Current version               |           |
 |       |   --help    |        Message about console options        |           |
 
-Simple example looks like this: `GTiff2Tiles.Console -i D:/Examples/Input.tif -o D:/Examples/Output -t D:/Examples/Temp --minz 8 –maxz 11 -a crop --tms true --threads 3`
+Simple example looks like this: `./GTiff2Tiles.Console -i "D:/Examples/Input.tif" -o "D:/Examples/Output" -t "D:/Examples/Temp" --minz 8 –maxz 11 -a crop --tms true --threads 3`
 
 ### Detailed options description
 
@@ -131,8 +132,6 @@ Simple example looks like this: `GTiff2Tiles.Console -i D:/Examples/Input.tif -o
 ### Dependencies
 
 - GTiff2Tiles.Core;
-- [GDAL.Native](https://www.nuget.org/packages/GDAL.Native/) – 2.4.2;
-- [System.Threading.Tasks.Extensions](https://www.nuget.org/packages/System.Threading.Tasks.Extensions/) – 4.5.3;
 - [CommandLineParser](https://www.nuget.org/packages/CommandLineParser/) – 2.6.0;
 
 ### Localization
@@ -149,20 +148,17 @@ Currently, application is available on **English** and **Russian** languages.
 
 ### Requirements
 
-- Windows 7 SP1 x64 and newer;
-- [.NET Framework 4.8](https://dotnet.microsoft.com/download/dotnet-framework/net48);
+Application runs on **Windows x64** and **Windows x86** operating systems.
 
 If you’re using Windows 7 SP1, you can experience weird error with **GDAL** package. It’s recommended to install [KB2533623](<https://www.microsoft.com/en-us/download/details.aspx?id=26764>) to fix it. You can read about this Windows update on [MSDN](<https://support.microsoft.com/en-us/help/2533623/microsoft-security-advisory-insecure-library-loading-could-allow-remot>).
 
 ### Dependencies
 
 - GTiff2Tiles.Core;
-- [GDAL.Native](https://www.nuget.org/packages/GDAL.Native/) – 2.4.2;
-- [System.Threading.Tasks.Extensions](https://www.nuget.org/packages/System.Threading.Tasks.Extensions/) – 4.5.3;
 - [Caliburn.Micro](https://www.nuget.org/packages/Caliburn.Micro) – 3.2.0;
-- [MaterialDesignColors](<https://www.nuget.org/packages/MaterialDesignColors>) – 1.2.0;
-- [MaterialDesignThemes](<https://www.nuget.org/packages/MaterialDesignThemes>) – 2.6.0;
-- [MaterialDesignExtensions](https://www.nuget.org/packages/MaterialDesignExtensions) – 2.8.0-a1;
+- [MaterialDesignColors](https://www.nuget.org/packages/MaterialDesignColors) – 1.2.0;
+- [MaterialDesignThemes](https://www.nuget.org/packages/MaterialDesignThemes) – 2.6.0;
+- [MaterialDesignExtensions](https://www.nuget.org/packages/MaterialDesignExtensions) – 2.8.0;
 
 ### Localization
 
@@ -177,8 +173,8 @@ Currently, application is available on **English** and **Russian** languages.
 ### Dependencies
 
 - GTiff2Tiles.Core;
-- [GDAL.Native](https://www.nuget.org/packages/GDAL.Native/) – 2.4.2;
-- [NUnit](https://www.nuget.org/packages/NUnit/3.12.0) – 3.12.0;
+- [Microsoft.NET.Test.Sdk](https://www.nuget.org/packages/Microsoft.NET.Test.Sdk) – 16.3.0;
+- [NUnit](https://www.nuget.org/packages/NUnit) – 3.12.0;
 - [NUnit3TestAdapter](https://www.nuget.org/packages/NUnit3TestAdapter/) – 3.15.1;
 
 ## GTiff2Tiles.Benchmarks
@@ -191,7 +187,7 @@ Unfortunately, I couldn’t create *Gdal2Tiles.exe* with **multiprocessing**, so
 
 Time format in tables: `{minutes}:{seconds}:{milliseconds}`.
 
-Benchmarks were made on PC with Windows 10 x64 (18362.239) equipped with Intel Core i7 6700K 4.0 GHz.
+Benchmarks were made on PC with **Windows 10 x64 (18362.239)** equipped with **Intel Core i7 6700K 4.0 GHz**.
 
 ### Versions
 
@@ -200,17 +196,13 @@ Used **MapTiler Pro** version is **0.5.3**. Used **Gdal2Tiles** version is a scr
 ### Requirements
 
 - MapTiler Pro 0.5.3 or newer;
-- Windows 7 SP1 x64 and newer;
-- Gdal2Tiles.py, converted to `.exe` and placed in directory `Gdal2Tiles` near benchmarks binaraies;
-- [.NET Framework 4.7.2](https://dotnet.microsoft.com/download/dotnet-framework/net472);
+- Gdal2Tiles.py, converted to `.exe` and placed in directory `Gdal2Tiles` near benchmarks binaries;
 
 If you’re using Windows 7 SP1, you can experience weird error with **GDAL** package. It’s recommended to install [KB2533623](<https://www.microsoft.com/en-us/download/details.aspx?id=26764>) to fix it. You can read about this Windows update on [MSDN](<https://support.microsoft.com/en-us/help/2533623/microsoft-security-advisory-insecure-library-loading-could-allow-remot>).
 
 ### Dependencies
 
 - GTiff2Tiles.Core;
-- [GDAL.Native](https://www.nuget.org/packages/GDAL.Native/) – 2.4.2;
-- [System.Threading.Tasks.Extensions](https://www.nuget.org/packages/System.Threading.Tasks.Extensions/) – 4.5.3;
 - [CommandLineParser](https://www.nuget.org/packages/CommandLineParser/) – 2.6.0;
 
 ### Usage
@@ -226,7 +218,7 @@ If you’re using Windows 7 SP1, you can experience weird error with **GDAL** pa
 |       | --version |        Current version        |           |
 |       |  --help   | Message about console options |           |
 
-Simple example looks like this: `GTiff2Tiles.Benchmarks -i D:/Examples/Input.tif -o D:/Examples/Output -t D:/Examples/Temp --minz 8 –maxz 11 --threads 3`
+Simple example looks like this: `./GTiff2Tiles.Benchmarks -i "D:/Examples/Input.tif" -o "D:/Examples/Output" -t "D:/Examples/Temp" --minz 8 –maxz 11 --threads 3`
 
 ### Detailed options description
 
