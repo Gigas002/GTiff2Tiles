@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 21.10.2019 – Released 1.4.1
+
+Changes since 1.4.0:
+
+### Overall 
+
+- Now library also supports **.NET Standard 2.0**;
+- Fixed binary releases;
+- Return of [System.Threading.Tasks.Extensions](https://www.nuget.org/packages/System.Threading.Tasks.Extensions) package for **netstandard2.0 build**;
+
 ## 20.10.2019 – Released 1.4.0
 
 Changes since 1.3.1:
@@ -9,7 +19,7 @@ Changes since 1.3.1:
 **BREAKING CHANGES:**
 
 - Solution is rebuild with **.NET Core 3.0 SDK**;
-- Library and some other projects now supports **Linux x64**, **OSX x64** and **Windows x64** operating systems. Read more below;
+- Library and some other projects now supports **Linux x64** and **Windows x64** operating systems. Read more below;
 - Renamed all async methods to `methodNameAsync`;
 
 **Other:**
@@ -29,13 +39,13 @@ Changes since 1.3.1:
 
 **Other:**
 
-- Now supports **Linux x64**, **OSX x64** and **Windows x64** operating systems;
+- Now supports **Linux x64** and **Windows x64** operating systems;
 
 - Removed **System.Threading.Tasks.Extensions** package;
 
 ### Console
 
-- Now supports **Linux x64**, **OSX x64** and **Windows x64** operating systems;
+- Now supports **Linux x64** and **Windows x64** operating systems;
 - Removed **System.Threading.Tasks.Extensions** package;
 
 ### GUI
@@ -51,7 +61,7 @@ Changes since 1.3.1:
 
 ### Benchmarks
 
-- Now supports **Linux x64**, **OSX x64** and **Windows x64** operating systems;
+- Now supports **Linux x64** and **Windows x64** operating systems;
 - Removed **System.Threading.Tasks.Extensions** package;
 
 ## 30.07.2019 – Released 1.3.1

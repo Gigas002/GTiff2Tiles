@@ -1,21 +1,26 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <TargetFrameworks>netcoreapp3.0;netstandard2.0</TargetFrameworks>
     <Platforms>AnyCPU;x64</Platforms>
-    <AssemblyVersion>1.4.1.10</AssemblyVersion>
-    <FileVersion>1.4.1.10</FileVersion>
+    <AssemblyVersion>1.4.1.28</AssemblyVersion>
+    <FileVersion>1.4.1.28</FileVersion>
     <Version>1.4.1</Version>
     <Company>Gigas002</Company>
     <Authors>Gigas002</Authors>
     <Copyright>Copyright © Gigas002 2019</Copyright>
     <PackageProjectUrl>https://github.com/Gigas002/GTiff2Tiles</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Gigas002/GTiff2Tiles</RepositoryUrl>
-    <PackageIconUrl>https://raw.githubusercontent.com/Gigas002/GTiff2Tiles/master/Icon/Icon.png</PackageIconUrl>
+    <PackageIcon>Icon.png</PackageIcon>
     <PackageTags>gtiff2tiles gdal2tiles tif tiff geotiff gdal tile maptiler</PackageTags>
     <Description>Library to create tiles from GeoTiff images. Analogue of gdal2tiles.py on C#. Currently supports only x64 systems.</Description>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="Resources\Icon.png" Pack="true" PackagePath="\" />
+  </ItemGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
@@ -27,12 +32,29 @@
     <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netcoreapp3.0|x64'">
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netcoreapp3.0|x64'">
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netstandard2.0|x64'">
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netstandard2.0|x64'">
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="MaxRev.Gdal.Core" Version="3.0.1.2" />
     <PackageReference Include="MaxRev.Gdal.LinuxRuntime.Minimal" Version="3.0.1.2" />
     <PackageReference Include="MaxRev.Gdal.WindowsRuntime.Minimal" Version="3.0.1.25" />
     <PackageReference Include="NetVips" Version="1.1.0" />
     <PackageReference Include="NetVips.Native" Version="8.8.3" />
+    <PackageReference Include="System.Threading.Tasks.Extensions" Version="4.5.3" />
   </ItemGroup>
 
   <ItemGroup>

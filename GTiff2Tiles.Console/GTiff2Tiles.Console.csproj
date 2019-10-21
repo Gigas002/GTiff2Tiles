@@ -4,10 +4,10 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.0</TargetFramework>
     <Platforms>AnyCPU;x64</Platforms>
-    <AssemblyVersion>1.4.0.39</AssemblyVersion>
-    <FileVersion>1.4.0.39</FileVersion>
+    <AssemblyVersion>1.4.1.27</AssemblyVersion>
+    <FileVersion>1.4.1.27</FileVersion>
     <ApplicationIcon>Resources\Icon.ico</ApplicationIcon>
-    <Version>1.4.0</Version>
+    <Version>1.4.1</Version>
     <Authors>Gigas002</Authors>
     <Description>Console app for GTiff2Tiles.Core</Description>
     <Copyright>Copyright © Gigas002 2019</Copyright>

@@ -5,9 +5,9 @@
 
     <IsPackable>false</IsPackable>
 
-    <AssemblyVersion>1.4.0.21</AssemblyVersion>
+    <AssemblyVersion>1.4.1.26</AssemblyVersion>
 
-    <FileVersion>1.4.0.21</FileVersion>
+    <FileVersion>1.4.1.26</FileVersion>
 
     <Platforms>AnyCPU;x64</Platforms>
 
@@ -21,7 +21,7 @@
 
     <Authors>Gigas002</Authors>
 
-    <Version>1.4.0</Version>
+    <Version>1.4.1</Version>
 
     <Description>Unit test project for GTiff2Tiles library</Description>
   </PropertyGroup>

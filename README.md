@@ -46,7 +46,7 @@ Table of contents generated with [markdown-toc](http://ecotrust-canada.github.io
 
 ## Current version
 
-**Starting from 1.4.0 solution is rewritten on .NET Core 3.0 instead of .NET Framework 4.7.2/4.8!**
+**Starting from 1.4.1 solution is rewritten on .NET Core 3.0/.NET Standard 2.0 instead of .NET Framework 4.7.2/4.8!**
 
 Current stable can be found here: [![Release](https://img.shields.io/github/release/Gigas002/GTiff2Tiles.svg)](https://github.com/Gigas002/GTiff2Tiles/releases/latest), or on NuGet (library only): [![NuGet](https://img.shields.io/nuget/v/GTiff2Tiles.svg)](https://www.nuget.org/packages/GTiff2Tiles/).
 
@@ -80,6 +80,7 @@ Library uses 2 different algorithms to create tiles:
 - [MaxRev.Gdal.WindowsRuntime.Minimal](https://www.nuget.org/packages/MaxRev.Gdal.WindowsRuntime.Minimal/) – 3.0.1.25;
 - [NetVips](https://www.nuget.org/packages/NetVips/) – 1.1.0;
 - [NetVips.Native](https://www.nuget.org/packages/NetVips.Native/) – 8.8.3;
+- [System.Threading.Tasks.Extensions](https://www.nuget.org/packages/System.Threading.Tasks.Extensions) – 4.5.3 (for **netstandard2.0 build**);
 
 ### Localization
 
@@ -93,7 +94,7 @@ Currently, application is available on **English** and **Russian** languages.
 
 ### Requirements
 
-Application runs on **Linux x64**, **OSX x64** and **Windows x64** operating systems.
+Application runs on **Linux x64** and **Windows x64** operating systems.
 
 If you’re using Windows 7 SP1, you can experience weird error with **GDAL** package. It’s recommended to install [KB2533623](<https://www.microsoft.com/en-us/download/details.aspx?id=26764>) to fix it. You can read about this Windows update on [MSDN](<https://support.microsoft.com/en-us/help/2533623/microsoft-security-advisory-insecure-library-loading-could-allow-remot>).
 

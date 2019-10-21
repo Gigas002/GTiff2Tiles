@@ -1,6 +1,6 @@
 # GTiff2Tiles.Benchmarks documentation
 
-The following documentation is written for **1.4.0** release of application.
+The following documentation is written for **1.4.1** release of application.
 
 ## Requirements
 

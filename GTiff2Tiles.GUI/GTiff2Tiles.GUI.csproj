@@ -4,13 +4,13 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp3.0</TargetFramework>
     <UseWPF>true</UseWPF>
-    <AssemblyVersion>1.4.0.49</AssemblyVersion>
-    <FileVersion>1.4.0.49</FileVersion>
+    <AssemblyVersion>1.4.1.27</AssemblyVersion>
+    <FileVersion>1.4.1.27</FileVersion>
     <StartupObject>GTiff2Tiles.GUI.App</StartupObject>
     <ApplicationIcon>Resources\Icon.ico</ApplicationIcon>
     <Platforms>AnyCPU;x64</Platforms>
     <Authors>Gigas002</Authors>
-    <Version>1.4.0</Version>
+    <Version>1.4.1</Version>
     <Description>GUI for GTiff2Tiles library</Description>
     <Copyright>Copyright © Gigas002 2019</Copyright>
     <PackageProjectUrl>https://github.com/Gigas002/GTiff2Tiles</PackageProjectUrl>
