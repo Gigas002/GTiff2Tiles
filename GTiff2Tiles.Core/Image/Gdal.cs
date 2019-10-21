@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using GTiff2Tiles.Core.Exceptions.Image;
 using GTiff2Tiles.Core.Helpers;
 using GTiff2Tiles.Core.Localization;
-using MaxRev.Gdal.Core;
 using OSGeo.GDAL;
 using OSGeo.OSR;
 
@@ -103,17 +102,7 @@ namespace GTiff2Tiles.Core.Image
         /// <summary>
         /// Initialize Gdal, if it hadn't been initialized yet.
         /// </summary>
-        private static void ConfigureGdal()
-        {
-            //TODO test cyrillic paths
-            //if (!GdalHelper.Usable) GdalHelper.Initialize();
-
-            //if (GdalHelper.IsGdalConfigured) return;
-
-            //GdalHelper.ConfigureGdal();
-            Proj6.Configure();
-            GdalBase.ConfigureAll();
-        }
+        private static void ConfigureGdal() => GdalHelper.ConfigureAll();
 
         #endregion
 
