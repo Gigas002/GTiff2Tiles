@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## WIP
+
+Changes since 1.4.1:
+
+- Update **MaxRev.Gdal.Core** package to 3.0.1.25;
+
 ## 21.10.2019 – Released 1.4.1
 
 Changes since 1.4.0:
