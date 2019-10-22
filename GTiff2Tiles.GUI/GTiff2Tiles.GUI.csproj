@@ -4,8 +4,8 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp3.0</TargetFramework>
     <UseWPF>true</UseWPF>
-    <AssemblyVersion>1.4.1.27</AssemblyVersion>
-    <FileVersion>1.4.1.27</FileVersion>
+    <AssemblyVersion>1.4.1.29</AssemblyVersion>
+    <FileVersion>1.4.1.29</FileVersion>
     <StartupObject>GTiff2Tiles.GUI.App</StartupObject>
     <ApplicationIcon>Resources\Icon.ico</ApplicationIcon>
     <Platforms>AnyCPU;x64</Platforms>
@@ -15,7 +15,9 @@
     <Copyright>Copyright © Gigas002 2019</Copyright>
     <PackageProjectUrl>https://github.com/Gigas002/GTiff2Tiles</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Gigas002/GTiff2Tiles</RepositoryUrl>
-    <PackageIconUrl>https://raw.githubusercontent.com/Gigas002/GTiff2Tiles/master/Icon/Icon.png</PackageIconUrl>
+    <PackageIcon>Icon.png</PackageIcon>
+    <PackageLicenseExpression>WTFPL</PackageLicenseExpression>
+    <RepositoryType>git</RepositoryType>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">

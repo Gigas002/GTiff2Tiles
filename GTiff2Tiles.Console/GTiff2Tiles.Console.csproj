@@ -3,9 +3,9 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.0</TargetFramework>
-    <Platforms>AnyCPU;x64</Platforms>
-    <AssemblyVersion>1.4.1.27</AssemblyVersion>
-    <FileVersion>1.4.1.27</FileVersion>
+    <Platforms>x64</Platforms>
+    <AssemblyVersion>1.4.1.29</AssemblyVersion>
+    <FileVersion>1.4.1.29</FileVersion>
     <ApplicationIcon>Resources\Icon.ico</ApplicationIcon>
     <Version>1.4.1</Version>
     <Authors>Gigas002</Authors>
@@ -13,7 +13,9 @@
     <Copyright>Copyright © Gigas002 2019</Copyright>
     <PackageProjectUrl>https://github.com/Gigas002/GTiff2Tiles</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Gigas002/GTiff2Tiles</RepositoryUrl>
-    <PackageIconUrl>https://raw.githubusercontent.com/Gigas002/GTiff2Tiles/master/Icon/Icon.png</PackageIconUrl>
+    <PackageIcon>Icon.png</PackageIcon>
+    <PackageLicenseExpression>WTFPL</PackageLicenseExpression>
+    <RepositoryType>git</RepositoryType>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">

@@ -3,9 +3,9 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.0</TargetFramework>
-    <AssemblyVersion>1.4.1.26</AssemblyVersion>
-    <FileVersion>1.4.1.26</FileVersion>
-    <Platforms>AnyCPU;x64</Platforms>
+    <AssemblyVersion>1.4.1.29</AssemblyVersion>
+    <FileVersion>1.4.1.29</FileVersion>
+    <Platforms>x64</Platforms>
     <AssemblyName>GTiff2Tiles.Benchmarks</AssemblyName>
     <RootNamespace>GTiff2Tiles.Benchmarks</RootNamespace>
     <ApplicationIcon>Resources\Icon.ico</ApplicationIcon>
@@ -14,8 +14,10 @@
     <Authors>Gigas002</Authors>
     <Description>Benchmarks project for GTiff2Tiles</Description>
     <PackageProjectUrl>https://github.com/Gigas002/GTiff2Tiles</PackageProjectUrl>
-    <PackageIconUrl>https://raw.githubusercontent.com/Gigas002/GTiff2Tiles/master/Icon/Icon.png</PackageIconUrl>
+    <PackageIcon>Icon.png</PackageIcon>
     <RepositoryUrl>https://github.com/Gigas002/GTiff2Tiles</RepositoryUrl>
+    <PackageLicenseExpression>WTFPL</PackageLicenseExpression>
+    <RepositoryType>git</RepositoryType>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">

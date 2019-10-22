@@ -1,0 +1,593 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>GTiff2Tiles.Core</name>
+    </assembly>
+    <members>
+        <member name="T:GTiff2Tiles.Core.Enums.Algorithms">
+            <summary>
+            Supported algorithms.
+            </summary>
+        </member>
+        <member name="F:GTiff2Tiles.Core.Enums.Algorithms.Crop">
+            <summary>
+            Crop input tif for each zoom.
+            </summary>
+        </member>
+        <member name="F:GTiff2Tiles.Core.Enums.Algorithms.Join">
+            <summary>
+            Crop lowest zoom and join tiles from it.
+            </summary>
+        </member>
+        <member name="T:GTiff2Tiles.Core.Enums.DateTimePatterns">
+            <summary>
+            String patterns for <see cref="T:System.DateTime"/>.
+            </summary>
+        </member>
+        <member name="F:GTiff2Tiles.Core.Enums.DateTimePatterns.LongWithMs">
+            <summary>
+            yyyyMMddHHmmssfff
+            </summary>
+        </member>
+        <member name="T:GTiff2Tiles.Core.Enums.Extensions">
+            <summary>
+            Used extensions.
+            </summary>
+        </member>
+        <member name="F:GTiff2Tiles.Core.Enums.Extensions.Png">
+            <summary>
+            .png.
+            </summary>
+        </member>
+        <member name="F:GTiff2Tiles.Core.Enums.Extensions.Tif">
+            <summary>
+            .tif.
+            </summary>
+        </member>
+        <member name="T:GTiff2Tiles.Core.Enums.Image.Gdal">
+            <summary>
+            Static class with Gdal constants.
+            </summary>
+        </member>
+        <member name="F:GTiff2Tiles.Core.Enums.Image.Gdal.LongLat">
+            <summary>
+            +proj=longlat
+            </summary>
+        </member>
+        <member name="F:GTiff2Tiles.Core.Enums.Image.Gdal.Wgs84">
+            <summary>
+            +datum=WGS84
+            </summary>
+        </member>
+        <member name="F:GTiff2Tiles.Core.Enums.Image.Gdal.Byte">
+            <summary>
+            Type=Byte
+            </summary>
+        </member>
+        <member name="F:GTiff2Tiles.Core.Enums.Image.Gdal.RepairTifOptions">
+            <summary>
+            Options for GdalWarp.
+            </summary>
+        </member>
+        <member name="F:GTiff2Tiles.Core.Enums.Image.Gdal.TempFileName">
+            <summary>
+            Name for temporary (converted) file.
+            </summary>
+        </member>
+        <member name="T:GTiff2Tiles.Core.Enums.Image.Image">
+            <summary>
+            <see cref="T:GTiff2Tiles.Core.Image.Image"/> constants.
+            </summary>
+        </member>
+        <member name="F:GTiff2Tiles.Core.Enums.Image.Image.Bands">
+            <summary>
+            Number of bands in output tiles.
+            </summary>
+        </member>
+        <member name="F:GTiff2Tiles.Core.Enums.Image.Image.TileSize">
+            <summary>
+            Output tile's size.
+            </summary>
+        </member>
+        <member name="T:GTiff2Tiles.Core.Enums.Image.Interpolations">
+            <summary>
+            Represents the interpolation algorithms.
+            </summary>
+        </member>
+        <member name="F:GTiff2Tiles.Core.Enums.Image.Interpolations.Bicubic">
+            <summary>
+            Bicubic interpoilation.
+            </summary>
+        </member>
+        <member name="T:GTiff2Tiles.Core.Exceptions.Image.GdalException">
+            <inheritdoc />
+            <summary>
+            Exceptions, happened in Image.Gdal.cs.
+            </summary>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Exceptions.Image.GdalException.#ctor(System.String)">
+            <inheritdoc />
+            <summary>
+            Creates new <see cref="T:GTiff2Tiles.Core.Exceptions.Image.GdalException"/> object with passed error message.
+            </summary>
+            <param name="errorMessage">Error message.</param>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Exceptions.Image.GdalException.#ctor(System.String,System.Exception)">
+            <inheritdoc />
+            <summary>
+            Creates new <see cref="T:GTiff2Tiles.Core.Exceptions.Image.GdalException"/> object with passed error message
+            and a reference to the inner exception that is the cause of this exception.
+            </summary>
+            <param name="errorMessage">Error message.</param>
+            <param name="innerException">Inner exception.</param>
+        </member>
+        <member name="T:GTiff2Tiles.Core.Exceptions.Image.ImageException">
+            <inheritdoc />
+            <summary>
+            Exceptions, happened in Image.Gdal.cs.
+            </summary>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Exceptions.Image.ImageException.#ctor(System.String)">
+            <inheritdoc />
+            <summary>
+            Creates new <see cref="T:GTiff2Tiles.Core.Exceptions.Image.ImageException"/> object with passed error message.
+            </summary>
+            <param name="errorMessage">Error message.</param>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Exceptions.Image.ImageException.#ctor(System.String,System.Exception)">
+            <inheritdoc />
+            <summary>
+            Creates new <see cref="T:GTiff2Tiles.Core.Exceptions.Image.ImageException"/> object with passed error message
+            and a reference to the inner exception that is the cause of this exception.
+            </summary>
+            <param name="errorMessage">Error message.</param>
+            <param name="innerException">Inner exception.</param>
+        </member>
+        <member name="T:GTiff2Tiles.Core.Exceptions.Tile.TileException">
+            <inheritdoc />
+            <summary>
+            Exceptions, happened in Tile.Tile.cs.
+            </summary>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Exceptions.Tile.TileException.#ctor(System.String)">
+            <inheritdoc />
+            <summary>
+            Creates new <see cref="T:GTiff2Tiles.Core.Exceptions.Tile.TileException"/> object with passed error message.
+            </summary>
+            <param name="errorMessage">Error message.</param>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Exceptions.Tile.TileException.#ctor(System.String,System.Exception)">
+            <inheritdoc />
+            <summary>
+            Creates new <see cref="T:GTiff2Tiles.Core.Exceptions.Tile.TileException"/> object with passed error message
+            and a reference to the inner exception that is the cause of this exception.
+            </summary>
+            <param name="errorMessage">Error message.</param>
+            <param name="innerException">Inner exception.</param>
+        </member>
+        <member name="T:GTiff2Tiles.Core.Helpers.CheckHelper">
+            <summary>
+            Class with static methods for check the errors.
+            </summary>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Helpers.CheckHelper.CheckTifInfo(System.String,System.String)">
+            <summary>
+            Check GdalInfo's strings.
+            Byte - type;
+            </summary>
+            <param name="gdalInfoString">String from <see cref="M:GTiff2Tiles.Core.Image.Gdal.InfoAsync(System.IO.FileInfo,System.String[])"/> method.</param>
+            <param name="proj4String">Proj4 string.</param>
+            <returns><see langword="true"/>, if file is OK, <see langword="false"/> otherwise.</returns>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Helpers.CheckHelper.CheckFile(System.IO.FileInfo,System.Boolean,System.String)">
+            <summary>
+            Checks, if file's path is not empty string and file exists, if it should.
+            </summary>
+            <param name="fileInfo">File to check.</param>
+            <param name="shouldExist">Should it exist?</param>
+            <param name="fileExtension">Checks file extension.</param>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Helpers.CheckHelper.CheckDirectory(System.IO.DirectoryInfo,System.Nullable{System.Boolean})">
+            <summary>
+            Checks, if directory's path is not empty, creates directory if it doesn't exist
+            and checks if it's empty or not.
+            </summary>
+            <param name="directoryInfo">Directory to check.</param>
+            <param name="shouldBeEmpty">Should directory be empty?
+            <para/>If set <see keyword="null"/>, emptyness doesn't check.</param>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Helpers.CheckHelper.CheckInputFileAsync(System.IO.FileInfo)">
+            <summary>
+            Checks the existance, projection and type.
+            </summary>
+            <param name="inputFileInfo">Input file.</param>
+            <returns><see langword="true"/> if no errors in input file, <see langword="false"/> otherwise.</returns>
+        </member>
+        <member name="T:GTiff2Tiles.Core.Helpers.GdalHelper">
+            <summary>
+            Configures all variables and options for GDAL including plugins and Proj6.db path
+            </summary>
+        </member>
+        <member name="P:GTiff2Tiles.Core.Helpers.GdalHelper.IsConfigured">
+            <summary>
+            Shows if everything has been configured.
+            </summary>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Helpers.GdalHelper.ConfigureAll">
+            <summary>
+            Setups gdalplugins and calls Gdal.AllRegister(), Ogr.RegisterAll(), Proj6.Configure().
+            </summary>
+        </member>
+        <member name="T:GTiff2Tiles.Core.Helpers.NetVipsHelper">
+            <summary>
+            Some additional methods for NetVips.
+            </summary>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Helpers.NetVipsHelper.DisableLog">
+            <summary>
+            Disables NetVips log warnings.
+            </summary>
+        </member>
+        <member name="T:GTiff2Tiles.Core.Image.Gdal">
+            <summary>
+            Gdal's method to work with input files.
+            </summary>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Image.Gdal.WarpAsync(System.IO.FileInfo,System.IO.FileInfo,System.String[],OSGeo.GDAL.Gdal.GDALProgressFuncDelegate)">
+            <summary>
+            Runs GdalWarp with passed parameters.
+            </summary>
+            <param name="inputFileInfo">Input GeoTiff file.</param>
+            <param name="outputFileInfo">Output file.</param>
+            <param name="options">Array of string parameters.</param>
+            <param name="callback">Delegate for progress reporting from Gdal.</param>
+            <returns></returns>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Image.Gdal.InfoAsync(System.IO.FileInfo,System.String[])">
+            <summary>
+            Runs GdalInfo with passed parameters.
+            </summary>
+            <param name="inputFileInfo">Input GeoTiff file.</param>
+            <param name="options">Array of string parameters for GdalInfo.</param>
+            <returns><see cref="T:System.String"/> from GdalInfo.</returns>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Image.Gdal.ConfigureGdal">
+            <summary>
+            Initialize Gdal, if it hadn't been initialized yet.
+            </summary>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Image.Gdal.GetGeoTransform(System.IO.FileInfo)">
+            <summary>
+            Gets the coordinates and pixel sizes of image.
+            </summary>
+            <param name="inputFileInfo">Input GeoTiff file.</param>
+            <returns>Array of double coordinates and pixel sizes.</returns>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Image.Gdal.GetProj4StringAsync(System.IO.FileInfo)">
+            <summary>
+            Gets proj4 string of input file.
+            </summary>
+            <param name="inputFileInfo">Input GeoTiff file.</param>
+            <returns>Proj4 string.</returns>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Image.Gdal.GetImageBorders(System.IO.FileInfo,System.Int32,System.Int32)">
+            <summary>
+            Gets the coordinates borders of the input Geotiff file.
+            </summary>
+            <param name="inputFileInfo">Input GeoTiff file.</param>
+            <param name="rasterXSize">Raster's width.</param>
+            <param name="rasterYSize">Raster's height.</param>
+            <returns><see cref="T:System.ValueTuple`4"/> with WGS84 coordinates.</returns>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Image.Gdal.GetImageSizes(System.IO.FileInfo)">
+            <summary>
+            Gets image sizes in pixels.
+            </summary>
+            <param name="inputFileInfo">Input GeoTiff file.</param>
+            <returns><see cref="T:System.ValueTuple`2"/> with image sizes in pixels.</returns>
+        </member>
+        <member name="T:GTiff2Tiles.Core.Image.Image">
+            <summary>
+            Class for creating raster tiles.
+            </summary>
+        </member>
+        <member name="P:GTiff2Tiles.Core.Image.Image.TilesMinMax">
+            <summary>
+            Dictionary with min/max tile numbers for each zoom level.
+            </summary>
+        </member>
+        <member name="P:GTiff2Tiles.Core.Image.Image.OutputDirectoryInfo">
+            <summary>
+            Output directory.
+            </summary>
+        </member>
+        <member name="P:GTiff2Tiles.Core.Image.Image.MinZ">
+            <summary>
+            Minimum cropped zoom.
+            </summary>
+        </member>
+        <member name="P:GTiff2Tiles.Core.Image.Image.MaxZ">
+            <summary>
+            Maximum cropped zoom.
+            </summary>
+        </member>
+        <member name="P:GTiff2Tiles.Core.Image.Image.TmsCompatible">
+            <summary>
+            Shows if tms tiles on output are created.
+            </summary>
+        </member>
+        <member name="P:GTiff2Tiles.Core.Image.Image.RasterXSize">
+            <summary>
+            Image's width.
+            </summary>
+        </member>
+        <member name="P:GTiff2Tiles.Core.Image.Image.RasterYSize">
+            <summary>
+            Image's height.
+            </summary>
+        </member>
+        <member name="P:GTiff2Tiles.Core.Image.Image.InputFileInfo">
+            <summary>
+            Input GeoTiff.
+            </summary>
+        </member>
+        <member name="P:GTiff2Tiles.Core.Image.Image.MinX">
+            <summary>
+            Upper left X coordinate.
+            </summary>
+        </member>
+        <member name="P:GTiff2Tiles.Core.Image.Image.MinY">
+            <summary>
+            Lower right Y coordinate.
+            </summary>
+        </member>
+        <member name="P:GTiff2Tiles.Core.Image.Image.MaxX">
+            <summary>
+            Lower right X coordinate.
+            </summary>
+        </member>
+        <member name="P:GTiff2Tiles.Core.Image.Image.MaxY">
+            <summary>
+            Upper left Y coordinate.
+            </summary>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Image.Image.#ctor(System.IO.FileInfo)">
+            <summary>
+            Creates new <see cref="T:GTiff2Tiles.Core.Image.Image"/> object.
+            </summary>
+            <param name="inputFileInfo">Input GeoTiff image.</param>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Image.Image.GeoQuery(System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Calculate size and positions to read/write.
+            </summary>
+            <param name="upperLeftX">Tile's upper left x coordinate.</param>
+            <param name="upperLeftY">Tile's upper left y coordinate.</param>
+            <param name="lowerRightX">Tile's lower right x coordinate.</param>
+            <param name="lowerRightY">Tile's lower right y coordinate.</param>
+            <returns><see cref="T:System.ValueTuple`8"/> of x/y positions and sizes to read and write tiles.</returns>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Image.Image.WriteTile(System.Int32,System.Int32,System.Int32,NetVips.Image)">
+            <summary>
+            Writes one tile of current zoom.
+            <para/>Crops zoom directly from input image.
+            </summary>
+            <param name="zoom">Zoom level.</param>
+            <param name="tileX">Tile x.</param>
+            <param name="tileY">Tile y.</param>
+            <param name="inputImage">Input image.</param>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Image.Image.WriteTile(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Writes new tile by joining 4 lower ones.
+            </summary>
+            <param name="zoom">Current zoom level.</param>
+            <param name="tileX">Tile's x number.</param>
+            <param name="tileY">Tile's y number.</param>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Image.Image.WriteZoomAsync(System.Int32,System.Int32)">
+            <summary>
+            Crops passed zoom to tiles.
+            </summary>
+            <param name="zoom">Current zoom to crop.</param>
+            <param name="threadsCount">Threads count.</param>
+            <returns></returns>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Image.Image.MakeUpperTilesAsync(System.Int32,System.Int32)">
+            <summary>
+            Make upper tiles from the lowest zoom.
+            </summary>
+            <param name="zoom">Zoom, for which we're cropping tiles atm.</param>
+            <param name="threadsCount">Threads count.</param>
+            <returns></returns>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Image.Image.SetGenerateTilesProperties(System.IO.DirectoryInfo,System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Sets properties, needed for cropping current <see cref="T:GTiff2Tiles.Core.Image.Image"/>.
+            </summary>
+            <param name="outputDirectoryInfo">Output directory.</param>
+            <param name="minZ">Minimum cropped zoom.</param>
+            <param name="maxZ">Maximum cropped zoom.</param>
+            <param name="tmsCompatible">Do you want tms tiles on output?</param>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Image.Image.GenerateTilesByJoiningAsync(System.IO.DirectoryInfo,System.Int32,System.Int32,System.Boolean,System.IProgress{System.Double},System.Int32)">
+            <summary>
+            Create tiles. Crops input tiff only for lowest zoom and then join the higher ones from it.
+            </summary>
+            <param name="outputDirectoryInfo">Output directory.</param>
+            <param name="minZ">Minimum cropped zoom.</param>
+            <param name="maxZ">Maximum cropped zoom.</param>
+            <param name="tmsCompatible">Do you want to create tms-compatible tiles?</param>
+            <param name="progress">Progress.</param>
+            <param name="threadsCount">Threads count.</param>
+            <returns></returns>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Image.Image.GenerateTilesByCroppingAsync(System.IO.DirectoryInfo,System.Int32,System.Int32,System.Boolean,System.IProgress{System.Double},System.Int32)">
+            <summary>
+            Crops input tiff for each zoom.
+            </summary>
+            <param name="outputDirectoryInfo">Output directory.</param>
+            <param name="minZ">Minimum cropped zoom.</param>
+            <param name="maxZ">Maximum cropped zoom.</param>
+            <param name="tmsCompatible">Do you want to create tms-compatible tiles?</param>
+            <param name="progress">Progress.</param>
+            <param name="threadsCount">Threads count.</param>
+            <returns></returns>
+        </member>
+        <member name="T:GTiff2Tiles.Core.Localization.Strings">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:GTiff2Tiles.Core.Localization.Strings.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:GTiff2Tiles.Core.Localization.Strings.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:GTiff2Tiles.Core.Localization.Strings.AlreadyExist">
+            <summary>
+              Looks up a localized string similar to {0} is already exist. Path:{1}.
+            </summary>
+        </member>
+        <member name="P:GTiff2Tiles.Core.Localization.Strings.DirectoryIsEmpty">
+            <summary>
+              Looks up a localized string similar to Directory is empty. Please, select another directory. Path:{0}.
+            </summary>
+        </member>
+        <member name="P:GTiff2Tiles.Core.Localization.Strings.DirectoryIsntEmpty">
+            <summary>
+              Looks up a localized string similar to Directory isn&apos;t empty. Please, select another directory. Path:{0}.
+            </summary>
+        </member>
+        <member name="P:GTiff2Tiles.Core.Localization.Strings.DoesntExist">
+            <summary>
+              Looks up a localized string similar to {0} doesn&apos;t exist. Path:{1}.
+            </summary>
+        </member>
+        <member name="P:GTiff2Tiles.Core.Localization.Strings.DoesntSupportPlatform">
+            <summary>
+              Looks up a localized string similar to {0} doesn&apos;t support current platform.
+            </summary>
+        </member>
+        <member name="P:GTiff2Tiles.Core.Localization.Strings.IsNull">
+            <summary>
+              Looks up a localized string similar to {0} is null.
+            </summary>
+        </member>
+        <member name="P:GTiff2Tiles.Core.Localization.Strings.LesserOrEqual">
+            <summary>
+              Looks up a localized string similar to {0} is lesser or equal {1}.
+            </summary>
+        </member>
+        <member name="P:GTiff2Tiles.Core.Localization.Strings.LesserThan">
+            <summary>
+              Looks up a localized string similar to {0} is lesser, than {1}.
+            </summary>
+        </member>
+        <member name="P:GTiff2Tiles.Core.Localization.Strings.StringIsEmpty">
+            <summary>
+              Looks up a localized string similar to {0} string is empty.
+            </summary>
+        </member>
+        <member name="P:GTiff2Tiles.Core.Localization.Strings.TooMuchBands">
+            <summary>
+              Looks up a localized string similar to In the result tile is too much bands (&gt;5).
+            </summary>
+        </member>
+        <member name="P:GTiff2Tiles.Core.Localization.Strings.UnableToAddToCollection">
+            <summary>
+              Looks up a localized string similar to Unable to add value to {0} collection.
+            </summary>
+        </member>
+        <member name="P:GTiff2Tiles.Core.Localization.Strings.UnableToCalculateCoordinates">
+            <summary>
+              Looks up a localized string similar to Unable to calculate tile&apos;s coordinate borders.
+            </summary>
+        </member>
+        <member name="P:GTiff2Tiles.Core.Localization.Strings.UnableToConfigure">
+            <summary>
+              Looks up a localized string similar to Unable to configure {0}.
+            </summary>
+        </member>
+        <member name="P:GTiff2Tiles.Core.Localization.Strings.UnableToConvertCoordinatesToTiles">
+            <summary>
+              Looks up a localized string similar to Unable to convert coordinates into tile numbers.
+            </summary>
+        </member>
+        <member name="P:GTiff2Tiles.Core.Localization.Strings.UnableToCreate">
+            <summary>
+              Looks up a localized string similar to Unable to create {0}. Path:{1}.
+            </summary>
+        </member>
+        <member name="P:GTiff2Tiles.Core.Localization.Strings.UnableToCreateTile">
+            <summary>
+              Looks up a localized string similar to Unable to create tile. X:{0}, Y:{1}.
+            </summary>
+        </member>
+        <member name="P:GTiff2Tiles.Core.Localization.Strings.UnableToGetCoordinates">
+            <summary>
+              Looks up a localized string similar to Unable to get {0} coordinate borders or sizes.
+            </summary>
+        </member>
+        <member name="P:GTiff2Tiles.Core.Localization.Strings.UnableToJoin">
+            <summary>
+              Looks up a localized string similar to Unable to join {0}. X:{1}, Y:{2}.
+            </summary>
+        </member>
+        <member name="P:GTiff2Tiles.Core.Localization.Strings.UnableToOpen">
+            <summary>
+              Looks up a localized string similar to Unable to open {0}. Path:{1}.
+            </summary>
+        </member>
+        <member name="P:GTiff2Tiles.Core.Localization.Strings.UnableToPrintDrivers">
+            <summary>
+              Looks up a localized string similar to Unable to print {0} drivers.
+            </summary>
+        </member>
+        <member name="P:GTiff2Tiles.Core.Localization.Strings.WrongExtension">
+            <summary>
+              Looks up a localized string similar to {0} extension isn&apos;t {1}. Path:{2}.
+            </summary>
+        </member>
+        <member name="T:GTiff2Tiles.Core.Tile.Tile">
+            <summary>
+            Class with static methods for calculating some tile stuff.
+            </summary>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Tile.Tile.Resolution(System.Int32)">
+            <summary>
+            Resolution for tiles.
+            </summary>
+            <param name="zoom"></param>
+            <returns>Resoultion value.</returns>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Tile.Tile.GetTileNumbersFromCoords(System.Double,System.Double,System.Double,System.Double,System.Int32,System.Boolean)">
+            <summary>
+            Calculates the tile numbers for zoom which covers given lon/lat coordinates.
+            </summary>
+            <param name="minX">Minimum longitude.</param>
+            <param name="minY">Minimum latitude.</param>
+            <param name="maxX">Maximum longitude.</param>
+            <param name="maxY">Maximum latitude.</param>
+            <param name="zoom">Tile's zoom.</param>
+            <param name="tmsCompatible">Do you want tms tiles on output?</param>
+            <returns><see cref="T:System.ValueTuple`4"/> of tiles numbers.</returns>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Tile.Tile.TileBounds(System.Int32,System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Calculates tile's coordinate borders for passed tiles numbers and zoom.
+            </summary>
+            <param name="tileX">Tile's x number.</param>
+            <param name="tileY">Tile's y number.</param>
+            <param name="zoom">Tile's zoom.</param>
+            <param name="tmsCompatible">Do you want tms tiles on output?</param>
+            <returns><see cref="T:System.ValueTuple`4"/> of WGS84 coordinates.</returns>
+        </member>
+    </members>
+</doc>

@@ -2,9 +2,10 @@
 
   <PropertyGroup>
     <TargetFrameworks>netcoreapp3.0;netstandard2.0</TargetFrameworks>
+    <PackageIcon>Icon.png</PackageIcon>
     <Platforms>x64</Platforms>
-    <AssemblyVersion>1.4.1.28</AssemblyVersion>
-    <FileVersion>1.4.1.28</FileVersion>
+    <AssemblyVersion>1.4.1.31</AssemblyVersion>
+    <FileVersion>1.4.1.31</FileVersion>
     <Version>1.4.1</Version>
     <Company>Gigas002</Company>
     <Authors>Gigas002</Authors>
@@ -17,15 +18,33 @@
     <LangVersion>latest</LangVersion>
     <PackageId>GTiff2Tiles</PackageId>
     <Product>GTiff2Tiles</Product>
+    <PackageLicenseExpression>WTFPL</PackageLicenseExpression>
+    <RepositoryType>git</RepositoryType>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+  <ItemGroup>
+    <None Include="Resources\Icon.png" Pack="true" Visible="true" PackagePath="" />
+  </ItemGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netcoreapp3.0|x64'">
     <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
     <DebugType>none</DebugType>
     <DebugSymbols>false</DebugSymbols>
+    <DocumentationFile>GTiff2Tiles.Core.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netstandard2.0|x64'">
+    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+    <DebugType>none</DebugType>
+    <DebugSymbols>false</DebugSymbols>
+    <DocumentationFile>GTiff2Tiles.Core.xml</DocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netcoreapp3.0|x64'">
+    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netstandard2.0|x64'">
     <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
   </PropertyGroup>
 
