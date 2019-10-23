@@ -11,3 +11,12 @@ jobs:
     - uses: actions/checkout@v1
     - name: Build with dotnet
       run: dotnet build -c Release /p:Platform=x64
+      
+  test:
+    
+    runs-on: windows-latest
+    
+    steps:
+    - uses: actions/checkout@v1
+    - name: Run unit tests
+      run: dotnet test -c Release /p:Platform=x64
