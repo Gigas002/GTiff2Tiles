@@ -8,7 +8,7 @@ Analogue of [gdal2tiles.py](https://github.com/OSGeo/gdal/blob/master/gdal/swig/
 
 Icon is kindly provided by [Google’s material design](https://material.io/tools/icons/?icon=image&style=baseline) and is used in **GTiff2Tiles.GUI**, **GTiff2Tiles.Console** and **GTiff2Tiles.Benchmarks** projects.
 
-[![Build status](https://ci.appveyor.com/api/projects/status/wp5bbi08sgd4i9bh/branch/master?svg=true)](https://ci.appveyor.com/project/Gigas002/gtiff2tiles/branch/master)
+[![Build status](https://ci.appveyor.com/api/projects/status/wp5bbi08sgd4i9bh/branch/master?svg=true)](https://ci.appveyor.com/project/Gigas002/gtiff2tiles/branch/master)  [![Actions Status](https://github.com/Gigas002/GTiff2Tiles/workflows/.NET Core CI/badge.svg)](https://github.com/Gigas002/GTiff2Tiles/actions) 
 
 ## Table of contents
 
