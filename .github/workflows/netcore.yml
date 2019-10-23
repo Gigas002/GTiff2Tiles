@@ -3,7 +3,7 @@ name: .NET Core CI
 on: [push]
 
 jobs:
-  build:
+  build-windows:
 
     runs-on: windows-latest
     
@@ -12,9 +12,27 @@ jobs:
     - name: Build with dotnet
       run: dotnet build -c Release /p:Platform=x64
       
-  test:
+  unit-tests-windows:
     
     runs-on: windows-latest
+    
+    steps:
+    - uses: actions/checkout@v1
+    - name: Run unit tests
+      run: dotnet test -c Release /p:Platform=x64
+
+  build-linux:
+
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v1
+    - name: Build with dotnet
+      run: dotnet build -c Release /p:Platform=x64
+      
+  unit-tests-linux:
+    
+    runs-on: ubuntu-latest
     
     steps:
     - uses: actions/checkout@v1
