@@ -51,7 +51,7 @@
   <ItemGroup>
     <PackageReference Include="MaxRev.Gdal.Core" Version="3.0.1.25" />
     <PackageReference Include="MaxRev.Gdal.LinuxRuntime.Minimal" Version="3.0.1.2" />
-    <PackageReference Include="MaxRev.Gdal.WindowsRuntime.Minimal" Version="3.0.1.25" />
+    <PackageReference Include="MaxRev.Gdal.WindowsRuntime.Minimal" Version="3.0.1.35" />
     <PackageReference Include="NetVips" Version="1.1.0" />
     <PackageReference Include="NetVips.Native" Version="8.8.3" />
     <PackageReference Include="System.Threading.Tasks.Extensions" Version="4.5.3" Condition="'$(TargetFramework)' == 'netstandard2.0'" />
