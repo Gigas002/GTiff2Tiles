@@ -10,7 +10,7 @@
     <Version>1.4.1</Version>
     <Authors>Gigas002</Authors>
     <Description>Console app for GTiff2Tiles.Core</Description>
-    <Copyright>Copyright © Gigas002 2019</Copyright>
+    <Copyright>Copyright © Gigas002 2020</Copyright>
     <PackageProjectUrl>https://github.com/Gigas002/GTiff2Tiles</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Gigas002/GTiff2Tiles</RepositoryUrl>
     <PackageIcon>Icon.png</PackageIcon>

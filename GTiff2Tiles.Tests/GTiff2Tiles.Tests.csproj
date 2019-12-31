@@ -8,7 +8,7 @@
     <Platforms>x64</Platforms>
     <RepositoryUrl>https://github.com/Gigas002/GTiff2Tiles</RepositoryUrl>
     <PackageProjectUrl>https://github.com/Gigas002/GTiff2Tiles</PackageProjectUrl>
-    <Copyright>Copyright © Gigas002 2019</Copyright>
+    <Copyright>Copyright © Gigas002 2020</Copyright>
     <Authors>Gigas002</Authors>
     <Version>1.4.1</Version>
     <Description>Unit test project for GTiff2Tiles library</Description>

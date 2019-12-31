@@ -9,7 +9,7 @@
     <Version>1.4.1</Version>
     <Company>Gigas002</Company>
     <Authors>Gigas002</Authors>
-    <Copyright>Copyright © Gigas002 2019</Copyright>
+    <Copyright>Copyright © Gigas002 2020</Copyright>
     <PackageProjectUrl>https://github.com/Gigas002/GTiff2Tiles</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Gigas002/GTiff2Tiles</RepositoryUrl>
     <PackageTags>gtiff2tiles gdal2tiles tif tiff geotiff gdal tile maptiler</PackageTags>
