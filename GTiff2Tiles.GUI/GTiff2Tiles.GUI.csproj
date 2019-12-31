@@ -2,10 +2,10 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWPF>true</UseWPF>
-    <AssemblyVersion>1.4.1.29</AssemblyVersion>
-    <FileVersion>1.4.1.29</FileVersion>
+    <AssemblyVersion>1.4.2.2</AssemblyVersion>
+    <FileVersion>1.4.2.2</FileVersion>
     <StartupObject>GTiff2Tiles.GUI.App</StartupObject>
     <ApplicationIcon>Resources\Icon.ico</ApplicationIcon>
     <Platforms>AnyCPU;x64</Platforms>

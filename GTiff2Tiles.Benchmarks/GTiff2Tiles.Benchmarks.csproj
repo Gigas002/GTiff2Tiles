@@ -2,9 +2,9 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp3.0</TargetFramework>
-    <AssemblyVersion>1.4.1.29</AssemblyVersion>
-    <FileVersion>1.4.1.29</FileVersion>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AssemblyVersion>1.4.2.2</AssemblyVersion>
+    <FileVersion>1.4.2.2</FileVersion>
     <Platforms>x64</Platforms>
     <AssemblyName>GTiff2Tiles.Benchmarks</AssemblyName>
     <RootNamespace>GTiff2Tiles.Benchmarks</RootNamespace>
