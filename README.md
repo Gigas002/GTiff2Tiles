@@ -77,9 +77,9 @@ Library uses 2 different algorithms to create tiles:
 
 - [MaxRev.Gdal.Core](https://www.nuget.org/packages/MaxRev.Gdal.Core/) – 3.0.1.25;
 - [MaxRev.Gdal.LinuxRuntime.Minimal](https://www.nuget.org/packages/MaxRev.Gdal.LinuxRuntime.Minimal/) – 3.0.1.2;
-- [MaxRev.Gdal.WindowsRuntime.Minimal](https://www.nuget.org/packages/MaxRev.Gdal.WindowsRuntime.Minimal/) – 3.0.1.25;
+- [MaxRev.Gdal.WindowsRuntime.Minimal](https://www.nuget.org/packages/MaxRev.Gdal.WindowsRuntime.Minimal/) – 3.0.1.35;
 - [NetVips](https://www.nuget.org/packages/NetVips/) – 1.1.0;
-- [NetVips.Native](https://www.nuget.org/packages/NetVips.Native/) – 8.8.3;
+- [NetVips.Native](https://www.nuget.org/packages/NetVips.Native/) – 8.8.4;
 - [System.Threading.Tasks.Extensions](https://www.nuget.org/packages/System.Threading.Tasks.Extensions) – 4.5.3 (for **netstandard2.0 build**);
 
 ### Localization
@@ -146,7 +146,7 @@ Currently, application is available on **English** and **Russian** languages.
 ### Dependencies
 
 - GTiff2Tiles.Core;
-- [Microsoft.NET.Test.Sdk](https://www.nuget.org/packages/Microsoft.NET.Test.Sdk) – 16.3.0;
+- [Microsoft.NET.Test.Sdk](https://www.nuget.org/packages/Microsoft.NET.Test.Sdk) – 16.4.0;
 - [NUnit](https://www.nuget.org/packages/NUnit) – 3.12.0;
 - [NUnit3TestAdapter](https://www.nuget.org/packages/NUnit3TestAdapter/) – 3.15.1;
 

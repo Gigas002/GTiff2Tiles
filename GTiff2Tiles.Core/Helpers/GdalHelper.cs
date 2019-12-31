@@ -78,15 +78,14 @@ namespace GTiff2Tiles.Core.Helpers
                     foreach (FileInfo dll in dlls)
                     {
                         string destPath = Path.Combine(driversPath, dll.Name);
-                        //if (File.Exists(dest)) File.Delete(dest);
-                        File.Copy(dll.FullName, destPath, true); //todo File.Move?
+                        File.Move(dll.FullName, destPath); //, true);
                     }
 
                     OSGeo.GDAL.Gdal.SetConfigOption("GDAL_DRIVER_PATH", driversPath);
                 }
             }
 
-            //TODO: Test and fix bug with cyrillic paths
+            //TODO: Cyrillic paths for GdalBuildVrt
             //string gdalFileNameIsUtf8 = "NO";
             //Gdal.SetConfigOption("GDAL_FILENAME_IS_UTF8", gdalFileNameIsUtf8);
 

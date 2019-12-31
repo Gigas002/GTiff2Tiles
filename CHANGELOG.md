@@ -6,6 +6,12 @@ Changes since 1.4.1:
 
 - Update **MaxRev.Gdal.Core** package to **3.0.1.25**;
 - Update **.NET Core** version to **3.1.100**;
+- Update **NetVips.Native** package to **8.8.4**;
+- Update **MaxRev.Gdal.WindowsRuntime.Minimal** package to **3.0.1.35**;
+
+### Tests
+
+- Update **Microsoft.NET.Test.Sdk** package to **16.4.0**;
 
 ## 21.10.2019 – Released 1.4.1
 

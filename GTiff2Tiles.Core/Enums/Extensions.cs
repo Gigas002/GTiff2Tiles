@@ -5,6 +5,8 @@
     /// </summary>
     public static class Extensions
     {
+        //TODO: Add .jpg and .webp tile support
+
         /// <summary>
         /// .png.
         /// </summary>
