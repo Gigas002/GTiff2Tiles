@@ -32,7 +32,7 @@
 
   <ItemGroup>
     <PackageReference Include="Caliburn.Micro" Version="3.2.0" />
-    <PackageReference Include="MaterialDesignColors" Version="1.2.0" />
+    <PackageReference Include="MaterialDesignColors" Version="1.2.2" />
     <PackageReference Include="MaterialDesignExtensions" Version="2.8.0" />
     <PackageReference Include="MaterialDesignThemes" Version="2.6.0" />
   </ItemGroup>
