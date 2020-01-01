@@ -5,8 +5,6 @@
     /// </summary>
     public static class Extensions
     {
-        //TODO: Add .jpg and .webp tile support
-
         /// <summary>
         /// .png.
         /// </summary>
@@ -16,5 +14,15 @@
         /// .tif.
         /// </summary>
         public const string Tif = ".tif";
+
+        /// <summary>
+        /// .webp
+        /// </summary>
+        public const string Jpg = ".jpg";
+
+        /// <summary>
+        /// .webp
+        /// </summary>
+        public const string Webp = ".webp";
     }
 }
