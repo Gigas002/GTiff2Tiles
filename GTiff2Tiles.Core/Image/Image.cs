@@ -366,7 +366,7 @@ namespace GTiff2Tiles.Core.Image
             {
                 if (File.Exists(tile1Path))
                 {
-                    upperTileImage1 = NetVips.Image.Pngload(tile1Path);
+                    upperTileImage1 = NetVips.Image.NewFromFile(tile1Path);
                     upperTileImage1 = upperTileImage1.ThumbnailImage(upperTileSize, upperTileSize);
                     tilesExists = true;
                 }
@@ -386,7 +386,7 @@ namespace GTiff2Tiles.Core.Image
             {
                 if (File.Exists(tile2Path))
                 {
-                    upperTileImage2 = NetVips.Image.Pngload(tile2Path);
+                    upperTileImage2 = NetVips.Image.NewFromFile(tile2Path);
                     upperTileImage2 = upperTileImage2.ThumbnailImage(upperTileSize, upperTileSize);
                     tilesExists = true;
                 }
@@ -405,7 +405,7 @@ namespace GTiff2Tiles.Core.Image
             {
                 if (File.Exists(tile3Path))
                 {
-                    upperTileImage3 = NetVips.Image.Pngload(tile3Path);
+                    upperTileImage3 = NetVips.Image.NewFromFile(tile3Path);
                     upperTileImage3 = upperTileImage3.ThumbnailImage(upperTileSize, upperTileSize);
                     tilesExists = true;
                 }
@@ -424,7 +424,7 @@ namespace GTiff2Tiles.Core.Image
             {
                 if (File.Exists(tile4Path))
                 {
-                    upperTileImage4 = NetVips.Image.Pngload(tile4Path);
+                    upperTileImage4 = NetVips.Image.NewFromFile(tile4Path);
                     upperTileImage4 = upperTileImage4.ThumbnailImage(upperTileSize, upperTileSize);
                     tilesExists = true;
                 }
