@@ -105,7 +105,7 @@ Full documentation is inside of [GTiff2Tiles.Console.Doc.md](GTiff2Tiles.Console
 ### Dependencies
 
 - GTiff2Tiles.Core;
-- [CommandLineParser](https://www.nuget.org/packages/CommandLineParser/) – 2.6.0;
+- [CommandLineParser](https://www.nuget.org/packages/CommandLineParser/) – 2.7.82;
 
 ### Localization
 
@@ -176,7 +176,7 @@ If you’re using Windows 7 SP1, you can experience weird error with **GDAL** pa
 ### Dependencies
 
 - GTiff2Tiles.Core;
-- [CommandLineParser](https://www.nuget.org/packages/CommandLineParser/) – 2.6.0;
+- [CommandLineParser](https://www.nuget.org/packages/CommandLineParser/) – 2.7.82;
 
 ### Usage
 
