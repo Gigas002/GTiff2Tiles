@@ -65,7 +65,7 @@ jobs:
 
         echo Build linux-x64 tests start
         dotnet build GTiff2Tiles.Tests -c Release /p:Platform=x64
-        echo Build linux-x64 complete (WPF app skipped)
+        echo Build linux-x64 complete
       
 # TODO: fix linux tests
 # Unit tests on Linux (Ubuntu)
