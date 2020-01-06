@@ -44,6 +44,16 @@
             .tif.
             </summary>
         </member>
+        <member name="F:GTiff2Tiles.Core.Enums.Extensions.Jpg">
+            <summary>
+            .webp
+            </summary>
+        </member>
+        <member name="F:GTiff2Tiles.Core.Enums.Extensions.Webp">
+            <summary>
+            .webp
+            </summary>
+        </member>
         <member name="T:GTiff2Tiles.Core.Enums.Image.Gdal">
             <summary>
             Static class with Gdal constants.
@@ -351,6 +361,11 @@
             Upper left Y coordinate.
             </summary>
         </member>
+        <member name="P:GTiff2Tiles.Core.Image.Image.TilesExtension">
+            <summary>
+            Extension of ready tiles.
+            </summary>
+        </member>
         <member name="M:GTiff2Tiles.Core.Image.Image.#ctor(System.IO.FileInfo)">
             <summary>
             Creates new <see cref="T:GTiff2Tiles.Core.Image.Image"/> object.
@@ -401,7 +416,7 @@
             <param name="threadsCount">Threads count.</param>
             <returns></returns>
         </member>
-        <member name="M:GTiff2Tiles.Core.Image.Image.SetGenerateTilesProperties(System.IO.DirectoryInfo,System.Int32,System.Int32,System.Boolean)">
+        <member name="M:GTiff2Tiles.Core.Image.Image.SetGenerateTilesProperties(System.IO.DirectoryInfo,System.Int32,System.Int32,System.Boolean,System.String)">
             <summary>
             Sets properties, needed for cropping current <see cref="T:GTiff2Tiles.Core.Image.Image"/>.
             </summary>
@@ -409,6 +424,7 @@
             <param name="minZ">Minimum cropped zoom.</param>
             <param name="maxZ">Maximum cropped zoom.</param>
             <param name="tmsCompatible">Do you want tms tiles on output?</param>
+            <param name="tilesExtension">Extensions of ready tiles.</param>
         </member>
         <member name="M:GTiff2Tiles.Core.Image.Image.GenerateTilesByJoiningAsync(System.IO.DirectoryInfo,System.Int32,System.Int32,System.Boolean,System.IProgress{System.Double},System.Int32)">
             <summary>
@@ -422,6 +438,19 @@
             <param name="threadsCount">Threads count.</param>
             <returns></returns>
         </member>
+        <member name="M:GTiff2Tiles.Core.Image.Image.GenerateTilesByJoiningAsync(System.IO.DirectoryInfo,System.Int32,System.Int32,System.Boolean,System.String,System.IProgress{System.Double},System.Int32)">
+            <summary>
+            Create tiles. Crops input tiff only for lowest zoom and then join the higher ones from it.
+            </summary>
+            <param name="outputDirectoryInfo">Output directory.</param>
+            <param name="minZ">Minimum cropped zoom.</param>
+            <param name="maxZ">Maximum cropped zoom.</param>
+            <param name="tmsCompatible">Do you want to create tms-compatible tiles? <see langword="true"/> by default.</param>
+            <param name="tilesExtension">Extension of ready tiles. ".png" by default.</param>
+            <param name="progress">Progress. <see langword="null"/> by default.</param>
+            <param name="threadsCount">Threads count. 5 by default.</param>
+            <returns></returns>
+        </member>
         <member name="M:GTiff2Tiles.Core.Image.Image.GenerateTilesByCroppingAsync(System.IO.DirectoryInfo,System.Int32,System.Int32,System.Boolean,System.IProgress{System.Double},System.Int32)">
             <summary>
             Crops input tiff for each zoom.
@@ -432,6 +461,19 @@
             <param name="tmsCompatible">Do you want to create tms-compatible tiles?</param>
             <param name="progress">Progress.</param>
             <param name="threadsCount">Threads count.</param>
+            <returns></returns>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Image.Image.GenerateTilesByCroppingAsync(System.IO.DirectoryInfo,System.Int32,System.Int32,System.Boolean,System.String,System.IProgress{System.Double},System.Int32)">
+            <summary>
+            Crops input tiff for each zoom.
+            </summary>
+            <param name="outputDirectoryInfo">Output directory.</param>
+            <param name="minZ">Minimum cropped zoom.</param>
+            <param name="maxZ">Maximum cropped zoom.</param>
+            <param name="tmsCompatible">Do you want to create tms-compatible tiles? <see langword="true"/> by default.</param>
+            <param name="tilesExtension">Extension of ready tiles. ".png" by default.</param>
+            <param name="progress">Progress. <see langword="null"/> by default.</param>
+            <param name="threadsCount">Threads count. 5 by default.</param>
             <returns></returns>
         </member>
         <member name="T:GTiff2Tiles.Core.Localization.Strings">

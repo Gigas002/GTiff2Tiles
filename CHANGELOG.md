@@ -19,6 +19,12 @@ Changes since 1.4.1:
 
 - Update **CommandLineParser** package to **2.7.82**;
 
+## GUI
+
+- Update **MaterialDesignColors** package to **1.2.2**;
+- Update **MaterialDesignThemes** package to **3.0.1**;
+- Update **MaterialDesignExtensions** package to **3.0.0-a03**;
+
 ### Tests
 
 - Update **Microsoft.NET.Test.Sdk** package to **16.4.0**;
