@@ -22,6 +22,7 @@ Changes since 1.4.1:
 ### Tests
 
 - Update **Microsoft.NET.Test.Sdk** package to **16.4.0**;
+- Update **NUnit3TestAdapter** package to **3.16.0**;
 
 ## 21.10.2019 – Released 1.4.1
 

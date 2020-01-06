@@ -148,7 +148,7 @@ Currently, application is available on **English** and **Russian** languages.
 - GTiff2Tiles.Core;
 - [Microsoft.NET.Test.Sdk](https://www.nuget.org/packages/Microsoft.NET.Test.Sdk) – 16.4.0;
 - [NUnit](https://www.nuget.org/packages/NUnit) – 3.12.0;
-- [NUnit3TestAdapter](https://www.nuget.org/packages/NUnit3TestAdapter/) – 3.15.1;
+- [NUnit3TestAdapter](https://www.nuget.org/packages/NUnit3TestAdapter/) – 3.16.0;
 
 ## GTiff2Tiles.Benchmarks
 
