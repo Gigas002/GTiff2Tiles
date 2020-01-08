@@ -70,22 +70,21 @@ jobs:
         
         echo Build linux-x64 complete
       
-# TODO: fix linux tests
 # Unit tests on Linux (Ubuntu)
 
-#  unit-tests-linux:
+  unit-tests-linux:
     
-#    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
     
-#    steps:
-#    - uses: actions/checkout@v1
-#    - name: Setup .NET Core
-#      uses: actions/setup-dotnet@v1
-#      with:
-#        dotnet-version: 3.1.100
-#    - name: Run unit tests
-#      run: |
-#        echo Unit tests linux-x64 start
-#        dotnet test GTiff2Tiles.Tests -c Release /p:Platform=x64
-#
-#        echo Unit tests linux-x64 complete
+    steps:
+    - uses: actions/checkout@v1
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.1.100
+    - name: Run unit tests
+      run: |
+        echo Unit tests linux-x64 start
+        dotnet test GTiff2Tiles.Tests -c Release /p:Platform=x64
+
+        echo Unit tests linux-x64 complete
