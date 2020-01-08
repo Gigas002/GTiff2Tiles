@@ -8,7 +8,7 @@ Analogue of [gdal2tiles.py](https://github.com/OSGeo/gdal/blob/master/gdal/swig/
 
 Icon is kindly provided by [Google’s material design](https://material.io/tools/icons/?icon=image&style=baseline) and is used in **GTiff2Tiles.GUI**, **GTiff2Tiles.Console** and **GTiff2Tiles.Benchmarks** projects.
 
-[![Build status](https://ci.appveyor.com/api/projects/status/wp5bbi08sgd4i9bh/branch/master?svg=true)](https://ci.appveyor.com/project/Gigas002/gtiff2tiles/branch/master) [![Actions Status](https://github.com/Gigas002/GTiff2Tiles/workflows/.NET%20Core%20CI/badge.svg)](https://github.com/Gigas002/GTiff2Tiles/actions) 
+[![Build status](https://ci.appveyor.com/api/projects/status/wp5bbi08sgd4i9bh/branch/master?svg=true)](https://ci.appveyor.com/project/Gigas002/gtiff2tiles/branch/master) [![Actions Status](https://github.com/Gigas002/GTiff2Tiles/workflows/.NET%20Core%20CI/badge.svg)](https://github.com/Gigas002/GTiff2Tiles/actions)
 
 ## Table of contents
 
@@ -78,8 +78,8 @@ Library uses 2 different algorithms to create tiles:
 - [MaxRev.Gdal.Core](https://www.nuget.org/packages/MaxRev.Gdal.Core/) – 3.0.1.25;
 - [MaxRev.Gdal.LinuxRuntime.Minimal](https://www.nuget.org/packages/MaxRev.Gdal.LinuxRuntime.Minimal/) – 3.0.1.2;
 - [MaxRev.Gdal.WindowsRuntime.Minimal](https://www.nuget.org/packages/MaxRev.Gdal.WindowsRuntime.Minimal/) – 3.0.1.35;
-- [NetVips](https://www.nuget.org/packages/NetVips/) – 1.1.0;
-- [NetVips.Native](https://www.nuget.org/packages/NetVips.Native/) – 8.8.4;
+- [NetVips](https://www.nuget.org/packages/NetVips/) – 1.2.0-rc1;
+- [NetVips.Native](https://www.nuget.org/packages/NetVips.Native/) – 8.9.0-rc4;
 - [System.Threading.Tasks.Extensions](https://www.nuget.org/packages/System.Threading.Tasks.Extensions) – 4.5.3 (for **netstandard2.0 build**);
 
 ### Localization

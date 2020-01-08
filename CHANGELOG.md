@@ -6,10 +6,15 @@ Changes since 1.4.1:
 
 ## Overall
 
-- Update **MaxRev.Gdal.Core** package to **3.0.1.25**;
 - Update **.NET Core** version to **3.1.100**;
-- Update **NetVips.Native** package to **8.8.4**;
+- Fixed **Linux** build and apps;
+
+## Core
+
+- Update **MaxRev.Gdal.Core** package to **3.0.1.25**;
 - Update **MaxRev.Gdal.WindowsRuntime.Minimal** package to **3.0.1.35**;
+- Update **NetVips** package to **1.2.0-rc1**;
+- Update **NetVips.Native** package to **8.9.0-rc4**;
 
 ## Benchmarks
 
@@ -34,7 +39,7 @@ Changes since 1.4.1:
 
 Changes since 1.4.0:
 
-### Overall 
+### Overall
 
 - Now library also supports **.NET Standard 2.0**;
 - Fixed binary releases;

@@ -4,8 +4,8 @@
     <TargetFrameworks>netcoreapp3.1;netstandard2.0</TargetFrameworks>
     <PackageIcon>Icon.png</PackageIcon>
     <Platforms>x64</Platforms>
-    <AssemblyVersion>1.5.0.18</AssemblyVersion>
-    <FileVersion>1.5.0.18</FileVersion>
+    <AssemblyVersion>1.5.0.19</AssemblyVersion>
+    <FileVersion>1.5.0.19</FileVersion>
     <Version>1.5.0</Version>
     <Company>Gigas002</Company>
     <Authors>Gigas002</Authors>
@@ -52,8 +52,8 @@
     <PackageReference Include="MaxRev.Gdal.Core" Version="3.0.1.25" />
     <PackageReference Include="MaxRev.Gdal.LinuxRuntime.Minimal" Version="3.0.1.2" />
     <PackageReference Include="MaxRev.Gdal.WindowsRuntime.Minimal" Version="3.0.1.35" />
-    <PackageReference Include="NetVips" Version="1.1.0" />
-    <PackageReference Include="NetVips.Native" Version="8.8.4" />
+    <PackageReference Include="NetVips" Version="1.2.0-rc1" />
+    <PackageReference Include="NetVips.Native" Version="8.9.0-rc4" />
     <PackageReference Include="System.Threading.Tasks.Extensions" Version="4.5.3" Condition="'$(TargetFramework)' == 'netstandard2.0'" />
   </ItemGroup>
 
