@@ -20,6 +20,7 @@ jobs:
       run: |
         echo Build win-x64 start
         dotnet build -c Release /p:Platform=x64
+        
         echo Build win-x64 complete
       
 # Unit tests on Windows
@@ -38,6 +39,7 @@ jobs:
       run: |
         echo Unit tests win-x64 start
         dotnet test -c Release /p:Platform=x64
+        
         echo Unit tests win-x64 complete
         
 # Build on Linux (Ubuntu)
@@ -65,6 +67,7 @@ jobs:
 
         echo Build linux-x64 tests start
         dotnet build GTiff2Tiles.Tests -c Release /p:Platform=x64
+        
         echo Build linux-x64 complete
       
 # TODO: fix linux tests
@@ -76,9 +79,13 @@ jobs:
     
 #    steps:
 #    - uses: actions/checkout@v1
+#    - name: Setup .NET Core
+#      uses: actions/setup-dotnet@v1
+#      with:
+#        dotnet-version: 3.1.100
 #    - name: Run unit tests
 #      run: |
-  # FAILS
 #        echo Unit tests linux-x64 start
 #        dotnet test GTiff2Tiles.Tests -c Release /p:Platform=x64
+#
 #        echo Unit tests linux-x64 complete
