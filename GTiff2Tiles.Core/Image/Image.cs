@@ -90,7 +90,7 @@ namespace GTiff2Tiles.Core.Image
         /// <summary>
         /// Extension of ready tiles.
         /// </summary>
-        public string TilesExtension { get; private set; }
+        public string TileExtension { get; private set; }
 
         #endregion
 
@@ -230,7 +230,7 @@ namespace GTiff2Tiles.Core.Image
 
             //Warning: OpenLayers requires replacement of tileY to tileY+1
             FileInfo outputTileFileInfo = new FileInfo(Path.Combine(tileDirectoryInfo.FullName,
-                                                                    $"{tileY}{TilesExtension}"));
+                                                                    $"{tileY}{TileExtension}"));
 
 
             //Try open input image and crop tile
@@ -360,7 +360,7 @@ namespace GTiff2Tiles.Core.Image
 
             NetVips.Image upperTileImage1;
             string tile1Path = Path.Combine(OutputDirectoryInfo.FullName, $"{zoom + 1}", $"{upperTileX1}",
-                                            $"{upperTileY1}{TilesExtension}");
+                                            $"{upperTileY1}{TileExtension}");
 
             try
             {
@@ -379,7 +379,7 @@ namespace GTiff2Tiles.Core.Image
 
             NetVips.Image upperTileImage2;
             string tile2Path = Path.Combine(OutputDirectoryInfo.FullName, $"{zoom + 1}", $"{upperTileX2}",
-                                            $"{upperTileY2}{TilesExtension}");
+                                            $"{upperTileY2}{TileExtension}");
 
 
             try
@@ -399,7 +399,7 @@ namespace GTiff2Tiles.Core.Image
 
             NetVips.Image upperTileImage3;
             string tile3Path = Path.Combine(OutputDirectoryInfo.FullName, $"{zoom + 1}", $"{upperTileX3}",
-                                            $"{upperTileY3}{TilesExtension}");
+                                            $"{upperTileY3}{TileExtension}");
 
             try
             {
@@ -418,7 +418,7 @@ namespace GTiff2Tiles.Core.Image
 
             NetVips.Image upperTileImage4;
             string tile4Path = Path.Combine(OutputDirectoryInfo.FullName, $"{zoom + 1}", $"{upperTileX4}",
-                                            $"{upperTileY4}{TilesExtension}");
+                                            $"{upperTileY4}{TileExtension}");
 
             try
             {
@@ -484,7 +484,7 @@ namespace GTiff2Tiles.Core.Image
 
             //Join 4 tiles.
             FileInfo outputTileFileInfo = new FileInfo(Path.Combine(tileDirectoryInfo.FullName,
-                                                                    $"{tileY}{TilesExtension}"));
+                                                                    $"{tileY}{TileExtension}"));
 
             try
             {
@@ -616,9 +616,9 @@ namespace GTiff2Tiles.Core.Image
         /// <param name="minZ">Minimum cropped zoom.</param>
         /// <param name="maxZ">Maximum cropped zoom.</param>
         /// <param name="tmsCompatible">Do you want tms tiles on output?</param>
-        /// <param name="tilesExtension">Extensions of ready tiles.</param>
+        /// <param name="tileExtension">Extensions of ready tiles.</param>
         private void SetGenerateTilesProperties(DirectoryInfo outputDirectoryInfo, int minZ, int maxZ,
-                                                bool tmsCompatible, string tilesExtension)
+                                                bool tmsCompatible, string tileExtension)
         {
             #region Check parameters
 
@@ -632,7 +632,7 @@ namespace GTiff2Tiles.Core.Image
 
             (OutputDirectoryInfo, MinZ, MaxZ) = (outputDirectoryInfo, minZ, maxZ);
             TmsCompatible = tmsCompatible;
-            TilesExtension = tilesExtension;
+            TileExtension = tileExtension;
 
             //Create dictionary with tiles for each cropped zoom.
             for (int zoom = MinZ; zoom <= MaxZ; zoom++)
@@ -706,13 +706,13 @@ namespace GTiff2Tiles.Core.Image
         /// <param name="minZ">Minimum cropped zoom.</param>
         /// <param name="maxZ">Maximum cropped zoom.</param>
         /// <param name="tmsCompatible">Do you want to create tms-compatible tiles? <see langword="true"/> by default.</param>
-        /// <param name="tilesExtension">Extension of ready tiles. ".png" by default.</param>
+        /// <param name="tileExtension">Extension of ready tiles. ".png" by default.</param>
         /// <param name="progress">Progress. <see langword="null"/> by default.</param>
         /// <param name="threadsCount">Threads count. 5 by default.</param>
         /// <returns></returns>
         public async ValueTask GenerateTilesByJoiningAsync(DirectoryInfo outputDirectoryInfo, int minZ, int maxZ,
                                                            bool tmsCompatible = true,
-                                                           string tilesExtension = Enums.Extensions.Png,
+                                                           string tileExtension = Enums.Extensions.Png,
                                                            IProgress<double> progress = null,
                                                            int threadsCount = 5)
         {
@@ -726,7 +726,7 @@ namespace GTiff2Tiles.Core.Image
 
             #endregion
 
-            SetGenerateTilesProperties(outputDirectoryInfo, minZ, maxZ, tmsCompatible, tilesExtension);
+            SetGenerateTilesProperties(outputDirectoryInfo, minZ, maxZ, tmsCompatible, tileExtension);
 
             //Crop lowest zoom level.
             await WriteZoomAsync(MaxZ, threadsCount).ConfigureAwait(false);
@@ -784,13 +784,13 @@ namespace GTiff2Tiles.Core.Image
         /// <param name="minZ">Minimum cropped zoom.</param>
         /// <param name="maxZ">Maximum cropped zoom.</param>
         /// <param name="tmsCompatible">Do you want to create tms-compatible tiles? <see langword="true"/> by default.</param>
-        /// <param name="tilesExtension">Extension of ready tiles. ".png" by default.</param>
+        /// <param name="tileExtension">Extension of ready tiles. ".png" by default.</param>
         /// <param name="progress">Progress. <see langword="null"/> by default.</param>
         /// <param name="threadsCount">Threads count. 5 by default.</param>
         /// <returns></returns>
         public async ValueTask GenerateTilesByCroppingAsync(DirectoryInfo outputDirectoryInfo, int minZ, int maxZ,
                                                             bool tmsCompatible = true,
-                                                            string tilesExtension = Enums.Extensions.Png,
+                                                            string tileExtension = Enums.Extensions.Png,
                                                             IProgress<double> progress = null,
                                                             int threadsCount = 5)
         {
@@ -804,7 +804,7 @@ namespace GTiff2Tiles.Core.Image
 
             #endregion
 
-            SetGenerateTilesProperties(outputDirectoryInfo, minZ, maxZ, tmsCompatible, tilesExtension);
+            SetGenerateTilesProperties(outputDirectoryInfo, minZ, maxZ, tmsCompatible, tileExtension);
 
             //Crop tiles for each zoom.
             for (int zoom = MinZ; zoom <= MaxZ; zoom++)

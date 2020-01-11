@@ -361,7 +361,7 @@
             Upper left Y coordinate.
             </summary>
         </member>
-        <member name="P:GTiff2Tiles.Core.Image.Image.TilesExtension">
+        <member name="P:GTiff2Tiles.Core.Image.Image.TileExtension">
             <summary>
             Extension of ready tiles.
             </summary>
@@ -424,7 +424,7 @@
             <param name="minZ">Minimum cropped zoom.</param>
             <param name="maxZ">Maximum cropped zoom.</param>
             <param name="tmsCompatible">Do you want tms tiles on output?</param>
-            <param name="tilesExtension">Extensions of ready tiles.</param>
+            <param name="tileExtension">Extensions of ready tiles.</param>
         </member>
         <member name="M:GTiff2Tiles.Core.Image.Image.GenerateTilesByJoiningAsync(System.IO.DirectoryInfo,System.Int32,System.Int32,System.Boolean,System.IProgress{System.Double},System.Int32)">
             <summary>
@@ -446,7 +446,7 @@
             <param name="minZ">Minimum cropped zoom.</param>
             <param name="maxZ">Maximum cropped zoom.</param>
             <param name="tmsCompatible">Do you want to create tms-compatible tiles? <see langword="true"/> by default.</param>
-            <param name="tilesExtension">Extension of ready tiles. ".png" by default.</param>
+            <param name="tileExtension">Extension of ready tiles. ".png" by default.</param>
             <param name="progress">Progress. <see langword="null"/> by default.</param>
             <param name="threadsCount">Threads count. 5 by default.</param>
             <returns></returns>
@@ -471,7 +471,7 @@
             <param name="minZ">Minimum cropped zoom.</param>
             <param name="maxZ">Maximum cropped zoom.</param>
             <param name="tmsCompatible">Do you want to create tms-compatible tiles? <see langword="true"/> by default.</param>
-            <param name="tilesExtension">Extension of ready tiles. ".png" by default.</param>
+            <param name="tileExtension">Extension of ready tiles. ".png" by default.</param>
             <param name="progress">Progress. <see langword="null"/> by default.</param>
             <param name="threadsCount">Threads count. 5 by default.</param>
             <returns></returns>
