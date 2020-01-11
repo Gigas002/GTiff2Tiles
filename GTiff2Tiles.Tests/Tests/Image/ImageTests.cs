@@ -58,8 +58,9 @@ namespace GTiff2Tiles.Tests.Tests.Image
                 const int minZ = Enums.Zooms.MinZ;
                 const int maxZ = Enums.Zooms.MaxZ;
                 const int threadsCount = Enums.Multithreading.ThreadsCount;
-                await image.GenerateTilesByJoiningAsync(outputDirectoryInfo, minZ, maxZ, tmsCompatible, progress,
-                                                   threadsCount);
+                const string tileExtension = Extensions.Png;
+                await image.GenerateTilesByJoiningAsync(outputDirectoryInfo, minZ, maxZ, tmsCompatible, tileExtension, progress,
+                                                        threadsCount);
             }
             catch (Exception exception) { Assert.Fail(exception.Message); }
 
@@ -109,7 +110,8 @@ namespace GTiff2Tiles.Tests.Tests.Image
                 const int minZ = Enums.Zooms.MinZ;
                 const int maxZ = Enums.Zooms.MaxZ;
                 const int threadsCount = Enums.Multithreading.ThreadsCount;
-                await image.GenerateTilesByCroppingAsync(outputDirectoryInfo, minZ, maxZ, tmsCompatible, progress,
+                const string tileExtension = Extensions.Png;
+                await image.GenerateTilesByCroppingAsync(outputDirectoryInfo, minZ, maxZ, tmsCompatible, tileExtension, progress,
                                                     threadsCount);
             }
             catch (Exception exception) { Assert.Fail(exception.Message); }
@@ -160,8 +162,9 @@ namespace GTiff2Tiles.Tests.Tests.Image
                 const int minZ = Enums.Zooms.MinZ;
                 const int maxZ = Enums.Zooms.MaxZ;
                 const int threadsCount = Enums.Multithreading.ThreadsCount;
-                await image.GenerateTilesByJoiningAsync(outputDirectoryInfo, minZ, maxZ, tmsCompatible, progress,
-                                                   threadsCount);
+                const string tileExtension = Extensions.Png;
+                await image.GenerateTilesByJoiningAsync(outputDirectoryInfo, minZ, maxZ, tmsCompatible, tileExtension, progress,
+                                                        threadsCount);
             }
             catch (Exception exception) { Assert.Fail(exception.Message); }
 
@@ -211,8 +214,9 @@ namespace GTiff2Tiles.Tests.Tests.Image
                 const int minZ = Enums.Zooms.MinZ;
                 const int maxZ = Enums.Zooms.MaxZ;
                 const int threadsCount = Enums.Multithreading.ThreadsCount;
-                await image.GenerateTilesByCroppingAsync(outputDirectoryInfo, minZ, maxZ, tmsCompatible, progress,
-                                                    threadsCount);
+                const string tileExtension = Extensions.Png;
+                await image.GenerateTilesByCroppingAsync(outputDirectoryInfo, minZ, maxZ, tmsCompatible, tileExtension, progress,
+                                                         threadsCount);
             }
             catch (Exception exception) { Assert.Fail(exception.Message); }
 

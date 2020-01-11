@@ -2,6 +2,6 @@
 {
     internal static class Multithreading
     {
-        internal const int ThreadsCount = 5;
+        internal const int ThreadsCount = 6;
     }
 }
