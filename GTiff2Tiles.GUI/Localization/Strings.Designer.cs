@@ -196,6 +196,15 @@ namespace GTiff2Tiles.GUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please, select the tile extension.
+        /// </summary>
+        internal static string SelectExtension {
+            get {
+                return ResourceManager.GetString("SelectExtension", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Start.
         /// </summary>
         internal static string StartButtonContent {
@@ -219,6 +228,15 @@ namespace GTiff2Tiles.GUI.Localization {
         internal static string ThreadsCountHint {
             get {
                 return ResourceManager.GetString("ThreadsCountHint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select extension of ready tiles.
+        /// </summary>
+        internal static string TileExtensionsHint {
+            get {
+                return ResourceManager.GetString("TileExtensionsHint", resourceCulture);
             }
         }
         

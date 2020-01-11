@@ -71,6 +71,11 @@ namespace GTiff2Tiles.GUI.ViewModels
         public string AlgorithmsHint { get; } = Strings.AlgorithmsHint;
 
         /// <summary>
+        /// Hint for Extensions ComboBox
+        /// </summary>
+        public string TileExtensionsHint { get; } = Strings.TileExtensionsHint;
+
+        /// <summary>
         /// Hint for ThreadsCount TextBox.
         /// </summary>
         public string ThreadsCountHint { get; } = Strings.ThreadsCountHint;
@@ -252,6 +257,27 @@ namespace GTiff2Tiles.GUI.ViewModels
         // ReSharper disable once CollectionNeverQueried.Global
         public ObservableCollection<string> Algorithms { get; } = new ObservableCollection<string>();
 
+        private string _tileExtension;
+
+        /// <summary>
+        /// Currently chosen tile extension.
+        /// </summary>
+        public string TileExtension
+        {
+            get => _tileExtension;
+            set
+            {
+                _tileExtension = value;
+                NotifyOfPropertyChange(() => TileExtension);
+            }
+        }
+
+        /// <summary>
+        /// Collection of supported tile extensions.
+        /// </summary>
+        // ReSharper disable once CollectionNeverQueried.Global
+        public ObservableCollection<string> TileExtensions { get; } = new ObservableCollection<string>();
+
         #endregion
 
         #region ProgressBar
@@ -315,8 +341,11 @@ namespace GTiff2Tiles.GUI.ViewModels
             ThreadsCount = 5;
             ProgressBarValue = 0.0;
             IsEnabled = true;
-            Algorithms.Add("crop");
-            Algorithms.Add("join");
+            Algorithms.Add(Core.Enums.Algorithms.Crop);
+            Algorithms.Add(Core.Enums.Algorithms.Join);
+            TileExtensions.Add(Extensions.Png);
+            TileExtensions.Add(Extensions.Jpg);
+            TileExtensions.Add(Extensions.Webp);
         }
 
         #endregion
@@ -428,13 +457,13 @@ namespace GTiff2Tiles.GUI.ViewModels
                 {
                     case Core.Enums.Algorithms.Join:
                         await inputImage
-                             .GenerateTilesByJoiningAsync(outputDirectoryInfo, MinZ, MaxZ, TmsCompatible, progress,
+                             .GenerateTilesByJoiningAsync(outputDirectoryInfo, MinZ, MaxZ, TmsCompatible, TileExtension, progress,
                                                      ThreadsCount).ConfigureAwait(true);
 
                         break;
                     case Core.Enums.Algorithms.Crop:
                         await inputImage
-                             .GenerateTilesByCroppingAsync(outputDirectoryInfo, MinZ, MaxZ, TmsCompatible, progress,
+                             .GenerateTilesByCroppingAsync(outputDirectoryInfo, MinZ, MaxZ, TmsCompatible, TileExtension, progress,
                                                       ThreadsCount).ConfigureAwait(true);
 
                         break;
@@ -505,15 +534,18 @@ namespace GTiff2Tiles.GUI.ViewModels
             if (string.IsNullOrWhiteSpace(Algorithm))
                 return await Helpers.ErrorHelper.ShowErrorAsync(Strings.SelectAlgorithm).ConfigureAwait(true);
 
-            Algorithm = Algorithm.ToLowerInvariant();
+            //Algorithm = Algorithm.ToLowerInvariant();
 
-            if (Algorithm != Core.Enums.Algorithms.Join && Algorithm != Core.Enums.Algorithms.Crop)
-                return await Helpers.ErrorHelper.ShowErrorAsync(Strings.AlgorithmNotSupported).ConfigureAwait(true);
+            //if (Algorithm != Core.Enums.Algorithms.Join && Algorithm != Core.Enums.Algorithms.Crop)
+            //    return await Helpers.ErrorHelper.ShowErrorAsync(Strings.AlgorithmNotSupported).ConfigureAwait(true);
 
             if (ThreadsCount <= 0)
                 return await Helpers
                             .ErrorHelper.ShowErrorAsync(string.Format(Strings.LesserOrEqual, nameof(ThreadsCount), 0))
                             .ConfigureAwait(true);
+
+            if (string.IsNullOrWhiteSpace(TileExtension))
+                return await Helpers.ErrorHelper.ShowErrorAsync(Strings.SelectExtension).ConfigureAwait(true);
 
             //Disable controls.
             IsEnabled = false;

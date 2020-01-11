@@ -181,4 +181,10 @@
   <data name="TmsCheckBoxContent" xml:space="preserve">
     <value>Tms compatible</value>
   </data>
+  <data name="SelectExtension" xml:space="preserve">
+    <value>Please, select the tile extension</value>
+  </data>
+  <data name="TileExtensionsHint" xml:space="preserve">
+    <value>Select extension of ready tiles</value>
+  </data>
 </root>

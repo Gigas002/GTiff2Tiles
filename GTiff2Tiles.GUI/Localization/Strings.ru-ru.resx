@@ -181,4 +181,10 @@
   <data name="TmsCheckBoxContent" xml:space="preserve">
     <value>Совместимо с tms</value>
   </data>
+  <data name="SelectExtension" xml:space="preserve">
+    <value>Выберите расширение готовых тайлов</value>
+  </data>
+  <data name="TileExtensionsHint" xml:space="preserve">
+    <value>Выберите расширение готовых тайлов</value>
+  </data>
 </root>

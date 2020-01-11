@@ -19,7 +19,7 @@
     TextOptions.TextRenderingMode="Auto"
     ResizeMode="CanMinimize"
     Title="GTiff2Tiles"
-    Height="615"
+    Height="700"
     Width="675"
     WindowStartupLocation="CenterScreen"
     Icon="/GTiff2Tiles.GUI;component/Resources/Icon.ico">
@@ -49,6 +49,8 @@
             <Grid Grid.Row="1" Grid.Column="1"
               IsEnabled="{Binding IsEnabled}">
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="10"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="10"/>
                     <RowDefinition Height="Auto"/>
@@ -171,14 +173,29 @@
                 </ComboBox>
 
                 <!-- Grid.Row="12" -->
-                <CheckBox Grid.Row="12" Grid.Column="0"
+                <ComboBox Grid.Row="12" Grid.Column="0"
+                          Grid.ColumnSpan="3"
+                          VerticalContentAlignment="Center"
+                          Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                          ItemsSource="{Binding TileExtensions}"
+                          SelectedItem="{Binding TileExtension}">
+                    <materialDesignThemes:HintAssist.Hint>
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesignThemes:PackIcon Kind="ViewList"/>
+                            <TextBlock Text="{Binding TileExtensionsHint}"/>
+                        </StackPanel>
+                    </materialDesignThemes:HintAssist.Hint>
+                </ComboBox>
+
+                <!-- Grid.Row="14" -->
+                <CheckBox Grid.Row="14" Grid.Column="0"
                           VerticalAlignment="Center"
                           Style="{StaticResource MaterialDesignCheckBox}"
                           IsChecked="{Binding TmsCompatible}"
                           Content="{Binding TmsCheckBoxContent}"/>
 
-                <!-- Grid.Row="14" -->
-                <TextBox Grid.Row="14" Grid.Column="0"
+                <!-- Grid.Row="16" -->
+                <TextBox Grid.Row="16" Grid.Column="0"
                          Grid.ColumnSpan="3"
                          VerticalContentAlignment="Center"
                          Style="{StaticResource MaterialDesignFloatingHintTextBox}"
@@ -191,21 +208,21 @@
                     </materialDesignThemes:HintAssist.Hint>
                 </TextBox>
 
-                <!-- Grid.Row="16" -->
-                <Button Grid.Row="16" Grid.Column="0"
+                <!-- Grid.Row="18" -->
+                <Button Grid.Row="18" Grid.Column="0"
                         Grid.ColumnSpan="3"
                         FontSize="18"
                         Content="{Binding StartButtonContent}"
                         caliburnMicro:Message.Attach="StartButtonAsync"/>
 
-                <!-- Grid.Row="18" -->
-                <ProgressBar Grid.Row="18" Grid.Column="0"
+                <!-- Grid.Row="20" -->
+                <ProgressBar Grid.Row="20" Grid.Column="0"
                              Grid.ColumnSpan="3"
                              Height="25"
                              Value="{Binding ProgressBarValue}"/>
 
-                <!-- Grid.Row="20" -->
-                <Grid Grid.Row="20" Grid.Column="0">
+                <!-- Grid.Row="22" -->
+                <Grid Grid.Row="22" Grid.Column="0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
@@ -223,12 +240,12 @@
                                Text="{Binding ProgressBarValue}"/>
                 </Grid>
 
-                <!-- Grid.Row="22" -->
-                <TextBlock Grid.Row="22" Grid.Column="0"
+                <!-- Grid.Row="24" -->
+                <TextBlock Grid.Row="24" Grid.Column="0"
                            HorizontalAlignment="Left"
                            VerticalAlignment="Bottom"
                            Text="{Binding Copyright}"/>
-                <TextBlock Grid.Row="22" Grid.Column="0"
+                <TextBlock Grid.Row="24" Grid.Column="0"
                            Grid.ColumnSpan="3"
                            HorizontalAlignment="Right"
                            VerticalAlignment="Bottom"
