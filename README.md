@@ -78,7 +78,7 @@ Library uses 2 different algorithms to create tiles:
 - [MaxRev.Gdal.Core](https://www.nuget.org/packages/MaxRev.Gdal.Core/) – 3.0.1.25;
 - [MaxRev.Gdal.LinuxRuntime.Minimal](https://www.nuget.org/packages/MaxRev.Gdal.LinuxRuntime.Minimal/) – 3.0.1.2;
 - [MaxRev.Gdal.WindowsRuntime.Minimal](https://www.nuget.org/packages/MaxRev.Gdal.WindowsRuntime.Minimal/) – 3.0.1.35;
-- [NetVips](https://www.nuget.org/packages/NetVips/) – 1.2.0-rc1;
+- [NetVips](https://www.nuget.org/packages/NetVips/) – 1.2.0-rc2;
 - [NetVips.Native](https://www.nuget.org/packages/NetVips.Native/) – 8.9.0-rc4;
 - [System.Threading.Tasks.Extensions](https://www.nuget.org/packages/System.Threading.Tasks.Extensions) – 4.5.3 (for **netstandard2.0 build**);
 
