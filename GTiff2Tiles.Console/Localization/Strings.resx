@@ -125,6 +125,10 @@
     <value>Done! Time passed:{0}Days:{1} hours:{2} minutes:{3} seconds:{4} milliseconds:{5}</value>
     <comment>Prints when done</comment>
   </data>
+  <data name="ExtensionNotSupported" xml:space="preserve">
+    <value>This tile extension is not supported</value>
+    <comment>Error text</comment>
+  </data>
   <data name="LesserOrEqual" xml:space="preserve">
     <value>{0} is lesser or equal {1}</value>
     <comment>Needed for threads checking</comment>

@@ -79,6 +79,15 @@ namespace GTiff2Tiles.Console.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This tile extension is not supported.
+        /// </summary>
+        internal static string ExtensionNotSupported {
+            get {
+                return ResourceManager.GetString("ExtensionNotSupported", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} is lesser or equal {1}.
         /// </summary>
         internal static string LesserOrEqual {

@@ -4,8 +4,8 @@
     <TargetFrameworks>netcoreapp3.1;netstandard2.0</TargetFrameworks>
     <PackageIcon>Icon.png</PackageIcon>
     <Platforms>x64</Platforms>
-    <AssemblyVersion>1.5.0.21</AssemblyVersion>
-    <FileVersion>1.5.0.21</FileVersion>
+    <AssemblyVersion>1.5.0.22</AssemblyVersion>
+    <FileVersion>1.5.0.22</FileVersion>
     <Version>1.5.0</Version>
     <Company>Gigas002</Company>
     <Authors>Gigas002</Authors>

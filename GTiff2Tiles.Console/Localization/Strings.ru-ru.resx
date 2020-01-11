@@ -125,6 +125,10 @@
     <value>Готово! Прошло времени:{0}Дней:{1} часов:{2} минут:{3} секунд:{4} миллисекунд:{5}</value>
     <comment>Выводится после завершения работы</comment>
   </data>
+  <data name="ExtensionNotSupported" xml:space="preserve">
+    <value>Указанное расширение тайлов не поддерживается</value>
+    <comment>Сообщение об ошибке</comment>
+  </data>
   <data name="LesserOrEqual" xml:space="preserve">
     <value>{0} меньше или равно {1}</value>
     <comment>Необходимо для проверки потоков</comment>

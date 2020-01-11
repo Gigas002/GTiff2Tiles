@@ -3,8 +3,8 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <IsPackable>false</IsPackable>
-    <AssemblyVersion>1.5.0.18</AssemblyVersion>
-    <FileVersion>1.5.0.18</FileVersion>
+    <AssemblyVersion>1.5.0.19</AssemblyVersion>
+    <FileVersion>1.5.0.19</FileVersion>
     <Platforms>x64</Platforms>
     <RepositoryUrl>https://github.com/Gigas002/GTiff2Tiles</RepositoryUrl>
     <PackageProjectUrl>https://github.com/Gigas002/GTiff2Tiles</PackageProjectUrl>

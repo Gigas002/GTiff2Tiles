@@ -58,6 +58,11 @@ namespace GTiff2Tiles.Console
         /// </summary>
         private static bool TmsCompatible { get; set; }
 
+        /// <summary>
+        /// Ready tiles extension.
+        /// </summary>
+        private static string TileExtension { get; set; } = Extensions.Png;
+
         #endregion
 
         private static async Task Main(string[] args)
@@ -116,15 +121,15 @@ namespace GTiff2Tiles.Console
                 switch (Algorithm)
                 {
                     case Algorithms.Join:
-                        await inputImage
-                             .GenerateTilesByJoiningAsync(OutputDirectoryInfo, MinZ, MaxZ, TmsCompatible, consoleProgress,
-                                                     ThreadsCount).ConfigureAwait(false);
+                        await inputImage.GenerateTilesByJoiningAsync(OutputDirectoryInfo, MinZ, MaxZ, TmsCompatible,
+                                                                     TileExtension, consoleProgress, ThreadsCount)
+                                        .ConfigureAwait(false);
 
                         break;
                     case Algorithms.Crop:
-                        await inputImage
-                             .GenerateTilesByCroppingAsync(OutputDirectoryInfo, MinZ, MaxZ, TmsCompatible, consoleProgress,
-                                                      ThreadsCount).ConfigureAwait(false);
+                        await inputImage.GenerateTilesByCroppingAsync(OutputDirectoryInfo, MinZ, MaxZ, TmsCompatible,
+                                                                     TileExtension, consoleProgress, ThreadsCount)
+                                        .ConfigureAwait(false);
 
                         break;
                     default:
@@ -144,10 +149,10 @@ namespace GTiff2Tiles.Console
             System.Console.WriteLine(Strings.Done, Environment.NewLine, stopwatch.Elapsed.Days, stopwatch.Elapsed.Hours,
                                      stopwatch.Elapsed.Minutes, stopwatch.Elapsed.Seconds,
                                      stopwatch.Elapsed.Milliseconds);
-            #if DEBUG
+#if DEBUG
             System.Console.WriteLine(Strings.PressAnyKey);
             System.Console.ReadKey();
-            #endif
+#endif
         }
 
         #region Methods
@@ -225,6 +230,24 @@ namespace GTiff2Tiles.Console
                 return;
             }
 
+            //Check extension string.
+            if (string.IsNullOrWhiteSpace(options.TileExtension))
+            {
+                Helpers.ErrorHelper.PrintError(string.Format(Strings.OptionIsEmpty, "--extension"));
+                IsParsingErrors = true;
+
+                return;
+            }
+
+            if (options.TileExtension != Extensions.Png && options.TileExtension != Extensions.Jpg
+                                                        && options.TileExtension != Extensions.Webp)
+            {
+                Helpers.ErrorHelper.PrintError(string.Format(Strings.ExtensionNotSupported));
+                IsParsingErrors = true;
+
+                return;
+            }
+
             //Set properties values.
             InputFileInfo = new FileInfo(options.InputFilePath);
             OutputDirectoryInfo = new DirectoryInfo(options.OutputDirectoryPath);
@@ -243,6 +266,8 @@ namespace GTiff2Tiles.Console
             }
 
             TmsCompatible = tmsComptaible;
+
+            TileExtension = options.TileExtension;
         }
 
         #endregion
