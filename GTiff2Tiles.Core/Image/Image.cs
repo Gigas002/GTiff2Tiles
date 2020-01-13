@@ -199,11 +199,11 @@ namespace GTiff2Tiles.Core.Image
         /// Writes one tile of current zoom.
         /// <para/>Crops zoom directly from input image.
         /// </summary>
-        /// <param name="zoom">Zoom level.</param>
+        /// <param name="inputImage">Input image.</param>
         /// <param name="tileX">Tile x.</param>
         /// <param name="tileY">Tile y.</param>
-        /// <param name="inputImage">Input image.</param>
-        private void WriteTile(int zoom, int tileX, int tileY, NetVips.Image inputImage)
+        /// <param name="zoom">Zoom level.</param>
+        private void WriteTile(NetVips.Image inputImage, int tileX, int tileY, int zoom)
         {
             #region Parameters checking
 
@@ -322,10 +322,10 @@ namespace GTiff2Tiles.Core.Image
         /// <summary>
         /// Writes new tile by joining 4 lower ones.
         /// </summary>
-        /// <param name="zoom">Current zoom level.</param>
         /// <param name="tileX">Tile's x number.</param>
         /// <param name="tileY">Tile's y number.</param>
-        private void WriteTile(int zoom, int tileX, int tileY)
+        /// <param name="zoom">Current zoom level.</param>
+        private void WriteTile(int tileX, int tileY, int zoom)
         {
             #region Parameters checking
 
@@ -551,7 +551,7 @@ namespace GTiff2Tiles.Core.Image
 
                     tasks.Add(Task.Run(() =>
                     {
-                        try { WriteTile(zoom, x, y, inputImage); }
+                        try { WriteTile(inputImage, x, y, zoom); }
                         finally { semaphoreSlim.Release(); }
                     }));
                 }
@@ -597,7 +597,7 @@ namespace GTiff2Tiles.Core.Image
 
                     tasks.Add(Task.Run(() =>
                     {
-                        try { WriteTile(zoom, x, y); }
+                        try { WriteTile(x, y, zoom); }
                         finally { semaphoreSlim.Release(); }
                     }));
                 }
