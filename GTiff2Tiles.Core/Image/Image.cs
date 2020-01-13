@@ -440,7 +440,11 @@ namespace GTiff2Tiles.Core.Image
             //We shouldn't create tiles, if they're not exist.
             if (!tilesExists) return;
 
-            NetVips.Image[] images = { upperTileImage3, upperTileImage4, upperTileImage1, upperTileImage2 };
+            NetVips.Image[] images = new NetVips.Image[4];
+            images[0] = TmsCompatible ? upperTileImage3 : upperTileImage1;
+            images[1] = TmsCompatible ? upperTileImage4 : upperTileImage2;
+            images[2] = TmsCompatible ? upperTileImage1 : upperTileImage3;
+            images[3] = TmsCompatible ? upperTileImage2 : upperTileImage4;
 
             //Check and write bands if needed.
             for (int imagesIndex = 0; imagesIndex < images.Length; imagesIndex++)
