@@ -6,15 +6,15 @@ Changes since 1.4.1:
 
 ### Overall
 
-- Update **.NET Core** version to **3.1.100**;
+- Update **.NET Core** version to **3.1.101**;
 - Fixed **Linux** build and apps;
 
 ### Core
 
 - Update **MaxRev.Gdal.Core** package to **3.0.1.25**;
 - Update **MaxRev.Gdal.WindowsRuntime.Minimal** package to **3.0.1.35**;
-- Update **NetVips** package to **1.2.0-rc2**;
-- Update **NetVips.Native** package to **8.9.0-rc4**;
+- Update **NetVips** package to **1.2.0**;
+- Update **NetVips.Native** package to **8.9.1**;
 
 ### Benchmarks
 
@@ -28,12 +28,12 @@ Changes since 1.4.1:
 
 - Update **MaterialDesignColors** package to **1.2.2**;
 - Update **MaterialDesignThemes** package to **3.0.1**;
-- Update **MaterialDesignExtensions** package to **3.0.0-a03**;
+- Update **MaterialDesignExtensions** package to **3.0.0**;
 
 ### Tests
 
 - Update **Microsoft.NET.Test.Sdk** package to **16.4.0**;
-- Update **NUnit3TestAdapter** package to **3.16.0**;
+- Update **NUnit3TestAdapter** package to **3.16.1**;
 
 ## 21.10.2019 – Released 1.4.1
 
