@@ -29,10 +29,11 @@ Changes since 1.4.1:
 - Update **MaterialDesignColors** package to **1.2.2**;
 - Update **MaterialDesignThemes** package to **3.0.1**;
 - Update **MaterialDesignExtensions** package to **3.0.0**;
+- Update **Caliburn.Micro** package to **4.0.105-alpha**;
 
 ### Tests
 
-- Update **Microsoft.NET.Test.Sdk** package to **16.4.0**;
+- Update **Microsoft.NET.Test.Sdk** package to **16.5.0**;
 - Update **NUnit3TestAdapter** package to **3.16.1**;
 
 ## 21.10.2019 – Released 1.4.1
