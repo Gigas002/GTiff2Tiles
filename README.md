@@ -16,6 +16,7 @@ Icon is kindly provided by [Google’s material design](https://material.io/tool
   - [Table of contents](#table-of-contents)
   - [Current version](#current-version)
   - [Build](#build)
+  - [Docker Images](#docker-images)
   - [Examples](#examples)
   - [GTiff2Tiles.Core](#gtiff2tilescore)
     - [Dependencies](#dependencies)
@@ -56,9 +57,15 @@ Previous versions can be found on [releases](https://github.com/Gigas002/GTiff2T
 
 ## Build
 
-Solution can be build in **VS2019 (16.4.3+)**. You can also build projects in **VSCode (1.41.1+)** with **omnisharp-vscode (1.21.9+)** extensions. Projects targets **.NET Core 3.1**, so you’ll need **.NET Core 3.1.101 SDK**.
+Solution can be build in **VS2019 (16.4.5+)**. You can also build projects in **VSCode (1.42.1+)** with **omnisharp-vscode (1.21.11+)** extensions. Projects targets **.NET Core 3.1**, so you’ll need **.NET Core 3.1.102 SDK**.
 
 Some of **Release** binaries are made by `Publish.ps1` script. Take a look at it in the repo. Note, that running this script requires installed **PowerShell** or **[PowerShell Core](https://github.com/PowerShell/PowerShell)** for **Linux**/**OSX** systems.
+
+## Docker Images
+
+**WIP**
+
+You can build docker image by running `docker.ps1` script with your **PowerShell**/**PowerShell Core (on Linux)**. It’ll create `gtiff2tiles-console` image.
 
 ## Examples
 
