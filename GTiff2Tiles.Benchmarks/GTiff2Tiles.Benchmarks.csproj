@@ -3,8 +3,8 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <AssemblyVersion>1.5.0.25</AssemblyVersion>
-    <FileVersion>1.5.0.25</FileVersion>
+    <AssemblyVersion>1.5.0.26</AssemblyVersion>
+    <FileVersion>1.5.0.26</FileVersion>
     <Platforms>x64</Platforms>
     <AssemblyName>GTiff2Tiles.Benchmarks</AssemblyName>
     <RootNamespace>GTiff2Tiles.Benchmarks</RootNamespace>
@@ -16,7 +16,7 @@
     <PackageProjectUrl>https://github.com/Gigas002/GTiff2Tiles</PackageProjectUrl>
     <PackageIcon>Icon.png</PackageIcon>
     <RepositoryUrl>https://github.com/Gigas002/GTiff2Tiles</RepositoryUrl>
-    <PackageLicenseExpression>WTFPL</PackageLicenseExpression>
+    <PackageLicenseFile>../LICENSE.md</PackageLicenseFile>
     <RepositoryType>git</RepositoryType>
   </PropertyGroup>
 

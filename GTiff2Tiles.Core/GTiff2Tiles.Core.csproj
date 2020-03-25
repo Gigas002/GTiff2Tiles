@@ -4,8 +4,8 @@
     <TargetFrameworks>netcoreapp3.1;netstandard2.0</TargetFrameworks>
     <PackageIcon>Icon.png</PackageIcon>
     <Platforms>x64</Platforms>
-    <AssemblyVersion>1.5.0.29</AssemblyVersion>
-    <FileVersion>1.5.0.29</FileVersion>
+    <AssemblyVersion>1.5.0.30</AssemblyVersion>
+    <FileVersion>1.5.0.30</FileVersion>
     <Version>1.5.0-ci28</Version>
     <Company>Gigas002</Company>
     <Authors>Gigas002</Authors>
@@ -18,7 +18,7 @@
     <LangVersion>latest</LangVersion>
     <PackageId>GTiff2Tiles</PackageId>
     <Product>GTiff2Tiles</Product>
-    <PackageLicenseExpression>WTFPL</PackageLicenseExpression>
+    <PackageLicenseFile>../LICENSE.md</PackageLicenseFile>
     <RepositoryType>git</RepositoryType>
   </PropertyGroup>
 

@@ -9,6 +9,7 @@ Changes since 1.4.1:
 - Update **.NET Core** version to **3.1.102**;
 - Fixed **Linux** build and apps;
 - Create **Docker image** for **GTiff2Tiles.Console**;
+- Move to **[DBAD](https://dbad-license.org/)** license;
 
 ### Core
 
