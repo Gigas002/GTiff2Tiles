@@ -57,7 +57,7 @@ Previous versions can be found on [releases](https://github.com/Gigas002/GTiff2T
 
 ## Build
 
-Solution can be build in **VS2019 (16.4.5+)**. You can also build projects in **VSCode (1.42.1+)** with **omnisharp-vscode (1.21.11+)** extensions. Projects targets **.NET Core 3.1**, so you’ll need **.NET Core 3.1.102 SDK**.
+Solution can be build in **VS2019 (16.5.1+)**. You can also build projects in **VSCode (1.43.2+)** with **omnisharp-vscode (1.21.14+)** extensions. Projects targets **.NET Core 3.1**, so you’ll need **.NET Core 3.1.201 SDK**.
 
 Some of **Release** binaries are made by `Publish.ps1` script. Take a look at it in the repo. Note, that running this script requires installed **PowerShell** or **[PowerShell Core](https://github.com/PowerShell/PowerShell)** for **Linux**/**OSX** systems.
 
@@ -85,9 +85,9 @@ Library uses 2 different algorithms to create tiles:
 - [MaxRev.Gdal.Core](https://www.nuget.org/packages/MaxRev.Gdal.Core/) – 3.0.1.25;
 - [MaxRev.Gdal.LinuxRuntime.Minimal](https://www.nuget.org/packages/MaxRev.Gdal.LinuxRuntime.Minimal/) – 3.0.1.2;
 - [MaxRev.Gdal.WindowsRuntime.Minimal](https://www.nuget.org/packages/MaxRev.Gdal.WindowsRuntime.Minimal/) – 3.0.1.35;
-- [NetVips](https://www.nuget.org/packages/NetVips/) – 1.2.0;
+- [NetVips](https://www.nuget.org/packages/NetVips/) – 1.2.1;
 - [NetVips.Native](https://www.nuget.org/packages/NetVips.Native/) – 8.9.1;
-- [System.Threading.Tasks.Extensions](https://www.nuget.org/packages/System.Threading.Tasks.Extensions) – 4.5.3 (for **netstandard2.0 build**);
+- [System.Threading.Tasks.Extensions](https://www.nuget.org/packages/System.Threading.Tasks.Extensions) – 4.5.4 (for **netstandard2.0 build**);
 
 ### Localization
 

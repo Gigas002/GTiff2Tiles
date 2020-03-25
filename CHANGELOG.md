@@ -14,8 +14,9 @@ Changes since 1.4.1:
 
 - Update **MaxRev.Gdal.Core** package to **3.0.1.25**;
 - Update **MaxRev.Gdal.WindowsRuntime.Minimal** package to **3.0.1.35**;
-- Update **NetVips** package to **1.2.0**;
+- Update **NetVips** package to **1.2.1**;
 - Update **NetVips.Native** package to **8.9.1**;
+- Update **System.Threading.Tasks.Extensions** package to **4.5.3** (*netstandard2.0* only);
 
 ### Benchmarks
 
