@@ -3,8 +3,8 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <AssemblyVersion>1.5.0.26</AssemblyVersion>
-    <FileVersion>1.5.0.26</FileVersion>
+    <AssemblyVersion>1.5.0.27</AssemblyVersion>
+    <FileVersion>1.5.0.27</FileVersion>
     <Platforms>x64</Platforms>
     <AssemblyName>GTiff2Tiles.Benchmarks</AssemblyName>
     <RootNamespace>GTiff2Tiles.Benchmarks</RootNamespace>
@@ -16,7 +16,7 @@
     <PackageProjectUrl>https://github.com/Gigas002/GTiff2Tiles</PackageProjectUrl>
     <PackageIcon>Icon.png</PackageIcon>
     <RepositoryUrl>https://github.com/Gigas002/GTiff2Tiles</RepositoryUrl>
-    <PackageLicenseFile>../LICENSE.md</PackageLicenseFile>
+    <PackageLicenseFile>..\LICENSE.md</PackageLicenseFile>
     <RepositoryType>git</RepositoryType>
   </PropertyGroup>
 
@@ -32,6 +32,10 @@
 
   <ItemGroup>
     <None Remove="Resources\Icon.ico" />
+    <None Include="..\LICENSE.md">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
   <ItemGroup>

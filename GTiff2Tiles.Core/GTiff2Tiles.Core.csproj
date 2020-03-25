@@ -4,8 +4,8 @@
     <TargetFrameworks>netcoreapp3.1;netstandard2.0</TargetFrameworks>
     <PackageIcon>Icon.png</PackageIcon>
     <Platforms>x64</Platforms>
-    <AssemblyVersion>1.5.0.30</AssemblyVersion>
-    <FileVersion>1.5.0.30</FileVersion>
+    <AssemblyVersion>1.5.0.31</AssemblyVersion>
+    <FileVersion>1.5.0.31</FileVersion>
     <Version>1.5.0-ci28</Version>
     <Company>Gigas002</Company>
     <Authors>Gigas002</Authors>
@@ -18,15 +18,19 @@
     <LangVersion>latest</LangVersion>
     <PackageId>GTiff2Tiles</PackageId>
     <Product>GTiff2Tiles</Product>
-    <PackageLicenseFile>../LICENSE.md</PackageLicenseFile>
+    <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <RepositoryType>git</RepositoryType>
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="..\LICENSE.md">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
     <None Include="Resources\Icon.png" Pack="true" Visible="true" PackagePath="" />
   </ItemGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netcoreapp3.0|x64'">
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netcoreapp3.1|x64'">
     <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
     <DebugType>none</DebugType>
     <DebugSymbols>false</DebugSymbols>
@@ -40,7 +44,7 @@
     <DocumentationFile>GTiff2Tiles.Core.xml</DocumentationFile>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netcoreapp3.0|x64'">
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netcoreapp3.1|x64'">
     <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
   </PropertyGroup>
 
@@ -54,8 +58,7 @@
     <PackageReference Include="MaxRev.Gdal.WindowsRuntime.Minimal" Version="3.0.1.35" />
     <PackageReference Include="NetVips" Version="1.2.1" />
     <PackageReference Include="NetVips.Native" Version="8.9.1" />
-    <PackageReference Include="System.Threading.Tasks.Extensions" Version="4.5.3" Condition="'$(TargetFramework)' == 'netstandard2.0'" />
-    <PackageReference Include="System.Threading.Tasks.Extensions" Version="4.5.4" />
+    <PackageReference Include="System.Threading.Tasks.Extensions" Version="4.5.4" Condition="'$(TargetFramework)' == 'netstandard2.0'" />
   </ItemGroup>
 
   <ItemGroup>
