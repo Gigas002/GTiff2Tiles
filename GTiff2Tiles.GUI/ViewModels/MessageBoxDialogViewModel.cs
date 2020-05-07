@@ -1,8 +1,10 @@
 ﻿using System.Windows;
-using Caliburn.Micro;
+using Prism.Mvvm;
+using Prism.Commands;
 using GTiff2Tiles.GUI.Localization;
 using MaterialDesignThemes.Wpf;
 
+// ReSharper disable UnusedAutoPropertyAccessor.Global
 // ReSharper disable MemberCanBePrivate.Global
 // ReSharper disable UnusedMember.Global
 
@@ -13,7 +15,7 @@ namespace GTiff2Tiles.GUI.ViewModels
     /// Custom message box dialog. <see cref="T:GTiff2Tiles.GUI.Views.MessageBoxDialogView" />.
     /// </summary>
     // ReSharper disable once MemberCanBeInternal
-    public sealed class MessageBoxDialogViewModel : PropertyChangedBase
+    public sealed class MessageBoxDialogViewModel : BindableBase//: PropertyChangedBase
     {
         #region Properties and fields
 
@@ -60,11 +62,7 @@ namespace GTiff2Tiles.GUI.ViewModels
         public string Message
         {
             get => _message;
-            set
-            {
-                _message = value;
-                NotifyOfPropertyChange(() => Message);
-            }
+            set => SetProperty(ref _message, value);
         }
 
         /// <summary>
@@ -73,11 +71,7 @@ namespace GTiff2Tiles.GUI.ViewModels
         public Visibility CancelButtonVisibility
         {
             get => _cancelButtonVisibility;
-            set
-            {
-                _cancelButtonVisibility = value;
-                NotifyOfPropertyChange(() => CancelButtonVisibility);
-            }
+            set => SetProperty(ref _cancelButtonVisibility, value);
         }
 
         #endregion
@@ -93,26 +87,50 @@ namespace GTiff2Tiles.GUI.ViewModels
         {
             Message = message;
             CancelButtonVisibility = isCancelButtonVisible ? Visibility.Visible : Visibility.Collapsed;
+
+            //Bind delegates with methods
+            CopyToClipboardButtonCommand = new DelegateCommand(CopyToClipboardButton);
+            AcceptButtonCommand = new DelegateCommand(AcceptButton);
+            CancelButtonCommand = new DelegateCommand(CancelButton);
         }
+
+        #endregion
+
+        #region DelegateCommands
+
+        /// <summary>
+        /// CancelButton DelegateCommand
+        /// </summary>
+        public DelegateCommand CancelButtonCommand { get; }
+
+        /// <summary>
+        /// AcceptButton DelegateCommand
+        /// </summary>
+        public DelegateCommand AcceptButtonCommand { get; }
+
+        /// <summary>
+        /// CopyToClipboardButton DelegateCommand
+        /// </summary>
+        public DelegateCommand CopyToClipboardButtonCommand { get; }
 
         #endregion
 
         #region Buttons methods
 
         /// <summary>
-        /// Method for Cancel button on <see cref="GTiff2Tiles.GUI.Views.MessageBoxDialogView"/>.
+        /// Method for Cancel button on <see cref="Views.MessageBoxDialogView"/>.
         /// <para>Closes the UserControl and returns <see langword="false"/> to the message box's caller.</para>
         /// </summary>
-        public void CancelButton() => DialogHost.CloseDialogCommand.Execute(false, null);
+        public static void CancelButton() => DialogHost.CloseDialogCommand.Execute(false, null);
 
         /// <summary>
-        /// Method for Accept button on <see cref="GTiff2Tiles.GUI.Views.MessageBoxDialogView"/>.
+        /// Method for Accept button on <see cref="Views.MessageBoxDialogView"/>.
         /// <para>Closes the UserControl and returns <see langword="true"/> to the message box's caller.</para>
         /// </summary>
-        public void AcceptButton() => DialogHost.CloseDialogCommand.Execute(true, null);
+        public static void AcceptButton() => DialogHost.CloseDialogCommand.Execute(true, null);
 
         /// <summary>
-        /// Method for CopyToClipboard button on <see cref="GTiff2Tiles.GUI.Views.MessageBoxDialogView"/>.
+        /// Method for CopyToClipboard button on <see cref="Views.MessageBoxDialogView"/>.
         /// <para>Copies the message to clipboard.</para>
         /// </summary>
         public void CopyToClipboardButton() => Clipboard.SetText(Message);

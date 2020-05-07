@@ -42,7 +42,7 @@ Changes since 1.4.1:
 - Update **MaterialDesignColors** package to **1.2.4**;
 - Update **MaterialDesignThemes** package to **3.1.1**;
 - Update **MaterialDesignExtensions** package to **3.1.0**;
-- Update **Caliburn.Micro** package to **4.0.105-alpha**;
+- Moved from **Caliburn.Micro** to **Prism.DryIoc** ver. **8.0.0.1740-pre**;
 
 ### Tests
 

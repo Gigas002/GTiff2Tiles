@@ -3,7 +3,8 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
-using Caliburn.Micro;
+using Prism.Mvvm;
+using Prism.Commands;
 using GTiff2Tiles.Core.Constants;
 using GTiff2Tiles.Core.Constants.Gdal;
 using GTiff2Tiles.Core.Enums.Image;
@@ -16,8 +17,9 @@ using GTiff2Tiles.GUI.Views;
 using MaterialDesignExtensions.Controls;
 using MaterialDesignThemes.Wpf;
 
+// ReSharper disable UnusedAutoPropertyAccessor.Global
+// ReSharper disable UnusedType.Global
 // ReSharper disable MemberCanBePrivate.Global
-// ReSharper disable once ClassNeverInstantiated.Global
 // ReSharper disable UnusedMember.Global
 
 namespace GTiff2Tiles.GUI.ViewModels
@@ -27,7 +29,7 @@ namespace GTiff2Tiles.GUI.ViewModels
     /// ViewModel for <see cref="MainView"/>.
     /// </summary>
     // ReSharper disable once MemberCanBeInternal
-    public class MainViewModel : PropertyChangedBase
+    public class MainViewModel : BindableBase
     {
         #region Properties
 
@@ -134,11 +136,7 @@ namespace GTiff2Tiles.GUI.ViewModels
         public int ThreadsCount
         {
             get => _threadsCount;
-            set
-            {
-                _threadsCount = value;
-                NotifyOfPropertyChange(() => ThreadsCount);
-            }
+            set => SetProperty(ref _threadsCount, value);
         }
 
         /// <summary>
@@ -147,11 +145,7 @@ namespace GTiff2Tiles.GUI.ViewModels
         public int MaxZ
         {
             get => _maxZ;
-            set
-            {
-                _maxZ = value;
-                NotifyOfPropertyChange(() => MaxZ);
-            }
+            set => SetProperty(ref _maxZ, value);
         }
 
         /// <summary>
@@ -160,11 +154,7 @@ namespace GTiff2Tiles.GUI.ViewModels
         public int MinZ
         {
             get => _minZ;
-            set
-            {
-                _minZ = value;
-                NotifyOfPropertyChange(() => MinZ);
-            }
+            set => SetProperty(ref _minZ, value);
         }
 
         /// <summary>
@@ -173,11 +163,7 @@ namespace GTiff2Tiles.GUI.ViewModels
         public string InputFilePath
         {
             get => _inputFilePath;
-            set
-            {
-                _inputFilePath = value;
-                NotifyOfPropertyChange(() => InputFilePath);
-            }
+            set => SetProperty(ref _inputFilePath, value);
         }
 
         /// <summary>
@@ -186,11 +172,7 @@ namespace GTiff2Tiles.GUI.ViewModels
         public string OutputDirectoryPath
         {
             get => _outputDirectoryPath;
-            set
-            {
-                _outputDirectoryPath = value;
-                NotifyOfPropertyChange(() => OutputDirectoryPath);
-            }
+            set => SetProperty(ref _outputDirectoryPath, value);
         }
 
         /// <summary>
@@ -199,11 +181,7 @@ namespace GTiff2Tiles.GUI.ViewModels
         public string TempDirectoryPath
         {
             get => _tempDirectoryPath;
-            set
-            {
-                _tempDirectoryPath = value;
-                NotifyOfPropertyChange(() => TempDirectoryPath);
-            }
+            set => SetProperty(ref _tempDirectoryPath, value);
         }
 
         #endregion
@@ -222,11 +200,7 @@ namespace GTiff2Tiles.GUI.ViewModels
         public bool TmsCompatible
         {
             get => _tmsCompatible;
-            set
-            {
-                _tmsCompatible = value;
-                NotifyOfPropertyChange(() => TmsCompatible);
-            }
+            set => SetProperty(ref _tmsCompatible, value);
         }
 
         #endregion
@@ -241,11 +215,7 @@ namespace GTiff2Tiles.GUI.ViewModels
         public string TileExtension
         {
             get => _tileExtension;
-            set
-            {
-                _tileExtension = value;
-                NotifyOfPropertyChange(() => TileExtension);
-            }
+            set => SetProperty(ref _tileExtension, value);
         }
 
         /// <summary>
@@ -266,11 +236,7 @@ namespace GTiff2Tiles.GUI.ViewModels
         public double ProgressBarValue
         {
             get => _progressBarValue;
-            set
-            {
-                _progressBarValue = value;
-                NotifyOfPropertyChange(() => ProgressBarValue);
-            }
+            set => SetProperty(ref _progressBarValue, value);
         }
 
         #endregion
@@ -283,11 +249,7 @@ namespace GTiff2Tiles.GUI.ViewModels
         public bool IsEnabled
         {
             get => _isEnabled;
-            set
-            {
-                _isEnabled = value;
-                NotifyOfPropertyChange(() => IsEnabled);
-            }
+            set => SetProperty(ref _isEnabled, value);
         }
 
         /// <summary>
@@ -320,7 +282,37 @@ namespace GTiff2Tiles.GUI.ViewModels
             TileExtensions.Add(Extensions.Png);
             TileExtensions.Add(Extensions.Jpg);
             TileExtensions.Add(Extensions.Webp);
+
+            //Bind delegates with methods
+            InputFileButtonCommand = new DelegateCommand(InputFileButtonAsync);
+            OutputDirectoryButtonCommand = new DelegateCommand(OutputDirectoryButtonAsync);
+            TempDirectoryButtonCommand = new DelegateCommand(TempDirectoryButtonAsync);
+            StartButtonCommand = new DelegateCommand(StartButtonAsync);
         }
+
+        #endregion
+
+        #region DelegateCommands
+
+        /// <summary>
+        /// InputFileButton DelegateCommand
+        /// </summary>
+        public DelegateCommand InputFileButtonCommand { get; }
+
+        /// <summary>
+        /// OutputDirectoryButton DelegateCommand
+        /// </summary>
+        public DelegateCommand OutputDirectoryButtonCommand { get; }
+
+        /// <summary>
+        /// TempDirectoryButton DelegateCommand
+        /// </summary>
+        public DelegateCommand TempDirectoryButtonCommand { get; }
+
+        /// <summary>
+        /// StartButton DelegateCommand
+        /// </summary>
+        public DelegateCommand StartButtonCommand { get; }
 
         #endregion
 
@@ -332,7 +324,7 @@ namespace GTiff2Tiles.GUI.ViewModels
         /// Input directory button
         /// </summary>
         /// <returns></returns>
-        public async ValueTask InputFileButtonAsync()
+        public async void InputFileButtonAsync()
         {
             try
             {
@@ -349,7 +341,7 @@ namespace GTiff2Tiles.GUI.ViewModels
         /// Output directory button.
         /// </summary>
         /// <returns></returns>
-        public async ValueTask OutputDirectoryButtonAsync()
+        public async void OutputDirectoryButtonAsync()
         {
             try
             {
@@ -368,7 +360,7 @@ namespace GTiff2Tiles.GUI.ViewModels
         /// Temp directory button.
         /// </summary>
         /// <returns></returns>
-        public async ValueTask TempDirectoryButtonAsync()
+        public async void TempDirectoryButtonAsync()
         {
             try
             {
@@ -387,7 +379,7 @@ namespace GTiff2Tiles.GUI.ViewModels
         /// Start button.
         /// </summary>
         /// <returns></returns>
-        public async ValueTask StartButtonAsync()
+        public async void StartButtonAsync()
         {
             Stopwatch stopwatch = Stopwatch.StartNew();
 

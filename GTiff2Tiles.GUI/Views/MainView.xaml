@@ -4,7 +4,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:caliburnMicro="http://www.caliburnproject.org"
+    xmlns:prism="http://prismlibrary.com/"
+    prism:ViewModelLocator.AutoWireViewModel="True"
     xmlns:materialDesignThemes="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:materialDesignExtensions="clr-namespace:MaterialDesignExtensions.Controls;assembly=MaterialDesignExtensions"
     xmlns:viewModels="clr-namespace:GTiff2Tiles.GUI.ViewModels"
@@ -93,7 +94,7 @@
                 </TextBox>
                 <Button Grid.Row="0" Grid.Column="2"
                         Content="{materialDesignThemes:PackIcon Image}"
-                        caliburnMicro:Message.Attach="InputFileButtonAsync"/>
+                        Command="{Binding InputFileButtonCommand}"/>
 
                 <!-- Grid.Row="2" -->
                 <TextBox Grid.Row="2" Grid.Column="0"
@@ -109,7 +110,7 @@
                 </TextBox>
                 <Button Grid.Row="2" Grid.Column="2"
                         Content="{materialDesignThemes:PackIcon Folder}"
-                        caliburnMicro:Message.Attach="OutputDirectoryButtonAsync"/>
+                        Command="{Binding OutputDirectoryButtonCommand}"/>
 
                 <!-- Grid.Row="4" -->
                 <TextBox Grid.Row="4" Grid.Column="0"
@@ -125,7 +126,7 @@
                 </TextBox>
                 <Button Grid.Row="4" Grid.Column="2"
                         Content="{materialDesignThemes:PackIcon Folder}"
-                        caliburnMicro:Message.Attach="TempDirectoryButtonAsync"/>
+                        Command="{Binding TempDirectoryButtonCommand}"/>
 
                 <!-- Grid.Row="6" -->
                 <TextBox Grid.Row="6" Grid.Column="0"
@@ -196,7 +197,7 @@
                         Grid.ColumnSpan="3"
                         FontSize="18"
                         Content="{Binding StartButtonContent}"
-                        caliburnMicro:Message.Attach="StartButtonAsync"/>
+                        Command="{Binding StartButtonCommand}"/>
 
                 <!-- Grid.Row="18" -->
                 <ProgressBar Grid.Row="18" Grid.Column="0"
