@@ -3,7 +3,6 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using GTiff2Tiles.Core.Constants;
-using GTiff2Tiles.Core.Constants.Image;
 using GTiff2Tiles.Core.Localization;
 
 namespace GTiff2Tiles.Core.Helpers
@@ -21,7 +20,7 @@ namespace GTiff2Tiles.Core.Helpers
         /// Check GdalInfo's strings.
         /// Byte - type;
         /// </summary>
-        /// <param name="gdalInfoString">String from <see cref="GTiff2Tiles.Core.Image.Gdal.InfoAsync"/> method.</param>
+        /// <param name="gdalInfoString">String from <see cref="Core.Gdal.Gdal.InfoAsync"/> method.</param>
         /// <param name="proj4String">Proj4 string.</param>
         /// <returns><see langword="true"/>, if file is OK, <see langword="false"/> otherwise.</returns>
         private static bool CheckTifInfo(string gdalInfoString, string proj4String)
@@ -30,11 +29,11 @@ namespace GTiff2Tiles.Core.Helpers
                 throw new Exception(string.Format(Strings.StringIsEmpty, nameof(gdalInfoString)));
 
             //Check projection.
-            if (!proj4String.Contains(Gdal.LongLat) || !proj4String.Contains(Gdal.Wgs84))
+            if (!proj4String.Contains(Constants.Gdal.Gdal.LongLat) || !proj4String.Contains(Constants.Gdal.Gdal.Wgs84))
                 return false;
 
             //Other checks.
-            return gdalInfoString.Contains(Gdal.Byte);
+            return gdalInfoString.Contains(Constants.Gdal.Gdal.Byte);
         }
 
         #endregion
@@ -128,8 +127,8 @@ namespace GTiff2Tiles.Core.Helpers
             CheckFile(inputFileInfo, true, Extensions.Tif);
 
             //Get proj4 and gdalInfo strings.
-            string proj4String = await Image.Gdal.GetProj4StringAsync(inputFileInfo).ConfigureAwait(false);
-            string gdalInfoString = await Image.Gdal.InfoAsync(inputFileInfo).ConfigureAwait(false);
+            string proj4String = await Gdal.Gdal.GetProj4StringAsync(inputFileInfo).ConfigureAwait(false);
+            string gdalInfoString = await Gdal.Gdal.InfoAsync(inputFileInfo).ConfigureAwait(false);
 
             //Check if input image is ready for cropping.
             return CheckTifInfo(gdalInfoString, proj4String);

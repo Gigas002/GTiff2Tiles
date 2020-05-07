@@ -1,4 +1,4 @@
-﻿namespace GTiff2Tiles.Core.Constants.Image
+﻿namespace GTiff2Tiles.Core.Constants.Gdal
 {
     /// <summary>
     /// Static class with Gdal constants.

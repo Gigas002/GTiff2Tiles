@@ -1,5 +1,5 @@
 ﻿using System;
-using GTiff2Tiles.Core.Constants.Image;
+using GTiff2Tiles.Core.Constants.Gdal;
 using NUnit.Framework;
 
 // ReSharper disable UnusedVariable

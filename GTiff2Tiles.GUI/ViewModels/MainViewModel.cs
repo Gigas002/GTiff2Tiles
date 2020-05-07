@@ -5,7 +5,7 @@ using System.IO;
 using System.Threading.Tasks;
 using Caliburn.Micro;
 using GTiff2Tiles.Core.Constants;
-using GTiff2Tiles.Core.Constants.Image;
+using GTiff2Tiles.Core.Constants.Gdal;
 using GTiff2Tiles.Core.Enums.Image;
 using GTiff2Tiles.Core.Helpers;
 using GTiff2Tiles.GUI.Enums;
@@ -418,7 +418,7 @@ namespace GTiff2Tiles.GUI.ViewModels
                                                        $"{Gdal.TempFileName}{Extensions.Tif}");
                     FileInfo tempFileInfo = new FileInfo(tempFilePath);
 
-                    await Core.Image.Gdal.WarpAsync(inputFileInfo, tempFileInfo, Gdal.RepairTifOptions)
+                    await Core.Gdal.Gdal.WarpAsync(inputFileInfo, tempFileInfo, Gdal.RepairTifOptions)
                               .ConfigureAwait(true);
                     inputFileInfo = tempFileInfo;
                 }

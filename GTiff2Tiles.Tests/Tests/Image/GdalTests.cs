@@ -3,7 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using GTiff2Tiles.Core.Constants;
-using GTiff2Tiles.Core.Constants.Image;
+using GTiff2Tiles.Core.Constants.Gdal;
 using GTiff2Tiles.Core.Helpers;
 using NUnit.Framework;
 
@@ -38,7 +38,7 @@ namespace GTiff2Tiles.Tests.Tests.Image
                                                        $"{Gdal.TempFileName}{Extensions.Tif}");
                     FileInfo tempFileInfo = new FileInfo(tempFilePath);
 
-                    await Core.Image.Gdal.WarpAsync(inputFileInfo, tempFileInfo, Gdal.RepairTifOptions);
+                    await Core.Gdal.Gdal.WarpAsync(inputFileInfo, tempFileInfo, Gdal.RepairTifOptions);
                 }
 
                 //Check if temp file was created successfuly.
@@ -76,7 +76,7 @@ namespace GTiff2Tiles.Tests.Tests.Image
                                                        $"{Gdal.TempFileName}{Extensions.Tif}");
                     FileInfo tempFileInfo = new FileInfo(tempFilePath);
 
-                    await Core.Image.Gdal.WarpAsync(inputFileInfo, tempFileInfo, Gdal.RepairTifOptions);
+                    await Core.Gdal.Gdal.WarpAsync(inputFileInfo, tempFileInfo, Gdal.RepairTifOptions);
                 }
 
                 //Check if temp file was created successfuly.

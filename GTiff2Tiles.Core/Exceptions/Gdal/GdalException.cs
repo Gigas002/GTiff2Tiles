@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace GTiff2Tiles.Core.Exceptions.Image
+namespace GTiff2Tiles.Core.Exceptions.Gdal
 {
     /// <inheritdoc />
     /// <summary>

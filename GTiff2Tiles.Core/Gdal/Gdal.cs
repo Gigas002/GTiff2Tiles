@@ -2,7 +2,7 @@
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
-using GTiff2Tiles.Core.Exceptions.Image;
+using GTiff2Tiles.Core.Exceptions.Gdal;
 using GTiff2Tiles.Core.Helpers;
 using GTiff2Tiles.Core.Localization;
 using OSGeo.GDAL;
@@ -10,7 +10,7 @@ using OSGeo.OSR;
 
 // ReSharper disable MemberCanBeInternal
 
-namespace GTiff2Tiles.Core.Image
+namespace GTiff2Tiles.Core.Gdal
 {
     /// <summary>
     /// Gdal's method to work with input files.

@@ -1,4 +1,5 @@
 ﻿using System;
+using GTiff2Tiles.Core.Exceptions.Gdal;
 using GTiff2Tiles.Core.Exceptions.Image;
 using GTiff2Tiles.Core.Exceptions.Tile;
 using NUnit.Framework;

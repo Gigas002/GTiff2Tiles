@@ -129,7 +129,7 @@ namespace GTiff2Tiles.Core.Image
             {
                 RasterXSize = Data.Width;
                 RasterYSize = Data.Height;
-                (MinX, MinY, MaxX, MaxY) = Gdal.GetImageBorders(inputFileInfo, RasterXSize, RasterYSize);
+                (MinX, MinY, MaxX, MaxY) = Gdal.Gdal.GetImageBorders(inputFileInfo, RasterXSize, RasterYSize);
             }
             catch (Exception exception)
             {
