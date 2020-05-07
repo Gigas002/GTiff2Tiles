@@ -48,7 +48,7 @@ namespace GTiff2Tiles.Core.Image
                 _ => throw new ArgumentOutOfRangeException(nameof(tileExtension), tileExtension, null)
             };
 
-            bool isExperimental = true;
+            bool isExperimental = false;
             //Generate tiles.
             await image.GenerateTilesAsync(outputDirectoryInfo, minZ, maxZ, tmsCompatible, tileExtensionString, progress,
                                            threadsCount, isExperimental);

@@ -118,12 +118,7 @@ namespace GTiff2Tiles.Core.Image
             //TODO: Stable 1.2.0 package throws unexpected exception!
             //FileStream = inputFileInfo.OpenRead();
             //Data = NetVips.Image.NewFromStream(FileStream, access: NetVips.Enums.Access.Random);
-
-            //Data = NetVips.Image.NewFromFile(inputFileInfo.FullName, access: NetVips.Enums.Access.Random);
-
-            //todo test memory
-            bool isMemory = false;
-            Data = NetVips.Image.NewFromFile(inputFileInfo.FullName, isMemory, NetVips.Enums.Access.Random);
+            Data = NetVips.Image.NewFromFile(inputFileInfo.FullName, access: NetVips.Enums.Access.Random);
 
             //Get border coordinates и raster sizes.
             try
@@ -304,101 +299,33 @@ namespace GTiff2Tiles.Core.Image
             FileInfo outputTileFileInfo = new FileInfo(Path.Combine(tileDirectoryInfo.FullName,
                                                                     $"{tileY}{TileExtension}"));
 
-            //Try open input image and crop tile
-            NetVips.Image tileImage;
-
-            try { tileImage = Data.Crop(readPosX, readPosY, readXSize, readYSize); }
-            catch (Exception exception)
-            {
-                throw new ImageException(string.Format(Strings.UnableToCreateTile, tileX, tileY), exception);
-            }
-
             // Scaling calculations
-            double xScale = 1.0 / ((double)tileImage.Width / writeXSize);
-            double yScale = 1.0 / ((double)tileImage.Height / writeYSize);
+            double xScale = (double)writeXSize / readXSize;
+            double yScale = (double)writeYSize / readYSize;
 
-            // Calculate integral box shrink
-            // We will get the best quality (but be the slowest) if we let reduce
-            // do all the work. Leave it the final 200 - 300% to do as a compromise
-            // for efficiency.
-            int xShrink = Math.Max(1, (int)Math.Floor(1.0 / (xScale * 2.0)));
-            int yShrink = Math.Max(1, (int)Math.Floor(1.0 / (yScale * 2.0)));
-
-            // Fast, integral box-shrink
-            if (yShrink > 1)
-            {
-                tileImage = tileImage.Shrinkv(yShrink);
-                yScale *= yShrink;
-            }
-
-            if (xShrink > 1)
-            {
-                tileImage = tileImage.Shrinkh(xShrink);
-                xScale *= xShrink;
-            }
-
-            const bool centreConvention = false;
-
-            // Any residual downsizing
-            if (yScale < 1.0)
-                tileImage = tileImage.Reducev(1.0 / yScale, NetVips.Enums.Kernel.Lanczos3, centreConvention);
-            if (xScale < 1.0)
-                tileImage = tileImage.Reduceh(1.0 / xScale, NetVips.Enums.Kernel.Lanczos3, centreConvention);
-
-            // Any upsizing
-            if (xScale > 1.0 || yScale > 1.0)
-            {
-                // Input displacement. For centre sampling, shift by 0.5 down and right.
-                const double id = centreConvention ? 0.5 : 0.0;
-
-                // Floating point affine transformation
-                using Interpolate interpolate = Interpolate.NewFromName(Interpolations.Bicubic);
-                if (xScale > 1.0 && yScale > 1.0)
-                    tileImage = tileImage.Affine(new[] { xScale, 0.0, 0.0, yScale }, interpolate, idx: id, idy: id,
-                                                 extend: NetVips.Enums.Extend.Copy);
-                else if (xScale > 1.0)
-                    tileImage = tileImage.Affine(new[] { xScale, 0.0, 0.0, 1.0 }, interpolate, idx: id, idy: id,
-                                                 extend: NetVips.Enums.Extend.Copy);
-                else
-                    tileImage = tileImage.Affine(new[] { 1.0, 0.0, 0.0, yScale }, interpolate, idx: id, idy: id,
-                                                 extend: NetVips.Enums.Extend.Copy);
-            }
+            // Crop and resize tile
+            NetVips.Image tileImage = Resize(Data.Crop(readPosX, readPosY, readXSize, readYSize), xScale, yScale);
 
             // Add alpha channel if needed
             for (; tileImage.Bands < Constants.Image.Raster.Bands;) tileImage = tileImage.Bandjoin(255);
 
-            // Make a transparent image
-            NetVips.Image outputImage;
+            //Stopwatch stopwatch = Stopwatch.StartNew();
 
-            try
-            {
-                outputImage = NetVips.Image.Black(Constants.Image.Raster.TileSize, Constants.Image.Raster.TileSize)
-                                     .NewFromImage(0, 0, 0, 0);
+            // Make transparent image and insert tile
+            using NetVips.Image outputImage = NetVips
+                                             .Image.Black(Constants.Image.Raster.TileSize,
+                                                          Constants.Image.Raster.TileSize).NewFromImage(0, 0, 0, 0)
+                                             .Insert(tileImage, writePosX, writePosY);
+            outputImage.WriteToFile(outputTileFileInfo.FullName);
 
-                // Insert tile into output image
-                outputImage = outputImage.Insert(tileImage, writePosX, writePosY);
+            // ReSharper disable once LocalizableElement
+            //Console.WriteLine($"WriteToFile took {stopwatch.ElapsedMilliseconds} ms to run on zoom {zoom}");
 
-                //TODO: Temprorary for performance testing purpose
-                //Stopwatch stopwatch = Stopwatch.StartNew();
-
-                //TODO: test this with stable 8.9.0+/1.2.0 package. Now less effective, then WriteToFile. Doesn't throw exception!
-                //TODO: Runs MUCH slower in multithreaded mode on WINDOWS. Linux version seems to work fine.
-                //using FileStream outputStream = outputTileFileInfo.OpenWrite();
-                //outputImage.WriteToStream(outputStream, TileExtension);
-                outputImage.WriteToFile(outputTileFileInfo.FullName);
-
-                //Console.WriteLine($"P2: {stopwatch.ElapsedMilliseconds}");
-            }
-            catch (Exception exception)
-            {
-                throw new ImageException(string.Format(Strings.UnableToCreateTile, tileX, tileY), exception);
-            }
+            //Dispose the tile.
+            tileImage.Dispose();
 
             //Check if tile was created successfuly.
             CheckHelper.CheckFile(outputTileFileInfo, true);
-
-            tileImage.Dispose();
-            outputImage.Dispose();
         }
 
         /// <summary>
@@ -436,8 +363,7 @@ namespace GTiff2Tiles.Core.Image
 
                     tasks.Add(Task.Run(() =>
                     {
-                        //TODO: writetile2
-                        try { WriteTile2(x, y, zoom); }
+                        try { WriteTile(x, y, zoom); }
                         // ReSharper disable once AccessToDisposedClosure
                         finally { semaphoreSlim.Release(); }
                     }));
@@ -452,10 +378,10 @@ namespace GTiff2Tiles.Core.Image
             //Alternative way, a bit less effective.
             //ParallelOptions parallelOptions = new ParallelOptions { MaxDegreeOfParallelism = threadsCount };
 
-            //for (int tileY = TilesMinMax[zoom][1]; tileY <= TilesMinMax[zoom][3]; tileY++)
+            //for (int tileY = tileMinY; tileY <= tileMaxY; tileY++)
             //{
             //    int y = tileY;
-            //    await Task.Run(() => Parallel.For(TilesMinMax[zoom][0], TilesMinMax[zoom][2] + 1, parallelOptions,
+            //    await Task.Run(() => Parallel.For(tileMinX, tileMaxX + 1, parallelOptions,
             //                                      x => WriteTile(x, y, zoom))).ConfigureAwait(false);
             //}
         }
@@ -664,8 +590,7 @@ namespace GTiff2Tiles.Core.Image
 
                         tasks.Add(Task.Run(() =>
                         {
-                            //TODO: writetile2
-                            try { WriteTile2(x, y, currentZoom); }
+                            try { WriteTile(x, y, currentZoom); }
                             finally
                             {
                                 // ReSharper disable once AccessToDisposedClosure
@@ -715,69 +640,13 @@ namespace GTiff2Tiles.Core.Image
 
         #endregion
 
-        [SuppressMessage("ReSharper", "LocalizableElement")]
-        private void WriteTile2(int tileX, int tileY, int zoom)
-        {
-            #region Parameters checking
-
-            if (zoom < 0) throw new ImageException(string.Format(Strings.LesserThan, nameof(zoom), 0));
-            if (tileX < 0) throw new ImageException(string.Format(Strings.LesserThan, nameof(tileX), 0));
-            if (tileY < 0) throw new ImageException(string.Format(Strings.LesserThan, nameof(tileY), 0));
-
-            #endregion
-
-            //Create directories for the tile. The overall structure looks like: outputDirectory/zoom/x/y.png.
-            DirectoryInfo tileDirectoryInfo =
-                new DirectoryInfo(Path.Combine(OutputDirectoryInfo.FullName, $"{zoom}", $"{tileX}"));
-            CheckHelper.CheckDirectory(tileDirectoryInfo);
-
-            //Get the coordinate borders for current tile from tile numbers.
-            (double minX, double minY, double maxX, double maxY) =
-                Tile.TileTools.TileBounds(tileX, tileY, zoom, TmsCompatible);
-
-            //Get postitions and sizes for current tile.
-            (int readPosX, int readPosY, int readXSize, int readYSize, int writePosX, int writePosY, int writeXSize,
-             int writeYSize) = GeoQuery(minX, maxY, maxX, minY);
-
-            //Warning: OpenLayers requires replacement of tileY to tileY+1
-            FileInfo outputTileFileInfo = new FileInfo(Path.Combine(tileDirectoryInfo.FullName,
-                                                                    $"{tileY}{TileExtension}"));
-
-            // Scaling calculations
-            double xScale = (double)writeXSize / readXSize;
-            double yScale = (double)writeYSize / readYSize;
-
-            const bool centreConvention = false;
-
-            // Crop and resize tile
-            NetVips.Image tileImage = Resize(Data.Crop(readPosX, readPosY, readXSize, readYSize), xScale, yScale,
-                                             NetVips.Enums.Kernel.Lanczos3, centreConvention);
-
-            // Add alpha channel if needed
-            for (; tileImage.Bands < Constants.Image.Raster.Bands;) tileImage = tileImage.Bandjoin(255);
-
-            //Stopwatch stopwatch = Stopwatch.StartNew();
-
-            // Make transparent image and insert tile
-            using NetVips.Image outputImage = NetVips
-                                             .Image.Black(Constants.Image.Raster.TileSize,
-                                                          Constants.Image.Raster.TileSize).NewFromImage(0, 0, 0, 0)
-                                             .Insert(tileImage, writePosX, writePosY);
-            outputImage.WriteToFile(outputTileFileInfo.FullName);
-
-            //Console.WriteLine($"WriteToFile took {stopwatch.ElapsedMilliseconds} ms to run on zoom {zoom} ");
-
-            //Dispose the tile.
-            tileImage.Dispose();
-
-            //Check if tile was created successfuly.
-            CheckHelper.CheckFile(outputTileFileInfo, true);
-        }
-
-        private static NetVips.Image Resize(NetVips.Image image, double scaleX, double scaleY, string kernel, bool isCentre)
+        private static NetVips.Image Resize(NetVips.Image tileImage, double xScale, double yScale,
+                                            string kernel = NetVips.Enums.Kernel.Lanczos3,
+                                            string interpolation = Interpolations.Bicubic,
+                                            bool isCentre = false)
         {
             // We could just use vips_resize if we use centre sampling convention
-            if (isCentre) return image.Resize(scaleX, kernel, scaleY);
+            if (isCentre) return tileImage.Resize(xScale, kernel, yScale);
 
             // Otherwise, we need to implement vips_resize for ourselves
 
@@ -785,46 +654,45 @@ namespace GTiff2Tiles.Core.Image
             // We will get the best quality (but be the slowest) if we let reduce
             // do all the work. Leave it the final 200 - 300% to do as a compromise
             // for efficiency.
-            int shrinkX = Math.Max(1, (int)Math.Floor(1.0 / (scaleX * 2.0)));
-            int shrinkY = Math.Max(1, (int)Math.Floor(1.0 / (scaleY * 2.0)));
+            int xShirnk = Math.Max(1, (int)Math.Floor(1.0 / (xScale * 2.0)));
+            int yShrink = Math.Max(1, (int)Math.Floor(1.0 / (yScale * 2.0)));
 
             // Fast, integral box-shrink
-            if (shrinkY > 1)
+            if (yShrink > 1)
             {
-                image = image.Shrinkv(shrinkY);
-                scaleY *= shrinkY;
+                tileImage = tileImage.Shrinkv(yShrink);
+                yScale *= yShrink;
             }
 
-            if (shrinkX > 1)
+            if (xShirnk > 1)
             {
-                image = image.Shrinkh(shrinkX);
-                scaleX *= shrinkX;
+                tileImage = tileImage.Shrinkh(xShirnk);
+                xScale *= xShirnk;
             }
 
             // Any residual downsizing
-            if (scaleY < 1.0)
-                image = image.Reducev(1.0 / scaleY, kernel, isCentre);
-            if (scaleX < 1.0)
-                image = image.Reduceh(1.0 / scaleX, kernel, isCentre);
+            if (yScale < 1.0) tileImage = tileImage.Reducev(1.0 / yScale, kernel, false);
+            if (xScale < 1.0) tileImage = tileImage.Reduceh(1.0 / xScale, kernel, false);
 
             // Any upsizing
-            if (!(scaleX > 1.0) && !(scaleY > 1.0)) return image;
+            if (!(xScale > 1.0) && !(yScale > 1.0)) return tileImage;
             // Floating point affine transformation
-            double id = isCentre ? 0.5 : 0.0;
+            //double id = isCentre ? 0.5 : 0.0;
+            const double id = 0.0;
 
             // Floating point affine transformation
-            using Interpolate interpolate = Interpolate.NewFromName(Interpolations.Bicubic);
-            if (scaleX > 1.0 && scaleY > 1.0)
-                image = image.Affine(new[] { scaleX, 0.0, 0.0, scaleY }, interpolate, idx: id, idy: id,
-                                     extend: NetVips.Enums.Extend.Copy);
-            else if (scaleX > 1.0)
-                image = image.Affine(new[] { scaleX, 0.0, 0.0, 1.0 }, interpolate, idx: id, idy: id,
-                                     extend: NetVips.Enums.Extend.Copy);
+            using Interpolate interpolate = Interpolate.NewFromName(interpolation);
+            if (xScale > 1.0 && yScale > 1.0)
+                tileImage = tileImage.Affine(new[] { xScale, 0.0, 0.0, yScale }, interpolate, idx: id, idy: id,
+                                             extend: NetVips.Enums.Extend.Copy);
+            else if (xScale > 1.0)
+                tileImage = tileImage.Affine(new[] { xScale, 0.0, 0.0, 1.0 }, interpolate, idx: id, idy: id,
+                                             extend: NetVips.Enums.Extend.Copy);
             else
-                image = image.Affine(new[] { 1.0, 0.0, 0.0, scaleY }, interpolate, idx: id, idy: id,
-                                     extend: NetVips.Enums.Extend.Copy);
+                tileImage = tileImage.Affine(new[] { 1.0, 0.0, 0.0, yScale }, interpolate, idx: id, idy: id,
+                                             extend: NetVips.Enums.Extend.Copy);
 
-            return image;
+            return tileImage;
         }
 
         private (int tileMinX, int tileMinY, int tileMaxX, int tileMaxY) GetTileNumbers(int zoom, bool tmsCompatible)
