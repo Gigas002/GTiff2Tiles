@@ -17,7 +17,6 @@ If you’re using Windows 7 SP1, you can experience weird error with **GDAL** pa
 |  -t   |   --temp    |         Full path to temp directory         |    Yes    |
 |       |   --minz    |            Minimum cropped zoom             |    Yes    |
 |       |   --maxz    |            Maximum cropped zoom             |    Yes    |
-|  -a   | --algorithm |          Algorithm to create tiles          |    Yes    |
 |       |    --tms    | Do you want to create tms-compatible tiles? |    Yes    |
 |       | --extension |            Ready tiles extension            |    No     |
 |       |  --threads  |                Threads count                |    No     |
@@ -39,8 +38,6 @@ Also take a look at `Start.ps1` **PowerShell** script for automating the work. N
 **--minz** is `int` parameter, representing minimum zoom, which you want to crop.
 
 **--maxz** is `int` parameter, representing maximum zoom, which you want to crop.
-
-**--algorithm** is `string`, representing cropping algorithm. Can be **crop** or **join**. When using **crop**, the input image will be cropped for each zoom. When using **join**, the input image will be cropped for the lowest zoom, and the upper tiles created by joining lowest ones.
 
 **--tms** is `string`, which shows if you want to create tms-compatible or non-tms-compatible tiles on output. Can have values `true` or `false`.
 

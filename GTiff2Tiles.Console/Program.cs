@@ -49,11 +49,6 @@ namespace GTiff2Tiles.Console
         private static int ThreadsCount { get; set; }
 
         /// <summary>
-        /// Algorithm to create tiles.
-        /// </summary>
-        private static string Algorithm { get; set; }
-
-        /// <summary>
         /// Do you want to create tms-compatible tiles?
         /// </summary>
         private static bool TmsCompatible { get; set; }
@@ -117,26 +112,8 @@ namespace GTiff2Tiles.Console
                 //Create image object.
                 Core.Image.Image inputImage = new Core.Image.Image(InputFileInfo);
 
-                //Switch on algorithm.
-                switch (Algorithm)
-                {
-                    case Algorithms.Join:
-                        await inputImage.GenerateTilesByJoiningAsync(OutputDirectoryInfo, MinZ, MaxZ, TmsCompatible,
-                                                                     TileExtension, consoleProgress, ThreadsCount)
-                                        .ConfigureAwait(false);
-
-                        break;
-                    case Algorithms.Crop:
-                        await inputImage.GenerateTilesByCroppingAsync(OutputDirectoryInfo, MinZ, MaxZ, TmsCompatible,
-                                                                     TileExtension, consoleProgress, ThreadsCount)
-                                        .ConfigureAwait(false);
-
-                        break;
-                    default:
-                        Helpers.ErrorHelper.PrintError(Strings.AlgorithmNotSupported);
-
-                        return;
-                }
+                await inputImage.GenerateTilesAsync(OutputDirectoryInfo, MinZ, MaxZ, TmsCompatible, TileExtension,
+                                                    consoleProgress, ThreadsCount).ConfigureAwait(false);
             }
             catch (Exception exception)
             {
@@ -183,14 +160,6 @@ namespace GTiff2Tiles.Console
             if (string.IsNullOrWhiteSpace(options.TempDirectoryPath))
             {
                 Helpers.ErrorHelper.PrintError(string.Format(Strings.OptionIsEmpty, "-t/--temp"));
-                IsParsingErrors = true;
-
-                return;
-            }
-
-            if (string.IsNullOrWhiteSpace(options.Algorithm))
-            {
-                Helpers.ErrorHelper.PrintError(string.Format(Strings.OptionIsEmpty, "-a/--algorithm"));
                 IsParsingErrors = true;
 
                 return;
@@ -254,7 +223,6 @@ namespace GTiff2Tiles.Console
             TempDirectoryInfo = new DirectoryInfo(options.TempDirectoryPath);
             MinZ = options.MinZ;
             MaxZ = options.MaxZ;
-            Algorithm = options.Algorithm;
             ThreadsCount = options.ThreadsCount;
 
             if (!bool.TryParse(options.TmsCompatible, out bool tmsComptaible))

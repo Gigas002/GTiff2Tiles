@@ -29,19 +29,6 @@ namespace GTiff2Tiles.Tests.Tests
         }
 
         [Test]
-        public void Algorithms()
-        {
-            try
-            {
-                string crop = Core.Enums.Algorithms.Crop;
-                string join = Core.Enums.Algorithms.Join;
-            }
-            catch (Exception exception) { Assert.Fail(exception.Message); }
-
-            Assert.Pass();
-        }
-
-        [Test]
         public void DateTimePatterns()
         {
             try

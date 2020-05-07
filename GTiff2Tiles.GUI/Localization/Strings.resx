@@ -120,9 +120,6 @@
   <data name="AcceptButtonContent" xml:space="preserve">
     <value>Accept</value>
   </data>
-  <data name="AlgorithmsHint" xml:space="preserve">
-    <value>Select algorithm</value>
-  </data>
   <data name="CancelButtonContent" xml:space="preserve">
     <value>Cancel</value>
   </data>
@@ -158,10 +155,6 @@
     <value>Done! Time passed:{0}Days:{1} hours:{2} minutes:{3} seconds:{4} milliseconds:{5}</value>
     <comment>Prints when done</comment>
   </data>
-  <data name="AlgorithmNotSupported" xml:space="preserve">
-    <value>Selected algorithm is not supported</value>
-    <comment>Error</comment>
-  </data>
   <data name="LesserOrEqual" xml:space="preserve">
     <value>{0} is lesser or equal {1}</value>
     <comment>Error</comment>
@@ -172,10 +165,6 @@
   </data>
   <data name="PathIsEmpty" xml:space="preserve">
     <value>{0} path if empty</value>
-    <comment>Error</comment>
-  </data>
-  <data name="SelectAlgorithm" xml:space="preserve">
-    <value>Please, select the algorithm</value>
     <comment>Error</comment>
   </data>
   <data name="TmsCheckBoxContent" xml:space="preserve">

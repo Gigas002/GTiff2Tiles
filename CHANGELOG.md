@@ -16,11 +16,18 @@ Changes since 1.4.1:
 
 ### Core
 
+**Breaking changes:**
+
+- Removed **Join** algorithm from all apps and lib (that includes `GenerateTilesByJoiningAsync` method, localization strings about algorithm in Console and GUI projects and `Enums.Algorithms` class);
+- Renamed `GenerateTilesByCroppingAsync` to `GenerateTilesAsync`;
+- `GenerateTilesAsync` now takes lesser params (*WIP*);
+
+**Dependencies:**
+
 - Update **MaxRev.Gdal.Core** package to **3.0.1.25**;
 - Update **MaxRev.Gdal.WindowsRuntime.Minimal** package to **3.0.1.35**;
 - Update **NetVips** package to **1.2.1**;
 - Update **NetVips.Native** package to **8.9.2**;
-- Update **System.Threading.Tasks.Extensions** package to **4.5.3** (*netstandard2.0* only);
 
 ### Benchmarks
 

@@ -320,199 +320,6 @@ namespace GTiff2Tiles.Core.Image
         }
 
         /// <summary>
-        /// Writes new tile by joining 4 lower ones.
-        /// </summary>
-        /// <param name="tileX">Tile's x number.</param>
-        /// <param name="tileY">Tile's y number.</param>
-        /// <param name="zoom">Current zoom level.</param>
-        private void WriteTile(int tileX, int tileY, int zoom)
-        {
-            #region Parameters checking
-
-            if (zoom < 0) throw new ImageException(string.Format(Strings.LesserThan, nameof(zoom), 0));
-            if (tileX < 0) throw new ImageException(string.Format(Strings.LesserThan, nameof(tileX), 0));
-            if (tileY < 0) throw new ImageException(string.Format(Strings.LesserThan, nameof(tileY), 0));
-
-            #endregion
-
-            //Create directories for the tile. The overall structure looks like: outputDirectory/zoom/x/y.png.
-            DirectoryInfo tileDirectoryInfo =
-                new DirectoryInfo(Path.Combine(OutputDirectoryInfo.FullName, $"{zoom}", $"{tileX}"));
-            CheckHelper.CheckDirectory(tileDirectoryInfo);
-
-            //Warning: OpenLayers requires replacement of tileY to tileY+1
-
-            //Calculate upper tiles's positions.
-            int upperTileX1 = tileX * 2;
-            int upperTileY1 = tileY * 2;
-            int upperTileX2 = upperTileX1 + 1;
-            int upperTileY2 = upperTileY1;
-            int upperTileX3 = upperTileX1;
-            int upperTileY3 = upperTileY1 + 1;
-            int upperTileX4 = upperTileX1 + 1;
-            int upperTileY4 = upperTileY1 + 1;
-
-            bool tilesExists = false;
-
-            const int upperTileSize = Enums.Image.Image.TileSize / 2;
-
-            #region Create 4 inner tiles
-
-            NetVips.Image upperTileImage1;
-            string tile1Path = Path.Combine(OutputDirectoryInfo.FullName, $"{zoom + 1}", $"{upperTileX1}",
-                                            $"{upperTileY1}{TileExtension}");
-
-            try
-            {
-                if (File.Exists(tile1Path))
-                {
-                    upperTileImage1 = NetVips.Image.NewFromFile(tile1Path);
-                    upperTileImage1 = upperTileImage1.ThumbnailImage(upperTileSize, upperTileSize);
-                    tilesExists = true;
-                }
-                else { upperTileImage1 = NetVips.Image.Black(upperTileSize, upperTileSize); }
-            }
-            catch (Exception exception)
-            {
-                throw new ImageException(string.Format(Strings.UnableToCreateTile, tileX, tileY), exception);
-            }
-
-            NetVips.Image upperTileImage2;
-            string tile2Path = Path.Combine(OutputDirectoryInfo.FullName, $"{zoom + 1}", $"{upperTileX2}",
-                                            $"{upperTileY2}{TileExtension}");
-
-
-            try
-            {
-                if (File.Exists(tile2Path))
-                {
-                    upperTileImage2 = NetVips.Image.NewFromFile(tile2Path);
-                    upperTileImage2 = upperTileImage2.ThumbnailImage(upperTileSize, upperTileSize);
-                    tilesExists = true;
-                }
-                else { upperTileImage2 = NetVips.Image.Black(upperTileSize, upperTileSize); }
-            }
-            catch (Exception exception)
-            {
-                throw new ImageException(string.Format(Strings.UnableToCreateTile, tileX, tileY), exception);
-            }
-
-            NetVips.Image upperTileImage3;
-            string tile3Path = Path.Combine(OutputDirectoryInfo.FullName, $"{zoom + 1}", $"{upperTileX3}",
-                                            $"{upperTileY3}{TileExtension}");
-
-            try
-            {
-                if (File.Exists(tile3Path))
-                {
-                    upperTileImage3 = NetVips.Image.NewFromFile(tile3Path);
-                    upperTileImage3 = upperTileImage3.ThumbnailImage(upperTileSize, upperTileSize);
-                    tilesExists = true;
-                }
-                else { upperTileImage3 = NetVips.Image.Black(upperTileSize, upperTileSize); }
-            }
-            catch (Exception exception)
-            {
-                throw new ImageException(string.Format(Strings.UnableToCreateTile, tileX, tileY), exception);
-            }
-
-            NetVips.Image upperTileImage4;
-            string tile4Path = Path.Combine(OutputDirectoryInfo.FullName, $"{zoom + 1}", $"{upperTileX4}",
-                                            $"{upperTileY4}{TileExtension}");
-
-            try
-            {
-                if (File.Exists(tile4Path))
-                {
-                    upperTileImage4 = NetVips.Image.NewFromFile(tile4Path);
-                    upperTileImage4 = upperTileImage4.ThumbnailImage(upperTileSize, upperTileSize);
-                    tilesExists = true;
-                }
-                else { upperTileImage4 = NetVips.Image.Black(upperTileSize, upperTileSize); }
-            }
-            catch (Exception exception)
-            {
-                throw new ImageException(string.Format(Strings.UnableToCreateTile, tileX, tileY), exception);
-            }
-
-            #endregion
-
-            //We shouldn't create tiles, if they're not exist.
-            if (!tilesExists) return;
-
-            NetVips.Image[] images = new NetVips.Image[4];
-            images[0] = TmsCompatible ? upperTileImage3 : upperTileImage1;
-            images[1] = TmsCompatible ? upperTileImage4 : upperTileImage2;
-            images[2] = TmsCompatible ? upperTileImage1 : upperTileImage3;
-            images[3] = TmsCompatible ? upperTileImage2 : upperTileImage4;
-
-            //Check and write bands if needed.
-            for (int imagesIndex = 0; imagesIndex < images.Length; imagesIndex++)
-            {
-                int bands = images[imagesIndex].Bands;
-
-                //Check number before switching on it.
-                if (bands > Enums.Image.Image.Bands) throw new ImageException(string.Format(Strings.TooMuchBands));
-
-                switch (bands)
-                {
-                    case Enums.Image.Image.Bands: continue;
-                    case 1:
-                    {
-                        for (int bandsIndex = bands; bandsIndex < Enums.Image.Image.Bands; bandsIndex++)
-                            try { images[imagesIndex] = images[imagesIndex].Bandjoin(0); }
-                            catch (Exception exception)
-                            {
-                                throw new
-                                    ImageException(string.Format(Strings.UnableToJoin, $"band {bandsIndex}", tileX, tileY),
-                                                   exception);
-                            }
-
-                        break;
-                    }
-                    default:
-                    {
-                        for (int bandsIndex = bands; bandsIndex < Enums.Image.Image.Bands; bandsIndex++)
-                            try { images[imagesIndex] = images[imagesIndex].Bandjoin(255); }
-                            catch (Exception exception)
-                            {
-                                throw new
-                                    ImageException(string.Format(Strings.UnableToJoin, $"band {bandsIndex}", tileX, tileY),
-                                                   exception);
-                            }
-
-                        break;
-                    }
-                }
-            }
-
-            //Join 4 tiles.
-            FileInfo outputTileFileInfo = new FileInfo(Path.Combine(tileDirectoryInfo.FullName,
-                                                                    $"{tileY}{TileExtension}"));
-
-            try
-            {
-                using NetVips.Image resultImage = NetVips.Image.Arrayjoin(images, 2);
-
-                resultImage.WriteToFile(outputTileFileInfo.FullName);
-            }
-            catch (Exception exception)
-            {
-                throw new ImageException(string.Format(Strings.UnableToJoin, nameof(outputTileFileInfo), tileX, tileY),
-                                         exception);
-            }
-
-            CheckHelper.CheckFile(outputTileFileInfo, true);
-
-            //Dispose images.
-            upperTileImage1.Dispose();
-            upperTileImage2.Dispose();
-            upperTileImage3.Dispose();
-            upperTileImage4.Dispose();
-            foreach (NetVips.Image image in images) image.Dispose();
-        }
-
-        /// <summary>
         /// Crops passed zoom to tiles.
         /// </summary>
         /// <param name="zoom">Current zoom to crop.</param>
@@ -570,50 +377,6 @@ namespace GTiff2Tiles.Core.Image
         }
 
         /// <summary>
-        /// Make upper tiles from the lowest zoom.
-        /// </summary>
-        /// <param name="zoom">Zoom, for which we're cropping tiles atm.</param>
-        /// <param name="threadsCount">Threads count.</param>
-        /// <returns></returns>
-        private async ValueTask MakeUpperTilesAsync(int zoom, int threadsCount)
-        {
-            #region Parameters checking
-
-            if (zoom < 0) throw new ImageException(string.Format(Strings.LesserThan, nameof(zoom), 0));
-            if (threadsCount <= 0)
-                throw new ImageException(string.Format(Strings.LesserOrEqual, nameof(threadsCount), 0));
-
-            #endregion
-
-            using SemaphoreSlim semaphoreSlim = new SemaphoreSlim(threadsCount);
-
-            List<Task> tasks = new List<Task>();
-
-            //For each tile on current zoom.
-            for (int tileY = TilesMinMax[zoom][1]; tileY <= TilesMinMax[zoom][3]; tileY++)
-            {
-                for (int tileX = TilesMinMax[zoom][0]; tileX <= TilesMinMax[zoom][2]; tileX++)
-                {
-                    await semaphoreSlim.WaitAsync().ConfigureAwait(false);
-
-                    int x = tileX;
-                    int y = tileY;
-
-                    tasks.Add(Task.Run(() =>
-                    {
-                        try { WriteTile(x, y, zoom); }
-                        finally { semaphoreSlim.Release(); }
-                    }));
-                }
-            }
-
-            await Task.WhenAll(tasks).ConfigureAwait(false);
-
-            //Dispose tasks.
-            foreach (Task task in tasks) task.Dispose();
-        }
-
-        /// <summary>
         /// Sets properties, needed for cropping current <see cref="Image"/>.
         /// </summary>
         /// <param name="outputDirectoryInfo">Output directory.</param>
@@ -665,50 +428,6 @@ namespace GTiff2Tiles.Core.Image
         #region Public
 
         /// <summary>
-        /// Create tiles. Crops input tiff only for lowest zoom and then join the higher ones from it.
-        /// </summary>
-        /// <param name="outputDirectoryInfo">Output directory.</param>
-        /// <param name="minZ">Minimum cropped zoom.</param>
-        /// <param name="maxZ">Maximum cropped zoom.</param>
-        /// <param name="tmsCompatible">Do you want to create tms-compatible tiles? <see langword="true"/> by default.</param>
-        /// <param name="tileExtension">Extension of ready tiles. ".png" by default.</param>
-        /// <param name="progress">Progress. <see langword="null"/> by default.</param>
-        /// <param name="threadsCount">Threads count. 5 by default.</param>
-        /// <returns></returns>
-        public async ValueTask GenerateTilesByJoiningAsync(DirectoryInfo outputDirectoryInfo, int minZ, int maxZ,
-                                                           bool tmsCompatible = true,
-                                                           string tileExtension = Enums.Extensions.Png,
-                                                           IProgress<double> progress = null,
-                                                           int threadsCount = 5)
-        {
-            //TODO: profile argument (geodetic/mercator)
-
-            #region Parameters checking
-
-            if (progress == null) throw new ImageException(string.Format(Strings.IsNull, nameof(progress)));
-            if (threadsCount <= 0)
-                throw new ImageException(string.Format(Strings.LesserOrEqual, nameof(threadsCount), 0));
-
-            #endregion
-
-            SetGenerateTilesProperties(outputDirectoryInfo, minZ, maxZ, tmsCompatible, tileExtension);
-
-            //Crop lowest zoom level.
-            await WriteZoomAsync(MaxZ, threadsCount).ConfigureAwait(false);
-            double percentage = 1.0 / (MaxZ - MinZ + 1) * 100.0;
-            progress.Report(percentage);
-
-            //Crop upper tiles.
-            for (int zoom = MaxZ - 1; zoom >= MinZ; zoom--)
-            {
-                await MakeUpperTilesAsync(zoom, threadsCount).ConfigureAwait(false);
-
-                percentage = (double)(MaxZ - zoom + 1) / (MaxZ - MinZ + 1) * 100.0;
-                progress.Report(percentage);
-            }
-        }
-
-        /// <summary>
         /// Crops input tiff for each zoom.
         /// </summary>
         /// <param name="outputDirectoryInfo">Output directory.</param>
@@ -719,7 +438,7 @@ namespace GTiff2Tiles.Core.Image
         /// <param name="progress">Progress. <see langword="null"/> by default.</param>
         /// <param name="threadsCount">Threads count. 5 by default.</param>
         /// <returns></returns>
-        public async ValueTask GenerateTilesByCroppingAsync(DirectoryInfo outputDirectoryInfo, int minZ, int maxZ,
+        public async ValueTask GenerateTilesAsync(DirectoryInfo outputDirectoryInfo, int minZ, int maxZ,
                                                             bool tmsCompatible = true,
                                                             string tileExtension = Enums.Extensions.Png,
                                                             IProgress<double> progress = null,
@@ -742,7 +461,7 @@ namespace GTiff2Tiles.Core.Image
             {
                 await WriteZoomAsync(zoom, threadsCount).ConfigureAwait(false);
 
-                double percentage = (double) (zoom - MinZ + 1) / (MaxZ - MinZ + 1) * 100.0;
+                double percentage = (double)(zoom - MinZ + 1) / (MaxZ - MinZ + 1) * 100.0;
                 progress.Report(percentage);
             }
         }

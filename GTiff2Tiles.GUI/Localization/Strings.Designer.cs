@@ -70,24 +70,6 @@ namespace GTiff2Tiles.GUI.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Selected algorithm is not supported.
-        /// </summary>
-        internal static string AlgorithmNotSupported {
-            get {
-                return ResourceManager.GetString("AlgorithmNotSupported", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Select algorithm.
-        /// </summary>
-        internal static string AlgorithmsHint {
-            get {
-                return ResourceManager.GetString("AlgorithmsHint", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
         internal static string CancelButtonContent {
@@ -183,15 +165,6 @@ namespace GTiff2Tiles.GUI.Localization {
         internal static string ProgressTextBlock {
             get {
                 return ResourceManager.GetString("ProgressTextBlock", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Please, select the algorithm.
-        /// </summary>
-        internal static string SelectAlgorithm {
-            get {
-                return ResourceManager.GetString("SelectAlgorithm", resourceCulture);
             }
         }
         

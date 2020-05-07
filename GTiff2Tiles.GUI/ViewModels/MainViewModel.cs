@@ -66,11 +66,6 @@ namespace GTiff2Tiles.GUI.ViewModels
         public string MaxZHint { get; } = Strings.MaxZHint;
 
         /// <summary>
-        /// Hint for Algorithms ComboBox.
-        /// </summary>
-        public string AlgorithmsHint { get; } = Strings.AlgorithmsHint;
-
-        /// <summary>
         /// Hint for Extensions ComboBox
         /// </summary>
         public string TileExtensionsHint { get; } = Strings.TileExtensionsHint;
@@ -236,27 +231,6 @@ namespace GTiff2Tiles.GUI.ViewModels
 
         #region ComboBox
 
-        private string _algorithm;
-
-        /// <summary>
-        /// Currently chosen algorythm.
-        /// </summary>
-        public string Algorithm
-        {
-            get => _algorithm;
-            set
-            {
-                _algorithm = value;
-                NotifyOfPropertyChange(() => Algorithm);
-            }
-        }
-
-        /// <summary>
-        /// Collection of supported algorythms.
-        /// </summary>
-        // ReSharper disable once CollectionNeverQueried.Global
-        public ObservableCollection<string> Algorithms { get; } = new ObservableCollection<string>();
-
         private string _tileExtension;
 
         /// <summary>
@@ -341,8 +315,6 @@ namespace GTiff2Tiles.GUI.ViewModels
             ThreadsCount = 5;
             ProgressBarValue = 0.0;
             IsEnabled = true;
-            Algorithms.Add(Core.Enums.Algorithms.Crop);
-            Algorithms.Add(Core.Enums.Algorithms.Join);
             TileExtensions.Add(Extensions.Png);
             TileExtensions.Add(Extensions.Jpg);
             TileExtensions.Add(Extensions.Webp);
@@ -452,27 +424,9 @@ namespace GTiff2Tiles.GUI.ViewModels
                 //Create image object.
                 Core.Image.Image inputImage = new Core.Image.Image(inputFileInfo);
 
-                //Switch on algorithm.
-                switch (Algorithm)
-                {
-                    case Core.Enums.Algorithms.Join:
-                        await inputImage
-                             .GenerateTilesByJoiningAsync(outputDirectoryInfo, MinZ, MaxZ, TmsCompatible, TileExtension, progress,
-                                                     ThreadsCount).ConfigureAwait(true);
-
-                        break;
-                    case Core.Enums.Algorithms.Crop:
-                        await inputImage
-                             .GenerateTilesByCroppingAsync(outputDirectoryInfo, MinZ, MaxZ, TmsCompatible, TileExtension, progress,
-                                                      ThreadsCount).ConfigureAwait(true);
-
-                        break;
-                    default:
-                        await Helpers.ErrorHelper.ShowErrorAsync(Strings.AlgorithmNotSupported).ConfigureAwait(true);
-                        IsEnabled = true;
-
-                        return;
-                }
+                await inputImage
+                     .GenerateTilesAsync(outputDirectoryInfo, MinZ, MaxZ, TmsCompatible, TileExtension, progress,
+                                         ThreadsCount).ConfigureAwait(true);
             }
             catch (Exception exception)
             {
@@ -530,14 +484,6 @@ namespace GTiff2Tiles.GUI.ViewModels
                 return await Helpers
                             .ErrorHelper.ShowErrorAsync(string.Format(Strings.LesserThan, nameof(MaxZ), nameof(MinZ)))
                             .ConfigureAwait(true);
-
-            if (string.IsNullOrWhiteSpace(Algorithm))
-                return await Helpers.ErrorHelper.ShowErrorAsync(Strings.SelectAlgorithm).ConfigureAwait(true);
-
-            //Algorithm = Algorithm.ToLowerInvariant();
-
-            //if (Algorithm != Core.Enums.Algorithms.Join && Algorithm != Core.Enums.Algorithms.Crop)
-            //    return await Helpers.ErrorHelper.ShowErrorAsync(Strings.AlgorithmNotSupported).ConfigureAwait(true);
 
             if (ThreadsCount <= 0)
                 return await Helpers

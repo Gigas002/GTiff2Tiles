@@ -61,15 +61,6 @@ namespace GTiff2Tiles.Console.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This algorithm is not supported.
-        /// </summary>
-        internal static string AlgorithmNotSupported {
-            get {
-                return ResourceManager.GetString("AlgorithmNotSupported", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Done! Time passed:{0}Days:{1} hours:{2} minutes:{3} seconds:{4} milliseconds:{5}.
         /// </summary>
         internal static string Done {

@@ -117,10 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AlgorithmNotSupported" xml:space="preserve">
-    <value>Указанный алгоритм не поддерживается</value>
-    <comment>Сообщение об ошибке</comment>
-  </data>
   <data name="Done" xml:space="preserve">
     <value>Готово! Прошло времени:{0}Дней:{1} часов:{2} минут:{3} секунд:{4} миллисекунд:{5}</value>
     <comment>Выводится после завершения работы</comment>

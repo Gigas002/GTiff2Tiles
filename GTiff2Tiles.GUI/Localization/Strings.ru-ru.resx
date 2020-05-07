@@ -120,9 +120,6 @@
   <data name="AcceptButtonContent" xml:space="preserve">
     <value>Принять</value>
   </data>
-  <data name="AlgorithmsHint" xml:space="preserve">
-    <value>Выберите алгоритм</value>
-  </data>
   <data name="CancelButtonContent" xml:space="preserve">
     <value>Отмена</value>
   </data>
@@ -158,10 +155,6 @@
     <value>Готово! Прошло времени:{0}Дней:{1} часов:{2} минут:{3} секунд:{4} миллисекунд:{5}</value>
     <comment>Выводится, когда задача завершается</comment>
   </data>
-  <data name="AlgorithmNotSupported" xml:space="preserve">
-    <value>Выбранный алгоритм не поддерживается</value>
-    <comment>Ошибка</comment>
-  </data>
   <data name="LesserOrEqual" xml:space="preserve">
     <value>{0} меньше или равно {1}</value>
     <comment>Ошибка</comment>
@@ -172,10 +165,6 @@
   </data>
   <data name="PathIsEmpty" xml:space="preserve">
     <value>Строка пути {0} пустая</value>
-    <comment>Ошибка</comment>
-  </data>
-  <data name="SelectAlgorithm" xml:space="preserve">
-    <value>Выберите алгоритм</value>
     <comment>Ошибка</comment>
   </data>
   <data name="TmsCheckBoxContent" xml:space="preserve">

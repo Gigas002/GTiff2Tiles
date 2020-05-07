@@ -117,10 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AlgorithmNotSupported" xml:space="preserve">
-    <value>This algorithm is not supported</value>
-    <comment>Error text</comment>
-  </data>
   <data name="Done" xml:space="preserve">
     <value>Done! Time passed:{0}Days:{1} hours:{2} minutes:{3} seconds:{4} milliseconds:{5}</value>
     <comment>Prints when done</comment>
