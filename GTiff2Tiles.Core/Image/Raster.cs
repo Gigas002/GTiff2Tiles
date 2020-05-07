@@ -229,12 +229,12 @@ namespace GTiff2Tiles.Core.Image
                                  readPosMinY.Equals(RasterYSize) ? MinY : upperLeftY;
 
             //Positions of dataset to write in tile.
-            double writePosMinX = Constants.Image.Image.TileSize -
-                                  Constants.Image.Image.TileSize * (lowerRightX - tilePixMinX) / (lowerRightX - upperLeftX);
-            double writePosMinY = Constants.Image.Image.TileSize * (upperLeftY - tilePixMaxY) / (upperLeftY - lowerRightY);
-            double writePosMaxX = Constants.Image.Image.TileSize -
-                                  Constants.Image.Image.TileSize * (lowerRightX - tilePixMaxX) / (lowerRightX - upperLeftX);
-            double writePosMaxY = Constants.Image.Image.TileSize * (upperLeftY - tilePixMinY) / (upperLeftY - lowerRightY);
+            double writePosMinX = Constants.Image.Raster.TileSize -
+                                  Constants.Image.Raster.TileSize * (lowerRightX - tilePixMinX) / (lowerRightX - upperLeftX);
+            double writePosMinY = Constants.Image.Raster.TileSize * (upperLeftY - tilePixMaxY) / (upperLeftY - lowerRightY);
+            double writePosMaxX = Constants.Image.Raster.TileSize -
+                                  Constants.Image.Raster.TileSize * (lowerRightX - tilePixMaxX) / (lowerRightX - upperLeftX);
+            double writePosMaxY = Constants.Image.Raster.TileSize * (upperLeftY - tilePixMinY) / (upperLeftY - lowerRightY);
 
             //Sizes to read and write.
             double readXSize = readPosMaxX - readPosMinX;
@@ -357,14 +357,14 @@ namespace GTiff2Tiles.Core.Image
             }
 
             // Add alpha channel if needed
-            for (; tileImage.Bands < Constants.Image.Image.Bands;) tileImage = tileImage.Bandjoin(255);
+            for (; tileImage.Bands < Constants.Image.Raster.Bands;) tileImage = tileImage.Bandjoin(255);
 
             // Make a transparent image
             NetVips.Image outputImage;
 
             try
             {
-                outputImage = NetVips.Image.Black(Constants.Image.Image.TileSize, Constants.Image.Image.TileSize)
+                outputImage = NetVips.Image.Black(Constants.Image.Raster.TileSize, Constants.Image.Raster.TileSize)
                                      .NewFromImage(0, 0, 0, 0);
 
                 // Insert tile into output image

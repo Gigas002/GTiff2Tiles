@@ -3,7 +3,7 @@
     /// <summary>
     /// <see cref="GTiff2Tiles.Core.Image.Image"/> constants.
     /// </summary>
-    internal static class Image
+    internal static class Raster
     {
         /// <summary>
         /// Number of bands in output tiles.
