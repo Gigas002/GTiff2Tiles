@@ -114,7 +114,7 @@ namespace GTiff2Tiles.Console
                 //Run tiling.
                 //TODO: tileType and tileExtension params
                 await Core.Image.Img.GenerateTilesAsync(InputFileInfo, OutputDirectoryInfo, MinZ, MaxZ, TileType.Raster,
-                                                        TmsCompatible, Core.Enums.Image.TileExtension.Webp,
+                                                        TmsCompatible, Core.Enums.Image.TileExtension.Png,
                                                         consoleProgress, ThreadsCount).ConfigureAwait(false);
             }
             catch (Exception exception)
