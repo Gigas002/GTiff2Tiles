@@ -3,14 +3,14 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <IsPackable>false</IsPackable>
-    <AssemblyVersion>2.0.0.301</AssemblyVersion>
-    <FileVersion>2.0.0.301</FileVersion>
+    <AssemblyVersion>2.0.0.303</AssemblyVersion>
+    <FileVersion>2.0.0.303</FileVersion>
     <Platforms>x64</Platforms>
     <RepositoryUrl>https://github.com/Gigas002/GTiff2Tiles</RepositoryUrl>
     <PackageProjectUrl>https://github.com/Gigas002/GTiff2Tiles</PackageProjectUrl>
     <Copyright>Copyright © Gigas002 2020</Copyright>
     <Authors>Gigas002</Authors>
-    <Version>1.5.0</Version>
+    <Version>2.0.0-ci303</Version>
     <PackageLicenseFile>..\LICENSE.md</PackageLicenseFile>
     <Description>Unit test project for GTiff2Tiles library</Description>
   </PropertyGroup>

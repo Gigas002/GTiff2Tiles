@@ -3,14 +3,14 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <AssemblyVersion>2.0.0.301</AssemblyVersion>
-    <FileVersion>2.0.0.301</FileVersion>
+    <AssemblyVersion>2.0.0.303</AssemblyVersion>
+    <FileVersion>2.0.0.303</FileVersion>
     <Platforms>x64</Platforms>
     <AssemblyName>GTiff2Tiles.Benchmarks</AssemblyName>
     <RootNamespace>GTiff2Tiles.Benchmarks</RootNamespace>
     <ApplicationIcon>Resources\Icon.ico</ApplicationIcon>
     <Copyright>Copyright © Gigas002 2020</Copyright>
-    <Version>1.5.0</Version>
+    <Version>2.0.0-ci303</Version>
     <Authors>Gigas002</Authors>
     <Description>Benchmarks project for GTiff2Tiles</Description>
     <PackageProjectUrl>https://github.com/Gigas002/GTiff2Tiles</PackageProjectUrl>
