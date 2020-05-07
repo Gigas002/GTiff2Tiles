@@ -15,7 +15,7 @@ jobs:
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 3.1.102
+        dotnet-version: 3.1.201
     - name: Build with dotnet
       run: |
         echo Build win-x64 start
@@ -37,7 +37,7 @@ jobs:
       - name: Setup dotnet
         uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: 3.1.102
+          dotnet-version: 3.1.201
       
       # Publish
       - name: publish on version change
@@ -62,7 +62,7 @@ jobs:
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 3.1.102
+        dotnet-version: 3.1.201
     - name: Run unit tests
       run: |
         echo Unit tests win-x64 start
@@ -81,7 +81,7 @@ jobs:
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 3.1.102
+        dotnet-version: 3.1.201
     - name: Build with dotnet
       run: |
         echo Build linux-x64 core start
@@ -109,7 +109,7 @@ jobs:
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 3.1.102
+        dotnet-version: 3.1.201
     - name: Run unit tests
       run: |
         echo Unit tests linux-x64 start
