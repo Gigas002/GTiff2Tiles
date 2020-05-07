@@ -1,6 +1,8 @@
 # CHANGELOG
 
-## WIP
+## WIP – 2.0.0
+
+I’ve noticed, that I’ve violated the semantic versioning rules in the past. Sorry. That release contains incompatible changes, so it’s a major release.
 
 Changes since 1.4.1:
 
