@@ -379,7 +379,8 @@ namespace GTiff2Tiles.Core.Image
                 // Insert tile into output image
                 outputImage = outputImage.Insert(tileImage, writePosX, writePosY);
 
-                //Console.WriteLine($"P1: {stopwatch.ElapsedMilliseconds}");
+                // ReSharper disable once LocalizableElement
+                Console.WriteLine($"P1: {stopwatch.ElapsedMilliseconds}");
 
                 //todo test this with stable 8.9.0+ package. Now less effective, then WriteToFile
                 //todo Runs MUCH slower in multithreaded mode
@@ -387,7 +388,8 @@ namespace GTiff2Tiles.Core.Image
                 //outputImage.WriteToStream(outputStream, TileExtension);
                 outputImage.WriteToFile(outputTileFileInfo.FullName);
 
-                //Console.WriteLine($"P2: {stopwatch.ElapsedMilliseconds}");
+                // ReSharper disable once LocalizableElement
+                Console.WriteLine($"P2: {stopwatch.ElapsedMilliseconds}");
             }
             catch (Exception exception)
             {
@@ -434,6 +436,7 @@ namespace GTiff2Tiles.Core.Image
                     tasks.Add(Task.Run(() =>
                     {
                         try { WriteTile(x, y, zoom); }
+                        // ReSharper disable once AccessToDisposedClosure
                         finally { semaphoreSlim.Release(); }
                     }));
                 }
@@ -575,14 +578,17 @@ namespace GTiff2Tiles.Core.Image
             return tilesCount;
         }
 
-        public async ValueTask GenerateTilesAsync2(DirectoryInfo outputDirectoryInfo, int minZ, int maxZ,
+        public async ValueTask GenerateTilesAsync(DirectoryInfo outputDirectoryInfo, int minZ, int maxZ,
                                                    bool tmsCompatible, string tileExtension,
                                                    IProgress<double> progress,
-                                                   int threadsCount)
+                                                   int threadsCount,
+                                                   bool isExperimental)
         {
+            if (!isExperimental) return;
+
             //TODO: profile argument (geodetic/mercator)
 
-            Stopwatch sw1 = Stopwatch.StartNew();
+            Stopwatch stopwatch = Stopwatch.StartNew();
 
             #region Parameters checking
 
@@ -596,24 +602,23 @@ namespace GTiff2Tiles.Core.Image
             await SetGenerateTilesProperties(outputDirectoryInfo, minZ, maxZ, tmsCompatible, tileExtension)
                .ConfigureAwait(false);
 
-            //Crop tiles for each zoom.
+            //Crop all tiles.
             await RunTiling(threadsCount, progress);
 
-            sw1.Stop();
+            stopwatch.Stop();
             // ReSharper disable once LocalizableElement
-            Console.WriteLine($"Elapsed time:{sw1.ElapsedMilliseconds}");
+            Console.WriteLine($"Elapsed time:{stopwatch.ElapsedMilliseconds}");
         }
 
         private async ValueTask RunTiling(int threadsCount, IProgress<double> progress)
         {
-            using SemaphoreSlim semaphoreSlim = new SemaphoreSlim(threadsCount);
-
-            List<Task> tasks = new List<Task>();
-
             int tilesCount = await GetTilesCount(threadsCount).ConfigureAwait(false);
             double counter = 0.0;
 
             if (tilesCount <= 0) return;
+
+            using SemaphoreSlim semaphoreSlim = new SemaphoreSlim(threadsCount);
+            List<Task> tasks = new List<Task>();
 
             //For each zoom.
             for (int zoom = MinZ; zoom <= MaxZ; zoom++)
@@ -634,6 +639,7 @@ namespace GTiff2Tiles.Core.Image
                             try { WriteTile(x, y, currentZoom); }
                             finally
                             {
+                                // ReSharper disable once AccessToDisposedClosure
                                 semaphoreSlim.Release();
 
                                 counter++;

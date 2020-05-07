@@ -56,8 +56,8 @@ namespace GTiff2Tiles.Core.Image
         public ValueTask GenerateTilesAsync(DirectoryInfo outputDirectoryInfo, int minZ, int maxZ, bool tmsCompatible,
                                             string tileExtension, IProgress<double> progress, int threadsCount);
 
-        public ValueTask GenerateTilesAsync2(DirectoryInfo outputDirectoryInfo, int minZ, int maxZ, bool tmsCompatible,
-                                             string tileExtension, IProgress<double> progress, int threadsCount);
+        public ValueTask GenerateTilesAsync(DirectoryInfo outputDirectoryInfo, int minZ, int maxZ, bool tmsCompatible,
+                                            string tileExtension, IProgress<double> progress, int threadsCount, bool isExperimental);
 
         #endregion
     }

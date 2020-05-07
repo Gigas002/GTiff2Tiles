@@ -32,7 +32,7 @@ namespace GTiff2Tiles.Core.Image
             };
 
             await image.GenerateTilesAsync(outputDirectoryInfo, minZ, maxZ, tmsCompatible, tileExtensionString, progress,
-                                           threadsCount);
+                                           threadsCount, true);
         }
     }
 }
