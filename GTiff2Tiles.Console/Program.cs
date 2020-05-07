@@ -110,7 +110,7 @@ namespace GTiff2Tiles.Console
                 }
 
                 //Create image object.
-                Core.Image.Image inputImage = new Core.Image.Image(InputFileInfo);
+                await using Core.Image.Image inputImage = new Core.Image.Image(InputFileInfo);
 
                 await inputImage.GenerateTilesAsync(OutputDirectoryInfo, MinZ, MaxZ, TmsCompatible, TileExtension,
                                                     consoleProgress, ThreadsCount).ConfigureAwait(false);

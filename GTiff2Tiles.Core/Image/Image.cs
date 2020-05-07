@@ -8,6 +8,8 @@ using GTiff2Tiles.Core.Helpers;
 using GTiff2Tiles.Core.Localization;
 using NetVips;
 
+// ReSharper disable ClassWithVirtualMembersNeverInherited.Global
+// ReSharper disable InheritdocConsiderUsage
 // ReSharper disable ClassCanBeSealed.Global
 // ReSharper disable MemberCanBePrivate.Global
 // ReSharper disable AccessToDisposedClosure
@@ -17,7 +19,7 @@ namespace GTiff2Tiles.Core.Image
     /// <summary>
     /// Class for creating raster tiles.
     /// </summary>
-    public class Image
+    public class Image : IAsyncDisposable, IDisposable
     {
         #region Properties
 
@@ -63,11 +65,6 @@ namespace GTiff2Tiles.Core.Image
         public int RasterYSize { get; }
 
         /// <summary>
-        /// Input GeoTiff.
-        /// </summary>
-        public FileInfo InputFileInfo { get; }
-
-        /// <summary>
         /// Upper left X coordinate.
         /// </summary>
         public double MinX { get; }
@@ -92,6 +89,16 @@ namespace GTiff2Tiles.Core.Image
         /// </summary>
         public string TileExtension { get; private set; }
 
+        /// <summary>
+        /// Shows if resources have already been disposed.
+        /// </summary>
+        public bool IsDisposed { get; private set; }
+
+        /// <summary>
+        /// Image's data.
+        /// </summary>
+        public NetVips.Image Data { get; }
+
         #endregion
 
         #endregion
@@ -113,13 +120,14 @@ namespace GTiff2Tiles.Core.Image
 
             #endregion
 
-            InputFileInfo = inputFileInfo;
+            Data = NetVips.Image.Tiffload(inputFileInfo.FullName, access: NetVips.Enums.Access.Random);
 
             //Get border coordinates и raster sizes.
             try
             {
-                (RasterXSize, RasterYSize) = Gdal.GetImageSizes(InputFileInfo);
-                (MinX, MinY, MaxX, MaxY) = Gdal.GetImageBorders(InputFileInfo, RasterXSize, RasterYSize);
+                RasterXSize = Data.Width;
+                RasterYSize = Data.Height;
+                (MinX, MinY, MaxX, MaxY) = Gdal.GetImageBorders(inputFileInfo, RasterXSize, RasterYSize);
             }
             catch (Exception exception)
             {
@@ -131,6 +139,50 @@ namespace GTiff2Tiles.Core.Image
         #endregion
 
         #region Methods
+
+        #region Dispose
+
+        /// <summary>
+        /// Frees the resources synchroniously.
+        /// </summary>
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        /// <summary>
+        /// Actually disposes the data.
+        /// </summary>
+        /// <param name="disposing"></param>
+        protected virtual void Dispose(bool disposing)
+        {
+            if (IsDisposed) return;
+
+            if (disposing) Data.Dispose();
+
+            IsDisposed = true;
+        }
+
+        /// <summary>
+        /// Frees the resources asynchroniously.
+        /// </summary>
+        /// <returns></returns>
+        public virtual ValueTask DisposeAsync()
+        {
+            try
+            {
+                Dispose();
+
+                return default;
+            }
+            catch (Exception exception)
+            {
+                return new ValueTask(Task.FromException(exception));
+            }
+        }
+
+        #endregion
 
         #region Private
 
@@ -152,16 +204,24 @@ namespace GTiff2Tiles.Core.Image
             double readPosMaxY = RasterYSize - RasterYSize * (lowerRightY - MinY) / (MaxY - MinY);
 
             //If outside of tiff.
-            readPosMinX = readPosMinX < 0.0 ? 0.0 : readPosMinX > RasterXSize ? RasterXSize : readPosMinX;
-            readPosMinY = readPosMinY < 0.0 ? 0.0 : readPosMinY > RasterYSize ? RasterYSize : readPosMinY;
-            readPosMaxX = readPosMaxX < 0.0 ? 0.0 : readPosMaxX > RasterXSize ? RasterXSize : readPosMaxX;
-            readPosMaxY = readPosMaxY < 0.0 ? 0.0 : readPosMaxY > RasterYSize ? RasterYSize : readPosMaxY;
+            readPosMinX = readPosMinX < 0.0 ? 0.0 :
+                          readPosMinX > RasterXSize ? RasterXSize : readPosMinX;
+            readPosMinY = readPosMinY < 0.0 ? 0.0 :
+                          readPosMinY > RasterYSize ? RasterYSize : readPosMinY;
+            readPosMaxX = readPosMaxX < 0.0 ? 0.0 :
+                          readPosMaxX > RasterXSize ? RasterXSize : readPosMaxX;
+            readPosMaxY = readPosMaxY < 0.0 ? 0.0 :
+                          readPosMaxY > RasterYSize ? RasterYSize : readPosMaxY;
 
             //Output tile's borders in pixels.
-            double tilePixMinX = readPosMinX.Equals(0.0) ? MinX : readPosMinX.Equals(RasterXSize) ? MaxX : upperLeftX;
-            double tilePixMinY = readPosMaxY.Equals(0.0) ? MaxY : readPosMaxY.Equals(RasterYSize) ? MinY : lowerRightY;
-            double tilePixMaxX = readPosMaxX.Equals(0.0) ? MinX : readPosMaxX.Equals(RasterXSize) ? MaxX : lowerRightX;
-            double tilePixMaxY = readPosMinY.Equals(0.0) ? MaxY : readPosMinY.Equals(RasterYSize) ? MinY : upperLeftY;
+            double tilePixMinX = readPosMinX.Equals(0.0) ? MinX :
+                                 readPosMinX.Equals(RasterXSize) ? MaxX : upperLeftX;
+            double tilePixMinY = readPosMaxY.Equals(0.0) ? MaxY :
+                                 readPosMaxY.Equals(RasterYSize) ? MinY : lowerRightY;
+            double tilePixMaxX = readPosMaxX.Equals(0.0) ? MinX :
+                                 readPosMaxX.Equals(RasterXSize) ? MaxX : lowerRightX;
+            double tilePixMaxY = readPosMinY.Equals(0.0) ? MaxY :
+                                 readPosMinY.Equals(RasterYSize) ? MinY : upperLeftY;
 
             //Positions of dataset to write in tile.
             double writePosMinX = Enums.Image.Image.TileSize -
@@ -178,32 +238,31 @@ namespace GTiff2Tiles.Core.Image
             double writeYSize = writePosMaxY - writePosMinY;
 
             //Shifts.
-            double readXShift = readPosMinX - (int) readPosMinX;
+            double readXShift = readPosMinX - (int)readPosMinX;
             readXSize += readXShift;
-            double readYShift = readPosMinY - (int) readPosMinY;
+            double readYShift = readPosMinY - (int)readPosMinY;
             readYSize += readYShift;
-            double writeXShift = writePosMinX - (int) writePosMinX;
+            double writeXShift = writePosMinX - (int)writePosMinX;
             writeXSize += writeXShift;
-            double writeYShift = writePosMinY - (int) writePosMinY;
+            double writeYShift = writePosMinY - (int)writePosMinY;
             writeYSize += writeYShift;
 
             //If output image sides are lesser then 1 - make image 1x1 pixels to prevent division by 0.
             writeXSize = writeXSize > 1.0 ? writeXSize : 1.0;
             writeYSize = writeYSize > 1.0 ? writeYSize : 1.0;
 
-            return ((int) readPosMinX, (int) readPosMinY, (int) readXSize, (int) readYSize, (int) writePosMinX,
-                    (int) writePosMinY, (int) writeXSize, (int) writeYSize);
+            return ((int)readPosMinX, (int)readPosMinY, (int)readXSize, (int)readYSize, (int)writePosMinX,
+                    (int)writePosMinY, (int)writeXSize, (int)writeYSize);
         }
 
         /// <summary>
         /// Writes one tile of current zoom.
         /// <para/>Crops zoom directly from input image.
         /// </summary>
-        /// <param name="inputImage">Input image.</param>
         /// <param name="tileX">Tile x.</param>
         /// <param name="tileY">Tile y.</param>
         /// <param name="zoom">Zoom level.</param>
-        private void WriteTile(NetVips.Image inputImage, int tileX, int tileY, int zoom)
+        private void WriteTile(int tileX, int tileY, int zoom)
         {
             #region Parameters checking
 
@@ -236,22 +295,22 @@ namespace GTiff2Tiles.Core.Image
             //Try open input image and crop tile
             NetVips.Image tileImage;
 
-            try { tileImage = inputImage.Crop(readPosX, readPosY, readXSize, readYSize); }
+            try { tileImage = Data.Crop(readPosX, readPosY, readXSize, readYSize); }
             catch (Exception exception)
             {
                 throw new ImageException(string.Format(Strings.UnableToCreateTile, tileX, tileY), exception);
             }
 
             // Scaling calculations
-            double xScale = 1.0 / ((double) tileImage.Width / writeXSize);
-            double yScale = 1.0 / ((double) tileImage.Height / writeYSize);
+            double xScale = 1.0 / ((double)tileImage.Width / writeXSize);
+            double yScale = 1.0 / ((double)tileImage.Height / writeYSize);
 
             // Calculate integral box shrink
             // We will get the best quality (but be the slowest) if we let reduce
             // do all the work. Leave it the final 200 - 300% to do as a compromise
             // for efficiency.
-            int xShrink = Math.Max(1, (int) Math.Floor(1.0 / (xScale * 2.0)));
-            int yShrink = Math.Max(1, (int) Math.Floor(1.0 / (yScale * 2.0)));
+            int xShrink = Math.Max(1, (int)Math.Floor(1.0 / (xScale * 2.0)));
+            int yShrink = Math.Max(1, (int)Math.Floor(1.0 / (yScale * 2.0)));
 
             // Fast, integral box-shrink
             if (yShrink > 1)
@@ -335,17 +394,6 @@ namespace GTiff2Tiles.Core.Image
 
             #endregion
 
-            //Try to open input image.
-            NetVips.Image inputImage;
-
-            try { inputImage = NetVips.Image.Tiffload(InputFileInfo.FullName, access: NetVips.Enums.Access.Random); }
-            catch (Exception exception)
-            {
-                throw new
-                    ImageException(string.Format(Strings.UnableToOpen, nameof(inputImage), InputFileInfo.FullName),
-                                   exception);
-            }
-
             using SemaphoreSlim semaphoreSlim = new SemaphoreSlim(threadsCount);
 
             List<Task> tasks = new List<Task>();
@@ -362,7 +410,7 @@ namespace GTiff2Tiles.Core.Image
 
                     tasks.Add(Task.Run(() =>
                     {
-                        try { WriteTile(inputImage, x, y, zoom); }
+                        try { WriteTile(x, y, zoom); }
                         finally { semaphoreSlim.Release(); }
                     }));
                 }
@@ -372,8 +420,6 @@ namespace GTiff2Tiles.Core.Image
 
             //Dispose tasks.
             foreach (Task task in tasks) task.Dispose();
-
-            inputImage.Dispose();
         }
 
         /// <summary>
@@ -433,22 +479,23 @@ namespace GTiff2Tiles.Core.Image
         /// <param name="outputDirectoryInfo">Output directory.</param>
         /// <param name="minZ">Minimum cropped zoom.</param>
         /// <param name="maxZ">Maximum cropped zoom.</param>
+        /// <param name="progress">Progress. <see langword="null"/> by default.</param>
         /// <param name="tmsCompatible">Do you want to create tms-compatible tiles? <see langword="true"/> by default.</param>
         /// <param name="tileExtension">Extension of ready tiles. ".png" by default.</param>
-        /// <param name="progress">Progress. <see langword="null"/> by default.</param>
         /// <param name="threadsCount">Threads count. 5 by default.</param>
         /// <returns></returns>
         public async ValueTask GenerateTilesAsync(DirectoryInfo outputDirectoryInfo, int minZ, int maxZ,
-                                                            bool tmsCompatible = true,
-                                                            string tileExtension = Enums.Extensions.Png,
-                                                            IProgress<double> progress = null,
-                                                            int threadsCount = 5)
+                                                  bool tmsCompatible = true,
+                                                  string tileExtension = Enums.Extensions.Png,
+                                                  IProgress<double> progress = null,
+                                                  int threadsCount = 5)
         {
             //TODO: profile argument (geodetic/mercator)
 
             #region Parameters checking
 
-            if (progress == null) throw new ImageException(string.Format(Strings.IsNull, nameof(progress)));
+            progress ??= new Progress<double>();
+
             if (threadsCount <= 0)
                 throw new ImageException(string.Format(Strings.LesserOrEqual, nameof(threadsCount), 0));
 

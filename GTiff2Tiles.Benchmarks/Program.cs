@@ -141,7 +141,7 @@ namespace GTiff2Tiles.Benchmarks
             string gtiff2TilesTempDirectoryPath = Path.Combine(TempDirectoryInfo.FullName, "gtiff2tiles");
             Directory.CreateDirectory(gtiff2TilesOutputDirectoryPath);
             Directory.CreateDirectory(gtiff2TilesTempDirectoryPath);
-            Image image = new Image(InputFileInfo);
+            await using Image image = new Image(InputFileInfo);
             await image.GenerateTilesAsync(new DirectoryInfo(gtiff2TilesOutputDirectoryPath), MinZ, MaxZ, threadsCount: ThreadsCount).ConfigureAwait(false);
             stopwatch.Stop();
             Console.WriteLine("GTiff2Tiles process ended.");

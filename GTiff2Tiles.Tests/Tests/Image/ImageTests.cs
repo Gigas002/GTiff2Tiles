@@ -54,13 +54,13 @@ namespace GTiff2Tiles.Tests.Tests.Image
                 }
 
                 //Create Image object and crop tiles.
-                Core.Image.Image image = new Core.Image.Image(inputFileInfo);
+                await using Core.Image.Image image = new Core.Image.Image(inputFileInfo);
                 const int minZ = Enums.Zooms.MinZ;
                 const int maxZ = Enums.Zooms.MaxZ;
                 const int threadsCount = Enums.Multithreading.ThreadsCount;
                 const string tileExtension = Extensions.Png;
-                await image.GenerateTilesAsync(outputDirectoryInfo, minZ, maxZ, tmsCompatible, tileExtension, progress,
-                                                    threadsCount);
+                await image.GenerateTilesAsync(outputDirectoryInfo, minZ, maxZ, tmsCompatible, tileExtension,
+                                               progress, threadsCount);
             }
             catch (Exception exception) { Assert.Fail(exception.Message); }
 
@@ -106,13 +106,13 @@ namespace GTiff2Tiles.Tests.Tests.Image
                 }
 
                 //Create Image object and crop tiles.
-                Core.Image.Image image = new Core.Image.Image(inputFileInfo);
+                await using Core.Image.Image image = new Core.Image.Image(inputFileInfo);
                 const int minZ = Enums.Zooms.MinZ;
                 const int maxZ = Enums.Zooms.MaxZ;
                 const int threadsCount = Enums.Multithreading.ThreadsCount;
                 const string tileExtension = Extensions.Png;
-                await image.GenerateTilesAsync(outputDirectoryInfo, minZ, maxZ, tmsCompatible, tileExtension, progress,
-                                                         threadsCount);
+                await image.GenerateTilesAsync(outputDirectoryInfo, minZ, maxZ, tmsCompatible, tileExtension,
+                                               progress, threadsCount);
             }
             catch (Exception exception) { Assert.Fail(exception.Message); }
 

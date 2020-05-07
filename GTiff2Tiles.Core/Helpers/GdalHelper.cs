@@ -78,7 +78,7 @@ namespace GTiff2Tiles.Core.Helpers
                     foreach (FileInfo dll in dlls)
                     {
                         string destPath = Path.Combine(driversPath, dll.Name);
-                        File.Move(dll.FullName, destPath); //, true);
+                        File.Move(dll.FullName, destPath, true);
                     }
 
                     OSGeo.GDAL.Gdal.SetConfigOption("GDAL_DRIVER_PATH", driversPath);

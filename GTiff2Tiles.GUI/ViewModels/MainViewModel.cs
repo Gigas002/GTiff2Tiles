@@ -422,7 +422,7 @@ namespace GTiff2Tiles.GUI.ViewModels
                 }
 
                 //Create image object.
-                Core.Image.Image inputImage = new Core.Image.Image(inputFileInfo);
+                await using Core.Image.Image inputImage = new Core.Image.Image(inputFileInfo);
 
                 await inputImage
                      .GenerateTilesAsync(outputDirectoryInfo, MinZ, MaxZ, TmsCompatible, TileExtension, progress,
