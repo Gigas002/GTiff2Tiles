@@ -2,6 +2,7 @@
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
@@ -15,7 +16,7 @@ namespace GTiff2Tiles.Core.Image
 {
     public sealed class Raster : IImage
     {
-        #region NOT TEST
+        #region Release
 
         #region Properties
 
@@ -118,7 +119,7 @@ namespace GTiff2Tiles.Core.Image
 
             #endregion
 
-            //todo test this with stable 8.9.0+ package. Now less effective, then NewFromFile/Tiffload
+            //TODO: test this with stable 8.9.0+ package. Now less effective, then NewFromFile/Tiffload
             //FileStream = inputFileInfo.OpenRead();
             //Data = NetVips.Image.NewFromStream(FileStream, access: NetVips.Enums.Access.Random);
             Data = NetVips.Image.NewFromFile(inputFileInfo.FullName, access: NetVips.Enums.Access.Random);
@@ -285,6 +286,8 @@ namespace GTiff2Tiles.Core.Image
 
             #endregion
 
+            //TODO: Temprorary for performance testing purpose
+            // ReSharper disable once UnusedVariable
             Stopwatch stopwatch = Stopwatch.StartNew();
 
             //Create directories for the tile. The overall structure looks like: outputDirectory/zoom/x/y.png.
@@ -380,16 +383,16 @@ namespace GTiff2Tiles.Core.Image
                 outputImage = outputImage.Insert(tileImage, writePosX, writePosY);
 
                 // ReSharper disable once LocalizableElement
-                Console.WriteLine($"P1: {stopwatch.ElapsedMilliseconds}");
+                //Console.WriteLine($"P1: {stopwatch.ElapsedMilliseconds}");
 
-                //todo test this with stable 8.9.0+ package. Now less effective, then WriteToFile
-                //todo Runs MUCH slower in multithreaded mode
+                //TODO: test this with stable 8.9.0+ package. Now less effective, then WriteToFile
+                //TODO: Runs MUCH slower in multithreaded mode on WINDOWS. Linux version seems to work fine.
                 //using FileStream outputStream = outputTileFileInfo.OpenWrite();
                 //outputImage.WriteToStream(outputStream, TileExtension);
                 outputImage.WriteToFile(outputTileFileInfo.FullName);
 
                 // ReSharper disable once LocalizableElement
-                Console.WriteLine($"P2: {stopwatch.ElapsedMilliseconds}");
+                //Console.WriteLine($"P2: {stopwatch.ElapsedMilliseconds}");
             }
             catch (Exception exception)
             {
@@ -553,10 +556,13 @@ namespace GTiff2Tiles.Core.Image
 
         #endregion
 
+        #region Experimental
 
-
-        #region TEST
-
+        /// <summary>
+        /// Gets count of tiles to crop. Needed for progress calculations.
+        /// </summary>
+        /// <param name="threadsCount">Threads count.</param>
+        /// <returns>Number of tiles to crop.</returns>
         private async ValueTask<int> GetTilesCount(int threadsCount)
         {
             int tilesCount = 0;
@@ -579,6 +585,21 @@ namespace GTiff2Tiles.Core.Image
             return tilesCount;
         }
 
+        /// <summary>
+        /// Crops input tiff for each zoom.
+        /// <para>Experimental version, don't use in release app!</para>
+        /// <para>There's an issue with NetVips performance on Windows, so when it's fixed -- this version
+        /// will replace the current method for cropping tiles.</para>
+        /// </summary>
+        /// <param name="outputDirectoryInfo">Output directory.</param>
+        /// <param name="minZ">Minimum cropped zoom.</param>
+        /// <param name="maxZ">Maximum cropped zoom.</param>
+        /// <param name="tmsCompatible">Do you want to create tms-compatible tiles?</param>
+        /// <param name="tileExtension">Extension of ready tiles.</param>
+        /// <param name="progress">Progress.</param>
+        /// <param name="threadsCount">Threads count.</param>
+        /// <param name="isExperimental">Set to <see langword="true"/> to use this method.</param>
+        /// <returns></returns>
         public async ValueTask GenerateTilesAsync(DirectoryInfo outputDirectoryInfo, int minZ, int maxZ,
                                                    bool tmsCompatible, string tileExtension,
                                                    IProgress<double> progress,
@@ -589,6 +610,7 @@ namespace GTiff2Tiles.Core.Image
 
             //TODO: profile argument (geodetic/mercator)
 
+            //TODO: Temprorary for performance testing purpose
             Stopwatch stopwatch = Stopwatch.StartNew();
 
             #region Parameters checking
@@ -604,15 +626,24 @@ namespace GTiff2Tiles.Core.Image
                .ConfigureAwait(false);
 
             //Crop all tiles.
-            await RunTiling(threadsCount, progress).ConfigureAwait(false);
+            await RunTiling(progress, threadsCount).ConfigureAwait(false);
 
             stopwatch.Stop();
             // ReSharper disable once LocalizableElement
             Console.WriteLine($"Elapsed time:{stopwatch.ElapsedMilliseconds}");
         }
 
-        private async ValueTask RunTiling(int threadsCount, IProgress<double> progress)
+        /// <summary>
+        /// Crops tiles one by one with more accurant progress report and slightly better performance (WIP).
+        /// </summary>
+        /// <param name="progress">Progress.</param>
+        /// <param name="threadsCount">Threads count.</param>
+        /// <param name="isPrintEstimatedTime">Do you want to see estimated time left as progress changes?</param>
+        /// <returns></returns>
+        private async ValueTask RunTiling(IProgress<double> progress, int threadsCount,
+                                          bool isPrintEstimatedTime = false)
         {
+            Stopwatch stopwatch = isPrintEstimatedTime ? Stopwatch.StartNew() : null;
             int tilesCount = await GetTilesCount(threadsCount).ConfigureAwait(false);
             double counter = 0.0;
 
@@ -643,9 +674,13 @@ namespace GTiff2Tiles.Core.Image
                                 // ReSharper disable once AccessToDisposedClosure
                                 semaphoreSlim.Release();
 
+                                //Report progress.
                                 counter++;
                                 double percentage = counter / tilesCount * 100.0;
                                 progress.Report(percentage);
+
+                                //Estimated time left calculation
+                                PrintEstimatedTimeLeft(percentage, stopwatch);
                             }
                         }));
                     }
@@ -657,6 +692,28 @@ namespace GTiff2Tiles.Core.Image
 
             //Dispose tasks.
             foreach (Task task in tasks) task.Dispose();
+
+            stopwatch?.Stop();
+        }
+
+        /// <summary>
+        /// Prints estimated time left.
+        /// </summary>
+        /// <param name="percentage">Current progress.</param>
+        /// <param name="stopwatch">Get elapsed time from this.</param>
+        [SuppressMessage("ReSharper", "LocalizableElement")]
+        private static void PrintEstimatedTimeLeft(double percentage, Stopwatch stopwatch = null)
+        {
+            if (stopwatch == null) return;
+
+            double timePassed = stopwatch.ElapsedMilliseconds;
+            double estimatedAllTime = 100.0 * timePassed / percentage;
+            double estimatedTimeLeft = estimatedAllTime - timePassed;
+            TimeSpan timeSpan = TimeSpan.FromMilliseconds(estimatedTimeLeft);
+            //TODO: localize string
+            Console.WriteLine($"Estimated time. Days:{timeSpan.Days}, "
+                            + $"Hours:{timeSpan.Hours}, " + $"Minutes:{timeSpan.Minutes}, "
+                            + $"Seconds:{timeSpan.Seconds}, " + $"Ms:{timeSpan.Milliseconds}.");
         }
 
         #endregion
