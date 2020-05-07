@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Threading.Tasks;
+using GTiff2Tiles.Core.Constants;
 
 namespace GTiff2Tiles.Core.Image
 {
@@ -9,7 +10,7 @@ namespace GTiff2Tiles.Core.Image
         public static async ValueTask GenerateTilesAsync(FileInfo inputFileInfo, DirectoryInfo outputDirectoryInfo,
                                                          int minZ, int maxZ, CropTypes cropType,
                                                          bool tmsCompatible = true,
-                                                         string tileExtension = Enums.Extensions.Png,
+                                                         string tileExtension = Extensions.Png,
                                                          IProgress<double> progress = null,
                                                          int threadsCount = 5)
         {
@@ -27,7 +28,7 @@ namespace GTiff2Tiles.Core.Image
 
         public enum CropTypes
         {
-            Raster, Terrain
+            Raster
         }
     }
 }

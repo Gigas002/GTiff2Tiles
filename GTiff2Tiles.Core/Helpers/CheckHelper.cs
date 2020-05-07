@@ -2,6 +2,8 @@
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using GTiff2Tiles.Core.Constants;
+using GTiff2Tiles.Core.Constants.Image;
 using GTiff2Tiles.Core.Localization;
 
 namespace GTiff2Tiles.Core.Helpers
@@ -28,11 +30,11 @@ namespace GTiff2Tiles.Core.Helpers
                 throw new Exception(string.Format(Strings.StringIsEmpty, nameof(gdalInfoString)));
 
             //Check projection.
-            if (!proj4String.Contains(Enums.Image.Gdal.LongLat) || !proj4String.Contains(Enums.Image.Gdal.Wgs84))
+            if (!proj4String.Contains(Gdal.LongLat) || !proj4String.Contains(Gdal.Wgs84))
                 return false;
 
             //Other checks.
-            return gdalInfoString.Contains(Enums.Image.Gdal.Byte);
+            return gdalInfoString.Contains(Gdal.Byte);
         }
 
         #endregion
@@ -123,7 +125,7 @@ namespace GTiff2Tiles.Core.Helpers
         /// <returns><see langword="true"/> if no errors in input file, <see langword="false"/> otherwise.</returns>
         public static async ValueTask<bool> CheckInputFileAsync(FileInfo inputFileInfo)
         {
-            CheckFile(inputFileInfo, true, Enums.Extensions.Tif);
+            CheckFile(inputFileInfo, true, Extensions.Tif);
 
             //Get proj4 and gdalInfo strings.
             string proj4String = await Image.Gdal.GetProj4StringAsync(inputFileInfo).ConfigureAwait(false);

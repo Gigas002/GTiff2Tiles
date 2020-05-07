@@ -47,7 +47,7 @@ namespace GTiff2Tiles.Core.Tile
         /// </summary>
         /// <param name="zoom"></param>
         /// <returns>Resoultion value.</returns>
-        private static double Resolution(int zoom) => 180.0 / Enums.Image.Image.TileSize / Math.Pow(2.0, zoom);
+        private static double Resolution(int zoom) => 180.0 / Constants.Image.Image.TileSize / Math.Pow(2.0, zoom);
 
         #endregion
 
@@ -82,13 +82,13 @@ namespace GTiff2Tiles.Core.Tile
             try
             {
                 tilesXs[0] =
-                    Convert.ToInt32(Math.Ceiling((180.0 + minX) / Resolution(zoom) / Enums.Image.Image.TileSize) - 1.0);
+                    Convert.ToInt32(Math.Ceiling((180.0 + minX) / Resolution(zoom) / Constants.Image.Image.TileSize) - 1.0);
                 tilesXs[1] =
-                    Convert.ToInt32(Math.Ceiling((180.0 + maxX) / Resolution(zoom) / Enums.Image.Image.TileSize) - 1.0);
+                    Convert.ToInt32(Math.Ceiling((180.0 + maxX) / Resolution(zoom) / Constants.Image.Image.TileSize) - 1.0);
                 tilesYs[0] =
-                    Convert.ToInt32(Math.Ceiling((90.0 + minY) / Resolution(zoom) / Enums.Image.Image.TileSize) - 1.0);
+                    Convert.ToInt32(Math.Ceiling((90.0 + minY) / Resolution(zoom) / Constants.Image.Image.TileSize) - 1.0);
                 tilesYs[1] =
-                    Convert.ToInt32(Math.Ceiling((90.0 + maxY) / Resolution(zoom) / Enums.Image.Image.TileSize) - 1.0);
+                    Convert.ToInt32(Math.Ceiling((90.0 + maxY) / Resolution(zoom) / Constants.Image.Image.TileSize) - 1.0);
             }
             catch (Exception exception)
             {
@@ -121,10 +121,10 @@ namespace GTiff2Tiles.Core.Tile
                 //Flip the y number for non-tms
                 if (!tmsCompatible) tileY = Convert.ToInt32(Math.Pow(2.0, zoom) - tileY - 1);
 
-                double minX = tileX * Enums.Image.Image.TileSize * Resolution(zoom) - 180.0;
-                double minY = tileY * Enums.Image.Image.TileSize * Resolution(zoom) - 90.0;
-                double maxX = (tileX + 1) * Enums.Image.Image.TileSize * Resolution(zoom) - 180.0;
-                double maxY = (tileY + 1) * Enums.Image.Image.TileSize * Resolution(zoom) - 90.0;
+                double minX = tileX * Constants.Image.Image.TileSize * Resolution(zoom) - 180.0;
+                double minY = tileY * Constants.Image.Image.TileSize * Resolution(zoom) - 90.0;
+                double maxX = (tileX + 1) * Constants.Image.Image.TileSize * Resolution(zoom) - 180.0;
+                double maxY = (tileY + 1) * Constants.Image.Image.TileSize * Resolution(zoom) - 90.0;
 
                 return (minX, minY, maxX, maxY);
             }

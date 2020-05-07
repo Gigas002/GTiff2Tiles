@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace GTiff2Tiles.Core.Enums
+namespace GTiff2Tiles.Core.Constants
 {
     /// <summary>
     /// String patterns for <see cref="DateTime"/>.

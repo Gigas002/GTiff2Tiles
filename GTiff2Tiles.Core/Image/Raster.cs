@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
+using GTiff2Tiles.Core.Constants;
+using GTiff2Tiles.Core.Constants.Image;
 using GTiff2Tiles.Core.Exceptions.Image;
 using GTiff2Tiles.Core.Helpers;
 using GTiff2Tiles.Core.Localization;
@@ -227,12 +229,12 @@ namespace GTiff2Tiles.Core.Image
                                  readPosMinY.Equals(RasterYSize) ? MinY : upperLeftY;
 
             //Positions of dataset to write in tile.
-            double writePosMinX = Enums.Image.Image.TileSize -
-                                  Enums.Image.Image.TileSize * (lowerRightX - tilePixMinX) / (lowerRightX - upperLeftX);
-            double writePosMinY = Enums.Image.Image.TileSize * (upperLeftY - tilePixMaxY) / (upperLeftY - lowerRightY);
-            double writePosMaxX = Enums.Image.Image.TileSize -
-                                  Enums.Image.Image.TileSize * (lowerRightX - tilePixMaxX) / (lowerRightX - upperLeftX);
-            double writePosMaxY = Enums.Image.Image.TileSize * (upperLeftY - tilePixMinY) / (upperLeftY - lowerRightY);
+            double writePosMinX = Constants.Image.Image.TileSize -
+                                  Constants.Image.Image.TileSize * (lowerRightX - tilePixMinX) / (lowerRightX - upperLeftX);
+            double writePosMinY = Constants.Image.Image.TileSize * (upperLeftY - tilePixMaxY) / (upperLeftY - lowerRightY);
+            double writePosMaxX = Constants.Image.Image.TileSize -
+                                  Constants.Image.Image.TileSize * (lowerRightX - tilePixMaxX) / (lowerRightX - upperLeftX);
+            double writePosMaxY = Constants.Image.Image.TileSize * (upperLeftY - tilePixMinY) / (upperLeftY - lowerRightY);
 
             //Sizes to read and write.
             double readXSize = readPosMaxX - readPosMinX;
@@ -342,7 +344,7 @@ namespace GTiff2Tiles.Core.Image
                 const double id = 0.0;
 
                 // Floating point affine transformation
-                using Interpolate interpolate = Interpolate.NewFromName(Enums.Image.Interpolations.Bicubic);
+                using Interpolate interpolate = Interpolate.NewFromName(Interpolations.Bicubic);
                 if (xScale > 1.0 && yScale > 1.0)
                     tileImage = tileImage.Affine(new[] { xScale, 0.0, 0.0, yScale }, interpolate, idx: id, idy: id,
                                                  extend: NetVips.Enums.Extend.Copy);
@@ -355,14 +357,14 @@ namespace GTiff2Tiles.Core.Image
             }
 
             // Add alpha channel if needed
-            for (; tileImage.Bands < Enums.Image.Image.Bands;) tileImage = tileImage.Bandjoin(255);
+            for (; tileImage.Bands < Constants.Image.Image.Bands;) tileImage = tileImage.Bandjoin(255);
 
             // Make a transparent image
             NetVips.Image outputImage;
 
             try
             {
-                outputImage = NetVips.Image.Black(Enums.Image.Image.TileSize, Enums.Image.Image.TileSize)
+                outputImage = NetVips.Image.Black(Constants.Image.Image.TileSize, Constants.Image.Image.TileSize)
                                      .NewFromImage(0, 0, 0, 0);
 
                 // Insert tile into output image
@@ -494,7 +496,7 @@ namespace GTiff2Tiles.Core.Image
         /// <returns></returns>
         public async ValueTask GenerateTilesAsync(DirectoryInfo outputDirectoryInfo, int minZ, int maxZ,
                                                   bool tmsCompatible = true,
-                                                  string tileExtension = Enums.Extensions.Png,
+                                                  string tileExtension = Extensions.Png,
                                                   IProgress<double> progress = null,
                                                   int threadsCount = 5)
         {

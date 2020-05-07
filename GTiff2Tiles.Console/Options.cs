@@ -1,4 +1,5 @@
 ﻿using CommandLine;
+using GTiff2Tiles.Core.Constants;
 
 // ReSharper disable All
 
@@ -61,7 +62,7 @@ namespace GTiff2Tiles.Console
         /// Extension of ready tiles.
         /// </summary>
         [Option("extension", Required = false, HelpText = "Extension of ready tiles. Default is .png. Supported extensions: .webp, .jpg, .png.")]
-        public string TileExtension { get; set; } = Core.Enums.Extensions.Png;
+        public string TileExtension { get; set; } = Extensions.Png;
 
         #endregion
     }

@@ -1,4 +1,4 @@
-﻿namespace GTiff2Tiles.Core.Enums.Image
+﻿namespace GTiff2Tiles.Core.Constants.Image
 {
     /// <summary>
     /// <see cref="GTiff2Tiles.Core.Image.Image"/> constants.

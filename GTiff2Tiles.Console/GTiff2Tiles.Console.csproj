@@ -4,8 +4,8 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <Platforms>x64</Platforms>
-    <AssemblyVersion>2.0.0.35</AssemblyVersion>
-    <FileVersion>2.0.0.35</FileVersion>
+    <AssemblyVersion>2.0.0.36</AssemblyVersion>
+    <FileVersion>2.0.0.36</FileVersion>
     <ApplicationIcon>Resources\Icon.ico</ApplicationIcon>
     <Version>1.5.0</Version>
     <Authors>Gigas002</Authors>

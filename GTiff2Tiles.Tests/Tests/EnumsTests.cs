@@ -1,5 +1,5 @@
 ﻿using System;
-using GTiff2Tiles.Core.Enums.Image;
+using GTiff2Tiles.Core.Constants.Image;
 using NUnit.Framework;
 
 // ReSharper disable UnusedVariable
@@ -33,7 +33,7 @@ namespace GTiff2Tiles.Tests.Tests
         {
             try
             {
-                string longWithMs = Core.Enums.DateTimePatterns.LongWithMs;
+                string longWithMs = Core.Constants.DateTimePatterns.LongWithMs;
             }
             catch (Exception exception) { Assert.Fail(exception.Message); }
 
@@ -45,8 +45,8 @@ namespace GTiff2Tiles.Tests.Tests
         {
             try
             {
-                string png = Core.Enums.Extensions.Png;
-                string tif = Core.Enums.Extensions.Tif;
+                string png = Core.Constants.Extensions.Png;
+                string tif = Core.Constants.Extensions.Tif;
             }
             catch (Exception exception) { Assert.Fail(exception.Message); }
 

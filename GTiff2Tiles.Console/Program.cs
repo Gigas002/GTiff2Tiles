@@ -4,7 +4,8 @@ using System.IO;
 using System.Threading.Tasks;
 using CommandLine;
 using GTiff2Tiles.Console.Localization;
-using GTiff2Tiles.Core.Enums;
+using GTiff2Tiles.Core.Constants;
+using GTiff2Tiles.Core.Constants.Image;
 using GTiff2Tiles.Core.Helpers;
 
 namespace GTiff2Tiles.Console
@@ -101,10 +102,10 @@ namespace GTiff2Tiles.Console
                 if (!await CheckHelper.CheckInputFileAsync(InputFileInfo).ConfigureAwait(false))
                 {
                     string tempFilePath = Path.Combine(TempDirectoryInfo.FullName,
-                                                       $"{Core.Enums.Image.Gdal.TempFileName}{Extensions.Tif}");
+                                                       $"{Gdal.TempFileName}{Extensions.Tif}");
                     FileInfo tempFileInfo = new FileInfo(tempFilePath);
 
-                    await Core.Image.Gdal.WarpAsync(InputFileInfo, tempFileInfo, Core.Enums.Image.Gdal.RepairTifOptions)
+                    await Core.Image.Gdal.WarpAsync(InputFileInfo, tempFileInfo, Gdal.RepairTifOptions)
                               .ConfigureAwait(false);
                     InputFileInfo = tempFileInfo;
                 }

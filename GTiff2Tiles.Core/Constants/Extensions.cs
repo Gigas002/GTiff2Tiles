@@ -1,4 +1,4 @@
-﻿namespace GTiff2Tiles.Core.Enums
+﻿namespace GTiff2Tiles.Core.Constants
 {
     /// <summary>
     /// Used extensions.
