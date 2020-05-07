@@ -57,7 +57,7 @@ Previous versions can be found on [releases](https://github.com/Gigas002/GTiff2T
 
 ## Build
 
-Solution can be build in **VS2019 (16.5.1+)**. You can also build projects in **VSCode (1.43.2+)** with **omnisharp-vscode (1.21.14+)** extensions. Projects targets **.NET Core 3.1**, so you’ll need **.NET Core 3.1.201 SDK**.
+Solution can be build in **VS2019 (16.5.4+)**. You can also build projects in **VSCode (1.44.2+)** with **omnisharp-vscode (1.21.18+)** extensions. Projects targets **.NET Core 3.1**, so you’ll need **.NET Core 3.1.201 SDK**.
 
 Some of **Release** binaries are made by `Publish.ps1` script. Take a look at it in the repo. Note, that running this script requires installed **PowerShell** or **[PowerShell Core](https://github.com/PowerShell/PowerShell)** for **Linux**/**OSX** systems.
 
