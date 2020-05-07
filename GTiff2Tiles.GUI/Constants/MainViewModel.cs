@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 
-namespace GTiff2Tiles.GUI.Enums
+namespace GTiff2Tiles.GUI.Constants
 {
     /// <summary>
     /// Some const values for <see cref="GTiff2Tiles.GUI.ViewModels.MainViewModel"/> class.

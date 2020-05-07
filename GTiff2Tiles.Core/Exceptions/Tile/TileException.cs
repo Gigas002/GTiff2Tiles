@@ -4,7 +4,7 @@ namespace GTiff2Tiles.Core.Exceptions.Tile
 {
     /// <inheritdoc />
     /// <summary>
-    /// Exceptions, happened in Tile.Tile.cs.
+    /// Exceptions, happened in Tile.TileTileTools.cs.
     /// </summary>
     public sealed class TileException : Exception
     {
@@ -25,6 +25,8 @@ namespace GTiff2Tiles.Core.Exceptions.Tile
         /// <param name="errorMessage">Error message.</param>
         /// <param name="innerException">Inner exception.</param>
         public TileException(string errorMessage, Exception innerException) : base(errorMessage, innerException) { }
+
+        public TileException() { }
 
         #endregion
     }

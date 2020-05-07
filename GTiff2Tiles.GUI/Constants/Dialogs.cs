@@ -1,4 +1,4 @@
-﻿namespace GTiff2Tiles.GUI.Enums
+﻿namespace GTiff2Tiles.GUI.Constants
 {
     /// <summary>
     /// Defines consts for every dialog in app.

@@ -1,10 +1,12 @@
-﻿using System;
+﻿#pragma warning disable CA1031 // Do not catch general exception types
+
+using System;
 using System.IO;
 using System.Threading.Tasks;
 using GTiff2Tiles.Core.Constants;
-using GTiff2Tiles.Core.Constants.Gdal;
 using GTiff2Tiles.Core.Enums.Image;
 using GTiff2Tiles.Core.Helpers;
+using GTiff2Tiles.Tests.Constants;
 using NUnit.Framework;
 
 // ReSharper disable ConditionIsAlwaysTrueOrFalse
@@ -23,16 +25,16 @@ namespace GTiff2Tiles.Tests.Tests.Image
 
             DirectoryInfo tempDirectoryInfo =
                 new DirectoryInfo(Path.Combine(Helpers.TestHelper.GetExamplesDirectoryInfo().FullName,
-                                               Enums.FileSystemEntries.Temp,
+                                               FileSystemEntries.Temp,
                                                DateTime.Now.ToString(DateTimePatterns.LongWithMs)));
 
             string inputFilePath = Path.Combine(examplesDirectoryInfo.FullName,
-                                                Enums.FileSystemEntries.InputDirectoryName,
-                                                $"{Enums.FileSystemEntries.Input4326}{Extensions.Tif}");
+                                                FileSystemEntries.InputDirectoryName,
+                                                $"{FileSystemEntries.Input4326}{Extensions.Tif}");
             string outputDirectoryName = Path.Combine(examplesDirectoryInfo.FullName,
-                                                      Enums.FileSystemEntries.TmsCompatible,
-                                                      Enums.FileSystemEntries
-                                                           .GenerateTilesByCroppingOutputDirectoryName);
+                                                      FileSystemEntries.TmsCompatible,
+                                                      FileSystemEntries
+                                                           .GenerateTilesOutputDirectoryName);
 
             FileInfo inputFileInfo = new FileInfo(inputFilePath);
             DirectoryInfo outputDirectoryInfo = new DirectoryInfo(outputDirectoryName);
@@ -47,17 +49,17 @@ namespace GTiff2Tiles.Tests.Tests.Image
                 if (!await CheckHelper.CheckInputFileAsync(inputFileInfo))
                 {
                     string tempFilePath = Path.Combine(tempDirectoryInfo.FullName,
-                                                       $"{Gdal.TempFileName}{Extensions.Tif}");
+                                                       $"{Core.Constants.Gdal.Gdal.TempFileName}{Extensions.Tif}");
                     FileInfo tempFileInfo = new FileInfo(tempFilePath);
 
-                    await Core.Gdal.Gdal.WarpAsync(inputFileInfo, tempFileInfo, Gdal.RepairTifOptions);
+                    await Core.Gdal.Gdal.WarpAsync(inputFileInfo, tempFileInfo, Core.Constants.Gdal.Gdal.RepairTifOptions);
                     inputFileInfo = tempFileInfo;
                 }
 
                 //Create Image object and crop tiles.
-                const int minZ = Enums.Zooms.MinZ;
-                const int maxZ = Enums.Zooms.MaxZ;
-                const int threadsCount = Enums.Multithreading.ThreadsCount;
+                const int minZ = Zooms.MinZ;
+                const int maxZ = Zooms.MaxZ;
+                const int threadsCount = Multithreading.ThreadsCount;
                 const string tileExtension = Extensions.Png;
 
                 //TODO: tileExtension
@@ -77,16 +79,16 @@ namespace GTiff2Tiles.Tests.Tests.Image
 
             DirectoryInfo tempDirectoryInfo =
                 new DirectoryInfo(Path.Combine(Helpers.TestHelper.GetExamplesDirectoryInfo().FullName,
-                                               Enums.FileSystemEntries.Temp,
+                                               FileSystemEntries.Temp,
                                                DateTime.Now.ToString(DateTimePatterns.LongWithMs)));
 
             string inputFilePath = Path.Combine(examplesDirectoryInfo.FullName,
-                                                Enums.FileSystemEntries.InputDirectoryName,
-                                                $"{Enums.FileSystemEntries.Input4326}{Extensions.Tif}");
+                                                FileSystemEntries.InputDirectoryName,
+                                                $"{FileSystemEntries.Input4326}{Extensions.Tif}");
             string outputDirectoryName = Path.Combine(examplesDirectoryInfo.FullName,
-                                                      Enums.FileSystemEntries.NonTmsCompatible,
-                                                      Enums.FileSystemEntries
-                                                           .GenerateTilesByCroppingOutputDirectoryName);
+                                                      FileSystemEntries.NonTmsCompatible,
+                                                      FileSystemEntries
+                                                           .GenerateTilesOutputDirectoryName);
 
             FileInfo inputFileInfo = new FileInfo(inputFilePath);
             DirectoryInfo outputDirectoryInfo = new DirectoryInfo(outputDirectoryName);
@@ -101,17 +103,17 @@ namespace GTiff2Tiles.Tests.Tests.Image
                 if (!await CheckHelper.CheckInputFileAsync(inputFileInfo))
                 {
                     string tempFilePath = Path.Combine(tempDirectoryInfo.FullName,
-                                                       $"{Gdal.TempFileName}{Extensions.Tif}");
+                                                       $"{Core.Constants.Gdal.Gdal.TempFileName}{Extensions.Tif}");
                     FileInfo tempFileInfo = new FileInfo(tempFilePath);
 
-                    await Core.Gdal.Gdal.WarpAsync(inputFileInfo, tempFileInfo, Gdal.RepairTifOptions);
+                    await Core.Gdal.Gdal.WarpAsync(inputFileInfo, tempFileInfo, Core.Constants.Gdal.Gdal.RepairTifOptions);
                     inputFileInfo = tempFileInfo;
                 }
 
                 //Create Image object and crop tiles.
-                const int minZ = Enums.Zooms.MinZ;
-                const int maxZ = Enums.Zooms.MaxZ;
-                const int threadsCount = Enums.Multithreading.ThreadsCount;
+                const int minZ = Zooms.MinZ;
+                const int maxZ = Zooms.MaxZ;
+                const int threadsCount = Multithreading.ThreadsCount;
                 const string tileExtension = Extensions.Png;
 
                 //TODO: tileExtension

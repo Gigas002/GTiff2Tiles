@@ -1,4 +1,4 @@
-﻿namespace GTiff2Tiles.Tests.Enums
+﻿namespace GTiff2Tiles.Tests.Constants
 {
     internal static class FileSystemEntries
     {
@@ -12,9 +12,7 @@
 
         internal const string Input3395 = "Input3395";
 
-        internal const string GenerateTilesByJoiningOutputDirectoryName = "GenerateTilesByJoiningOutput";
-
-        internal const string GenerateTilesByCroppingOutputDirectoryName = "GenerateTilesByCroppingOutput";
+        internal const string GenerateTilesOutputDirectoryName = "GenerateTilesOutput";
 
         internal const string Temp = "Temp";
 

@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 
 namespace GTiff2Tiles.Core.Image
 {
-    //TODO: write xml-doc for entire interface
     /// <summary>
     /// Main interface for cropping different tiles.
     /// </summary>

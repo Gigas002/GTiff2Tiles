@@ -1,8 +1,11 @@
-﻿using System;
+﻿#pragma warning disable CA1031 // Do not catch general exception types
+
+using System;
 using System.IO;
 using System.Threading.Tasks;
 using GTiff2Tiles.Core.Constants;
 using GTiff2Tiles.Core.Helpers;
+using GTiff2Tiles.Tests.Constants;
 using NUnit.Framework;
 
 namespace GTiff2Tiles.Tests.Tests
@@ -19,8 +22,8 @@ namespace GTiff2Tiles.Tests.Tests
             {
                 DirectoryInfo examplesDirectoryInfo = Helpers.TestHelper.GetExamplesDirectoryInfo();
                 string inputFilePath = Path.Combine(examplesDirectoryInfo.FullName,
-                                                    Enums.FileSystemEntries.InputDirectoryName,
-                                                    $"{Enums.FileSystemEntries.Input4326}{Extensions.Tif}");
+                                                    FileSystemEntries.InputDirectoryName,
+                                                    $"{FileSystemEntries.Input4326}{Extensions.Tif}");
                 FileInfo inputFileInfo = new FileInfo(inputFilePath);
                 CheckHelper.CheckDirectory(examplesDirectoryInfo, false);
                 await CheckHelper.CheckInputFileAsync(inputFileInfo);

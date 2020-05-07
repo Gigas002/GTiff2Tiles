@@ -1,4 +1,4 @@
-﻿namespace GTiff2Tiles.Tests.Enums
+﻿namespace GTiff2Tiles.Tests.Constants
 {
     internal static class Multithreading
     {

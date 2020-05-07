@@ -1,4 +1,6 @@
-﻿using System;
+﻿#pragma warning disable CA1031 // Do not catch general exception types
+
+using System;
 using GTiff2Tiles.Core.Exceptions.Gdal;
 using GTiff2Tiles.Core.Exceptions.Image;
 using GTiff2Tiles.Core.Exceptions.Tile;
@@ -31,8 +33,8 @@ namespace GTiff2Tiles.Tests.Tests
         {
             try
             {
-                ImageException imageException = new ImageException(string.Empty);
-                ImageException imageException2 = new ImageException(string.Empty, null);
+                RasterException imageException = new RasterException(string.Empty);
+                RasterException imageException2 = new RasterException(string.Empty, null);
             }
             catch (Exception exception) { Assert.Fail(exception.Message); }
 

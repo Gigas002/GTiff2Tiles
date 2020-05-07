@@ -1,4 +1,6 @@
-﻿using System;
+﻿#pragma warning disable CA1031 // Do not catch general exception types
+
+using System;
 using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
@@ -128,10 +130,10 @@ namespace GTiff2Tiles.Console
             System.Console.WriteLine(Strings.Done, Environment.NewLine, stopwatch.Elapsed.Days, stopwatch.Elapsed.Hours,
                                      stopwatch.Elapsed.Minutes, stopwatch.Elapsed.Seconds,
                                      stopwatch.Elapsed.Milliseconds);
-#if DEBUG
+            #if DEBUG
             System.Console.WriteLine(Strings.PressAnyKey);
             System.Console.ReadKey();
-#endif
+            #endif
         }
 
         #region Methods

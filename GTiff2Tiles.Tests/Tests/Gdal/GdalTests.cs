@@ -1,13 +1,15 @@
-﻿using System;
+﻿#pragma warning disable CA1031 // Do not catch general exception types
+
+using System;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using GTiff2Tiles.Core.Constants;
-using GTiff2Tiles.Core.Constants.Gdal;
 using GTiff2Tiles.Core.Helpers;
+using GTiff2Tiles.Tests.Constants;
 using NUnit.Framework;
 
-namespace GTiff2Tiles.Tests.Tests.Image
+namespace GTiff2Tiles.Tests.Tests.Gdal
 {
     public sealed class GdalTests
     {
@@ -21,12 +23,12 @@ namespace GTiff2Tiles.Tests.Tests.Image
 
             DirectoryInfo tempDirectoryInfo =
                 new DirectoryInfo(Path.Combine(Helpers.TestHelper.GetExamplesDirectoryInfo().FullName,
-                                               Enums.FileSystemEntries.Temp,
+                                               FileSystemEntries.Temp,
                                                DateTime.Now.ToString(DateTimePatterns.LongWithMs)));
 
             string inputFilePath = Path.Combine(examplesDirectoryInfo.FullName,
-                                                Enums.FileSystemEntries.InputDirectoryName,
-                                                $"{Enums.FileSystemEntries.Input3785}{Extensions.Tif}");
+                                                FileSystemEntries.InputDirectoryName,
+                                                $"{FileSystemEntries.Input3785}{Extensions.Tif}");
             FileInfo inputFileInfo = new FileInfo(inputFilePath);
 
             try
@@ -35,10 +37,10 @@ namespace GTiff2Tiles.Tests.Tests.Image
                 if (!await CheckHelper.CheckInputFileAsync(inputFileInfo))
                 {
                     string tempFilePath = Path.Combine(tempDirectoryInfo.FullName,
-                                                       $"{Gdal.TempFileName}{Extensions.Tif}");
+                                                       $"{Core.Constants.Gdal.Gdal.TempFileName}{Extensions.Tif}");
                     FileInfo tempFileInfo = new FileInfo(tempFilePath);
 
-                    await Core.Gdal.Gdal.WarpAsync(inputFileInfo, tempFileInfo, Gdal.RepairTifOptions);
+                    await Core.Gdal.Gdal.WarpAsync(inputFileInfo, tempFileInfo, Core.Constants.Gdal.Gdal.RepairTifOptions);
                 }
 
                 //Check if temp file was created successfuly.
@@ -59,12 +61,12 @@ namespace GTiff2Tiles.Tests.Tests.Image
 
             DirectoryInfo tempDirectoryInfo =
                 new DirectoryInfo(Path.Combine(Helpers.TestHelper.GetExamplesDirectoryInfo().FullName,
-                                               Enums.FileSystemEntries.Temp,
+                                               FileSystemEntries.Temp,
                                                DateTime.Now.ToString(DateTimePatterns.LongWithMs)));
 
             string inputFilePath = Path.Combine(examplesDirectoryInfo.FullName,
-                                                Enums.FileSystemEntries.InputDirectoryName,
-                                                $"{Enums.FileSystemEntries.Input3395}{Extensions.Tif}");
+                                                FileSystemEntries.InputDirectoryName,
+                                                $"{FileSystemEntries.Input3395}{Extensions.Tif}");
             FileInfo inputFileInfo = new FileInfo(inputFilePath);
 
             try
@@ -73,10 +75,10 @@ namespace GTiff2Tiles.Tests.Tests.Image
                 if (!await CheckHelper.CheckInputFileAsync(inputFileInfo))
                 {
                     string tempFilePath = Path.Combine(tempDirectoryInfo.FullName,
-                                                       $"{Gdal.TempFileName}{Extensions.Tif}");
+                                                       $"{Core.Constants.Gdal.Gdal.TempFileName}{Extensions.Tif}");
                     FileInfo tempFileInfo = new FileInfo(tempFilePath);
 
-                    await Core.Gdal.Gdal.WarpAsync(inputFileInfo, tempFileInfo, Gdal.RepairTifOptions);
+                    await Core.Gdal.Gdal.WarpAsync(inputFileInfo, tempFileInfo, Core.Constants.Gdal.Gdal.RepairTifOptions);
                 }
 
                 //Check if temp file was created successfuly.

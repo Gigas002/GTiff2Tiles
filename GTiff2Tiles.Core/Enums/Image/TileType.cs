@@ -1,6 +1,8 @@
 ﻿namespace GTiff2Tiles.Core.Enums.Image
 {
-    //todo exml-doc
+    /// <summary>
+    /// Types of tiles to create
+    /// </summary>
     public enum TileType
     {
         Raster

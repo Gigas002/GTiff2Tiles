@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Reflection;
+using GTiff2Tiles.Tests.Constants;
 
 namespace GTiff2Tiles.Tests.Helpers
 {
@@ -16,7 +17,8 @@ namespace GTiff2Tiles.Tests.Helpers
 
             if (string.IsNullOrWhiteSpace(examplesDirectoryPath))
                 throw new Exception("Unable to locate Examples directory.");
-            examplesDirectoryPath = Path.Combine(examplesDirectoryPath, Enums.FileSystemEntries.ExamplesDirectoryName);
+
+            examplesDirectoryPath = Path.Combine(examplesDirectoryPath, FileSystemEntries.ExamplesDirectoryName);
 
             return new DirectoryInfo(examplesDirectoryPath);
         }

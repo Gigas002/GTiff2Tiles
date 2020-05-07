@@ -1,4 +1,6 @@
-﻿using System;
+﻿#pragma warning disable CA1031 // Do not catch general exception types
+
+using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
@@ -9,7 +11,7 @@ using GTiff2Tiles.Core.Constants;
 using GTiff2Tiles.Core.Constants.Gdal;
 using GTiff2Tiles.Core.Enums.Image;
 using GTiff2Tiles.Core.Helpers;
-using GTiff2Tiles.GUI.Enums;
+using GTiff2Tiles.GUI.Constants;
 using GTiff2Tiles.GUI.Localization;
 using GTiff2Tiles.GUI.Models;
 using GTiff2Tiles.GUI.Properties;
@@ -92,12 +94,12 @@ namespace GTiff2Tiles.GUI.ViewModels
         /// <summary>
         /// Hey, it's me!
         /// </summary>
-        public string Copyright { get; } = Enums.MainViewModel.Copyright;
+        public string Copyright { get; } = Constants.MainViewModel.Copyright;
 
         /// <summary>
         /// Assembly version.
         /// </summary>
-        public string Version { get; } = Enums.MainViewModel.Version;
+        public string Version { get; } = Constants.MainViewModel.Version;
 
         /// <summary>
         /// Text near tms check box.
@@ -255,7 +257,7 @@ namespace GTiff2Tiles.GUI.ViewModels
         /// <summary>
         /// Identifier of DialogHost on <see cref="MainView"/>.
         /// </summary>
-        public string DialogHostId { get; } = Enums.MainViewModel.DialogHostId;
+        public string DialogHostId { get; } = Constants.MainViewModel.DialogHostId;
 
         #endregion
 
@@ -329,7 +331,7 @@ namespace GTiff2Tiles.GUI.ViewModels
             try
             {
                 OpenFileDialogResult dialogResult = await OpenFileDialog
-                                                         .ShowDialogAsync(Enums.MainViewModel.DialogHostId,
+                                                         .ShowDialogAsync(Constants.MainViewModel.DialogHostId,
                                                                           new OpenFileDialogArguments())
                                                          .ConfigureAwait(true);
                 InputFilePath = dialogResult.Canceled ? InputFilePath : dialogResult.FileInfo.FullName;
@@ -346,7 +348,7 @@ namespace GTiff2Tiles.GUI.ViewModels
             try
             {
                 OpenDirectoryDialogResult dialogResult =
-                    await OpenDirectoryDialog.ShowDialogAsync(Enums.MainViewModel.DialogHostId,
+                    await OpenDirectoryDialog.ShowDialogAsync(Constants.MainViewModel.DialogHostId,
                                                               new OpenDirectoryDialogArguments
                                                               {
                                                                   CreateNewDirectoryEnabled = true
@@ -365,7 +367,7 @@ namespace GTiff2Tiles.GUI.ViewModels
             try
             {
                 OpenDirectoryDialogResult dialogResult =
-                    await OpenDirectoryDialog.ShowDialogAsync(Enums.MainViewModel.DialogHostId,
+                    await OpenDirectoryDialog.ShowDialogAsync(Constants.MainViewModel.DialogHostId,
                                                               new OpenDirectoryDialogArguments
                                                               {
                                                                   CreateNewDirectoryEnabled = true

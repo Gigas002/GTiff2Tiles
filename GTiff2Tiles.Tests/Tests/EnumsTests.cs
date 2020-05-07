@@ -1,5 +1,6 @@
-﻿using System;
-using GTiff2Tiles.Core.Constants.Gdal;
+﻿#pragma warning disable CA1031 // Do not catch general exception types
+
+using System;
 using NUnit.Framework;
 
 // ReSharper disable UnusedVariable
@@ -17,11 +18,11 @@ namespace GTiff2Tiles.Tests.Tests
         {
             try
             {
-                string lonLat = Gdal.LongLat;
-                string wgs84 = Gdal.Wgs84;
-                string typeByte = Gdal.Byte;
-                string[] repairTifOptions = Gdal.RepairTifOptions;
-                string tempFileName = Gdal.TempFileName;
+                string lonLat = Core.Constants.Gdal.Gdal.LongLat;
+                string wgs84 = Core.Constants.Gdal.Gdal.Wgs84;
+                string typeByte = Core.Constants.Gdal.Gdal.Byte;
+                string[] repairTifOptions = Core.Constants.Gdal.Gdal.RepairTifOptions;
+                string tempFileName = Core.Constants.Gdal.Gdal.TempFileName;
             }
             catch (Exception exception) { Assert.Fail(exception.Message); }
 

@@ -1,6 +1,8 @@
 ﻿namespace GTiff2Tiles.Core.Enums.Image
 {
-    //todo xml-doc
+    /// <summary>
+    /// Extensions of ready tiles
+    /// </summary>
     public enum TileExtension
     {
         Png, Jpg, Webp

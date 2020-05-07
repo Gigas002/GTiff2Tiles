@@ -1,4 +1,6 @@
-﻿using System;
+﻿#pragma warning disable CA1031 // Do not catch general exception types
+
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
@@ -46,51 +48,32 @@ namespace GTiff2Tiles.Core.Image
         /// </summary>
         private string TileExtension { get; set; }
 
-        // TODO: Create stream
-        //private FileStream FileStream { get; }
-
         #endregion
 
         #region Public
 
-        /// <summary>
-        /// Image's width.
-        /// </summary>
+        /// <inheritdoc />
         public int RasterXSize { get; }
 
-        /// <summary>
-        /// Image's height.
-        /// </summary>
+        /// <inheritdoc />
         public int RasterYSize { get; }
 
-        /// <summary>
-        /// Upper left X coordinate.
-        /// </summary>
+        /// <inheritdoc />
         public double MinX { get; }
 
-        /// <summary>
-        /// Lower right Y coordinate.
-        /// </summary>
+        /// <inheritdoc />
         public double MinY { get; }
 
-        /// <summary>
-        /// Lower right X coordinate.
-        /// </summary>
+        /// <inheritdoc />
         public double MaxX { get; }
 
-        /// <summary>
-        /// Upper left Y coordinate.
-        /// </summary>
+        /// <inheritdoc />
         public double MaxY { get; }
 
-        /// <summary>
-        /// Shows if resources have already been disposed.
-        /// </summary>
+        /// <inheritdoc />
         public bool IsDisposed { get; private set; }
 
-        /// <summary>
-        /// Image's data.
-        /// </summary>
+        /// <inheritdoc />
         public NetVips.Image Data { get; }
 
         #endregion
@@ -100,7 +83,7 @@ namespace GTiff2Tiles.Core.Image
         #region Constructor/Destructor
 
         /// <summary>
-        /// Creates new <see cref="Image"/> object.
+        /// Creates new <see cref="Raster"/> object.
         /// </summary>
         /// <param name="inputFileInfo">Input GeoTiff image.</param>
         public Raster(FileInfo inputFileInfo)
@@ -114,10 +97,6 @@ namespace GTiff2Tiles.Core.Image
 
             #endregion
 
-            //TODO: test this with stable 8.9.0+/1.2.0+ packages. Now less effective, then NewFromFile/Tiffload
-            //TODO: Stable 1.2.0 package throws unexpected exception!
-            //FileStream = inputFileInfo.OpenRead();
-            //Data = NetVips.Image.NewFromStream(FileStream, access: NetVips.Enums.Access.Random);
             Data = NetVips.Image.NewFromFile(inputFileInfo.FullName, access: NetVips.Enums.Access.Random);
 
             //Get border coordinates и raster sizes.
@@ -129,7 +108,7 @@ namespace GTiff2Tiles.Core.Image
             }
             catch (Exception exception)
             {
-                throw new ImageException(string.Format(Strings.UnableToGetCoordinates, nameof(inputFileInfo),
+                throw new RasterException(string.Format(Strings.UnableToGetCoordinates, nameof(inputFileInfo),
                                                        exception));
             }
         }
@@ -145,9 +124,7 @@ namespace GTiff2Tiles.Core.Image
 
         #region Dispose
 
-        /// <summary>
-        /// Frees the resources synchroniously.
-        /// </summary>
+        /// <inheritdoc />
         public void Dispose()
         {
             Dispose(true);
@@ -168,16 +145,11 @@ namespace GTiff2Tiles.Core.Image
             }
 
             Data.Dispose();
-            //TODO: Dispose stream
-            //FileStream.Dispose();
 
             IsDisposed = true;
         }
 
-        /// <summary>
-        /// Frees the resources asynchroniously.
-        /// </summary>
-        /// <returns></returns>
+        /// <inheritdoc />
         public ValueTask DisposeAsync()
         {
             try
@@ -195,6 +167,88 @@ namespace GTiff2Tiles.Core.Image
         #endregion
 
         #region Private
+
+        /// <summary>
+        /// Resizes tile before creating it
+        /// </summary>
+        /// <param name="tileImage">Basic image to resize</param>
+        /// <param name="xScale"></param>
+        /// <param name="yScale"></param>
+        /// <param name="kernel"></param>
+        /// <param name="interpolation"></param>
+        /// <param name="isCentre"></param>
+        /// <returns></returns>
+        private static NetVips.Image Resize(NetVips.Image tileImage, double xScale, double yScale,
+                                    string kernel = NetVips.Enums.Kernel.Lanczos3,
+                                    string interpolation = Interpolations.Bicubic,
+                                    bool isCentre = false)
+        {
+            // We could just use vips_resize if we use centre sampling convention
+            if (isCentre) return tileImage.Resize(xScale, kernel, yScale);
+
+            // Otherwise, we need to implement vips_resize for ourselves
+
+            // Calculate integral box shrink
+            // We will get the best quality (but be the slowest) if we let reduce
+            // do all the work. Leave it the final 200 - 300% to do as a compromise
+            // for efficiency.
+            int xShirnk = Math.Max(1, (int)Math.Floor(1.0 / (xScale * 2.0)));
+            int yShrink = Math.Max(1, (int)Math.Floor(1.0 / (yScale * 2.0)));
+
+            // Fast, integral box-shrink
+            if (yShrink > 1)
+            {
+                tileImage = tileImage.Shrinkv(yShrink);
+                yScale *= yShrink;
+            }
+
+            if (xShirnk > 1)
+            {
+                tileImage = tileImage.Shrinkh(xShirnk);
+                xScale *= xShirnk;
+            }
+
+            // Any residual downsizing
+            if (yScale < 1.0) tileImage = tileImage.Reducev(1.0 / yScale, kernel, false);
+            if (xScale < 1.0) tileImage = tileImage.Reduceh(1.0 / xScale, kernel, false);
+
+            // Any upsizing
+            if (!(xScale > 1.0) && !(yScale > 1.0)) return tileImage;
+            // Floating point affine transformation
+            //double id = isCentre ? 0.5 : 0.0;
+            const double id = 0.0;
+
+            // Floating point affine transformation
+            using Interpolate interpolate = Interpolate.NewFromName(interpolation);
+            if (xScale > 1.0 && yScale > 1.0)
+                tileImage = tileImage.Affine(new[] { xScale, 0.0, 0.0, yScale }, interpolate, idx: id, idy: id,
+                                             extend: NetVips.Enums.Extend.Copy);
+            else if (xScale > 1.0)
+                tileImage = tileImage.Affine(new[] { xScale, 0.0, 0.0, 1.0 }, interpolate, idx: id, idy: id,
+                                             extend: NetVips.Enums.Extend.Copy);
+            else
+                tileImage = tileImage.Affine(new[] { 1.0, 0.0, 0.0, yScale }, interpolate, idx: id, idy: id,
+                                             extend: NetVips.Enums.Extend.Copy);
+
+            return tileImage;
+        }
+
+        /// <summary>
+        /// Gets number of tiles for current raster
+        /// </summary>
+        /// <param name="zoom">Current zoom</param>
+        /// <param name="tmsCompatible">Is tms compatible?</param>
+        /// <returns>Tuple of tile numbers</returns>
+        private (int tileMinX, int tileMinY, int tileMaxX, int tileMaxY) GetTileNumbers(int zoom, bool tmsCompatible)
+        {
+            //Convert coordinates to tile numbers.
+            (int tileMinX, int tileMinY, int tileMaxX, int tileMaxY) =
+                Tile.TileTools.GetTileNumbersFromCoords(MinX, MinY, MaxX, MaxY, zoom, tmsCompatible);
+
+            return (Math.Max(0, tileMinX), Math.Max(0, tileMinY),
+                    Math.Min(Convert.ToInt32(Math.Pow(2.0, zoom + 1)) - 1, tileMaxX),
+                    Math.Min(Convert.ToInt32(Math.Pow(2.0, zoom)) - 1, tileMaxY));
+        }
 
         /// <summary>
         /// Calculate size and positions to read/write.
@@ -276,9 +330,9 @@ namespace GTiff2Tiles.Core.Image
         {
             #region Parameters checking
 
-            if (zoom < 0) throw new ImageException(string.Format(Strings.LesserThan, nameof(zoom), 0));
-            if (tileX < 0) throw new ImageException(string.Format(Strings.LesserThan, nameof(tileX), 0));
-            if (tileY < 0) throw new ImageException(string.Format(Strings.LesserThan, nameof(tileY), 0));
+            if (zoom < 0) throw new RasterException(string.Format(Strings.LesserThan, nameof(zoom), 0));
+            if (tileX < 0) throw new RasterException(string.Format(Strings.LesserThan, nameof(tileX), 0));
+            if (tileY < 0) throw new RasterException(string.Format(Strings.LesserThan, nameof(tileY), 0));
 
             #endregion
 
@@ -309,17 +363,12 @@ namespace GTiff2Tiles.Core.Image
             // Add alpha channel if needed
             for (; tileImage.Bands < Constants.Image.Raster.Bands;) tileImage = tileImage.Bandjoin(255);
 
-            //Stopwatch stopwatch = Stopwatch.StartNew();
-
             // Make transparent image and insert tile
             using NetVips.Image outputImage = NetVips
                                              .Image.Black(Constants.Image.Raster.TileSize,
                                                           Constants.Image.Raster.TileSize).NewFromImage(0, 0, 0, 0)
                                              .Insert(tileImage, writePosX, writePosY);
             outputImage.WriteToFile(outputTileFileInfo.FullName);
-
-            // ReSharper disable once LocalizableElement
-            //Console.WriteLine($"WriteToFile took {stopwatch.ElapsedMilliseconds} ms to run on zoom {zoom}");
 
             //Dispose the tile.
             tileImage.Dispose();
@@ -339,9 +388,9 @@ namespace GTiff2Tiles.Core.Image
         {
             #region Parameters checking
 
-            if (zoom < 0) throw new ImageException(string.Format(Strings.LesserThan, nameof(zoom), 0));
+            if (zoom < 0) throw new RasterException(string.Format(Strings.LesserThan, nameof(zoom), 0));
             if (threadsCount <= 0)
-                throw new ImageException(string.Format(Strings.LesserOrEqual, nameof(threadsCount), 0));
+                throw new RasterException(string.Format(Strings.LesserOrEqual, nameof(threadsCount), 0));
 
             #endregion
 
@@ -387,7 +436,7 @@ namespace GTiff2Tiles.Core.Image
         }
 
         /// <summary>
-        /// Sets properties, needed for cropping current <see cref="Image"/>.
+        /// Sets properties, needed for cropping current <see cref="Raster"/>.
         /// </summary>
         /// <param name="outputDirectoryInfo">Output directory.</param>
         /// <param name="minZ">Minimum cropped zoom.</param>
@@ -401,9 +450,9 @@ namespace GTiff2Tiles.Core.Image
 
             CheckHelper.CheckDirectory(outputDirectoryInfo, true);
 
-            if (maxZ < minZ) throw new ImageException(string.Format(Strings.LesserThan, nameof(maxZ), nameof(minZ)));
-            if (minZ < 0) throw new ImageException(string.Format(Strings.LesserThan, nameof(minZ), 0));
-            if (maxZ < 0) throw new ImageException(string.Format(Strings.LesserThan, nameof(maxZ), 0));
+            if (maxZ < minZ) throw new RasterException(string.Format(Strings.LesserThan, nameof(maxZ), nameof(minZ)));
+            if (minZ < 0) throw new RasterException(string.Format(Strings.LesserThan, nameof(minZ), 0));
+            if (maxZ < 0) throw new RasterException(string.Format(Strings.LesserThan, nameof(maxZ), 0));
 
             #endregion
 
@@ -415,17 +464,7 @@ namespace GTiff2Tiles.Core.Image
 
         #region Public
 
-        /// <summary>
-        /// Crops input tiff for each zoom.
-        /// </summary>
-        /// <param name="outputDirectoryInfo">Output directory.</param>
-        /// <param name="minZ">Minimum cropped zoom.</param>
-        /// <param name="maxZ">Maximum cropped zoom.</param>
-        /// <param name="progress">Progress.</param>
-        /// <param name="tmsCompatible">Do you want to create tms-compatible tiles?</param>
-        /// <param name="tileExtension">Extension of ready tiles.</param>
-        /// <param name="threadsCount">Threads count.</param>
-        /// <returns></returns>
+        /// <inheritdoc />
         public async ValueTask GenerateTilesAsync(DirectoryInfo outputDirectoryInfo, int minZ, int maxZ,
                                                   bool tmsCompatible,
                                                   string tileExtension,
@@ -436,11 +475,10 @@ namespace GTiff2Tiles.Core.Image
 
             #region Parameters checking
 
-            if (progress == null)
-                progress = new Progress<double>();
+            progress ??= new Progress<double>();
 
             if (threadsCount <= 0)
-                throw new ImageException(string.Format(Strings.LesserOrEqual, nameof(threadsCount), 0));
+                throw new RasterException(string.Format(Strings.LesserOrEqual, nameof(threadsCount), 0));
 
             #endregion
 
@@ -496,31 +534,16 @@ namespace GTiff2Tiles.Core.Image
             return tilesCount;
         }
 
-        /// <summary>
-        /// Crops input tiff for each zoom.
-        /// <para>Experimental version, don't use in release app!</para>
-        /// <para>There's an issue with NetVips performance on Windows, so when it's fixed -- this version
-        /// will replace the current method for cropping tiles.</para>
-        /// </summary>
-        /// <param name="outputDirectoryInfo">Output directory.</param>
-        /// <param name="minZ">Minimum cropped zoom.</param>
-        /// <param name="maxZ">Maximum cropped zoom.</param>
-        /// <param name="tmsCompatible">Do you want to create tms-compatible tiles?</param>
-        /// <param name="tileExtension">Extension of ready tiles.</param>
-        /// <param name="progress">Progress.</param>
-        /// <param name="threadsCount">Threads count.</param>
-        /// <param name="isExperimental">Set to <see langword="true"/> to use this method.</param>
-        /// <returns></returns>
+        /// <inheritdoc />
         public async ValueTask GenerateTilesAsync(DirectoryInfo outputDirectoryInfo, int minZ, int maxZ,
-                                                   bool tmsCompatible, string tileExtension,
-                                                   IProgress<double> progress,
-                                                   int threadsCount,
-                                                   bool isExperimental)
+                                                  bool tmsCompatible, string tileExtension,
+                                                  IProgress<double> progress,
+                                                  int threadsCount,
+                                                  bool isExperimental)
         {
             if (!isExperimental)
             {
-                await GenerateTilesAsync(outputDirectoryInfo, minZ, maxZ, tmsCompatible, tileExtension, progress,
-                                   threadsCount);
+                await GenerateTilesAsync(outputDirectoryInfo, minZ, maxZ, tmsCompatible, tileExtension, progress, threadsCount);
 
                 return;
             }
@@ -532,10 +555,10 @@ namespace GTiff2Tiles.Core.Image
 
             #region Parameters checking
 
-            if (progress == null) progress = new Progress<double>();
+            progress ??= new Progress<double>();
 
             if (threadsCount <= 0)
-                throw new ImageException(string.Format(Strings.LesserOrEqual, nameof(threadsCount), 0));
+                throw new RasterException(string.Format(Strings.LesserOrEqual, nameof(threadsCount), 0));
 
             #endregion
 
@@ -639,71 +662,5 @@ namespace GTiff2Tiles.Core.Image
         }
 
         #endregion
-
-        private static NetVips.Image Resize(NetVips.Image tileImage, double xScale, double yScale,
-                                            string kernel = NetVips.Enums.Kernel.Lanczos3,
-                                            string interpolation = Interpolations.Bicubic,
-                                            bool isCentre = false)
-        {
-            // We could just use vips_resize if we use centre sampling convention
-            if (isCentre) return tileImage.Resize(xScale, kernel, yScale);
-
-            // Otherwise, we need to implement vips_resize for ourselves
-
-            // Calculate integral box shrink
-            // We will get the best quality (but be the slowest) if we let reduce
-            // do all the work. Leave it the final 200 - 300% to do as a compromise
-            // for efficiency.
-            int xShirnk = Math.Max(1, (int)Math.Floor(1.0 / (xScale * 2.0)));
-            int yShrink = Math.Max(1, (int)Math.Floor(1.0 / (yScale * 2.0)));
-
-            // Fast, integral box-shrink
-            if (yShrink > 1)
-            {
-                tileImage = tileImage.Shrinkv(yShrink);
-                yScale *= yShrink;
-            }
-
-            if (xShirnk > 1)
-            {
-                tileImage = tileImage.Shrinkh(xShirnk);
-                xScale *= xShirnk;
-            }
-
-            // Any residual downsizing
-            if (yScale < 1.0) tileImage = tileImage.Reducev(1.0 / yScale, kernel, false);
-            if (xScale < 1.0) tileImage = tileImage.Reduceh(1.0 / xScale, kernel, false);
-
-            // Any upsizing
-            if (!(xScale > 1.0) && !(yScale > 1.0)) return tileImage;
-            // Floating point affine transformation
-            //double id = isCentre ? 0.5 : 0.0;
-            const double id = 0.0;
-
-            // Floating point affine transformation
-            using Interpolate interpolate = Interpolate.NewFromName(interpolation);
-            if (xScale > 1.0 && yScale > 1.0)
-                tileImage = tileImage.Affine(new[] { xScale, 0.0, 0.0, yScale }, interpolate, idx: id, idy: id,
-                                             extend: NetVips.Enums.Extend.Copy);
-            else if (xScale > 1.0)
-                tileImage = tileImage.Affine(new[] { xScale, 0.0, 0.0, 1.0 }, interpolate, idx: id, idy: id,
-                                             extend: NetVips.Enums.Extend.Copy);
-            else
-                tileImage = tileImage.Affine(new[] { 1.0, 0.0, 0.0, yScale }, interpolate, idx: id, idy: id,
-                                             extend: NetVips.Enums.Extend.Copy);
-
-            return tileImage;
-        }
-
-        private (int tileMinX, int tileMinY, int tileMaxX, int tileMaxY) GetTileNumbers(int zoom, bool tmsCompatible)
-        {
-            //Convert coordinates to tile numbers.
-            (int tileMinX, int tileMinY, int tileMaxX, int tileMaxY) =
-                Tile.TileTools.GetTileNumbersFromCoords(MinX, MinY, MaxX, MaxY, zoom, tmsCompatible);
-
-            return (Math.Max(0, tileMinX), Math.Max(0, tileMinY),
-                    Math.Min(Convert.ToInt32(Math.Pow(2.0, zoom + 1)) - 1, tileMaxX),
-                    Math.Min(Convert.ToInt32(Math.Pow(2.0, zoom)) - 1, tileMaxY));
-        }
     }
 }

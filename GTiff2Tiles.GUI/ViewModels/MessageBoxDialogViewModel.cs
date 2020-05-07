@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using GTiff2Tiles.GUI.Constants;
 using Prism.Mvvm;
 using Prism.Commands;
 using GTiff2Tiles.GUI.Localization;
@@ -39,12 +40,12 @@ namespace GTiff2Tiles.GUI.ViewModels
         /// <summary>
         /// Dialog's width.
         /// </summary>
-        public int Width { get; } = Enums.Dialogs.Width;
+        public int Width { get; } = Dialogs.Width;
 
         /// <summary>
         /// Dialog's height.
         /// </summary>
-        public int Height { get; } = Enums.Dialogs.Height;
+        public int Height { get; } = Dialogs.Height;
 
         #endregion
 
