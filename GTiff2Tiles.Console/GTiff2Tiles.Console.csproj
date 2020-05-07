@@ -4,8 +4,8 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <Platforms>x64</Platforms>
-    <AssemblyVersion>1.5.0.28</AssemblyVersion>
-    <FileVersion>1.5.0.28</FileVersion>
+    <AssemblyVersion>1.5.0.29</AssemblyVersion>
+    <FileVersion>1.5.0.29</FileVersion>
     <ApplicationIcon>Resources\Icon.ico</ApplicationIcon>
     <Version>1.5.0</Version>
     <Authors>Gigas002</Authors>
@@ -41,7 +41,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="CommandLineParser" Version="2.7.82" />
+    <PackageReference Include="CommandLineParser" Version="2.8.0" />
   </ItemGroup>
 
   <ItemGroup>

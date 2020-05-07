@@ -86,7 +86,7 @@ Library uses 2 different algorithms to create tiles:
 - [MaxRev.Gdal.LinuxRuntime.Minimal](https://www.nuget.org/packages/MaxRev.Gdal.LinuxRuntime.Minimal/) – 3.0.1.2;
 - [MaxRev.Gdal.WindowsRuntime.Minimal](https://www.nuget.org/packages/MaxRev.Gdal.WindowsRuntime.Minimal/) – 3.0.1.35;
 - [NetVips](https://www.nuget.org/packages/NetVips/) – 1.2.1;
-- [NetVips.Native](https://www.nuget.org/packages/NetVips.Native/) – 8.9.1;
+- [NetVips.Native](https://www.nuget.org/packages/NetVips.Native/) – 8.9.2;
 - [System.Threading.Tasks.Extensions](https://www.nuget.org/packages/System.Threading.Tasks.Extensions) – 4.5.4 (for **netstandard2.0 build**);
 
 ### Localization
@@ -112,7 +112,7 @@ Full documentation is inside of [GTiff2Tiles.Console.Doc.md](GTiff2Tiles.Console
 ### Dependencies
 
 - GTiff2Tiles.Core;
-- [CommandLineParser](https://www.nuget.org/packages/CommandLineParser/) – 2.7.82;
+- [CommandLineParser](https://www.nuget.org/packages/CommandLineParser/) – 2.8.0;
 
 ### Localization
 
@@ -136,9 +136,9 @@ If you’re using Windows 7 SP1, you can experience weird error with **GDAL** pa
 
 - GTiff2Tiles.Core;
 - [Caliburn.Micro](https://www.nuget.org/packages/Caliburn.Micro) – 4.0.105-alpha;
-- [MaterialDesignColors](https://www.nuget.org/packages/MaterialDesignColors) – 1.2.2;
-- [MaterialDesignThemes](https://www.nuget.org/packages/MaterialDesignThemes) – 3.0.1;
-- [MaterialDesignExtensions](https://www.nuget.org/packages/MaterialDesignExtensions) – 3.0.0;
+- [MaterialDesignColors](https://www.nuget.org/packages/MaterialDesignColors) – 1.2.4;
+- [MaterialDesignThemes](https://www.nuget.org/packages/MaterialDesignThemes) – 3.1.1;
+- [MaterialDesignExtensions](https://www.nuget.org/packages/MaterialDesignExtensions) – 3.1.0;
 
 ### Localization
 
@@ -153,7 +153,7 @@ Currently, application is available on **English** and **Russian** languages.
 ### Dependencies
 
 - GTiff2Tiles.Core;
-- [Microsoft.NET.Test.Sdk](https://www.nuget.org/packages/Microsoft.NET.Test.Sdk) – 16.5.0;
+- [Microsoft.NET.Test.Sdk](https://www.nuget.org/packages/Microsoft.NET.Test.Sdk) – 16.6.1;
 - [NUnit](https://www.nuget.org/packages/NUnit) – 3.12.0;
 - [NUnit3TestAdapter](https://www.nuget.org/packages/NUnit3TestAdapter/) – 3.16.1;
 
@@ -183,7 +183,7 @@ If you’re using Windows 7 SP1, you can experience weird error with **GDAL** pa
 ### Dependencies
 
 - GTiff2Tiles.Core;
-- [CommandLineParser](https://www.nuget.org/packages/CommandLineParser/) – 2.7.82;
+- [CommandLineParser](https://www.nuget.org/packages/CommandLineParser/) – 2.8.0;
 
 ### Usage
 

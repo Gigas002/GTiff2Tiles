@@ -6,7 +6,7 @@ Changes since 1.4.1:
 
 ### Overall
 
-- Update **.NET Core** version to **3.1.102**;
+- Update **.NET Core** version to **3.1.201**;
 - Fixed **Linux** build and apps;
 - Create **Docker image** for **GTiff2Tiles.Console**;
 - Move to **[DBAD](https://dbad-license.org/)** license;
@@ -16,27 +16,27 @@ Changes since 1.4.1:
 - Update **MaxRev.Gdal.Core** package to **3.0.1.25**;
 - Update **MaxRev.Gdal.WindowsRuntime.Minimal** package to **3.0.1.35**;
 - Update **NetVips** package to **1.2.1**;
-- Update **NetVips.Native** package to **8.9.1**;
+- Update **NetVips.Native** package to **8.9.2**;
 - Update **System.Threading.Tasks.Extensions** package to **4.5.3** (*netstandard2.0* only);
 
 ### Benchmarks
 
-- Update **CommandLineParser** package to **2.7.82**;
+- Update **CommandLineParser** package to **2.8.0**;
 
 ### Console
 
-- Update **CommandLineParser** package to **2.7.82**;
+- Update **CommandLineParser** package to **2.8.0**;
 
 ### GUI
 
-- Update **MaterialDesignColors** package to **1.2.2**;
-- Update **MaterialDesignThemes** package to **3.0.1**;
-- Update **MaterialDesignExtensions** package to **3.0.0**;
+- Update **MaterialDesignColors** package to **1.2.4**;
+- Update **MaterialDesignThemes** package to **3.1.1**;
+- Update **MaterialDesignExtensions** package to **3.1.0**;
 - Update **Caliburn.Micro** package to **4.0.105-alpha**;
 
 ### Tests
 
-- Update **Microsoft.NET.Test.Sdk** package to **16.5.0**;
+- Update **Microsoft.NET.Test.Sdk** package to **16.6.1**;
 - Update **NUnit3TestAdapter** package to **3.16.1**;
 
 ## 21.10.2019 – Released 1.4.1
