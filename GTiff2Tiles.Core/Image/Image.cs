@@ -670,45 +670,6 @@ namespace GTiff2Tiles.Core.Image
         /// <param name="outputDirectoryInfo">Output directory.</param>
         /// <param name="minZ">Minimum cropped zoom.</param>
         /// <param name="maxZ">Maximum cropped zoom.</param>
-        /// <param name="tmsCompatible">Do you want to create tms-compatible tiles?</param>
-        /// <param name="progress">Progress.</param>
-        /// <param name="threadsCount">Threads count.</param>
-        /// <returns></returns>
-        [Obsolete("This method will be deleted in 1.5.0", false)]
-        public async ValueTask GenerateTilesByJoiningAsync(DirectoryInfo outputDirectoryInfo, int minZ, int maxZ,
-                                                      bool tmsCompatible, IProgress<double> progress, int threadsCount)
-        {
-            #region Parameters checking
-
-            if (progress == null) throw new ImageException(string.Format(Strings.IsNull, nameof(progress)));
-            if (threadsCount <= 0)
-                throw new ImageException(string.Format(Strings.LesserOrEqual, nameof(threadsCount), 0));
-
-            #endregion
-
-            SetGenerateTilesProperties(outputDirectoryInfo, minZ, maxZ, tmsCompatible, Enums.Extensions.Png);
-
-            //Crop lowest zoom level.
-            await WriteZoomAsync(MaxZ, threadsCount).ConfigureAwait(false);
-            double percentage = 1.0 / (MaxZ - MinZ + 1) * 100.0;
-            progress.Report(percentage);
-
-            //Crop upper tiles.
-            for (int zoom = MaxZ - 1; zoom >= MinZ; zoom--)
-            {
-                await MakeUpperTilesAsync(zoom, threadsCount).ConfigureAwait(false);
-
-                percentage = (double) (MaxZ - zoom + 1) / (MaxZ - MinZ + 1) * 100.0;
-                progress.Report(percentage);
-            }
-        }
-
-        /// <summary>
-        /// Create tiles. Crops input tiff only for lowest zoom and then join the higher ones from it.
-        /// </summary>
-        /// <param name="outputDirectoryInfo">Output directory.</param>
-        /// <param name="minZ">Minimum cropped zoom.</param>
-        /// <param name="maxZ">Maximum cropped zoom.</param>
         /// <param name="tmsCompatible">Do you want to create tms-compatible tiles? <see langword="true"/> by default.</param>
         /// <param name="tileExtension">Extension of ready tiles. ".png" by default.</param>
         /// <param name="progress">Progress. <see langword="null"/> by default.</param>
@@ -743,40 +704,6 @@ namespace GTiff2Tiles.Core.Image
                 await MakeUpperTilesAsync(zoom, threadsCount).ConfigureAwait(false);
 
                 percentage = (double)(MaxZ - zoom + 1) / (MaxZ - MinZ + 1) * 100.0;
-                progress.Report(percentage);
-            }
-        }
-
-        /// <summary>
-        /// Crops input tiff for each zoom.
-        /// </summary>
-        /// <param name="outputDirectoryInfo">Output directory.</param>
-        /// <param name="minZ">Minimum cropped zoom.</param>
-        /// <param name="maxZ">Maximum cropped zoom.</param>
-        /// <param name="tmsCompatible">Do you want to create tms-compatible tiles?</param>
-        /// <param name="progress">Progress.</param>
-        /// <param name="threadsCount">Threads count.</param>
-        /// <returns></returns>
-        [Obsolete("This method will be deleted in 1.5.0. Replacement will be ready soon.", false)]
-        public async ValueTask GenerateTilesByCroppingAsync(DirectoryInfo outputDirectoryInfo, int minZ, int maxZ,
-                                                            bool tmsCompatible, IProgress<double> progress, int threadsCount)
-        {
-            #region Parameters checking
-
-            if (progress == null) throw new ImageException(string.Format(Strings.IsNull, nameof(progress)));
-            if (threadsCount <= 0)
-                throw new ImageException(string.Format(Strings.LesserOrEqual, nameof(threadsCount), 0));
-
-            #endregion
-
-            SetGenerateTilesProperties(outputDirectoryInfo, minZ, maxZ, tmsCompatible, Enums.Extensions.Png);
-
-            //Crop tiles for each zoom.
-            for (int zoom = MinZ; zoom <= MaxZ; zoom++)
-            {
-                await WriteZoomAsync(zoom, threadsCount).ConfigureAwait(false);
-
-                double percentage = (double)(zoom - MinZ + 1) / (MaxZ - MinZ + 1) * 100.0;
                 progress.Report(percentage);
             }
         }
