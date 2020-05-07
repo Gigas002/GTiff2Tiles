@@ -489,16 +489,16 @@ namespace GTiff2Tiles.Core.Image
         /// <param name="outputDirectoryInfo">Output directory.</param>
         /// <param name="minZ">Minimum cropped zoom.</param>
         /// <param name="maxZ">Maximum cropped zoom.</param>
-        /// <param name="progress">Progress. <see langword="null"/> by default.</param>
-        /// <param name="tmsCompatible">Do you want to create tms-compatible tiles? <see langword="true"/> by default.</param>
-        /// <param name="tileExtension">Extension of ready tiles. ".png" by default.</param>
-        /// <param name="threadsCount">Threads count. 5 by default.</param>
+        /// <param name="progress">Progress.</param>
+        /// <param name="tmsCompatible">Do you want to create tms-compatible tiles?</param>
+        /// <param name="tileExtension">Extension of ready tiles.</param>
+        /// <param name="threadsCount">Threads count.</param>
         /// <returns></returns>
         public async ValueTask GenerateTilesAsync(DirectoryInfo outputDirectoryInfo, int minZ, int maxZ,
-                                                  bool tmsCompatible = true,
-                                                  string tileExtension = Extensions.Png,
-                                                  IProgress<double> progress = null,
-                                                  int threadsCount = 5)
+                                                  bool tmsCompatible,
+                                                  string tileExtension,
+                                                  IProgress<double> progress,
+                                                  int threadsCount)
         {
             //TODO: profile argument (geodetic/mercator)
 
