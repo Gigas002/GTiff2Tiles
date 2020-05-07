@@ -139,11 +139,14 @@ namespace GTiff2Tiles.Benchmarks
 
             string gtiff2TilesOutputDirectoryPath = Path.Combine(OutputDirectoryInfo.FullName, "gtiff2tiles");
             string gtiff2TilesTempDirectoryPath = Path.Combine(TempDirectoryInfo.FullName, "gtiff2tiles");
+            bool tmsCompatible = true;
             Directory.CreateDirectory(gtiff2TilesOutputDirectoryPath);
             Directory.CreateDirectory(gtiff2TilesTempDirectoryPath);
             await using Raster raster = new Raster(InputFileInfo);
 
-            await raster.GenerateTilesAsync(new DirectoryInfo(gtiff2TilesOutputDirectoryPath), MinZ, MaxZ, threadsCount: ThreadsCount).ConfigureAwait(false);
+            await raster.GenerateTilesAsync(new DirectoryInfo(gtiff2TilesOutputDirectoryPath), MinZ, MaxZ,
+                                            tmsCompatible, Core.Constants.Extensions.Png, null, ThreadsCount)
+                        .ConfigureAwait(false);
             stopwatch.Stop();
             Console.WriteLine("GTiff2Tiles process ended.");
             Console.WriteLine("Time passed:");

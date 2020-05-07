@@ -38,7 +38,7 @@ namespace GTiff2Tiles.Core.Tile
     /// <summary>
     /// Class with static methods for calculating some tile stuff.
     /// </summary>
-    public static class Tile
+    public static class TileTools
     {
         #region Private
 

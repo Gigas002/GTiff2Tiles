@@ -286,7 +286,7 @@ namespace GTiff2Tiles.Core.Image
 
             //Get the coordinate borders for current tile from tile numbers.
             (double minX, double minY, double maxX, double maxY) =
-                Tile.Tile.TileBounds(tileX, tileY, zoom, TmsCompatible);
+                Tile.TileTools.TileBounds(tileX, tileY, zoom, TmsCompatible);
 
             //Get postitions and sizes for current tile.
             (int readPosX, int readPosY, int readXSize, int readYSize, int writePosX, int writePosY, int writeXSize,
@@ -466,7 +466,7 @@ namespace GTiff2Tiles.Core.Image
             {
                 //Convert coordinates to tile numbers.
                 (int tileMinX, int tileMinY, int tileMaxX, int tileMaxY) =
-                    Tile.Tile.GetTileNumbersFromCoords(MinX, MinY, MaxX, MaxY, zoom, tmsCompatible);
+                    Tile.TileTools.GetTileNumbersFromCoords(MinX, MinY, MaxX, MaxY, zoom, tmsCompatible);
 
                 //Crop tiles extending world limits (+-180,+-90).
                 tileMinX = Math.Max(0, tileMinX);
