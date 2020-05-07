@@ -466,8 +466,9 @@ namespace GTiff2Tiles.Core.Image
         /// <param name="maxZ">Maximum cropped zoom.</param>
         /// <param name="tmsCompatible">Do you want tms tiles on output?</param>
         /// <param name="tileExtension">Extensions of ready tiles.</param>
+        /// <param name="threadsCount">Threads count.</param>
         private async ValueTask SetGenerateTilesProperties(DirectoryInfo outputDirectoryInfo, int minZ, int maxZ,
-                                                           bool tmsCompatible, string tileExtension)
+                                                           bool tmsCompatible, string tileExtension, int threadsCount)
         {
             #region Check parameters
 
@@ -482,9 +483,9 @@ namespace GTiff2Tiles.Core.Image
             (OutputDirectoryInfo, MinZ, MaxZ, TmsCompatible, TileExtension) =
                 (outputDirectoryInfo, minZ, maxZ, tmsCompatible, tileExtension);
 
-            //todo ThreadsCount
+            ParallelOptions perallelOptions = new ParallelOptions { MaxDegreeOfParallelism = threadsCount };
             //Create dictionary with tiles for each cropped zoom.
-            await Task.Run(() => Parallel.For(MinZ, MaxZ + 1, zoom =>
+            await Task.Run(() => Parallel.For(MinZ, MaxZ + 1, perallelOptions, zoom =>
             {
                 //Convert coordinates to tile numbers.
                 (int tileMinX, int tileMinY, int tileMaxX, int tileMaxY) =
@@ -534,7 +535,7 @@ namespace GTiff2Tiles.Core.Image
 
             #endregion
 
-            await SetGenerateTilesProperties(outputDirectoryInfo, minZ, maxZ, tmsCompatible, tileExtension).ConfigureAwait(false);
+            await SetGenerateTilesProperties(outputDirectoryInfo, minZ, maxZ, tmsCompatible, tileExtension, threadsCount).ConfigureAwait(false);
 
             //Crop tiles for each zoom.
             for (int zoom = MinZ; zoom <= MaxZ; zoom++)
@@ -599,11 +600,11 @@ namespace GTiff2Tiles.Core.Image
 
             #endregion
 
-            await SetGenerateTilesProperties(outputDirectoryInfo, minZ, maxZ, tmsCompatible, tileExtension)
+            await SetGenerateTilesProperties(outputDirectoryInfo, minZ, maxZ, tmsCompatible, tileExtension, threadsCount)
                .ConfigureAwait(false);
 
             //Crop all tiles.
-            await RunTiling(threadsCount, progress);
+            await RunTiling(threadsCount, progress).ConfigureAwait(false);
 
             stopwatch.Stop();
             // ReSharper disable once LocalizableElement
