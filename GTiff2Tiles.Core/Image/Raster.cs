@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading;
@@ -8,18 +9,9 @@ using GTiff2Tiles.Core.Helpers;
 using GTiff2Tiles.Core.Localization;
 using NetVips;
 
-// ReSharper disable ClassWithVirtualMembersNeverInherited.Global
-// ReSharper disable InheritdocConsiderUsage
-// ReSharper disable ClassCanBeSealed.Global
-// ReSharper disable MemberCanBePrivate.Global
-// ReSharper disable AccessToDisposedClosure
-
 namespace GTiff2Tiles.Core.Image
 {
-    /// <summary>
-    /// Class for creating raster tiles.
-    /// </summary>
-    public class Image : IAsyncDisposable, IDisposable
+    public sealed class Raster : IImage
     {
         #region Properties
 
@@ -28,7 +20,7 @@ namespace GTiff2Tiles.Core.Image
         /// <summary>
         /// Dictionary with min/max tile numbers for each zoom level.
         /// </summary>
-        private Dictionary<int, int[]> TilesMinMax { get; } = new Dictionary<int, int[]>();
+        private ConcurrentDictionary<int, int[]> TilesMinMax { get; } = new ConcurrentDictionary<int, int[]>();
 
         /// <summary>
         /// Output directory.
@@ -49,6 +41,11 @@ namespace GTiff2Tiles.Core.Image
         /// Shows if tms tiles on output are created.
         /// </summary>
         private bool TmsCompatible { get; set; }
+
+        /// <summary>
+        /// Extension of ready tiles.
+        /// </summary>
+        private string TileExtension { get; set; }
 
         #endregion
 
@@ -85,11 +82,6 @@ namespace GTiff2Tiles.Core.Image
         public double MaxY { get; }
 
         /// <summary>
-        /// Extension of ready tiles.
-        /// </summary>
-        public string TileExtension { get; private set; }
-
-        /// <summary>
         /// Shows if resources have already been disposed.
         /// </summary>
         public bool IsDisposed { get; private set; }
@@ -103,13 +95,13 @@ namespace GTiff2Tiles.Core.Image
 
         #endregion
 
-        #region Constructor
+        #region Constructor/Destructor
 
         /// <summary>
         /// Creates new <see cref="Image"/> object.
         /// </summary>
         /// <param name="inputFileInfo">Input GeoTiff image.</param>
-        public Image(FileInfo inputFileInfo)
+        public Raster(FileInfo inputFileInfo)
         {
             //Disable NetVips warnings for tiff.
             NetVipsHelper.DisableLog();
@@ -136,6 +128,11 @@ namespace GTiff2Tiles.Core.Image
             }
         }
 
+        /// <summary>
+        /// Destructor.
+        /// </summary>
+        ~Raster() => Dispose(false);
+
         #endregion
 
         #region Methods
@@ -155,11 +152,17 @@ namespace GTiff2Tiles.Core.Image
         /// Actually disposes the data.
         /// </summary>
         /// <param name="disposing"></param>
-        protected virtual void Dispose(bool disposing)
+        private void Dispose(bool disposing)
         {
             if (IsDisposed) return;
 
-            if (disposing) Data.Dispose();
+            if (disposing)
+            {
+                //Occurs only if called by programmer. Dispose static things here.
+            }
+
+            TilesMinMax.Clear();
+            Data.Dispose();
 
             IsDisposed = true;
         }
@@ -168,7 +171,7 @@ namespace GTiff2Tiles.Core.Image
         /// Frees the resources asynchroniously.
         /// </summary>
         /// <returns></returns>
-        public virtual ValueTask DisposeAsync()
+        public ValueTask DisposeAsync()
         {
             try
             {
@@ -420,6 +423,16 @@ namespace GTiff2Tiles.Core.Image
 
             //Dispose tasks.
             foreach (Task task in tasks) task.Dispose();
+
+            //Alternative way, a bit less effective.
+            //ParallelOptions parallelOptions = new ParallelOptions { MaxDegreeOfParallelism = threadsCount };
+
+            //for (int tileY = TilesMinMax[zoom][1]; tileY <= TilesMinMax[zoom][3]; tileY++)
+            //{
+            //    int y = tileY;
+            //    await Task.Run(() => Parallel.For(TilesMinMax[zoom][0], TilesMinMax[zoom][2] + 1, parallelOptions,
+            //                                      x => WriteTile(x, y, zoom))).ConfigureAwait(false);
+            //}
         }
 
         /// <summary>
@@ -430,8 +443,8 @@ namespace GTiff2Tiles.Core.Image
         /// <param name="maxZ">Maximum cropped zoom.</param>
         /// <param name="tmsCompatible">Do you want tms tiles on output?</param>
         /// <param name="tileExtension">Extensions of ready tiles.</param>
-        private void SetGenerateTilesProperties(DirectoryInfo outputDirectoryInfo, int minZ, int maxZ,
-                                                bool tmsCompatible, string tileExtension)
+        private async ValueTask SetGenerateTilesProperties(DirectoryInfo outputDirectoryInfo, int minZ, int maxZ,
+                                                           bool tmsCompatible, string tileExtension)
         {
             #region Check parameters
 
@@ -443,12 +456,11 @@ namespace GTiff2Tiles.Core.Image
 
             #endregion
 
-            (OutputDirectoryInfo, MinZ, MaxZ) = (outputDirectoryInfo, minZ, maxZ);
-            TmsCompatible = tmsCompatible;
-            TileExtension = tileExtension;
+            (OutputDirectoryInfo, MinZ, MaxZ, TmsCompatible, TileExtension) =
+                (outputDirectoryInfo, minZ, maxZ, tmsCompatible, tileExtension);
 
             //Create dictionary with tiles for each cropped zoom.
-            for (int zoom = MinZ; zoom <= MaxZ; zoom++)
+            await Task.Run(() => Parallel.For(MinZ, MaxZ + 1, zoom =>
             {
                 //Convert coordinates to tile numbers.
                 (int tileMinX, int tileMinY, int tileMaxX, int tileMaxY) =
@@ -460,13 +472,9 @@ namespace GTiff2Tiles.Core.Image
                 tileMaxX = Math.Min(Convert.ToInt32(Math.Pow(2.0, zoom + 1)) - 1, tileMaxX);
                 tileMaxY = Math.Min(Convert.ToInt32(Math.Pow(2.0, zoom)) - 1, tileMaxY);
 
-                try { TilesMinMax.Add(zoom, new[] { tileMinX, tileMinY, tileMaxX, tileMaxY }); }
-                catch (Exception exception)
-                {
-                    throw new ImageException(string.Format(Strings.UnableToAddToCollection, nameof(TilesMinMax)),
-                                             exception);
-                }
-            }
+                if (!TilesMinMax.TryAdd(zoom, new[] { tileMinX, tileMinY, tileMaxX, tileMaxY }))
+                    throw new ImageException(string.Format(Strings.UnableToAddToCollection, nameof(TilesMinMax)));
+            })).ConfigureAwait(false);
         }
 
         #endregion
@@ -494,14 +502,15 @@ namespace GTiff2Tiles.Core.Image
 
             #region Parameters checking
 
-            progress ??= new Progress<double>();
+            if (progress == null)
+                progress = new Progress<double>();
 
             if (threadsCount <= 0)
                 throw new ImageException(string.Format(Strings.LesserOrEqual, nameof(threadsCount), 0));
 
             #endregion
 
-            SetGenerateTilesProperties(outputDirectoryInfo, minZ, maxZ, tmsCompatible, tileExtension);
+            await SetGenerateTilesProperties(outputDirectoryInfo, minZ, maxZ, tmsCompatible, tileExtension).ConfigureAwait(false);
 
             //Crop tiles for each zoom.
             for (int zoom = MinZ; zoom <= MaxZ; zoom++)

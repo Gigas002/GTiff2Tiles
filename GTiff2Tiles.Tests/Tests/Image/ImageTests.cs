@@ -54,7 +54,7 @@ namespace GTiff2Tiles.Tests.Tests.Image
                 }
 
                 //Create Image object and crop tiles.
-                await using Core.Image.Image image = new Core.Image.Image(inputFileInfo);
+                await using Core.Image.Raster image = new Core.Image.Raster(inputFileInfo);
                 const int minZ = Enums.Zooms.MinZ;
                 const int maxZ = Enums.Zooms.MaxZ;
                 const int threadsCount = Enums.Multithreading.ThreadsCount;
@@ -106,7 +106,7 @@ namespace GTiff2Tiles.Tests.Tests.Image
                 }
 
                 //Create Image object and crop tiles.
-                await using Core.Image.Image image = new Core.Image.Image(inputFileInfo);
+                await using Core.Image.Raster image = new Core.Image.Raster(inputFileInfo);
                 const int minZ = Enums.Zooms.MinZ;
                 const int maxZ = Enums.Zooms.MaxZ;
                 const int threadsCount = Enums.Multithreading.ThreadsCount;

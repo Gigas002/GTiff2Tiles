@@ -4,8 +4,8 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <PackageIcon>Icon.png</PackageIcon>
     <Platforms>x64</Platforms>
-    <AssemblyVersion>2.0.0.37</AssemblyVersion>
-    <FileVersion>2.0.0.37</FileVersion>
+    <AssemblyVersion>2.0.0.38</AssemblyVersion>
+    <FileVersion>2.0.0.38</FileVersion>
     <Version>1.5.0-ci28</Version>
     <Company>Gigas002</Company>
     <Authors>Gigas002</Authors>
