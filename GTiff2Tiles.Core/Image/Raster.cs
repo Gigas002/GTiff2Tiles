@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
-using GTiff2Tiles.Core.Constants;
 using GTiff2Tiles.Core.Constants.Image;
 using GTiff2Tiles.Core.Exceptions.Image;
 using GTiff2Tiles.Core.Helpers;
@@ -15,6 +15,8 @@ namespace GTiff2Tiles.Core.Image
 {
     public sealed class Raster : IImage
     {
+        #region NOT TEST
+
         #region Properties
 
         #region Private
@@ -48,6 +50,8 @@ namespace GTiff2Tiles.Core.Image
         /// Extension of ready tiles.
         /// </summary>
         private string TileExtension { get; set; }
+
+        //private FileStream FileStream { get; }
 
         #endregion
 
@@ -114,7 +118,10 @@ namespace GTiff2Tiles.Core.Image
 
             #endregion
 
-            Data = NetVips.Image.Tiffload(inputFileInfo.FullName, access: NetVips.Enums.Access.Random);
+            //todo test this with stable 8.9.0+ package. Now less effective, then NewFromFile/Tiffload
+            //FileStream = inputFileInfo.OpenRead();
+            //Data = NetVips.Image.NewFromStream(FileStream, access: NetVips.Enums.Access.Random);
+            Data = NetVips.Image.NewFromFile(inputFileInfo.FullName, access: NetVips.Enums.Access.Random);
 
             //Get border coordinates и raster sizes.
             try
@@ -165,6 +172,7 @@ namespace GTiff2Tiles.Core.Image
 
             TilesMinMax.Clear();
             Data.Dispose();
+            //FileStream.Dispose();
 
             IsDisposed = true;
         }
@@ -277,6 +285,8 @@ namespace GTiff2Tiles.Core.Image
 
             #endregion
 
+            Stopwatch stopwatch = Stopwatch.StartNew();
+
             //Create directories for the tile. The overall structure looks like: outputDirectory/zoom/x/y.png.
             DirectoryInfo tileDirectoryInfo =
                 new DirectoryInfo(Path.Combine(OutputDirectoryInfo.FullName, $"{zoom}", $"{tileX}"));
@@ -295,7 +305,6 @@ namespace GTiff2Tiles.Core.Image
             //Warning: OpenLayers requires replacement of tileY to tileY+1
             FileInfo outputTileFileInfo = new FileInfo(Path.Combine(tileDirectoryInfo.FullName,
                                                                     $"{tileY}{TileExtension}"));
-
 
             //Try open input image and crop tile
             NetVips.Image tileImage;
@@ -369,7 +378,16 @@ namespace GTiff2Tiles.Core.Image
 
                 // Insert tile into output image
                 outputImage = outputImage.Insert(tileImage, writePosX, writePosY);
+
+                //Console.WriteLine($"P1: {stopwatch.ElapsedMilliseconds}");
+
+                //todo test this with stable 8.9.0+ package. Now less effective, then WriteToFile
+                //todo Runs MUCH slower in multithreaded mode
+                //using FileStream outputStream = outputTileFileInfo.OpenWrite();
+                //outputImage.WriteToStream(outputStream, TileExtension);
                 outputImage.WriteToFile(outputTileFileInfo.FullName);
+
+                //Console.WriteLine($"P2: {stopwatch.ElapsedMilliseconds}");
             }
             catch (Exception exception)
             {
@@ -461,6 +479,7 @@ namespace GTiff2Tiles.Core.Image
             (OutputDirectoryInfo, MinZ, MaxZ, TmsCompatible, TileExtension) =
                 (outputDirectoryInfo, minZ, maxZ, tmsCompatible, tileExtension);
 
+            //todo ThreadsCount
             //Create dictionary with tiles for each cropped zoom.
             await Task.Run(() => Parallel.For(MinZ, MaxZ + 1, zoom =>
             {
@@ -525,6 +544,113 @@ namespace GTiff2Tiles.Core.Image
         }
 
         #endregion
+
+        #endregion
+
+        #endregion
+
+
+
+        #region TEST
+
+        private async ValueTask<int> GetTilesCount(int threadsCount)
+        {
+            int tilesCount = 0;
+
+            for (int zoom = MinZ; zoom <= MaxZ; zoom++)
+            {
+                ParallelOptions parallelOptions = new ParallelOptions { MaxDegreeOfParallelism = threadsCount };
+                int currentZoom = zoom;
+                await Task.Run(() =>
+                {
+                    for (int tileY = TilesMinMax[currentZoom][1]; tileY <= TilesMinMax[currentZoom][3]; tileY++)
+                        Parallel.For(TilesMinMax[currentZoom][0], TilesMinMax[currentZoom][2] + 1,
+                                     parallelOptions,
+                                     () => 0,
+                                     (i, state, subtotal) => ++subtotal,
+                                     value => Interlocked.Add(ref tilesCount, value));
+                }).ConfigureAwait(false);
+            }
+
+            return tilesCount;
+        }
+
+        public async ValueTask GenerateTilesAsync2(DirectoryInfo outputDirectoryInfo, int minZ, int maxZ,
+                                                   bool tmsCompatible, string tileExtension,
+                                                   IProgress<double> progress,
+                                                   int threadsCount)
+        {
+            //TODO: profile argument (geodetic/mercator)
+
+            Stopwatch sw1 = Stopwatch.StartNew();
+
+            #region Parameters checking
+
+            if (progress == null) progress = new Progress<double>();
+
+            if (threadsCount <= 0)
+                throw new ImageException(string.Format(Strings.LesserOrEqual, nameof(threadsCount), 0));
+
+            #endregion
+
+            await SetGenerateTilesProperties(outputDirectoryInfo, minZ, maxZ, tmsCompatible, tileExtension)
+               .ConfigureAwait(false);
+
+            //Crop tiles for each zoom.
+            await RunTiling(threadsCount, progress);
+
+            sw1.Stop();
+            // ReSharper disable once LocalizableElement
+            Console.WriteLine($"Elapsed time:{sw1.ElapsedMilliseconds}");
+        }
+
+        private async ValueTask RunTiling(int threadsCount, IProgress<double> progress)
+        {
+            using SemaphoreSlim semaphoreSlim = new SemaphoreSlim(threadsCount);
+
+            List<Task> tasks = new List<Task>();
+
+            int tilesCount = await GetTilesCount(threadsCount).ConfigureAwait(false);
+            double counter = 0.0;
+
+            if (tilesCount <= 0) return;
+
+            //For each zoom.
+            for (int zoom = MinZ; zoom <= MaxZ; zoom++)
+            {
+                //For each tile on given zoom calculate positions/sizes and save as file.
+                for (int tileY = TilesMinMax[zoom][1]; tileY <= TilesMinMax[zoom][3]; tileY++)
+                {
+                    for (int tileX = TilesMinMax[zoom][0]; tileX <= TilesMinMax[zoom][2]; tileX++)
+                    {
+                        await semaphoreSlim.WaitAsync().ConfigureAwait(false);
+
+                        int x = tileX;
+                        int y = tileY;
+                        int currentZoom = zoom;
+
+                        tasks.Add(Task.Run(() =>
+                        {
+                            try { WriteTile(x, y, currentZoom); }
+                            finally
+                            {
+                                semaphoreSlim.Release();
+
+                                counter++;
+                                double percentage = counter / tilesCount * 100.0;
+                                progress.Report(percentage);
+                            }
+                        }));
+                    }
+                }
+            }
+
+            //Wait for all tasks for complete.
+            await Task.WhenAll(tasks).ConfigureAwait(false);
+
+            //Dispose tasks.
+            foreach (Task task in tasks) task.Dispose();
+        }
 
         #endregion
     }
