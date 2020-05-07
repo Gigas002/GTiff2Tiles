@@ -3,6 +3,7 @@ using System.IO;
 using System.Threading.Tasks;
 using GTiff2Tiles.Core.Constants;
 using GTiff2Tiles.Core.Constants.Image;
+using GTiff2Tiles.Core.Enums.Image;
 using GTiff2Tiles.Core.Helpers;
 using NUnit.Framework;
 
@@ -54,13 +55,15 @@ namespace GTiff2Tiles.Tests.Tests.Image
                 }
 
                 //Create Image object and crop tiles.
-                await using Core.Image.Raster image = new Core.Image.Raster(inputFileInfo);
                 const int minZ = Enums.Zooms.MinZ;
                 const int maxZ = Enums.Zooms.MaxZ;
                 const int threadsCount = Enums.Multithreading.ThreadsCount;
                 const string tileExtension = Extensions.Png;
-                await image.GenerateTilesAsync(outputDirectoryInfo, minZ, maxZ, tmsCompatible, tileExtension,
-                                               progress, threadsCount);
+
+                //TODO: tileExtension
+                await Core.Image.Img.GenerateTilesAsync(inputFileInfo, outputDirectoryInfo, minZ, maxZ, TileType.Raster,
+                                                        tmsCompatible, TileExtension.Webp, progress, threadsCount)
+                          .ConfigureAwait(false);
             }
             catch (Exception exception) { Assert.Fail(exception.Message); }
 
@@ -106,13 +109,15 @@ namespace GTiff2Tiles.Tests.Tests.Image
                 }
 
                 //Create Image object and crop tiles.
-                await using Core.Image.Raster image = new Core.Image.Raster(inputFileInfo);
                 const int minZ = Enums.Zooms.MinZ;
                 const int maxZ = Enums.Zooms.MaxZ;
                 const int threadsCount = Enums.Multithreading.ThreadsCount;
                 const string tileExtension = Extensions.Png;
-                await image.GenerateTilesAsync(outputDirectoryInfo, minZ, maxZ, tmsCompatible, tileExtension,
-                                               progress, threadsCount);
+
+                //TODO: tileExtension
+                await Core.Image.Img.GenerateTilesAsync(inputFileInfo, outputDirectoryInfo, minZ, maxZ, TileType.Raster,
+                                                        tmsCompatible, TileExtension.Webp, progress, threadsCount)
+                          .ConfigureAwait(false);
             }
             catch (Exception exception) { Assert.Fail(exception.Message); }
 

@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
 using CommandLine;
+using GTiff2Tiles.Core.Enums.Image;
 using GTiff2Tiles.Core.Image;
 
 // ReSharper disable LocalizableElement
@@ -139,14 +140,12 @@ namespace GTiff2Tiles.Benchmarks
 
             string gtiff2TilesOutputDirectoryPath = Path.Combine(OutputDirectoryInfo.FullName, "gtiff2tiles");
             string gtiff2TilesTempDirectoryPath = Path.Combine(TempDirectoryInfo.FullName, "gtiff2tiles");
-            bool tmsCompatible = true;
             Directory.CreateDirectory(gtiff2TilesOutputDirectoryPath);
             Directory.CreateDirectory(gtiff2TilesTempDirectoryPath);
-            await using Raster raster = new Raster(InputFileInfo);
 
-            await raster.GenerateTilesAsync(new DirectoryInfo(gtiff2TilesOutputDirectoryPath), MinZ, MaxZ,
-                                            tmsCompatible, Core.Constants.Extensions.Png, null, ThreadsCount)
-                        .ConfigureAwait(false);
+            await Img.GenerateTilesAsync(InputFileInfo, new DirectoryInfo(gtiff2TilesOutputDirectoryPath), MinZ, MaxZ,
+                                         TileType.Raster, threadsCount: ThreadsCount).ConfigureAwait(false);
+
             stopwatch.Stop();
             Console.WriteLine("GTiff2Tiles process ended.");
             Console.WriteLine("Time passed:");

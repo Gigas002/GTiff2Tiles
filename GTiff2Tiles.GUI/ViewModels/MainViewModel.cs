@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Caliburn.Micro;
 using GTiff2Tiles.Core.Constants;
 using GTiff2Tiles.Core.Constants.Image;
+using GTiff2Tiles.Core.Enums.Image;
 using GTiff2Tiles.Core.Helpers;
 using GTiff2Tiles.GUI.Enums;
 using GTiff2Tiles.GUI.Localization;
@@ -422,12 +423,11 @@ namespace GTiff2Tiles.GUI.ViewModels
                     inputFileInfo = tempFileInfo;
                 }
 
-                //Create image object.
-                await using Core.Image.Raster inputImage = new Core.Image.Raster(inputFileInfo);
-
-                await inputImage
-                     .GenerateTilesAsync(outputDirectoryInfo, MinZ, MaxZ, TmsCompatible, TileExtension, progress,
-                                         ThreadsCount).ConfigureAwait(true);
+                //Run tiling.
+                //TODO: tileType and tileExtension params
+                await Core.Image.Img.GenerateTilesAsync(inputFileInfo, outputDirectoryInfo, MinZ, MaxZ, TileType.Raster,
+                                                        TmsCompatible, Core.Enums.Image.TileExtension.Webp, progress,
+                                                        ThreadsCount).ConfigureAwait(true);
             }
             catch (Exception exception)
             {

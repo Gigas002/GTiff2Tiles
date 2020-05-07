@@ -6,6 +6,7 @@ using CommandLine;
 using GTiff2Tiles.Console.Localization;
 using GTiff2Tiles.Core.Constants;
 using GTiff2Tiles.Core.Constants.Image;
+using GTiff2Tiles.Core.Enums.Image;
 using GTiff2Tiles.Core.Helpers;
 
 namespace GTiff2Tiles.Console
@@ -110,10 +111,11 @@ namespace GTiff2Tiles.Console
                     InputFileInfo = tempFileInfo;
                 }
 
-                //Create image object.
-                await using Core.Image.Raster inputImage = new Core.Image.Raster(InputFileInfo);
-                await inputImage.GenerateTilesAsync(OutputDirectoryInfo, MinZ, MaxZ, TmsCompatible, TileExtension,
-                                                    consoleProgress, ThreadsCount).ConfigureAwait(false);
+                //Run tiling.
+                //TODO: tileType and tileExtension params
+                await Core.Image.Img.GenerateTilesAsync(InputFileInfo, OutputDirectoryInfo, MinZ, MaxZ, TileType.Raster,
+                                                        TmsCompatible, Core.Enums.Image.TileExtension.Webp,
+                                                        consoleProgress, ThreadsCount).ConfigureAwait(false);
             }
             catch (Exception exception)
             {
