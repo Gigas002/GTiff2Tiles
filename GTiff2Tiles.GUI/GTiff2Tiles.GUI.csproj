@@ -4,8 +4,8 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWPF>true</UseWPF>
-    <AssemblyVersion>2.0.0.303</AssemblyVersion>
-    <FileVersion>2.0.0.303</FileVersion>
+    <AssemblyVersion>2.0.0.304</AssemblyVersion>
+    <FileVersion>2.0.0.304</FileVersion>
     <StartupObject>GTiff2Tiles.GUI.App</StartupObject>
     <ApplicationIcon>Resources\Icon.ico</ApplicationIcon>
     <Platforms>AnyCPU;x64</Platforms>
@@ -22,9 +22,9 @@
 
   <ItemGroup>
     <PackageReference Include="Prism.DryIoc" Version="8.0.0.1740-pre" />
-    <PackageReference Include="MaterialDesignColors" Version="1.2.4" />
+    <PackageReference Include="MaterialDesignColors" Version="1.2.5" />
     <PackageReference Include="MaterialDesignExtensions" Version="3.1.0" />
-    <PackageReference Include="MaterialDesignThemes" Version="3.1.1" />
+    <PackageReference Include="MaterialDesignThemes" Version="3.1.2" />
   </ItemGroup>
 
   <ItemGroup>

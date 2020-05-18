@@ -135,8 +135,8 @@ If you’re using Windows 7 SP1, you can experience weird error with **GDAL** pa
 
 - GTiff2Tiles.Core;
 - [Prism.DryIoc](https://www.nuget.org/packages/Prism.DryIoc) – 8.0.0.1740-pre;
-- [MaterialDesignColors](https://www.nuget.org/packages/MaterialDesignColors) – 1.2.4;
-- [MaterialDesignThemes](https://www.nuget.org/packages/MaterialDesignThemes) – 3.1.1;
+- [MaterialDesignColors](https://www.nuget.org/packages/MaterialDesignColors) – 1.2.5;
+- [MaterialDesignThemes](https://www.nuget.org/packages/MaterialDesignThemes) – 3.1.2;
 - [MaterialDesignExtensions](https://www.nuget.org/packages/MaterialDesignExtensions) – 3.1.0;
 
 ### Localization
