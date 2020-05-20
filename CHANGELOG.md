@@ -8,7 +8,7 @@ Changes since 1.4.1:
 
 ### Overall
 
-- Update **.NET Core** version to **3.1.201**;
+- Update **.NET Core** version to **3.1.300**;
 - Drop support of **.NET Framework and .NET Standard**;
 - Fixed **Linux** build and apps;
 - Create **Docker image** for **GTiff2Tiles.Console**;

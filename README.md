@@ -47,7 +47,7 @@ Table of contents generated with [markdown-toc](http://ecotrust-canada.github.io
 
 ## Current version
 
-**Starting from 1.4.1 solution is rewritten on .NET Core/.NET Standard 2.0 instead of .NET Framework!**
+**Release 1.4.1 is the last release to support .NET Standard 2.0. Starting from version 2.0.0 solution targets .NET Core only!**
 
 Current stable can be found here: [![Release](https://img.shields.io/github/release/Gigas002/GTiff2Tiles.svg)](https://github.com/Gigas002/GTiff2Tiles/releases/latest), or on NuGet (library only): [![NuGet](https://img.shields.io/nuget/v/GTiff2Tiles.svg)](https://www.nuget.org/packages/GTiff2Tiles/).
 
@@ -57,7 +57,7 @@ Previous versions can be found on [releases](https://github.com/Gigas002/GTiff2T
 
 ## Build
 
-Solution can be build in **VS2019 (16.5.4+)**. You can also build projects in **VSCode (1.44.2+)** with **omnisharp-vscode (1.21.18+)** extensions. Projects targets **.NET Core 3.1**, so you’ll need **.NET Core 3.1.201 SDK**.
+Solution can be build in **VS2019 (16.6.0+)**. You can also build projects in **VSCode (1.45.1+)** with **omnisharp-vscode (1.21.18+)** extensions. Projects targets **.NET Core 3.1**, so you’ll need **.NET Core 3.1.300 SDK**.
 
 Some of **Release** binaries are made by `Publish.ps1` script. Take a look at it in the repo. Note, that running this script requires installed **PowerShell** or **[PowerShell Core](https://github.com/PowerShell/PowerShell)** for **Linux**/**OSX** systems.
 
