@@ -25,12 +25,6 @@ namespace GTiff2Tiles.Console
         public string OutputDirectoryPath { get; set; }
 
         /// <summary>
-        /// Full path to temp directory.
-        /// </summary>
-        [Option('t', "temp", Required = true, HelpText = "Full path to temp directory.")]
-        public string TempDirectoryPath { get; set; }
-
-        /// <summary>
         /// Minimum cropped zoom.
         /// </summary>
         [Option("minz", Required = true, HelpText = "Minimum cropped zoom.")]
@@ -63,6 +57,12 @@ namespace GTiff2Tiles.Console
         /// </summary>
         [Option("extension", Required = false, HelpText = "Extension of ready tiles. Default is .png. Supported extensions: .webp, .jpg, .png.")]
         public string TileExtension { get; set; } = Extensions.Png;
+
+        /// <summary>
+        /// Full path to temp directory.
+        /// </summary>
+        [Option('t', "temp", Required = false, HelpText = "Full path to temp directory.")]
+        public string TempDirectoryPath { get; set; } = string.Empty;
 
         #endregion
     }

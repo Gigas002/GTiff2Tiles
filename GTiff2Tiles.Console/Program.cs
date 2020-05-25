@@ -3,6 +3,7 @@
 using System;
 using System.Diagnostics;
 using System.IO;
+using System.Reflection;
 using System.Threading.Tasks;
 using CommandLine;
 using GTiff2Tiles.Console.Localization;
@@ -161,14 +162,6 @@ namespace GTiff2Tiles.Console
                 return;
             }
 
-            if (string.IsNullOrWhiteSpace(options.TempDirectoryPath))
-            {
-                Helpers.ErrorHelper.PrintError(string.Format(Strings.OptionIsEmpty, "-t/--temp"));
-                IsParsingErrors = true;
-
-                return;
-            }
-
             //Check zooms.
             if (options.MinZ < 0)
             {
@@ -214,7 +207,9 @@ namespace GTiff2Tiles.Console
             //Set properties values.
             InputFileInfo = new FileInfo(options.InputFilePath);
             OutputDirectoryInfo = new DirectoryInfo(options.OutputDirectoryPath);
-            TempDirectoryInfo = new DirectoryInfo(options.TempDirectoryPath);
+            TempDirectoryInfo = string.IsNullOrWhiteSpace(options.TempDirectoryPath)
+                                    ? new FileInfo(Assembly.GetExecutingAssembly().Location).Directory
+                                    : new DirectoryInfo(options.TempDirectoryPath);
             MinZ = options.MinZ;
             MaxZ = options.MaxZ;
             ThreadsCount = options.ThreadsCount;
