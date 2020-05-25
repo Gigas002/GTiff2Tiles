@@ -41,8 +41,8 @@ Changes since 1.4.1:
 
 ### GUI
 
-- Update **MaterialDesignColors** package to **1.2.5**;
-- Update **MaterialDesignThemes** package to **3.1.2**;
+- Update **MaterialDesignColors** package to **1.2.6**;
+- Update **MaterialDesignThemes** package to **3.1.3**;
 - Update **MaterialDesignExtensions** package to **3.1.0**;
 - Moved from **Caliburn.Micro** to **Prism.DryIoc** ver. **8.0.0.1740-pre**;
 - Added **Tile extension** option to choose output tiles’s extension;
