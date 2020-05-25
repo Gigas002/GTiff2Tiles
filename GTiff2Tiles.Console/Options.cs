@@ -36,33 +36,33 @@ namespace GTiff2Tiles.Console
         [Option("maxz", Required = true, HelpText = "Maximum cropped zoom.")]
         public int MaxZ { get; set; }
 
-        /// <summary>
-        /// Do you want to create tms-compatible tiles?
-        /// </summary>
-        [Option("tms", Required = true, HelpText = "Do you want to create tms-compatible tiles?")]
-        public string TmsCompatible { get; set; }
-
         #endregion
 
         #region Optional
 
         /// <summary>
-        /// Threads count.
+        /// Threads count. 5 by default.
         /// </summary>
         [Option("threads", Required = false, HelpText = "Threads count.")]
         public int ThreadsCount { get; set; } = 5;
 
         /// <summary>
-        /// Extension of ready tiles.
+        /// Extension of ready tiles. Png by default.
         /// </summary>
         [Option("extension", Required = false, HelpText = "Extension of ready tiles. Default is .png. Supported extensions: .webp, .jpg, .png.")]
         public string TileExtension { get; set; } = Extensions.Png;
 
         /// <summary>
-        /// Full path to temp directory.
+        /// Full path to temp directory. Empty string by default.
         /// </summary>
         [Option('t', "temp", Required = false, HelpText = "Full path to temp directory.")]
         public string TempDirectoryPath { get; set; } = string.Empty;
+
+        /// <summary>
+        /// Do you want to create tms-compatible tiles? True by default.
+        /// </summary>
+        [Option("tms", Required = false, HelpText = "Do you want to create tms-compatible tiles?")]
+        public string TmsCompatible { get; set; } = "true";
 
         #endregion
     }

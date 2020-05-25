@@ -17,7 +17,7 @@ If you’re using Windows 7 SP1, you can experience weird error with **GDAL** pa
 |  -t   |   --temp    |         Full path to temp directory         |    No     |
 |       |   --minz    |            Minimum cropped zoom             |    Yes    |
 |       |   --maxz    |            Maximum cropped zoom             |    Yes    |
-|       |    --tms    | Do you want to create tms-compatible tiles? |    Yes    |
+|       |    --tms    | Do you want to create tms-compatible tiles? |    No     |
 |       | --extension |            Ready tiles extension            |    No     |
 |       |  --threads  |                Threads count                |    No     |
 |       |  --version  |               Current version               |           |
@@ -39,7 +39,7 @@ Also take a look at `Start.ps1` **PowerShell** script for automating the work. N
 
 **--maxz** is `int` parameter, representing maximum zoom, which you want to crop.
 
-**--tms** is `string`, which shows if you want to create tms-compatible or non-tms-compatible tiles on output. Can have values `true` or `false`.
+**--tms** is `string`, which shows if you want to create tms-compatible or non-tms-compatible tiles on output. Can have values `true` or `false`. By default is `true`.
 
 **--extension** is a `string`, representing ready tiles extension. By default is set to `.png`. Currently supported extensions are: `.webp`, `.jpg`, `.png`.
 

@@ -140,7 +140,7 @@ namespace GTiff2Tiles.Benchmarks
             Directory.CreateDirectory(gtiff2TilesTempDirectoryPath);
 
             await Img.GenerateTilesAsync(InputFileInfo, new DirectoryInfo(gtiff2TilesOutputDirectoryPath), MinZ, MaxZ,
-                                         TileType.Raster, threadsCount: ThreadsCount).ConfigureAwait(false);
+                                         TileType.Raster, true, TileExtension.Png, null, ThreadsCount).ConfigureAwait(false);
 
             stopwatch.Stop();
             Console.WriteLine("GTiff2Tiles process ended.");
