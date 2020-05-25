@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
+using System.Reflection;
 using System.Threading.Tasks;
 using CommandLine;
 using GTiff2Tiles.Core.Enums.Image;
@@ -85,13 +86,6 @@ namespace GTiff2Tiles.Benchmarks
                 return;
             }
 
-            if (string.IsNullOrWhiteSpace(options.TempDirectoryPath))
-            {
-                IsParsingErrors = true;
-
-                return;
-            }
-
             //Check zooms.
             if (options.MinZ < 0)
             {
@@ -125,7 +119,9 @@ namespace GTiff2Tiles.Benchmarks
             //Set properties values.
             InputFileInfo = new FileInfo(options.InputFilePath);
             OutputDirectoryInfo = new DirectoryInfo(options.OutputDirectoryPath);
-            TempDirectoryInfo = new DirectoryInfo(options.TempDirectoryPath);
+            TempDirectoryInfo = string.IsNullOrWhiteSpace(options.TempDirectoryPath)
+                                    ? new FileInfo(Assembly.GetExecutingAssembly().Location).Directory
+                                    : new DirectoryInfo(options.TempDirectoryPath);
             MinZ = options.MinZ;
             MaxZ = options.MaxZ;
             ThreadsCount = options.ThreadsCount;

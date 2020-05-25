@@ -33,11 +33,13 @@ Changes since 1.4.1:
 ### Benchmarks
 
 - Update **CommandLineParser** package to **2.8.0**;
+- Made option `-t/--tmp` optional;
 
 ### Console
 
 - Update **CommandLineParser** package to **2.8.0**;
 - Added `–-extension` option to choose output tiles’s extension;
+- Made option `-t/--tmp` optional;
 
 ### GUI
 

@@ -14,7 +14,7 @@ If you’re using Windows 7 SP1, you can experience weird error with **GDAL** pa
 | :---: | :---------: | :-----------------------------------------: | :-------: |
 |  -i   |   --input   |           Full path to input file           |    Yes    |
 |  -o   |  --output   |        Full path to output directory        |    Yes    |
-|  -t   |   --temp    |         Full path to temp directory         |    Yes    |
+|  -t   |   --temp    |         Full path to temp directory         |    No     |
 |       |   --minz    |            Minimum cropped zoom             |    Yes    |
 |       |   --maxz    |            Maximum cropped zoom             |    Yes    |
 |       |    --tms    | Do you want to create tms-compatible tiles? |    Yes    |
@@ -33,7 +33,7 @@ Also take a look at `Start.ps1` **PowerShell** script for automating the work. N
 
 **-o/--output** is `string`, representing full path to directory, where tiles in will be created. Please, specify the path in double quotes (`“like this”`) if it contains spaces. **Directory should be empty.**
 
-**-t/--temp** is `string`, representing full path to temporary directory. Please, specify the path in double quotes (`“like this”`) if it contains spaces. Inside will be created directory, which name is a **timestamp** in format `yyyyMMddHHmmssfff`.
+**-t/--temp** is `string`, representing full path to temporary directory. Please, specify the path in double quotes (`“like this”`) if it contains spaces. Inside will be created directory, which name is a **timestamp** in format `yyyyMMddHHmmssfff`. By default – the same directory, where application is located.
 
 **--minz** is `int` parameter, representing minimum zoom, which you want to crop.
 
