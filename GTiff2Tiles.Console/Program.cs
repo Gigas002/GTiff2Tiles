@@ -60,7 +60,7 @@ namespace GTiff2Tiles.Console
         /// <summary>
         /// Ready tiles extension.
         /// </summary>
-        private static string TileExtension { get; set; } = Extensions.Png;
+        private static TileExtension TileExtension { get; set; } = TileExtension.Png;
 
         #endregion
 
@@ -114,9 +114,9 @@ namespace GTiff2Tiles.Console
                 }
 
                 //Run tiling.
-                //TODO: tileType and tileExtension params
+                //TODO: tileType
                 await Core.Image.Img.GenerateTilesAsync(InputFileInfo, OutputDirectoryInfo, MinZ, MaxZ, TileType.Raster,
-                                                        TmsCompatible, Core.Enums.Image.TileExtension.Png,
+                                                        TmsCompatible, TileExtension,
                                                         consoleProgress, ThreadsCount).ConfigureAwait(false);
             }
             catch (Exception exception)
@@ -203,23 +203,13 @@ namespace GTiff2Tiles.Console
                 return;
             }
 
-            //Check extension string.
-            if (string.IsNullOrWhiteSpace(options.TileExtension))
+            //Set tile extension. Png by default or unknown input
+            TileExtension = options.TileExtension switch
             {
-                Helpers.ErrorHelper.PrintError(string.Format(Strings.OptionIsEmpty, "--extension"));
-                IsParsingErrors = true;
-
-                return;
-            }
-
-            if (options.TileExtension != Extensions.Png && options.TileExtension != Extensions.Jpg
-                                                        && options.TileExtension != Extensions.Webp)
-            {
-                Helpers.ErrorHelper.PrintError(string.Format(Strings.ExtensionNotSupported));
-                IsParsingErrors = true;
-
-                return;
-            }
+                Extensions.Jpg => TileExtension.Jpg,
+                Extensions.Webp => TileExtension.Webp,
+                _ => TileExtension.Png
+            };
 
             //Set properties values.
             InputFileInfo = new FileInfo(options.InputFilePath);
@@ -238,8 +228,6 @@ namespace GTiff2Tiles.Console
             }
 
             TmsCompatible = tmsComptaible;
-
-            TileExtension = options.TileExtension;
         }
 
         #endregion

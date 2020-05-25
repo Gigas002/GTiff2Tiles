@@ -221,6 +221,11 @@ namespace GTiff2Tiles.GUI.ViewModels
         }
 
         /// <summary>
+        /// Enum for tile extension.
+        /// </summary>
+        private TileExtension RealTileExtension { get; set; } = Core.Enums.Image.TileExtension.Png;
+
+        /// <summary>
         /// Collection of supported tile extensions.
         /// </summary>
         // ReSharper disable once CollectionNeverQueried.Global
@@ -418,9 +423,9 @@ namespace GTiff2Tiles.GUI.ViewModels
                 }
 
                 //Run tiling.
-                //TODO: tileType and tileExtension params
+                //TODO: tileType
                 await Core.Image.Img.GenerateTilesAsync(inputFileInfo, outputDirectoryInfo, MinZ, MaxZ, TileType.Raster,
-                                                        TmsCompatible, Core.Enums.Image.TileExtension.Webp, progress,
+                                                        TmsCompatible, RealTileExtension, progress,
                                                         ThreadsCount).ConfigureAwait(true);
             }
             catch (Exception exception)
@@ -487,6 +492,14 @@ namespace GTiff2Tiles.GUI.ViewModels
 
             if (string.IsNullOrWhiteSpace(TileExtension))
                 return await Helpers.ErrorHelper.ShowErrorAsync(Strings.SelectExtension).ConfigureAwait(true);
+
+            //Set tile extension. Png by default or unknown input
+            RealTileExtension = TileExtension switch
+            {
+                Extensions.Jpg => Core.Enums.Image.TileExtension.Jpg,
+                Extensions.Webp => Core.Enums.Image.TileExtension.Webp,
+                _ => Core.Enums.Image.TileExtension.Png
+            };
 
             //Disable controls.
             IsEnabled = false;

@@ -16,11 +16,12 @@ namespace GTiff2Tiles.Tests.Tests
         public void Setup() { }
 
         [Test]
-        public void ImageGdalException()
+        public void GdalException()
         {
             try
             {
-                GdalException gdalException = new GdalException(string.Empty);
+                GdalException gdalException = new GdalException();
+                GdalException gdalException1 = new GdalException(string.Empty);
                 GdalException gdalException2 = new GdalException(string.Empty, null);
             }
             catch (Exception exception) { Assert.Fail(exception.Message); }
@@ -29,12 +30,13 @@ namespace GTiff2Tiles.Tests.Tests
         }
 
         [Test]
-        public void ImageImageException()
+        public void RasterException()
         {
             try
             {
-                RasterException imageException = new RasterException(string.Empty);
-                RasterException imageException2 = new RasterException(string.Empty, null);
+                RasterException rasterException = new RasterException();
+                RasterException rasterException1 = new RasterException(string.Empty);
+                RasterException rasterException2 = new RasterException(string.Empty, null);
             }
             catch (Exception exception) { Assert.Fail(exception.Message); }
 
@@ -42,11 +44,12 @@ namespace GTiff2Tiles.Tests.Tests
         }
 
         [Test]
-        public void TileTileException()
+        public void TileException()
         {
             try
             {
-                TileException tileException = new TileException(string.Empty);
+                TileException tileException = new TileException();
+                TileException tileException1 = new TileException(string.Empty);
                 TileException tileException2 = new TileException(string.Empty, null);
             }
             catch (Exception exception) { Assert.Fail(exception.Message); }

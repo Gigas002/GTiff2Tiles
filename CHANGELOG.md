@@ -21,6 +21,7 @@ Changes since 1.4.1:
 - Removed **Join** algorithm from all apps and lib (that includes `GenerateTilesByJoiningAsync` method, localization strings about algorithm in Console and GUI projects and `Enums.Algorithms` class);
 - Renamed `GenerateTilesByCroppingAsync` to `GenerateTilesAsync`;
 - `GenerateTilesAsync` now takes lesser params (*WIP*);
+- Added `Enums.Image.TileExtension` enum to choose the extension of output tiles (docs WIP);
 
 **Dependencies:**
 
@@ -36,6 +37,7 @@ Changes since 1.4.1:
 ### Console
 
 - Update **CommandLineParser** package to **2.8.0**;
+- Added `–-extension` option to choose output tiles’s extension;
 
 ### GUI
 
@@ -43,6 +45,7 @@ Changes since 1.4.1:
 - Update **MaterialDesignThemes** package to **3.1.2**;
 - Update **MaterialDesignExtensions** package to **3.1.0**;
 - Moved from **Caliburn.Micro** to **Prism.DryIoc** ver. **8.0.0.1740-pre**;
+- Added **Tile extension** option to choose output tiles’s extension;
 
 ### Tests
 

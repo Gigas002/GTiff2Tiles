@@ -13,7 +13,7 @@ using NUnit.Framework;
 
 namespace GTiff2Tiles.Tests.Tests.Image
 {
-    public sealed class ImageTests
+    public sealed class RasterTests
     {
         [SetUp]
         public void Setup() { }
@@ -60,11 +60,10 @@ namespace GTiff2Tiles.Tests.Tests.Image
                 const int minZ = Zooms.MinZ;
                 const int maxZ = Zooms.MaxZ;
                 const int threadsCount = Multithreading.ThreadsCount;
-                const string tileExtension = Extensions.Png;
+                const TileExtension tileExtension = TileExtension.Png;
 
-                //TODO: tileExtension
                 await Core.Image.Img.GenerateTilesAsync(inputFileInfo, outputDirectoryInfo, minZ, maxZ, TileType.Raster,
-                                                        tmsCompatible, TileExtension.Webp, progress, threadsCount)
+                                                        tmsCompatible, tileExtension, progress, threadsCount)
                           .ConfigureAwait(false);
             }
             catch (Exception exception) { Assert.Fail(exception.Message); }
@@ -114,11 +113,10 @@ namespace GTiff2Tiles.Tests.Tests.Image
                 const int minZ = Zooms.MinZ;
                 const int maxZ = Zooms.MaxZ;
                 const int threadsCount = Multithreading.ThreadsCount;
-                const string tileExtension = Extensions.Png;
+                const TileExtension tileExtension = TileExtension.Png;
 
-                //TODO: tileExtension
                 await Core.Image.Img.GenerateTilesAsync(inputFileInfo, outputDirectoryInfo, minZ, maxZ, TileType.Raster,
-                                                        tmsCompatible, TileExtension.Webp, progress, threadsCount)
+                                                        tmsCompatible, tileExtension, progress, threadsCount)
                           .ConfigureAwait(false);
             }
             catch (Exception exception) { Assert.Fail(exception.Message); }
