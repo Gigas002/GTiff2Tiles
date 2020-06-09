@@ -26,6 +26,10 @@ namespace GTiff2Tiles.Core.Exceptions.Tile
         /// <param name="innerException">Inner exception.</param>
         public TileException(string errorMessage, Exception innerException) : base(errorMessage, innerException) { }
 
+        /// <inheritdoc />
+        /// <summary>
+        /// Creates new <see cref="TileException"/> object without error message.
+        /// </summary>
         public TileException() { }
 
         #endregion

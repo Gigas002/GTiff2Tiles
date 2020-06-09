@@ -26,6 +26,10 @@ namespace GTiff2Tiles.Core.Exceptions.Gdal
         /// <param name="innerException">Inner exception.</param>
         public GdalException(string errorMessage, Exception innerException) : base(errorMessage, innerException) { }
 
+        /// <inheritdoc />
+        /// <summary>
+        /// Creates new <see cref="GdalException"/> object without error message.
+        /// </summary>
         public GdalException() { }
 
         #endregion

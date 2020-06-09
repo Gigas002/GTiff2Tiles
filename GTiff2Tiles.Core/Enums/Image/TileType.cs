@@ -5,6 +5,9 @@
     /// </summary>
     public enum TileType
     {
+        /// <summary>
+        /// Raster images
+        /// </summary>
         Raster
     }
 }

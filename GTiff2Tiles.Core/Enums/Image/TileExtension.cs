@@ -5,6 +5,19 @@
     /// </summary>
     public enum TileExtension
     {
-        Png, Jpg, Webp
+        /// <summary>
+        /// .png
+        /// </summary>
+        Png,
+
+        /// <summary>
+        /// .jpg
+        /// </summary>
+        Jpg,
+
+        /// <summary>
+        /// .webp
+        /// </summary>
+        Webp
     }
 }

@@ -26,6 +26,10 @@ namespace GTiff2Tiles.Core.Exceptions.Image
         /// <param name="innerException">Inner exception.</param>
         public RasterException(string errorMessage, Exception innerException) : base(errorMessage, innerException) { }
 
+        /// <inheritdoc />
+        /// <summary>
+        /// Creates new <see cref="RasterException"/> object without error message.
+        /// </summary>
         public RasterException() { }
 
         #endregion

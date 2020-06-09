@@ -15,6 +15,9 @@ using NetVips;
 
 namespace GTiff2Tiles.Core.Image
 {
+    /// <summary>
+    /// Class for creating raster tiles.
+    /// </summary>
     public sealed class Raster : IImage
     {
         #region Properties
