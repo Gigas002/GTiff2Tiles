@@ -17,8 +17,6 @@ namespace GTiff2Tiles.Core.Image
 {
     public sealed class Raster : IImage
     {
-        #region Release
-
         #region Properties
 
         #region Private
@@ -179,9 +177,9 @@ namespace GTiff2Tiles.Core.Image
         /// <param name="isCentre"></param>
         /// <returns></returns>
         private static NetVips.Image Resize(NetVips.Image tileImage, double xScale, double yScale,
-                                    string kernel = NetVips.Enums.Kernel.Lanczos3,
-                                    string interpolation = Interpolations.Bicubic,
-                                    bool isCentre = false)
+                                            string kernel = NetVips.Enums.Kernel.Lanczos3,
+                                            string interpolation = Interpolations.Bicubic,
+                                            bool isCentre = false)
         {
             // We could just use vips_resize if we use centre sampling convention
             if (isCentre) return tileImage.Resize(xScale, kernel, yScale);
@@ -378,64 +376,6 @@ namespace GTiff2Tiles.Core.Image
         }
 
         /// <summary>
-        /// Crops passed zoom to tiles.
-        /// </summary>
-        /// <param name="zoom">Current zoom to crop.</param>
-        /// <param name="tmsCompatible">Are tiles tms compatible?</param>
-        /// <param name="threadsCount">Threads count.</param>
-        /// <returns></returns>
-        private async ValueTask WriteZoomAsync(int zoom, bool tmsCompatible, int threadsCount)
-        {
-            #region Parameters checking
-
-            if (zoom < 0) throw new RasterException(string.Format(Strings.LesserThan, nameof(zoom), 0));
-            if (threadsCount <= 0)
-                throw new RasterException(string.Format(Strings.LesserOrEqual, nameof(threadsCount), 0));
-
-            #endregion
-
-            using SemaphoreSlim semaphoreSlim = new SemaphoreSlim(threadsCount);
-
-            List<Task> tasks = new List<Task>();
-
-            //Get min/max tiles numbers
-            (int tileMinX, int tileMinY, int tileMaxX, int tileMaxY) = GetTileNumbers(zoom, tmsCompatible);
-
-            for (int tileY = tileMinY; tileY <= tileMaxY; tileY++)
-            {
-                for (int tileX = tileMinX; tileX <= tileMaxX; tileX++)
-                {
-                    await semaphoreSlim.WaitAsync().ConfigureAwait(false);
-
-                    int x = tileX;
-                    int y = tileY;
-
-                    tasks.Add(Task.Run(() =>
-                    {
-                        try { WriteTile(x, y, zoom); }
-                        // ReSharper disable once AccessToDisposedClosure
-                        finally { semaphoreSlim.Release(); }
-                    }));
-                }
-            }
-
-            await Task.WhenAll(tasks).ConfigureAwait(false);
-
-            //Dispose tasks.
-            foreach (Task task in tasks) task.Dispose();
-
-            //Alternative way, a bit less effective.
-            //ParallelOptions parallelOptions = new ParallelOptions { MaxDegreeOfParallelism = threadsCount };
-
-            //for (int tileY = tileMinY; tileY <= tileMaxY; tileY++)
-            //{
-            //    int y = tileY;
-            //    await Task.Run(() => Parallel.For(tileMinX, tileMaxX + 1, parallelOptions,
-            //                                      x => WriteTile(x, y, zoom))).ConfigureAwait(false);
-            //}
-        }
-
-        /// <summary>
         /// Sets properties, needed for cropping current <see cref="Raster"/>.
         /// </summary>
         /// <param name="outputDirectoryInfo">Output directory.</param>
@@ -460,48 +400,6 @@ namespace GTiff2Tiles.Core.Image
                 (outputDirectoryInfo, minZ, maxZ, tmsCompatible, tileExtension);
         }
 
-        #endregion
-
-        #region Public
-
-        /// <inheritdoc />
-        public async ValueTask GenerateTilesAsync(DirectoryInfo outputDirectoryInfo, int minZ, int maxZ,
-                                                  bool tmsCompatible,
-                                                  string tileExtension,
-                                                  IProgress<double> progress,
-                                                  int threadsCount)
-        {
-            //TODO: profile argument (geodetic/mercator)
-
-            #region Parameters checking
-
-            progress ??= new Progress<double>();
-
-            if (threadsCount <= 0)
-                throw new RasterException(string.Format(Strings.LesserOrEqual, nameof(threadsCount), 0));
-
-            #endregion
-
-            SetGenerateTilesProperties(outputDirectoryInfo, minZ, maxZ, tmsCompatible, tileExtension);
-
-            //Crop tiles for each zoom.
-            for (int zoom = MinZ; zoom <= MaxZ; zoom++)
-            {
-                await WriteZoomAsync(zoom, tmsCompatible, threadsCount).ConfigureAwait(false);
-
-                double percentage = (double)(zoom - MinZ + 1) / (MaxZ - MinZ + 1) * 100.0;
-                progress.Report(percentage);
-            }
-        }
-
-        #endregion
-
-        #endregion
-
-        #endregion
-
-        #region Experimental
-
         /// <summary>
         /// Gets count of tiles to crop. Needed for progress calculations.
         /// </summary>
@@ -511,10 +409,10 @@ namespace GTiff2Tiles.Core.Image
         private async ValueTask<int> GetTilesCount(bool tmsCompatible, int threadsCount)
         {
             int tilesCount = 0;
+            ParallelOptions parallelOptions = new ParallelOptions { MaxDegreeOfParallelism = threadsCount };
 
             for (int zoom = MinZ; zoom <= MaxZ; zoom++)
             {
-                ParallelOptions parallelOptions = new ParallelOptions { MaxDegreeOfParallelism = threadsCount };
                 int currentZoom = zoom;
                 await Task.Run(() =>
                 {
@@ -532,46 +430,6 @@ namespace GTiff2Tiles.Core.Image
             }
 
             return tilesCount;
-        }
-
-        /// <inheritdoc />
-        public async ValueTask GenerateTilesAsync(DirectoryInfo outputDirectoryInfo, int minZ, int maxZ,
-                                                  bool tmsCompatible, string tileExtension,
-                                                  IProgress<double> progress,
-                                                  int threadsCount,
-                                                  bool isExperimental)
-        {
-            if (!isExperimental)
-            {
-                await GenerateTilesAsync(outputDirectoryInfo, minZ, maxZ, tmsCompatible, tileExtension, progress, threadsCount);
-
-                return;
-            }
-
-            //TODO: profile argument (geodetic/mercator)
-
-            //TODO: Temprorary for performance testing purpose
-            Stopwatch stopwatch = Stopwatch.StartNew();
-
-            #region Parameters checking
-
-            progress ??= new Progress<double>();
-
-            if (threadsCount <= 0)
-                throw new RasterException(string.Format(Strings.LesserOrEqual, nameof(threadsCount), 0));
-
-            #endregion
-
-            SetGenerateTilesProperties(outputDirectoryInfo, minZ, maxZ, tmsCompatible, tileExtension);
-
-            const bool isPrintEstimatedTime = false;
-            //Crop all tiles.
-            // ReSharper disable once RedundantArgumentDefaultValue
-            await RunTiling(tmsCompatible, progress, threadsCount, isPrintEstimatedTime).ConfigureAwait(false);
-
-            stopwatch.Stop();
-            // ReSharper disable once LocalizableElement
-            Console.WriteLine($"Elapsed time:{stopwatch.ElapsedMilliseconds}");
         }
 
         /// <summary>
@@ -660,6 +518,37 @@ namespace GTiff2Tiles.Core.Image
                             + $"Hours:{timeSpan.Hours}, " + $"Minutes:{timeSpan.Minutes}, "
                             + $"Seconds:{timeSpan.Seconds}, " + $"Ms:{timeSpan.Milliseconds}.");
         }
+
+        #endregion
+
+        #region Public
+
+        /// <inheritdoc />
+        public async ValueTask GenerateTilesAsync(DirectoryInfo outputDirectoryInfo, int minZ, int maxZ,
+                                                  bool tmsCompatible, string tileExtension,
+                                                  IProgress<double> progress,
+                                                  int threadsCount)
+        {
+            //TODO: profile argument (geodetic/mercator)
+
+            #region Parameters checking
+
+            progress ??= new Progress<double>();
+
+            if (threadsCount <= 0)
+                throw new RasterException(string.Format(Strings.LesserOrEqual, nameof(threadsCount), 0));
+
+            #endregion
+
+            SetGenerateTilesProperties(outputDirectoryInfo, minZ, maxZ, tmsCompatible, tileExtension);
+
+            const bool isPrintEstimatedTime = false;
+            //Crop all tiles.
+            // ReSharper disable once RedundantArgumentDefaultValue
+            await RunTiling(tmsCompatible, progress, threadsCount, isPrintEstimatedTime).ConfigureAwait(false);
+        }
+
+        #endregion
 
         #endregion
     }
