@@ -75,11 +75,6 @@ In [Examples](https://github.com/Gigas002/GTiff2Tiles/tree/master/Examples/Input
 
 **GTiff2Tiles.Core** is a core library. [Here’s](https://github.com/Gigas002/GTiff2Tiles/wiki) the API documentation.
 
-Library uses 2 different algorithms to create tiles:
-
-- **Crop** – crops all the zooms from input file;
-- **Join** – crops the lowest zoom from input file and then joins the upper images from built tiles.
-
 ### Dependencies
 
 - [MaxRev.Gdal.Core](https://www.nuget.org/packages/MaxRev.Gdal.Core/) – 3.0.1.25;
