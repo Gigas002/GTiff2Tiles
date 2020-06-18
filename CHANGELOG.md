@@ -8,7 +8,7 @@ Changes since 1.4.1:
 
 ### Overall
 
-- Update **.NET Core** version to **3.1.300**;
+- Update **.NET Core** version to **3.1.301**;
 - Drop support of **.NET Framework and .NET Standard**;
 - Fixed **Linux** build and apps;
 - Create **Docker image** for **GTiff2Tiles.Console**;
@@ -27,7 +27,7 @@ Changes since 1.4.1:
 
 - Update **MaxRev.Gdal.Core** package to **3.0.1.25**;
 - Update **MaxRev.Gdal.WindowsRuntime.Minimal** package to **3.0.1.35**;
-- Update **NetVips** package to **1.2.1**;
+- Update **NetVips** package to **1.2.2**;
 - Update **NetVips.Native** package to **8.9.2**;
 
 ### Benchmarks

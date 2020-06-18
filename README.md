@@ -57,7 +57,7 @@ Previous versions can be found on [releases](https://github.com/Gigas002/GTiff2T
 
 ## Build
 
-Solution can be build in **VS2019 (16.6.1+)**. You can also build projects in **VSCode (1.45.1+)** with **omnisharp-vscode (1.22.0+)** extensions. Projects targets **.NET Core 3.1**, so you’ll need **.NET Core 3.1.300 SDK**.
+Solution can be build in **VS2019 (16.6.2+)**. You can also build projects in **VSCode (1.46.0+)** with **omnisharp-vscode (1.22.1+)** extensions. Projects targets **.NET Core 3.1**, so you’ll need **.NET Core 3.1.301 SDK**.
 
 Some of **Release** binaries are made by `Publish.ps1` script. Take a look at it in the repo. Note, that running this script requires installed **PowerShell** or **[PowerShell Core](https://github.com/PowerShell/PowerShell)** for **Linux**/**OSX** systems.
 
@@ -80,7 +80,7 @@ In [Examples](https://github.com/Gigas002/GTiff2Tiles/tree/master/Examples/Input
 - [MaxRev.Gdal.Core](https://www.nuget.org/packages/MaxRev.Gdal.Core/) – 3.0.1.25;
 - [MaxRev.Gdal.LinuxRuntime.Minimal](https://www.nuget.org/packages/MaxRev.Gdal.LinuxRuntime.Minimal/) – 3.0.1.2;
 - [MaxRev.Gdal.WindowsRuntime.Minimal](https://www.nuget.org/packages/MaxRev.Gdal.WindowsRuntime.Minimal/) – 3.0.1.35;
-- [NetVips](https://www.nuget.org/packages/NetVips/) – 1.2.1;
+- [NetVips](https://www.nuget.org/packages/NetVips/) – 1.2.2;
 - [NetVips.Native](https://www.nuget.org/packages/NetVips.Native/) – 8.9.2;
 
 ### Localization
