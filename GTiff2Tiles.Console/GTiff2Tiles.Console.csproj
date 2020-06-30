@@ -2,10 +2,10 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net5.0</TargetFramework>
     <Platforms>x64</Platforms>
-    <AssemblyVersion>2.0.0.315</AssemblyVersion>
-    <FileVersion>2.0.0.315</FileVersion>
+    <AssemblyVersion>2.0.0.316</AssemblyVersion>
+    <FileVersion>2.0.0.316</FileVersion>
     <ApplicationIcon>Resources\Icon.ico</ApplicationIcon>
     <Version>2.0.0-ci303</Version>
     <Authors>Gigas002</Authors>
