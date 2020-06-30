@@ -3,8 +3,8 @@
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <IsPackable>false</IsPackable>
-    <AssemblyVersion>2.0.0.314</AssemblyVersion>
-    <FileVersion>2.0.0.314</FileVersion>
+    <AssemblyVersion>2.0.0.316</AssemblyVersion>
+    <FileVersion>2.0.0.316</FileVersion>
     <Platforms>x64</Platforms>
     <RepositoryUrl>https://github.com/Gigas002/GTiff2Tiles</RepositoryUrl>
     <PackageProjectUrl>https://github.com/Gigas002/GTiff2Tiles</PackageProjectUrl>

@@ -25,9 +25,10 @@ Changes since 1.4.1:
 
 **Dependencies:**
 
-- Update **MaxRev.Gdal.Core** package to **3.0.1.25**;
-- Update **MaxRev.Gdal.WindowsRuntime.Minimal** package to **3.0.1.35**;
-- Update **NetVips** package to **1.2.2**;
+- Update **MaxRev.Gdal.Core** package to **3.1.0.100**;
+- Update **MaxRev.Gdal.WindowsRuntime.Minimal** package to **3.1.0.100**;
+- Update **MaxRev.Gdal.LinuxRuntime.Minimal** package to **3.1.0.100**;
+- Update **NetVips** package to **1.2.3**;
 - Update **NetVips.Native** package to **8.9.2**;
 
 ### Benchmarks
