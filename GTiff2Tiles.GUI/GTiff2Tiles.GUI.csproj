@@ -18,6 +18,7 @@
     <PackageIcon>Icon.png</PackageIcon>
     <PackageLicenseFile>..\LICENSE.md</PackageLicenseFile>
     <RepositoryType>git</RepositoryType>
+    <Configurations>Debug;Release;Appveyor</Configurations>
   </PropertyGroup>
 
   <ItemGroup>

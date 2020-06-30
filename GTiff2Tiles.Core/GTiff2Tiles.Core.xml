@@ -99,9 +99,29 @@
             Extensions of ready tiles
             </summary>
         </member>
+        <member name="F:GTiff2Tiles.Core.Enums.Image.TileExtension.Png">
+            <summary>
+            .png
+            </summary>
+        </member>
+        <member name="F:GTiff2Tiles.Core.Enums.Image.TileExtension.Jpg">
+            <summary>
+            .jpg
+            </summary>
+        </member>
+        <member name="F:GTiff2Tiles.Core.Enums.Image.TileExtension.Webp">
+            <summary>
+            .webp
+            </summary>
+        </member>
         <member name="T:GTiff2Tiles.Core.Enums.Image.TileType">
             <summary>
             Types of tiles to create
+            </summary>
+        </member>
+        <member name="F:GTiff2Tiles.Core.Enums.Image.TileType.Raster">
+            <summary>
+            Raster images
             </summary>
         </member>
         <member name="T:GTiff2Tiles.Core.Exceptions.Gdal.GdalException">
@@ -126,6 +146,12 @@
             <param name="errorMessage">Error message.</param>
             <param name="innerException">Inner exception.</param>
         </member>
+        <member name="M:GTiff2Tiles.Core.Exceptions.Gdal.GdalException.#ctor">
+            <inheritdoc />
+            <summary>
+            Creates new <see cref="T:GTiff2Tiles.Core.Exceptions.Gdal.GdalException"/> object without error message.
+            </summary>
+        </member>
         <member name="T:GTiff2Tiles.Core.Exceptions.Image.RasterException">
             <inheritdoc />
             <summary>
@@ -148,6 +174,12 @@
             <param name="errorMessage">Error message.</param>
             <param name="innerException">Inner exception.</param>
         </member>
+        <member name="M:GTiff2Tiles.Core.Exceptions.Image.RasterException.#ctor">
+            <inheritdoc />
+            <summary>
+            Creates new <see cref="T:GTiff2Tiles.Core.Exceptions.Image.RasterException"/> object without error message.
+            </summary>
+        </member>
         <member name="T:GTiff2Tiles.Core.Exceptions.Tile.TileException">
             <inheritdoc />
             <summary>
@@ -169,6 +201,12 @@
             </summary>
             <param name="errorMessage">Error message.</param>
             <param name="innerException">Inner exception.</param>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Exceptions.Tile.TileException.#ctor">
+            <inheritdoc />
+            <summary>
+            Creates new <see cref="T:GTiff2Tiles.Core.Exceptions.Tile.TileException"/> object without error message.
+            </summary>
         </member>
         <member name="T:GTiff2Tiles.Core.Gdal.Gdal">
             <summary>
@@ -349,23 +387,6 @@
             <param name="threadsCount">Threads count.</param>
             <returns></returns>
         </member>
-        <member name="M:GTiff2Tiles.Core.Image.IImage.GenerateTilesAsync(System.IO.DirectoryInfo,System.Int32,System.Int32,System.Boolean,System.String,System.IProgress{System.Double},System.Int32,System.Boolean)">
-            <summary>
-            Crops input tiff for each zoom.
-            <para>Experimental version, don't use in release app!</para>
-            <para>There's an issue with NetVips performance on Windows, so when it's fixed -- this version
-            will replace the current method for cropping tiles.</para>
-            </summary>
-            <param name="outputDirectoryInfo">Output directory.</param>
-            <param name="minZ">Minimum cropped zoom.</param>
-            <param name="maxZ">Maximum cropped zoom.</param>
-            <param name="tmsCompatible">Do you want to create tms-compatible tiles?</param>
-            <param name="tileExtension">Extension of ready tiles.</param>
-            <param name="progress">Progress.</param>
-            <param name="threadsCount">Threads count.</param>
-            <param name="isExperimental">Set to <see langword="true"/> to use this method.</param>
-            <returns></returns>
-        </member>
         <member name="T:GTiff2Tiles.Core.Image.Img">
             <summary>
             Example of class to use <see cref="T:GTiff2Tiles.Core.Image.IImage"/> interface.
@@ -385,6 +406,11 @@
             <param name="progress">Progress.</param>
             <param name="threadsCount">Threads count.</param>
             <returns></returns>
+        </member>
+        <member name="T:GTiff2Tiles.Core.Image.Raster">
+            <summary>
+            Class for creating raster tiles.
+            </summary>
         </member>
         <member name="P:GTiff2Tiles.Core.Image.Raster.OutputDirectoryInfo">
             <summary>
@@ -497,15 +523,6 @@
             <param name="tileY">Tile y.</param>
             <param name="zoom">Zoom level.</param>
         </member>
-        <member name="M:GTiff2Tiles.Core.Image.Raster.WriteZoomAsync(System.Int32,System.Boolean,System.Int32)">
-            <summary>
-            Crops passed zoom to tiles.
-            </summary>
-            <param name="zoom">Current zoom to crop.</param>
-            <param name="tmsCompatible">Are tiles tms compatible?</param>
-            <param name="threadsCount">Threads count.</param>
-            <returns></returns>
-        </member>
         <member name="M:GTiff2Tiles.Core.Image.Raster.SetGenerateTilesProperties(System.IO.DirectoryInfo,System.Int32,System.Int32,System.Boolean,System.String)">
             <summary>
             Sets properties, needed for cropping current <see cref="T:GTiff2Tiles.Core.Image.Raster"/>.
@@ -516,9 +533,6 @@
             <param name="tmsCompatible">Do you want tms tiles on output?</param>
             <param name="tileExtension">Extensions of ready tiles.</param>
         </member>
-        <member name="M:GTiff2Tiles.Core.Image.Raster.GenerateTilesAsync(System.IO.DirectoryInfo,System.Int32,System.Int32,System.Boolean,System.String,System.IProgress{System.Double},System.Int32)">
-            <inheritdoc />
-        </member>
         <member name="M:GTiff2Tiles.Core.Image.Raster.GetTilesCount(System.Boolean,System.Int32)">
             <summary>
             Gets count of tiles to crop. Needed for progress calculations.
@@ -526,9 +540,6 @@
             <param name="tmsCompatible">Are tiles tims compatible?</param>
             <param name="threadsCount">Threads count.</param>
             <returns>Number of tiles to crop.</returns>
-        </member>
-        <member name="M:GTiff2Tiles.Core.Image.Raster.GenerateTilesAsync(System.IO.DirectoryInfo,System.Int32,System.Int32,System.Boolean,System.String,System.IProgress{System.Double},System.Int32,System.Boolean)">
-            <inheritdoc />
         </member>
         <member name="M:GTiff2Tiles.Core.Image.Raster.RunTiling(System.Boolean,System.IProgress{System.Double},System.Int32,System.Boolean)">
             <summary>
@@ -546,6 +557,9 @@
             </summary>
             <param name="percentage">Current progress.</param>
             <param name="stopwatch">Get elapsed time from this.</param>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Image.Raster.GenerateTilesAsync(System.IO.DirectoryInfo,System.Int32,System.Int32,System.Boolean,System.String,System.IProgress{System.Double},System.Int32)">
+            <inheritdoc />
         </member>
         <member name="T:GTiff2Tiles.Core.Localization.Strings">
             <summary>

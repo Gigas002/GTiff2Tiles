@@ -4,8 +4,8 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <PackageIcon>Icon.png</PackageIcon>
     <Platforms>x64</Platforms>
-    <AssemblyVersion>2.0.0.312</AssemblyVersion>
-    <FileVersion>2.0.0.312</FileVersion>
+    <AssemblyVersion>2.0.0.313</AssemblyVersion>
+    <FileVersion>2.0.0.313</FileVersion>
     <Version>2.0.0-ci303</Version>
     <Company>Gigas002</Company>
     <Authors>Gigas002</Authors>
@@ -20,6 +20,7 @@
     <Product>GTiff2Tiles</Product>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <RepositoryType>git</RepositoryType>
+    <Configurations>Debug;Release;Appveyor</Configurations>
   </PropertyGroup>
 
   <ItemGroup>
@@ -31,6 +32,13 @@
   </ItemGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netcoreapp3.1|x64'">
+    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+    <DebugType>none</DebugType>
+    <DebugSymbols>false</DebugSymbols>
+    <DocumentationFile>GTiff2Tiles.Core.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Appveyor|netcoreapp3.1|x64'">
     <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
     <DebugType>none</DebugType>
     <DebugSymbols>false</DebugSymbols>
