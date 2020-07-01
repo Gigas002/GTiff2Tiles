@@ -2,10 +2,10 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>netcoreapp5.0</TargetFramework>
     <UseWPF>true</UseWPF>
-    <AssemblyVersion>2.0.0.316</AssemblyVersion>
-    <FileVersion>2.0.0.316</FileVersion>
+    <AssemblyVersion>2.0.0.317</AssemblyVersion>
+    <FileVersion>2.0.0.317</FileVersion>
     <StartupObject>GTiff2Tiles.GUI.App</StartupObject>
     <ApplicationIcon>Resources\Icon.ico</ApplicationIcon>
     <Platforms>AnyCPU;x64</Platforms>
@@ -19,6 +19,8 @@
     <PackageLicenseFile>..\LICENSE.md</PackageLicenseFile>
     <RepositoryType>git</RepositoryType>
     <Configurations>Debug;Release;Appveyor</Configurations>
+    <!-- <PublishSingleFile>true</PublishSingleFile> -->
+    <!-- <IncludeAllContentInSingleFile>true</IncludeAllContentInSingleFile> -->
   </PropertyGroup>
 
   <ItemGroup>
