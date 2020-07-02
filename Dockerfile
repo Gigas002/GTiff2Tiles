@@ -12,18 +12,23 @@
 
 FROM mcr.microsoft.com/dotnet/core/sdk:5.0 AS build-env
 RUN ls -a
-WORKDIR /app
+WORKDIR /.
+RUN ls -a
 
 # Copy csproj and restore as distinct layers
-COPY GTiff2Tiles.Console.csproj ./
+COPY GTiff2Tiles.Console/GTiff2Tiles.Console.csproj ./
 RUN dotnet restore
+RUN ls -a
 
 # Copy everything else and build
 COPY . ./
 RUN dotnet publish -c Release -o out /p:Platform=x64
+RUN ls -a
 
 # Build runtime image
 FROM mcr.microsoft.com/dotnet/core/runtime:5.0
-WORKDIR /app
-COPY --from=build-env /app/out .
+WORKDIR /.
+RUN ls -a
+COPY --from=build-env /./out .
+RUN ls -a
 ENTRYPOINT ["dotnet", "GTiff2Tiles.Console/GTiff2Tiles.Console.dll"]
