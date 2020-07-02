@@ -3,25 +3,57 @@
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp5.0</TargetFramework>
-    <UseWPF>true</UseWPF>
-    <AssemblyVersion>2.0.0.317</AssemblyVersion>
-    <FileVersion>2.0.0.317</FileVersion>
-    <StartupObject>GTiff2Tiles.GUI.App</StartupObject>
-    <ApplicationIcon>Resources\Icon.ico</ApplicationIcon>
+    <VersionPrefix>2.0.0</VersionPrefix>
+    <VersionSuffix>ci303</VersionSuffix>
+    <AssemblyVersion>2.0.0.340</AssemblyVersion>
+    <FileVersion>2.0.0.340</FileVersion>
     <Platforms>AnyCPU;x64</Platforms>
+    <Configurations>Debug;Release;Appveyor</Configurations>
+    <PackageIcon>Icon.png</PackageIcon>
+    <ApplicationIcon>Resources\Icon.ico</ApplicationIcon>
+    <NeutralLanguage>en-US</NeutralLanguage>
     <Authors>Gigas002</Authors>
-    <Version>2.0.0-ci303</Version>
+    <Company>Gigas002</Company>
     <Description>GUI for GTiff2Tiles library</Description>
     <Copyright>Copyright © Gigas002 2020</Copyright>
     <PackageProjectUrl>https://github.com/Gigas002/GTiff2Tiles</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Gigas002/GTiff2Tiles</RepositoryUrl>
-    <PackageIcon>Icon.png</PackageIcon>
-    <PackageLicenseFile>..\LICENSE.md</PackageLicenseFile>
+    <PackageReleaseNotes>https://github.com/Gigas002/GTiff2Tiles/blob/master/CHANGELOG.md</PackageReleaseNotes>
+    <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <RepositoryType>git</RepositoryType>
-    <Configurations>Debug;Release;Appveyor</Configurations>
-    <!-- <PublishSingleFile>true</PublishSingleFile> -->
-    <!-- <IncludeAllContentInSingleFile>true</IncludeAllContentInSingleFile> -->
+    <LangVersion>latest</LangVersion>
+    <PackageTags>gtiff2tiles gdal2tiles tif tiff geotiff gdal tile maptiler</PackageTags>
+    <UseWPF>true</UseWPF>
+    <StartupObject>GTiff2Tiles.GUI.App</StartupObject>
   </PropertyGroup>
+
+  <PropertyGroup>
+    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)'=='Release'">
+    <PublishSingleFile>true</PublishSingleFile>
+    <IncludeAllContentInSingleFile>true</IncludeAllContentInSingleFile>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <PublishTrimmed>true</PublishTrimmed>
+    <PublishReadyToRun>true</PublishReadyToRun>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Update="Properties\Settings.settings">
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+      <Generator>SettingsSingleFileGenerator</Generator>
+    </None>
+    <None Include="..\LICENSE.md" Pack="true" PackagePath="$(PackageLicenseFile)" />
+    <None Include="Resources\Icon.png" Pack="true" Visible="true" PackagePath="$(PackageIcon)" />
+    <None Remove="Resources\Icon.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\Icon.ico" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Prism.DryIoc" Version="8.0.0.1740-pre" />
@@ -32,10 +64,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\GTiff2Tiles.Core\GTiff2Tiles.Core.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Resource Include="Resources\Icon.ico" />
   </ItemGroup>
 
   <ItemGroup>
@@ -71,17 +99,6 @@
     <Page Update="Views\MessageBoxDialogView.xaml">
       <SubType>Designer</SubType>
     </Page>
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="Properties\Settings.settings">
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-      <Generator>SettingsSingleFileGenerator</Generator>
-    </None>
-    <None Include="..\LICENSE.md">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
   </ItemGroup>
 
 </Project>

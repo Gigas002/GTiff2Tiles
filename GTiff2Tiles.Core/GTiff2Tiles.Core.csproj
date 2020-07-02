@@ -1,55 +1,57 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <OutputType>Library</OutputType>
     <TargetFramework>netcoreapp5.0</TargetFramework>
-    <PackageIcon>Icon.png</PackageIcon>
+    <VersionPrefix>2.0.0</VersionPrefix>
+    <VersionSuffix>ci303</VersionSuffix>
+    <AssemblyVersion>2.0.0.340</AssemblyVersion>
+    <FileVersion>2.0.0.340</FileVersion>
     <Platforms>x64</Platforms>
-    <AssemblyVersion>2.0.0.317</AssemblyVersion>
-    <FileVersion>2.0.0.317</FileVersion>
-    <Version>2.0.0-ci303</Version>
-    <Company>Gigas002</Company>
+    <Configurations>Debug;Release;Appveyor</Configurations>
+    <PackageIcon>Icon.png</PackageIcon>
+    <NeutralLanguage>en-US</NeutralLanguage>
     <Authors>Gigas002</Authors>
+    <Company>Gigas002</Company>
+    <Description>Library to create tiles from GeoTiff images. Analogue of gdal2tiles.py on C#. Supports x64 windows and linux.</Description>
     <Copyright>Copyright © Gigas002 2020</Copyright>
     <PackageProjectUrl>https://github.com/Gigas002/GTiff2Tiles</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Gigas002/GTiff2Tiles</RepositoryUrl>
-    <PackageTags>gtiff2tiles gdal2tiles tif tiff geotiff gdal tile maptiler</PackageTags>
-    <Description>Library to create tiles from GeoTiff images. Analogue of gdal2tiles.py on C#. Currently supports only x64 systems.</Description>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <LangVersion>latest</LangVersion>
-    <PackageId>GTiff2Tiles</PackageId>
-    <Product>GTiff2Tiles</Product>
+    <PackageReleaseNotes>https://github.com/Gigas002/GTiff2Tiles/blob/master/CHANGELOG.md</PackageReleaseNotes>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <RepositoryType>git</RepositoryType>
-    <Configurations>Debug;Release;Appveyor</Configurations>
+    <LangVersion>latest</LangVersion>
+    <PackageTags>gtiff2tiles gdal2tiles tif tiff geotiff gdal tile maptiler</PackageTags>
+    <PackageId>GTiff2Tiles</PackageId>
+    <Product>GTiff2Tiles</Product>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+    <DocumentationFile>GTiff2Tiles.Core.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)'=='Release'">
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(GITHUB_ACTIONS)' == 'true'">
+    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+  </PropertyGroup>
+  
   <ItemGroup>
-    <None Include="..\LICENSE.md">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
-    <None Include="Resources\Icon.png" Pack="true" Visible="true" PackagePath="" />
+    <None Include="..\LICENSE.md" Pack="true" PackagePath="$(PackageLicenseFile)" />
+    <None Include="Resources\Icon.png" Pack="true" Visible="true" PackagePath="$(PackageIcon)" />
   </ItemGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netcoreapp3.1|x64'">
-    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
-    <DebugType>none</DebugType>
-    <DebugSymbols>false</DebugSymbols>
-    <DocumentationFile>GTiff2Tiles.Core.xml</DocumentationFile>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Appveyor|netcoreapp3.1|x64'">
-    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
-    <DebugType>none</DebugType>
-    <DebugSymbols>false</DebugSymbols>
-    <DocumentationFile>GTiff2Tiles.Core.xml</DocumentationFile>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netcoreapp3.1|x64'">
-    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
-  </PropertyGroup>
-
   <ItemGroup>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
     <PackageReference Include="MaxRev.Gdal.Core" Version="3.1.0.100" />
     <PackageReference Include="MaxRev.Gdal.LinuxRuntime.Minimal" Version="3.1.0.100" />
     <PackageReference Include="MaxRev.Gdal.WindowsRuntime.Minimal" Version="3.1.0.100" />

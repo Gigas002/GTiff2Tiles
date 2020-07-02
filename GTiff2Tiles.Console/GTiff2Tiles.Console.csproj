@@ -3,44 +3,46 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp5.0</TargetFramework>
+    <VersionPrefix>2.0.0</VersionPrefix>
+    <VersionSuffix>ci303</VersionSuffix>
+    <AssemblyVersion>2.0.0.338</AssemblyVersion>
+    <FileVersion>2.0.0.338</FileVersion>
     <Platforms>x64</Platforms>
-    <AssemblyVersion>2.0.0.319</AssemblyVersion>
-    <FileVersion>2.0.0.319</FileVersion>
+    <Configurations>Debug;Release;Appveyor</Configurations>
+    <PackageIcon>Icon.png</PackageIcon>
     <ApplicationIcon>Resources\Icon.ico</ApplicationIcon>
-    <Version>2.0.0-ci303</Version>
+    <NeutralLanguage>en-US</NeutralLanguage>
     <Authors>Gigas002</Authors>
+    <Company>Gigas002</Company>
     <Description>Console app for GTiff2Tiles.Core</Description>
     <Copyright>Copyright © Gigas002 2020</Copyright>
     <PackageProjectUrl>https://github.com/Gigas002/GTiff2Tiles</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Gigas002/GTiff2Tiles</RepositoryUrl>
-    <PackageIcon>Icon.png</PackageIcon>
-    <PackageLicenseFile>..\LICENSE.md</PackageLicenseFile>
+    <PackageReleaseNotes>https://github.com/Gigas002/GTiff2Tiles/blob/master/CHANGELOG.md</PackageReleaseNotes>
+    <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <RepositoryType>git</RepositoryType>
-    <Configurations>Debug;Release;Appveyor</Configurations>
+    <LangVersion>latest</LangVersion>
+    <PackageTags>gtiff2tiles gdal2tiles tif tiff geotiff gdal tile maptiler</PackageTags>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+  <PropertyGroup>
     <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
-    <DebugType>none</DebugType>
-    <DebugSymbols>false</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Appveyor|x64'">
-    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
-    <DebugType>none</DebugType>
-    <DebugSymbols>false</DebugSymbols>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+  <PropertyGroup Condition="'$(Configuration)'=='Release'">
+    <!--<PublishSingleFile>true</PublishSingleFile>-->
+    <!--<IncludeAllContentInSingleFile>true</IncludeAllContentInSingleFile>-->
+    <!--<RuntimeIdentifiers>win-x64;linux-x64</RuntimeIdentifiers>-->
+    <!--<PublishTrimmed>true</PublishTrimmed>-->
+    <!--<PublishReadyToRun>true</PublishReadyToRun>-->
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="..\LICENSE.md" Pack="true" PackagePath="$(PackageLicenseFile)" />
+    <None Include="Resources\Icon.png" Pack="true" Visible="true" PackagePath="$(PackageIcon)" />
     <None Remove="Resources\Icon.ico" />
-    <None Include="..\LICENSE.md">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
   </ItemGroup>
 
   <ItemGroup>
