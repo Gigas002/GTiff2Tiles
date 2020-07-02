@@ -10,25 +10,20 @@
 
 # ENTRYPOINT ["dotnet", "GTiff2Tiles.Console/GTiff2Tiles.Console.dll"]
 
-FROM mcr.microsoft.com/dotnet/core/sdk:5.0 AS build-env
-RUN ls -a
-WORKDIR /.
-RUN ls -a
+# https://hub.docker.com/_/microsoft-dotnet-core
+FROM mcr.microsoft.com/dotnet/core/sdk:5.0 AS build
+WORKDIR /source
 
-# Copy csproj and restore as distinct layers
-COPY GTiff2Tiles.Console/GTiff2Tiles.Console.csproj ./
+# copy csproj and restore as distinct layers
+COPY GTiff2Tiles.Console/GTiff2Tiles.Console.csproj .
 RUN dotnet restore
-RUN ls -a
 
-# Copy everything else and build
+# copy and publish app and libraries
 COPY . ./
 RUN dotnet publish -c Release -o out /p:Platform=x64
-RUN ls -a
 
-# Build runtime image
+# final stage/image
 FROM mcr.microsoft.com/dotnet/core/runtime:5.0
 WORKDIR /.
-RUN ls -a
-COPY --from=build-env /./out .
-RUN ls -a
-ENTRYPOINT ["dotnet", "GTiff2Tiles.Console/GTiff2Tiles.Console.dll"]
+COPY --from=build /app .
+ENTRYPOINT ["dotnet", "GTiff2Tiles.Console.dll"]
