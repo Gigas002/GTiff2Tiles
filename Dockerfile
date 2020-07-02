@@ -18,12 +18,12 @@ WORKDIR /source
 COPY GTiff2Tiles.Console/GTiff2Tiles.Console.csproj .
 COPY GTiff2Tiles.Core/GTiff2Tiles.Core.csproj .
 RUN ls -a
-RUN dotnet restore
+RUN dotnet restore GTiff2Tiles.Console.csproj
 RUN ls -a
 
 # copy and publish app and libraries
 COPY . ./
-RUN dotnet publish -c Release -o out /p:Platform=x64
+RUN dotnet publish -c release -o /app --no-restore /p:Platform=x64
 RUN ls -a
 
 # final stage/image
