@@ -17,6 +17,7 @@ WORKDIR /source
 # copy csproj and restore as distinct layers
 COPY GTiff2Tiles.Console/GTiff2Tiles.Console.csproj .
 COPY GTiff2Tiles.Core/GTiff2Tiles.Core.csproj .
+RUN ls -a
 RUN dotnet restore
 RUN ls -a
 
