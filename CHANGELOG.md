@@ -11,8 +11,9 @@ Changes since 1.4.1:
 - Update **.NET Core** version to **5.0.100-preview.6**;
 - Drop support of **.NET Framework and .NET Standard**;
 - Fixed **Linux** build and apps;
-- Create **Docker image** for **GTiff2Tiles.Console** (*stable releases will be published on github packages, CI builds from master – on Docker Hub*);
+- Create **Docker image** for **GTiff2Tiles.Console** (*GitHub packages and Docker Hub*);
 - Move to **[DBAD](https://dbad-license.org/)** license;
+- Configured CI/CD for full repo;
 
 ### Core
 

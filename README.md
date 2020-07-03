@@ -51,6 +51,8 @@ Table of contents generated with [markdown-toc](http://ecotrust-canada.github.io
 
 Current stable can be found here: [![Release](https://img.shields.io/github/release/Gigas002/GTiff2Tiles.svg)](https://github.com/Gigas002/GTiff2Tiles/releases/latest), or on NuGet (library only): [![NuGet](https://img.shields.io/nuget/v/GTiff2Tiles.svg)](https://www.nuget.org/packages/GTiff2Tiles/).
 
+Pre-release versions by CI are also thrown down on [Releases](https://github.com/Gigas002/GTiff2Tiles/releases) page.
+
 Information about changes since previous releases can be found in [changelog](https://github.com/Gigas002/GTiff2Tiles/blob/master/CHANGELOG.md). This project supports [SemVer 2.0.0](https://semver.org/) (template is `{MAJOR}.{MINOR}.{PATCH}.{BUILD}`).
 
 Previous versions can be found on [releases](https://github.com/Gigas002/GTiff2Tiles/releases) and [branches](https://github.com/Gigas002/GTiff2Tiles/branches) pages.
@@ -63,7 +65,7 @@ Some of **Release** binaries are made by `publish-github-release.ps1` script. Ta
 
 ## Docker Images
 
-Pre-built docker images for **GTiff2Tiles.Console** are available on [GitHub packages (*latest stable releases*)](https://github.com/Gigas002/GTiff2Tiles/packages/145349) (`docker pull docker.pkg.github.com/gigas002/gtiff2tiles/gtiff2tiles-console:latest`) and on [Docker Hub (*CI builds from master branch*)](https://hub.docker.com/r/gigas002/gtiff2tiles-console) (`docker pull gigas002/gtiff2tiles-console`).
+Latest pre-built docker images (*from master branch*) for **GTiff2Tiles.Console** are available on [GitHub packages](https://github.com/Gigas002/GTiff2Tiles/packages/145349) (`docker pull docker.pkg.github.com/gigas002/gtiff2tiles/gtiff2tiles-console:latest`) and on [Docker Hub](https://hub.docker.com/r/gigas002/gtiff2tiles-console) (`docker pull gigas002/gtiff2tiles-console`).
 
 You can also build docker image by yourself by running `publish-local-docker.ps1` script with your **PowerShell**/**PowerShell Core (on Linux)**. It’ll create `gtiff2tiles-console` image.
 
