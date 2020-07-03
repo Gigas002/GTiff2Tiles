@@ -8,8 +8,8 @@
     <Version>2.0.0-ci303</Version>
     <!-- breaks nuget publish in github ci -->
     <!--<Version>$(VersionPrefix)-$(VersionSuffix)</Version>-->
-    <AssemblyVersion>2.0.0.342</AssemblyVersion>
-    <FileVersion>2.0.0.342</FileVersion>
+    <AssemblyVersion>2.0.0.343</AssemblyVersion>
+    <FileVersion>2.0.0.343</FileVersion>
     <Platforms>x64</Platforms>
     <Configurations>Debug;Release;Appveyor</Configurations>
     <PackageIcon>Icon.png</PackageIcon>
@@ -42,9 +42,11 @@
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+
+    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(GITHUB_ACTIONS)' == 'true'">
+  <PropertyGroup Condition="('$(GITHUB_ACTIONS)' == 'true') Or ('$(APPVEYOR)' == 'true') Or ('$(APPVEYOR)' == 'True')">
     <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
   </PropertyGroup>
   

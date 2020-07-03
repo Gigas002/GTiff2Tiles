@@ -5,7 +5,7 @@ Write-Output "Started building/publishing"
 # GTiff2Tiles.Core -- build and create nuget package
 
 Write-Output "Start building GTiff2Tiles.Core"
-dotnet build "GTiff2Tiles.Core/GTiff2Tiles.Core.csproj" -c Release /p:Platform=x64
+dotnet publish "GTiff2Tiles.Core/GTiff2Tiles.Core.csproj" -c Release /p:Platform=x64
 Write-Output "Ended building GTiff2Tiles.Core"
 
 # GTiff2Tiles.Benhmarks
@@ -81,13 +81,16 @@ Get-ChildItem "Publish/" -Include *.pdb -Recurse | Remove-Item
 # Copy docs, etc to published directories before zipping them
 Write-Output "Copying docs, LICENSE.md, etc to published directories"
 
-Copy-Item -Path "GTiff2Tiles.Benchmarks/GTiff2Tiles.Benchmarks.Doc.pdf" -Destination "Publish/GTiff2Tiles.Benchmarks/win-x64/GTiff2Tiles.Benchmarks.Doc.pdf"
-Copy-Item -Path "LICENSE.md" -Destination "Publish/GTiff2Tiles.Benchmarks/win-x64/LICENSE.md"
-Copy-Item -Path "CHANGELOG.md" -Destination "Publish/GTiff2Tiles.Benchmarks/win-x64/CHANGELOG.md"
+if (!$isAppveyor)
+{
+    Copy-Item -Path "GTiff2Tiles.Benchmarks/GTiff2Tiles.Benchmarks.Doc.pdf" -Destination "Publish/GTiff2Tiles.Benchmarks/win-x64/GTiff2Tiles.Benchmarks.Doc.pdf"
+    Copy-Item -Path "LICENSE.md" -Destination "Publish/GTiff2Tiles.Benchmarks/win-x64/LICENSE.md"
+    Copy-Item -Path "CHANGELOG.md" -Destination "Publish/GTiff2Tiles.Benchmarks/win-x64/CHANGELOG.md"
 
-Copy-Item -Path "GTiff2Tiles.Benchmarks/GTiff2Tiles.Benchmarks.Doc.pdf" -Destination "Publish/GTiff2Tiles.Benchmarks/linux-x64/GTiff2Tiles.Benchmarks.Doc.pdf"
-Copy-Item -Path "LICENSE.md" -Destination "Publish/GTiff2Tiles.Benchmarks/linux-x64/LICENSE.md"
-Copy-Item -Path "CHANGELOG.md" -Destination "Publish/GTiff2Tiles.Benchmarks/linux-x64/CHANGELOG.md"
+    Copy-Item -Path "GTiff2Tiles.Benchmarks/GTiff2Tiles.Benchmarks.Doc.pdf" -Destination "Publish/GTiff2Tiles.Benchmarks/linux-x64/GTiff2Tiles.Benchmarks.Doc.pdf"
+    Copy-Item -Path "LICENSE.md" -Destination "Publish/GTiff2Tiles.Benchmarks/linux-x64/LICENSE.md"
+    Copy-Item -Path "CHANGELOG.md" -Destination "Publish/GTiff2Tiles.Benchmarks/linux-x64/CHANGELOG.md"
+}
 
 Copy-Item -Path "GTiff2Tiles.Console/GTiff2Tiles.Console.Doc.pdf" -Destination "Publish/GTiff2Tiles.Console/win-x64/GTiff2Tiles.Console.Doc.pdf"
 Copy-Item -Path "LICENSE.md" -Destination "Publish/GTiff2Tiles.Console/win-x64/LICENSE.md"

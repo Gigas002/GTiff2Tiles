@@ -1,16 +1,56 @@
 version: 2.0.0.{build}
 pull_requests:
   do_not_increment_build_number: true
+skip_tags: true
 image:
 # - Visual Studio 2019
 - Ubuntu2004
 configuration: Appveyor
 platform: x64
-nuget:
-  project_feed: true
+environment:
+  GH_TOKEN:
+    secure: nzUU8F4CLe1EDxmKabW5Ym6NnL0SEK+VLft2D8oh72KEcfejyt1xWsQq9dMg6Wpt
+  NUGET_API_KEY:
+    secure: BmZ3/8sN8tg20TLTa0Qqw+L3JqM7G2K6wp/KLf+1gCkx29RvgHG+9CGAD80KGH7Q
 before_build:
 - pwsh: dotnet restore
 build:
   parallel: true
   verbosity: minimal
-deploy: off
+after_build:
+- pwsh: ./publish-github-release.ps1 true
+test: off
+artifacts:
+- path: GTiff2Tiles.Core\bin\x64\Release\*.nupkg
+  name: nupkg
+- path: GTiff2Tiles.Core\bin\x64\Release\*.snupkg
+  name: snupkg
+- path: Publish\*.zip
+  name: zip
+deploy:
+- provider: GitHub
+  release: Continious build
+  description: This is a preview release of GTiff2Tiles ver. 2.0.0. Information (incomplete atm) about changes since previous release can be found in [changelog](https://github.com/Gigas002/GTiff2Tiles/blob/master/CHANGELOG.md).
+  auth_token:
+    secure: CVNtkV9r681t1pehmnG8nA==
+  artifact: /.*\.zip/
+  draft: false
+  prerelease: true
+  force_update: true
+  on:
+    branch: master
+- provider: NuGet
+  api_key:
+    secure: sLxAQGEch/E2b2VMhHKbkQ==
+  artifact: /.*(\.|\.s)nupkg/
+  on:
+    branch: master
+- provider: NuGet
+  server: https://nuget.pkg.github.com/gigas002/index.json
+  api_key:
+    secure: CVNtkV9r681t1pehmnG8nA==
+  username:
+    secure: rZ2WjoUDzL3ZjbEuu/WA5g==
+  artifact: /.*(\.)nupkg/
+  on:
+    branch: master
