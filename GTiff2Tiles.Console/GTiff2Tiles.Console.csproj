@@ -23,6 +23,7 @@
     <RepositoryType>git</RepositoryType>
     <LangVersion>latest</LangVersion>
     <PackageTags>gtiff2tiles gdal2tiles tif tiff geotiff gdal tile maptiler</PackageTags>
+    <IsPackable>false</IsPackable>
   </PropertyGroup>
 
   <PropertyGroup>
