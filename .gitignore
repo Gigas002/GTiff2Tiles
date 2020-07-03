@@ -352,5 +352,5 @@ MigrationBackup/
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
 launchSettings.json
-/GTiff2Tiles.Core/nuget.config
 /Secrets.txt
+*.config

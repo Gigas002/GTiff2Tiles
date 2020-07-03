@@ -59,13 +59,13 @@ Previous versions can be found on [releases](https://github.com/Gigas002/GTiff2T
 
 Solution can be build in **VS2019 (16.6.3+)**. You can also build projects in **VSCode (1.46.1+)** with **omnisharp-vscode (1.22.1+)** extensions. Projects targets **.NET Core 5.0.0-preview.6**, so you’ll need **.NET Core 5.0.100-preview.6 SDK**.
 
-Some of **Release** binaries are made by `Publish.ps1` script. Take a look at it in the repo. Note, that running this script requires installed **PowerShell** or **[PowerShell Core](https://github.com/PowerShell/PowerShell)** for **Linux**/**OSX** systems.
+Some of **Release** binaries are made by `publish-github-release.ps1` script. Take a look at it in the repo. Note, that running this script requires installed **PowerShell** or **[PowerShell Core](https://github.com/PowerShell/PowerShell)** for **Linux**/**OSX** systems.
 
 ## Docker Images
 
 Pre-built docker images for **GTiff2Tiles.Console** are available on [GitHub packages (*latest stable releases*)](https://github.com/Gigas002/GTiff2Tiles/packages/145349) (`docker pull docker.pkg.github.com/gigas002/gtiff2tiles/gtiff2tiles-console:latest`) and on [Docker Hub (*CI builds from master branch*)](https://hub.docker.com/r/gigas002/gtiff2tiles-console) (`docker pull gigas002/gtiff2tiles-console`).
 
-You can also build docker image by yourself by running `docker.ps1` script with your **PowerShell**/**PowerShell Core (on Linux)**. It’ll create `gtiff2tiles-console` image.
+You can also build docker image by yourself by running `publish-local-docker.ps1` script with your **PowerShell**/**PowerShell Core (on Linux)**. It’ll create `gtiff2tiles-console` image.
 
 ## Examples
 

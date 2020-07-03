@@ -5,11 +5,11 @@
     <TargetFramework>netcoreapp5.0</TargetFramework>
     <VersionPrefix>2.0.0</VersionPrefix>
     <VersionSuffix>ci303</VersionSuffix>
+    <Version>2.0.0-ci303</Version>
     <!-- breaks nuget publish in github ci -->
     <!--<Version>$(VersionPrefix)-$(VersionSuffix)</Version>-->
-    <Version>2.0.0-ci303</Version>
-    <AssemblyVersion>2.0.0.341</AssemblyVersion>
-    <FileVersion>2.0.0.341</FileVersion>
+    <AssemblyVersion>2.0.0.342</AssemblyVersion>
+    <FileVersion>2.0.0.342</FileVersion>
     <Platforms>x64</Platforms>
     <Configurations>Debug;Release;Appveyor</Configurations>
     <PackageIcon>Icon.png</PackageIcon>
