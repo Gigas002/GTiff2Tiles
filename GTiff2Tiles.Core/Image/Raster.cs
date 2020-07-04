@@ -3,7 +3,6 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
@@ -321,6 +320,7 @@ namespace GTiff2Tiles.Core.Image
         /// Writes one tile of current zoom.
         /// <para/>Crops zoom directly from input image.
         /// </summary>
+        /// <param name="outputDirectoryInfo">Directory for ready tiles.</param>
         /// <param name="tileX">Tile x.</param>
         /// <param name="tileY">Tile y.</param>
         /// <param name="zoom">Zoom level.</param>
@@ -434,6 +434,7 @@ namespace GTiff2Tiles.Core.Image
         /// <summary>
         /// Crops tiles one by one with more accurant progress report and slightly better performance (WIP).
         /// </summary>
+        /// <param name="outputDirectoryInfo">Directory for ready tiles.</param>
         /// <param name="tmsCompatible">Are tiles tms compatible?</param>
         /// <param name="progress">Progress.</param>
         /// <param name="threadsCount">Threads count.</param>
