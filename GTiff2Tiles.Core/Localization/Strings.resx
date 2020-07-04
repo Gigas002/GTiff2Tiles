@@ -132,6 +132,9 @@
   <data name="DoesntSupportPlatform" xml:space="preserve">
     <value>{0} doesn't support current platform</value>
   </data>
+  <data name="EstimatedTime" xml:space="preserve">
+    <value>Estimated time:{0}Days:{1}, hours:{2}, minutes:{3}, seconds:{4}, ms:{5}</value>
+  </data>
   <data name="IsNull" xml:space="preserve">
     <value>{0} is null</value>
   </data>

@@ -106,6 +106,15 @@ namespace GTiff2Tiles.Core.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Estimated time:{0}Days:{1}, hours:{2}, minutes:{3}, seconds:{4}, ms:{5}.
+        /// </summary>
+        internal static string EstimatedTime {
+            get {
+                return ResourceManager.GetString("EstimatedTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} is null.
         /// </summary>
         internal static string IsNull {

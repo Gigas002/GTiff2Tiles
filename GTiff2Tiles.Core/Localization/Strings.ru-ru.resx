@@ -132,6 +132,9 @@
   <data name="DoesntSupportPlatform" xml:space="preserve">
     <value>{0} не поддерживается текущей платформой</value>
   </data>
+  <data name="EstimatedTime" xml:space="preserve">
+    <value>Осталось времени:{0}Дней:{1}, часов:{2}, минут:{3}, секунд:{4}, миллисекунд:{5}</value>
+  </data>
   <data name="IsNull" xml:space="preserve">
     <value>{0} равен null</value>
   </data>

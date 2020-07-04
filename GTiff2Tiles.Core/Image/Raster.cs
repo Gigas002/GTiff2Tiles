@@ -45,7 +45,7 @@ namespace GTiff2Tiles.Core.Image
         private string TileExtension { get; set; }
 
         /// <summary>
-        /// Image's data.
+        /// This image's data.
         /// </summary>
         private NetVips.Image Data { get; }
 
@@ -503,7 +503,6 @@ namespace GTiff2Tiles.Core.Image
         /// </summary>
         /// <param name="percentage">Current progress.</param>
         /// <param name="stopwatch">Get elapsed time from this.</param>
-        [SuppressMessage("ReSharper", "LocalizableElement")]
         private static void PrintEstimatedTimeLeft(double percentage, Stopwatch stopwatch = null)
         {
             if (stopwatch == null) return;
@@ -512,10 +511,8 @@ namespace GTiff2Tiles.Core.Image
             double estimatedAllTime = 100.0 * timePassed / percentage;
             double estimatedTimeLeft = estimatedAllTime - timePassed;
             TimeSpan timeSpan = TimeSpan.FromMilliseconds(estimatedTimeLeft);
-            //TODO: localize string
-            Console.WriteLine($"Estimated time. Days:{timeSpan.Days}, "
-                            + $"Hours:{timeSpan.Hours}, " + $"Minutes:{timeSpan.Minutes}, "
-                            + $"Seconds:{timeSpan.Seconds}, " + $"Ms:{timeSpan.Milliseconds}.");
+            Console.WriteLine(Strings.EstimatedTime, Environment.NewLine, timeSpan.Days, timeSpan.Hours,
+                              timeSpan.Minutes, timeSpan.Seconds, timeSpan.Milliseconds);
         }
 
         #endregion

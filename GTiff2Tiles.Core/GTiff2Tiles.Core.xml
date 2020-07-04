@@ -429,7 +429,7 @@
         </member>
         <member name="P:GTiff2Tiles.Core.Image.Raster.Data">
             <summary>
-            Image's data.
+            This image's data.
             </summary>
         </member>
         <member name="P:GTiff2Tiles.Core.Image.Raster.Width">
@@ -592,6 +592,11 @@
         <member name="P:GTiff2Tiles.Core.Localization.Strings.DoesntSupportPlatform">
             <summary>
               Looks up a localized string similar to {0} doesn&apos;t support current platform.
+            </summary>
+        </member>
+        <member name="P:GTiff2Tiles.Core.Localization.Strings.EstimatedTime">
+            <summary>
+              Looks up a localized string similar to Estimated time:{0}Days:{1}, hours:{2}, minutes:{3}, seconds:{4}, ms:{5}.
             </summary>
         </member>
         <member name="P:GTiff2Tiles.Core.Localization.Strings.IsNull">
