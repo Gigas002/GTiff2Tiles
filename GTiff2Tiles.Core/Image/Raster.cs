@@ -25,11 +25,6 @@ namespace GTiff2Tiles.Core.Image
         #region Private
 
         /// <summary>
-        /// Output directory.
-        /// </summary>
-        private DirectoryInfo OutputDirectoryInfo { get; set; }
-
-        /// <summary>
         /// Minimum cropped zoom.
         /// </summary>
         private int MinZ { get; set; }
@@ -49,15 +44,20 @@ namespace GTiff2Tiles.Core.Image
         /// </summary>
         private string TileExtension { get; set; }
 
+        /// <summary>
+        /// Image's data.
+        /// </summary>
+        private NetVips.Image Data { get; }
+
         #endregion
 
         #region Public
 
         /// <inheritdoc />
-        public int RasterXSize { get; }
+        public int Width { get; }
 
         /// <inheritdoc />
-        public int RasterYSize { get; }
+        public int Height { get; }
 
         /// <inheritdoc />
         public double MinX { get; }
@@ -73,9 +73,6 @@ namespace GTiff2Tiles.Core.Image
 
         /// <inheritdoc />
         public bool IsDisposed { get; private set; }
-
-        /// <inheritdoc />
-        public NetVips.Image Data { get; }
 
         #endregion
 
@@ -103,9 +100,9 @@ namespace GTiff2Tiles.Core.Image
             //Get border coordinates и raster sizes.
             try
             {
-                RasterXSize = Data.Width;
-                RasterYSize = Data.Height;
-                (MinX, MinY, MaxX, MaxY) = Gdal.Gdal.GetImageBorders(inputFileInfo, RasterXSize, RasterYSize);
+                Width = Data.Width;
+                Height = Data.Height;
+                (MinX, MinY, MaxX, MaxY) = Gdal.Gdal.GetImageBorders(inputFileInfo, Width, Height);
             }
             catch (Exception exception)
             {
@@ -263,30 +260,30 @@ namespace GTiff2Tiles.Core.Image
             int writeYSize) GeoQuery(double upperLeftX, double upperLeftY, double lowerRightX, double lowerRightY)
         {
             //Read from input geotiff in pixels.
-            double readPosMinX = RasterXSize * (upperLeftX - MinX) / (MaxX - MinX);
-            double readPosMinY = RasterYSize - RasterYSize * (upperLeftY - MinY) / (MaxY - MinY);
-            double readPosMaxX = RasterXSize * (lowerRightX - MinX) / (MaxX - MinX);
-            double readPosMaxY = RasterYSize - RasterYSize * (lowerRightY - MinY) / (MaxY - MinY);
+            double readPosMinX = Width * (upperLeftX - MinX) / (MaxX - MinX);
+            double readPosMinY = Height - Height * (upperLeftY - MinY) / (MaxY - MinY);
+            double readPosMaxX = Width * (lowerRightX - MinX) / (MaxX - MinX);
+            double readPosMaxY = Height - Height * (lowerRightY - MinY) / (MaxY - MinY);
 
             //If outside of tiff.
             readPosMinX = readPosMinX < 0.0 ? 0.0 :
-                          readPosMinX > RasterXSize ? RasterXSize : readPosMinX;
+                          readPosMinX > Width ? Width : readPosMinX;
             readPosMinY = readPosMinY < 0.0 ? 0.0 :
-                          readPosMinY > RasterYSize ? RasterYSize : readPosMinY;
+                          readPosMinY > Height ? Height : readPosMinY;
             readPosMaxX = readPosMaxX < 0.0 ? 0.0 :
-                          readPosMaxX > RasterXSize ? RasterXSize : readPosMaxX;
+                          readPosMaxX > Width ? Width : readPosMaxX;
             readPosMaxY = readPosMaxY < 0.0 ? 0.0 :
-                          readPosMaxY > RasterYSize ? RasterYSize : readPosMaxY;
+                          readPosMaxY > Height ? Height : readPosMaxY;
 
             //Output tile's borders in pixels.
             double tilePixMinX = readPosMinX.Equals(0.0) ? MinX :
-                                 readPosMinX.Equals(RasterXSize) ? MaxX : upperLeftX;
+                                 readPosMinX.Equals(Width) ? MaxX : upperLeftX;
             double tilePixMinY = readPosMaxY.Equals(0.0) ? MaxY :
-                                 readPosMaxY.Equals(RasterYSize) ? MinY : lowerRightY;
+                                 readPosMaxY.Equals(Height) ? MinY : lowerRightY;
             double tilePixMaxX = readPosMaxX.Equals(0.0) ? MinX :
-                                 readPosMaxX.Equals(RasterXSize) ? MaxX : lowerRightX;
+                                 readPosMaxX.Equals(Width) ? MaxX : lowerRightX;
             double tilePixMaxY = readPosMinY.Equals(0.0) ? MaxY :
-                                 readPosMinY.Equals(RasterYSize) ? MinY : upperLeftY;
+                                 readPosMinY.Equals(Height) ? MinY : upperLeftY;
 
             //Positions of dataset to write in tile.
             double writePosMinX = Constants.Image.Raster.TileSize -
@@ -327,7 +324,7 @@ namespace GTiff2Tiles.Core.Image
         /// <param name="tileX">Tile x.</param>
         /// <param name="tileY">Tile y.</param>
         /// <param name="zoom">Zoom level.</param>
-        private void WriteTile(int tileX, int tileY, int zoom)
+        private void WriteTile(DirectoryInfo outputDirectoryInfo, int tileX, int tileY, int zoom)
         {
             #region Parameters checking
 
@@ -339,7 +336,7 @@ namespace GTiff2Tiles.Core.Image
 
             //Create directories for the tile. The overall structure looks like: outputDirectory/zoom/x/y.png.
             DirectoryInfo tileDirectoryInfo =
-                new DirectoryInfo(Path.Combine(OutputDirectoryInfo.FullName, $"{zoom}", $"{tileX}"));
+                new DirectoryInfo(Path.Combine(outputDirectoryInfo.FullName, $"{zoom}", $"{tileX}"));
             CheckHelper.CheckDirectory(tileDirectoryInfo);
 
             //Get the coordinate borders for current tile from tile numbers.
@@ -399,8 +396,7 @@ namespace GTiff2Tiles.Core.Image
 
             #endregion
 
-            (OutputDirectoryInfo, MinZ, MaxZ, TmsCompatible, TileExtension) =
-                (outputDirectoryInfo, minZ, maxZ, tmsCompatible, tileExtension);
+            (MinZ, MaxZ, TmsCompatible, TileExtension) = (minZ, maxZ, tmsCompatible, tileExtension);
         }
 
         /// <summary>
@@ -443,7 +439,7 @@ namespace GTiff2Tiles.Core.Image
         /// <param name="threadsCount">Threads count.</param>
         /// <param name="isPrintEstimatedTime">Do you want to see estimated time left as progress changes?</param>
         /// <returns></returns>
-        private async ValueTask RunTiling(bool tmsCompatible, IProgress<double> progress, int threadsCount,
+        private async ValueTask RunTiling(DirectoryInfo outputDirectoryInfo, bool tmsCompatible, IProgress<double> progress, int threadsCount,
                                           bool isPrintEstimatedTime = false)
         {
             Stopwatch stopwatch = isPrintEstimatedTime ? Stopwatch.StartNew() : null;
@@ -474,7 +470,7 @@ namespace GTiff2Tiles.Core.Image
 
                         tasks.Add(Task.Run(() =>
                         {
-                            try { WriteTile(x, y, currentZoom); }
+                            try { WriteTile(outputDirectoryInfo, x, y, currentZoom); }
                             finally
                             {
                                 // ReSharper disable once AccessToDisposedClosure
@@ -548,7 +544,7 @@ namespace GTiff2Tiles.Core.Image
             const bool isPrintEstimatedTime = false;
             //Crop all tiles.
             // ReSharper disable once RedundantArgumentDefaultValue
-            await RunTiling(tmsCompatible, progress, threadsCount, isPrintEstimatedTime).ConfigureAwait(false);
+            await RunTiling(outputDirectoryInfo, tmsCompatible, progress, threadsCount, isPrintEstimatedTime).ConfigureAwait(false);
         }
 
         #endregion

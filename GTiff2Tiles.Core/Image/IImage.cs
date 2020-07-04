@@ -17,14 +17,14 @@ namespace GTiff2Tiles.Core.Image
         #region Properties
 
         /// <summary>
-        /// Image's width.
+        /// Image's width, x size.
         /// </summary>
-        public int RasterXSize { get; }
+        public int Width { get; }
 
         /// <summary>
-        /// Image's height.
+        /// Image's height, y size.
         /// </summary>
-        public int RasterYSize { get; }
+        public int Height { get; }
 
         /// <summary>
         /// Upper left X coordinate.
@@ -50,11 +50,6 @@ namespace GTiff2Tiles.Core.Image
         /// Shows if resources have already been disposed.
         /// </summary>
         public bool IsDisposed { get; }
-
-        /// <summary>
-        /// Image's data.
-        /// </summary>
-        public NetVips.Image Data { get; }
 
         #endregion
 

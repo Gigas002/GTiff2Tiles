@@ -334,14 +334,14 @@
             Main interface for cropping different tiles.
             </summary>
         </member>
-        <member name="P:GTiff2Tiles.Core.Image.IImage.RasterXSize">
+        <member name="P:GTiff2Tiles.Core.Image.IImage.Width">
             <summary>
-            Image's width.
+            Image's width, x size.
             </summary>
         </member>
-        <member name="P:GTiff2Tiles.Core.Image.IImage.RasterYSize">
+        <member name="P:GTiff2Tiles.Core.Image.IImage.Height">
             <summary>
-            Image's height.
+            Image's height, y size.
             </summary>
         </member>
         <member name="P:GTiff2Tiles.Core.Image.IImage.MinX">
@@ -367,11 +367,6 @@
         <member name="P:GTiff2Tiles.Core.Image.IImage.IsDisposed">
             <summary>
             Shows if resources have already been disposed.
-            </summary>
-        </member>
-        <member name="P:GTiff2Tiles.Core.Image.IImage.Data">
-            <summary>
-            Image's data.
             </summary>
         </member>
         <member name="M:GTiff2Tiles.Core.Image.IImage.GenerateTilesAsync(System.IO.DirectoryInfo,System.Int32,System.Int32,System.Boolean,System.String,System.IProgress{System.Double},System.Int32)">
@@ -412,11 +407,6 @@
             Class for creating raster tiles.
             </summary>
         </member>
-        <member name="P:GTiff2Tiles.Core.Image.Raster.OutputDirectoryInfo">
-            <summary>
-            Output directory.
-            </summary>
-        </member>
         <member name="P:GTiff2Tiles.Core.Image.Raster.MinZ">
             <summary>
             Minimum cropped zoom.
@@ -437,10 +427,15 @@
             Extension of ready tiles.
             </summary>
         </member>
-        <member name="P:GTiff2Tiles.Core.Image.Raster.RasterXSize">
+        <member name="P:GTiff2Tiles.Core.Image.Raster.Data">
+            <summary>
+            Image's data.
+            </summary>
+        </member>
+        <member name="P:GTiff2Tiles.Core.Image.Raster.Width">
             <inheritdoc />
         </member>
-        <member name="P:GTiff2Tiles.Core.Image.Raster.RasterYSize">
+        <member name="P:GTiff2Tiles.Core.Image.Raster.Height">
             <inheritdoc />
         </member>
         <member name="P:GTiff2Tiles.Core.Image.Raster.MinX">
@@ -456,9 +451,6 @@
             <inheritdoc />
         </member>
         <member name="P:GTiff2Tiles.Core.Image.Raster.IsDisposed">
-            <inheritdoc />
-        </member>
-        <member name="P:GTiff2Tiles.Core.Image.Raster.Data">
             <inheritdoc />
         </member>
         <member name="M:GTiff2Tiles.Core.Image.Raster.#ctor(System.IO.FileInfo)">
@@ -514,7 +506,7 @@
             <param name="lowerRightY">Tile's lower right y coordinate.</param>
             <returns><see cref="T:System.ValueTuple`8"/> of x/y positions and sizes to read and write tiles.</returns>
         </member>
-        <member name="M:GTiff2Tiles.Core.Image.Raster.WriteTile(System.Int32,System.Int32,System.Int32)">
+        <member name="M:GTiff2Tiles.Core.Image.Raster.WriteTile(System.IO.DirectoryInfo,System.Int32,System.Int32,System.Int32)">
             <summary>
             Writes one tile of current zoom.
             <para/>Crops zoom directly from input image.
@@ -541,7 +533,7 @@
             <param name="threadsCount">Threads count.</param>
             <returns>Number of tiles to crop.</returns>
         </member>
-        <member name="M:GTiff2Tiles.Core.Image.Raster.RunTiling(System.Boolean,System.IProgress{System.Double},System.Int32,System.Boolean)">
+        <member name="M:GTiff2Tiles.Core.Image.Raster.RunTiling(System.IO.DirectoryInfo,System.Boolean,System.IProgress{System.Double},System.Int32,System.Boolean)">
             <summary>
             Crops tiles one by one with more accurant progress report and slightly better performance (WIP).
             </summary>
@@ -681,6 +673,124 @@
             <summary>
               Looks up a localized string similar to {0} extension isn&apos;t {1}. Path:{2}.
             </summary>
+        </member>
+        <member name="T:GTiff2Tiles.Core.Tiles.Tile">
+            <inheritdoc />
+        </member>
+        <member name="P:GTiff2Tiles.Core.Tiles.Tile.IsDisposed">
+            <inheritdoc />
+        </member>
+        <member name="P:GTiff2Tiles.Core.Tiles.Tile.MinLongtiude">
+            <inheritdoc />
+        </member>
+        <member name="P:GTiff2Tiles.Core.Tiles.Tile.MinLatitude">
+            <inheritdoc />
+        </member>
+        <member name="P:GTiff2Tiles.Core.Tiles.Tile.MaxLongitude">
+            <inheritdoc />
+        </member>
+        <member name="P:GTiff2Tiles.Core.Tiles.Tile.MaxLatitude">
+            <inheritdoc />
+        </member>
+        <member name="P:GTiff2Tiles.Core.Tiles.Tile.X">
+            <inheritdoc />
+        </member>
+        <member name="P:GTiff2Tiles.Core.Tiles.Tile.Y">
+            <inheritdoc />
+        </member>
+        <member name="P:GTiff2Tiles.Core.Tiles.Tile.Z">
+            <inheritdoc />
+        </member>
+        <member name="P:GTiff2Tiles.Core.Tiles.Tile.D">
+            <inheritdoc />
+        </member>
+        <member name="P:GTiff2Tiles.Core.Tiles.Tile.S">
+            <inheritdoc />
+        </member>
+        <member name="P:GTiff2Tiles.Core.Tiles.Tile.TmsCompatible">
+            <inheritdoc />
+        </member>
+        <member name="P:GTiff2Tiles.Core.Tiles.Tile.Size">
+            <inheritdoc />
+        </member>
+        <member name="P:GTiff2Tiles.Core.Tiles.Tile.FileInfo">
+            <inheritdoc />
+        </member>
+        <member name="M:GTiff2Tiles.Core.Tiles.Tile.Dispose">
+            <inheritdoc />
+        </member>
+        <member name="M:GTiff2Tiles.Core.Tiles.Tile.Dispose(System.Boolean)">
+            <summary>
+            Actually disposes the data.
+            </summary>
+            <param name="disposing"></param>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Tiles.Tile.DisposeAsync">
+            <inheritdoc />
+        </member>
+        <member name="M:GTiff2Tiles.Core.Tiles.Tile.Resolution(System.Int32,System.Int32)">
+            <summary>
+            Resolution for tiles.
+            </summary>
+            <param name="zoom"></param>
+            <returns>Resoultion value.</returns>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Tiles.Tile.FlipY">
+            <inheritdoc />
+        </member>
+        <member name="M:GTiff2Tiles.Core.Tiles.Tile.Validate(System.Boolean)">
+            <inheritdoc />
+        </member>
+        <member name="M:GTiff2Tiles.Core.Tiles.Tile.CalculatePosition">
+            <inheritdoc />
+        </member>
+        <member name="M:GTiff2Tiles.Core.Tiles.Tile.CalculatePosition(System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Calculates tile position on upper level (0-3)
+            </summary>
+            <param name="tileX">Tile's x number.</param>
+            <param name="tileY">Tile's y number.</param>
+            <returns>Position (0-3 int)</returns>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Tiles.Tile.GetNumbersFromCoords(System.Double,System.Double,System.Double,System.Double,System.Int32,System.Boolean,System.Int32)">
+            <summary>
+            Calculates the tile numbers for zoom which covers given lon/lat coordinates.
+            </summary>
+            <param name="minX">Minimum longitude.</param>
+            <param name="minY">Minimum latitude.</param>
+            <param name="maxX">Maximum longitude.</param>
+            <param name="maxY">Maximum latitude.</param>
+            <param name="zoom">Tile's zoom.</param>
+            <param name="tmsCompatible">Do you want tms tiles on output?</param>
+            <returns><see cref="T:System.ValueTuple`4"/> of tiles numbers.</returns>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Tiles.Tile.GetNumbersFromCoords(System.Boolean)">
+            <inheritdoc />
+        </member>
+        <member name="M:GTiff2Tiles.Core.Tiles.Tile.GetLowerNumbers(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Calculates lower levels for current 10 lvl tile
+            </summary>
+            <param name="tileX">Tile's x number on 10 lvl.</param>
+            <param name="tileY">Tile's y number on 10 lvl.</param>
+            <param name="zoom">Interested zoom.</param>
+            <returns><see cref="T:System.ValueTuple`4"/> тайлов указанного уровня.</returns>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Tiles.Tile.GetLowerNumbers(System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="M:GTiff2Tiles.Core.Tiles.Tile.GetBounds(System.Int32,System.Int32,System.Int32,System.Boolean,System.Int32)">
+            <summary>
+            Calculates tile's coordinate borders for passed tiles numbers and zoom.
+            </summary>
+            <param name="tileX">Tile's x number.</param>
+            <param name="tileY">Tile's y number.</param>
+            <param name="zoom">Tile's zoom.</param>
+            <param name="tmsCompatible">Do you want tms tiles on output?</param>
+            <returns><see cref="T:System.ValueTuple`4"/> of WGS84 coordinates.</returns>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Tiles.Tile.SetBounds">
+            <inheritdoc />
         </member>
         <member name="T:GTiff2Tiles.Core.Tile.TileTools">
             <summary>
