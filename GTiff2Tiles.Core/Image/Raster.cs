@@ -449,10 +449,9 @@ namespace GTiff2Tiles.Core.Image
 
         /// <inheritdoc />
         public async ValueTask GenerateTilesAsync(DirectoryInfo outputDirectoryInfo, int minZ, int maxZ,
-                                                  bool tmsCompatible, string tileExtension,
-                                                  IProgress<double> progress,
-                                                  int threadsCount,
-                                                  bool isPrintEstimatedTime = true)
+                                                  bool tmsCompatible = false, string tileExtension = Constants.Extensions.Png,
+                                                  IProgress<double> progress = null,
+                                                  int threadsCount = 0, bool isPrintEstimatedTime = true)
         {
             //TODO: profile argument (geodetic/mercator)
 
@@ -460,10 +459,10 @@ namespace GTiff2Tiles.Core.Image
 
             progress ??= new Progress<double>();
 
-            if (threadsCount <= 0)
-                throw new RasterException(string.Format(Strings.LesserOrEqual, nameof(threadsCount), 0));
-
             #endregion
+
+            ParallelOptions parallelOptions = new ParallelOptions();
+            if (threadsCount <= 0) parallelOptions.MaxDegreeOfParallelism = threadsCount;
 
             //Crop all tiles.
             Stopwatch stopwatch = isPrintEstimatedTime ? Stopwatch.StartNew() : null;
@@ -472,59 +471,37 @@ namespace GTiff2Tiles.Core.Image
 
             if (tilesCount <= 0) return;
 
-            using SemaphoreSlim semaphoreSlim = new SemaphoreSlim(threadsCount);
-            List<Task> tasks = new List<Task>();
-
             //For each zoom.
             for (int zoom = minZ; zoom <= maxZ; zoom++)
             {
                 //Get tiles min/max numbers.
-                (int tileMinX, int tileMinY, int tileMaxX, int tileMaxY) = Tiles.Tile.GetNumbersFromCoords(MinX, MinY,
-                                                                                                           MaxX, MaxY,
-                                                                                                           zoom, tmsCompatible);
+                (int tileMinX, int tileMinY, int tileMaxX, int tileMaxY) =
+                    Tiles.Tile.GetNumbersFromCoords(MinX, MinY, MaxX, MaxY, zoom, tmsCompatible);
 
                 //For each tile on given zoom calculate positions/sizes and save as file.
                 for (int tileY = tileMinY; tileY <= tileMaxY; tileY++)
                 {
-                    for (int tileX = tileMinX; tileX <= tileMaxX; tileX++)
+                    int y = tileY;
+                    int z = zoom;
+
+                    void MakeTile(int tileX)
                     {
-                        await semaphoreSlim.WaitAsync().ConfigureAwait(false);
+                        WriteTile(outputDirectoryInfo, tileX, y, z, tmsCompatible,
+                                  tileExtension);
 
-                        int x = tileX;
-                        int y = tileY;
-                        int currentZoom = zoom;
+                        //Report progress.
+                        counter++;
+                        double percentage = counter / tilesCount * 100.0;
+                        progress.Report(percentage);
 
-                        tasks.Add(Task.Run(() =>
-                        {
-                            try
-                            {
-                                WriteTile(outputDirectoryInfo, x, y, currentZoom, tmsCompatible, tileExtension);
-                            }
-                            finally
-                            {
-                                // ReSharper disable once AccessToDisposedClosure
-                                semaphoreSlim.Release();
-
-                                //Report progress.
-                                counter++;
-                                double percentage = counter / tilesCount * 100.0;
-                                progress.Report(percentage);
-
-                                //Estimated time left calculation.
-                                PrintEstimatedTimeLeft(percentage, stopwatch);
-                            }
-                        }));
+                        //Estimated time left calculation.
+                        PrintEstimatedTimeLeft(percentage, stopwatch);
                     }
+
+                    await Task.Run(() => Parallel.For(tileMinX, tileMaxX + 1, parallelOptions, MakeTile))
+                              .ConfigureAwait(false);
                 }
             }
-
-            //Wait for all tasks for complete.
-            await Task.WhenAll(tasks).ConfigureAwait(false);
-
-            //Dispose tasks.
-            foreach (Task task in tasks) task.Dispose();
-
-            //stopwatch?.Stop();
         }
 
         #endregion

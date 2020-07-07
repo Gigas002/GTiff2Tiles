@@ -2,7 +2,7 @@
   "profiles": {
     "GTiff2Tiles.Console": {
       "commandName": "Project",
-      "commandLineArgs": "-i \"C:\\Users\\gigas\\Documents\\Visual Studio 2019\\Projects\\GTiff2Tiles\\Examples\\Input\\Input3395.tif\" -o \"C:\\Users\\gigas\\Documents\\Visual Studio 2019\\Projects\\GTiff2Tiles\\Examples\\Output\" -t \"C:\\Users\\gigas\\Documents\\Visual Studio 2019\\Projects\\GTiff2Tiles\\Examples\\tmp\" --minz 10 --maxz 11 --tms true"
+      "commandLineArgs": "-i \"C:\\Users\\gigas\\Documents\\Visual Studio 2019\\Projects\\GTiff2Tiles\\Examples\\Input\\Input4326.tif\" -o \"C:\\Users\\gigas\\Documents\\Visual Studio 2019\\Projects\\GTiff2Tiles\\Examples\\Output\" -t \"C:\\Users\\gigas\\Documents\\Visual Studio 2019\\Projects\\GTiff2Tiles\\Examples\\tmp\" --minz 10 --maxz 17 --tms true"
     }
   }
 }
