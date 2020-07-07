@@ -369,7 +369,7 @@
             Shows if resources have already been disposed.
             </summary>
         </member>
-        <member name="M:GTiff2Tiles.Core.Image.IImage.GenerateTilesAsync(System.IO.DirectoryInfo,System.Int32,System.Int32,System.Boolean,System.String,System.IProgress{System.Double},System.Int32)">
+        <member name="M:GTiff2Tiles.Core.Image.IImage.GenerateTilesAsync(System.IO.DirectoryInfo,System.Int32,System.Int32,System.Boolean,System.String,System.IProgress{System.Double},System.Int32,System.Boolean)">
             <summary>
             Crops input tiff for each zoom.
             </summary>
@@ -405,26 +405,6 @@
         <member name="T:GTiff2Tiles.Core.Image.Raster">
             <summary>
             Class for creating raster tiles.
-            </summary>
-        </member>
-        <member name="P:GTiff2Tiles.Core.Image.Raster.MinZ">
-            <summary>
-            Minimum cropped zoom.
-            </summary>
-        </member>
-        <member name="P:GTiff2Tiles.Core.Image.Raster.MaxZ">
-            <summary>
-            Maximum cropped zoom.
-            </summary>
-        </member>
-        <member name="P:GTiff2Tiles.Core.Image.Raster.TmsCompatible">
-            <summary>
-            Shows if tms tiles on output are created.
-            </summary>
-        </member>
-        <member name="P:GTiff2Tiles.Core.Image.Raster.TileExtension">
-            <summary>
-            Extension of ready tiles.
             </summary>
         </member>
         <member name="P:GTiff2Tiles.Core.Image.Raster.Data">
@@ -476,6 +456,21 @@
         <member name="M:GTiff2Tiles.Core.Image.Raster.DisposeAsync">
             <inheritdoc />
         </member>
+        <member name="M:GTiff2Tiles.Core.Image.Raster.GetTilesCount(System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Gets count of tiles to crop. Needed for progress calculations.
+            </summary>
+            <param name="tmsCompatible">Are tiles tims compatible?</param>
+            <param name="threadsCount">Threads count.</param>
+            <returns>Number of tiles to crop.</returns>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Image.Raster.PrintEstimatedTimeLeft(System.Double,System.Diagnostics.Stopwatch)">
+            <summary>
+            Prints estimated time left.
+            </summary>
+            <param name="percentage">Current progress.</param>
+            <param name="stopwatch">Get elapsed time from this.</param>
+        </member>
         <member name="M:GTiff2Tiles.Core.Image.Raster.Resize(NetVips.Image,System.Double,System.Double,System.String,System.String,System.Boolean)">
             <summary>
             Resizes tile before creating it
@@ -488,14 +483,6 @@
             <param name="isCentre"></param>
             <returns></returns>
         </member>
-        <member name="M:GTiff2Tiles.Core.Image.Raster.GetTileNumbers(System.Int32,System.Boolean)">
-            <summary>
-            Gets number of tiles for current raster
-            </summary>
-            <param name="zoom">Current zoom</param>
-            <param name="tmsCompatible">Is tms compatible?</param>
-            <returns>Tuple of tile numbers</returns>
-        </member>
         <member name="M:GTiff2Tiles.Core.Image.Raster.GeoQuery(System.Double,System.Double,System.Double,System.Double)">
             <summary>
             Calculate size and positions to read/write.
@@ -506,51 +493,17 @@
             <param name="lowerRightY">Tile's lower right y coordinate.</param>
             <returns><see cref="T:System.ValueTuple`8"/> of x/y positions and sizes to read and write tiles.</returns>
         </member>
-        <member name="M:GTiff2Tiles.Core.Image.Raster.WriteTile(System.IO.DirectoryInfo,System.Int32,System.Int32,System.Int32)">
+        <member name="M:GTiff2Tiles.Core.Image.Raster.WriteTile(System.IO.DirectoryInfo,System.Int32,System.Int32,System.Int32,System.Boolean,System.String)">
             <summary>
             Writes one tile of current zoom.
             <para/>Crops zoom directly from input image.
             </summary>
+            <param name="outputDirectoryInfo">Directory for ready tiles.</param>
             <param name="tileX">Tile x.</param>
             <param name="tileY">Tile y.</param>
             <param name="zoom">Zoom level.</param>
         </member>
-        <member name="M:GTiff2Tiles.Core.Image.Raster.SetGenerateTilesProperties(System.IO.DirectoryInfo,System.Int32,System.Int32,System.Boolean,System.String)">
-            <summary>
-            Sets properties, needed for cropping current <see cref="T:GTiff2Tiles.Core.Image.Raster"/>.
-            </summary>
-            <param name="outputDirectoryInfo">Output directory.</param>
-            <param name="minZ">Minimum cropped zoom.</param>
-            <param name="maxZ">Maximum cropped zoom.</param>
-            <param name="tmsCompatible">Do you want tms tiles on output?</param>
-            <param name="tileExtension">Extensions of ready tiles.</param>
-        </member>
-        <member name="M:GTiff2Tiles.Core.Image.Raster.GetTilesCount(System.Boolean,System.Int32)">
-            <summary>
-            Gets count of tiles to crop. Needed for progress calculations.
-            </summary>
-            <param name="tmsCompatible">Are tiles tims compatible?</param>
-            <param name="threadsCount">Threads count.</param>
-            <returns>Number of tiles to crop.</returns>
-        </member>
-        <member name="M:GTiff2Tiles.Core.Image.Raster.RunTiling(System.IO.DirectoryInfo,System.Boolean,System.IProgress{System.Double},System.Int32,System.Boolean)">
-            <summary>
-            Crops tiles one by one with more accurant progress report and slightly better performance (WIP).
-            </summary>
-            <param name="tmsCompatible">Are tiles tms compatible?</param>
-            <param name="progress">Progress.</param>
-            <param name="threadsCount">Threads count.</param>
-            <param name="isPrintEstimatedTime">Do you want to see estimated time left as progress changes?</param>
-            <returns></returns>
-        </member>
-        <member name="M:GTiff2Tiles.Core.Image.Raster.PrintEstimatedTimeLeft(System.Double,System.Diagnostics.Stopwatch)">
-            <summary>
-            Prints estimated time left.
-            </summary>
-            <param name="percentage">Current progress.</param>
-            <param name="stopwatch">Get elapsed time from this.</param>
-        </member>
-        <member name="M:GTiff2Tiles.Core.Image.Raster.GenerateTilesAsync(System.IO.DirectoryInfo,System.Int32,System.Int32,System.Boolean,System.String,System.IProgress{System.Double},System.Int32)">
+        <member name="M:GTiff2Tiles.Core.Image.Raster.GenerateTilesAsync(System.IO.DirectoryInfo,System.Int32,System.Int32,System.Boolean,System.String,System.IProgress{System.Double},System.Int32,System.Boolean)">
             <inheritdoc />
         </member>
         <member name="T:GTiff2Tiles.Core.Localization.Strings">
@@ -718,6 +671,9 @@
         <member name="P:GTiff2Tiles.Core.Tiles.Tile.Size">
             <inheritdoc />
         </member>
+        <member name="P:GTiff2Tiles.Core.Tiles.Tile.Extension">
+            <inheritdoc />
+        </member>
         <member name="P:GTiff2Tiles.Core.Tiles.Tile.FileInfo">
             <inheritdoc />
         </member>
@@ -757,6 +713,9 @@
             <param name="tileY">Tile's y number.</param>
             <returns>Position (0-3 int)</returns>
         </member>
+        <member name="M:GTiff2Tiles.Core.Tiles.Tile.GetNumbersFromCoords(System.Boolean)">
+            <inheritdoc />
+        </member>
         <member name="M:GTiff2Tiles.Core.Tiles.Tile.GetNumbersFromCoords(System.Double,System.Double,System.Double,System.Double,System.Int32,System.Boolean,System.Int32)">
             <summary>
             Calculates the tile numbers for zoom which covers given lon/lat coordinates.
@@ -769,7 +728,7 @@
             <param name="tmsCompatible">Do you want tms tiles on output?</param>
             <returns><see cref="T:System.ValueTuple`4"/> of tiles numbers.</returns>
         </member>
-        <member name="M:GTiff2Tiles.Core.Tiles.Tile.GetNumbersFromCoords(System.Boolean)">
+        <member name="M:GTiff2Tiles.Core.Tiles.Tile.GetLowerNumbers(System.Int32)">
             <inheritdoc />
         </member>
         <member name="M:GTiff2Tiles.Core.Tiles.Tile.GetLowerNumbers(System.Int32,System.Int32,System.Int32)">
@@ -780,9 +739,6 @@
             <param name="tileY">Tile's y number on 10 lvl.</param>
             <param name="zoom">Interested zoom.</param>
             <returns><see cref="T:System.ValueTuple`4"/> тайлов указанного уровня.</returns>
-        </member>
-        <member name="M:GTiff2Tiles.Core.Tiles.Tile.GetLowerNumbers(System.Int32)">
-            <inheritdoc />
         </member>
         <member name="M:GTiff2Tiles.Core.Tiles.Tile.GetBounds(System.Int32,System.Int32,System.Int32,System.Boolean,System.Int32)">
             <summary>

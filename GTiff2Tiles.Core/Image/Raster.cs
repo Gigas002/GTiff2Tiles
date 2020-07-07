@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
@@ -10,6 +11,7 @@ using GTiff2Tiles.Core.Constants.Image;
 using GTiff2Tiles.Core.Exceptions.Image;
 using GTiff2Tiles.Core.Helpers;
 using GTiff2Tiles.Core.Localization;
+using GTiff2Tiles.Core.Tiles;
 using NetVips;
 
 namespace GTiff2Tiles.Core.Image
@@ -22,26 +24,6 @@ namespace GTiff2Tiles.Core.Image
         #region Properties
 
         #region Private
-
-        /// <summary>
-        /// Minimum cropped zoom.
-        /// </summary>
-        private int MinZ { get; set; }
-
-        /// <summary>
-        /// Maximum cropped zoom.
-        /// </summary>
-        private int MaxZ { get; set; }
-
-        /// <summary>
-        /// Shows if tms tiles on output are created.
-        /// </summary>
-        private bool TmsCompatible { get; set; }
-
-        /// <summary>
-        /// Extension of ready tiles.
-        /// </summary>
-        private string TileExtension { get; set; }
 
         /// <summary>
         /// This image's data.
@@ -165,6 +147,56 @@ namespace GTiff2Tiles.Core.Image
 
         #region Private
 
+        #region Other
+
+        /// <summary>
+        /// Gets count of tiles to crop. Needed for progress calculations.
+        /// </summary>
+        /// <param name="tmsCompatible">Are tiles tims compatible?</param>
+        /// <param name="threadsCount">Threads count.</param>
+        /// <returns>Number of tiles to crop.</returns>
+        private async ValueTask<int> GetTilesCount(int minZ, int maxZ, bool tmsCompatible)
+        {
+            int tilesCount = 0;
+            for (int zoom = minZ; zoom <= maxZ; zoom++)
+            {
+                int currentZoom = zoom;
+                await Task.Run(() =>
+                {
+                    //Get tiles min/max numbers.
+                    (int tileMinX, int tileMinY, int tileMaxX, int tileMaxY) =
+                        Tiles.Tile.GetNumbersFromCoords(MinX, MinY, MaxX, MaxY, currentZoom, tmsCompatible);
+
+                    for (int tileY = tileMinY; tileY <= tileMaxY; tileY++)
+                        Parallel.For(tileMinX, tileMaxX + 1,
+                                     () => 0,
+                                     (i, state, subtotal) => ++subtotal,
+                                     value => Interlocked.Add(ref tilesCount, value));
+                }).ConfigureAwait(false);
+            }
+
+            return tilesCount;
+        }
+
+        /// <summary>
+        /// Prints estimated time left.
+        /// </summary>
+        /// <param name="percentage">Current progress.</param>
+        /// <param name="stopwatch">Get elapsed time from this.</param>
+        private static void PrintEstimatedTimeLeft(double percentage, Stopwatch stopwatch = null)
+        {
+            if (stopwatch == null) return;
+
+            double timePassed = stopwatch.ElapsedMilliseconds;
+            double estimatedAllTime = 100.0 * timePassed / percentage;
+            double estimatedTimeLeft = estimatedAllTime - timePassed;
+            TimeSpan timeSpan = TimeSpan.FromMilliseconds(estimatedTimeLeft);
+            Console.WriteLine(Strings.EstimatedTime, Environment.NewLine, timeSpan.Days, timeSpan.Hours,
+                              timeSpan.Minutes, timeSpan.Seconds, timeSpan.Milliseconds);
+        }
+
+        #endregion
+
         /// <summary>
         /// Resizes tile before creating it
         /// </summary>
@@ -228,23 +260,6 @@ namespace GTiff2Tiles.Core.Image
                                              extend: NetVips.Enums.Extend.Copy);
 
             return tileImage;
-        }
-
-        /// <summary>
-        /// Gets number of tiles for current raster
-        /// </summary>
-        /// <param name="zoom">Current zoom</param>
-        /// <param name="tmsCompatible">Is tms compatible?</param>
-        /// <returns>Tuple of tile numbers</returns>
-        private (int tileMinX, int tileMinY, int tileMaxX, int tileMaxY) GetTileNumbers(int zoom, bool tmsCompatible)
-        {
-            //Convert coordinates to tile numbers.
-            (int tileMinX, int tileMinY, int tileMaxX, int tileMaxY) =
-                Tile.TileTools.GetTileNumbersFromCoords(MinX, MinY, MaxX, MaxY, zoom, tmsCompatible);
-
-            return (Math.Max(0, tileMinX), Math.Max(0, tileMinY),
-                    Math.Min(Convert.ToInt32(Math.Pow(2.0, zoom + 1)) - 1, tileMaxX),
-                    Math.Min(Convert.ToInt32(Math.Pow(2.0, zoom)) - 1, tileMaxY));
         }
 
         /// <summary>
@@ -316,6 +331,19 @@ namespace GTiff2Tiles.Core.Image
                     (int)writePosMinY, (int)writeXSize, (int)writeYSize);
         }
 
+        private (int readPosX, int readPosY, int readXSize, int readYSize, int writePosX, int writePosY, int writeXSize,
+            int writeYSize) GeoQuery(ITile tile) => GeoQuery(tile.MinLongtiude, tile.MinLatitude, tile.MaxLongitude, tile.MaxLatitude);
+
+        private void AddBands(ref NetVips.Image image, int bands = Constants.Image.Raster.Bands)
+        {
+            for (; image.Bands < bands;) image = image.Bandjoin(255);
+        }
+
+        private void AddBands(NetVips.Image[] images, int bands = Constants.Image.Raster.Bands)
+        {
+            for (int index = 0; index < images.Length; index++) AddBands(ref images[index], bands);
+        }
+
         /// <summary>
         /// Writes one tile of current zoom.
         /// <para/>Crops zoom directly from input image.
@@ -324,13 +352,14 @@ namespace GTiff2Tiles.Core.Image
         /// <param name="tileX">Tile x.</param>
         /// <param name="tileY">Tile y.</param>
         /// <param name="zoom">Zoom level.</param>
-        private void WriteTile(DirectoryInfo outputDirectoryInfo, int tileX, int tileY, int zoom)
+        private void WriteTile(DirectoryInfo outputDirectoryInfo, int tileX, int tileY, int zoom,
+                               bool tmsCompatible, string tileExtension)
         {
             #region Parameters checking
 
-            if (zoom < 0) throw new RasterException(string.Format(Strings.LesserThan, nameof(zoom), 0));
-            if (tileX < 0) throw new RasterException(string.Format(Strings.LesserThan, nameof(tileX), 0));
-            if (tileY < 0) throw new RasterException(string.Format(Strings.LesserThan, nameof(tileY), 0));
+            if (zoom < 0) throw new RasterException(string.Format(CultureInfo.InvariantCulture, Strings.LesserThan, nameof(zoom), 0));
+            if (tileX < 0) throw new RasterException(string.Format(CultureInfo.InvariantCulture, Strings.LesserThan, nameof(tileX), 0));
+            if (tileY < 0) throw new RasterException(string.Format(CultureInfo.InvariantCulture, Strings.LesserThan, nameof(tileY), 0));
 
             #endregion
 
@@ -341,7 +370,7 @@ namespace GTiff2Tiles.Core.Image
 
             //Get the coordinate borders for current tile from tile numbers.
             (double minX, double minY, double maxX, double maxY) =
-                Tile.TileTools.TileBounds(tileX, tileY, zoom, TmsCompatible);
+                Tiles.Tile.GetBounds(tileX, tileY, zoom, tmsCompatible);
 
             //Get postitions and sizes for current tile.
             (int readPosX, int readPosY, int readXSize, int readYSize, int writePosX, int writePosY, int writeXSize,
@@ -349,102 +378,96 @@ namespace GTiff2Tiles.Core.Image
 
             //Warning: OpenLayers requires replacement of tileY to tileY+1
             FileInfo outputTileFileInfo = new FileInfo(Path.Combine(tileDirectoryInfo.FullName,
-                                                                    $"{tileY}{TileExtension}"));
+                                                                    $"{tileY}{tileExtension}"));
 
             // Scaling calculations
             double xScale = (double)writeXSize / readXSize;
             double yScale = (double)writeYSize / readYSize;
 
             // Crop and resize tile
-            NetVips.Image tileImage = Resize(Data.Crop(readPosX, readPosY, readXSize, readYSize), xScale, yScale);
+            NetVips.Image tmpTileImage = Resize(Data.Crop(readPosX, readPosY, readXSize, readYSize), xScale, yScale);
 
             // Add alpha channel if needed
-            for (; tileImage.Bands < Constants.Image.Raster.Bands;) tileImage = tileImage.Bandjoin(255);
+            //TODO: add bands param
+            //for (; tileImage.Bands < Constants.Image.Raster.Bands;) tileImage = tileImage.Bandjoin(255);
+            AddBands(ref tmpTileImage);
 
             // Make transparent image and insert tile
             using NetVips.Image outputImage = NetVips
-                                             .Image.Black(Constants.Image.Raster.TileSize,
-                                                          Constants.Image.Raster.TileSize).NewFromImage(0, 0, 0, 0)
-                                             .Insert(tileImage, writePosX, writePosY);
+                                             .Image.Black(256, 256).NewFromImage(0, 0, 0, 0)
+                                             .Insert(tmpTileImage, writePosX, writePosY);
             outputImage.WriteToFile(outputTileFileInfo.FullName);
 
             //Dispose the tile.
-            tileImage.Dispose();
+            tmpTileImage.Dispose();
 
             //Check if tile was created successfuly.
             CheckHelper.CheckFile(outputTileFileInfo, true);
         }
 
-        /// <summary>
-        /// Sets properties, needed for cropping current <see cref="Raster"/>.
-        /// </summary>
-        /// <param name="outputDirectoryInfo">Output directory.</param>
-        /// <param name="minZ">Minimum cropped zoom.</param>
-        /// <param name="maxZ">Maximum cropped zoom.</param>
-        /// <param name="tmsCompatible">Do you want tms tiles on output?</param>
-        /// <param name="tileExtension">Extensions of ready tiles.</param>
-        private void SetGenerateTilesProperties(DirectoryInfo outputDirectoryInfo, int minZ, int maxZ,
-                                                bool tmsCompatible, string tileExtension)
+        private NetVips.Image CreateTileImage(ITile tile)
         {
-            #region Check parameters
+            //Get postitions and sizes for current tile.
+            (int readPosX, int readPosY, int readXSize, int readYSize, int writePosX, int writePosY, int writeXSize,
+             int writeYSize) = GeoQuery(tile.MinLongtiude, tile.MaxLatitude, tile.MaxLongitude, tile.MinLatitude);
 
-            CheckHelper.CheckDirectory(outputDirectoryInfo, true);
+            // Scaling calculations
+            double xScale = (double)writeXSize / readXSize;
+            double yScale = (double)writeYSize / readYSize;
 
-            if (maxZ < minZ) throw new RasterException(string.Format(Strings.LesserThan, nameof(maxZ), nameof(minZ)));
-            if (minZ < 0) throw new RasterException(string.Format(Strings.LesserThan, nameof(minZ), 0));
-            if (maxZ < 0) throw new RasterException(string.Format(Strings.LesserThan, nameof(maxZ), 0));
+            // Crop and resize tile
+            NetVips.Image tmpTileImage = Resize(Data.Crop(readPosX, readPosY, readXSize, readYSize), xScale, yScale);
+
+            // Add alpha channel if needed
+            //TODO: add bands param
+            //for (; tileImage.Bands < Constants.Image.Raster.Bands;) tileImage = tileImage.Bandjoin(255);
+            AddBands(ref tmpTileImage);
+
+            // Make transparent image and insert tile
+            return NetVips.Image.Black(tile.Size, tile.Size).NewFromImage(0, 0, 0, 0)
+                          .Insert(tmpTileImage, writePosX, writePosY);
+        }
+
+        private void WriteTileToFile(ITile tile)
+        {
+            //todo file path?
+            using var tileImage = CreateTileImage(tile);
+            tileImage.WriteToFile(tile.FileInfo.FullName);
+        }
+
+        private IEnumerable<byte> WriteTileToEnumerable(ITile tile)
+        {
+            using var tileImage = CreateTileImage(tile);
+            //todo test
+            //return tileImage.WriteToBuffer(tile.Extension);
+            return tileImage.WriteToMemory();
+        }
+
+        #endregion
+
+        #region Public
+
+        /// <inheritdoc />
+        public async ValueTask GenerateTilesAsync(DirectoryInfo outputDirectoryInfo, int minZ, int maxZ,
+                                                  bool tmsCompatible, string tileExtension,
+                                                  IProgress<double> progress,
+                                                  int threadsCount,
+                                                  bool isPrintEstimatedTime = true)
+        {
+            //TODO: profile argument (geodetic/mercator)
+
+            #region Parameters checking
+
+            progress ??= new Progress<double>();
+
+            if (threadsCount <= 0)
+                throw new RasterException(string.Format(Strings.LesserOrEqual, nameof(threadsCount), 0));
 
             #endregion
 
-            (MinZ, MaxZ, TmsCompatible, TileExtension) = (minZ, maxZ, tmsCompatible, tileExtension);
-        }
-
-        /// <summary>
-        /// Gets count of tiles to crop. Needed for progress calculations.
-        /// </summary>
-        /// <param name="tmsCompatible">Are tiles tims compatible?</param>
-        /// <param name="threadsCount">Threads count.</param>
-        /// <returns>Number of tiles to crop.</returns>
-        private async ValueTask<int> GetTilesCount(bool tmsCompatible, int threadsCount)
-        {
-            int tilesCount = 0;
-            ParallelOptions parallelOptions = new ParallelOptions { MaxDegreeOfParallelism = threadsCount };
-
-            for (int zoom = MinZ; zoom <= MaxZ; zoom++)
-            {
-                int currentZoom = zoom;
-                await Task.Run(() =>
-                {
-                    //Get tiles min/max numbers.
-                    (int tileMinX, int tileMinY, int tileMaxX, int tileMaxY) =
-                        GetTileNumbers(currentZoom, tmsCompatible);
-
-                    for (int tileY = tileMinY; tileY <= tileMaxY; tileY++)
-                        Parallel.For(tileMinX, tileMaxX + 1,
-                                     parallelOptions,
-                                     () => 0,
-                                     (i, state, subtotal) => ++subtotal,
-                                     value => Interlocked.Add(ref tilesCount, value));
-                }).ConfigureAwait(false);
-            }
-
-            return tilesCount;
-        }
-
-        /// <summary>
-        /// Crops tiles one by one with more accurant progress report and slightly better performance (WIP).
-        /// </summary>
-        /// <param name="outputDirectoryInfo">Directory for ready tiles.</param>
-        /// <param name="tmsCompatible">Are tiles tms compatible?</param>
-        /// <param name="progress">Progress.</param>
-        /// <param name="threadsCount">Threads count.</param>
-        /// <param name="isPrintEstimatedTime">Do you want to see estimated time left as progress changes?</param>
-        /// <returns></returns>
-        private async ValueTask RunTiling(DirectoryInfo outputDirectoryInfo, bool tmsCompatible, IProgress<double> progress, int threadsCount,
-                                          bool isPrintEstimatedTime = false)
-        {
+            //Crop all tiles.
             Stopwatch stopwatch = isPrintEstimatedTime ? Stopwatch.StartNew() : null;
-            int tilesCount = await GetTilesCount(tmsCompatible, threadsCount).ConfigureAwait(false);
+            int tilesCount = await GetTilesCount(minZ, maxZ, tmsCompatible).ConfigureAwait(false);
             double counter = 0.0;
 
             if (tilesCount <= 0) return;
@@ -453,10 +476,12 @@ namespace GTiff2Tiles.Core.Image
             List<Task> tasks = new List<Task>();
 
             //For each zoom.
-            for (int zoom = MinZ; zoom <= MaxZ; zoom++)
+            for (int zoom = minZ; zoom <= maxZ; zoom++)
             {
                 //Get tiles min/max numbers.
-                (int tileMinX, int tileMinY, int tileMaxX, int tileMaxY) = GetTileNumbers(zoom, tmsCompatible);
+                (int tileMinX, int tileMinY, int tileMaxX, int tileMaxY) = Tiles.Tile.GetNumbersFromCoords(MinX, MinY,
+                                                                                                           MaxX, MaxY,
+                                                                                                           zoom, tmsCompatible);
 
                 //For each tile on given zoom calculate positions/sizes and save as file.
                 for (int tileY = tileMinY; tileY <= tileMaxY; tileY++)
@@ -471,7 +496,10 @@ namespace GTiff2Tiles.Core.Image
 
                         tasks.Add(Task.Run(() =>
                         {
-                            try { WriteTile(outputDirectoryInfo, x, y, currentZoom); }
+                            try
+                            {
+                                WriteTile(outputDirectoryInfo, x, y, currentZoom, tmsCompatible, tileExtension);
+                            }
                             finally
                             {
                                 // ReSharper disable once AccessToDisposedClosure
@@ -496,53 +524,7 @@ namespace GTiff2Tiles.Core.Image
             //Dispose tasks.
             foreach (Task task in tasks) task.Dispose();
 
-            stopwatch?.Stop();
-        }
-
-        /// <summary>
-        /// Prints estimated time left.
-        /// </summary>
-        /// <param name="percentage">Current progress.</param>
-        /// <param name="stopwatch">Get elapsed time from this.</param>
-        private static void PrintEstimatedTimeLeft(double percentage, Stopwatch stopwatch = null)
-        {
-            if (stopwatch == null) return;
-
-            double timePassed = stopwatch.ElapsedMilliseconds;
-            double estimatedAllTime = 100.0 * timePassed / percentage;
-            double estimatedTimeLeft = estimatedAllTime - timePassed;
-            TimeSpan timeSpan = TimeSpan.FromMilliseconds(estimatedTimeLeft);
-            Console.WriteLine(Strings.EstimatedTime, Environment.NewLine, timeSpan.Days, timeSpan.Hours,
-                              timeSpan.Minutes, timeSpan.Seconds, timeSpan.Milliseconds);
-        }
-
-        #endregion
-
-        #region Public
-
-        /// <inheritdoc />
-        public async ValueTask GenerateTilesAsync(DirectoryInfo outputDirectoryInfo, int minZ, int maxZ,
-                                                  bool tmsCompatible, string tileExtension,
-                                                  IProgress<double> progress,
-                                                  int threadsCount)
-        {
-            //TODO: profile argument (geodetic/mercator)
-
-            #region Parameters checking
-
-            progress ??= new Progress<double>();
-
-            if (threadsCount <= 0)
-                throw new RasterException(string.Format(Strings.LesserOrEqual, nameof(threadsCount), 0));
-
-            #endregion
-
-            SetGenerateTilesProperties(outputDirectoryInfo, minZ, maxZ, tmsCompatible, tileExtension);
-
-            const bool isPrintEstimatedTime = false;
-            //Crop all tiles.
-            // ReSharper disable once RedundantArgumentDefaultValue
-            await RunTiling(outputDirectoryInfo, tmsCompatible, progress, threadsCount, isPrintEstimatedTime).ConfigureAwait(false);
+            //stopwatch?.Stop();
         }
 
         #endregion

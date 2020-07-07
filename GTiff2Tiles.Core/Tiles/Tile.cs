@@ -49,15 +49,19 @@ namespace GTiff2Tiles.Core.Tiles
         public int Size { get; set; }
 
         /// <inheritdoc />
+        public string Extension { get; set; }
+
+        /// <inheritdoc />
         public FileInfo FileInfo { get; set; }
 
         #endregion
 
         #region Constructors/Destructors
 
-        public Tile(int x, int y, int z, IEnumerable<byte> d = null, bool tmsCompatible = false, int size = Raster.TileSize)
+        public Tile(int x, int y, int z, IEnumerable<byte> d = null, string extension = Constants.Extensions.Png,
+                    bool tmsCompatible = false, int size = Raster.TileSize)
         {
-            (X, Y, Z, TmsCompatible, D, Size) = (x, y, z, tmsCompatible, d, size);
+            (X, Y, Z, D, Extension, TmsCompatible, Size) = (x, y, z, d, extension, tmsCompatible, size);
             SetBounds();
         }
 
@@ -178,6 +182,10 @@ namespace GTiff2Tiles.Core.Tiles
             return tilePosition;
         }
 
+        /// <inheritdoc />
+        public (int tileMinX, int tileMinY, int tileMaxX, int tileMaxY) GetNumbersFromCoords(bool tmsCompatible) =>
+            GetNumbersFromCoords(MinLongtiude, MinLatitude, MaxLongitude, MaxLatitude, Z, tmsCompatible, Size);
+
         /// <summary>
         /// Calculates the tile numbers for zoom which covers given lon/lat coordinates.
         /// </summary>
@@ -207,12 +215,15 @@ namespace GTiff2Tiles.Core.Tiles
                 tilesYs[1] = FlipY(tilesYs[1], zoom);
             }
 
-            return (tilesXs.Min(), tilesYs.Min(), tilesXs.Max(), tilesYs.Max());
+            //Ensure that no bad tiles returned
+            return (Math.Max(0, tilesXs.Min()), Math.Max(0, tilesYs.Min()),
+                    Math.Min(Convert.ToInt32(Math.Pow(2.0, zoom + 1)) - 1, tilesXs.Max()),
+                    Math.Min(Convert.ToInt32(Math.Pow(2.0, zoom)) - 1, tilesYs.Max()));
         }
 
         /// <inheritdoc />
-        public (int tileMinX, int tileMinY, int tileMaxX, int tileMaxY) GetNumbersFromCoords(bool tmsCompatible) =>
-            GetNumbersFromCoords(MinLongtiude, MinLatitude, MaxLongitude, MaxLatitude, Z, tmsCompatible, Size);
+        public (int tileMinX, int tileMinY, int tileMaxX, int tileMaxY) GetLowerNumbers(int zoom) =>
+            GetLowerNumbers(X, Y, zoom);
 
         /// <summary>
         /// Calculates lower levels for current 10 lvl tile
@@ -231,10 +242,6 @@ namespace GTiff2Tiles.Core.Tiles
 
             return (tilesXs.Min(), tilesYs.Min(), tilesXs.Max(), tilesYs.Max());
         }
-
-        /// <inheritdoc />
-        public (int tileMinX, int tileMinY, int tileMaxX, int tileMaxY) GetLowerNumbers(int zoom) =>
-            GetLowerNumbers(X, Y, zoom);
 
         /// <summary>
         /// Calculates tile's coordinate borders for passed tiles numbers and zoom.

@@ -21,6 +21,7 @@ namespace GTiff2Tiles.Core.Tiles
         public int Size { get; set; }
         public FileInfo FileInfo { get; set; }
         public bool TmsCompatible { get; set; }
+        public string Extension { get; set; }
 
         #endregion
 

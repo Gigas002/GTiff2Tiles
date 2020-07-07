@@ -67,7 +67,8 @@ namespace GTiff2Tiles.Core.Image
         /// <param name="threadsCount">Threads count.</param>
         /// <returns></returns>
         public ValueTask GenerateTilesAsync(DirectoryInfo outputDirectoryInfo, int minZ, int maxZ, bool tmsCompatible,
-                                            string tileExtension, IProgress<double> progress, int threadsCount);
+                                            string tileExtension, IProgress<double> progress, int threadsCount,
+                                            bool isPrintEstimatedTime = true);
 
         #endregion
     }
