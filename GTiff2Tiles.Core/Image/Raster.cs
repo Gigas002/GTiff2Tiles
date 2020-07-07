@@ -3,7 +3,6 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Globalization;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
@@ -145,8 +144,6 @@ namespace GTiff2Tiles.Core.Image
 
         #endregion
 
-        #region Private
-
         #region Other
 
         /// <summary>
@@ -155,11 +152,12 @@ namespace GTiff2Tiles.Core.Image
         /// <param name="tmsCompatible">Are tiles tims compatible?</param>
         /// <param name="threadsCount">Threads count.</param>
         /// <returns>Number of tiles to crop.</returns>
-        private async ValueTask<int> GetTilesCount(int minZ, int maxZ, bool tmsCompatible)
+        private async ValueTask<int> GetTilesCountAsync(int minZ, int maxZ, bool tmsCompatible)
         {
             int tilesCount = 0;
             for (int zoom = minZ; zoom <= maxZ; zoom++)
             {
+                //TODO: better calculations
                 int currentZoom = zoom;
                 await Task.Run(() =>
                 {
@@ -196,6 +194,8 @@ namespace GTiff2Tiles.Core.Image
         }
 
         #endregion
+
+        #region Image modification
 
         /// <summary>
         /// Resizes tile before creating it
@@ -262,6 +262,20 @@ namespace GTiff2Tiles.Core.Image
             return tileImage;
         }
 
+        private void AddBands(ref NetVips.Image image, int bands)
+        {
+            for (; image.Bands < bands;) image = image.Bandjoin(255);
+        }
+
+        private void AddBands(NetVips.Image[] images, int bands)
+        {
+            for (int index = 0; index < images.Length; index++) AddBands(ref images[index], bands);
+        }
+
+        #endregion
+
+        #region GeoQuery
+
         /// <summary>
         /// Calculate size and positions to read/write.
         /// </summary>
@@ -271,7 +285,7 @@ namespace GTiff2Tiles.Core.Image
         /// <param name="lowerRightY">Tile's lower right y coordinate.</param>
         /// <returns><see cref="ValueTuple{T1, T2, T3, T4, T5, T6, T7, T8}"/> of x/y positions and sizes to read and write tiles.</returns>
         private (int readPosX, int readPosY, int readXSize, int readYSize, int writePosX, int writePosY, int writeXSize,
-            int writeYSize) GeoQuery(double upperLeftX, double upperLeftY, double lowerRightX, double lowerRightY)
+            int writeYSize) GeoQuery(double upperLeftX, double upperLeftY, double lowerRightX, double lowerRightY, int tileSize)
         {
             //Read from input geotiff in pixels.
             double readPosMinX = Width * (upperLeftX - MinX) / (MaxX - MinX);
@@ -300,12 +314,10 @@ namespace GTiff2Tiles.Core.Image
                                  readPosMinY.Equals(Height) ? MinY : upperLeftY;
 
             //Positions of dataset to write in tile.
-            double writePosMinX = Constants.Image.Raster.TileSize -
-                                  Constants.Image.Raster.TileSize * (lowerRightX - tilePixMinX) / (lowerRightX - upperLeftX);
-            double writePosMinY = Constants.Image.Raster.TileSize * (upperLeftY - tilePixMaxY) / (upperLeftY - lowerRightY);
-            double writePosMaxX = Constants.Image.Raster.TileSize -
-                                  Constants.Image.Raster.TileSize * (lowerRightX - tilePixMaxX) / (lowerRightX - upperLeftX);
-            double writePosMaxY = Constants.Image.Raster.TileSize * (upperLeftY - tilePixMinY) / (upperLeftY - lowerRightY);
+            double writePosMinX = tileSize - tileSize * (lowerRightX - tilePixMinX) / (lowerRightX - upperLeftX);
+            double writePosMinY = tileSize * (upperLeftY - tilePixMaxY) / (upperLeftY - lowerRightY);
+            double writePosMaxX = tileSize - tileSize * (lowerRightX - tilePixMaxX) / (lowerRightX - upperLeftX);
+            double writePosMaxY = tileSize * (upperLeftY - tilePixMinY) / (upperLeftY - lowerRightY);
 
             //Sizes to read and write.
             double readXSize = readPosMaxX - readPosMinX;
@@ -332,112 +344,68 @@ namespace GTiff2Tiles.Core.Image
         }
 
         private (int readPosX, int readPosY, int readXSize, int readYSize, int writePosX, int writePosY, int writeXSize,
-            int writeYSize) GeoQuery(ITile tile) => GeoQuery(tile.MinLongtiude, tile.MinLatitude, tile.MaxLongitude, tile.MaxLatitude);
+            int writeYSize) GeoQuery(ITile tile) => GeoQuery(tile.MinLongtiude, tile.MaxLatitude, tile.MaxLongitude, tile.MinLatitude, tile.Size);
 
-        private void AddBands(ref NetVips.Image image, int bands = Constants.Image.Raster.Bands)
-        {
-            for (; image.Bands < bands;) image = image.Bandjoin(255);
-        }
+        #endregion
 
-        private void AddBands(NetVips.Image[] images, int bands = Constants.Image.Raster.Bands)
-        {
-            for (int index = 0; index < images.Length; index++) AddBands(ref images[index], bands);
-        }
+        #region Create tile image
 
         /// <summary>
         /// Writes one tile of current zoom.
         /// <para/>Crops zoom directly from input image.
         /// </summary>
-        /// <param name="outputDirectoryInfo">Directory for ready tiles.</param>
-        /// <param name="tileX">Tile x.</param>
-        /// <param name="tileY">Tile y.</param>
-        /// <param name="zoom">Zoom level.</param>
-        private void WriteTile(DirectoryInfo outputDirectoryInfo, int tileX, int tileY, int zoom,
-                               bool tmsCompatible, string tileExtension)
+
+        private NetVips.Image CreateTileImage(ITile tile, int bands)
         {
-            #region Parameters checking
-
-            if (zoom < 0) throw new RasterException(string.Format(CultureInfo.InvariantCulture, Strings.LesserThan, nameof(zoom), 0));
-            if (tileX < 0) throw new RasterException(string.Format(CultureInfo.InvariantCulture, Strings.LesserThan, nameof(tileX), 0));
-            if (tileY < 0) throw new RasterException(string.Format(CultureInfo.InvariantCulture, Strings.LesserThan, nameof(tileY), 0));
-
-            #endregion
-
-            //Create directories for the tile. The overall structure looks like: outputDirectory/zoom/x/y.png.
-            DirectoryInfo tileDirectoryInfo =
-                new DirectoryInfo(Path.Combine(outputDirectoryInfo.FullName, $"{zoom}", $"{tileX}"));
-            CheckHelper.CheckDirectory(tileDirectoryInfo);
-
-            //Get the coordinate borders for current tile from tile numbers.
-            (double minX, double minY, double maxX, double maxY) =
-                Tiles.Tile.GetBounds(tileX, tileY, zoom, tmsCompatible);
-
             //Get postitions and sizes for current tile.
-            (int readPosX, int readPosY, int readXSize, int readYSize, int writePosX, int writePosY, int writeXSize,
-             int writeYSize) = GeoQuery(minX, maxY, maxX, minY);
-
-            //Warning: OpenLayers requires replacement of tileY to tileY+1
-            FileInfo outputTileFileInfo = new FileInfo(Path.Combine(tileDirectoryInfo.FullName,
-                                                                    $"{tileY}{tileExtension}"));
+            (int readPosX, int readPosY, int readXSize, int readYSize, int writePosX,
+             int writePosY, int writeXSize, int writeYSize) = GeoQuery(tile);
 
             // Scaling calculations
             double xScale = (double)writeXSize / readXSize;
             double yScale = (double)writeYSize / readYSize;
 
             // Crop and resize tile
-            NetVips.Image tmpTileImage = Resize(Data.Crop(readPosX, readPosY, readXSize, readYSize), xScale, yScale);
+            NetVips.Image tempTileImage = Resize(Data.Crop(readPosX, readPosY, readXSize, readYSize), xScale, yScale);
 
             // Add alpha channel if needed
-            //TODO: add bands param
-            //for (; tileImage.Bands < Constants.Image.Raster.Bands;) tileImage = tileImage.Bandjoin(255);
-            AddBands(ref tmpTileImage);
-
-            // Make transparent image and insert tile
-            using NetVips.Image outputImage = NetVips
-                                             .Image.Black(256, 256).NewFromImage(0, 0, 0, 0)
-                                             .Insert(tmpTileImage, writePosX, writePosY);
-            outputImage.WriteToFile(outputTileFileInfo.FullName);
-
-            //Dispose the tile.
-            tmpTileImage.Dispose();
-
-            //Check if tile was created successfuly.
-            CheckHelper.CheckFile(outputTileFileInfo, true);
-        }
-
-        private NetVips.Image CreateTileImage(ITile tile)
-        {
-            //Get postitions and sizes for current tile.
-            (int readPosX, int readPosY, int readXSize, int readYSize, int writePosX, int writePosY, int writeXSize,
-             int writeYSize) = GeoQuery(tile.MinLongtiude, tile.MaxLatitude, tile.MaxLongitude, tile.MinLatitude);
-
-            // Scaling calculations
-            double xScale = (double)writeXSize / readXSize;
-            double yScale = (double)writeYSize / readYSize;
-
-            // Crop and resize tile
-            NetVips.Image tmpTileImage = Resize(Data.Crop(readPosX, readPosY, readXSize, readYSize), xScale, yScale);
-
-            // Add alpha channel if needed
-            //TODO: add bands param
-            //for (; tileImage.Bands < Constants.Image.Raster.Bands;) tileImage = tileImage.Bandjoin(255);
-            AddBands(ref tmpTileImage);
+            AddBands(ref tempTileImage, bands);
 
             // Make transparent image and insert tile
             return NetVips.Image.Black(tile.Size, tile.Size).NewFromImage(0, 0, 0, 0)
-                          .Insert(tmpTileImage, writePosX, writePosY);
+                          .Insert(tempTileImage, writePosX, writePosY);
         }
 
-        private void WriteTileToFile(ITile tile)
+        #endregion
+
+        #region Create tile
+
+        private void CreateTile(ref ITile tile, int bands) => tile.D = WriteTileToEnumerable(tile, bands);
+
+        private ITile CreateTile(int x, int y, int z, bool tmsCompatible, string tileExtension, int bands, int tileSize)
         {
-            //todo file path?
-            using var tileImage = CreateTileImage(tile);
+            ITile tile = new Tiles.Tile(x, y, z, tmsCompatible: tmsCompatible, extension: tileExtension, size: tileSize);
+            tile.D = WriteTileToEnumerable(tile, bands);
+
+            return tile;
+        }
+
+        private async ValueTask<ITile> CreateTileAsync(int x, int y, int z, bool tmsCompatible, string tileExtension, int bands, int tileSize) =>
+            await Task.Run(() => CreateTile(x, y, z, tmsCompatible, tileExtension, tileSize, bands)).ConfigureAwait(false);
+
+        #endregion
+
+        #region WriteTile
+
+        private void WriteTileToFile(ITile tile, int bands)
+        {
+            using NetVips.Image tileImage = CreateTileImage(tile, bands);
             tileImage.WriteToFile(tile.FileInfo.FullName);
         }
 
-        private IEnumerable<byte> WriteTileToEnumerable(ITile tile)
+        private IEnumerable<byte> WriteTileToEnumerable(ITile tile, int bands)
         {
-            using var tileImage = CreateTileImage(tile);
+            using NetVips.Image tileImage = CreateTileImage(tile, bands);
             //todo test
             //return tileImage.WriteToBuffer(tile.Extension);
             return tileImage.WriteToMemory();
@@ -445,13 +413,16 @@ namespace GTiff2Tiles.Core.Image
 
         #endregion
 
-        #region Public
+        #region WriteTiles
 
         /// <inheritdoc />
-        public async ValueTask GenerateTilesAsync(DirectoryInfo outputDirectoryInfo, int minZ, int maxZ,
-                                                  bool tmsCompatible = false, string tileExtension = Constants.Extensions.Png,
-                                                  IProgress<double> progress = null,
-                                                  int threadsCount = 0, bool isPrintEstimatedTime = true)
+        public async ValueTask WriteTilesToDirectoryAsync(DirectoryInfo outputDirectoryInfo, int minZ, int maxZ,
+                                                          bool tmsCompatible = false,
+                                                          string tileExtension = Constants.Extensions.Png,
+                                                          int bands = Constants.Image.Raster.Bands,
+                                                          int tileSize = Constants.Image.Raster.TileSize,
+                                                          IProgress<double> progress = null, int threadsCount = 0,
+                                                          bool isPrintEstimatedTime = true)
         {
             //TODO: profile argument (geodetic/mercator)
 
@@ -462,11 +433,11 @@ namespace GTiff2Tiles.Core.Image
             #endregion
 
             ParallelOptions parallelOptions = new ParallelOptions();
-            if (threadsCount <= 0) parallelOptions.MaxDegreeOfParallelism = threadsCount;
+            if (threadsCount > 0) parallelOptions.MaxDegreeOfParallelism = threadsCount;
 
             //Crop all tiles.
             Stopwatch stopwatch = isPrintEstimatedTime ? Stopwatch.StartNew() : null;
-            int tilesCount = await GetTilesCount(minZ, maxZ, tmsCompatible).ConfigureAwait(false);
+            int tilesCount = await GetTilesCountAsync(minZ, maxZ, tmsCompatible).ConfigureAwait(false);
             double counter = 0.0;
 
             if (tilesCount <= 0) return;
@@ -484,10 +455,20 @@ namespace GTiff2Tiles.Core.Image
                     int y = tileY;
                     int z = zoom;
 
-                    void MakeTile(int tileX)
+                    void MakeTile(int x)
                     {
-                        WriteTile(outputDirectoryInfo, tileX, y, z, tmsCompatible,
-                                  tileExtension);
+                        //Create directories for the tile. The overall structure looks like: outputDirectory/zoom/x/y.png.
+                        DirectoryInfo tileDirectoryInfo =
+                            new DirectoryInfo(Path.Combine(outputDirectoryInfo.FullName, $"{z}", $"{x}"));
+                        CheckHelper.CheckDirectory(tileDirectoryInfo);
+
+                        ITile tile = new Tiles.Tile(x, y, z, extension: tileExtension, tmsCompatible: tmsCompatible,
+                                                    size: tileSize);
+
+                        //Warning: OpenLayers requires replacement of tileY to tileY+1
+                        tile.FileInfo = new FileInfo(Path.Combine(tileDirectoryInfo.FullName, $"{y}{tileExtension}"));
+
+                        WriteTileToFile(tile, bands);
 
                         //Report progress.
                         counter++;

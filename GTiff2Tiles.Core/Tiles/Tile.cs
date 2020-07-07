@@ -10,6 +10,8 @@ namespace GTiff2Tiles.Core.Tiles
     /// <inheritdoc />
     public class Tile : ITile
     {
+        //TODO: RasterTile child with bands property
+
         #region Properties
 
         /// <inheritdoc />

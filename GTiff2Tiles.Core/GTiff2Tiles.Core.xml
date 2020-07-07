@@ -369,7 +369,7 @@
             Shows if resources have already been disposed.
             </summary>
         </member>
-        <member name="M:GTiff2Tiles.Core.Image.IImage.GenerateTilesAsync(System.IO.DirectoryInfo,System.Int32,System.Int32,System.Boolean,System.String,System.IProgress{System.Double},System.Int32,System.Boolean)">
+        <member name="M:GTiff2Tiles.Core.Image.IImage.WriteTilesToDirectoryAsync(System.IO.DirectoryInfo,System.Int32,System.Int32,System.Boolean,System.String,System.Int32,System.Int32,System.IProgress{System.Double},System.Int32,System.Boolean)">
             <summary>
             Crops input tiff for each zoom.
             </summary>
@@ -456,7 +456,7 @@
         <member name="M:GTiff2Tiles.Core.Image.Raster.DisposeAsync">
             <inheritdoc />
         </member>
-        <member name="M:GTiff2Tiles.Core.Image.Raster.GetTilesCount(System.Int32,System.Int32,System.Boolean)">
+        <member name="M:GTiff2Tiles.Core.Image.Raster.GetTilesCountAsync(System.Int32,System.Int32,System.Boolean)">
             <summary>
             Gets count of tiles to crop. Needed for progress calculations.
             </summary>
@@ -483,7 +483,7 @@
             <param name="isCentre"></param>
             <returns></returns>
         </member>
-        <member name="M:GTiff2Tiles.Core.Image.Raster.GeoQuery(System.Double,System.Double,System.Double,System.Double)">
+        <member name="M:GTiff2Tiles.Core.Image.Raster.GeoQuery(System.Double,System.Double,System.Double,System.Double,System.Int32)">
             <summary>
             Calculate size and positions to read/write.
             </summary>
@@ -493,17 +493,13 @@
             <param name="lowerRightY">Tile's lower right y coordinate.</param>
             <returns><see cref="T:System.ValueTuple`8"/> of x/y positions and sizes to read and write tiles.</returns>
         </member>
-        <member name="M:GTiff2Tiles.Core.Image.Raster.WriteTile(System.IO.DirectoryInfo,System.Int32,System.Int32,System.Int32,System.Boolean,System.String)">
+        <member name="M:GTiff2Tiles.Core.Image.Raster.CreateTileImage(GTiff2Tiles.Core.Tiles.ITile,System.Int32)">
             <summary>
             Writes one tile of current zoom.
             <para/>Crops zoom directly from input image.
             </summary>
-            <param name="outputDirectoryInfo">Directory for ready tiles.</param>
-            <param name="tileX">Tile x.</param>
-            <param name="tileY">Tile y.</param>
-            <param name="zoom">Zoom level.</param>
         </member>
-        <member name="M:GTiff2Tiles.Core.Image.Raster.GenerateTilesAsync(System.IO.DirectoryInfo,System.Int32,System.Int32,System.Boolean,System.String,System.IProgress{System.Double},System.Int32,System.Boolean)">
+        <member name="M:GTiff2Tiles.Core.Image.Raster.WriteTilesToDirectoryAsync(System.IO.DirectoryInfo,System.Int32,System.Int32,System.Boolean,System.String,System.Int32,System.Int32,System.IProgress{System.Double},System.Int32,System.Boolean)">
             <inheritdoc />
         </member>
         <member name="T:GTiff2Tiles.Core.Localization.Strings">
