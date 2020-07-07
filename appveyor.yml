@@ -17,7 +17,7 @@ before_build:
 build:
   parallel: true
   verbosity: minimal
-after_build:
+after_test:
 - pwsh: ./publish-github-release.ps1 true
 artifacts:
 - path: GTiff2Tiles.Core\bin\x64\Release\*.nupkg
@@ -29,7 +29,7 @@ artifacts:
 deploy:
 - provider: GitHub
   release: CI-$APPVEYOR_BUILD_VERSION
-  description: This is a preview release of GTiff2Tiles ver. 2.0.0. Information (incomplete atm) about changes since previous release can be found in [changelog](https://github.com/Gigas002/GTiff2Tiles/blob/master/CHANGELOG.md).
+  description: This is a preview release of GTiff2Tiles ver. 2.0.0. Information about changes since previous release can be found in [changelog](https://github.com/Gigas002/GTiff2Tiles/blob/master/CHANGELOG.md).
   auth_token:
     secure: CVNtkV9r681t1pehmnG8nA==
   artifact: /.*\.zip/
