@@ -167,22 +167,6 @@ namespace GTiff2Tiles.Core.Image
             return tilesCount;
         }
 
-        /// <summary>
-        /// Prints estimated time left.
-        /// </summary>
-        /// <param name="percentage">Current progress.</param>
-        /// <param name="stopwatch">Get elapsed time from this.</param>
-        private static void PrintEstimatedTimeLeft(double percentage, Stopwatch stopwatch = null)
-        {
-            if (stopwatch == null) return;
-
-            double timePassed = stopwatch.ElapsedMilliseconds;
-            double estimatedAllTime = 100.0 * timePassed / percentage;
-            double estimatedTimeLeft = estimatedAllTime - timePassed;
-            TimeSpan timeSpan = TimeSpan.FromMilliseconds(estimatedTimeLeft);
-            Console.WriteLine(Strings.EstimatedTime, Environment.NewLine, timeSpan.Days, timeSpan.Hours,
-                              timeSpan.Minutes, timeSpan.Seconds, timeSpan.Milliseconds);
-        }
 
         #endregion
 
@@ -294,10 +278,6 @@ namespace GTiff2Tiles.Core.Image
                                  readPosMinX.Equals(Size.Width) ? MaxCoordinate.Longitude : minCoordinate.Longitude;
             double tilePixMaxX = readPosMaxX.Equals(0.0) ? MinCoordinate.Longitude :
                                  readPosMaxX.Equals(Size.Width) ? MaxCoordinate.Longitude : maxCoordinate.Longitude;
-            //double tilePixMinY = readPosMaxY.Equals(0.0) ? MaxCoordinate.Latitude :
-            //                     readPosMaxY.Equals(Size.Height) ? MinCoordinate.Latitude : maxCoordinate.Latitude;
-            //double tilePixMaxY = readPosMinY.Equals(0.0) ? MaxCoordinate.Latitude :
-            //                     readPosMinY.Equals(Size.Height) ? MinCoordinate.Latitude : minCoordinate.Latitude;
             double tilePixMinY = readPosMaxY.Equals(0.0) ? MaxCoordinate.Latitude :
                                  readPosMaxY.Equals(Size.Height) ? MinCoordinate.Latitude : minCoordinate.Latitude;
             double tilePixMaxY = readPosMinY.Equals(0.0) ? MaxCoordinate.Latitude :
