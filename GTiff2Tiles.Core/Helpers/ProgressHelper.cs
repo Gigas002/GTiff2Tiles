@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using GTiff2Tiles.Core.Localization;
 
 namespace GTiff2Tiles.Core.Helpers

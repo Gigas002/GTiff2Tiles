@@ -346,7 +346,7 @@
             Shows if resources have already been disposed.
             </summary>
         </member>
-        <member name="M:GTiff2Tiles.Core.Image.IImage.WriteTilesToDirectoryAsync(System.IO.DirectoryInfo,System.Int32,System.Int32,GTiff2Tiles.Core.Image.Size,System.Boolean,System.String,System.Int32,System.IProgress{System.Double},System.Int32,System.Boolean)">
+        <member name="M:GTiff2Tiles.Core.Image.IImage.WriteTilesToDirectoryAsync(System.IO.DirectoryInfo,System.Int32,System.Int32,GTiff2Tiles.Core.Image.Size,System.Boolean,System.String,System.Int32,System.IProgress{System.Double},System.Int32,System.Boolean,System.Int32)">
             <summary>
             Crops input tiff for each zoom.
             </summary>
@@ -401,7 +401,7 @@
         <member name="P:GTiff2Tiles.Core.Image.Raster.IsDisposed">
             <inheritdoc />
         </member>
-        <member name="M:GTiff2Tiles.Core.Image.Raster.#ctor(System.IO.FileInfo)">
+        <member name="M:GTiff2Tiles.Core.Image.Raster.#ctor(System.IO.FileInfo,System.Int64)">
             <summary>
             Creates new <see cref="T:GTiff2Tiles.Core.Image.Raster"/> object.
             </summary>
@@ -446,13 +446,13 @@
             <param name="lowerRightY">Tile's lower right y coordinate.</param>
             <returns><see cref="T:System.ValueTuple`8"/> of x/y positions and sizes to read and write tiles.</returns>
         </member>
-        <member name="M:GTiff2Tiles.Core.Image.Raster.CreateTileImage(GTiff2Tiles.Core.Tiles.ITile,System.Int32)">
+        <member name="M:GTiff2Tiles.Core.Image.Raster.CreateTileImage(NetVips.Image,GTiff2Tiles.Core.Tiles.ITile,System.Int32)">
             <summary>
             Writes one tile of current zoom.
             <para/>Crops zoom directly from input image.
             </summary>
         </member>
-        <member name="M:GTiff2Tiles.Core.Image.Raster.WriteTilesToDirectoryAsync(System.IO.DirectoryInfo,System.Int32,System.Int32,GTiff2Tiles.Core.Image.Size,System.Boolean,System.String,System.Int32,System.IProgress{System.Double},System.Int32,System.Boolean)">
+        <member name="M:GTiff2Tiles.Core.Image.Raster.WriteTilesToDirectoryAsync(System.IO.DirectoryInfo,System.Int32,System.Int32,GTiff2Tiles.Core.Image.Size,System.Boolean,System.String,System.Int32,System.IProgress{System.Double},System.Int32,System.Boolean,System.Int32)">
             <inheritdoc />
         </member>
         <member name="T:GTiff2Tiles.Core.Localization.Strings">

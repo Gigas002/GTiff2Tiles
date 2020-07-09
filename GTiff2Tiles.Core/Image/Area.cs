@@ -1,6 +1,4 @@
-﻿using GTiff2Tiles.Core.Tiles;
-
-namespace GTiff2Tiles.Core.Image
+﻿namespace GTiff2Tiles.Core.Image
 {
     public struct Area
     {

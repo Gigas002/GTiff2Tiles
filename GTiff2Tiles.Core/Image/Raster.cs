@@ -4,13 +4,10 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Threading;
 using System.Threading.Tasks;
 using GTiff2Tiles.Core.Constants.Image;
-using GTiff2Tiles.Core.Exceptions.Image;
 using GTiff2Tiles.Core.Geodesic;
 using GTiff2Tiles.Core.Helpers;
-using GTiff2Tiles.Core.Localization;
 using GTiff2Tiles.Core.Tiles;
 using NetVips;
 
@@ -56,7 +53,7 @@ namespace GTiff2Tiles.Core.Image
         /// Creates new <see cref="Raster"/> object.
         /// </summary>
         /// <param name="inputFileInfo">Input GeoTiff image.</param>
-        public Raster(FileInfo inputFileInfo)
+        public Raster(FileInfo inputFileInfo, long maxMemoryCache = 2147483648)
         {
             //Disable NetVips warnings for tiff.
             NetVipsHelper.DisableLog();
@@ -67,14 +64,8 @@ namespace GTiff2Tiles.Core.Image
 
             #endregion
 
-            /*TODO: 
-            Image.Tiffload(InputFileInfo.FullName, memory: true))
-            //if not much -- use memory: true
-            //var fileLength = InputFileInfo.Length;
-
-            image.Tilecache(tileWidth: TileSize, tileHeight: TileSize, maxTiles: MaxTiles, threaded: true);
-            */
-            Data = NetVips.Image.NewFromFile(inputFileInfo.FullName, access: NetVips.Enums.Access.Random);
+            bool memory = inputFileInfo.Length <= maxMemoryCache;
+            Data = NetVips.Image.NewFromFile(inputFileInfo.FullName, memory, NetVips.Enums.Access.Random);
 
             //Get border coordinates и raster sizes.
             Size = new Size(Data.Width, Data.Height);
@@ -292,8 +283,7 @@ namespace GTiff2Tiles.Core.Image
         /// Writes one tile of current zoom.
         /// <para/>Crops zoom directly from input image.
         /// </summary>
-
-        private NetVips.Image CreateTileImage(ITile tile, int bands)
+        private NetVips.Image CreateTileImage(NetVips.Image tileCache, ITile tile, int bands)
         {
             //Get postitions and sizes for current tile.
             (Area readArea, Area writeArea) = GeoQuery(tile);
@@ -303,9 +293,10 @@ namespace GTiff2Tiles.Core.Image
             double yScale = (double)writeArea.Size.Height / readArea.Size.Height;
 
             // Crop and resize tile
-            NetVips.Image tempTileImage = Resize(Data.Crop(readArea.X, readArea.Y, readArea.Size.Width,
-                                                           readArea.Size.Height), xScale, yScale);
+            NetVips.Image tempTileImage = Resize(tileCache.Crop(readArea.X, readArea.Y, readArea.Size.Width,
+                                                                readArea.Size.Height), xScale, yScale);
 
+            //TODO: extension method for NetVips.Image?
             // Add alpha channel if needed
             AddBands(ref tempTileImage, bands);
 
@@ -318,37 +309,38 @@ namespace GTiff2Tiles.Core.Image
 
         #region Create tile
 
-        private void CreateTile(ref ITile tile, int bands) => tile.D = WriteTileToEnumerable(tile, bands);
+        //private ITile CreateTile(int x, int y, int z, bool tmsCompatible, string tileExtension, int bands,
+        //                         Size size)
+        //{
+        //    ITile tile = new Tiles.Tile(x, y, z, tmsCompatible: tmsCompatible, extension: tileExtension,
+        //                                size: size);
+        //    tile.D = WriteTileToEnumerable(tile, bands);
 
-        private ITile CreateTile(int x, int y, int z, bool tmsCompatible, string tileExtension, int bands,
-                                 Size size)
-        {
-            ITile tile = new Tiles.Tile(x, y, z, tmsCompatible: tmsCompatible, extension: tileExtension,
-                                        size: size);
-            tile.D = WriteTileToEnumerable(tile, bands);
+        //    return tile;
+        //}
 
-            return tile;
-        }
-
-        private async ValueTask<ITile> CreateTileAsync(int x, int y, int z, bool tmsCompatible, string tileExtension, int bands,
-                                                       Size size) =>
-            await Task.Run(() => CreateTile(x, y, z, tmsCompatible, tileExtension, bands, size)).ConfigureAwait(false);
+        //private async ValueTask<ITile> CreateTileAsync(int x, int y, int z, bool tmsCompatible, string tileExtension, int bands,
+        //                                               Size size) =>
+        //    await Task.Run(() => CreateTile(x, y, z, tmsCompatible, tileExtension, bands, size)).ConfigureAwait(false);
 
         #endregion
 
         #region WriteTile
 
-        private void WriteTileToFile(ITile tile, int bands)
+        private void WriteTileToFile(NetVips.Image tileCache, ITile tile, int bands)
         {
-            using NetVips.Image tileImage = CreateTileImage(tile, bands);
-            //todo verify tile
+            using NetVips.Image tileImage = CreateTileImage(tileCache, tile, bands);
+
+            //TODO: Validate tileImage, not tile!
+            //if (!tile.Validate(false)) return;
+
             tileImage.WriteToFile(tile.FileInfo.FullName);
         }
 
-        private IEnumerable<byte> WriteTileToEnumerable(ITile tile, int bands)
+        private IEnumerable<byte> WriteTileToEnumerable(NetVips.Image tileCache, ITile tile, int bands)
         {
-            using NetVips.Image tileImage = CreateTileImage(tile, bands);
-            //todo test
+            using NetVips.Image tileImage = CreateTileImage(tileCache, tile, bands);
+            //TODO: test this methods
             //return tileImage.WriteToBuffer(tile.Extension);
             return tileImage.WriteToMemory();
         }
@@ -364,7 +356,7 @@ namespace GTiff2Tiles.Core.Image
                                                           string tileExtension = Constants.Extensions.Png,
                                                           int bands = Constants.Image.Raster.Bands,
                                                           IProgress<double> progress = null, int threadsCount = 0,
-                                                          bool isPrintEstimatedTime = true)
+                                                          bool isPrintEstimatedTime = true, int tileCacheCount = 1000)
         {
             //TODO: profile argument (geodetic/mercator)
 
@@ -377,12 +369,14 @@ namespace GTiff2Tiles.Core.Image
             ParallelOptions parallelOptions = new ParallelOptions();
             if (threadsCount > 0) parallelOptions.MaxDegreeOfParallelism = threadsCount;
 
-            //Crop all tiles.
             Stopwatch stopwatch = isPrintEstimatedTime ? Stopwatch.StartNew() : null;
             int tilesCount = Tiles.Tile.GetCount(MinCoordinate, MaxCoordinate, minZ, maxZ, tmsCompatible, tileSize);
             double counter = 0.0;
 
             if (tilesCount <= 0) return;
+
+            // Create tile cache to read data from it
+            using NetVips.Image tileCache = Data.Tilecache(tileSize.Width, tileSize.Height, tileCacheCount, threaded: true);
 
             //For each zoom.
             for (int zoom = minZ; zoom <= maxZ; zoom++)
@@ -400,8 +394,7 @@ namespace GTiff2Tiles.Core.Image
                     void MakeTile(int x)
                     {
                         //Create directories for the tile. The overall structure looks like: outputDirectory/zoom/x/y.png.
-                        DirectoryInfo tileDirectoryInfo =
-                            new DirectoryInfo(Path.Combine(outputDirectoryInfo.FullName, $"{z}", $"{x}"));
+                        DirectoryInfo tileDirectoryInfo = new DirectoryInfo(Path.Combine(outputDirectoryInfo.FullName, $"{z}", $"{x}"));
                         CheckHelper.CheckDirectory(tileDirectoryInfo);
 
                         ITile tile = new Tiles.Tile(x, y, z, extension: tileExtension, tmsCompatible: tmsCompatible,
@@ -410,7 +403,8 @@ namespace GTiff2Tiles.Core.Image
                         //Warning: OpenLayers requires replacement of tileY to tileY+1
                         tile.FileInfo = new FileInfo(Path.Combine(tileDirectoryInfo.FullName, $"{y}{tileExtension}"));
 
-                        WriteTileToFile(tile, bands);
+                        // ReSharper disable once AccessToDisposedClosure
+                        WriteTileToFile(tileCache, tile, bands);
 
                         //Report progress.
                         counter++;

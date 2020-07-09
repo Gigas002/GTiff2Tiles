@@ -65,7 +65,7 @@ namespace GTiff2Tiles.Core.Image
                                                     string tileExtension = Constants.Extensions.Png,
                                                     int bands = Constants.Image.Raster.Bands,
                                                     IProgress<double> progress = null, int threadsCount = 0,
-                                                    bool isPrintEstimatedTime = true);
+                                                    bool isPrintEstimatedTime = true, int tileCacheCount = 1000);
 
         #endregion
     }
