@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Threading.Tasks;
+using GTiff2Tiles.Core.Geodesic;
 
 // ReSharper disable InheritdocConsiderUsage
 // ReSharper disable MemberCanBeInternal
@@ -16,35 +17,28 @@ namespace GTiff2Tiles.Core.Image
     {
         #region Properties
 
-        /// <summary>
-        /// Image's width, x size.
-        /// </summary>
-        public int Width { get; }
+        public Size Size { get; }
 
-        /// <summary>
-        /// Image's height, y size.
-        /// </summary>
-        public int Height { get; }
+        public Coordinate MinCoordinate { get; }
 
-        /// <summary>
-        /// Upper left X coordinate.
-        /// </summary>
-        public double MinX { get; }
+        public Coordinate MaxCoordinate { get; }
 
-        /// <summary>
-        /// Lower right Y coordinate.
-        /// </summary>
-        public double MinY { get; }
-
-        /// <summary>
-        /// Lower right X coordinate.
-        /// </summary>
-        public double MaxX { get; }
-
-        /// <summary>
-        /// Upper left Y coordinate.
-        /// </summary>
-        public double MaxY { get; }
+        // <summary>
+        // Upper left X coordinate.
+        // </summary>
+        //public double MinX { get; }
+        // <summary>
+        // Lower right Y coordinate.
+        // </summary>
+        //public double MinY { get; }
+        // <summary>
+        // Lower right X coordinate.
+        // </summary>
+        //public double MaxX { get; }
+        // <summay>
+        // Upper left Y coordinate.
+        // </summary>
+        //public double MaxY { get; }
 
         /// <summary>
         /// Shows if resources have already been disposed.
@@ -66,12 +60,12 @@ namespace GTiff2Tiles.Core.Image
         /// <param name="progress">Progress.</param>
         /// <param name="threadsCount">Threads count.</param>
         /// <returns></returns>
-        public ValueTask WriteTilesToDirectoryAsync(DirectoryInfo outputDirectoryInfo, int minZ, int maxZ, bool tmsCompatible,
-                                            string tileExtension,
-                                            int bands,
-                                            int tileSize,
-                                            IProgress<double> progress, int threadsCount,
-                                            bool isPrintEstimatedTime);
+        public ValueTask WriteTilesToDirectoryAsync(DirectoryInfo outputDirectoryInfo, int minZ, int maxZ,
+                                                    Size tileSize, bool tmsCompatible = false,
+                                                    string tileExtension = Constants.Extensions.Png,
+                                                    int bands = Constants.Image.Raster.Bands,
+                                                    IProgress<double> progress = null, int threadsCount = 0,
+                                                    bool isPrintEstimatedTime = true);
 
         #endregion
     }

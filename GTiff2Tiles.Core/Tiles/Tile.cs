@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using GTiff2Tiles.Core.Constants.Image;
+using GTiff2Tiles.Core.Geodesic;
+using GTiff2Tiles.Core.Image;
 
 namespace GTiff2Tiles.Core.Tiles
 {
     /// <inheritdoc />
     public class Tile : ITile
     {
-        //TODO: RasterTile child with bands property
+        //TODO: RasterTile child with bands property?
 
         #region Properties
 
@@ -18,22 +19,13 @@ namespace GTiff2Tiles.Core.Tiles
         public bool IsDisposed { get; set; }
 
         /// <inheritdoc />
-        public double MinLongtiude { get; set; }
+        public Coordinate MinCoordinate { get; set; }
 
         /// <inheritdoc />
-        public double MinLatitude { get; set; }
+        public Coordinate MaxCoordinate { get; set; }
 
         /// <inheritdoc />
-        public double MaxLongitude { get; set; }
-
-        /// <inheritdoc />
-        public double MaxLatitude { get; set; }
-
-        /// <inheritdoc />
-        public int X { get; set; }
-
-        /// <inheritdoc />
-        public int Y { get; set; }
+        public Number Number { get; set; }
 
         /// <inheritdoc />
         public int Z { get; set; }
@@ -42,13 +34,10 @@ namespace GTiff2Tiles.Core.Tiles
         public IEnumerable<byte> D { get; set; }
 
         /// <inheritdoc />
-        public int S => D.Count();
-
-        /// <inheritdoc />
         public bool TmsCompatible { get; set; }
 
         /// <inheritdoc />
-        public int Size { get; set; }
+        public Size Size { get; set; }
 
         /// <inheritdoc />
         public string Extension { get; set; }
@@ -60,10 +49,11 @@ namespace GTiff2Tiles.Core.Tiles
 
         #region Constructors/Destructors
 
-        public Tile(int x, int y, int z, IEnumerable<byte> d = null, string extension = Constants.Extensions.Png,
-                    bool tmsCompatible = false, int size = Raster.TileSize)
+        public Tile(int x, int y, int z, Size size, IEnumerable<byte> d = null, string extension = Constants.Extensions.Png,
+                    bool tmsCompatible = false)
         {
-            (X, Y, Z, D, Extension, TmsCompatible, Size) = (x, y, z, d, extension, tmsCompatible, size);
+            Number number = new Number(x, y);
+            (Number, Z, D, Extension, TmsCompatible, Size) = (number, z, d, extension, tmsCompatible, size);
             SetBounds();
         }
 
@@ -126,16 +116,18 @@ namespace GTiff2Tiles.Core.Tiles
         /// <returns>Resoultion value.</returns>
         private static double Resolution(int zoom, int tileSize) => 180.0 / tileSize / Math.Pow(2.0, zoom);
 
-        private double Resolution() => Resolution(Z, Size);
+        private double Resolution() => Resolution(Z, Size.Width);
 
         #endregion
 
         #region Public
 
-        /// <inheritdoc />
-        public void FlipY() => Y = FlipY(Y, Z);
-
         public static int FlipY(int y, int z) => Convert.ToInt32(Math.Pow(2.0, z) - y - 1);
+
+        /// <inheritdoc />
+        public void FlipNumber() => Number.Y = FlipY(Number.Y, Z);
+
+        public static Number FlipNumber(Number number, int z) => new Number(number.X, FlipY(number.Y, z));
 
         /// <inheritdoc />
         public bool Validate(bool isCheckFileInfo)
@@ -157,7 +149,7 @@ namespace GTiff2Tiles.Core.Tiles
         }
 
         /// <inheritdoc />
-        public int CalculatePosition() => CalculatePosition(X, Y, TmsCompatible);
+        public int CalculatePosition() => CalculatePosition(Number, TmsCompatible);
 
         /// <summary>
         /// Calculates tile position on upper level (0-3)
@@ -165,28 +157,32 @@ namespace GTiff2Tiles.Core.Tiles
         /// <param name="tileX">Tile's x number.</param>
         /// <param name="tileY">Tile's y number.</param>
         /// <returns>Position (0-3 int)</returns>
-        public static int CalculatePosition(int tileX, int tileY, bool tmsCompatible)
+        public static int CalculatePosition(Number number, bool tmsCompatible)
         {
+            /*
+             * 0 1
+             * 2 3
+             */
+
             int tilePosition;
-            //Проверяем номера на четность.
 
             if (tmsCompatible)
             {
-                if (tileX % 2 == 0) tilePosition = tileY % 2 == 0 ? 2 : 0;
-                else tilePosition = tileY % 2 == 0 ? 3 : 1;
+                if (number.X % 2 == 0) tilePosition = number.Y % 2 == 0 ? 2 : 0;
+                else tilePosition = number.Y % 2 == 0 ? 3 : 1;
             }
             else
             {
-                if (tileX % 2 == 0) tilePosition = tileY % 2 == 0 ? 0 : 2;
-                else tilePosition = tileY % 2 == 0 ? 1 : 3;
+                if (number.X % 2 == 0) tilePosition = number.Y % 2 == 0 ? 0 : 2;
+                else tilePosition = number.Y % 2 == 0 ? 1 : 3;
             }
 
             return tilePosition;
         }
 
         /// <inheritdoc />
-        public (int tileMinX, int tileMinY, int tileMaxX, int tileMaxY) GetNumbersFromCoords(bool tmsCompatible) =>
-            GetNumbersFromCoords(MinLongtiude, MinLatitude, MaxLongitude, MaxLatitude, Z, tmsCompatible, Size);
+        public (Number minNumber, Number maxNumber) GetNumbersFromCoords(bool tmsCompatible) =>
+            GetNumbersFromCoords(MinCoordinate, MaxCoordinate, Z, tmsCompatible, Size);
 
         /// <summary>
         /// Calculates the tile numbers for zoom which covers given lon/lat coordinates.
@@ -198,19 +194,18 @@ namespace GTiff2Tiles.Core.Tiles
         /// <param name="zoom">Tile's zoom.</param>
         /// <param name="tmsCompatible">Do you want tms tiles on output?</param>
         /// <returns><see cref="ValueTuple{T1, T2, T3, T4}"/> of tiles numbers.</returns>
-        public static (int tileMinX, int tileMinY, int tileMaxX, int tileMaxY) GetNumbersFromCoords(double minX,
-             double minY, double maxX, double maxY, int zoom, bool tmsCompatible, int tileSize = Raster.TileSize)
+        public static (Number minNumber, Number maxNumber) GetNumbersFromCoords(
+            Coordinate minCoordinate, Coordinate maxCoordinate, int zoom, bool tmsCompatible, Size size)
         {
             int[] tilesXs = new int[2];
             int[] tilesYs = new int[2];
 
-            tilesXs[0] = Convert.ToInt32(Math.Ceiling((180.0 + minX) / Resolution(zoom, tileSize) / tileSize) - 1.0);
-            tilesXs[1] = Convert.ToInt32(Math.Ceiling((180.0 + maxX) / Resolution(zoom, tileSize) / tileSize) - 1.0);
-            tilesYs[0] = Convert.ToInt32(Math.Ceiling((90.0 + minY) / Resolution(zoom, tileSize) / tileSize) - 1.0);
-            tilesYs[1] = Convert.ToInt32(Math.Ceiling((90.0 + maxY) / Resolution(zoom, tileSize) / tileSize) - 1.0);
+            tilesXs[0] = Convert.ToInt32(Math.Ceiling((180.0 + minCoordinate.Longitude) / Resolution(zoom, size.Width) / size.Width) - 1.0);
+            tilesXs[1] = Convert.ToInt32(Math.Ceiling((180.0 + maxCoordinate.Longitude) / Resolution(zoom, size.Width) / size.Width) - 1.0);
+            tilesYs[0] = Convert.ToInt32(Math.Ceiling((90.0 + minCoordinate.Latitude) / Resolution(zoom, size.Height) / size.Height) - 1.0);
+            tilesYs[1] = Convert.ToInt32(Math.Ceiling((90.0 + maxCoordinate.Latitude) / Resolution(zoom, size.Height) / size.Height) - 1.0);
 
             //Flip y's
-            // ReSharper disable once InvertIf
             if (!tmsCompatible)
             {
                 tilesYs[0] = FlipY(tilesYs[0], zoom);
@@ -218,14 +213,16 @@ namespace GTiff2Tiles.Core.Tiles
             }
 
             //Ensure that no bad tiles returned
-            return (Math.Max(0, tilesXs.Min()), Math.Max(0, tilesYs.Min()),
-                    Math.Min(Convert.ToInt32(Math.Pow(2.0, zoom + 1)) - 1, tilesXs.Max()),
-                    Math.Min(Convert.ToInt32(Math.Pow(2.0, zoom)) - 1, tilesYs.Max()));
+            Number minNumber = new Number(Math.Max(0, tilesXs.Min()), Math.Max(0, tilesYs.Min()));
+            Number maxNumber = new Number(Math.Min(Convert.ToInt32(Math.Pow(2.0, zoom + 1)) - 1, tilesXs.Max()),
+                                          Math.Min(Convert.ToInt32(Math.Pow(2.0, zoom)) - 1, tilesYs.Max()));
+
+            return (minNumber, maxNumber);
         }
 
         /// <inheritdoc />
-        public (int tileMinX, int tileMinY, int tileMaxX, int tileMaxY) GetLowerNumbers(int zoom) =>
-            GetLowerNumbers(X, Y, zoom);
+        public (Number minNumber, Number maxNumber) GetLowerNumbers(int zoom) =>
+            GetLowerNumbers(Number, zoom);
 
         /// <summary>
         /// Calculates lower levels for current 10 lvl tile
@@ -234,15 +231,16 @@ namespace GTiff2Tiles.Core.Tiles
         /// <param name="tileY">Tile's y number on 10 lvl.</param>
         /// <param name="zoom">Interested zoom.</param>
         /// <returns><see cref="ValueTuple{T1, T2, T3, T4}"/> тайлов указанного уровня.</returns>
-        public static (int tileMinX, int tileMinY, int tileMaxX, int tileMaxY) GetLowerNumbers(int tileX,
-                       int tileY, int zoom)
+        public static (Number minNumber, Number maxNumber) GetLowerNumbers(Number number, int zoom)
         {
             int resolution = Convert.ToInt32(Math.Pow(2.0, zoom - 10));
 
-            int[] tilesXs = { tileX * resolution, (tileX + 1) * resolution - 1 };
-            int[] tilesYs = { tileY * resolution, (tileY + 1) * resolution - 1 };
+            int[] tilesXs = { number.X * resolution, (number.X + 1) * resolution - 1 };
+            int[] tilesYs = { number.Y * resolution, (number.Y + 1) * resolution - 1 };
 
-            return (tilesXs.Min(), tilesYs.Min(), tilesXs.Max(), tilesYs.Max());
+            Number minNumber = new Number(tilesXs.Min(), tilesYs.Min());
+            Number maxNumber = new Number(tilesXs.Max(), tilesYs.Max());
+            return (minNumber, maxNumber);
         }
 
         /// <summary>
@@ -253,29 +251,25 @@ namespace GTiff2Tiles.Core.Tiles
         /// <param name="zoom">Tile's zoom.</param>
         /// <param name="tmsCompatible">Do you want tms tiles on output?</param>
         /// <returns><see cref="ValueTuple{T1, T2, T3, T4}"/> of WGS84 coordinates.</returns>
-        public static (double minX, double minY, double maxX, double maxY) GetBounds(
-            int tileX, int tileY, int zoom, bool tmsCompatible, int tileSize = Raster.TileSize)
+        public static (Coordinate minCoordinate, Coordinate maxCoordinate) GetCoordinates(
+            Number number, int zoom, bool tmsCompatible, Size size)
         {
             //Flip the y number for non-tms
-            if (!tmsCompatible) tileY = FlipY(tileY, zoom);
+            if (!tmsCompatible) number = FlipNumber(number, zoom);
 
-            double minX = tileX * tileSize * Resolution(zoom, tileSize) - 180.0;
-            double minY = tileY * tileSize * Resolution(zoom, tileSize) - 90.0;
-            double maxX = (tileX + 1) * tileSize * Resolution(zoom, tileSize) - 180.0;
-            double maxY = (tileY + 1) * tileSize * Resolution(zoom, tileSize) - 90.0;
+            double minX = number.X * size.Width * Resolution(zoom, size.Width) - 180.0;
+            double minY = number.Y * size.Height * Resolution(zoom, size.Height) - 90.0;
+            double maxX = (number.X + 1) * size.Width * Resolution(zoom, size.Width) - 180.0;
+            double maxY = (number.Y + 1) * size.Height * Resolution(zoom, size.Height) - 90.0;
 
-            return (minX, minY, maxX, maxY);
+            Coordinate minCoordinate = new Coordinate(minX, minY);
+            Coordinate maxCoordinate = new Coordinate(maxX, maxY);
+
+            return (minCoordinate, maxCoordinate);
         }
 
         /// <inheritdoc />
-        public void SetBounds()
-        {
-            (double minX, double minY, double maxX, double maxY) = GetBounds(X, Y, Z, TmsCompatible, Size);
-            MinLongtiude = minX;
-            MinLatitude = minY;
-            MaxLongitude = maxX;
-            MaxLatitude = maxY;
-        }
+        public void SetBounds() => (MinCoordinate, MaxCoordinate) = GetCoordinates(Number, Z, TmsCompatible, Size);
 
         #endregion
 

@@ -6,5 +6,7 @@
         public readonly int Height;
 
         public Size(int width, int height) => (Width, Height) = (width, height);
+
+        public long GetResoultion() => Width * Height;
     }
 }

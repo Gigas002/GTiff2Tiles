@@ -3,7 +3,9 @@ using System.IO;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using GTiff2Tiles.Core.Exceptions.Gdal;
+using GTiff2Tiles.Core.Geodesic;
 using GTiff2Tiles.Core.Helpers;
+using GTiff2Tiles.Core.Image;
 using GTiff2Tiles.Core.Localization;
 using OSGeo.GDAL;
 using OSGeo.OSR;
@@ -180,25 +182,28 @@ namespace GTiff2Tiles.Core.Gdal
         /// <param name="rasterXSize">Raster's width.</param>
         /// <param name="rasterYSize">Raster's height.</param>
         /// <returns><see cref="ValueTuple{T1, T2, T3, T4}"/> with WGS84 coordinates.</returns>
-        internal static (double minX, double minY, double maxX, double maxY) GetImageBorders(FileInfo inputFileInfo, int rasterXSize, int rasterYSize)
+        internal static (Coordinate minCoordinate, Coordinate maxCoordinate) GetImageBorders(FileInfo inputFileInfo, Size size)
         {
             #region Parameters checking
 
             CheckHelper.CheckFile(inputFileInfo, true);
 
-            if (rasterXSize < 0) throw new GdalException(string.Format(Strings.LesserThan, nameof(rasterXSize), 0));
-            if (rasterYSize < 0) throw new GdalException(string.Format(Strings.LesserThan, nameof(rasterYSize), 0));
+            if (size.Width < 0) throw new GdalException(string.Format(Strings.LesserThan, nameof(size.Width), 0));
+            if (size.Height < 0) throw new GdalException(string.Format(Strings.LesserThan, nameof(size.Height), 0));
 
             #endregion
 
             double[] geoTransform = GetGeoTransform(inputFileInfo);
 
             double minX = geoTransform[0];
-            double minY = geoTransform[3] - rasterYSize * geoTransform[1];
-            double maxX = geoTransform[0] + rasterXSize * geoTransform[1];
+            double minY = geoTransform[3] - size.Height * geoTransform[1];
+            double maxX = geoTransform[0] + size.Width * geoTransform[1];
             double maxY = geoTransform[3];
 
-            return (minX, minY, maxX, maxY);
+            Coordinate minCoordinate = new Coordinate(minX, minY);
+            Coordinate maxCoordinate = new Coordinate(maxX, maxY);
+
+            return (minCoordinate, maxCoordinate);
         }
 
         /// <summary>
@@ -208,6 +213,8 @@ namespace GTiff2Tiles.Core.Gdal
         /// <returns><see cref="ValueTuple{T1, T2}"/> with image sizes in pixels.</returns>
         internal static (int rasterXSize, int rasterYSize) GetImageSizes(FileInfo inputFileInfo)
         {
+            //TODO: Remove, better use NetVips
+
             #region Parameters checking.
 
             CheckHelper.CheckFile(inputFileInfo, true);

@@ -8,6 +8,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using GTiff2Tiles.Core.Constants.Image;
 using GTiff2Tiles.Core.Exceptions.Image;
+using GTiff2Tiles.Core.Geodesic;
 using GTiff2Tiles.Core.Helpers;
 using GTiff2Tiles.Core.Localization;
 using GTiff2Tiles.Core.Tiles;
@@ -34,22 +35,13 @@ namespace GTiff2Tiles.Core.Image
         #region Public
 
         /// <inheritdoc />
-        public int Width { get; }
+        public Size Size { get; }
 
         /// <inheritdoc />
-        public int Height { get; }
+        public Coordinate MinCoordinate { get; }
 
         /// <inheritdoc />
-        public double MinX { get; }
-
-        /// <inheritdoc />
-        public double MinY { get; }
-
-        /// <inheritdoc />
-        public double MaxX { get; }
-
-        /// <inheritdoc />
-        public double MaxY { get; }
+        public Coordinate MaxCoordinate { get; }
 
         /// <inheritdoc />
         public bool IsDisposed { get; private set; }
@@ -75,20 +67,18 @@ namespace GTiff2Tiles.Core.Image
 
             #endregion
 
+            /*TODO: 
+            Image.Tiffload(InputFileInfo.FullName, memory: true))
+            //if not much -- use memory: true
+            //var fileLength = InputFileInfo.Length;
+
+            image.Tilecache(tileWidth: TileSize, tileHeight: TileSize, maxTiles: MaxTiles, threaded: true);
+            */
             Data = NetVips.Image.NewFromFile(inputFileInfo.FullName, access: NetVips.Enums.Access.Random);
 
             //Get border coordinates и raster sizes.
-            try
-            {
-                Width = Data.Width;
-                Height = Data.Height;
-                (MinX, MinY, MaxX, MaxY) = Gdal.Gdal.GetImageBorders(inputFileInfo, Width, Height);
-            }
-            catch (Exception exception)
-            {
-                throw new RasterException(string.Format(Strings.UnableToGetCoordinates, nameof(inputFileInfo),
-                                                       exception));
-            }
+            Size = new Size(Data.Width, Data.Height);
+            (MinCoordinate, MaxCoordinate) = Gdal.Gdal.GetImageBorders(inputFileInfo, Size);
         }
 
         /// <summary>
@@ -162,11 +152,12 @@ namespace GTiff2Tiles.Core.Image
                 await Task.Run(() =>
                 {
                     //Get tiles min/max numbers.
-                    (int tileMinX, int tileMinY, int tileMaxX, int tileMaxY) =
-                        Tiles.Tile.GetNumbersFromCoords(MinX, MinY, MaxX, MaxY, currentZoom, tmsCompatible);
+                    (Number minNumber, Number maxNumber) =
+                        Tiles.Tile.GetNumbersFromCoords(MinCoordinate, MaxCoordinate, currentZoom, tmsCompatible, Size);
 
-                    for (int tileY = tileMinY; tileY <= tileMaxY; tileY++)
-                        Parallel.For(tileMinX, tileMaxX + 1,
+                    //TODO: await on Parallel.For
+                    for (int tileY = minNumber.Y; tileY <= maxNumber.Y; tileY++)
+                        Parallel.For(minNumber.X, maxNumber.X + 1,
                                      () => 0,
                                      (i, state, subtotal) => ++subtotal,
                                      value => Interlocked.Add(ref tilesCount, value));
@@ -284,46 +275,46 @@ namespace GTiff2Tiles.Core.Image
         /// <param name="lowerRightX">Tile's lower right x coordinate.</param>
         /// <param name="lowerRightY">Tile's lower right y coordinate.</param>
         /// <returns><see cref="ValueTuple{T1, T2, T3, T4, T5, T6, T7, T8}"/> of x/y positions and sizes to read and write tiles.</returns>
-        private (int readPosX, int readPosY, int readXSize, int readYSize, int writePosX, int writePosY, int writeXSize,
-            int writeYSize) GeoQuery(double upperLeftX, double upperLeftY, double lowerRightX, double lowerRightY, int tileSize)
+        private (Area readArea, Area writeArea) GeoQuery(Coordinate minCoordinate, Coordinate maxCoordinate, Size tileSize)
         {
             //Read from input geotiff in pixels.
-            double readPosMinX = Width * (upperLeftX - MinX) / (MaxX - MinX);
-            double readPosMinY = Height - Height * (upperLeftY - MinY) / (MaxY - MinY);
-            double readPosMaxX = Width * (lowerRightX - MinX) / (MaxX - MinX);
-            double readPosMaxY = Height - Height * (lowerRightY - MinY) / (MaxY - MinY);
+            double readPosMinX = Size.Width * (minCoordinate.Longitude - MinCoordinate.Longitude) / (MaxCoordinate.Longitude - MinCoordinate.Longitude);
+            double readPosMaxX = Size.Width * (maxCoordinate.Longitude - MinCoordinate.Longitude) / (MaxCoordinate.Longitude - MinCoordinate.Longitude);
+            double readPosMinY = Size.Height - Size.Height * (maxCoordinate.Latitude - MinCoordinate.Latitude) / (MaxCoordinate.Latitude - MinCoordinate.Latitude);
+            double readPosMaxY = Size.Height - Size.Height * (minCoordinate.Latitude - MinCoordinate.Latitude) / (MaxCoordinate.Latitude - MinCoordinate.Latitude);
 
             //If outside of tiff.
-            readPosMinX = readPosMinX < 0.0 ? 0.0 :
-                          readPosMinX > Width ? Width : readPosMinX;
-            readPosMinY = readPosMinY < 0.0 ? 0.0 :
-                          readPosMinY > Height ? Height : readPosMinY;
-            readPosMaxX = readPosMaxX < 0.0 ? 0.0 :
-                          readPosMaxX > Width ? Width : readPosMaxX;
-            readPosMaxY = readPosMaxY < 0.0 ? 0.0 :
-                          readPosMaxY > Height ? Height : readPosMaxY;
+            readPosMinX = readPosMinX < 0.0 ? 0.0 : readPosMinX > Size.Width ? Size.Width : readPosMinX;
+            readPosMaxX = readPosMaxX < 0.0 ? 0.0 : readPosMaxX > Size.Width ? Size.Width : readPosMaxX;
+            readPosMinY = readPosMinY < 0.0 ? 0.0 : readPosMinY > Size.Height ? Size.Height : readPosMinY;
+            readPosMaxY = readPosMaxY < 0.0 ? 0.0 : readPosMaxY > Size.Height ? Size.Height : readPosMaxY;
 
             //Output tile's borders in pixels.
-            double tilePixMinX = readPosMinX.Equals(0.0) ? MinX :
-                                 readPosMinX.Equals(Width) ? MaxX : upperLeftX;
-            double tilePixMinY = readPosMaxY.Equals(0.0) ? MaxY :
-                                 readPosMaxY.Equals(Height) ? MinY : lowerRightY;
-            double tilePixMaxX = readPosMaxX.Equals(0.0) ? MinX :
-                                 readPosMaxX.Equals(Width) ? MaxX : lowerRightX;
-            double tilePixMaxY = readPosMinY.Equals(0.0) ? MaxY :
-                                 readPosMinY.Equals(Height) ? MinY : upperLeftY;
+            double tilePixMinX = readPosMinX.Equals(0.0) ? MinCoordinate.Longitude :
+                                 readPosMinX.Equals(Size.Width) ? MaxCoordinate.Longitude : minCoordinate.Longitude;
+            double tilePixMaxX = readPosMaxX.Equals(0.0) ? MinCoordinate.Longitude :
+                                 readPosMaxX.Equals(Size.Width) ? MaxCoordinate.Longitude : maxCoordinate.Longitude;
+            //double tilePixMinY = readPosMaxY.Equals(0.0) ? MaxCoordinate.Latitude :
+            //                     readPosMaxY.Equals(Size.Height) ? MinCoordinate.Latitude : maxCoordinate.Latitude;
+            //double tilePixMaxY = readPosMinY.Equals(0.0) ? MaxCoordinate.Latitude :
+            //                     readPosMinY.Equals(Size.Height) ? MinCoordinate.Latitude : minCoordinate.Latitude;
+            double tilePixMinY = readPosMaxY.Equals(0.0) ? MaxCoordinate.Latitude :
+                                 readPosMaxY.Equals(Size.Height) ? MinCoordinate.Latitude : minCoordinate.Latitude;
+            double tilePixMaxY = readPosMinY.Equals(0.0) ? MaxCoordinate.Latitude :
+                                 readPosMinY.Equals(Size.Height) ? MinCoordinate.Latitude : maxCoordinate.Latitude;
+
 
             //Positions of dataset to write in tile.
-            double writePosMinX = tileSize - tileSize * (lowerRightX - tilePixMinX) / (lowerRightX - upperLeftX);
-            double writePosMinY = tileSize * (upperLeftY - tilePixMaxY) / (upperLeftY - lowerRightY);
-            double writePosMaxX = tileSize - tileSize * (lowerRightX - tilePixMaxX) / (lowerRightX - upperLeftX);
-            double writePosMaxY = tileSize * (upperLeftY - tilePixMinY) / (upperLeftY - lowerRightY);
+            double writePosMinX = tileSize.Width - tileSize.Width * (maxCoordinate.Longitude - tilePixMinX) / (maxCoordinate.Longitude - minCoordinate.Longitude);
+            double writePosMaxX = tileSize.Width - tileSize.Width * (maxCoordinate.Longitude - tilePixMaxX) / (maxCoordinate.Longitude - minCoordinate.Longitude);
+            double writePosMinY = tileSize.Height * (maxCoordinate.Latitude - tilePixMaxY) / (maxCoordinate.Latitude - minCoordinate.Latitude);
+            double writePosMaxY = tileSize.Height * (maxCoordinate.Latitude - tilePixMinY) / (maxCoordinate.Latitude - minCoordinate.Latitude);
 
             //Sizes to read and write.
             double readXSize = readPosMaxX - readPosMinX;
-            double readYSize = readPosMaxY - readPosMinY;
             double writeXSize = writePosMaxX - writePosMinX;
-            double writeYSize = writePosMaxY - writePosMinY;
+            double readYSize = Math.Abs(readPosMaxY - readPosMinY);
+            double writeYSize = Math.Abs(writePosMaxY - writePosMinY);
 
             //Shifts.
             double readXShift = readPosMinX - (int)readPosMinX;
@@ -339,12 +330,13 @@ namespace GTiff2Tiles.Core.Image
             writeXSize = writeXSize > 1.0 ? writeXSize : 1.0;
             writeYSize = writeYSize > 1.0 ? writeYSize : 1.0;
 
-            return ((int)readPosMinX, (int)readPosMinY, (int)readXSize, (int)readYSize, (int)writePosMinX,
-                    (int)writePosMinY, (int)writeXSize, (int)writeYSize);
+            Area readArea = new Area((int)readPosMinX, (int)readPosMinY, (int)readXSize, (int)readYSize);
+            Area writeArea = new Area((int)writePosMinX, (int)writePosMinY, (int)writeXSize, (int)writeYSize);
+
+            return (readArea, writeArea);
         }
 
-        private (int readPosX, int readPosY, int readXSize, int readYSize, int writePosX, int writePosY, int writeXSize,
-            int writeYSize) GeoQuery(ITile tile) => GeoQuery(tile.MinLongtiude, tile.MaxLatitude, tile.MaxLongitude, tile.MinLatitude, tile.Size);
+        private (Area readArea, Area writeArea) GeoQuery(ITile tile) => GeoQuery(tile.MinCoordinate, tile.MaxCoordinate, tile.Size);
 
         #endregion
 
@@ -358,22 +350,22 @@ namespace GTiff2Tiles.Core.Image
         private NetVips.Image CreateTileImage(ITile tile, int bands)
         {
             //Get postitions and sizes for current tile.
-            (int readPosX, int readPosY, int readXSize, int readYSize, int writePosX,
-             int writePosY, int writeXSize, int writeYSize) = GeoQuery(tile);
+            (Area readArea, Area writeArea) = GeoQuery(tile);
 
             // Scaling calculations
-            double xScale = (double)writeXSize / readXSize;
-            double yScale = (double)writeYSize / readYSize;
+            double xScale = (double)writeArea.Size.Width / readArea.Size.Width;
+            double yScale = (double)writeArea.Size.Height / readArea.Size.Height;
 
             // Crop and resize tile
-            NetVips.Image tempTileImage = Resize(Data.Crop(readPosX, readPosY, readXSize, readYSize), xScale, yScale);
+            NetVips.Image tempTileImage = Resize(Data.Crop(readArea.X, readArea.Y, readArea.Size.Width,
+                                                           readArea.Size.Height), xScale, yScale);
 
             // Add alpha channel if needed
             AddBands(ref tempTileImage, bands);
 
             // Make transparent image and insert tile
-            return NetVips.Image.Black(tile.Size, tile.Size).NewFromImage(0, 0, 0, 0)
-                          .Insert(tempTileImage, writePosX, writePosY);
+            return NetVips.Image.Black(tile.Size.Width, tile.Size.Height).NewFromImage(0, 0, 0, 0)
+                          .Insert(tempTileImage, writeArea.X, writeArea.Y);
         }
 
         #endregion
@@ -382,16 +374,19 @@ namespace GTiff2Tiles.Core.Image
 
         private void CreateTile(ref ITile tile, int bands) => tile.D = WriteTileToEnumerable(tile, bands);
 
-        private ITile CreateTile(int x, int y, int z, bool tmsCompatible, string tileExtension, int bands, int tileSize)
+        private ITile CreateTile(int x, int y, int z, bool tmsCompatible, string tileExtension, int bands,
+                                 Size size)
         {
-            ITile tile = new Tiles.Tile(x, y, z, tmsCompatible: tmsCompatible, extension: tileExtension, size: tileSize);
+            ITile tile = new Tiles.Tile(x, y, z, tmsCompatible: tmsCompatible, extension: tileExtension,
+                                        size: size);
             tile.D = WriteTileToEnumerable(tile, bands);
 
             return tile;
         }
 
-        private async ValueTask<ITile> CreateTileAsync(int x, int y, int z, bool tmsCompatible, string tileExtension, int bands, int tileSize) =>
-            await Task.Run(() => CreateTile(x, y, z, tmsCompatible, tileExtension, tileSize, bands)).ConfigureAwait(false);
+        private async ValueTask<ITile> CreateTileAsync(int x, int y, int z, bool tmsCompatible, string tileExtension, int bands,
+                                                       Size size) =>
+            await Task.Run(() => CreateTile(x, y, z, tmsCompatible, tileExtension, bands, size)).ConfigureAwait(false);
 
         #endregion
 
@@ -400,6 +395,7 @@ namespace GTiff2Tiles.Core.Image
         private void WriteTileToFile(ITile tile, int bands)
         {
             using NetVips.Image tileImage = CreateTileImage(tile, bands);
+            //todo verify tile
             tileImage.WriteToFile(tile.FileInfo.FullName);
         }
 
@@ -417,10 +413,10 @@ namespace GTiff2Tiles.Core.Image
 
         /// <inheritdoc />
         public async ValueTask WriteTilesToDirectoryAsync(DirectoryInfo outputDirectoryInfo, int minZ, int maxZ,
+                                                          Size tileSize,
                                                           bool tmsCompatible = false,
                                                           string tileExtension = Constants.Extensions.Png,
                                                           int bands = Constants.Image.Raster.Bands,
-                                                          int tileSize = Constants.Image.Raster.TileSize,
                                                           IProgress<double> progress = null, int threadsCount = 0,
                                                           bool isPrintEstimatedTime = true)
         {
@@ -446,11 +442,11 @@ namespace GTiff2Tiles.Core.Image
             for (int zoom = minZ; zoom <= maxZ; zoom++)
             {
                 //Get tiles min/max numbers.
-                (int tileMinX, int tileMinY, int tileMaxX, int tileMaxY) =
-                    Tiles.Tile.GetNumbersFromCoords(MinX, MinY, MaxX, MaxY, zoom, tmsCompatible);
+                (Number minNumber, Number maxNumber) = Tiles.Tile.GetNumbersFromCoords(MinCoordinate, MaxCoordinate,
+                                                                                       zoom, tmsCompatible, tileSize);
 
                 //For each tile on given zoom calculate positions/sizes and save as file.
-                for (int tileY = tileMinY; tileY <= tileMaxY; tileY++)
+                for (int tileY = minNumber.Y; tileY <= maxNumber.Y; tileY++)
                 {
                     int y = tileY;
                     int z = zoom;
@@ -479,7 +475,7 @@ namespace GTiff2Tiles.Core.Image
                         PrintEstimatedTimeLeft(percentage, stopwatch);
                     }
 
-                    await Task.Run(() => Parallel.For(tileMinX, tileMaxX + 1, parallelOptions, MakeTile))
+                    await Task.Run(() => Parallel.For(minNumber.X, maxNumber.X + 1, parallelOptions, MakeTile))
                               .ConfigureAwait(false);
                 }
             }
