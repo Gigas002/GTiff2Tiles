@@ -134,42 +134,6 @@ namespace GTiff2Tiles.Core.Image
 
         #endregion
 
-        #region Other
-
-        /// <summary>
-        /// Gets count of tiles to crop. Needed for progress calculations.
-        /// </summary>
-        /// <param name="tmsCompatible">Are tiles tims compatible?</param>
-        /// <param name="threadsCount">Threads count.</param>
-        /// <returns>Number of tiles to crop.</returns>
-        private async ValueTask<int> GetTilesCountAsync(int minZ, int maxZ, bool tmsCompatible)
-        {
-            int tilesCount = 0;
-            for (int zoom = minZ; zoom <= maxZ; zoom++)
-            {
-                //TODO: better calculations
-                int currentZoom = zoom;
-                await Task.Run(() =>
-                {
-                    //Get tiles min/max numbers.
-                    (Number minNumber, Number maxNumber) =
-                        Tiles.Tile.GetNumbersFromCoords(MinCoordinate, MaxCoordinate, currentZoom, tmsCompatible, Size);
-
-                    //TODO: await on Parallel.For
-                    for (int tileY = minNumber.Y; tileY <= maxNumber.Y; tileY++)
-                        Parallel.For(minNumber.X, maxNumber.X + 1,
-                                     () => 0,
-                                     (i, state, subtotal) => ++subtotal,
-                                     value => Interlocked.Add(ref tilesCount, value));
-                }).ConfigureAwait(false);
-            }
-
-            return tilesCount;
-        }
-
-
-        #endregion
-
         #region Image modification
 
         /// <summary>
@@ -261,6 +225,8 @@ namespace GTiff2Tiles.Core.Image
         /// <returns><see cref="ValueTuple{T1, T2, T3, T4, T5, T6, T7, T8}"/> of x/y positions and sizes to read and write tiles.</returns>
         private (Area readArea, Area writeArea) GeoQuery(Coordinate minCoordinate, Coordinate maxCoordinate, Size tileSize)
         {
+            //TODO probably move to Geodesic.Coordinate class?
+
             //Read from input geotiff in pixels.
             double readPosMinX = Size.Width * (minCoordinate.Longitude - MinCoordinate.Longitude) / (MaxCoordinate.Longitude - MinCoordinate.Longitude);
             double readPosMaxX = Size.Width * (maxCoordinate.Longitude - MinCoordinate.Longitude) / (MaxCoordinate.Longitude - MinCoordinate.Longitude);
@@ -413,7 +379,7 @@ namespace GTiff2Tiles.Core.Image
 
             //Crop all tiles.
             Stopwatch stopwatch = isPrintEstimatedTime ? Stopwatch.StartNew() : null;
-            int tilesCount = await GetTilesCountAsync(minZ, maxZ, tmsCompatible).ConfigureAwait(false);
+            int tilesCount = Tiles.Tile.GetCount(MinCoordinate, MaxCoordinate, minZ, maxZ, tmsCompatible, tileSize);
             double counter = 0.0;
 
             if (tilesCount <= 0) return;
@@ -452,7 +418,7 @@ namespace GTiff2Tiles.Core.Image
                         progress.Report(percentage);
 
                         //Estimated time left calculation.
-                        PrintEstimatedTimeLeft(percentage, stopwatch);
+                        ProgressHelper.PrintEstimatedTimeLeft(percentage, stopwatch);
                     }
 
                     await Task.Run(() => Parallel.For(minNumber.X, maxNumber.X + 1, parallelOptions, MakeTile))

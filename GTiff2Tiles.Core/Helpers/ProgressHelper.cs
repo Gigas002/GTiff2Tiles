@@ -15,7 +15,7 @@ namespace GTiff2Tiles.Core.Helpers
         /// </summary>
         /// <param name="percentage">Current progress.</param>
         /// <param name="stopwatch">Get elapsed time from this.</param>
-        private static void PrintEstimatedTimeLeft(double percentage, Stopwatch stopwatch = null)
+        public static void PrintEstimatedTimeLeft(double percentage, Stopwatch stopwatch = null)
         {
             if (stopwatch == null) return;
 

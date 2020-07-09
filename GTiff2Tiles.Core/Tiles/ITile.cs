@@ -29,5 +29,6 @@ namespace GTiff2Tiles.Core.Tiles
         public (Number minNumber, Number maxNumber) GetNumbersFromCoords(bool tmsCompatible);
         public (Number minNumber, Number maxNumber) GetLowerNumbers(int zoom);
         public void SetBounds();
+        public int GetCount(int minZ, int maxZ);
     }
 }

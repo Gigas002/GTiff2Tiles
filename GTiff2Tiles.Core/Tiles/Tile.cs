@@ -271,6 +271,31 @@ namespace GTiff2Tiles.Core.Tiles
         /// <inheritdoc />
         public void SetBounds() => (MinCoordinate, MaxCoordinate) = GetCoordinates(Number, Z, TmsCompatible, Size);
 
+        #region GetCount
+
+        public int GetCount(int minZ, int maxZ) => GetCount(MinCoordinate, MaxCoordinate, minZ, maxZ, TmsCompatible, Size);
+
+        public static int GetCount(Coordinate minCoordinate, Coordinate maxCoordinate,
+                                   int minZ, int maxZ, bool tmsCompatible, Size tileSize)
+        {
+            int tilesCount = 0;
+
+            for (int zoom = minZ; zoom <= maxZ; zoom++)
+            {
+                // Get tiles min/max numbers
+                (Number minNumber, Number maxNumber) = GetNumbersFromCoords(minCoordinate, maxCoordinate, zoom, tmsCompatible, tileSize);
+
+                int ysCount = Enumerable.Range(minNumber.Y, maxNumber.Y - minNumber.Y + 1).Count();
+                int xsCount = Enumerable.Range(minNumber.X, maxNumber.X - minNumber.X + 1).Count();
+
+                tilesCount += ysCount * xsCount;
+            }
+
+            return tilesCount;
+        }
+
+        #endregion
+
         #endregion
 
         #endregion

@@ -329,6 +329,13 @@
             Disables NetVips log warnings.
             </summary>
         </member>
+        <member name="M:GTiff2Tiles.Core.Helpers.ProgressHelper.PrintEstimatedTimeLeft(System.Double,System.Diagnostics.Stopwatch)">
+            <summary>
+            Prints estimated time left.
+            </summary>
+            <param name="percentage">Current progress.</param>
+            <param name="stopwatch">Get elapsed time from this.</param>
+        </member>
         <member name="T:GTiff2Tiles.Core.Image.IImage">
             <summary>
             Main interface for cropping different tiles.
@@ -416,21 +423,6 @@
         </member>
         <member name="M:GTiff2Tiles.Core.Image.Raster.DisposeAsync">
             <inheritdoc />
-        </member>
-        <member name="M:GTiff2Tiles.Core.Image.Raster.GetTilesCountAsync(System.Int32,System.Int32,System.Boolean)">
-            <summary>
-            Gets count of tiles to crop. Needed for progress calculations.
-            </summary>
-            <param name="tmsCompatible">Are tiles tims compatible?</param>
-            <param name="threadsCount">Threads count.</param>
-            <returns>Number of tiles to crop.</returns>
-        </member>
-        <member name="M:GTiff2Tiles.Core.Image.Raster.PrintEstimatedTimeLeft(System.Double,System.Diagnostics.Stopwatch)">
-            <summary>
-            Prints estimated time left.
-            </summary>
-            <param name="percentage">Current progress.</param>
-            <param name="stopwatch">Get elapsed time from this.</param>
         </member>
         <member name="M:GTiff2Tiles.Core.Image.Raster.Resize(NetVips.Image,System.Double,System.Double,System.String,System.String,System.Boolean)">
             <summary>
