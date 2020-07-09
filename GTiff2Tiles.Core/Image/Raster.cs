@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using GTiff2Tiles.Core.Constants.Image;
 using GTiff2Tiles.Core.Geodesic;
@@ -70,6 +71,36 @@ namespace GTiff2Tiles.Core.Image
             //Get border coordinates и raster sizes.
             Size = new Size(Data.Width, Data.Height);
             (MinCoordinate, MaxCoordinate) = Gdal.Gdal.GetImageBorders(inputFileInfo, Size);
+        }
+
+        public Raster(byte[] inputBytes)
+        {
+            throw new NotImplementedException();
+
+            //Disable NetVips warnings for tiff.
+            NetVipsHelper.DisableLog();
+
+            Data = NetVips.Image.NewFromBuffer(inputBytes, access: NetVips.Enums.Access.Random);
+
+            //Get border coordinates и raster sizes.
+            Size = new Size(Data.Width, Data.Height);
+            //TODO: get coordinates without fileinfo
+            //(MinCoordinate, MaxCoordinate) = Gdal.Gdal.GetImageBorders(inputFileInfo, Size);
+        }
+
+        public Raster(Stream inputStream)
+        {
+            throw new NotImplementedException();
+
+            //Disable NetVips warnings for tiff.
+            NetVipsHelper.DisableLog();
+
+            Data = NetVips.Image.NewFromStream(inputStream, access: NetVips.Enums.Access.Random);
+
+            //Get border coordinates и raster sizes.
+            Size = new Size(Data.Width, Data.Height);
+            //TODO: get coordinates without fileinfo
+            //(MinCoordinate, MaxCoordinate) = Gdal.Gdal.GetImageBorders(inputFileInfo, Size);
         }
 
         /// <summary>
