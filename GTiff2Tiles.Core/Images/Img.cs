@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using GTiff2Tiles.Core.Constants;
 using GTiff2Tiles.Core.Enums.Image;
 
-namespace GTiff2Tiles.Core.Image
+namespace GTiff2Tiles.Core.Images
 {
     /// <summary>
     /// Example of class to use <see cref="IImage"/> interface.

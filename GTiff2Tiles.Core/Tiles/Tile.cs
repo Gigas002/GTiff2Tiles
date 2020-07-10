@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using GTiff2Tiles.Core.Geodesic;
-using GTiff2Tiles.Core.Image;
+using GTiff2Tiles.Core.Images;
 
 namespace GTiff2Tiles.Core.Tiles
 {

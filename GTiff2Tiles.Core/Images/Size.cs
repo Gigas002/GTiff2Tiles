@@ -1,4 +1,4 @@
-﻿namespace GTiff2Tiles.Core.Image
+﻿namespace GTiff2Tiles.Core.Images
 {
     public struct Size
     {

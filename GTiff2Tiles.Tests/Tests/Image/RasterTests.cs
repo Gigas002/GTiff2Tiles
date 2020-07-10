@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using GTiff2Tiles.Core.Constants;
 using GTiff2Tiles.Core.Enums.Image;
 using GTiff2Tiles.Core.Helpers;
+using GTiff2Tiles.Core.Images;
 using GTiff2Tiles.Tests.Constants;
 using NUnit.Framework;
 
@@ -62,9 +63,9 @@ namespace GTiff2Tiles.Tests.Tests.Image
                 const int threadsCount = Multithreading.ThreadsCount;
                 const TileExtension tileExtension = TileExtension.Png;
 
-                await Core.Image.Img.GenerateTilesAsync(inputFileInfo, outputDirectoryInfo, minZ, maxZ, TileType.Raster,
-                                                        tmsCompatible, tileExtension, progress, 0)
-                          .ConfigureAwait(false);
+                await Img.GenerateTilesAsync(inputFileInfo, outputDirectoryInfo, minZ, maxZ, TileType.Raster,
+                                             tmsCompatible, tileExtension, progress, 0)
+                         .ConfigureAwait(false);
             }
             catch (Exception exception) { Assert.Fail(exception.Message); }
 
@@ -115,9 +116,9 @@ namespace GTiff2Tiles.Tests.Tests.Image
                 const int threadsCount = Multithreading.ThreadsCount;
                 const TileExtension tileExtension = TileExtension.Png;
 
-                await Core.Image.Img.GenerateTilesAsync(inputFileInfo, outputDirectoryInfo, minZ, maxZ, TileType.Raster,
-                                                        tmsCompatible, tileExtension, progress, 0)
-                          .ConfigureAwait(false);
+                await Img.GenerateTilesAsync(inputFileInfo, outputDirectoryInfo, minZ, maxZ, TileType.Raster,
+                                             tmsCompatible, tileExtension, progress, 0)
+                         .ConfigureAwait(false);
             }
             catch (Exception exception) { Assert.Fail(exception.Message); }
 

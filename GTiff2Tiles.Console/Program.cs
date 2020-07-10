@@ -11,6 +11,7 @@ using GTiff2Tiles.Core.Constants;
 using GTiff2Tiles.Core.Constants.Gdal;
 using GTiff2Tiles.Core.Enums.Image;
 using GTiff2Tiles.Core.Helpers;
+using GTiff2Tiles.Core.Images;
 
 namespace GTiff2Tiles.Console
 {
@@ -116,9 +117,9 @@ namespace GTiff2Tiles.Console
 
                 //Run tiling.
                 //TODO: tileType
-                await Core.Image.Img.GenerateTilesAsync(InputFileInfo, OutputDirectoryInfo, MinZ, MaxZ, TileType.Raster,
-                                                        TmsCompatible, TileExtension,
-                                                        consoleProgress, ThreadsCount).ConfigureAwait(false);
+                await Img.GenerateTilesAsync(InputFileInfo, OutputDirectoryInfo, MinZ, MaxZ, TileType.Raster,
+                                             TmsCompatible, TileExtension,
+                                             consoleProgress, ThreadsCount).ConfigureAwait(false);
             }
             catch (Exception exception)
             {

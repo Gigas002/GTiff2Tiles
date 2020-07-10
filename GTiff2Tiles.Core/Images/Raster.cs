@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 using GTiff2Tiles.Core.Constants.Image;
 using GTiff2Tiles.Core.Geodesic;
@@ -12,7 +11,7 @@ using GTiff2Tiles.Core.Helpers;
 using GTiff2Tiles.Core.Tiles;
 using NetVips;
 
-namespace GTiff2Tiles.Core.Image
+namespace GTiff2Tiles.Core.Images
 {
     /// <summary>
     /// Class for creating raster tiles.

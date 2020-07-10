@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using GTiff2Tiles.Core.Geodesic;
-using GTiff2Tiles.Core.Image;
+using GTiff2Tiles.Core.Images;
 
 namespace GTiff2Tiles.Core.Tiles
 {

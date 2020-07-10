@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using GTiff2Tiles.Core.Exceptions.Gdal;
 using GTiff2Tiles.Core.Geodesic;
 using GTiff2Tiles.Core.Helpers;
-using GTiff2Tiles.Core.Image;
+using GTiff2Tiles.Core.Images;
 using GTiff2Tiles.Core.Localization;
 using OSGeo.GDAL;
 using OSGeo.OSR;

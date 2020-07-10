@@ -8,7 +8,7 @@ using GTiff2Tiles.Core.Geodesic;
 // ReSharper disable UnusedMemberInSuper.Global
 // ReSharper disable UnusedMember.Global
 
-namespace GTiff2Tiles.Core.Image
+namespace GTiff2Tiles.Core.Images
 {
     /// <summary>
     /// Main interface for cropping different tiles.

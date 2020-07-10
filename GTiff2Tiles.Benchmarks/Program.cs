@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using CommandLine;
 using GTiff2Tiles.Core.Enums.Image;
-using GTiff2Tiles.Core.Image;
+using GTiff2Tiles.Core.Images;
 
 // ReSharper disable LocalizableElement
 // ReSharper disable UnusedParameter.Local

@@ -11,6 +11,7 @@ using GTiff2Tiles.Core.Constants;
 using GTiff2Tiles.Core.Constants.Gdal;
 using GTiff2Tiles.Core.Enums.Image;
 using GTiff2Tiles.Core.Helpers;
+using GTiff2Tiles.Core.Images;
 using GTiff2Tiles.GUI.Constants;
 using GTiff2Tiles.GUI.Localization;
 using GTiff2Tiles.GUI.Models;
@@ -424,9 +425,9 @@ namespace GTiff2Tiles.GUI.ViewModels
 
                 //Run tiling.
                 //TODO: tileType
-                await Core.Image.Img.GenerateTilesAsync(inputFileInfo, outputDirectoryInfo, MinZ, MaxZ, TileType.Raster,
-                                                        TmsCompatible, RealTileExtension, progress,
-                                                        ThreadsCount).ConfigureAwait(true);
+                await Img.GenerateTilesAsync(inputFileInfo, outputDirectoryInfo, MinZ, MaxZ, TileType.Raster,
+                                             TmsCompatible, RealTileExtension, progress,
+                                             ThreadsCount).ConfigureAwait(true);
             }
             catch (Exception exception)
             {

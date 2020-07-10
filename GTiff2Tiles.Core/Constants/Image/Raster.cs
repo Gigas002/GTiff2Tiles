@@ -1,7 +1,9 @@
-﻿namespace GTiff2Tiles.Core.Constants.Image
+﻿using GTiff2Tiles.Core.Images;
+
+namespace GTiff2Tiles.Core.Constants.Image
 {
     /// <summary>
-    /// <see cref="GTiff2Tiles.Core.Image.Raster"/> constants.
+    /// <see cref="Images.Raster"/> constants.
     /// </summary>
     internal static class Raster
     {
