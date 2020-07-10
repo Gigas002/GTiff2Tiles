@@ -26,7 +26,7 @@ namespace GTiff2Tiles.Core.Images
         /// <summary>
         /// This image's data.
         /// </summary>
-        private NetVips.Image Data { get; }
+        private Image Data { get; }
 
         #endregion
 
@@ -66,7 +66,7 @@ namespace GTiff2Tiles.Core.Images
             #endregion
 
             bool memory = inputFileInfo.Length <= maxMemoryCache;
-            Data = NetVips.Image.NewFromFile(inputFileInfo.FullName, memory, NetVips.Enums.Access.Random);
+            Data = Image.NewFromFile(inputFileInfo.FullName, memory, NetVips.Enums.Access.Random);
 
             //Get border coordinates и raster sizes.
             Size = new Size(Data.Width, Data.Height);
@@ -75,32 +75,36 @@ namespace GTiff2Tiles.Core.Images
 
         public Raster(byte[] inputBytes)
         {
-            throw new NotImplementedException();
-
             //Disable NetVips warnings for tiff.
             NetVipsHelper.DisableLog();
 
-            Data = NetVips.Image.NewFromBuffer(inputBytes, access: NetVips.Enums.Access.Random);
+            Data = Image.NewFromBuffer(inputBytes, access: NetVips.Enums.Access.Random);
 
             //Get border coordinates и raster sizes.
             Size = new Size(Data.Width, Data.Height);
+
+            FileInfo inputFileInfo = new FileInfo("tmp.tif");
+            Data.WriteToFile(inputFileInfo.FullName);
             //TODO: get coordinates without fileinfo
-            //(MinCoordinate, MaxCoordinate) = Gdal.Gdal.GetImageBorders(inputFileInfo, Size);
+            (MinCoordinate, MaxCoordinate) = Gdal.Gdal.GetImageBorders(inputFileInfo, Size);
+            inputFileInfo.Delete();
         }
 
         public Raster(Stream inputStream)
         {
-            throw new NotImplementedException();
-
             //Disable NetVips warnings for tiff.
             NetVipsHelper.DisableLog();
 
-            Data = NetVips.Image.NewFromStream(inputStream, access: NetVips.Enums.Access.Random);
+            Data = Image.NewFromStream(inputStream, access: NetVips.Enums.Access.Random);
 
             //Get border coordinates и raster sizes.
             Size = new Size(Data.Width, Data.Height);
+
+            FileInfo inputFileInfo = new FileInfo("tmp.tif");
+            Data.WriteToFile(inputFileInfo.FullName);
             //TODO: get coordinates without fileinfo
-            //(MinCoordinate, MaxCoordinate) = Gdal.Gdal.GetImageBorders(inputFileInfo, Size);
+            (MinCoordinate, MaxCoordinate) = Gdal.Gdal.GetImageBorders(inputFileInfo, Size);
+            inputFileInfo.Delete();
         }
 
         /// <summary>
@@ -168,7 +172,7 @@ namespace GTiff2Tiles.Core.Images
         /// <param name="interpolation"></param>
         /// <param name="isCentre"></param>
         /// <returns></returns>
-        private static NetVips.Image Resize(NetVips.Image tileImage, double xScale, double yScale,
+        private static Image Resize(Image tileImage, double xScale, double yScale,
                                             string kernel = NetVips.Enums.Kernel.Lanczos3,
                                             string interpolation = Interpolations.Bicubic,
                                             bool isCentre = false)
@@ -231,7 +235,7 @@ namespace GTiff2Tiles.Core.Images
         /// Writes one tile of current zoom.
         /// <para/>Crops zoom directly from input image.
         /// </summary>
-        private NetVips.Image CreateTileImage(NetVips.Image tileCache, ITile tile, int bands)
+        private Image CreateTileImage(Image tileCache, ITile tile, int bands)
         {
             //Get postitions and sizes for current tile.
             (Area readArea, Area writeArea) = Area.GetAreas(this, tile);
@@ -241,14 +245,14 @@ namespace GTiff2Tiles.Core.Images
             double yScale = (double)writeArea.Size.Height / readArea.Size.Height;
 
             // Crop and resize tile
-            NetVips.Image tempTileImage = Resize(tileCache.Crop(readArea.X, readArea.Y, readArea.Size.Width,
+            Image tempTileImage = Resize(tileCache.Crop(readArea.X, readArea.Y, readArea.Size.Width,
                                                                 readArea.Size.Height), xScale, yScale);
 
             // Add alpha channel if needed
             tempTileImage = tempTileImage.AddBands(bands);
 
             // Make transparent image and insert tile
-            return NetVips.Image.Black(tile.Size.Width, tile.Size.Height).NewFromImage(0, 0, 0, 0)
+            return Image.Black(tile.Size.Width, tile.Size.Height).NewFromImage(0, 0, 0, 0)
                           .Insert(tempTileImage, writeArea.X, writeArea.Y);
         }
 
@@ -274,9 +278,9 @@ namespace GTiff2Tiles.Core.Images
 
         #region WriteTile
 
-        private void WriteTileToFile(NetVips.Image tileCache, ITile tile, int bands)
+        private void WriteTileToFile(Image tileCache, ITile tile, int bands)
         {
-            using NetVips.Image tileImage = CreateTileImage(tileCache, tile, bands);
+            using Image tileImage = CreateTileImage(tileCache, tile, bands);
 
             //TODO: Validate tileImage, not tile!
             //if (!tile.Validate(false)) return;
@@ -284,9 +288,9 @@ namespace GTiff2Tiles.Core.Images
             tileImage.WriteToFile(tile.FileInfo.FullName);
         }
 
-        private IEnumerable<byte> WriteTileToEnumerable(NetVips.Image tileCache, ITile tile, int bands)
+        private IEnumerable<byte> WriteTileToEnumerable(Image tileCache, ITile tile, int bands)
         {
-            using NetVips.Image tileImage = CreateTileImage(tileCache, tile, bands);
+            using Image tileImage = CreateTileImage(tileCache, tile, bands);
             //TODO: test this methods
             //return tileImage.WriteToBuffer(tile.Extension);
             return tileImage.WriteToMemory();
@@ -323,7 +327,7 @@ namespace GTiff2Tiles.Core.Images
             if (tilesCount <= 0) return;
 
             // Create tile cache to read data from it
-            using NetVips.Image tileCache = Data.Tilecache(tileSize.Width, tileSize.Height, tileCacheCount, threaded: true);
+            using Image tileCache = Data.Tilecache(tileSize.Width, tileSize.Height, tileCacheCount, threaded: true);
 
             //For each zoom.
             for (int zoom = minZ; zoom <= maxZ; zoom++)
