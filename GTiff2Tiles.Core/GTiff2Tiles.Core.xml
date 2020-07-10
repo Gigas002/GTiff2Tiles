@@ -259,13 +259,6 @@
             <param name="rasterYSize">Raster's height.</param>
             <returns><see cref="T:System.ValueTuple`4"/> with WGS84 coordinates.</returns>
         </member>
-        <member name="M:GTiff2Tiles.Core.Gdal.Gdal.GetImageSizes(System.IO.FileInfo)">
-            <summary>
-            Gets image sizes in pixels.
-            </summary>
-            <param name="inputFileInfo">Input GeoTiff file.</param>
-            <returns><see cref="T:System.ValueTuple`2"/> with image sizes in pixels.</returns>
-        </member>
         <member name="T:GTiff2Tiles.Core.Helpers.CheckHelper">
             <summary>
             Class with static methods for check the errors.

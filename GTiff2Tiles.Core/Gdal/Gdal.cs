@@ -206,29 +206,6 @@ namespace GTiff2Tiles.Core.Gdal
             return (minCoordinate, maxCoordinate);
         }
 
-        /// <summary>
-        /// Gets image sizes in pixels.
-        /// </summary>
-        /// <param name="inputFileInfo">Input GeoTiff file.</param>
-        /// <returns><see cref="ValueTuple{T1, T2}"/> with image sizes in pixels.</returns>
-        internal static (int rasterXSize, int rasterYSize) GetImageSizes(FileInfo inputFileInfo)
-        {
-            //TODO: Remove, better use NetVips
-
-            #region Parameters checking.
-
-            CheckHelper.CheckFile(inputFileInfo, true);
-
-            #endregion
-
-            //Initialize Gdal, if needed.
-            ConfigureGdal();
-
-            using Dataset inputDataset = OSGeo.GDAL.Gdal.Open(inputFileInfo.FullName, Access.GA_ReadOnly);
-
-            return (inputDataset.RasterXSize, inputDataset.RasterYSize);
-        }
-
         #endregion
 
         #endregion
