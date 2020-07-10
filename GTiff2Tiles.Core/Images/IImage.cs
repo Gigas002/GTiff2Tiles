@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Threading.Channels;
 using System.Threading.Tasks;
 using GTiff2Tiles.Core.Geodesic;
+using GTiff2Tiles.Core.Tiles;
 
 // ReSharper disable InheritdocConsiderUsage
 // ReSharper disable MemberCanBeInternal
@@ -66,6 +69,17 @@ namespace GTiff2Tiles.Core.Images
                                                     int bands = Constants.Image.Raster.Bands,
                                                     IProgress<double> progress = null, int threadsCount = 0,
                                                     bool isPrintEstimatedTime = true, int tileCacheCount = 1000);
+
+        public ValueTask WriteTilesToChannelAsync(ChannelWriter<ITile> channelWriter, bool tmsCompatible,
+                                                  string tileExtension, IProgress<double> progress,
+                                                  bool isPrintEstimatedTime, int minZ, int maxZ, int bands,
+                                                  Size tileSize, int threadsCount, int tileCacheCount);
+
+        public IAsyncEnumerable<ITile> WriteTilesToAsyncEnumerable(bool tmsCompatible, string tileExtension,
+                                                                   IProgress<double> progress,
+                                                                   bool isPrintEstimatedTime, int minZ, int maxZ,
+                                                                   int bands, Size tileSize, int threadsCount,
+                                                                   int tileCacheCount);
 
         #endregion
     }

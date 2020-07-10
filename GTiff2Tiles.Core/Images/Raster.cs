@@ -4,6 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Threading;
+using System.Threading.Channels;
 using System.Threading.Tasks;
 using GTiff2Tiles.Core.Constants.Image;
 using GTiff2Tiles.Core.Extensions;
@@ -296,6 +298,13 @@ namespace GTiff2Tiles.Core.Images
             return tileImage.WriteToMemory();
         }
 
+        private bool WriteTileToChannel(ITile tile, ChannelWriter<ITile> channelWriter)
+        {
+            //tile.D = WriteTileToEnumerable(tileCache, tile, bands);
+
+            return tile.Validate(false) && channelWriter.TryWrite(tile);
+        }
+
         #endregion
 
         #region WriteTiles
@@ -349,10 +358,11 @@ namespace GTiff2Tiles.Core.Images
                         CheckHelper.CheckDirectory(tileDirectoryInfo);
 
                         ITile tile = new Tiles.Tile(x, y, z, extension: tileExtension, tmsCompatible: tmsCompatible,
-                                                    size: tileSize);
-
-                        //Warning: OpenLayers requires replacement of tileY to tileY+1
-                        tile.FileInfo = new FileInfo(Path.Combine(tileDirectoryInfo.FullName, $"{y}{tileExtension}"));
+                                                    size: tileSize)
+                        {
+                            //Warning: OpenLayers requires replacement of tileY to tileY+1
+                            FileInfo = new FileInfo(Path.Combine(tileDirectoryInfo.FullName, $"{y}{tileExtension}"))
+                        };
 
                         // ReSharper disable once AccessToDisposedClosure
                         WriteTileToFile(tileCache, tile, bands);
@@ -368,6 +378,162 @@ namespace GTiff2Tiles.Core.Images
 
                     await Task.Run(() => Parallel.For(minNumber.X, maxNumber.X + 1, parallelOptions, MakeTile))
                               .ConfigureAwait(false);
+                }
+            }
+        }
+
+        //TODO: args order
+        public async ValueTask WriteTilesToChannelAsync(ChannelWriter<ITile> channelWriter,
+                                                        bool tmsCompatible, string tileExtension,
+                                                        IProgress<double> progress, bool isPrintEstimatedTime,
+                                                        int minZ, int maxZ, int bands,
+                                                        Size tileSize, int threadsCount,
+                                                        int tileCacheCount)
+        {
+            #region Progress stuff
+
+            progress ??= new Progress<double>();
+
+            Stopwatch stopwatch = isPrintEstimatedTime ? Stopwatch.StartNew() : null;
+            int tilesCount = Tiles.Tile.GetCount(MinCoordinate, MaxCoordinate, minZ, maxZ, tmsCompatible, tileSize);
+            double counter = 0.0;
+
+            if (tilesCount <= 0) return;
+
+            #endregion
+
+            ParallelOptions parallelOptions = new ParallelOptions();
+            if (threadsCount > 0) parallelOptions.MaxDegreeOfParallelism = threadsCount;
+
+            // Create tile cache to read data from it
+            using Image tileCache = Data.Tilecache(tileSize.Width, tileSize.Height, tileCacheCount, threaded: true);
+
+            //For each zoom.
+            for (int zoom = minZ; zoom <= maxZ; zoom++)
+            {
+                //Get tiles min/max numbers.
+                (Number minNumber, Number maxNumber) = Tiles.Tile.GetNumbersFromCoords(MinCoordinate, MaxCoordinate,
+                                                                                       zoom, tmsCompatible, tileSize);
+
+                //For each tile on given zoom calculate positions/sizes and save as file.
+                for (int tileY = minNumber.Y; tileY <= maxNumber.Y; tileY++)
+                {
+                    int y = tileY;
+                    int z = zoom;
+
+                    void MakeTile(int x)
+                    {
+                        ITile tile = new Tiles.Tile(x, y, z, extension: tileExtension, tmsCompatible: tmsCompatible,
+                                                    size: tileSize);
+
+                        // ReSharper disable once AccessToDisposedClosure
+                        tile.D = WriteTileToEnumerable(tileCache, tile, bands);
+
+                        if (!WriteTileToChannel(tile, channelWriter)) return;
+
+                        //Report progress.
+                        counter++;
+                        double percentage = counter / tilesCount * 100.0;
+                        progress.Report(percentage);
+
+                        //Estimated time left calculation.
+                        ProgressHelper.PrintEstimatedTimeLeft(percentage, stopwatch);
+                    }
+
+                    await Task.Run(() => Parallel.For(minNumber.X, maxNumber.X + 1, parallelOptions, MakeTile))
+                              .ConfigureAwait(false);
+                }
+            }
+        }
+
+        //TODO: args order
+        public async IAsyncEnumerable<ITile> WriteTilesToAsyncEnumerable(bool tmsCompatible, string tileExtension,
+                                                                         IProgress<double> progress, bool isPrintEstimatedTime,
+                                                                         int minZ, int maxZ, int bands,
+                                                                         Size tileSize, int threadsCount,
+                                                                         int tileCacheCount)
+        {
+            #region Progress stuff
+
+            progress ??= new Progress<double>();
+
+            Stopwatch stopwatch = isPrintEstimatedTime ? Stopwatch.StartNew() : null;
+            int tilesCount = Tiles.Tile.GetCount(MinCoordinate, MaxCoordinate, minZ, maxZ, tmsCompatible, tileSize);
+            double counter = 0.0;
+
+            //if (tilesCount <= 0) yield return null;
+
+            #endregion
+
+            using SemaphoreSlim semaphoreSlim = new SemaphoreSlim(threadsCount);
+            List<Task<ITile>> tasks = new List<Task<ITile>>();
+
+            // Create tile cache to read data from it
+            using Image tileCache = Data.Tilecache(tileSize.Width, tileSize.Height, tileCacheCount, threaded: true);
+
+            //For each specified zoom.
+            for (int zoom = minZ; zoom <= maxZ; zoom++)
+            {
+                //Get tiles min/max numbers.
+                (Number minNumber, Number maxNumber) = Tiles.Tile.GetNumbersFromCoords(MinCoordinate, MaxCoordinate,
+                                                                                       zoom, tmsCompatible, tileSize);
+
+                //For each tile on given zoom calculate positions/sizes and save as file.
+                for (int tileY = minNumber.Y; tileY <= maxNumber.Y; tileY++)
+                {
+                    //TODO: use Parallel.For somehow
+                    for (int tileX = minNumber.X; tileX <= maxNumber.X; tileX++)
+                    {
+                        await semaphoreSlim.WaitAsync();
+
+                        int x = tileX;
+                        int y = tileY;
+                        int z = zoom;
+
+                        ITile MakeTile()
+                        {
+                            ITile tile = new Tiles.Tile(x, y, z, extension: tileExtension,
+                                                        tmsCompatible: tmsCompatible,
+                                                        size: tileSize);
+
+                            try
+                            {
+                                // ReSharper disable once AccessToDisposedClosure
+                                tile.D = WriteTileToEnumerable(tileCache, tile, bands);
+                                //if (!tile.Validate(false)) return null;
+                            }
+                            finally
+                            {
+                                //Report progress.
+                                counter++;
+                                double percentage = counter / tilesCount * 100.0;
+                                progress.Report(percentage);
+
+                                //Estimated time left calculation.
+                                ProgressHelper.PrintEstimatedTimeLeft(percentage, stopwatch);
+
+                                // ReSharper disable once AccessToDisposedClosure
+                                semaphoreSlim.Release();
+                            }
+
+                            return tile;
+                        }
+
+                        tasks.Add(Task.Run(MakeTile));
+                    }
+
+                    while (tasks.Count != 0)
+                    {
+                        Task<ITile> task = await Task.WhenAny(tasks);
+                        tasks.Remove(task);
+                        ITile tile = await task;
+
+                        if (!Tiles.Tile.Validate(tile, false)) continue;
+
+                        yield return tile;
+                    }
+
+                    tasks.Clear();
                 }
             }
         }
