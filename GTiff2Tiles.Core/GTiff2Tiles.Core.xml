@@ -429,16 +429,6 @@
             <param name="isCentre"></param>
             <returns></returns>
         </member>
-        <member name="M:GTiff2Tiles.Core.Images.Raster.GeoQuery(GTiff2Tiles.Core.Geodesic.Coordinate,GTiff2Tiles.Core.Geodesic.Coordinate,GTiff2Tiles.Core.Images.Size)">
-            <summary>
-            Calculate size and positions to read/write.
-            </summary>
-            <param name="upperLeftX">Tile's upper left x coordinate.</param>
-            <param name="upperLeftY">Tile's upper left y coordinate.</param>
-            <param name="lowerRightX">Tile's lower right x coordinate.</param>
-            <param name="lowerRightY">Tile's lower right y coordinate.</param>
-            <returns><see cref="T:System.ValueTuple`8"/> of x/y positions and sizes to read and write tiles.</returns>
-        </member>
         <member name="M:GTiff2Tiles.Core.Images.Raster.CreateTileImage(NetVips.Image,GTiff2Tiles.Core.Tiles.ITile,System.Int32)">
             <summary>
             Writes one tile of current zoom.

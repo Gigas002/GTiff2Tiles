@@ -234,79 +234,6 @@ namespace GTiff2Tiles.Core.Images
 
         #endregion
 
-        #region GeoQuery
-
-        /// <summary>
-        /// Calculate size and positions to read/write.
-        /// </summary>
-        /// <param name="upperLeftX">Tile's upper left x coordinate.</param>
-        /// <param name="upperLeftY">Tile's upper left y coordinate.</param>
-        /// <param name="lowerRightX">Tile's lower right x coordinate.</param>
-        /// <param name="lowerRightY">Tile's lower right y coordinate.</param>
-        /// <returns><see cref="ValueTuple{T1, T2, T3, T4, T5, T6, T7, T8}"/> of x/y positions and sizes to read and write tiles.</returns>
-        private (Area readArea, Area writeArea) GeoQuery(Coordinate minCoordinate, Coordinate maxCoordinate, Size tileSize)
-        {
-            //TODO probably move to Geodesic.Coordinate class?
-
-            //Read from input geotiff in pixels.
-            double readPosMinX = Size.Width * (minCoordinate.Longitude - MinCoordinate.Longitude) / (MaxCoordinate.Longitude - MinCoordinate.Longitude);
-            double readPosMaxX = Size.Width * (maxCoordinate.Longitude - MinCoordinate.Longitude) / (MaxCoordinate.Longitude - MinCoordinate.Longitude);
-            double readPosMinY = Size.Height - Size.Height * (maxCoordinate.Latitude - MinCoordinate.Latitude) / (MaxCoordinate.Latitude - MinCoordinate.Latitude);
-            double readPosMaxY = Size.Height - Size.Height * (minCoordinate.Latitude - MinCoordinate.Latitude) / (MaxCoordinate.Latitude - MinCoordinate.Latitude);
-
-            //If outside of tiff.
-            readPosMinX = readPosMinX < 0.0 ? 0.0 : readPosMinX > Size.Width ? Size.Width : readPosMinX;
-            readPosMaxX = readPosMaxX < 0.0 ? 0.0 : readPosMaxX > Size.Width ? Size.Width : readPosMaxX;
-            readPosMinY = readPosMinY < 0.0 ? 0.0 : readPosMinY > Size.Height ? Size.Height : readPosMinY;
-            readPosMaxY = readPosMaxY < 0.0 ? 0.0 : readPosMaxY > Size.Height ? Size.Height : readPosMaxY;
-
-            //Output tile's borders in pixels.
-            double tilePixMinX = readPosMinX.Equals(0.0) ? MinCoordinate.Longitude :
-                                 readPosMinX.Equals(Size.Width) ? MaxCoordinate.Longitude : minCoordinate.Longitude;
-            double tilePixMaxX = readPosMaxX.Equals(0.0) ? MinCoordinate.Longitude :
-                                 readPosMaxX.Equals(Size.Width) ? MaxCoordinate.Longitude : maxCoordinate.Longitude;
-            double tilePixMinY = readPosMaxY.Equals(0.0) ? MaxCoordinate.Latitude :
-                                 readPosMaxY.Equals(Size.Height) ? MinCoordinate.Latitude : minCoordinate.Latitude;
-            double tilePixMaxY = readPosMinY.Equals(0.0) ? MaxCoordinate.Latitude :
-                                 readPosMinY.Equals(Size.Height) ? MinCoordinate.Latitude : maxCoordinate.Latitude;
-
-
-            //Positions of dataset to write in tile.
-            double writePosMinX = tileSize.Width - tileSize.Width * (maxCoordinate.Longitude - tilePixMinX) / (maxCoordinate.Longitude - minCoordinate.Longitude);
-            double writePosMaxX = tileSize.Width - tileSize.Width * (maxCoordinate.Longitude - tilePixMaxX) / (maxCoordinate.Longitude - minCoordinate.Longitude);
-            double writePosMinY = tileSize.Height * (maxCoordinate.Latitude - tilePixMaxY) / (maxCoordinate.Latitude - minCoordinate.Latitude);
-            double writePosMaxY = tileSize.Height * (maxCoordinate.Latitude - tilePixMinY) / (maxCoordinate.Latitude - minCoordinate.Latitude);
-
-            //Sizes to read and write.
-            double readXSize = readPosMaxX - readPosMinX;
-            double writeXSize = writePosMaxX - writePosMinX;
-            double readYSize = Math.Abs(readPosMaxY - readPosMinY);
-            double writeYSize = Math.Abs(writePosMaxY - writePosMinY);
-
-            //Shifts.
-            double readXShift = readPosMinX - (int)readPosMinX;
-            readXSize += readXShift;
-            double readYShift = readPosMinY - (int)readPosMinY;
-            readYSize += readYShift;
-            double writeXShift = writePosMinX - (int)writePosMinX;
-            writeXSize += writeXShift;
-            double writeYShift = writePosMinY - (int)writePosMinY;
-            writeYSize += writeYShift;
-
-            //If output image sides are lesser then 1 - make image 1x1 pixels to prevent division by 0.
-            writeXSize = writeXSize > 1.0 ? writeXSize : 1.0;
-            writeYSize = writeYSize > 1.0 ? writeYSize : 1.0;
-
-            Area readArea = new Area((int)readPosMinX, (int)readPosMinY, (int)readXSize, (int)readYSize);
-            Area writeArea = new Area((int)writePosMinX, (int)writePosMinY, (int)writeXSize, (int)writeYSize);
-
-            return (readArea, writeArea);
-        }
-
-        private (Area readArea, Area writeArea) GeoQuery(ITile tile) => GeoQuery(tile.MinCoordinate, tile.MaxCoordinate, tile.Size);
-
-        #endregion
-
         #region Create tile image
 
         /// <summary>
@@ -316,7 +243,7 @@ namespace GTiff2Tiles.Core.Images
         private NetVips.Image CreateTileImage(NetVips.Image tileCache, ITile tile, int bands)
         {
             //Get postitions and sizes for current tile.
-            (Area readArea, Area writeArea) = GeoQuery(tile);
+            (Area readArea, Area writeArea) = Area.GetAreas(this, tile);
 
             // Scaling calculations
             double xScale = (double)writeArea.Size.Width / readArea.Size.Width;
