@@ -124,7 +124,7 @@ namespace GTiff2Tiles.Core.Helpers
         /// <returns><see langword="true"/> if no errors in input file, <see langword="false"/> otherwise.</returns>
         public static async ValueTask<bool> CheckInputFileAsync(FileInfo inputFileInfo)
         {
-            CheckFile(inputFileInfo, true, Extensions.Tif);
+            CheckFile(inputFileInfo, true, FileExtensions.Tif);
 
             //Get proj4 and gdalInfo strings.
             string proj4String = await Gdal.Gdal.GetProj4StringAsync(inputFileInfo).ConfigureAwait(false);

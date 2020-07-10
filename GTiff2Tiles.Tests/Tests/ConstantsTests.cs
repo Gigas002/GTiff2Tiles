@@ -46,8 +46,8 @@ namespace GTiff2Tiles.Tests.Tests
         {
             try
             {
-                string png = Core.Constants.Extensions.Png;
-                string tif = Core.Constants.Extensions.Tif;
+                string png = Core.Constants.FileExtensions.Png;
+                string tif = Core.Constants.FileExtensions.Tif;
             }
             catch (Exception exception) { Assert.Fail(exception.Message); }
 

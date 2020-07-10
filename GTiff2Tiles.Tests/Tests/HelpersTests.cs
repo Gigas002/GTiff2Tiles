@@ -23,7 +23,7 @@ namespace GTiff2Tiles.Tests.Tests
                 DirectoryInfo examplesDirectoryInfo = Helpers.TestHelper.GetExamplesDirectoryInfo();
                 string inputFilePath = Path.Combine(examplesDirectoryInfo.FullName,
                                                     FileSystemEntries.InputDirectoryName,
-                                                    $"{FileSystemEntries.Input4326}{Extensions.Tif}");
+                                                    $"{FileSystemEntries.Input4326}{FileExtensions.Tif}");
                 FileInfo inputFileInfo = new FileInfo(inputFilePath);
                 CheckHelper.CheckDirectory(examplesDirectoryInfo, false);
                 await CheckHelper.CheckInputFileAsync(inputFileInfo);

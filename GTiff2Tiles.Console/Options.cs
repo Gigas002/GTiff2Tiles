@@ -50,7 +50,7 @@ namespace GTiff2Tiles.Console
         /// Extension of ready tiles. Png by default.
         /// </summary>
         [Option("extension", Required = false, HelpText = "Extension of ready tiles. Default is .png. Supported extensions: .webp, .jpg, .png.")]
-        public string TileExtension { get; set; } = Extensions.Png;
+        public string TileExtension { get; set; } = FileExtensions.Png;
 
         /// <summary>
         /// Full path to temp directory. Empty string by default.

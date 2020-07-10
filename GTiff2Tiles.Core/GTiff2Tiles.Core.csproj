@@ -6,8 +6,8 @@
     <VersionPrefix>2.0.0</VersionPrefix>
     <VersionSuffix>ci344</VersionSuffix>
     <Version>$(VersionPrefix)-$(VersionSuffix)</Version>
-    <AssemblyVersion>2.0.0.404</AssemblyVersion>
-    <FileVersion>2.0.0.404</FileVersion>
+    <AssemblyVersion>2.0.0.407</AssemblyVersion>
+    <FileVersion>2.0.0.407</FileVersion>
     <Platforms>x64</Platforms>
     <Configurations>Debug;Release;Appveyor</Configurations>
     <PackageIcon>Icon.png</PackageIcon>

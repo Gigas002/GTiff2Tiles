@@ -14,27 +14,27 @@
             yyyyMMddHHmmssfff
             </summary>
         </member>
-        <member name="T:GTiff2Tiles.Core.Constants.Extensions">
+        <member name="T:GTiff2Tiles.Core.Constants.FileExtensions">
             <summary>
             Used extensions.
             </summary>
         </member>
-        <member name="F:GTiff2Tiles.Core.Constants.Extensions.Png">
+        <member name="F:GTiff2Tiles.Core.Constants.FileExtensions.Png">
             <summary>
             .png.
             </summary>
         </member>
-        <member name="F:GTiff2Tiles.Core.Constants.Extensions.Tif">
+        <member name="F:GTiff2Tiles.Core.Constants.FileExtensions.Tif">
             <summary>
             .tif.
             </summary>
         </member>
-        <member name="F:GTiff2Tiles.Core.Constants.Extensions.Jpg">
+        <member name="F:GTiff2Tiles.Core.Constants.FileExtensions.Jpg">
             <summary>
             .webp
             </summary>
         </member>
-        <member name="F:GTiff2Tiles.Core.Constants.Extensions.Webp">
+        <member name="F:GTiff2Tiles.Core.Constants.FileExtensions.Webp">
             <summary>
             .webp
             </summary>
@@ -660,6 +660,9 @@
             <param name="zoom">Interested zoom.</param>
             <returns><see cref="T:System.ValueTuple`4"/> тайлов указанного уровня.</returns>
         </member>
+        <member name="M:GTiff2Tiles.Core.Tiles.Tile.GetCoordinates">
+            <inheritdoc />
+        </member>
         <member name="M:GTiff2Tiles.Core.Tiles.Tile.GetCoordinates(GTiff2Tiles.Core.Tiles.Number,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size)">
             <summary>
             Calculates tile's coordinate borders for passed tiles numbers and zoom.
@@ -671,6 +674,9 @@
             <returns><see cref="T:System.ValueTuple`4"/> of WGS84 coordinates.</returns>
         </member>
         <member name="M:GTiff2Tiles.Core.Tiles.Tile.SetBounds">
+            <inheritdoc />
+        </member>
+        <member name="M:GTiff2Tiles.Core.Tiles.Tile.GetCount(System.Int32,System.Int32)">
             <inheritdoc />
         </member>
         <member name="T:GTiff2Tiles.Core.Tile.TileTools">

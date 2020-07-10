@@ -300,7 +300,7 @@ namespace GTiff2Tiles.Core.Images
         public async ValueTask WriteTilesToDirectoryAsync(DirectoryInfo outputDirectoryInfo, int minZ, int maxZ,
                                                           Size tileSize,
                                                           bool tmsCompatible = false,
-                                                          string tileExtension = Constants.Extensions.Png,
+                                                          string tileExtension = Constants.FileExtensions.Png,
                                                           int bands = Constants.Image.Raster.Bands,
                                                           IProgress<double> progress = null, int threadsCount = 0,
                                                           bool isPrintEstimatedTime = true, int tileCacheCount = 1000)

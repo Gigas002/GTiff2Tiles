@@ -3,7 +3,7 @@
     /// <summary>
     /// Used extensions.
     /// </summary>
-    public static class Extensions
+    public static class FileExtensions
     {
         /// <summary>
         /// .png.

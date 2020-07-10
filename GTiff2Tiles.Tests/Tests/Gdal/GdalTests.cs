@@ -28,7 +28,7 @@ namespace GTiff2Tiles.Tests.Tests.Gdal
 
             string inputFilePath = Path.Combine(examplesDirectoryInfo.FullName,
                                                 FileSystemEntries.InputDirectoryName,
-                                                $"{FileSystemEntries.Input3785}{Extensions.Tif}");
+                                                $"{FileSystemEntries.Input3785}{FileExtensions.Tif}");
             FileInfo inputFileInfo = new FileInfo(inputFilePath);
 
             try
@@ -37,7 +37,7 @@ namespace GTiff2Tiles.Tests.Tests.Gdal
                 if (!await CheckHelper.CheckInputFileAsync(inputFileInfo))
                 {
                     string tempFilePath = Path.Combine(tempDirectoryInfo.FullName,
-                                                       $"{Core.Constants.Gdal.Gdal.TempFileName}{Extensions.Tif}");
+                                                       $"{Core.Constants.Gdal.Gdal.TempFileName}{FileExtensions.Tif}");
                     FileInfo tempFileInfo = new FileInfo(tempFilePath);
 
                     await Core.Gdal.Gdal.WarpAsync(inputFileInfo, tempFileInfo, Core.Constants.Gdal.Gdal.RepairTifOptions);
@@ -66,7 +66,7 @@ namespace GTiff2Tiles.Tests.Tests.Gdal
 
             string inputFilePath = Path.Combine(examplesDirectoryInfo.FullName,
                                                 FileSystemEntries.InputDirectoryName,
-                                                $"{FileSystemEntries.Input3395}{Extensions.Tif}");
+                                                $"{FileSystemEntries.Input3395}{FileExtensions.Tif}");
             FileInfo inputFileInfo = new FileInfo(inputFilePath);
 
             try
@@ -75,7 +75,7 @@ namespace GTiff2Tiles.Tests.Tests.Gdal
                 if (!await CheckHelper.CheckInputFileAsync(inputFileInfo))
                 {
                     string tempFilePath = Path.Combine(tempDirectoryInfo.FullName,
-                                                       $"{Core.Constants.Gdal.Gdal.TempFileName}{Extensions.Tif}");
+                                                       $"{Core.Constants.Gdal.Gdal.TempFileName}{FileExtensions.Tif}");
                     FileInfo tempFileInfo = new FileInfo(tempFilePath);
 
                     await Core.Gdal.Gdal.WarpAsync(inputFileInfo, tempFileInfo, Core.Constants.Gdal.Gdal.RepairTifOptions);

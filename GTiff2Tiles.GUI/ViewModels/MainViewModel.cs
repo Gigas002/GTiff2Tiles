@@ -287,9 +287,9 @@ namespace GTiff2Tiles.GUI.ViewModels
             ThreadsCount = 5;
             ProgressBarValue = 0.0;
             IsEnabled = true;
-            TileExtensions.Add(Extensions.Png);
-            TileExtensions.Add(Extensions.Jpg);
-            TileExtensions.Add(Extensions.Webp);
+            TileExtensions.Add(FileExtensions.Png);
+            TileExtensions.Add(FileExtensions.Jpg);
+            TileExtensions.Add(FileExtensions.Webp);
 
             //Bind delegates with methods
             InputFileButtonCommand = new DelegateCommand(InputFileButtonAsync);
@@ -415,7 +415,7 @@ namespace GTiff2Tiles.GUI.ViewModels
                 if (!await CheckHelper.CheckInputFileAsync(inputFileInfo).ConfigureAwait(true))
                 {
                     string tempFilePath = Path.Combine(tempDirectoryInfo.FullName,
-                                                       $"{Gdal.TempFileName}{Extensions.Tif}");
+                                                       $"{Gdal.TempFileName}{FileExtensions.Tif}");
                     FileInfo tempFileInfo = new FileInfo(tempFilePath);
 
                     await Core.Gdal.Gdal.WarpAsync(inputFileInfo, tempFileInfo, Gdal.RepairTifOptions)
@@ -497,8 +497,8 @@ namespace GTiff2Tiles.GUI.ViewModels
             //Set tile extension. Png by default or unknown input
             RealTileExtension = TileExtension switch
             {
-                Extensions.Jpg => Core.Enums.Image.TileExtension.Jpg,
-                Extensions.Webp => Core.Enums.Image.TileExtension.Webp,
+                FileExtensions.Jpg => Core.Enums.Image.TileExtension.Jpg,
+                FileExtensions.Webp => Core.Enums.Image.TileExtension.Webp,
                 _ => Core.Enums.Image.TileExtension.Png
             };
 

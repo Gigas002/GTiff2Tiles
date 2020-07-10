@@ -49,12 +49,12 @@ namespace GTiff2Tiles.Core.Tiles
 
         #region Constructors/Destructors
 
-        public Tile(int x, int y, int z, Size size, IEnumerable<byte> d = null, string extension = Constants.Extensions.Png,
+        public Tile(int x, int y, int z, Size size, IEnumerable<byte> d = null, string extension = Constants.FileExtensions.Png,
                     bool tmsCompatible = false)
         {
             Number number = new Number(x, y);
             (Number, Z, D, Extension, TmsCompatible, Size) = (number, z, d, extension, tmsCompatible, size);
-            SetBounds();
+            (MinCoordinate, MaxCoordinate) = GetCoordinates(Number, Z, TmsCompatible, Size);
         }
 
         ~Tile() => Dispose(false);
@@ -107,7 +107,9 @@ namespace GTiff2Tiles.Core.Tiles
 
         #region Methods
 
-        #region Private
+        #region Resoultion
+
+        private double Resolution() => Resolution(Z, Size.Width);
 
         /// <summary>
         /// Resolution for tiles.
@@ -116,11 +118,9 @@ namespace GTiff2Tiles.Core.Tiles
         /// <returns>Resoultion value.</returns>
         private static double Resolution(int zoom, int tileSize) => 180.0 / tileSize / Math.Pow(2.0, zoom);
 
-        private double Resolution() => Resolution(Z, Size.Width);
-
         #endregion
 
-        #region Public
+        #region Flip
 
         public static int FlipY(int y, int z) => Convert.ToInt32(Math.Pow(2.0, z) - y - 1);
 
@@ -128,6 +128,10 @@ namespace GTiff2Tiles.Core.Tiles
         public void FlipNumber() => Number.Y = FlipY(Number.Y, Z);
 
         public static Number FlipNumber(Number number, int z) => new Number(number.X, FlipY(number.Y, z));
+
+        #endregion
+
+        #region Validate
 
         /// <inheritdoc />
         public bool Validate(bool isCheckFileInfo)
@@ -147,6 +151,10 @@ namespace GTiff2Tiles.Core.Tiles
 
             return tile.FileInfo != null;
         }
+
+        #endregion
+
+        #region CalculatePosition
 
         /// <inheritdoc />
         public int CalculatePosition() => CalculatePosition(Number, TmsCompatible);
@@ -179,6 +187,10 @@ namespace GTiff2Tiles.Core.Tiles
 
             return tilePosition;
         }
+
+        #endregion
+
+        #region GetNumbersFromCoords
 
         /// <inheritdoc />
         public (Number minNumber, Number maxNumber) GetNumbersFromCoords(bool tmsCompatible) =>
@@ -220,6 +232,10 @@ namespace GTiff2Tiles.Core.Tiles
             return (minNumber, maxNumber);
         }
 
+        #endregion
+
+        #region GetLowerNumbers
+
         /// <inheritdoc />
         public (Number minNumber, Number maxNumber) GetLowerNumbers(int zoom) =>
             GetLowerNumbers(Number, zoom);
@@ -242,6 +258,14 @@ namespace GTiff2Tiles.Core.Tiles
             Number maxNumber = new Number(tilesXs.Max(), tilesYs.Max());
             return (minNumber, maxNumber);
         }
+
+        #endregion
+
+        #region GetCoordinates
+
+        /// <inheritdoc />
+        public (Coordinate minCoordinate, Coordinate maxCoordinate) GetCoordinates() =>
+            (MinCoordinate, MaxCoordinate);
 
         /// <summary>
         /// Calculates tile's coordinate borders for passed tiles numbers and zoom.
@@ -271,8 +295,11 @@ namespace GTiff2Tiles.Core.Tiles
         /// <inheritdoc />
         public void SetBounds() => (MinCoordinate, MaxCoordinate) = GetCoordinates(Number, Z, TmsCompatible, Size);
 
+        #endregion
+
         #region GetCount
 
+        /// <inheritdoc />
         public int GetCount(int minZ, int maxZ) => GetCount(MinCoordinate, MaxCoordinate, minZ, maxZ, TmsCompatible, Size);
 
         public static int GetCount(Coordinate minCoordinate, Coordinate maxCoordinate,
@@ -285,16 +312,14 @@ namespace GTiff2Tiles.Core.Tiles
                 // Get tiles min/max numbers
                 (Number minNumber, Number maxNumber) = GetNumbersFromCoords(minCoordinate, maxCoordinate, zoom, tmsCompatible, tileSize);
 
-                int ysCount = Enumerable.Range(minNumber.Y, maxNumber.Y - minNumber.Y + 1).Count();
                 int xsCount = Enumerable.Range(minNumber.X, maxNumber.X - minNumber.X + 1).Count();
+                int ysCount = Enumerable.Range(minNumber.Y, maxNumber.Y - minNumber.Y + 1).Count();
 
-                tilesCount += ysCount * xsCount;
+                tilesCount += xsCount * ysCount;
             }
 
             return tilesCount;
         }
-
-        #endregion
 
         #endregion
 

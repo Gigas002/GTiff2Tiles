@@ -107,7 +107,7 @@ namespace GTiff2Tiles.Console
                 if (!await CheckHelper.CheckInputFileAsync(InputFileInfo).ConfigureAwait(false))
                 {
                     string tempFilePath = Path.Combine(TempDirectoryInfo.FullName,
-                                                       $"{Gdal.TempFileName}{Extensions.Tif}");
+                                                       $"{Gdal.TempFileName}{FileExtensions.Tif}");
                     FileInfo tempFileInfo = new FileInfo(tempFilePath);
 
                     await Core.Gdal.Gdal.WarpAsync(InputFileInfo, tempFileInfo, Gdal.RepairTifOptions)
@@ -200,8 +200,8 @@ namespace GTiff2Tiles.Console
             //Set tile extension. Png by default or unknown input
             TileExtension = options.TileExtension switch
             {
-                Extensions.Jpg => TileExtension.Jpg,
-                Extensions.Webp => TileExtension.Webp,
+                FileExtensions.Jpg => TileExtension.Jpg,
+                FileExtensions.Webp => TileExtension.Webp,
                 _ => TileExtension.Png
             };
 

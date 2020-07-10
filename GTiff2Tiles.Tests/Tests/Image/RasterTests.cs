@@ -31,7 +31,7 @@ namespace GTiff2Tiles.Tests.Tests.Image
 
             string inputFilePath = Path.Combine(examplesDirectoryInfo.FullName,
                                                 FileSystemEntries.InputDirectoryName,
-                                                $"{FileSystemEntries.Input4326}{Extensions.Tif}");
+                                                $"{FileSystemEntries.Input4326}{FileExtensions.Tif}");
             string outputDirectoryName = Path.Combine(examplesDirectoryInfo.FullName,
                                                       FileSystemEntries.TmsCompatible,
                                                       FileSystemEntries
@@ -50,7 +50,7 @@ namespace GTiff2Tiles.Tests.Tests.Image
                 if (!await CheckHelper.CheckInputFileAsync(inputFileInfo))
                 {
                     string tempFilePath = Path.Combine(tempDirectoryInfo.FullName,
-                                                       $"{Core.Constants.Gdal.Gdal.TempFileName}{Extensions.Tif}");
+                                                       $"{Core.Constants.Gdal.Gdal.TempFileName}{FileExtensions.Tif}");
                     FileInfo tempFileInfo = new FileInfo(tempFilePath);
 
                     await Core.Gdal.Gdal.WarpAsync(inputFileInfo, tempFileInfo, Core.Constants.Gdal.Gdal.RepairTifOptions);
@@ -84,7 +84,7 @@ namespace GTiff2Tiles.Tests.Tests.Image
 
             string inputFilePath = Path.Combine(examplesDirectoryInfo.FullName,
                                                 FileSystemEntries.InputDirectoryName,
-                                                $"{FileSystemEntries.Input4326}{Extensions.Tif}");
+                                                $"{FileSystemEntries.Input4326}{FileExtensions.Tif}");
             string outputDirectoryName = Path.Combine(examplesDirectoryInfo.FullName,
                                                       FileSystemEntries.NonTmsCompatible,
                                                       FileSystemEntries
@@ -103,7 +103,7 @@ namespace GTiff2Tiles.Tests.Tests.Image
                 if (!await CheckHelper.CheckInputFileAsync(inputFileInfo))
                 {
                     string tempFilePath = Path.Combine(tempDirectoryInfo.FullName,
-                                                       $"{Core.Constants.Gdal.Gdal.TempFileName}{Extensions.Tif}");
+                                                       $"{Core.Constants.Gdal.Gdal.TempFileName}{FileExtensions.Tif}");
                     FileInfo tempFileInfo = new FileInfo(tempFilePath);
 
                     await Core.Gdal.Gdal.WarpAsync(inputFileInfo, tempFileInfo, Core.Constants.Gdal.Gdal.RepairTifOptions);

@@ -42,9 +42,9 @@ namespace GTiff2Tiles.Core.Images
 
             string tileExtensionString = tileExtension switch
             {
-                TileExtension.Png => Extensions.Png,
-                TileExtension.Jpg => Extensions.Jpg,
-                TileExtension.Webp => Extensions.Webp,
+                TileExtension.Png => FileExtensions.Png,
+                TileExtension.Jpg => FileExtensions.Jpg,
+                TileExtension.Webp => FileExtensions.Webp,
                 _ => throw new ArgumentOutOfRangeException(nameof(tileExtension), tileExtension, null)
             };
 
