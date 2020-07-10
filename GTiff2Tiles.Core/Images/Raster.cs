@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
 using GTiff2Tiles.Core.Constants.Image;
+using GTiff2Tiles.Core.Extensions;
 using GTiff2Tiles.Core.Geodesic;
 using GTiff2Tiles.Core.Helpers;
 using GTiff2Tiles.Core.Tiles;
@@ -222,16 +223,6 @@ namespace GTiff2Tiles.Core.Images
             return tileImage;
         }
 
-        private void AddBands(ref NetVips.Image image, int bands)
-        {
-            for (; image.Bands < bands;) image = image.Bandjoin(255);
-        }
-
-        private void AddBands(NetVips.Image[] images, int bands)
-        {
-            for (int index = 0; index < images.Length; index++) AddBands(ref images[index], bands);
-        }
-
         #endregion
 
         #region Create tile image
@@ -253,9 +244,8 @@ namespace GTiff2Tiles.Core.Images
             NetVips.Image tempTileImage = Resize(tileCache.Crop(readArea.X, readArea.Y, readArea.Size.Width,
                                                                 readArea.Size.Height), xScale, yScale);
 
-            //TODO: extension method for NetVips.Image?
             // Add alpha channel if needed
-            AddBands(ref tempTileImage, bands);
+            tempTileImage = tempTileImage.AddBands(bands);
 
             // Make transparent image and insert tile
             return NetVips.Image.Black(tile.Size.Width, tile.Size.Height).NewFromImage(0, 0, 0, 0)
