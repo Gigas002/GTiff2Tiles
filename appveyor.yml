@@ -53,3 +53,5 @@ deploy:
   artifact: /.*(\.)nupkg/
   on:
     branch: master
+after_deploy:
+- pwsh: ./publish-github-docker.ps1 $env:GH_TOKEN
