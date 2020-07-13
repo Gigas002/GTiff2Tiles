@@ -357,8 +357,9 @@ namespace GTiff2Tiles.Core.Images
                         DirectoryInfo tileDirectoryInfo = new DirectoryInfo(Path.Combine(outputDirectoryInfo.FullName, $"{z}", $"{x}"));
                         CheckHelper.CheckDirectory(tileDirectoryInfo);
 
-                        ITile tile = new Tile(x, y, z, extension: tileExtension, tmsCompatible: tmsCompatible,
-                                                    size: tileSize)
+                        Number tileNumber = new Number(x, y, z);
+                        ITile tile = new RasterTile(tileNumber, extension: tileExtension, tmsCompatible: tmsCompatible,
+                                                          size: tileSize, bandsCount: bands)
                         {
                             //Warning: OpenLayers requires replacement of tileY to tileY+1
                             FileInfo = new FileInfo(Path.Combine(tileDirectoryInfo.FullName, $"{y}{tileExtension}"))
@@ -423,11 +424,12 @@ namespace GTiff2Tiles.Core.Images
 
                     void MakeTile(int x)
                     {
-                        ITile tile = new Tile(x, y, z, extension: tileExtension, tmsCompatible: tmsCompatible,
-                                                    size: tileSize);
+                        Number tileNumber = new Number(x, y, z);
+                        ITile tile = new RasterTile(tileNumber, extension: tileExtension, tmsCompatible: tmsCompatible,
+                                                          size: tileSize, bandsCount: bands);
 
                         // ReSharper disable once AccessToDisposedClosure
-                        tile.D = WriteTileToEnumerable(tileCache, tile, bands);
+                        tile.Bytes = WriteTileToEnumerable(tileCache, tile, bands);
 
                         if (!WriteTileToChannel(tile, channelWriter)) return;
 
@@ -492,14 +494,15 @@ namespace GTiff2Tiles.Core.Images
 
                         ITile MakeTile()
                         {
-                            ITile tile = new Tile(x, y, z, extension: tileExtension,
-                                                        tmsCompatible: tmsCompatible,
-                                                        size: tileSize);
+                            Number tileNumber = new Number(x, y, z);
+                            ITile tile = new RasterTile(tileNumber, extension: tileExtension,
+                                                              tmsCompatible: tmsCompatible,
+                                                              size: tileSize, bandsCount: bands);
 
                             try
                             {
                                 // ReSharper disable once AccessToDisposedClosure
-                                tile.D = WriteTileToEnumerable(tileCache, tile, bands);
+                                tile.Bytes = WriteTileToEnumerable(tileCache, tile, bands);
                                 //if (!tile.Validate(false)) return null;
                             }
                             finally
