@@ -679,39 +679,5 @@
         <member name="M:GTiff2Tiles.Core.Tiles.Tile.GetCount(System.Int32,System.Int32)">
             <inheritdoc />
         </member>
-        <member name="T:GTiff2Tiles.Core.Tile.TileTools">
-            <summary>
-            Class with static methods for calculating some tile stuff.
-            </summary>
-        </member>
-        <member name="M:GTiff2Tiles.Core.Tile.TileTools.Resolution(System.Int32)">
-            <summary>
-            Resolution for tiles.
-            </summary>
-            <param name="zoom"></param>
-            <returns>Resoultion value.</returns>
-        </member>
-        <member name="M:GTiff2Tiles.Core.Tile.TileTools.GetTileNumbersFromCoords(System.Double,System.Double,System.Double,System.Double,System.Int32,System.Boolean)">
-            <summary>
-            Calculates the tile numbers for zoom which covers given lon/lat coordinates.
-            </summary>
-            <param name="minX">Minimum longitude.</param>
-            <param name="minY">Minimum latitude.</param>
-            <param name="maxX">Maximum longitude.</param>
-            <param name="maxY">Maximum latitude.</param>
-            <param name="zoom">Tile's zoom.</param>
-            <param name="tmsCompatible">Do you want tms tiles on output?</param>
-            <returns><see cref="T:System.ValueTuple`4"/> of tiles numbers.</returns>
-        </member>
-        <member name="M:GTiff2Tiles.Core.Tile.TileTools.TileBounds(System.Int32,System.Int32,System.Int32,System.Boolean)">
-            <summary>
-            Calculates tile's coordinate borders for passed tiles numbers and zoom.
-            </summary>
-            <param name="tileX">Tile's x number.</param>
-            <param name="tileY">Tile's y number.</param>
-            <param name="zoom">Tile's zoom.</param>
-            <param name="tmsCompatible">Do you want tms tiles on output?</param>
-            <returns><see cref="T:System.ValueTuple`4"/> of WGS84 coordinates.</returns>
-        </member>
     </members>
 </doc>

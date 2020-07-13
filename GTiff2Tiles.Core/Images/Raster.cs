@@ -330,7 +330,7 @@ namespace GTiff2Tiles.Core.Images
             if (threadsCount > 0) parallelOptions.MaxDegreeOfParallelism = threadsCount;
 
             Stopwatch stopwatch = isPrintEstimatedTime ? Stopwatch.StartNew() : null;
-            int tilesCount = Tiles.Tile.GetCount(MinCoordinate, MaxCoordinate, minZ, maxZ, tmsCompatible, tileSize);
+            int tilesCount = Tile.GetCount(MinCoordinate, MaxCoordinate, minZ, maxZ, tmsCompatible, tileSize);
             double counter = 0.0;
 
             if (tilesCount <= 0) return;
@@ -342,7 +342,7 @@ namespace GTiff2Tiles.Core.Images
             for (int zoom = minZ; zoom <= maxZ; zoom++)
             {
                 //Get tiles min/max numbers.
-                (Number minNumber, Number maxNumber) = Tiles.Tile.GetNumbersFromCoords(MinCoordinate, MaxCoordinate,
+                (Number minNumber, Number maxNumber) = Tile.GetNumbersFromCoords(MinCoordinate, MaxCoordinate,
                                                                                        zoom, tmsCompatible, tileSize);
 
                 //For each tile on given zoom calculate positions/sizes and save as file.
@@ -357,7 +357,7 @@ namespace GTiff2Tiles.Core.Images
                         DirectoryInfo tileDirectoryInfo = new DirectoryInfo(Path.Combine(outputDirectoryInfo.FullName, $"{z}", $"{x}"));
                         CheckHelper.CheckDirectory(tileDirectoryInfo);
 
-                        ITile tile = new Tiles.Tile(x, y, z, extension: tileExtension, tmsCompatible: tmsCompatible,
+                        ITile tile = new Tile(x, y, z, extension: tileExtension, tmsCompatible: tmsCompatible,
                                                     size: tileSize)
                         {
                             //Warning: OpenLayers requires replacement of tileY to tileY+1
@@ -395,7 +395,7 @@ namespace GTiff2Tiles.Core.Images
             progress ??= new Progress<double>();
 
             Stopwatch stopwatch = isPrintEstimatedTime ? Stopwatch.StartNew() : null;
-            int tilesCount = Tiles.Tile.GetCount(MinCoordinate, MaxCoordinate, minZ, maxZ, tmsCompatible, tileSize);
+            int tilesCount = Tile.GetCount(MinCoordinate, MaxCoordinate, minZ, maxZ, tmsCompatible, tileSize);
             double counter = 0.0;
 
             if (tilesCount <= 0) return;
@@ -412,7 +412,7 @@ namespace GTiff2Tiles.Core.Images
             for (int zoom = minZ; zoom <= maxZ; zoom++)
             {
                 //Get tiles min/max numbers.
-                (Number minNumber, Number maxNumber) = Tiles.Tile.GetNumbersFromCoords(MinCoordinate, MaxCoordinate,
+                (Number minNumber, Number maxNumber) = Tile.GetNumbersFromCoords(MinCoordinate, MaxCoordinate,
                                                                                        zoom, tmsCompatible, tileSize);
 
                 //For each tile on given zoom calculate positions/sizes and save as file.
@@ -423,7 +423,7 @@ namespace GTiff2Tiles.Core.Images
 
                     void MakeTile(int x)
                     {
-                        ITile tile = new Tiles.Tile(x, y, z, extension: tileExtension, tmsCompatible: tmsCompatible,
+                        ITile tile = new Tile(x, y, z, extension: tileExtension, tmsCompatible: tmsCompatible,
                                                     size: tileSize);
 
                         // ReSharper disable once AccessToDisposedClosure
@@ -458,7 +458,7 @@ namespace GTiff2Tiles.Core.Images
             progress ??= new Progress<double>();
 
             Stopwatch stopwatch = isPrintEstimatedTime ? Stopwatch.StartNew() : null;
-            int tilesCount = Tiles.Tile.GetCount(MinCoordinate, MaxCoordinate, minZ, maxZ, tmsCompatible, tileSize);
+            int tilesCount = Tile.GetCount(MinCoordinate, MaxCoordinate, minZ, maxZ, tmsCompatible, tileSize);
             double counter = 0.0;
 
             //if (tilesCount <= 0) yield return null;
@@ -475,7 +475,7 @@ namespace GTiff2Tiles.Core.Images
             for (int zoom = minZ; zoom <= maxZ; zoom++)
             {
                 //Get tiles min/max numbers.
-                (Number minNumber, Number maxNumber) = Tiles.Tile.GetNumbersFromCoords(MinCoordinate, MaxCoordinate,
+                (Number minNumber, Number maxNumber) = Tile.GetNumbersFromCoords(MinCoordinate, MaxCoordinate,
                                                                                        zoom, tmsCompatible, tileSize);
 
                 //For each tile on given zoom calculate positions/sizes and save as file.
@@ -492,7 +492,7 @@ namespace GTiff2Tiles.Core.Images
 
                         ITile MakeTile()
                         {
-                            ITile tile = new Tiles.Tile(x, y, z, extension: tileExtension,
+                            ITile tile = new Tile(x, y, z, extension: tileExtension,
                                                         tmsCompatible: tmsCompatible,
                                                         size: tileSize);
 
@@ -528,7 +528,7 @@ namespace GTiff2Tiles.Core.Images
                         tasks.Remove(task);
                         ITile tile = await task;
 
-                        if (!Tiles.Tile.Validate(tile, false)) continue;
+                        if (!Tile.Validate(tile, false)) continue;
 
                         yield return tile;
                     }
