@@ -12,7 +12,7 @@ namespace GTiff2Tiles.Core.Tiles
     /// <summary>
     /// Interface for all tiles
     /// </summary>
-    public interface ITile : IDisposable, IAsyncDisposable, IEquatable<ITile>
+    public interface ITile : IDisposable, IAsyncDisposable//, IEquatable<ITile>
     {
         #region Properties
 

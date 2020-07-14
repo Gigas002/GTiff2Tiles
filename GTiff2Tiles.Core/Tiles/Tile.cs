@@ -365,57 +365,58 @@ namespace GTiff2Tiles.Core.Tiles
 
         #endregion
 
-        #region Equals
+        // TODO: IEquatable
+        //#region Equals
 
-        /// <inheritdoc />
-        public override bool Equals(object tile) => Equals(tile as ITile);
+        ///// <inheritdoc />
+        //public override bool Equals(object tile) => Equals(tile as ITile);
 
-        /// <inheritdoc />
-        public bool Equals(ITile other)
-        {
-            if (other is null) return false;
-            if (ReferenceEquals(this, other)) return true;
+        ///// <inheritdoc />
+        //public bool Equals(ITile other)
+        //{
+        //    if (other is null) return false;
+        //    if (ReferenceEquals(this, other)) return true;
 
-            return other.Number.Equals(Number) && other.TmsCompatible == TmsCompatible && other.Size.Equals(Size)
-                && other.MaxCoordinate.Equals(MaxCoordinate) && other.MinCoordinate.Equals(MinCoordinate);
-        }
+        //    return other.Number.Equals(Number) && other.TmsCompatible == TmsCompatible && other.Size.Equals(Size)
+        //        && other.MaxCoordinate.Equals(MaxCoordinate) && other.MinCoordinate.Equals(MinCoordinate);
+        //}
 
-        /// <inheritdoc />
-        public override int GetHashCode()
-        {
-            // ReSharper disable NonReadonlyMemberInGetHashCode
-            HashCode hashCode = new HashCode();
-            hashCode.Add(MinCoordinate);
-            hashCode.Add(MaxCoordinate);
-            hashCode.Add(Number);
-            hashCode.Add(Size);
-            hashCode.Add(TmsCompatible);
-            // ReSharper restore NonReadonlyMemberInGetHashCode
+        ///// <inheritdoc />
+        //public override int GetHashCode()
+        //{
+        //    // ReSharper disable NonReadonlyMemberInGetHashCode
+        //    HashCode hashCode = new HashCode();
+        //    hashCode.Add(MinCoordinate);
+        //    hashCode.Add(MaxCoordinate);
+        //    hashCode.Add(Number);
+        //    hashCode.Add(Size);
+        //    hashCode.Add(TmsCompatible);
+        //    // ReSharper restore NonReadonlyMemberInGetHashCode
 
-            return hashCode.ToHashCode();
-        }
+        //    return hashCode.ToHashCode();
+        //}
 
-        /// <summary>
-        /// Check two tiles for equality
-        /// </summary>
-        /// <param name="tile1">Tile 1</param>
-        /// <param name="tile2">Tile 2</param>
-        /// <returns><see langword="true"/> if tiles are equal;
-        /// <see langword="false"/>otherwise</returns>
-        public static bool? operator ==(Tile tile1, Tile tile2) =>
-            tile1?.Equals(tile2);
+        ///// <summary>
+        ///// Check two tiles for equality
+        ///// </summary>
+        ///// <param name="tile1">Tile 1</param>
+        ///// <param name="tile2">Tile 2</param>
+        ///// <returns><see langword="true"/> if tiles are equal;
+        ///// <see langword="false"/>otherwise</returns>
+        //public static bool? operator ==(Tile tile1, Tile tile2) =>
+        //    tile1?.Equals(tile2);
 
-        /// <summary>
-        /// Check two tiles for non-equality
-        /// </summary>
-        /// <param name="tile1">Tile 1</param>
-        /// <param name="tile2">Tile 2</param>
-        /// <returns><see langword="true"/> if tiles are not equal;
-        /// <see langword="false"/>otherwise</returns>
-        public static bool? operator !=(Tile tile1, Tile tile2) =>
-            !(tile1 == tile2);
+        ///// <summary>
+        ///// Check two tiles for non-equality
+        ///// </summary>
+        ///// <param name="tile1">Tile 1</param>
+        ///// <param name="tile2">Tile 2</param>
+        ///// <returns><see langword="true"/> if tiles are not equal;
+        ///// <see langword="false"/>otherwise</returns>
+        //public static bool? operator !=(Tile tile1, Tile tile2) =>
+        //    !(tile1 == tile2);
 
-        #endregion
+        //#endregion
 
         #endregion
     }

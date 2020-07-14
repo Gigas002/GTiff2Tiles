@@ -1361,32 +1361,5 @@
             <param name="size">Tile size</param>
             <returns>Tiles count</returns>
         </member>
-        <member name="M:GTiff2Tiles.Core.Tiles.Tile.Equals(System.Object)">
-            <inheritdoc />
-        </member>
-        <member name="M:GTiff2Tiles.Core.Tiles.Tile.Equals(GTiff2Tiles.Core.Tiles.ITile)">
-            <inheritdoc />
-        </member>
-        <member name="M:GTiff2Tiles.Core.Tiles.Tile.GetHashCode">
-            <inheritdoc />
-        </member>
-        <member name="M:GTiff2Tiles.Core.Tiles.Tile.op_Equality(GTiff2Tiles.Core.Tiles.Tile,GTiff2Tiles.Core.Tiles.Tile)">
-            <summary>
-            Check two tiles for equality
-            </summary>
-            <param name="tile1">Tile 1</param>
-            <param name="tile2">Tile 2</param>
-            <returns><see langword="true"/> if tiles are equal;
-            <see langword="false"/>otherwise</returns>
-        </member>
-        <member name="M:GTiff2Tiles.Core.Tiles.Tile.op_Inequality(GTiff2Tiles.Core.Tiles.Tile,GTiff2Tiles.Core.Tiles.Tile)">
-            <summary>
-            Check two tiles for non-equality
-            </summary>
-            <param name="tile1">Tile 1</param>
-            <param name="tile2">Tile 2</param>
-            <returns><see langword="true"/> if tiles are not equal;
-            <see langword="false"/>otherwise</returns>
-        </member>
     </members>
 </doc>
