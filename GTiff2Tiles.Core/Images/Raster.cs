@@ -162,75 +162,6 @@ namespace GTiff2Tiles.Core.Images
 
         #endregion
 
-        #region Image modification
-
-        /// <summary>
-        /// Resizes tile before creating it
-        /// </summary>
-        /// <param name="tileImage">Basic image to resize</param>
-        /// <param name="xScale"></param>
-        /// <param name="yScale"></param>
-        /// <param name="kernel"></param>
-        /// <param name="interpolation"></param>
-        /// <param name="isCentre"></param>
-        /// <returns></returns>
-        private static Image Resize(Image tileImage, double xScale, double yScale,
-                                            string kernel = NetVips.Enums.Kernel.Lanczos3,
-                                            string interpolation = Interpolations.Bicubic,
-                                            bool isCentre = false)
-        {
-            // We could just use vips_resize if we use centre sampling convention
-            if (isCentre) return tileImage.Resize(xScale, kernel, yScale);
-
-            // Otherwise, we need to implement vips_resize for ourselves
-
-            // Calculate integral box shrink
-            // We will get the best quality (but be the slowest) if we let reduce
-            // do all the work. Leave it the final 200 - 300% to do as a compromise
-            // for efficiency.
-            int xShirnk = Math.Max(1, (int)Math.Floor(1.0 / (xScale * 2.0)));
-            int yShrink = Math.Max(1, (int)Math.Floor(1.0 / (yScale * 2.0)));
-
-            // Fast, integral box-shrink
-            if (yShrink > 1)
-            {
-                tileImage = tileImage.Shrinkv(yShrink);
-                yScale *= yShrink;
-            }
-
-            if (xShirnk > 1)
-            {
-                tileImage = tileImage.Shrinkh(xShirnk);
-                xScale *= xShirnk;
-            }
-
-            // Any residual downsizing
-            if (yScale < 1.0) tileImage = tileImage.Reducev(1.0 / yScale, kernel, false);
-            if (xScale < 1.0) tileImage = tileImage.Reduceh(1.0 / xScale, kernel, false);
-
-            // Any upsizing
-            if (!(xScale > 1.0) && !(yScale > 1.0)) return tileImage;
-            // Floating point affine transformation
-            //double id = isCentre ? 0.5 : 0.0;
-            const double id = 0.0;
-
-            // Floating point affine transformation
-            using Interpolate interpolate = Interpolate.NewFromName(interpolation);
-            if (xScale > 1.0 && yScale > 1.0)
-                tileImage = tileImage.Affine(new[] { xScale, 0.0, 0.0, yScale }, interpolate, idx: id, idy: id,
-                                             extend: NetVips.Enums.Extend.Copy);
-            else if (xScale > 1.0)
-                tileImage = tileImage.Affine(new[] { xScale, 0.0, 0.0, 1.0 }, interpolate, idx: id, idy: id,
-                                             extend: NetVips.Enums.Extend.Copy);
-            else
-                tileImage = tileImage.Affine(new[] { 1.0, 0.0, 0.0, yScale }, interpolate, idx: id, idy: id,
-                                             extend: NetVips.Enums.Extend.Copy);
-
-            return tileImage;
-        }
-
-        #endregion
-
         #region Create tile image
 
         /// <summary>
@@ -239,6 +170,9 @@ namespace GTiff2Tiles.Core.Images
         /// </summary>
         private Image CreateTileImage(Image tileCache, ITile tile, int bands)
         {
+            //TODO: NetVips kernel
+            const string kernel = NetVips.Enums.Kernel.Lanczos3;
+
             //Get postitions and sizes for current tile.
             (Area readArea, Area writeArea) = Area.GetAreas(this, tile);
 
@@ -247,8 +181,8 @@ namespace GTiff2Tiles.Core.Images
             double yScale = (double)writeArea.Size.Height / readArea.Size.Height;
 
             // Crop and resize tile
-            Image tempTileImage = Resize(tileCache.Crop(readArea.X, readArea.Y, readArea.Size.Width,
-                                                                readArea.Size.Height), xScale, yScale);
+            Image tempTileImage = tileCache.Crop(readArea.X, readArea.Y, readArea.Size.Width, readArea.Size.Height)
+                                           .Resize(xScale, kernel, yScale);
 
             // Add alpha channel if needed
             tempTileImage = tempTileImage.AddBands(bands);

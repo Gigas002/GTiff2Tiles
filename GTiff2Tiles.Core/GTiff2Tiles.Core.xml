@@ -808,18 +808,6 @@
         <member name="M:GTiff2Tiles.Core.Images.Raster.DisposeAsync">
             <inheritdoc />
         </member>
-        <member name="M:GTiff2Tiles.Core.Images.Raster.Resize(NetVips.Image,System.Double,System.Double,System.String,System.String,System.Boolean)">
-            <summary>
-            Resizes tile before creating it
-            </summary>
-            <param name="tileImage">Basic image to resize</param>
-            <param name="xScale"></param>
-            <param name="yScale"></param>
-            <param name="kernel"></param>
-            <param name="interpolation"></param>
-            <param name="isCentre"></param>
-            <returns></returns>
-        </member>
         <member name="M:GTiff2Tiles.Core.Images.Raster.CreateTileImage(NetVips.Image,GTiff2Tiles.Core.Tiles.ITile,System.Int32)">
             <summary>
             Writes one tile of current zoom.

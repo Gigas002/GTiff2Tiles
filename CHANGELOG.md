@@ -14,6 +14,7 @@ Changes since 1.4.1:
 - Create **Docker image** for **GTiff2Tiles.Console** (*GitHub packages and Docker Hub*);
 - Move to **[DBAD](https://dbad-license.org/)** license;
 - Configured CI/CD for full repo;
+- Reduced tile shifting in output tiles (resolved by updating **NetVips.Native to 8.10.0+**);
 
 ### Core
 
@@ -29,8 +30,8 @@ Changes since 1.4.1:
 - Update **MaxRev.Gdal.Core** package to **3.1.0.100**;
 - Update **MaxRev.Gdal.WindowsRuntime.Minimal** package to **3.1.0.100**;
 - Update **MaxRev.Gdal.LinuxRuntime.Minimal** package to **3.1.0.100**;
-- Update **NetVips** package to **1.2.3**;
-- Update **NetVips.Native** package to **8.9.2**;
+- Update **NetVips** package to **1.2.4**;
+- Update **NetVips.Native** package to **8.10.0-beta2**;
 
 ### Benchmarks
 
