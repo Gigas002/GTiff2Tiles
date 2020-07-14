@@ -1,4 +1,5 @@
 ﻿using System;
+using GTiff2Tiles.Core.Coordinates;
 
 // ReSharper disable MemberCanBePrivate.Global
 
@@ -105,6 +106,58 @@ namespace GTiff2Tiles.Core.Tiles
         public static Number Flip(Number number) => new Number(number.X, FlipY(number.Y, number.Z), number.Z);
 
         #endregion
+
+        public (T minCoordinate, T maxCoordinate) ToGeoCoordinates<T>(int tileSize) where T : GeoCoordinate
+        {
+            if (typeof(T) == typeof(GeodeticCoordinate))
+            {
+                (GeodeticCoordinate minCoordinate, GeodeticCoordinate maxCoordinate) = ToGeodeticCoordinates(tileSize);
+
+                return (minCoordinate as T, maxCoordinate as T);
+            }
+
+            if (typeof(T) == typeof(MercatorCoordinate))
+            {
+                (MercatorCoordinate minCoordinate, MercatorCoordinate maxCoordinate) = ToMercatorCoordinates(tileSize);
+
+                return (minCoordinate as T, maxCoordinate as T);
+            }
+
+            return (null, null);
+        }
+
+        public (GeodeticCoordinate minCoordinate, GeodeticCoordinate maxCoordinate) ToGeodeticCoordinates(int tileSize)
+        {
+            //"Returns bounds of the given tile"
+
+            (MercatorCoordinate minMCoord, MercatorCoordinate maxMCoord) = ToMercatorCoordinates(tileSize);
+
+            GeodeticCoordinate minCoordinate = minMCoord.ToGeodeticCoordinate();
+            GeodeticCoordinate maxCoordinate = maxMCoord.ToGeodeticCoordinate();
+
+            // Or
+
+            //double resolution = GeodeticCoordinate.Resolution(null, Z, tileSize);
+
+            //GeodeticCoordinate minCoordinate = new GeodeticCoordinate(X * tileSize * resolution - 180.0,
+            //                                                          Y * tileSize * resolution - 90.0);
+            //GeodeticCoordinate maxCoordinate = new GeodeticCoordinate((X + 1) * tileSize * resolution - 180.0,
+            //                                                          (Y + 1) * tileSize * resolution - 90.0);
+
+            return (minCoordinate, maxCoordinate);
+        }
+
+        public (MercatorCoordinate minCoordinate, MercatorCoordinate maxCoordinate) ToMercatorCoordinates(int tileSize)
+        {
+            //"Returns bounds of the given tile in EPSG:3857 coordinates"
+
+            PixelCoordinate minPixelCoordinate = new PixelCoordinate(X * tileSize, Y * tileSize);
+            PixelCoordinate maxPixelCoordinate = new PixelCoordinate((X + 1) * tileSize, (Y + 1) * tileSize);
+            MercatorCoordinate minCoordinate = minPixelCoordinate.ToMercatorCoordinate(Z, tileSize);
+            MercatorCoordinate maxCoordinate = maxPixelCoordinate.ToMercatorCoordinate(Z, tileSize);
+
+            return (minCoordinate, maxCoordinate);
+        }
 
         #endregion
     }
