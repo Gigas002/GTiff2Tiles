@@ -77,18 +77,6 @@ namespace GTiff2Tiles.Core.Coordinates
         /// <returns></returns>
         public static double Resolution(GeoCoordinate coordinate, int zoom, int tileSize)
         {
-            //"Resolution (arc/pixel) for given zoom level (measured at Equator)"
-
-            //if tmscompatible is not None:
-            //    # Defaults the resolution factor to 0.703125 (2 tiles @ level 0)
-            //    # Adhers to OSGeo TMS spec
-            //    # http://wiki.osgeo.org/wiki/Tile_Map_Service_Specification#global-geodetic
-            //    self.resFact = 180.0 / self.tile_size
-            //else:
-            //    # Defaults the resolution factor to 1.40625 (1 tile @ level 0)
-            //    # Adheres OpenLayers, MapProxy, etc default resolution for WMTS
-            //    self.resFact = 360.0 / self.tile_size
-            //TmsCompatible ? 180.0 / TileSize : 360.0 / TileSize;
             double resFactor = 180.0 / tileSize;
             return resFactor / Math.Pow(2, zoom);
         }

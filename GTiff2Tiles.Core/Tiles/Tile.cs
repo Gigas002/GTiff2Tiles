@@ -7,8 +7,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using GTiff2Tiles.Core.Coordinates;
 using GTiff2Tiles.Core.Images;
-// ReSharper disable VirtualMemberNeverOverridden.Global
 
+// ReSharper disable VirtualMemberNeverOverridden.Global
 // ReSharper disable UnusedMember.Global
 // ReSharper disable MemberCanBePrivate.Global
 // ReSharper disable ClassWithVirtualMembersNeverInherited.Global

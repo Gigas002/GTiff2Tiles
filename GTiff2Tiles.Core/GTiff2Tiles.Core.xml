@@ -701,6 +701,9 @@
         <member name="P:GTiff2Tiles.Core.Images.Raster.MaxCoordinate">
             <inheritdoc />
         </member>
+        <member name="P:GTiff2Tiles.Core.Images.Raster.GeoCoordinateType">
+            <inheritdoc />
+        </member>
         <member name="P:GTiff2Tiles.Core.Images.Raster.IsDisposed">
             <inheritdoc />
         </member>
@@ -1008,6 +1011,88 @@
             <param name="y">Y number</param>
             <param name="z">Zoom</param>
         </member>
+        <member name="M:GTiff2Tiles.Core.Tiles.Number.FlipY(System.Int32,System.Int32)">
+            <summary>
+            Converts y number
+            </summary>
+            <param name="y">Number.Y</param>
+            <param name="z">Zoom</param>
+            <returns>Converted Number.Y</returns>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Tiles.Number.Flip">
+            <summary>
+            Flips number
+            </summary>
+            <returns>Converted number</returns>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Tiles.Number.Flip(GTiff2Tiles.Core.Tiles.Number)">
+            <inheritdoc cref="M:GTiff2Tiles.Core.Tiles.Number.Flip"/>
+            <param name="number">Number to flip</param>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Tiles.Number.ToGeodeticCoordinates(System.Int32)">
+            <summary>
+            Convert <see cref="T:GTiff2Tiles.Core.Tiles.Number"/> to <see cref="T:GTiff2Tiles.Core.Coordinates.GeodeticCoordinate"/>s
+            </summary>
+            <param name="tileSize">Tile's size</param>
+            <returns><seealso cref="T:System.ValueTuple"/> of <seealso cref="T:GTiff2Tiles.Core.Coordinates.GeodeticCoordinate"/></returns>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Tiles.Number.ToGeodeticCoordinates(GTiff2Tiles.Core.Tiles.Number,System.Int32)">
+            <inheritdoc cref="M:GTiff2Tiles.Core.Tiles.Number.ToGeodeticCoordinates(System.Int32)"/>
+            <param name="number"><see cref="T:GTiff2Tiles.Core.Tiles.Number"/> to convert</param>
+            <param name="tileSize"></param>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Tiles.Number.ToMercatorCoordinates(System.Int32)">
+            <summary>
+            Convert <see cref="T:GTiff2Tiles.Core.Tiles.Number"/> to <see cref="T:GTiff2Tiles.Core.Coordinates.MercatorCoordinate"/>s
+            </summary>
+            <param name="tileSize">Tile's size</param>
+            <returns><seealso cref="T:System.ValueTuple"/> of <seealso cref="T:GTiff2Tiles.Core.Coordinates.MercatorCoordinate"/></returns>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Tiles.Number.ToMercatorCoordinates(GTiff2Tiles.Core.Tiles.Number,System.Int32)">
+            <inheritdoc cref="M:GTiff2Tiles.Core.Tiles.Number.ToMercatorCoordinates(System.Int32)"/>
+            <param name="number"><see cref="T:GTiff2Tiles.Core.Tiles.Number"/> to convert</param>
+            <param name="tileSize"></param>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Tiles.Number.ToGeoCoordinates(GTiff2Tiles.Core.Enums.CoordinateType,System.Int32,System.Boolean)">
+            <summary>
+            Convert <see cref="T:GTiff2Tiles.Core.Tiles.Number"/> to <see cref="T:GTiff2Tiles.Core.Coordinates.GeoCoordinate"/>s
+            </summary>
+            <param name="coordinateType">Type of coordinates</param>
+            <param name="tileSize">Tile's size</param>
+            <param name="tmsCompatible">Is tms compatible?</param>
+            <returns><seealso cref="T:System.ValueTuple"/> of <seealso cref="T:GTiff2Tiles.Core.Coordinates.GeoCoordinate"/></returns>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Tiles.Number.ToGeoCoordinates(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Enums.CoordinateType,System.Int32,System.Boolean)">
+            <inheritdoc cref="M:GTiff2Tiles.Core.Tiles.Number.ToGeoCoordinates(GTiff2Tiles.Core.Enums.CoordinateType,System.Int32,System.Boolean)"/>
+            <param name="number"><see cref="T:GTiff2Tiles.Core.Tiles.Number"/> to convert</param>
+            <param name="coordinateType"></param>
+            <param name="tileSize"></param>
+            <param name="tmsCompatible"></param>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Tiles.Number.GetLowerNumbers(System.Int32)">
+            <summary>
+            Get lower numbers for specified number and zoom (>=10)
+            </summary>
+            <param name="zoom">Zoom. Must be >=10</param>
+            <returns><see cref="T:System.ValueTuple"/> of lower <see cref="T:GTiff2Tiles.Core.Tiles.Number"/>s</returns>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Tiles.Number.GetLowerNumbers(GTiff2Tiles.Core.Tiles.Number,System.Int32)">
+            <inheritdoc cref="M:GTiff2Tiles.Core.Tiles.Number.GetLowerNumbers(System.Int32)"/>
+            <param name="number">Base number</param>
+            <param name="zoom"></param>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Tiles.Number.GetCount(GTiff2Tiles.Core.Coordinates.GeoCoordinate,GTiff2Tiles.Core.Coordinates.GeoCoordinate,System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size)">
+            <summary>
+            Get count of tiles in specified region
+            </summary>
+            <param name="minCoordinate">Minimum <see cref="T:GTiff2Tiles.Core.Coordinates.GeoCoordinate"/></param>
+            <param name="maxCoordinate">Maximum <see cref="T:GTiff2Tiles.Core.Coordinates.GeoCoordinate"/></param>
+            <param name="minZ">Minimum zoom</param>
+            <param name="maxZ">Maximum zoom</param>
+            <param name="tmsCompatible">Is tms compatible?</param>
+            <param name="size">Tile's size</param>
+            <returns>Tiles count</returns>
+        </member>
         <member name="M:GTiff2Tiles.Core.Tiles.Number.Equals(System.Object)">
             <inheritdoc />
         </member>
@@ -1034,50 +1119,6 @@
         </member>
         <member name="M:GTiff2Tiles.Core.Tiles.Number.GetHashCode">
             <inheritdoc />
-        </member>
-        <member name="M:GTiff2Tiles.Core.Tiles.Number.FlipY(System.Int32,System.Int32)">
-            <summary>
-            Converts y number
-            </summary>
-            <param name="y">Number.Y</param>
-            <param name="z">Zoom</param>
-            <returns>Converted Number.Y</returns>
-        </member>
-        <member name="M:GTiff2Tiles.Core.Tiles.Number.Flip">
-            <summary>
-            Flips this number
-            </summary>
-            <returns>Converted number</returns>
-        </member>
-        <member name="M:GTiff2Tiles.Core.Tiles.Number.Flip(GTiff2Tiles.Core.Tiles.Number)">
-            <summary>
-            Flips number
-            </summary>
-            <param name="number">Number to flip</param>
-            <returns>Converted number</returns>
-        </member>
-        <member name="M:GTiff2Tiles.Core.Tiles.Number.GetLowerNumbers(System.Int32)">
-            <inheritdoc />
-        </member>
-        <member name="M:GTiff2Tiles.Core.Tiles.Number.GetLowerNumbers(GTiff2Tiles.Core.Tiles.Number,System.Int32)">
-            <summary>
-            Get lower numbers for specified number and zoom
-            </summary>
-            <param name="number">Base number</param>
-            <param name="zoom">Zoom</param>
-            <returns><see cref="T:System.ValueTuple"/> of lower numbers</returns>
-        </member>
-        <member name="M:GTiff2Tiles.Core.Tiles.Number.GetCount(GTiff2Tiles.Core.Coordinates.GeoCoordinate,GTiff2Tiles.Core.Coordinates.GeoCoordinate,System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size)">
-            <summary>
-            Get number of tiles in specified region
-            </summary>
-            <param name="minCoordinate">Minimum coordinate</param>
-            <param name="maxCoordinate">Maximum coordinate</param>
-            <param name="minZ">Minimum zoom</param>
-            <param name="maxZ">Maximum zoom</param>
-            <param name="tmsCompatible">Is tms compatible?</param>
-            <param name="size">Tile size</param>
-            <returns>Tiles count</returns>
         </member>
         <member name="T:GTiff2Tiles.Core.Tiles.RasterTile">
             <summary>

@@ -43,6 +43,7 @@ namespace GTiff2Tiles.Core.Images
         /// <inheritdoc />
         public GeoCoordinate MaxCoordinate { get; }
 
+        /// <inheritdoc />
         public CoordinateType GeoCoordinateType { get; }
 
         /// <inheritdoc />
@@ -81,7 +82,7 @@ namespace GTiff2Tiles.Core.Images
             (MinCoordinate, MaxCoordinate) = Gdal.Gdal.GetImageBorders(inputFileInfo, Size, GeoCoordinateType);
         }
 
-        public Raster(byte[] inputBytes)
+        public Raster(byte[] inputBytes, CoordinateType coordinateType = CoordinateType.Geodetic)
         {
             //Disable NetVips warnings for tiff.
             NetVipsHelper.DisableLog();
@@ -91,6 +92,8 @@ namespace GTiff2Tiles.Core.Images
             //Get border coordinates и raster sizes.
             Size = new Size(Data.Width, Data.Height);
 
+            GeoCoordinateType = coordinateType;
+
             FileInfo inputFileInfo = new FileInfo("tmp.tif");
             Data.WriteToFile(inputFileInfo.FullName);
             //TODO: get coordinates without fileinfo
@@ -98,7 +101,7 @@ namespace GTiff2Tiles.Core.Images
             inputFileInfo.Delete();
         }
 
-        public Raster(Stream inputStream)
+        public Raster(Stream inputStream, CoordinateType coordinateType = CoordinateType.Geodetic)
         {
             //Disable NetVips warnings for tiff.
             NetVipsHelper.DisableLog();
@@ -107,6 +110,8 @@ namespace GTiff2Tiles.Core.Images
 
             //Get border coordinates и raster sizes.
             Size = new Size(Data.Width, Data.Height);
+
+            GeoCoordinateType = coordinateType;
 
             FileInfo inputFileInfo = new FileInfo("tmp.tif");
             Data.WriteToFile(inputFileInfo.FullName);
@@ -200,24 +205,6 @@ namespace GTiff2Tiles.Core.Images
 
         #endregion
 
-        #region Create tile
-
-        //private ITile CreateTile(int x, int y, int z, bool tmsCompatible, string tileExtension, int bands,
-        //                         Size size)
-        //{
-        //    ITile tile = new Tiles.Tile(x, y, z, tmsCompatible: tmsCompatible, extension: tileExtension,
-        //                                size: size);
-        //    tile.D = WriteTileToEnumerable(tile, bands);
-
-        //    return tile;
-        //}
-
-        //private async ValueTask<ITile> CreateTileAsync(int x, int y, int z, bool tmsCompatible, string tileExtension, int bands,
-        //                                               Size size) =>
-        //    await Task.Run(() => CreateTile(x, y, z, tmsCompatible, tileExtension, bands, size)).ConfigureAwait(false);
-
-        #endregion
-
         #region WriteTile
 
         private void WriteTileToFile(Image tileCache, ITile tile, int bands)
@@ -258,8 +245,6 @@ namespace GTiff2Tiles.Core.Images
                                                           IProgress<double> progress = null, int threadsCount = 0,
                                                           bool isPrintEstimatedTime = true, int tileCacheCount = 1000)
         {
-            //TODO: profile argument (geodetic/mercator)
-
             #region Parameters checking
 
             progress ??= new Progress<double>();
