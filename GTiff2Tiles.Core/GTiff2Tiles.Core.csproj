@@ -4,10 +4,9 @@
     <OutputType>Library</OutputType>
     <TargetFramework>netcoreapp5.0</TargetFramework>
     <VersionPrefix>2.0.0</VersionPrefix>
-    <VersionSuffix>ci344</VersionSuffix>
-    <Version>$(VersionPrefix)-$(VersionSuffix)</Version>
-    <AssemblyVersion>2.0.0.437</AssemblyVersion>
-    <FileVersion>2.0.0.437</FileVersion>
+    <VersionSuffix>ci439</VersionSuffix>
+    <AssemblyVersion>2.0.0.439</AssemblyVersion>
+    <FileVersion>2.0.0.439</FileVersion>
     <Platforms>x64</Platforms>
     <Configurations>Debug;Release;Appveyor</Configurations>
     <PackageIcon>Icon.png</PackageIcon>
