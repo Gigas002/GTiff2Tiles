@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using GTiff2Tiles.Core.Constants;
-using GTiff2Tiles.Core.Geodesic;
+using GTiff2Tiles.Core.Coordinates;
+using GTiff2Tiles.Core.Enums;
 using GTiff2Tiles.Core.Images;
 
 // ReSharper disable MemberCanBePrivate.Global
@@ -35,14 +36,16 @@ namespace GTiff2Tiles.Core.Tiles
         /// <inheritdoc />
         public RasterTile(Number number, Size size = null, IEnumerable<byte> d = null,
                           string extension = FileExtensions.Png, bool tmsCompatible = false,
-                          int bandsCount = DefaultBandsCount) :
-            base(number, size, d, extension, tmsCompatible) => BandsCount = bandsCount;
+                          CoordinateType coordinateType = CoordinateType.Mercator,
+                          int bandsCount = DefaultBandsCount)
+            : base(number, size, d, extension, tmsCompatible, coordinateType) => BandsCount = bandsCount;
 
         /// <inheritdoc />
-        public RasterTile(Coordinate minCoordinate, Coordinate maxCoordinate, int z, Size size = null,
-                          IEnumerable<byte> d = null, string extension = FileExtensions.Png,
-                          bool tmsCompatible = false, int bandsCount = DefaultBandsCount) :
-            base(minCoordinate, maxCoordinate, z, size, d, extension, tmsCompatible) => BandsCount = bandsCount;
+        public RasterTile(GeoCoordinate minCoordinate, GeoCoordinate maxCoordinate, int z,
+                          Size size = null, IEnumerable<byte> d = null,
+                          string extension = FileExtensions.Png,
+                          bool tmsCompatible = false, int bandsCount = DefaultBandsCount)
+            : base(minCoordinate, maxCoordinate, z, size, d, extension, tmsCompatible) => BandsCount = bandsCount;
 
         #endregion
     }

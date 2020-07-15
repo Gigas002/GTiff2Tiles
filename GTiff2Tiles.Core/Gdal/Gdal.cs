@@ -2,8 +2,9 @@
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
+using GTiff2Tiles.Core.Coordinates;
+using GTiff2Tiles.Core.Enums;
 using GTiff2Tiles.Core.Exceptions.Gdal;
-using GTiff2Tiles.Core.Geodesic;
 using GTiff2Tiles.Core.Helpers;
 using GTiff2Tiles.Core.Images;
 using GTiff2Tiles.Core.Localization;
@@ -182,7 +183,8 @@ namespace GTiff2Tiles.Core.Gdal
         /// <param name="rasterXSize">Raster's width.</param>
         /// <param name="rasterYSize">Raster's height.</param>
         /// <returns><see cref="ValueTuple{T1, T2, T3, T4}"/> with WGS84 coordinates.</returns>
-        internal static (Coordinate minCoordinate, Coordinate maxCoordinate) GetImageBorders(FileInfo inputFileInfo, Size size)
+        internal static (GeoCoordinate minCoordinate, GeoCoordinate maxCoordinate) GetImageBorders(
+            FileInfo inputFileInfo, Size size, CoordinateType coordinateType)
         {
             #region Parameters checking
 
@@ -200,10 +202,28 @@ namespace GTiff2Tiles.Core.Gdal
             double maxX = geoTransform[0] + size.Width * geoTransform[1];
             double maxY = geoTransform[3];
 
-            Coordinate minCoordinate = new Coordinate(minX, minY);
-            Coordinate maxCoordinate = new Coordinate(maxX, maxY);
+            switch (coordinateType)
+            {
+                case CoordinateType.Geodetic:
+                    {
+                        GeodeticCoordinate minCoordinate = new GeodeticCoordinate(minX, minY);
+                        GeodeticCoordinate maxCoordinate = new GeodeticCoordinate(maxX, maxY);
 
-            return (minCoordinate, maxCoordinate);
+                        return (minCoordinate, maxCoordinate);
+                    }
+                case CoordinateType.Mercator:
+                    {
+                        //TODO THIS IS TEMP!!!
+                        GeodeticCoordinate gmin = new GeodeticCoordinate(minX, minY);
+                        GeodeticCoordinate gmax = new GeodeticCoordinate(maxX, maxY);
+
+                        MercatorCoordinate minCoordinate = gmin.ToMercatorCoordinate();
+                        MercatorCoordinate maxCoordinate = gmax.ToMercatorCoordinate();
+
+                        return (minCoordinate, maxCoordinate);
+                    }
+                default: return (null, null);
+            }
         }
 
         #endregion

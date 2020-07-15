@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading.Channels;
 using System.Threading.Tasks;
-using GTiff2Tiles.Core.Geodesic;
+using GTiff2Tiles.Core.Coordinates;
+using GTiff2Tiles.Core.Enums;
 using GTiff2Tiles.Core.Tiles;
 
 // ReSharper disable InheritdocConsiderUsage
@@ -22,26 +23,11 @@ namespace GTiff2Tiles.Core.Images
 
         public Size Size { get; }
 
-        public Coordinate MinCoordinate { get; }
+        public GeoCoordinate MinCoordinate { get; }
 
-        public Coordinate MaxCoordinate { get; }
+        public GeoCoordinate MaxCoordinate { get; }
 
-        // <summary>
-        // Upper left X coordinate.
-        // </summary>
-        //public double MinX { get; }
-        // <summary>
-        // Lower right Y coordinate.
-        // </summary>
-        //public double MinY { get; }
-        // <summary>
-        // Lower right X coordinate.
-        // </summary>
-        //public double MaxX { get; }
-        // <summay>
-        // Upper left Y coordinate.
-        // </summary>
-        //public double MaxY { get; }
+        public CoordinateType GeoCoordinateType { get; }
 
         /// <summary>
         /// Shows if resources have already been disposed.

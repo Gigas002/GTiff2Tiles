@@ -7,9 +7,9 @@ using System.IO;
 using System.Threading;
 using System.Threading.Channels;
 using System.Threading.Tasks;
-using GTiff2Tiles.Core.Constants.Image;
+using GTiff2Tiles.Core.Coordinates;
+using GTiff2Tiles.Core.Enums;
 using GTiff2Tiles.Core.Extensions;
-using GTiff2Tiles.Core.Geodesic;
 using GTiff2Tiles.Core.Helpers;
 using GTiff2Tiles.Core.Tiles;
 using NetVips;
@@ -38,10 +38,12 @@ namespace GTiff2Tiles.Core.Images
         public Size Size { get; }
 
         /// <inheritdoc />
-        public Coordinate MinCoordinate { get; }
+        public GeoCoordinate MinCoordinate { get; }
 
         /// <inheritdoc />
-        public Coordinate MaxCoordinate { get; }
+        public GeoCoordinate MaxCoordinate { get; }
+
+        public CoordinateType GeoCoordinateType { get; }
 
         /// <inheritdoc />
         public bool IsDisposed { get; private set; }
@@ -56,7 +58,8 @@ namespace GTiff2Tiles.Core.Images
         /// Creates new <see cref="Raster"/> object.
         /// </summary>
         /// <param name="inputFileInfo">Input GeoTiff image.</param>
-        public Raster(FileInfo inputFileInfo, long maxMemoryCache = 2147483648)
+        public Raster(FileInfo inputFileInfo, long maxMemoryCache = 2147483648,
+                      CoordinateType coordinateType = CoordinateType.Geodetic)
         {
             //Disable NetVips warnings for tiff.
             NetVipsHelper.DisableLog();
@@ -72,7 +75,10 @@ namespace GTiff2Tiles.Core.Images
 
             //Get border coordinates и raster sizes.
             Size = new Size(Data.Width, Data.Height);
-            (MinCoordinate, MaxCoordinate) = Gdal.Gdal.GetImageBorders(inputFileInfo, Size);
+
+            GeoCoordinateType = coordinateType;
+
+            (MinCoordinate, MaxCoordinate) = Gdal.Gdal.GetImageBorders(inputFileInfo, Size, GeoCoordinateType);
         }
 
         public Raster(byte[] inputBytes)
@@ -88,7 +94,7 @@ namespace GTiff2Tiles.Core.Images
             FileInfo inputFileInfo = new FileInfo("tmp.tif");
             Data.WriteToFile(inputFileInfo.FullName);
             //TODO: get coordinates without fileinfo
-            (MinCoordinate, MaxCoordinate) = Gdal.Gdal.GetImageBorders(inputFileInfo, Size);
+            (MinCoordinate, MaxCoordinate) = Gdal.Gdal.GetImageBorders(inputFileInfo, Size, GeoCoordinateType);
             inputFileInfo.Delete();
         }
 
@@ -105,7 +111,7 @@ namespace GTiff2Tiles.Core.Images
             FileInfo inputFileInfo = new FileInfo("tmp.tif");
             Data.WriteToFile(inputFileInfo.FullName);
             //TODO: get coordinates without fileinfo
-            (MinCoordinate, MaxCoordinate) = Gdal.Gdal.GetImageBorders(inputFileInfo, Size);
+            (MinCoordinate, MaxCoordinate) = Gdal.Gdal.GetImageBorders(inputFileInfo, Size, GeoCoordinateType);
             inputFileInfo.Delete();
         }
 
@@ -264,7 +270,7 @@ namespace GTiff2Tiles.Core.Images
             if (threadsCount > 0) parallelOptions.MaxDegreeOfParallelism = threadsCount;
 
             Stopwatch stopwatch = isPrintEstimatedTime ? Stopwatch.StartNew() : null;
-            int tilesCount = Tile.GetCount(MinCoordinate, MaxCoordinate, minZ, maxZ, tmsCompatible, tileSize);
+            int tilesCount = Number.GetCount(MinCoordinate, MaxCoordinate, minZ, maxZ, tmsCompatible, tileSize);
             double counter = 0.0;
 
             if (tilesCount <= 0) return;
@@ -276,8 +282,9 @@ namespace GTiff2Tiles.Core.Images
             for (int zoom = minZ; zoom <= maxZ; zoom++)
             {
                 //Get tiles min/max numbers.
-                (Number minNumber, Number maxNumber) = Tile.GetNumbersFromCoords(MinCoordinate, MaxCoordinate,
-                                                                                       zoom, tmsCompatible, tileSize);
+                (Number minNumber, Number maxNumber) = GeoCoordinate.GetNumbers(MinCoordinate, MaxCoordinate,
+                                                                                       zoom, tileSize.Width,
+                                                                                tmsCompatible);
 
                 //For each tile on given zoom calculate positions/sizes and save as file.
                 for (int tileY = minNumber.Y; tileY <= maxNumber.Y; tileY++)
@@ -293,7 +300,8 @@ namespace GTiff2Tiles.Core.Images
 
                         Number tileNumber = new Number(x, y, z);
                         ITile tile = new RasterTile(tileNumber, extension: tileExtension, tmsCompatible: tmsCompatible,
-                                                          size: tileSize, bandsCount: bands)
+                                                          size: tileSize, bandsCount: bands,
+                                                          coordinateType: GeoCoordinateType)
                         {
                             //Warning: OpenLayers requires replacement of tileY to tileY+1
                             FileInfo = new FileInfo(Path.Combine(tileDirectoryInfo.FullName, $"{y}{tileExtension}"))
@@ -330,7 +338,7 @@ namespace GTiff2Tiles.Core.Images
             progress ??= new Progress<double>();
 
             Stopwatch stopwatch = isPrintEstimatedTime ? Stopwatch.StartNew() : null;
-            int tilesCount = Tile.GetCount(MinCoordinate, MaxCoordinate, minZ, maxZ, tmsCompatible, tileSize);
+            int tilesCount = Number.GetCount(MinCoordinate, MaxCoordinate, minZ, maxZ, tmsCompatible, tileSize);
             double counter = 0.0;
 
             if (tilesCount <= 0) return;
@@ -347,8 +355,9 @@ namespace GTiff2Tiles.Core.Images
             for (int zoom = minZ; zoom <= maxZ; zoom++)
             {
                 //Get tiles min/max numbers.
-                (Number minNumber, Number maxNumber) = Tile.GetNumbersFromCoords(MinCoordinate, MaxCoordinate,
-                                                                                       zoom, tmsCompatible, tileSize);
+                (Number minNumber, Number maxNumber) = GeoCoordinate.GetNumbers(MinCoordinate, MaxCoordinate,
+                                                                                zoom, tileSize.Width,
+                                                                                tmsCompatible);
 
                 //For each tile on given zoom calculate positions/sizes and save as file.
                 for (int tileY = minNumber.Y; tileY <= maxNumber.Y; tileY++)
@@ -360,7 +369,8 @@ namespace GTiff2Tiles.Core.Images
                     {
                         Number tileNumber = new Number(x, y, z);
                         ITile tile = new RasterTile(tileNumber, extension: tileExtension, tmsCompatible: tmsCompatible,
-                                                          size: tileSize, bandsCount: bands);
+                                                    size: tileSize, bandsCount: bands,
+                                                    coordinateType: GeoCoordinateType);
 
                         // ReSharper disable once AccessToDisposedClosure
                         tile.Bytes = WriteTileToEnumerable(tileCache, tile, bands);
@@ -394,7 +404,7 @@ namespace GTiff2Tiles.Core.Images
             progress ??= new Progress<double>();
 
             Stopwatch stopwatch = isPrintEstimatedTime ? Stopwatch.StartNew() : null;
-            int tilesCount = Tile.GetCount(MinCoordinate, MaxCoordinate, minZ, maxZ, tmsCompatible, tileSize);
+            int tilesCount = Number.GetCount(MinCoordinate, MaxCoordinate, minZ, maxZ, tmsCompatible, tileSize);
             double counter = 0.0;
 
             //if (tilesCount <= 0) yield return null;
@@ -411,8 +421,9 @@ namespace GTiff2Tiles.Core.Images
             for (int zoom = minZ; zoom <= maxZ; zoom++)
             {
                 //Get tiles min/max numbers.
-                (Number minNumber, Number maxNumber) = Tile.GetNumbersFromCoords(MinCoordinate, MaxCoordinate,
-                                                                                       zoom, tmsCompatible, tileSize);
+                (Number minNumber, Number maxNumber) = GeoCoordinate.GetNumbers(MinCoordinate, MaxCoordinate,
+                                                                                zoom, tileSize.Width,
+                                                                                tmsCompatible);
 
                 //For each tile on given zoom calculate positions/sizes and save as file.
                 for (int tileY = minNumber.Y; tileY <= maxNumber.Y; tileY++)
@@ -430,8 +441,8 @@ namespace GTiff2Tiles.Core.Images
                         {
                             Number tileNumber = new Number(x, y, z);
                             ITile tile = new RasterTile(tileNumber, extension: tileExtension,
-                                                              tmsCompatible: tmsCompatible,
-                                                              size: tileSize, bandsCount: bands);
+                                                        tmsCompatible: tmsCompatible, size: tileSize, bandsCount: bands,
+                                                        coordinateType: GeoCoordinateType);
 
                             try
                             {
