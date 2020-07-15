@@ -6,9 +6,8 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using GTiff2Tiles.Core.Coordinates;
-using GTiff2Tiles.Core.Enums;
-using GTiff2Tiles.Core.Exceptions.Tile;
 using GTiff2Tiles.Core.Images;
+// ReSharper disable VirtualMemberNeverOverridden.Global
 
 // ReSharper disable UnusedMember.Global
 // ReSharper disable MemberCanBePrivate.Global
@@ -19,10 +18,8 @@ namespace GTiff2Tiles.Core.Tiles
     /// <summary>
     /// Basic implementation of <see cref="ITile"/> interface
     /// </summary>
-    public class Tile : ITile
+    public abstract class Tile : ITile
     {
-        //TODO: Abstract?
-
         #region Properties
 
         /// <summary>
@@ -59,53 +56,7 @@ namespace GTiff2Tiles.Core.Tiles
 
         #endregion
 
-        #region Constructors/Destructors
-
-        /// <summary>
-        /// Creates new tile
-        /// </summary>
-        /// <param name="number">Tile number</param>
-        /// <param name="size">Tile size</param>
-        /// <param name="d">Tile bytes</param>
-        /// <param name="extension">Tile extension</param>
-        /// <param name="tmsCompatible">Is tms compatible?</param>
-        public Tile(Number number, Size size = null, IEnumerable<byte> d = null, string extension = Constants.FileExtensions.Png,
-                    bool tmsCompatible = false, CoordinateType coordinateType = CoordinateType.Geodetic)
-        {
-            (Number, Bytes, Extension, TmsCompatible, Size) = (number, d, extension, tmsCompatible, size ?? DefaultSize);
-            (MinCoordinate, MaxCoordinate) = Number.ToGeoCoordinates(coordinateType, Size.Width, tmsCompatible);
-        }
-
-        /// <summary>
-        /// Creates new tile from coordinate values
-        /// </summary>
-        /// <param name="minCoordinate">Minimum coordinate</param>
-        /// <param name="maxCoordinate">Maximum coordinate</param>
-        /// <param name="z">Zoom</param>
-        /// <param name="size">Tile size</param>
-        /// <param name="d">Tile bytes</param>
-        /// <param name="extension">Tile extension</param>
-        /// <param name="tmsCompatible">Is tms compatible?</param>
-        public Tile(GeoCoordinate minCoordinate, GeoCoordinate maxCoordinate, int z, Size size = null, IEnumerable<byte> d = null, string extension = Constants.FileExtensions.Png,
-                    bool tmsCompatible = false)
-        {
-            Size = size ?? DefaultSize;
-            (Number minNumber, Number maxNumber) =
-                GeoCoordinate.GetNumbers(minCoordinate, maxCoordinate, z, Size.Width, tmsCompatible);
-
-            if (!minNumber.Equals(maxNumber))
-                throw new TileException();
-
-            (Number, Bytes, Extension, TmsCompatible) = (minNumber, d, extension, tmsCompatible);
-            (MinCoordinate, MaxCoordinate) = (minCoordinate, maxCoordinate);
-        }
-
-        /// <summary>
-        /// Calls <see cref="Dispose(bool)"/> on this tile.
-        /// </summary>
-        ~Tile() => Dispose(false);
-
-        #endregion
+        #region Methods
 
         #region Dispose
 
@@ -151,19 +102,15 @@ namespace GTiff2Tiles.Core.Tiles
 
         #endregion
 
-        #region Methods
-
         #region Validate
 
         /// <inheritdoc />
         public bool Validate(bool isCheckFileInfo) => Validate(this, isCheckFileInfo);
 
-        /// <summary>
-        /// Check if tile is not null, empty, not soo small and exists
-        /// </summary>
+
+        /// <inheritdoc cref="Validate(bool)"/>
         /// <param name="tile">Tile to check</param>
-        /// <param name="isCheckFileInfo">Do you want to check if file exists?</param>
-        /// <returns><see langword="true"/> if tile's valid, <see langword="false"/> otherwise</returns>
+        /// <param name="isCheckFileInfo"></param>
         public static bool Validate(ITile tile, bool isCheckFileInfo)
         {
             if (tile?.Bytes == null || tile.Bytes.Count() <= 355) return false;
@@ -180,12 +127,9 @@ namespace GTiff2Tiles.Core.Tiles
         /// <inheritdoc />
         public int CalculatePosition() => CalculatePosition(Number, TmsCompatible);
 
-        /// <summary>
-        /// Calculates tile position in upper tile
-        /// </summary>
+        /// <inheritdoc cref="CalculatePosition()"/>
         /// <param name="number">Number of tile</param>
         /// <param name="tmsCompatible">Is tile tms compatible?</param>
-        /// <returns>Value in range from 0 to 3</returns>
         public static int CalculatePosition(Number number, bool tmsCompatible)
         {
             // 0 1

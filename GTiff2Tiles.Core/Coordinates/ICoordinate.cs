@@ -1,5 +1,4 @@
-﻿using System;
-using GTiff2Tiles.Core.Tiles;
+﻿using GTiff2Tiles.Core.Tiles;
 
 namespace GTiff2Tiles.Core.Coordinates
 {

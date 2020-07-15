@@ -1,6 +1,4 @@
-﻿using GTiff2Tiles.Core.Images;
-
-namespace GTiff2Tiles.Core.Constants.Image
+﻿namespace GTiff2Tiles.Core.Constants.Image
 {
     /// <summary>
     /// <see cref="Images.Raster"/> constants.

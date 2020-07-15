@@ -63,6 +63,8 @@ namespace GTiff2Tiles.Core.Tiles
 
         #endregion
 
+        #region Methods
+
         /// <summary>
         /// Checks if this tile is not empty or too small
         /// </summary>
@@ -75,5 +77,7 @@ namespace GTiff2Tiles.Core.Tiles
         /// </summary>
         /// <returns>Value in range from 0 to 3</returns>
         public int CalculatePosition();
+
+        #endregion
     }
 }

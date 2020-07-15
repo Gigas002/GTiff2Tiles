@@ -1095,10 +1095,29 @@
             </summary>
         </member>
         <member name="M:GTiff2Tiles.Core.Tiles.RasterTile.#ctor(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Images.Size,System.Collections.Generic.IEnumerable{System.Byte},System.String,System.Boolean,GTiff2Tiles.Core.Enums.CoordinateType,System.Int32)">
-            <inheritdoc />
+            <summary>
+            Creates new tile
+            </summary>
+            <param name="number">Tile number</param>
+            <param name="size">Tile size</param>
+            <param name="d">Tile bytes</param>
+            <param name="extension">Tile extension</param>
+            <param name="tmsCompatible">Is tms compatible?</param>
+            <param name="coordinateType">Type of coordinates</param>
+            <param name="bandsCount">Bands count</param>
         </member>
         <member name="M:GTiff2Tiles.Core.Tiles.RasterTile.#ctor(GTiff2Tiles.Core.Coordinates.GeoCoordinate,GTiff2Tiles.Core.Coordinates.GeoCoordinate,System.Int32,GTiff2Tiles.Core.Images.Size,System.Collections.Generic.IEnumerable{System.Byte},System.String,System.Boolean,System.Int32)">
-            <inheritdoc />
+            <summary>
+            Creates new tile from coordinate values
+            </summary>
+            <param name="minCoordinate">Minimum coordinate</param>
+            <param name="maxCoordinate">Maximum coordinate</param>
+            <param name="z">Zoom</param>
+            <param name="size">Tile size</param>
+            <param name="d">Tile bytes</param>
+            <param name="extension">Tile extension</param>
+            <param name="tmsCompatible">Is tms compatible?</param>
+            <param name="bandsCount">Bands count</param>
         </member>
         <member name="T:GTiff2Tiles.Core.Tiles.Tile">
             <summary>
@@ -1137,33 +1156,6 @@
         <member name="P:GTiff2Tiles.Core.Tiles.Tile.TmsCompatible">
             <inheritdoc />
         </member>
-        <member name="M:GTiff2Tiles.Core.Tiles.Tile.#ctor(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Images.Size,System.Collections.Generic.IEnumerable{System.Byte},System.String,System.Boolean,GTiff2Tiles.Core.Enums.CoordinateType)">
-            <summary>
-            Creates new tile
-            </summary>
-            <param name="number">Tile number</param>
-            <param name="size">Tile size</param>
-            <param name="d">Tile bytes</param>
-            <param name="extension">Tile extension</param>
-            <param name="tmsCompatible">Is tms compatible?</param>
-        </member>
-        <member name="M:GTiff2Tiles.Core.Tiles.Tile.#ctor(GTiff2Tiles.Core.Coordinates.GeoCoordinate,GTiff2Tiles.Core.Coordinates.GeoCoordinate,System.Int32,GTiff2Tiles.Core.Images.Size,System.Collections.Generic.IEnumerable{System.Byte},System.String,System.Boolean)">
-            <summary>
-            Creates new tile from coordinate values
-            </summary>
-            <param name="minCoordinate">Minimum coordinate</param>
-            <param name="maxCoordinate">Maximum coordinate</param>
-            <param name="z">Zoom</param>
-            <param name="size">Tile size</param>
-            <param name="d">Tile bytes</param>
-            <param name="extension">Tile extension</param>
-            <param name="tmsCompatible">Is tms compatible?</param>
-        </member>
-        <member name="M:GTiff2Tiles.Core.Tiles.Tile.Finalize">
-            <summary>
-            Calls <see cref="M:GTiff2Tiles.Core.Tiles.Tile.Dispose(System.Boolean)"/> on this tile.
-            </summary>
-        </member>
         <member name="M:GTiff2Tiles.Core.Tiles.Tile.Dispose">
             <inheritdoc />
         </member>
@@ -1180,23 +1172,17 @@
             <inheritdoc />
         </member>
         <member name="M:GTiff2Tiles.Core.Tiles.Tile.Validate(GTiff2Tiles.Core.Tiles.ITile,System.Boolean)">
-            <summary>
-            Check if tile is not null, empty, not soo small and exists
-            </summary>
+            <inheritdoc cref="M:GTiff2Tiles.Core.Tiles.Tile.Validate(System.Boolean)"/>
             <param name="tile">Tile to check</param>
-            <param name="isCheckFileInfo">Do you want to check if file exists?</param>
-            <returns><see langword="true"/> if tile's valid, <see langword="false"/> otherwise</returns>
+            <param name="isCheckFileInfo"></param>
         </member>
         <member name="M:GTiff2Tiles.Core.Tiles.Tile.CalculatePosition">
             <inheritdoc />
         </member>
         <member name="M:GTiff2Tiles.Core.Tiles.Tile.CalculatePosition(GTiff2Tiles.Core.Tiles.Number,System.Boolean)">
-            <summary>
-            Calculates tile position in upper tile
-            </summary>
+            <inheritdoc cref="M:GTiff2Tiles.Core.Tiles.Tile.CalculatePosition"/>
             <param name="number">Number of tile</param>
             <param name="tmsCompatible">Is tile tms compatible?</param>
-            <returns>Value in range from 0 to 3</returns>
         </member>
     </members>
 </doc>
