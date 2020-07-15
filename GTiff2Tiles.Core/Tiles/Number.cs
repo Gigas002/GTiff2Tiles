@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Linq;
 using GTiff2Tiles.Core.Coordinates;
+using GTiff2Tiles.Core.Enums;
+using GTiff2Tiles.Core.Images;
 
 // ReSharper disable MemberCanBePrivate.Global
 
@@ -10,8 +13,6 @@ namespace GTiff2Tiles.Core.Tiles
     /// </summary>
     public class Number : IEquatable<Number>
     {
-        // TODO: GeodeticNumber, etc?
-
         #region Properties
 
         /// <summary>
@@ -22,7 +23,7 @@ namespace GTiff2Tiles.Core.Tiles
         /// <summary>
         /// Y number
         /// </summary>
-        public int Y { get; }
+        public int Y { get; private set; }
 
         /// <summary>
         /// Zoom
@@ -107,47 +108,55 @@ namespace GTiff2Tiles.Core.Tiles
 
         #endregion
 
-        public (T minCoordinate, T maxCoordinate) ToGeoCoordinates<T>(int tileSize) where T : GeoCoordinate
+        public (GeoCoordinate minCoordinate, GeoCoordinate maxCoordinate) ToGeoCoordinates(
+            CoordinateType coordinateType, int tileSize, bool tmsCompatible)
         {
-            if (typeof(T) == typeof(GeodeticCoordinate))
+            if (!tmsCompatible) Y = FlipY(Y, Z);
+
+            switch (coordinateType)
             {
-                (GeodeticCoordinate minCoordinate, GeodeticCoordinate maxCoordinate) = ToGeodeticCoordinates(tileSize);
+                case CoordinateType.Geodetic:
+                    {
+                        (GeodeticCoordinate minCoordinate, GeodeticCoordinate maxCoordinate) = ToGeodeticCoordinates(tileSize);
 
-                return (minCoordinate as T, maxCoordinate as T);
+                        return (minCoordinate, maxCoordinate);
+                    }
+                case CoordinateType.Mercator:
+                    {
+                        (MercatorCoordinate minCoordinate, MercatorCoordinate maxCoordinate) = ToMercatorCoordinates(tileSize);
+
+                        return (minCoordinate, maxCoordinate);
+                    }
+                default: return (null, null);
             }
-
-            if (typeof(T) == typeof(MercatorCoordinate))
-            {
-                (MercatorCoordinate minCoordinate, MercatorCoordinate maxCoordinate) = ToMercatorCoordinates(tileSize);
-
-                return (minCoordinate as T, maxCoordinate as T);
-            }
-
-            return (null, null);
         }
 
-        public (GeodeticCoordinate minCoordinate, GeodeticCoordinate maxCoordinate) ToGeodeticCoordinates(int tileSize)
+        private (GeodeticCoordinate minCoordinate, GeodeticCoordinate maxCoordinate) ToGeodeticCoordinates(int tileSize)
         {
+            // TODO: tmscompatible
+            //// Flip the y number for non-tms
+            //if (!tmsCompatible) number = number.Flip();
+
             //"Returns bounds of the given tile"
 
-            (MercatorCoordinate minMCoord, MercatorCoordinate maxMCoord) = ToMercatorCoordinates(tileSize);
+            //(MercatorCoordinate minMCoord, MercatorCoordinate maxMCoord) = ToMercatorCoordinates(tileSize);
 
-            GeodeticCoordinate minCoordinate = minMCoord.ToGeodeticCoordinate();
-            GeodeticCoordinate maxCoordinate = maxMCoord.ToGeodeticCoordinate();
+            //GeodeticCoordinate minCoordinate = minMCoord.ToGeodeticCoordinate();
+            //GeodeticCoordinate maxCoordinate = maxMCoord.ToGeodeticCoordinate();
 
             // Or
 
-            //double resolution = GeodeticCoordinate.Resolution(null, Z, tileSize);
+            double resolution = GeodeticCoordinate.Resolution(null, Z, tileSize);
 
-            //GeodeticCoordinate minCoordinate = new GeodeticCoordinate(X * tileSize * resolution - 180.0,
-            //                                                          Y * tileSize * resolution - 90.0);
-            //GeodeticCoordinate maxCoordinate = new GeodeticCoordinate((X + 1) * tileSize * resolution - 180.0,
-            //                                                          (Y + 1) * tileSize * resolution - 90.0);
+            GeodeticCoordinate minCoordinate = new GeodeticCoordinate(X * tileSize * resolution - 180.0,
+                                                                      Y * tileSize * resolution - 90.0);
+            GeodeticCoordinate maxCoordinate = new GeodeticCoordinate((X + 1) * tileSize * resolution - 180.0,
+                                                                      (Y + 1) * tileSize * resolution - 90.0);
 
             return (minCoordinate, maxCoordinate);
         }
 
-        public (MercatorCoordinate minCoordinate, MercatorCoordinate maxCoordinate) ToMercatorCoordinates(int tileSize)
+        private (MercatorCoordinate minCoordinate, MercatorCoordinate maxCoordinate) ToMercatorCoordinates(int tileSize)
         {
             //"Returns bounds of the given tile in EPSG:3857 coordinates"
 
@@ -158,6 +167,68 @@ namespace GTiff2Tiles.Core.Tiles
 
             return (minCoordinate, maxCoordinate);
         }
+
+        #region GetLowerNumbers
+
+        /// <inheritdoc />
+        public (Number minNumber, Number maxNumber) GetLowerNumbers(int zoom) =>
+            GetLowerNumbers(this, zoom);
+
+        /// <summary>
+        /// Get lower numbers for specified number and zoom
+        /// </summary>
+        /// <param name="number">Base number</param>
+        /// <param name="zoom">Zoom</param>
+        /// <returns><see cref="ValueTuple"/> of lower numbers</returns>
+        public static (Number minNumber, Number maxNumber) GetLowerNumbers(Number number, int zoom)
+        {
+            // TODO: Check on zoom <= 10
+            int resolution = Convert.ToInt32(Math.Pow(2.0, zoom - 10));
+
+            int[] tilesXs = { number.X * resolution, (number.X + 1) * resolution - 1 };
+            int[] tilesYs = { number.Y * resolution, (number.Y + 1) * resolution - 1 };
+
+            Number minNumber = new Number(tilesXs.Min(), tilesYs.Min(), zoom);
+            Number maxNumber = new Number(tilesXs.Max(), tilesYs.Max(), zoom);
+
+            return (minNumber, maxNumber);
+        }
+
+        #endregion
+
+        #region GetCount
+
+        /// <summary>
+        /// Get number of tiles in specified region
+        /// </summary>
+        /// <param name="minCoordinate">Minimum coordinate</param>
+        /// <param name="maxCoordinate">Maximum coordinate</param>
+        /// <param name="minZ">Minimum zoom</param>
+        /// <param name="maxZ">Maximum zoom</param>
+        /// <param name="tmsCompatible">Is tms compatible?</param>
+        /// <param name="size">Tile size</param>
+        /// <returns>Tiles count</returns>
+        public static int GetCount(GeoCoordinate minCoordinate, GeoCoordinate maxCoordinate,
+                                   int minZ, int maxZ, bool tmsCompatible, Size size)
+        {
+            int tilesCount = 0;
+
+            for (int zoom = minZ; zoom <= maxZ; zoom++)
+            {
+                // Get tiles min/max numbers
+                (Number minNumber, Number maxNumber) =
+                    GeoCoordinate.GetNumbers(minCoordinate, maxCoordinate, zoom, size.Width, tmsCompatible);
+
+                int xsCount = Enumerable.Range(minNumber.X, maxNumber.X - minNumber.X + 1).Count();
+                int ysCount = Enumerable.Range(minNumber.Y, maxNumber.Y - minNumber.Y + 1).Count();
+
+                tilesCount += xsCount * ysCount;
+            }
+
+            return tilesCount;
+        }
+
+        #endregion
 
         #endregion
     }

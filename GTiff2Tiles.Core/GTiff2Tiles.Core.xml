@@ -1164,6 +1164,29 @@
             <param name="number">Number to flip</param>
             <returns>Converted number</returns>
         </member>
+        <member name="M:GTiff2Tiles.Core.Tiles.Number.GetLowerNumbers(System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="M:GTiff2Tiles.Core.Tiles.Number.GetLowerNumbers(GTiff2Tiles.Core.Tiles.Number,System.Int32)">
+            <summary>
+            Get lower numbers for specified number and zoom
+            </summary>
+            <param name="number">Base number</param>
+            <param name="zoom">Zoom</param>
+            <returns><see cref="T:System.ValueTuple"/> of lower numbers</returns>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Tiles.Number.GetCount(GTiff2Tiles.Core.Coordinates.GeoCoordinate,GTiff2Tiles.Core.Coordinates.GeoCoordinate,System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size)">
+            <summary>
+            Get number of tiles in specified region
+            </summary>
+            <param name="minCoordinate">Minimum coordinate</param>
+            <param name="maxCoordinate">Maximum coordinate</param>
+            <param name="minZ">Minimum zoom</param>
+            <param name="maxZ">Maximum zoom</param>
+            <param name="tmsCompatible">Is tms compatible?</param>
+            <param name="size">Tile size</param>
+            <returns>Tiles count</returns>
+        </member>
         <member name="T:GTiff2Tiles.Core.Tiles.RasterTile">
             <summary>
             Raster tile
