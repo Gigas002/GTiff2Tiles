@@ -21,7 +21,7 @@ namespace GTiff2Tiles.Core.Coordinates
         #region Methods
 
         /// <inheritdoc />
-        public abstract Number ToNumber(int zoom, int tileSize);
+        public abstract Number ToNumber(int zoom, int tileSize, bool tmsCompatible);
 
         /// <summary>
         /// Converts degrees to radians

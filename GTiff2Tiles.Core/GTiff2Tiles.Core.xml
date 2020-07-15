@@ -111,7 +111,7 @@
         <member name="P:GTiff2Tiles.Core.Coordinates.Coordinate.Y">
             <inheritdoc />
         </member>
-        <member name="M:GTiff2Tiles.Core.Coordinates.Coordinate.ToNumber(System.Int32,System.Int32)">
+        <member name="M:GTiff2Tiles.Core.Coordinates.Coordinate.ToNumber(System.Int32,System.Int32,System.Boolean)">
             <inheritdoc />
         </member>
         <member name="M:GTiff2Tiles.Core.Coordinates.Coordinate.DegreesToRadians(System.Double)">
@@ -133,7 +133,7 @@
             Abstract class for geographical coordinates
             </summary>
         </member>
-        <member name="M:GTiff2Tiles.Core.Coordinates.GeoCoordinate.ToNumber(System.Int32,System.Int32)">
+        <member name="M:GTiff2Tiles.Core.Coordinates.GeoCoordinate.ToNumber(System.Int32,System.Int32,System.Boolean)">
             <inheritdoc />
         </member>
         <member name="M:GTiff2Tiles.Core.Coordinates.GeoCoordinate.ToPixelCoordinate(System.Int32,System.Int32)">
@@ -252,7 +252,7 @@
             Y coordinate value or Latitude
             </summary>
         </member>
-        <member name="M:GTiff2Tiles.Core.Coordinates.ICoordinate.ToNumber(System.Int32,System.Int32)">
+        <member name="M:GTiff2Tiles.Core.Coordinates.ICoordinate.ToNumber(System.Int32,System.Int32,System.Boolean)">
             <summary>
             Calculate <see cref="T:GTiff2Tiles.Core.Tiles.Number"/> for current <see cref="T:GTiff2Tiles.Core.Coordinates.ICoordinate"/>
             </summary>
@@ -335,7 +335,7 @@
             <param name="x">X coordinate value</param>
             <param name="y">Y coordinate value</param>
         </member>
-        <member name="M:GTiff2Tiles.Core.Coordinates.PixelCoordinate.ToNumber(System.Int32,System.Int32)">
+        <member name="M:GTiff2Tiles.Core.Coordinates.PixelCoordinate.ToNumber(System.Int32,System.Int32,System.Boolean)">
             <inheritdoc />
         </member>
         <member name="M:GTiff2Tiles.Core.Coordinates.PixelCoordinate.ToGeoCoordinate``1(System.Int32,System.Int32)">

@@ -22,12 +22,15 @@ namespace GTiff2Tiles.Core.Coordinates
         #region Methods
 
         /// <inheritdoc />
-        public override Number ToNumber(int zoom, int tileSize)
+        public override Number ToNumber(int zoom, int tileSize, bool tmsCompatible)
         {
             int tileX = Convert.ToInt32(Math.Ceiling(X / tileSize) - 1.0);
             int tileY = Convert.ToInt32(Math.Ceiling(Y / tileSize) - 1.0);
 
-            return new Number(tileX, tileY, zoom);
+            Number result = new Number(tileX, tileY, zoom);
+            if (!tmsCompatible) result = result.Flip();
+
+            return result;
         }
 
         /// <summary>

@@ -30,7 +30,7 @@ namespace GTiff2Tiles.Core.Coordinates
         /// <param name="zoom">Zoom</param>
         /// <param name="tileSize">Tile's size</param>
         /// <returns><see cref="Number"/> in which this <see cref="ICoordinate"/> belongs</returns>
-        public Number ToNumber(int zoom, int tileSize);
+        public Number ToNumber(int zoom, int tileSize, bool tmsCompatible);
 
         #endregion
     }

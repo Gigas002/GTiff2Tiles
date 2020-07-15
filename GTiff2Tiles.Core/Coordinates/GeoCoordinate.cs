@@ -13,11 +13,28 @@ namespace GTiff2Tiles.Core.Coordinates
         #region Methods
 
         /// <inheritdoc />
-        public override Number ToNumber(int zoom, int tileSize)
+        public override Number ToNumber(int zoom, int tileSize, bool tmsCompatible)
         {
             PixelCoordinate pixelCoordinate = ToPixelCoordinate(zoom, tileSize);
 
-            return pixelCoordinate.ToNumber(zoom, tileSize);
+            return pixelCoordinate.ToNumber(zoom, tileSize, tmsCompatible);
+        }
+
+        public static (Number minNumber, Number maxNumber) GetNumbers(
+            GeoCoordinate minCoordinate, GeoCoordinate maxCoordinate, int zoom, int tileSize,
+            bool tmsCompatible)
+        {
+            Number minCoordNumber = minCoordinate.ToNumber(zoom, tileSize, tmsCompatible);
+            Number maxCoordNumber = maxCoordinate.ToNumber(zoom, tileSize, tmsCompatible);
+
+            Number minNumber = new Number(Math.Min(minCoordNumber.X, maxCoordNumber.X),
+                                          Math.Min(minCoordNumber.Y, maxCoordNumber.Y),
+                                          minCoordNumber.Z);
+            Number maxNumber = new Number(Math.Max(minCoordNumber.X, maxCoordNumber.X),
+                                          Math.Max(minCoordNumber.Y, maxCoordNumber.Y),
+                                          maxCoordNumber.Z);
+
+            return (minNumber, maxNumber);
         }
 
         /// <summary>
