@@ -192,7 +192,8 @@ namespace GTiff2Tiles.Core.Images
             double yScale = (double)writeArea.Size.Height / readArea.Size.Height;
 
             // Crop and resize tile
-            Image tempTileImage = tileCache.Crop(readArea.X, readArea.Y, readArea.Size.Width, readArea.Size.Height)
+            Image tempTileImage = tileCache.Crop((int)readArea.OriginCoordinate.X, (int)readArea.OriginCoordinate.Y,
+                                                 readArea.Size.Width, readArea.Size.Height)
                                            .Resize(xScale, kernel, yScale);
 
             // Add alpha channel if needed
@@ -200,7 +201,8 @@ namespace GTiff2Tiles.Core.Images
 
             // Make transparent image and insert tile
             return Image.Black(tile.Size.Width, tile.Size.Height).NewFromImage(0, 0, 0, 0)
-                          .Insert(tempTileImage, writeArea.X, writeArea.Y);
+                          .Insert(tempTileImage, (int)writeArea.OriginCoordinate.X,
+                                  (int)writeArea.OriginCoordinate.Y);
         }
 
         #endregion

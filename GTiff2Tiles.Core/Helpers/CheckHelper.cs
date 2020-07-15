@@ -28,6 +28,7 @@ namespace GTiff2Tiles.Core.Helpers
             if (string.IsNullOrWhiteSpace(gdalInfoString))
                 throw new Exception(string.Format(Strings.StringIsEmpty, nameof(gdalInfoString)));
 
+            //TODO: Don't convert on EPSG:3867 aka mercator
             //Check projection.
             if (!proj4String.Contains(Constants.Gdal.Gdal.LongLat) || !proj4String.Contains(Constants.Gdal.Gdal.Wgs84))
                 return false;
