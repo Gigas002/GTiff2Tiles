@@ -68,6 +68,8 @@ namespace GTiff2Tiles.Core.Tiles
 
         #endregion
 
+        #region To geo coordinates
+
         /// <summary>
         /// Convert <see cref="Number"/> to <see cref="GeodeticCoordinate"/>s
         /// </summary>
@@ -142,28 +144,29 @@ namespace GTiff2Tiles.Core.Tiles
         public static (GeoCoordinate minCoordinate, GeoCoordinate maxCoordinate) ToGeoCoordinates(
             Number number, CoordinateType coordinateType, int tileSize, bool tmsCompatible)
         {
-            //TODO: Better solution for tms compatible
             if (!tmsCompatible) number = Flip(number);
 
             switch (coordinateType)
             {
                 case CoordinateType.Geodetic:
-                {
-                    (GeodeticCoordinate minCoordinate, GeodeticCoordinate maxCoordinate) =
-                        ToGeodeticCoordinates(number, tileSize);
+                    {
+                        (GeodeticCoordinate minCoordinate, GeodeticCoordinate maxCoordinate) =
+                            ToGeodeticCoordinates(number, tileSize);
 
-                    return (minCoordinate, maxCoordinate);
-                }
+                        return (minCoordinate, maxCoordinate);
+                    }
                 case CoordinateType.Mercator:
-                {
-                    (MercatorCoordinate minCoordinate, MercatorCoordinate maxCoordinate) =
-                        ToMercatorCoordinates(number, tileSize);
+                    {
+                        (MercatorCoordinate minCoordinate, MercatorCoordinate maxCoordinate) =
+                            ToMercatorCoordinates(number, tileSize);
 
-                    return (minCoordinate, maxCoordinate);
-                }
+                        return (minCoordinate, maxCoordinate);
+                    }
                 default: return (null, null);
             }
         }
+
+        #endregion
 
         #region GetLowerNumbers
 
@@ -229,10 +232,13 @@ namespace GTiff2Tiles.Core.Tiles
 
         #endregion
 
-        #region Equals
+        #region Bool compare overrides
 
         /// <inheritdoc />
         public override bool Equals(object number) => Equals(number as Number);
+
+        /// <inheritdoc />
+        public override int GetHashCode() => HashCode.Combine(X, Y, Z);
 
         /// <inheritdoc />
         public bool Equals(Number other)
@@ -244,25 +250,100 @@ namespace GTiff2Tiles.Core.Tiles
         }
 
         /// <summary>
-        /// Check two numbers for equality
+        /// Check two <see cref="Number"/>s for equality
         /// </summary>
-        /// <param name="num1">Number 1</param>
-        /// <param name="num2">Number 2</param>
-        /// <returns><see langword="true"/> if numbers are equal;
+        /// <param name="number1"><see cref="Number"/> 1</param>
+        /// <param name="number2"><see cref="Number"/> 2</param>
+        /// <returns><see langword="true"/> if <see cref="Number"/>s are equal;
         /// <see langword="false"/>otherwise</returns>
-        public static bool? operator ==(Number num1, Number num2) => num1?.Equals(num2);
+        public static bool operator ==(Number number1, Number number2) =>
+            number1?.Equals(number2) == true;
 
         /// <summary>
-        /// Check two numbers for non-equality
+        /// Check two <see cref="Number"/>s for non-equality
         /// </summary>
-        /// <param name="num1">Number 1</param>
-        /// <param name="num2">Number 2</param>
-        /// <returns><see langword="true"/> if numbers are not equal;
+        /// <param name="number1"><see cref="Number"/> 1</param>
+        /// <param name="number2"><see cref="Number"/> 2</param>
+        /// <returns><see langword="true"/> if <see cref="Number"/>s are not equal;
         /// <see langword="false"/>otherwise</returns>
-        public static bool? operator !=(Number num1, Number num2) => !(num1 == num2);
+        public static bool operator !=(Number number1, Number number2) =>
+            !(number1 == number2);
 
-        /// <inheritdoc />
-        public override int GetHashCode() => HashCode.Combine(X, Y, Z);
+        /// <summary>
+        /// Check if <see cref="Number"/>1 is lesser, then <see cref="Number"/>2
+        /// </summary>
+        /// <param name="number1"><see cref="Number"/> 1</param>
+        /// <param name="number2"><see cref="Number"/> 2</param>
+        /// <returns><see langword="true"/> if <see cref="Number"/>1 is lesser;
+        /// <see langword="false"/>otherwise</returns>
+        public static bool operator <(Number number1, Number number2) =>
+            number1.X < number2.X && number1.Y < number2.Y && number1.Z < number2.Z;
+
+        /// <summary>
+        /// Check if <see cref="Number"/>1 is bigger, then <see cref="Number"/>2
+        /// </summary>
+        /// <param name="number1"><see cref="Number"/> 1</param>
+        /// <param name="number2"><see cref="Number"/> 2</param>
+        /// <returns><see langword="true"/> if <see cref="Number"/>1 is bigger;
+        /// <see langword="false"/>otherwise</returns>
+        public static bool operator >(Number number1, Number number2) =>
+            number1.X > number2.X && number1.Y > number2.Y && number1.Z > number2.Z;
+
+        /// <summary>
+        /// Check if <see cref="Number"/>1 is lesser or equal, then <see cref="Number"/>2
+        /// </summary>
+        /// <param name="number1"><see cref="Number"/> 1</param>
+        /// <param name="number2"><see cref="Number"/> 2</param>
+        /// <returns><see langword="true"/> if <see cref="Number"/>1 is lesser or equal;
+        /// <see langword="false"/>otherwise</returns>
+        public static bool operator <=(Number number1, Number number2) =>
+            number1.X <= number2.X && number1.Y <= number2.Y && number1.Z <= number2.Z;
+
+        /// <summary>
+        /// Check if <see cref="Number"/>1 is bigger or equal, then <see cref="Number"/>2
+        /// </summary>
+        /// <param name="number1"><see cref="Number"/> 1</param>
+        /// <param name="number2"><see cref="Number"/> 2</param>
+        /// <returns><see langword="true"/> if <see cref="Number"/>1 is bigger or equal;
+        /// <see langword="false"/>otherwise</returns>
+        public static bool operator >=(Number number1, Number number2) =>
+            number1.X >= number2.X && number1.Y >= number2.Y && number1.Z >= number2.Z;
+
+        #endregion
+
+        #region Math operations
+
+        /// <summary>
+        /// Sum <see cref="Number"/>s
+        /// </summary>
+        /// <param name="number1"><see cref="Number"/> 1</param>
+        /// <param name="number2"><see cref="Number"/> 2</param>
+        /// <returns>New <see cref="Number"/></returns>
+        public static Number operator +(Number number1, Number number2) => number1.Z != number2.Z ? null : new Number(number1.X + number2.X, number1.Y + number2.Y, number1.Z);
+
+        /// <summary>
+        /// Subtruct <see cref="Number"/>s
+        /// </summary>
+        /// <param name="number1"><see cref="Number"/> 1</param>
+        /// <param name="number2"><see cref="Number"/> 2</param>
+        /// <returns>New <see cref="Number"/></returns>
+        public static Number operator -(Number number1, Number number2) => number1.Z != number2.Z ? null : new Number(number1.X - number2.X, number1.Y - number2.Y, number1.Z);
+
+        /// <summary>
+        /// Multiply <see cref="Number"/>s
+        /// </summary>
+        /// <param name="number1"><see cref="Number"/> 1</param>
+        /// <param name="number2"><see cref="Number"/> 2</param>
+        /// <returns>New <see cref="Number"/></returns>
+        public static Number operator *(Number number1, Number number2) => number1.Z != number2.Z ? null : new Number(number1.X * number2.X, number1.Y * number2.Y, number1.Z);
+
+        /// <summary>
+        /// Divide <see cref="Number"/>s
+        /// </summary>
+        /// <param name="number1"><see cref="Number"/> 1</param>
+        /// <param name="number2"><see cref="Number"/> 2</param>
+        /// <returns>New <see cref="Number"/></returns>
+        public static Number operator /(Number number1, Number number2) => number1.Z != number2.Z ? null : new Number(number1.X / number2.X, number1.Y / number2.Y, number1.Z);
 
         #endregion
 

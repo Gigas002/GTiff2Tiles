@@ -1097,29 +1097,97 @@
         <member name="M:GTiff2Tiles.Core.Tiles.Number.Equals(System.Object)">
             <inheritdoc />
         </member>
+        <member name="M:GTiff2Tiles.Core.Tiles.Number.GetHashCode">
+            <inheritdoc />
+        </member>
         <member name="M:GTiff2Tiles.Core.Tiles.Number.Equals(GTiff2Tiles.Core.Tiles.Number)">
             <inheritdoc />
         </member>
         <member name="M:GTiff2Tiles.Core.Tiles.Number.op_Equality(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Tiles.Number)">
             <summary>
-            Check two numbers for equality
+            Check two <see cref="T:GTiff2Tiles.Core.Tiles.Number"/>s for equality
             </summary>
-            <param name="num1">Number 1</param>
-            <param name="num2">Number 2</param>
-            <returns><see langword="true"/> if numbers are equal;
+            <param name="number1"><see cref="T:GTiff2Tiles.Core.Tiles.Number"/> 1</param>
+            <param name="number2"><see cref="T:GTiff2Tiles.Core.Tiles.Number"/> 2</param>
+            <returns><see langword="true"/> if <see cref="T:GTiff2Tiles.Core.Tiles.Number"/>s are equal;
             <see langword="false"/>otherwise</returns>
         </member>
         <member name="M:GTiff2Tiles.Core.Tiles.Number.op_Inequality(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Tiles.Number)">
             <summary>
-            Check two numbers for non-equality
+            Check two <see cref="T:GTiff2Tiles.Core.Tiles.Number"/>s for non-equality
             </summary>
-            <param name="num1">Number 1</param>
-            <param name="num2">Number 2</param>
-            <returns><see langword="true"/> if numbers are not equal;
+            <param name="number1"><see cref="T:GTiff2Tiles.Core.Tiles.Number"/> 1</param>
+            <param name="number2"><see cref="T:GTiff2Tiles.Core.Tiles.Number"/> 2</param>
+            <returns><see langword="true"/> if <see cref="T:GTiff2Tiles.Core.Tiles.Number"/>s are not equal;
             <see langword="false"/>otherwise</returns>
         </member>
-        <member name="M:GTiff2Tiles.Core.Tiles.Number.GetHashCode">
-            <inheritdoc />
+        <member name="M:GTiff2Tiles.Core.Tiles.Number.op_LessThan(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Tiles.Number)">
+            <summary>
+            Check if <see cref="T:GTiff2Tiles.Core.Tiles.Number"/>1 is lesser, then <see cref="T:GTiff2Tiles.Core.Tiles.Number"/>2
+            </summary>
+            <param name="number1"><see cref="T:GTiff2Tiles.Core.Tiles.Number"/> 1</param>
+            <param name="number2"><see cref="T:GTiff2Tiles.Core.Tiles.Number"/> 2</param>
+            <returns><see langword="true"/> if <see cref="T:GTiff2Tiles.Core.Tiles.Number"/>1 is lesser;
+            <see langword="false"/>otherwise</returns>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Tiles.Number.op_GreaterThan(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Tiles.Number)">
+            <summary>
+            Check if <see cref="T:GTiff2Tiles.Core.Tiles.Number"/>1 is bigger, then <see cref="T:GTiff2Tiles.Core.Tiles.Number"/>2
+            </summary>
+            <param name="number1"><see cref="T:GTiff2Tiles.Core.Tiles.Number"/> 1</param>
+            <param name="number2"><see cref="T:GTiff2Tiles.Core.Tiles.Number"/> 2</param>
+            <returns><see langword="true"/> if <see cref="T:GTiff2Tiles.Core.Tiles.Number"/>1 is bigger;
+            <see langword="false"/>otherwise</returns>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Tiles.Number.op_LessThanOrEqual(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Tiles.Number)">
+            <summary>
+            Check if <see cref="T:GTiff2Tiles.Core.Tiles.Number"/>1 is lesser or equal, then <see cref="T:GTiff2Tiles.Core.Tiles.Number"/>2
+            </summary>
+            <param name="number1"><see cref="T:GTiff2Tiles.Core.Tiles.Number"/> 1</param>
+            <param name="number2"><see cref="T:GTiff2Tiles.Core.Tiles.Number"/> 2</param>
+            <returns><see langword="true"/> if <see cref="T:GTiff2Tiles.Core.Tiles.Number"/>1 is lesser or equal;
+            <see langword="false"/>otherwise</returns>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Tiles.Number.op_GreaterThanOrEqual(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Tiles.Number)">
+            <summary>
+            Check if <see cref="T:GTiff2Tiles.Core.Tiles.Number"/>1 is bigger or equal, then <see cref="T:GTiff2Tiles.Core.Tiles.Number"/>2
+            </summary>
+            <param name="number1"><see cref="T:GTiff2Tiles.Core.Tiles.Number"/> 1</param>
+            <param name="number2"><see cref="T:GTiff2Tiles.Core.Tiles.Number"/> 2</param>
+            <returns><see langword="true"/> if <see cref="T:GTiff2Tiles.Core.Tiles.Number"/>1 is bigger or equal;
+            <see langword="false"/>otherwise</returns>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Tiles.Number.op_Addition(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Tiles.Number)">
+            <summary>
+            Sum <see cref="T:GTiff2Tiles.Core.Tiles.Number"/>s
+            </summary>
+            <param name="number1"><see cref="T:GTiff2Tiles.Core.Tiles.Number"/> 1</param>
+            <param name="number2"><see cref="T:GTiff2Tiles.Core.Tiles.Number"/> 2</param>
+            <returns>New <see cref="T:GTiff2Tiles.Core.Tiles.Number"/></returns>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Tiles.Number.op_Subtraction(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Tiles.Number)">
+            <summary>
+            Subtruct <see cref="T:GTiff2Tiles.Core.Tiles.Number"/>s
+            </summary>
+            <param name="number1"><see cref="T:GTiff2Tiles.Core.Tiles.Number"/> 1</param>
+            <param name="number2"><see cref="T:GTiff2Tiles.Core.Tiles.Number"/> 2</param>
+            <returns>New <see cref="T:GTiff2Tiles.Core.Tiles.Number"/></returns>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Tiles.Number.op_Multiply(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Tiles.Number)">
+            <summary>
+            Multiply <see cref="T:GTiff2Tiles.Core.Tiles.Number"/>s
+            </summary>
+            <param name="number1"><see cref="T:GTiff2Tiles.Core.Tiles.Number"/> 1</param>
+            <param name="number2"><see cref="T:GTiff2Tiles.Core.Tiles.Number"/> 2</param>
+            <returns>New <see cref="T:GTiff2Tiles.Core.Tiles.Number"/></returns>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Tiles.Number.op_Division(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Tiles.Number)">
+            <summary>
+            Divide <see cref="T:GTiff2Tiles.Core.Tiles.Number"/>s
+            </summary>
+            <param name="number1"><see cref="T:GTiff2Tiles.Core.Tiles.Number"/> 1</param>
+            <param name="number2"><see cref="T:GTiff2Tiles.Core.Tiles.Number"/> 2</param>
+            <returns>New <see cref="T:GTiff2Tiles.Core.Tiles.Number"/></returns>
         </member>
         <member name="T:GTiff2Tiles.Core.Tiles.RasterTile">
             <summary>
