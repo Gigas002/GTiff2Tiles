@@ -8,8 +8,15 @@ namespace GTiff2Tiles.Core.Coordinates
     /// <summary>
     /// Abstract class for geographical coordinates
     /// </summary>
-    public abstract class GeoCoordinate : Coordinate
+    public class GeoCoordinate : Coordinate
     {
+        #region Constructors
+
+        /// <inheritdoc />
+        protected GeoCoordinate(double x, double y) : base(x, y) { }
+
+        #endregion
+
         #region Methods
 
         /// <inheritdoc />
@@ -43,7 +50,7 @@ namespace GTiff2Tiles.Core.Coordinates
         /// <param name="zoom">Zoom</param>
         /// <param name="tileSize">Tile's size</param>
         /// <returns>Converted <see cref="PixelCoordinate"/></returns>
-        public abstract PixelCoordinate ToPixelCoordinate(int zoom, int tileSize);
+        public virtual PixelCoordinate ToPixelCoordinate(int zoom, int tileSize) => null;
 
         /// <summary>
         /// Resolution for given zoom level (measured at Equator)
@@ -51,7 +58,7 @@ namespace GTiff2Tiles.Core.Coordinates
         /// <param name="zoom">Zoom</param>
         /// <param name="tileSize">Tile's size</param>
         /// <returns>Resolution value</returns>
-        public abstract double Resolution(int zoom, int tileSize);
+        public virtual double Resolution(int zoom, int tileSize) => -1.0;
 
         /// <summary>
         /// Calculate zoom from known pixel size

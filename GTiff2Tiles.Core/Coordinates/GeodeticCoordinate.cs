@@ -12,31 +12,21 @@ namespace GTiff2Tiles.Core.Coordinates
         /// <summary>
         /// Analogue of <see cref="Coordinate.X"/>
         /// </summary>
-        public double Longitude
-        {
-            get => X;
-            set => X = value;
-        }
+        public double Longitude => X;
 
         /// <summary>
         /// Analogue of <see cref="Coordinate.Y"/>
         /// </summary>
-        public double Latitude
-        {
-            get => Y;
-            set => Y = value;
-        }
+        public double Latitude => Y;
 
         #endregion
 
         #region Constructors
 
-        /// <summary>
-        /// Create instance of class
-        /// </summary>
-        /// <param name="longitude">Longitude or X</param>
-        /// <param name="latitude">Latitude or Y</param>
-        public GeodeticCoordinate(double longitude, double latitude) => (Longitude, Latitude) = (longitude, latitude);
+        /// <inheritdoc />
+        /// <param name="longitude"><see cref="Coordinate.X"/> or Longitude</param>
+        /// <param name="latitude"><see cref="Coordinate.Y"/> or Latitude</param>
+        public GeodeticCoordinate(double longitude, double latitude) : base(longitude, latitude) { }
 
         #endregion
 
@@ -47,8 +37,8 @@ namespace GTiff2Tiles.Core.Coordinates
         {
             double resolution = Resolution(zoom, tileSize);
 
-            double pixelX = (180.0 + Longitude) / resolution;
-            double pixelY = (90.0 + Latitude) / resolution;
+            double pixelX = (180.0 + X) / resolution;
+            double pixelY = (90.0 + Y) / resolution;
 
             return new PixelCoordinate(pixelX, pixelY);
         }
@@ -59,12 +49,12 @@ namespace GTiff2Tiles.Core.Coordinates
         /// <returns>Converted <see cref="MercatorCoordinate"/></returns>
         public MercatorCoordinate ToMercatorCoordinate()
         {
-            double mercatorLongitude = Longitude * Constants.Geodesic.OriginShift / 180.0;
-            double mercatorLatitude =
-                Math.Log(Math.Tan((90.0 + Latitude) * Math.PI / 360.0)) / (Math.PI / 180.0);
-            mercatorLatitude *= Constants.Geodesic.OriginShift / 180.0;
+            double mercatorX = X * Constants.Geodesic.OriginShift / 180.0;
+            double mercatorY =
+                Math.Log(Math.Tan((90.0 + Y) * Math.PI / 360.0)) / (Math.PI / 180.0);
+            mercatorY *= Constants.Geodesic.OriginShift / 180.0;
 
-            return new MercatorCoordinate(mercatorLongitude, mercatorLatitude);
+            return new MercatorCoordinate(mercatorX, mercatorY);
         }
 
         /// <inheritdoc />
@@ -80,46 +70,6 @@ namespace GTiff2Tiles.Core.Coordinates
             double resFactor = 180.0 / tileSize;
             return resFactor / Math.Pow(2, zoom);
         }
-
-        #region Math operations
-
-        /// <summary>
-        /// Sum coordinates
-        /// </summary>
-        /// <param name="coordinate1">Coordinate 1</param>
-        /// <param name="coordinate2">Coordinate 2</param>
-        /// <returns>New coordinate</returns>
-        public static GeodeticCoordinate operator +(GeodeticCoordinate coordinate1, GeodeticCoordinate coordinate2) =>
-            new GeodeticCoordinate(coordinate1.X + coordinate2.X, coordinate1.Y + coordinate2.Y);
-
-        /// <summary>
-        /// Subtruct coordinates
-        /// </summary>
-        /// <param name="coordinate1">Coordinate 1</param>
-        /// <param name="coordinate2">Coordinate 2</param>
-        /// <returns>New coordinate</returns>
-        public static GeodeticCoordinate operator -(GeodeticCoordinate coordinate1, GeodeticCoordinate coordinate2) =>
-            new GeodeticCoordinate(coordinate1.X - coordinate2.X, coordinate1.Y - coordinate2.Y);
-
-        /// <summary>
-        /// Multiply coordinates
-        /// </summary>
-        /// <param name="coordinate1">Coordinate 1</param>
-        /// <param name="coordinate2">Coordinate 2</param>
-        /// <returns>New coordinate</returns>
-        public static GeodeticCoordinate operator *(GeodeticCoordinate coordinate1, GeodeticCoordinate coordinate2) =>
-            new GeodeticCoordinate(coordinate1.X * coordinate2.X, coordinate1.Y * coordinate2.Y);
-
-        /// <summary>
-        /// Divide coordinates
-        /// </summary>
-        /// <param name="coordinate1">Coordinate 1</param>
-        /// <param name="coordinate2">Coordinate 2</param>
-        /// <returns>New coordinate</returns>
-        public static GeodeticCoordinate operator /(GeodeticCoordinate coordinate1, GeodeticCoordinate coordinate2) =>
-            new GeodeticCoordinate(coordinate1.X / coordinate2.X, coordinate1.Y / coordinate2.Y);
-
-        #endregion
 
         #endregion
     }

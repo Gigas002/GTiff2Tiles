@@ -1,4 +1,5 @@
 ﻿using System;
+using GTiff2Tiles.Core.Enums;
 using GTiff2Tiles.Core.Tiles;
 
 namespace GTiff2Tiles.Core.Coordinates
@@ -10,12 +11,8 @@ namespace GTiff2Tiles.Core.Coordinates
     {
         #region Constructors
 
-        /// <summary>
-        /// Create instance of class
-        /// </summary>
-        /// <param name="x">X coordinate value</param>
-        /// <param name="y">Y coordinate value</param>
-        public PixelCoordinate(double x, double y) => (X, Y) = (x, y);
+        /// <inheritdoc />
+        public PixelCoordinate(double x, double y) : base(x, y) { }
 
         #endregion
 
@@ -36,18 +33,18 @@ namespace GTiff2Tiles.Core.Coordinates
         /// <summary>
         /// Convert current coordinate to child of <see cref="GeoCoordinate"/>
         /// </summary>
-        /// <typeparam name="T">Child of <see cref="GeoCoordinate"/></typeparam>
+        /// <param name="coordinateType">Type of coordinates</param>
         /// <param name="zoom">Zoom</param>
         /// <param name="tileSize">Tile's size</param>
         /// <returns>Converted to <see cref="GeoCoordinate"/> value
-        /// or null if comething goes wrong</returns>
-        public T ToGeoCoordinate<T>(int zoom, int tileSize) where T : GeoCoordinate
-        {
-            if (typeof(T) == typeof(GeodeticCoordinate)) return ToGeodeticCoordinate(zoom, tileSize) as T;
-            if (typeof(T) == typeof(MercatorCoordinate)) return ToMercatorCoordinate(zoom, tileSize) as T;
-
-            return null;
-        }
+        /// or null if something goes wrong</returns>
+        public GeoCoordinate ToGeoCoordinate(CoordinateType coordinateType,
+                                             int zoom, int tileSize) => coordinateType switch
+                                             {
+                                                 CoordinateType.Geodetic => ToGeodeticCoordinate(zoom, tileSize),
+                                                 CoordinateType.Mercator => ToMercatorCoordinate(zoom, tileSize),
+                                                 _ => null
+                                             };
 
         /// <summary>
         /// Convert current coordinate to <see cref="GeodeticCoordinate"/>
@@ -90,46 +87,6 @@ namespace GTiff2Tiles.Core.Coordinates
 
             return new PixelCoordinate(X, mapSize - Y);
         }
-
-        #region Math operations
-
-        /// <summary>
-        /// Sum coordinates
-        /// </summary>
-        /// <param name="coordinate1">Coordinate 1</param>
-        /// <param name="coordinate2">Coordinate 2</param>
-        /// <returns>New coordinate</returns>
-        public static PixelCoordinate operator +(PixelCoordinate coordinate1, PixelCoordinate coordinate2) =>
-            new PixelCoordinate(coordinate1.X + coordinate2.X, coordinate1.Y + coordinate2.Y);
-
-        /// <summary>
-        /// Subtruct coordinates
-        /// </summary>
-        /// <param name="coordinate1">Coordinate 1</param>
-        /// <param name="coordinate2">Coordinate 2</param>
-        /// <returns>New coordinate</returns>
-        public static PixelCoordinate operator -(PixelCoordinate coordinate1, PixelCoordinate coordinate2) =>
-            new PixelCoordinate(coordinate1.X - coordinate2.X, coordinate1.Y - coordinate2.Y);
-
-        /// <summary>
-        /// Multiply coordinates
-        /// </summary>
-        /// <param name="coordinate1">Coordinate 1</param>
-        /// <param name="coordinate2">Coordinate 2</param>
-        /// <returns>New coordinate</returns>
-        public static PixelCoordinate operator *(PixelCoordinate coordinate1, PixelCoordinate coordinate2) =>
-            new PixelCoordinate(coordinate1.X * coordinate2.X, coordinate1.Y * coordinate2.Y);
-
-        /// <summary>
-        /// Divide coordinates
-        /// </summary>
-        /// <param name="coordinate1">Coordinate 1</param>
-        /// <param name="coordinate2">Coordinate 2</param>
-        /// <returns>New coordinate</returns>
-        public static PixelCoordinate operator /(PixelCoordinate coordinate1, PixelCoordinate coordinate2) =>
-            new PixelCoordinate(coordinate1.X / coordinate2.X, coordinate1.Y / coordinate2.Y);
-
-        #endregion
 
         #endregion
     }

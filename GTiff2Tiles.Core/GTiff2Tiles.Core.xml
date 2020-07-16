@@ -111,6 +111,13 @@
         <member name="P:GTiff2Tiles.Core.Coordinates.Coordinate.Y">
             <inheritdoc />
         </member>
+        <member name="M:GTiff2Tiles.Core.Coordinates.Coordinate.#ctor(System.Double,System.Double)">
+            <summary>
+            Create instance of class
+            </summary>
+            <param name="x">X coordinate value</param>
+            <param name="y">Y coordinate value</param>
+        </member>
         <member name="M:GTiff2Tiles.Core.Coordinates.Coordinate.ToNumber(System.Int32,System.Int32,System.Boolean)">
             <inheritdoc />
         </member>
@@ -132,6 +139,9 @@
             <summary>
             Abstract class for geographical coordinates
             </summary>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Coordinates.GeoCoordinate.#ctor(System.Double,System.Double)">
+            <inheritdoc />
         </member>
         <member name="M:GTiff2Tiles.Core.Coordinates.GeoCoordinate.ToNumber(System.Int32,System.Int32,System.Boolean)">
             <inheritdoc />
@@ -180,11 +190,9 @@
             </summary>
         </member>
         <member name="M:GTiff2Tiles.Core.Coordinates.GeodeticCoordinate.#ctor(System.Double,System.Double)">
-            <summary>
-            Create instance of class
-            </summary>
-            <param name="longitude">Longitude or X</param>
-            <param name="latitude">Latitude or Y</param>
+            <inheritdoc />
+            <param name="longitude"><see cref="P:GTiff2Tiles.Core.Coordinates.Coordinate.X"/> or Longitude</param>
+            <param name="latitude"><see cref="P:GTiff2Tiles.Core.Coordinates.Coordinate.Y"/> or Latitude</param>
         </member>
         <member name="M:GTiff2Tiles.Core.Coordinates.GeodeticCoordinate.ToPixelCoordinate(System.Int32,System.Int32)">
             <inheritdoc />
@@ -204,38 +212,6 @@
             <param name="zoom"></param>
             <param name="tileSize"></param>
             <returns></returns>
-        </member>
-        <member name="M:GTiff2Tiles.Core.Coordinates.GeodeticCoordinate.op_Addition(GTiff2Tiles.Core.Coordinates.GeodeticCoordinate,GTiff2Tiles.Core.Coordinates.GeodeticCoordinate)">
-            <summary>
-            Sum coordinates
-            </summary>
-            <param name="coordinate1">Coordinate 1</param>
-            <param name="coordinate2">Coordinate 2</param>
-            <returns>New coordinate</returns>
-        </member>
-        <member name="M:GTiff2Tiles.Core.Coordinates.GeodeticCoordinate.op_Subtraction(GTiff2Tiles.Core.Coordinates.GeodeticCoordinate,GTiff2Tiles.Core.Coordinates.GeodeticCoordinate)">
-            <summary>
-            Subtruct coordinates
-            </summary>
-            <param name="coordinate1">Coordinate 1</param>
-            <param name="coordinate2">Coordinate 2</param>
-            <returns>New coordinate</returns>
-        </member>
-        <member name="M:GTiff2Tiles.Core.Coordinates.GeodeticCoordinate.op_Multiply(GTiff2Tiles.Core.Coordinates.GeodeticCoordinate,GTiff2Tiles.Core.Coordinates.GeodeticCoordinate)">
-            <summary>
-            Multiply coordinates
-            </summary>
-            <param name="coordinate1">Coordinate 1</param>
-            <param name="coordinate2">Coordinate 2</param>
-            <returns>New coordinate</returns>
-        </member>
-        <member name="M:GTiff2Tiles.Core.Coordinates.GeodeticCoordinate.op_Division(GTiff2Tiles.Core.Coordinates.GeodeticCoordinate,GTiff2Tiles.Core.Coordinates.GeodeticCoordinate)">
-            <summary>
-            Divide coordinates
-            </summary>
-            <param name="coordinate1">Coordinate 1</param>
-            <param name="coordinate2">Coordinate 2</param>
-            <returns>New coordinate</returns>
         </member>
         <member name="T:GTiff2Tiles.Core.Coordinates.ICoordinate">
             <summary>
@@ -266,11 +242,9 @@
             </summary>
         </member>
         <member name="M:GTiff2Tiles.Core.Coordinates.MercatorCoordinate.#ctor(System.Double,System.Double)">
-            <summary>
-            Create instance of class
-            </summary>
-            <param name="x"><see cref="P:GTiff2Tiles.Core.Coordinates.Coordinate.X"/> or Longitude</param>
-            <param name="y"><see cref="P:GTiff2Tiles.Core.Coordinates.Coordinate.Y"/> or Latitude</param>
+            <inheritdoc />
+            <param name="longitude"><see cref="P:GTiff2Tiles.Core.Coordinates.Coordinate.X"/> or Longitude</param>
+            <param name="latitude"><see cref="P:GTiff2Tiles.Core.Coordinates.Coordinate.Y"/> or Latitude</param>
         </member>
         <member name="M:GTiff2Tiles.Core.Coordinates.MercatorCoordinate.ToPixelCoordinate(System.Int32,System.Int32)">
             <inheritdoc />
@@ -291,62 +265,26 @@
             <param name="tileSize"></param>
             <returns></returns>
         </member>
-        <member name="M:GTiff2Tiles.Core.Coordinates.MercatorCoordinate.op_Addition(GTiff2Tiles.Core.Coordinates.MercatorCoordinate,GTiff2Tiles.Core.Coordinates.MercatorCoordinate)">
-            <summary>
-            Sum coordinates
-            </summary>
-            <param name="coordinate1">Coordinate 1</param>
-            <param name="coordinate2">Coordinate 2</param>
-            <returns>New coordinate</returns>
-        </member>
-        <member name="M:GTiff2Tiles.Core.Coordinates.MercatorCoordinate.op_Subtraction(GTiff2Tiles.Core.Coordinates.MercatorCoordinate,GTiff2Tiles.Core.Coordinates.MercatorCoordinate)">
-            <summary>
-            Subtruct coordinates
-            </summary>
-            <param name="coordinate1">Coordinate 1</param>
-            <param name="coordinate2">Coordinate 2</param>
-            <returns>New coordinate</returns>
-        </member>
-        <member name="M:GTiff2Tiles.Core.Coordinates.MercatorCoordinate.op_Multiply(GTiff2Tiles.Core.Coordinates.MercatorCoordinate,GTiff2Tiles.Core.Coordinates.MercatorCoordinate)">
-            <summary>
-            Multiply coordinates
-            </summary>
-            <param name="coordinate1">Coordinate 1</param>
-            <param name="coordinate2">Coordinate 2</param>
-            <returns>New coordinate</returns>
-        </member>
-        <member name="M:GTiff2Tiles.Core.Coordinates.MercatorCoordinate.op_Division(GTiff2Tiles.Core.Coordinates.MercatorCoordinate,GTiff2Tiles.Core.Coordinates.MercatorCoordinate)">
-            <summary>
-            Divide coordinates
-            </summary>
-            <param name="coordinate1">Coordinate 1</param>
-            <param name="coordinate2">Coordinate 2</param>
-            <returns>New coordinate</returns>
-        </member>
         <member name="T:GTiff2Tiles.Core.Coordinates.PixelCoordinate">
             <summary>
             Coordinates in pixels
             </summary>
         </member>
         <member name="M:GTiff2Tiles.Core.Coordinates.PixelCoordinate.#ctor(System.Double,System.Double)">
-            <summary>
-            Create instance of class
-            </summary>
-            <param name="x">X coordinate value</param>
-            <param name="y">Y coordinate value</param>
+            <inheritdoc />
         </member>
         <member name="M:GTiff2Tiles.Core.Coordinates.PixelCoordinate.ToNumber(System.Int32,System.Int32,System.Boolean)">
             <inheritdoc />
         </member>
-        <member name="M:GTiff2Tiles.Core.Coordinates.PixelCoordinate.ToGeoCoordinate``1(System.Int32,System.Int32)">
+        <member name="M:GTiff2Tiles.Core.Coordinates.PixelCoordinate.ToGeoCoordinate(GTiff2Tiles.Core.Enums.CoordinateType,System.Int32,System.Int32)">
             <summary>
             Convert current coordinate to child of <see cref="T:GTiff2Tiles.Core.Coordinates.GeoCoordinate"/>
             </summary>
-            <typeparam name="T">Child of <see cref="T:GTiff2Tiles.Core.Coordinates.GeoCoordinate"/></typeparam>
+            <param name="coordinateType">Type of coordinates</param>
             <param name="zoom">Zoom</param>
             <param name="tileSize">Tile's size</param>
             <returns>Converted to <see cref="T:GTiff2Tiles.Core.Coordinates.GeoCoordinate"/> value
-            or null if comething goes wrong</returns>
+            or null if something goes wrong</returns>
         </member>
         <member name="M:GTiff2Tiles.Core.Coordinates.PixelCoordinate.ToGeodeticCoordinate(System.Int32,System.Int32)">
             <summary>
@@ -371,38 +309,6 @@
             <param name="zoom">Zoom</param>
             <param name="tileSize">Tile's size</param>
             <returns>Converted <see cref="T:GTiff2Tiles.Core.Coordinates.PixelCoordinate"/></returns>
-        </member>
-        <member name="M:GTiff2Tiles.Core.Coordinates.PixelCoordinate.op_Addition(GTiff2Tiles.Core.Coordinates.PixelCoordinate,GTiff2Tiles.Core.Coordinates.PixelCoordinate)">
-            <summary>
-            Sum coordinates
-            </summary>
-            <param name="coordinate1">Coordinate 1</param>
-            <param name="coordinate2">Coordinate 2</param>
-            <returns>New coordinate</returns>
-        </member>
-        <member name="M:GTiff2Tiles.Core.Coordinates.PixelCoordinate.op_Subtraction(GTiff2Tiles.Core.Coordinates.PixelCoordinate,GTiff2Tiles.Core.Coordinates.PixelCoordinate)">
-            <summary>
-            Subtruct coordinates
-            </summary>
-            <param name="coordinate1">Coordinate 1</param>
-            <param name="coordinate2">Coordinate 2</param>
-            <returns>New coordinate</returns>
-        </member>
-        <member name="M:GTiff2Tiles.Core.Coordinates.PixelCoordinate.op_Multiply(GTiff2Tiles.Core.Coordinates.PixelCoordinate,GTiff2Tiles.Core.Coordinates.PixelCoordinate)">
-            <summary>
-            Multiply coordinates
-            </summary>
-            <param name="coordinate1">Coordinate 1</param>
-            <param name="coordinate2">Coordinate 2</param>
-            <returns>New coordinate</returns>
-        </member>
-        <member name="M:GTiff2Tiles.Core.Coordinates.PixelCoordinate.op_Division(GTiff2Tiles.Core.Coordinates.PixelCoordinate,GTiff2Tiles.Core.Coordinates.PixelCoordinate)">
-            <summary>
-            Divide coordinates
-            </summary>
-            <param name="coordinate1">Coordinate 1</param>
-            <param name="coordinate2">Coordinate 2</param>
-            <returns>New coordinate</returns>
         </member>
         <member name="T:GTiff2Tiles.Core.Enums.Image.TileExtension">
             <summary>

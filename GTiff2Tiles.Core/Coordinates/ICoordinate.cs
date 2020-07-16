@@ -1,23 +1,24 @@
-﻿using GTiff2Tiles.Core.Tiles;
+﻿using System;
+using GTiff2Tiles.Core.Tiles;
 
 namespace GTiff2Tiles.Core.Coordinates
 {
     /// <summary>
     /// Interface for any coordinate
     /// </summary>
-    public interface ICoordinate
+    public interface ICoordinate //: IEquatable<ICoordinate>
     {
         #region Properties
 
         /// <summary>
         /// X coordinate value or Longitude
         /// </summary>
-        public double X { get; set; }
+        public double X { get; }
 
         /// <summary>
         /// Y coordinate value or Latitude
         /// </summary>
-        public double Y { get; set; }
+        public double Y { get; }
 
         #endregion
 

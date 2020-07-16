@@ -9,12 +9,10 @@ namespace GTiff2Tiles.Core.Coordinates
     {
         #region Constructors
 
-        /// <summary>
-        /// Create instance of class
-        /// </summary>
-        /// <param name="x"><see cref="Coordinate.X"/> or Longitude</param>
-        /// <param name="y"><see cref="Coordinate.Y"/> or Latitude</param>
-        public MercatorCoordinate(double x, double y) => (X, Y) = (x, y);
+        /// <inheritdoc />
+        /// <param name="longitude"><see cref="Coordinate.X"/> or Longitude</param>
+        /// <param name="latitude"><see cref="Coordinate.Y"/> or Latitude</param>
+        public MercatorCoordinate(double longitude, double latitude) : base(longitude, latitude) { }
 
         #endregion
 
@@ -60,46 +58,6 @@ namespace GTiff2Tiles.Core.Coordinates
 
             return initialResolution / Math.Pow(2.0, zoom);
         }
-
-        #region Math operations
-
-        /// <summary>
-        /// Sum coordinates
-        /// </summary>
-        /// <param name="coordinate1">Coordinate 1</param>
-        /// <param name="coordinate2">Coordinate 2</param>
-        /// <returns>New coordinate</returns>
-        public static MercatorCoordinate operator +(MercatorCoordinate coordinate1, MercatorCoordinate coordinate2) =>
-            new MercatorCoordinate(coordinate1.X + coordinate2.X, coordinate1.Y + coordinate2.Y);
-
-        /// <summary>
-        /// Subtruct coordinates
-        /// </summary>
-        /// <param name="coordinate1">Coordinate 1</param>
-        /// <param name="coordinate2">Coordinate 2</param>
-        /// <returns>New coordinate</returns>
-        public static MercatorCoordinate operator -(MercatorCoordinate coordinate1, MercatorCoordinate coordinate2) =>
-            new MercatorCoordinate(coordinate1.X - coordinate2.X, coordinate1.Y - coordinate2.Y);
-
-        /// <summary>
-        /// Multiply coordinates
-        /// </summary>
-        /// <param name="coordinate1">Coordinate 1</param>
-        /// <param name="coordinate2">Coordinate 2</param>
-        /// <returns>New coordinate</returns>
-        public static MercatorCoordinate operator *(MercatorCoordinate coordinate1, MercatorCoordinate coordinate2) =>
-            new MercatorCoordinate(coordinate1.X * coordinate2.X, coordinate1.Y * coordinate2.Y);
-
-        /// <summary>
-        /// Divide coordinates
-        /// </summary>
-        /// <param name="coordinate1">Coordinate 1</param>
-        /// <param name="coordinate2">Coordinate 2</param>
-        /// <returns>New coordinate</returns>
-        public static MercatorCoordinate operator /(MercatorCoordinate coordinate1, MercatorCoordinate coordinate2) =>
-            new MercatorCoordinate(coordinate1.X / coordinate2.X, coordinate1.Y / coordinate2.Y);
-
-        #endregion
 
         #endregion
     }

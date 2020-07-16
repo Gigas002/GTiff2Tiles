@@ -6,22 +6,33 @@ namespace GTiff2Tiles.Core.Coordinates
     /// <summary>
     /// Basic realisation of <see cref="ICoordinate"/> interface
     /// </summary>
-    public abstract class Coordinate : ICoordinate
+    public class Coordinate : ICoordinate
     {
         #region Properties
 
         /// <inheritdoc />
-        public double X { get; set; }
+        public virtual double X { get; }
 
         /// <inheritdoc />
-        public double Y { get; set; }
+        public virtual double Y { get; }
+
+        #endregion
+
+        #region Constructors
+
+        /// <summary>
+        /// Create instance of class
+        /// </summary>
+        /// <param name="x">X coordinate value</param>
+        /// <param name="y">Y coordinate value</param>
+        protected Coordinate(double x, double y) => (X, Y) = (x, y);
 
         #endregion
 
         #region Methods
 
         /// <inheritdoc />
-        public abstract Number ToNumber(int zoom, int tileSize, bool tmsCompatible);
+        public virtual Number ToNumber(int zoom, int tileSize, bool tmsCompatible) => null;
 
         /// <summary>
         /// Converts degrees to radians
