@@ -996,75 +996,75 @@
         </member>
         <member name="P:GTiff2Tiles.Core.Tiles.ITile.IsDisposed">
             <summary>
-            Shows if tile's already disposed
+            Shows if <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>'s already disposed
             </summary>
         </member>
         <member name="P:GTiff2Tiles.Core.Tiles.ITile.MinCoordinate">
             <summary>
-            Minimum coordinate of this tile
+            Minimum <see cref="T:GTiff2Tiles.Core.Coordinates.GeoCoordinate"/> of this <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>
             </summary>
         </member>
         <member name="P:GTiff2Tiles.Core.Tiles.ITile.MaxCoordinate">
             <summary>
-            Maximum coordinate of this tile
+            Maximum <see cref="T:GTiff2Tiles.Core.Coordinates.GeoCoordinate"/> of this <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>
             </summary>
         </member>
         <member name="P:GTiff2Tiles.Core.Tiles.ITile.Number">
             <summary>
-            Number of this tile
+            <see cref="P:GTiff2Tiles.Core.Tiles.ITile.Number"/> of this <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>
             </summary>
         </member>
         <member name="P:GTiff2Tiles.Core.Tiles.ITile.Bytes">
             <summary>
-            Tile bytes
+            <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/> bytes
             </summary>
         </member>
         <member name="P:GTiff2Tiles.Core.Tiles.ITile.Size">
             <summary>
-            Size (width, height) of this tile
+            <see cref="T:GTiff2Tiles.Core.Images.Size"/> (width, height) of this <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>
             </summary>
         </member>
         <member name="P:GTiff2Tiles.Core.Tiles.ITile.FileInfo">
             <summary>
-            FileInfo that represents this tile
+            <see cref="T:System.IO.FileInfo"/> that represents this <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>
             </summary>
         </member>
         <member name="P:GTiff2Tiles.Core.Tiles.ITile.Extension">
             <summary>
-            Extension of tile
+            Extension of <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>
             </summary>
         </member>
         <member name="P:GTiff2Tiles.Core.Tiles.ITile.TmsCompatible">
             <summary>
-            Is tile tms compatible?
+            Is <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/> tms compatible?
             </summary>
         </member>
         <member name="M:GTiff2Tiles.Core.Tiles.ITile.Validate(System.Boolean)">
             <summary>
-            Checks if this tile is not empty or too small
+            Checks if this <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/> is not empty or too small
             </summary>
             <param name="isCheckFileInfo">Do you want to check <see cref="P:GTiff2Tiles.Core.Tiles.ITile.FileInfo"/>?</param>
-            <returns><see langword="true"/> if tile's valid, <see langword="false"/> otherwise</returns>
+            <returns><see langword="true"/> if <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>'s valid; <see langword="false"/> otherwise</returns>
         </member>
         <member name="M:GTiff2Tiles.Core.Tiles.ITile.CalculatePosition">
             <summary>
-            Calculates this tile position in upper tile
+            Calculates this <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/> position in upper <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>
             </summary>
             <returns>Value in range from 0 to 3</returns>
         </member>
         <member name="T:GTiff2Tiles.Core.Tiles.Number">
             <summary>
-            Number of tile
+            <see cref="T:GTiff2Tiles.Core.Tiles.Number"/> of <seealso cref="T:GTiff2Tiles.Core.Tiles.ITile"/>
             </summary>
         </member>
         <member name="P:GTiff2Tiles.Core.Tiles.Number.X">
             <summary>
-            X number
+            X <see cref="T:GTiff2Tiles.Core.Tiles.Number"/> value
             </summary>
         </member>
         <member name="P:GTiff2Tiles.Core.Tiles.Number.Y">
             <summary>
-            Y number
+            Y <see cref="T:GTiff2Tiles.Core.Tiles.Number"/> value
             </summary>
         </member>
         <member name="P:GTiff2Tiles.Core.Tiles.Number.Z">
@@ -1074,36 +1074,36 @@
         </member>
         <member name="M:GTiff2Tiles.Core.Tiles.Number.#ctor(System.Int32,System.Int32,System.Int32)">
             <summary>
-            Initializes number
+            Creates new <see cref="T:GTiff2Tiles.Core.Tiles.Number"/>
             </summary>
-            <param name="x">X number</param>
-            <param name="y">Y number</param>
+            <param name="x"><see cref="P:GTiff2Tiles.Core.Tiles.Number.X"/></param>
+            <param name="y"><see cref="P:GTiff2Tiles.Core.Tiles.Number.Y"/></param>
             <param name="z">Zoom</param>
         </member>
         <member name="M:GTiff2Tiles.Core.Tiles.Number.FlipY(System.Int32,System.Int32)">
             <summary>
-            Converts y number
+            Flips value of passed <see cref="P:GTiff2Tiles.Core.Tiles.Number.Y"/>
             </summary>
-            <param name="y">Number.Y</param>
+            <param name="y"><see cref="P:GTiff2Tiles.Core.Tiles.Number.Y"/> to flip</param>
             <param name="z">Zoom</param>
-            <returns>Converted Number.Y</returns>
+            <returns>Converted <see cref="P:GTiff2Tiles.Core.Tiles.Number.Y"/></returns>
         </member>
         <member name="M:GTiff2Tiles.Core.Tiles.Number.Flip">
             <summary>
-            Flips number
+            Flips <see cref="T:GTiff2Tiles.Core.Tiles.Number"/>
             </summary>
-            <returns>Converted number</returns>
+            <returns>Converted <see cref="T:GTiff2Tiles.Core.Tiles.Number"/></returns>
         </member>
         <member name="M:GTiff2Tiles.Core.Tiles.Number.Flip(GTiff2Tiles.Core.Tiles.Number)">
             <inheritdoc cref="M:GTiff2Tiles.Core.Tiles.Number.Flip"/>
-            <param name="number">Number to flip</param>
+            <param name="number"><see cref="T:GTiff2Tiles.Core.Tiles.Number"/> to flip</param>
         </member>
         <member name="M:GTiff2Tiles.Core.Tiles.Number.ToGeodeticCoordinates(System.Int32)">
             <summary>
             Convert <see cref="T:GTiff2Tiles.Core.Tiles.Number"/> to <see cref="T:GTiff2Tiles.Core.Coordinates.GeodeticCoordinate"/>s
             </summary>
             <param name="tileSize">Tile's size</param>
-            <returns><seealso cref="T:System.ValueTuple"/> of <seealso cref="T:GTiff2Tiles.Core.Coordinates.GeodeticCoordinate"/></returns>
+            <returns><seealso cref="T:System.ValueTuple"/> of <seealso cref="T:GTiff2Tiles.Core.Coordinates.GeodeticCoordinate"/>s</returns>
         </member>
         <member name="M:GTiff2Tiles.Core.Tiles.Number.ToGeodeticCoordinates(GTiff2Tiles.Core.Tiles.Number,System.Int32)">
             <inheritdoc cref="M:GTiff2Tiles.Core.Tiles.Number.ToGeodeticCoordinates(System.Int32)"/>
@@ -1115,7 +1115,7 @@
             Convert <see cref="T:GTiff2Tiles.Core.Tiles.Number"/> to <see cref="T:GTiff2Tiles.Core.Coordinates.MercatorCoordinate"/>s
             </summary>
             <param name="tileSize">Tile's size</param>
-            <returns><seealso cref="T:System.ValueTuple"/> of <seealso cref="T:GTiff2Tiles.Core.Coordinates.MercatorCoordinate"/></returns>
+            <returns><seealso cref="T:System.ValueTuple"/> of <seealso cref="T:GTiff2Tiles.Core.Coordinates.MercatorCoordinate"/>s</returns>
         </member>
         <member name="M:GTiff2Tiles.Core.Tiles.Number.ToMercatorCoordinates(GTiff2Tiles.Core.Tiles.Number,System.Int32)">
             <inheritdoc cref="M:GTiff2Tiles.Core.Tiles.Number.ToMercatorCoordinates(System.Int32)"/>
@@ -1126,10 +1126,10 @@
             <summary>
             Convert <see cref="T:GTiff2Tiles.Core.Tiles.Number"/> to <see cref="T:GTiff2Tiles.Core.Coordinates.GeoCoordinate"/>s
             </summary>
-            <param name="coordinateType">Type of coordinates</param>
+            <param name="coordinateType">Type of <see cref="T:GTiff2Tiles.Core.Coordinates.GeoCoordinate"/></param>
             <param name="tileSize">Tile's size</param>
             <param name="tmsCompatible">Is tms compatible?</param>
-            <returns><seealso cref="T:System.ValueTuple"/> of <seealso cref="T:GTiff2Tiles.Core.Coordinates.GeoCoordinate"/></returns>
+            <returns><seealso cref="T:System.ValueTuple"/> of <seealso cref="T:GTiff2Tiles.Core.Coordinates.GeoCoordinate"/>s</returns>
         </member>
         <member name="M:GTiff2Tiles.Core.Tiles.Number.ToGeoCoordinates(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Enums.CoordinateType,System.Int32,System.Boolean)">
             <inheritdoc cref="M:GTiff2Tiles.Core.Tiles.Number.ToGeoCoordinates(GTiff2Tiles.Core.Enums.CoordinateType,System.Int32,System.Boolean)"/>
@@ -1140,15 +1140,15 @@
         </member>
         <member name="M:GTiff2Tiles.Core.Tiles.Number.GetLowerNumbers(System.Int32)">
             <summary>
-            Get lower numbers for specified number and zoom (>=10)
+            Get lower <see cref="T:GTiff2Tiles.Core.Tiles.Number"/>s for specified <see cref="T:GTiff2Tiles.Core.Tiles.Number"/> and zoom (>=10)
             </summary>
-            <param name="zoom">Zoom. Must be >=10</param>
+            <param name="z">Zoom; must be >=10</param>
             <returns><see cref="T:System.ValueTuple"/> of lower <see cref="T:GTiff2Tiles.Core.Tiles.Number"/>s</returns>
         </member>
         <member name="M:GTiff2Tiles.Core.Tiles.Number.GetLowerNumbers(GTiff2Tiles.Core.Tiles.Number,System.Int32)">
             <inheritdoc cref="M:GTiff2Tiles.Core.Tiles.Number.GetLowerNumbers(System.Int32)"/>
-            <param name="number">Base number</param>
-            <param name="zoom"></param>
+            <param name="number">Base <see cref="T:GTiff2Tiles.Core.Tiles.Number"/></param>
+            <param name="z"></param>
         </member>
         <member name="M:GTiff2Tiles.Core.Tiles.Number.GetCount(GTiff2Tiles.Core.Coordinates.GeoCoordinate,GTiff2Tiles.Core.Coordinates.GeoCoordinate,System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size)">
             <summary>
@@ -1159,7 +1159,7 @@
             <param name="minZ">Minimum zoom</param>
             <param name="maxZ">Maximum zoom</param>
             <param name="tmsCompatible">Is tms compatible?</param>
-            <param name="size">Tile's size</param>
+            <param name="size">Tile's <see cref="T:GTiff2Tiles.Core.Images.Size"/></param>
             <returns>Tiles count</returns>
         </member>
         <member name="M:GTiff2Tiles.Core.Tiles.Number.Equals(System.Object)">
@@ -1259,43 +1259,43 @@
         </member>
         <member name="T:GTiff2Tiles.Core.Tiles.RasterTile">
             <summary>
-            Raster tile
+            Raster <see cref="T:GTiff2Tiles.Core.Tiles.Tile"/>
             </summary>
         </member>
         <member name="F:GTiff2Tiles.Core.Tiles.RasterTile.DefaultBandsCount">
             <summary>
-            Default number of bands
+            Default count of bands
             </summary>
         </member>
         <member name="P:GTiff2Tiles.Core.Tiles.RasterTile.BandsCount">
             <summary>
-            Number of bands in tile
+            Count of bands in <see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/>
             </summary>
         </member>
         <member name="M:GTiff2Tiles.Core.Tiles.RasterTile.#ctor(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Images.Size,System.Collections.Generic.IEnumerable{System.Byte},System.String,System.Boolean,GTiff2Tiles.Core.Enums.CoordinateType,System.Int32)">
             <summary>
-            Creates new tile
+            Creates new <see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/>
             </summary>
-            <param name="number">Tile number</param>
-            <param name="size">Tile size</param>
-            <param name="d">Tile bytes</param>
-            <param name="extension">Tile extension</param>
+            <param name="number"><see cref="P:GTiff2Tiles.Core.Tiles.Tile.Number"/></param>
+            <param name="size"><see cref="P:GTiff2Tiles.Core.Tiles.Tile.Size"/></param>
+            <param name="bytes"><see cref="P:GTiff2Tiles.Core.Tiles.Tile.Bytes"/></param>
+            <param name="extension"><see cref="P:GTiff2Tiles.Core.Tiles.Tile.Extension"/></param>
             <param name="tmsCompatible">Is tms compatible?</param>
-            <param name="coordinateType">Type of coordinates</param>
-            <param name="bandsCount">Bands count</param>
+            <param name="coordinateType">Type of <see cref="T:GTiff2Tiles.Core.Coordinates.GeoCoordinate"/></param>
+            <param name="bandsCount"><see cref="P:GTiff2Tiles.Core.Tiles.RasterTile.BandsCount"/></param>
         </member>
         <member name="M:GTiff2Tiles.Core.Tiles.RasterTile.#ctor(GTiff2Tiles.Core.Coordinates.GeoCoordinate,GTiff2Tiles.Core.Coordinates.GeoCoordinate,System.Int32,GTiff2Tiles.Core.Images.Size,System.Collections.Generic.IEnumerable{System.Byte},System.String,System.Boolean,System.Int32)">
             <summary>
-            Creates new tile from coordinate values
+            Creates new <see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/> from <see cref="T:GTiff2Tiles.Core.Coordinates.GeoCoordinate"/> values
             </summary>
-            <param name="minCoordinate">Minimum coordinate</param>
-            <param name="maxCoordinate">Maximum coordinate</param>
-            <param name="z">Zoom</param>
-            <param name="size">Tile size</param>
-            <param name="d">Tile bytes</param>
-            <param name="extension">Tile extension</param>
+            <param name="minCoordinate">Minimum <see cref="T:GTiff2Tiles.Core.Coordinates.GeoCoordinate"/></param>
+            <param name="maxCoordinate">Maximum <see cref="T:GTiff2Tiles.Core.Coordinates.GeoCoordinate"/></param>
+            <param name="zoom">Zoom</param>
+            <param name="size"><see cref="P:GTiff2Tiles.Core.Tiles.Tile.Size"/></param>
+            <param name="bytes"><see cref="P:GTiff2Tiles.Core.Tiles.Tile.Bytes"/></param>
+            <param name="extension"><see cref="P:GTiff2Tiles.Core.Tiles.Tile.Extension"/></param>
             <param name="tmsCompatible">Is tms compatible?</param>
-            <param name="bandsCount">Bands count</param>
+            <param name="bandsCount"><see cref="P:GTiff2Tiles.Core.Tiles.RasterTile.BandsCount"/></param>
         </member>
         <member name="T:GTiff2Tiles.Core.Tiles.Tile">
             <summary>
@@ -1304,7 +1304,13 @@
         </member>
         <member name="F:GTiff2Tiles.Core.Tiles.Tile.DefaultSize">
             <summary>
-            Default tile size
+            Default <see cref="T:GTiff2Tiles.Core.Tiles.Tile"/>'s <see cref="T:GTiff2Tiles.Core.Images.Size"/>
+            </summary>
+        </member>
+        <member name="F:GTiff2Tiles.Core.Tiles.Tile.MinimalBytesCount">
+            <summary>
+            <see cref="T:GTiff2Tiles.Core.Tiles.Tile"/>s with <see cref="P:GTiff2Tiles.Core.Tiles.Tile.Bytes"/> count lesser
+            than this value won't pass <see cref="M:GTiff2Tiles.Core.Tiles.Tile.Validate(System.Boolean)"/> check
             </summary>
         </member>
         <member name="P:GTiff2Tiles.Core.Tiles.Tile.IsDisposed">
@@ -1336,30 +1342,30 @@
         </member>
         <member name="M:GTiff2Tiles.Core.Tiles.Tile.#ctor(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Images.Size,System.Collections.Generic.IEnumerable{System.Byte},System.String,System.Boolean,GTiff2Tiles.Core.Enums.CoordinateType)">
             <summary>
-            Creates new tile
+            Creates new <see cref="T:GTiff2Tiles.Core.Tiles.Tile"/>
             </summary>
-            <param name="number">Tile number</param>
-            <param name="size">Tile size</param>
-            <param name="d">Tile bytes</param>
-            <param name="extension">Tile extension</param>
+            <param name="number"><see cref="P:GTiff2Tiles.Core.Tiles.Tile.Number"/></param>
+            <param name="size"><see cref="P:GTiff2Tiles.Core.Tiles.Tile.Size"/></param>
+            <param name="bytes"><see cref="P:GTiff2Tiles.Core.Tiles.Tile.Bytes"/></param>
+            <param name="extension"><see cref="P:GTiff2Tiles.Core.Tiles.Tile.Extension"/></param>
             <param name="tmsCompatible">Is tms compatible?</param>
-            <param name="coordinateType">Type of coordinates</param>
+            <param name="coordinateType">Type of <see cref="T:GTiff2Tiles.Core.Coordinates.GeoCoordinate"/></param>
         </member>
         <member name="M:GTiff2Tiles.Core.Tiles.Tile.#ctor(GTiff2Tiles.Core.Coordinates.GeoCoordinate,GTiff2Tiles.Core.Coordinates.GeoCoordinate,System.Int32,GTiff2Tiles.Core.Images.Size,System.Collections.Generic.IEnumerable{System.Byte},System.String,System.Boolean)">
             <summary>
-            Creates new tile from coordinate values
+            Creates new <see cref="T:GTiff2Tiles.Core.Tiles.Tile"/> from <see cref="T:GTiff2Tiles.Core.Coordinates.GeoCoordinate"/> values
             </summary>
-            <param name="minCoordinate">Minimum coordinate</param>
-            <param name="maxCoordinate">Maximum coordinate</param>
-            <param name="z">Zoom</param>
-            <param name="size">Tile size</param>
-            <param name="d">Tile bytes</param>
-            <param name="extension">Tile extension</param>
+            <param name="minCoordinate">Minimum <see cref="T:GTiff2Tiles.Core.Coordinates.GeoCoordinate"/></param>
+            <param name="maxCoordinate">Maximum <see cref="T:GTiff2Tiles.Core.Coordinates.GeoCoordinate"/></param>
+            <param name="zoom">Zoom</param>
+            <param name="size"><see cref="P:GTiff2Tiles.Core.Tiles.Tile.Size"/></param>
+            <param name="bytes"><see cref="P:GTiff2Tiles.Core.Tiles.Tile.Bytes"/></param>
+            <param name="extension"><see cref="P:GTiff2Tiles.Core.Tiles.Tile.Extension"/></param>
             <param name="tmsCompatible">Is tms compatible?</param>
         </member>
         <member name="M:GTiff2Tiles.Core.Tiles.Tile.Finalize">
             <summary>
-            Calls <see cref="M:GTiff2Tiles.Core.Tiles.Tile.Dispose(System.Boolean)"/> on this tile.
+            Calls <see cref="M:GTiff2Tiles.Core.Tiles.Tile.Dispose(System.Boolean)"/> on this <see cref="T:GTiff2Tiles.Core.Tiles.Tile"/>.
             </summary>
         </member>
         <member name="M:GTiff2Tiles.Core.Tiles.Tile.Dispose">
@@ -1369,7 +1375,7 @@
             <summary>
             Actually disposes the data.
             </summary>
-            <param name="disposing"></param>
+            <param name="disposing">Dispose static fields?</param>
         </member>
         <member name="M:GTiff2Tiles.Core.Tiles.Tile.DisposeAsync">
             <inheritdoc />
@@ -1379,7 +1385,7 @@
         </member>
         <member name="M:GTiff2Tiles.Core.Tiles.Tile.Validate(GTiff2Tiles.Core.Tiles.ITile,System.Boolean)">
             <inheritdoc cref="M:GTiff2Tiles.Core.Tiles.Tile.Validate(System.Boolean)"/>
-            <param name="tile">Tile to check</param>
+            <param name="tile"><see cref="T:GTiff2Tiles.Core.Tiles.Tile"/> to check</param>
             <param name="isCheckFileInfo"></param>
         </member>
         <member name="M:GTiff2Tiles.Core.Tiles.Tile.CalculatePosition">
@@ -1387,8 +1393,8 @@
         </member>
         <member name="M:GTiff2Tiles.Core.Tiles.Tile.CalculatePosition(GTiff2Tiles.Core.Tiles.Number,System.Boolean)">
             <inheritdoc cref="M:GTiff2Tiles.Core.Tiles.Tile.CalculatePosition"/>
-            <param name="number">Number of tile</param>
-            <param name="tmsCompatible">Is tile tms compatible?</param>
+            <param name="number"><see cref="T:GTiff2Tiles.Core.Tiles.Number"/> of <see cref="T:GTiff2Tiles.Core.Tiles.Tile"/></param>
+            <param name="tmsCompatible">Is tms compatible?</param>
         </member>
     </members>
 </doc>

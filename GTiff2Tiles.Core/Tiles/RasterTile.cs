@@ -11,7 +11,7 @@ using GTiff2Tiles.Core.Images;
 namespace GTiff2Tiles.Core.Tiles
 {
     /// <summary>
-    /// Raster tile
+    /// Raster <see cref="Tile"/>
     /// </summary>
     public class RasterTile : Tile
     {
@@ -20,12 +20,12 @@ namespace GTiff2Tiles.Core.Tiles
         #region Properties/Constants
 
         /// <summary>
-        /// Default number of bands
+        /// Default count of bands
         /// </summary>
         public const int DefaultBandsCount = 4;
 
         /// <summary>
-        /// Number of bands in tile
+        /// Count of bands in <see cref="RasterTile"/>
         /// </summary>
         public int BandsCount { get; }
 
@@ -34,37 +34,37 @@ namespace GTiff2Tiles.Core.Tiles
         #region Constructors
 
         /// <summary>
-        /// Creates new tile
+        /// Creates new <see cref="RasterTile"/>
         /// </summary>
-        /// <param name="number">Tile number</param>
-        /// <param name="size">Tile size</param>
-        /// <param name="d">Tile bytes</param>
-        /// <param name="extension">Tile extension</param>
+        /// <param name="number"><see cref="Tile.Number"/></param>
+        /// <param name="size"><see cref="Tile.Size"/></param>
+        /// <param name="bytes"><see cref="Tile.Bytes"/></param>
+        /// <param name="extension"><see cref="Tile.Extension"/></param>
         /// <param name="tmsCompatible">Is tms compatible?</param>
-        /// <param name="coordinateType">Type of coordinates</param>
-        /// <param name="bandsCount">Bands count</param>
-        public RasterTile(Number number, Size size = null, IEnumerable<byte> d = null,
+        /// <param name="coordinateType">Type of <see cref="GeoCoordinate"/></param>
+        /// <param name="bandsCount"><see cref="BandsCount"/></param>
+        public RasterTile(Number number, Size size = null, IEnumerable<byte> bytes = null,
                           string extension = FileExtensions.Png, bool tmsCompatible = false,
                           CoordinateType coordinateType = CoordinateType.Mercator,
                           int bandsCount = DefaultBandsCount)
-            : base(number, size, d, extension, tmsCompatible, coordinateType) => BandsCount = bandsCount;
+            : base(number, size, bytes, extension, tmsCompatible, coordinateType) => BandsCount = bandsCount;
 
         /// <summary>
-        /// Creates new tile from coordinate values
+        /// Creates new <see cref="RasterTile"/> from <see cref="GeoCoordinate"/> values
         /// </summary>
-        /// <param name="minCoordinate">Minimum coordinate</param>
-        /// <param name="maxCoordinate">Maximum coordinate</param>
-        /// <param name="z">Zoom</param>
-        /// <param name="size">Tile size</param>
-        /// <param name="d">Tile bytes</param>
-        /// <param name="extension">Tile extension</param>
+        /// <param name="minCoordinate">Minimum <see cref="GeoCoordinate"/></param>
+        /// <param name="maxCoordinate">Maximum <see cref="GeoCoordinate"/></param>
+        /// <param name="zoom">Zoom</param>
+        /// <param name="size"><see cref="Tile.Size"/></param>
+        /// <param name="bytes"><see cref="Tile.Bytes"/></param>
+        /// <param name="extension"><see cref="Tile.Extension"/></param>
         /// <param name="tmsCompatible">Is tms compatible?</param>
-        /// <param name="bandsCount">Bands count</param>
-        public RasterTile(GeoCoordinate minCoordinate, GeoCoordinate maxCoordinate, int z,
-                          Size size = null, IEnumerable<byte> d = null,
+        /// <param name="bandsCount"><see cref="BandsCount"/></param>
+        public RasterTile(GeoCoordinate minCoordinate, GeoCoordinate maxCoordinate, int zoom,
+                          Size size = null, IEnumerable<byte> bytes = null,
                           string extension = FileExtensions.Png,
                           bool tmsCompatible = false, int bandsCount = DefaultBandsCount)
-            : base(minCoordinate, maxCoordinate, z, size, d, extension, tmsCompatible) => BandsCount = bandsCount;
+            : base(minCoordinate, maxCoordinate, zoom, size, bytes, extension, tmsCompatible) => BandsCount = bandsCount;
 
         #endregion
     }

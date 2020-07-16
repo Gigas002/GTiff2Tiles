@@ -25,84 +25,90 @@ namespace GTiff2Tiles.Core.Tiles
         #region Properties
 
         /// <summary>
-        /// Default tile size
+        /// Default <see cref="Tile"/>'s <see cref="Images.Size"/>
         /// </summary>
         public static readonly Size DefaultSize = new Size(256, 256);
+
+        /// <summary>
+        /// <see cref="Tile"/>s with <see cref="Bytes"/> count lesser
+        /// than this value won't pass <see cref="Validate(bool)"/> check
+        /// </summary>
+        public const int MinimalBytesCount = 355;
 
         /// <inheritdoc />
         public bool IsDisposed { get; set; }
 
         /// <inheritdoc />
-        public GeoCoordinate MinCoordinate { get; set; }
+        public GeoCoordinate MinCoordinate { get; }
 
         /// <inheritdoc />
-        public GeoCoordinate MaxCoordinate { get; set; }
+        public GeoCoordinate MaxCoordinate { get; }
 
         /// <inheritdoc />
-        public Number Number { get; set; }
+        public Number Number { get; }
 
         /// <inheritdoc />
         public IEnumerable<byte> Bytes { get; set; }
 
         /// <inheritdoc />
-        public Size Size { get; set; }
+        public Size Size { get; }
 
         /// <inheritdoc />
         public FileInfo FileInfo { get; set; }
 
         /// <inheritdoc />
-        public string Extension { get; set; }
+        public string Extension { get; }
 
         /// <inheritdoc />
-        public bool TmsCompatible { get; set; }
+        public bool TmsCompatible { get; }
 
         #endregion
 
         #region Constructors/Destructors
 
         /// <summary>
-        /// Creates new tile
+        /// Creates new <see cref="Tile"/>
         /// </summary>
-        /// <param name="number">Tile number</param>
-        /// <param name="size">Tile size</param>
-        /// <param name="d">Tile bytes</param>
-        /// <param name="extension">Tile extension</param>
+        /// <param name="number"><see cref="Number"/></param>
+        /// <param name="size"><see cref="Size"/></param>
+        /// <param name="bytes"><see cref="Bytes"/></param>
+        /// <param name="extension"><see cref="Extension"/></param>
         /// <param name="tmsCompatible">Is tms compatible?</param>
-        /// <param name="coordinateType">Type of coordinates</param>
-        protected Tile(Number number, Size size = null, IEnumerable<byte> d = null, string extension = Constants.FileExtensions.Png,
+        /// <param name="coordinateType">Type of <see cref="GeoCoordinate"/></param>
+        protected Tile(Number number, Size size = null, IEnumerable<byte> bytes = null, string extension = Constants.FileExtensions.Png,
                        bool tmsCompatible = false, CoordinateType coordinateType = CoordinateType.Geodetic)
         {
-            (Number, Bytes, Extension, TmsCompatible, Size) = (number, d, extension, tmsCompatible, size ?? DefaultSize);
+            (Number, Bytes, Extension, TmsCompatible, Size) = (number, bytes, extension, tmsCompatible, size ?? DefaultSize);
             (MinCoordinate, MaxCoordinate) = Number.ToGeoCoordinates(coordinateType, Size.Width, tmsCompatible);
         }
 
         /// <summary>
-        /// Creates new tile from coordinate values
+        /// Creates new <see cref="Tile"/> from <see cref="GeoCoordinate"/> values
         /// </summary>
-        /// <param name="minCoordinate">Minimum coordinate</param>
-        /// <param name="maxCoordinate">Maximum coordinate</param>
-        /// <param name="z">Zoom</param>
-        /// <param name="size">Tile size</param>
-        /// <param name="d">Tile bytes</param>
-        /// <param name="extension">Tile extension</param>
+        /// <param name="minCoordinate">Minimum <see cref="GeoCoordinate"/></param>
+        /// <param name="maxCoordinate">Maximum <see cref="GeoCoordinate"/></param>
+        /// <param name="zoom">Zoom</param>
+        /// <param name="size"><see cref="Size"/></param>
+        /// <param name="bytes"><see cref="Bytes"/></param>
+        /// <param name="extension"><see cref="Extension"/></param>
         /// <param name="tmsCompatible">Is tms compatible?</param>
-        protected Tile(GeoCoordinate minCoordinate, GeoCoordinate maxCoordinate, int z, Size size = null,
-                       IEnumerable<byte> d = null, string extension = Constants.FileExtensions.Png,
+        protected Tile(GeoCoordinate minCoordinate, GeoCoordinate maxCoordinate, int zoom, Size size = null,
+                       IEnumerable<byte> bytes = null, string extension = Constants.FileExtensions.Png,
                        bool tmsCompatible = false)
         {
             Size = size ?? DefaultSize;
             (Number minNumber, Number maxNumber) =
-                GeoCoordinate.GetNumbers(minCoordinate, maxCoordinate, z, Size.Width, tmsCompatible);
+                GeoCoordinate.GetNumbers(minCoordinate, maxCoordinate, zoom, Size.Width, tmsCompatible);
 
             if (!minNumber.Equals(maxNumber))
                 throw new TileException();
 
-            (Number, Bytes, Extension, TmsCompatible) = (minNumber, d, extension, tmsCompatible);
+            (Number, Bytes, Extension, TmsCompatible) = (minNumber, bytes, extension, tmsCompatible);
             (MinCoordinate, MaxCoordinate) = (minCoordinate, maxCoordinate);
         }
 
         /// <summary>
-        /// Calls <see cref="Dispose(bool)"/> on this tile.
+        /// Calls <see cref="Dispose(bool)"/> on this <see cref="Tile"/>.
         /// </summary>
         ~Tile() => Dispose(false);
 
@@ -122,7 +128,7 @@ namespace GTiff2Tiles.Core.Tiles
         /// <summary>
         /// Actually disposes the data.
         /// </summary>
-        /// <param name="disposing"></param>
+        /// <param name="disposing">Dispose static fields?</param>
         protected virtual void Dispose(bool disposing)
         {
             if (IsDisposed) return;
@@ -159,13 +165,12 @@ namespace GTiff2Tiles.Core.Tiles
         /// <inheritdoc />
         public bool Validate(bool isCheckFileInfo) => Validate(this, isCheckFileInfo);
 
-
         /// <inheritdoc cref="Validate(bool)"/>
-        /// <param name="tile">Tile to check</param>
+        /// <param name="tile"><see cref="Tile"/> to check</param>
         /// <param name="isCheckFileInfo"></param>
         public static bool Validate(ITile tile, bool isCheckFileInfo)
         {
-            if (tile?.Bytes == null || tile.Bytes.Count() <= 355) return false;
+            if (tile?.Bytes == null || tile.Bytes.Count() <= MinimalBytesCount) return false;
 
             if (!isCheckFileInfo) return true;
 
@@ -180,8 +185,8 @@ namespace GTiff2Tiles.Core.Tiles
         public int CalculatePosition() => CalculatePosition(Number, TmsCompatible);
 
         /// <inheritdoc cref="CalculatePosition()"/>
-        /// <param name="number">Number of tile</param>
-        /// <param name="tmsCompatible">Is tile tms compatible?</param>
+        /// <param name="number"><see cref="Tiles.Number"/> of <see cref="Tile"/></param>
+        /// <param name="tmsCompatible">Is tms compatible?</param>
         public static int CalculatePosition(Number number, bool tmsCompatible)
         {
             // 0 1

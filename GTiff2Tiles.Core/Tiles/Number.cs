@@ -4,24 +4,25 @@ using GTiff2Tiles.Core.Coordinates;
 using GTiff2Tiles.Core.Enums;
 using GTiff2Tiles.Core.Images;
 
+// ReSharper disable UnusedMember.Global
 // ReSharper disable MemberCanBePrivate.Global
 
 namespace GTiff2Tiles.Core.Tiles
 {
     /// <summary>
-    /// Number of tile
+    /// <see cref="Number"/> of <seealso cref="ITile"/>
     /// </summary>
     public class Number : IEquatable<Number>
     {
         #region Properties
 
         /// <summary>
-        /// X number
+        /// X <see cref="Number"/> value
         /// </summary>
         public int X { get; }
 
         /// <summary>
-        /// Y number
+        /// Y <see cref="Number"/> value
         /// </summary>
         public int Y { get; }
 
@@ -35,10 +36,10 @@ namespace GTiff2Tiles.Core.Tiles
         #region Constructors
 
         /// <summary>
-        /// Initializes number
+        /// Creates new <see cref="Number"/>
         /// </summary>
-        /// <param name="x">X number</param>
-        /// <param name="y">Y number</param>
+        /// <param name="x"><see cref="X"/></param>
+        /// <param name="y"><see cref="Y"/></param>
         /// <param name="z">Zoom</param>
         public Number(int x, int y, int z) => (X, Y, Z) = (x, y, z);
 
@@ -49,32 +50,32 @@ namespace GTiff2Tiles.Core.Tiles
         #region Flip
 
         /// <summary>
-        /// Converts y number
+        /// Flips value of passed <see cref="Y"/>
         /// </summary>
-        /// <param name="y">Number.Y</param>
+        /// <param name="y"><see cref="Y"/> to flip</param>
         /// <param name="z">Zoom</param>
-        /// <returns>Converted Number.Y</returns>
+        /// <returns>Converted <see cref="Y"/></returns>
         private static int FlipY(int y, int z) => Convert.ToInt32(Math.Pow(2.0, z) - y - 1.0);
 
         /// <summary>
-        /// Flips number
+        /// Flips <see cref="Number"/>
         /// </summary>
-        /// <returns>Converted number</returns>
+        /// <returns>Converted <see cref="Number"/></returns>
         public Number Flip() => Flip(this);
 
         /// <inheritdoc cref="Flip()"/>
-        /// <param name="number">Number to flip</param>
+        /// <param name="number"><see cref="Number"/> to flip</param>
         public static Number Flip(Number number) => new Number(number.X, FlipY(number.Y, number.Z), number.Z);
 
         #endregion
 
-        #region To geo coordinates
+        #region ToGeoCoordinates
 
         /// <summary>
         /// Convert <see cref="Number"/> to <see cref="GeodeticCoordinate"/>s
         /// </summary>
         /// <param name="tileSize">Tile's size</param>
-        /// <returns><seealso cref="ValueTuple"/> of <seealso cref="GeodeticCoordinate"/></returns>
+        /// <returns><seealso cref="ValueTuple"/> of <seealso cref="GeodeticCoordinate"/>s</returns>
         public (GeodeticCoordinate minCoordinate, GeodeticCoordinate maxCoordinate) ToGeodeticCoordinates(int tileSize)
         {
             double resolution = GeodeticCoordinate.Resolution(null, Z, tileSize);
@@ -107,7 +108,7 @@ namespace GTiff2Tiles.Core.Tiles
         /// Convert <see cref="Number"/> to <see cref="MercatorCoordinate"/>s
         /// </summary>
         /// <param name="tileSize">Tile's size</param>
-        /// <returns><seealso cref="ValueTuple"/> of <seealso cref="MercatorCoordinate"/></returns>
+        /// <returns><seealso cref="ValueTuple"/> of <seealso cref="MercatorCoordinate"/>s</returns>
         public (MercatorCoordinate minCoordinate, MercatorCoordinate maxCoordinate) ToMercatorCoordinates(int tileSize)
             => ToMercatorCoordinates(this, tileSize);
 
@@ -128,10 +129,10 @@ namespace GTiff2Tiles.Core.Tiles
         /// <summary>
         /// Convert <see cref="Number"/> to <see cref="GeoCoordinate"/>s
         /// </summary>
-        /// <param name="coordinateType">Type of coordinates</param>
+        /// <param name="coordinateType">Type of <see cref="GeoCoordinate"/></param>
         /// <param name="tileSize">Tile's size</param>
         /// <param name="tmsCompatible">Is tms compatible?</param>
-        /// <returns><seealso cref="ValueTuple"/> of <seealso cref="GeoCoordinate"/></returns>
+        /// <returns><seealso cref="ValueTuple"/> of <seealso cref="GeoCoordinate"/>s</returns>
         public (GeoCoordinate minCoordinate, GeoCoordinate maxCoordinate) ToGeoCoordinates(
             CoordinateType coordinateType, int tileSize, bool tmsCompatible) =>
             ToGeoCoordinates(this, coordinateType, tileSize, tmsCompatible);
@@ -171,27 +172,27 @@ namespace GTiff2Tiles.Core.Tiles
         #region GetLowerNumbers
 
         /// <summary>
-        /// Get lower numbers for specified number and zoom (>=10)
+        /// Get lower <see cref="Number"/>s for specified <see cref="Number"/> and zoom (>=10)
         /// </summary>
-        /// <param name="zoom">Zoom. Must be >=10</param>
+        /// <param name="z">Zoom; must be >=10</param>
         /// <returns><see cref="ValueTuple"/> of lower <see cref="Number"/>s</returns>
-        public (Number minNumber, Number maxNumber) GetLowerNumbers(int zoom) =>
-            GetLowerNumbers(this, zoom);
+        public (Number minNumber, Number maxNumber) GetLowerNumbers(int z) =>
+            GetLowerNumbers(this, z);
 
         /// <inheritdoc cref="GetLowerNumbers(int)"/>
-        /// <param name="number">Base number</param>
-        /// <param name="zoom"></param>
-        public static (Number minNumber, Number maxNumber) GetLowerNumbers(Number number, int zoom)
+        /// <param name="number">Base <see cref="Number"/></param>
+        /// <param name="z"></param>
+        public static (Number minNumber, Number maxNumber) GetLowerNumbers(Number number, int z)
         {
-            if (zoom < 10) return (null, null);
+            if (z < 10) return (null, null);
 
-            int resolution = Convert.ToInt32(Math.Pow(2.0, zoom - 10.0));
+            int resolution = Convert.ToInt32(Math.Pow(2.0, z - 10.0));
 
             int[] tilesXs = { number.X * resolution, (number.X + 1) * resolution - 1 };
             int[] tilesYs = { number.Y * resolution, (number.Y + 1) * resolution - 1 };
 
-            Number minNumber = new Number(tilesXs.Min(), tilesYs.Min(), zoom);
-            Number maxNumber = new Number(tilesXs.Max(), tilesYs.Max(), zoom);
+            Number minNumber = new Number(tilesXs.Min(), tilesYs.Min(), z);
+            Number maxNumber = new Number(tilesXs.Max(), tilesYs.Max(), z);
 
             return (minNumber, maxNumber);
         }
@@ -208,7 +209,7 @@ namespace GTiff2Tiles.Core.Tiles
         /// <param name="minZ">Minimum zoom</param>
         /// <param name="maxZ">Maximum zoom</param>
         /// <param name="tmsCompatible">Is tms compatible?</param>
-        /// <param name="size">Tile's size</param>
+        /// <param name="size">Tile's <see cref="Size"/></param>
         /// <returns>Tiles count</returns>
         public static int GetCount(GeoCoordinate minCoordinate, GeoCoordinate maxCoordinate,
                                    int minZ, int maxZ, bool tmsCompatible, Size size)
@@ -217,7 +218,6 @@ namespace GTiff2Tiles.Core.Tiles
 
             for (int zoom = minZ; zoom <= maxZ; zoom++)
             {
-                // Get tiles min/max numbers
                 (Number minNumber, Number maxNumber) =
                     GeoCoordinate.GetNumbers(minCoordinate, maxCoordinate, zoom, size.Width, tmsCompatible);
 
