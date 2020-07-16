@@ -28,7 +28,7 @@ artifacts:
   name: zip
 deploy:
 - provider: GitHub
-  release: CI-$APPVEYOR_BUILD_VERSION
+  release: Continious build
   description: This is a preview release of GTiff2Tiles ver. 2.0.0. Information about changes since previous release can be found in [changelog](https://github.com/Gigas002/GTiff2Tiles/blob/master/CHANGELOG.md).
   auth_token:
     secure: CVNtkV9r681t1pehmnG8nA==
