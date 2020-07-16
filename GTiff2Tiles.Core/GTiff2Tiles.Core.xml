@@ -745,12 +745,12 @@
             Image size
             </summary>
         </member>
-        <member name="F:GTiff2Tiles.Core.Images.Size.Width">
+        <member name="P:GTiff2Tiles.Core.Images.Size.Width">
             <summary>
             Image's width
             </summary>
         </member>
-        <member name="F:GTiff2Tiles.Core.Images.Size.Height">
+        <member name="P:GTiff2Tiles.Core.Images.Size.Height">
             <summary>
             Image's height
             </summary>
@@ -769,6 +769,9 @@
             <returns>Resolution of this size</returns>
         </member>
         <member name="M:GTiff2Tiles.Core.Images.Size.Equals(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:GTiff2Tiles.Core.Images.Size.GetHashCode">
             <inheritdoc />
         </member>
         <member name="M:GTiff2Tiles.Core.Images.Size.Equals(GTiff2Tiles.Core.Images.Size)">
@@ -792,8 +795,73 @@
             <returns><see langword="true"/> if sizes are not equal;
             <see langword="false"/>otherwise</returns>
         </member>
-        <member name="M:GTiff2Tiles.Core.Images.Size.GetHashCode">
-            <inheritdoc />
+        <member name="M:GTiff2Tiles.Core.Images.Size.op_LessThan(GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Images.Size)">
+            <summary>
+            Check if <see cref="T:GTiff2Tiles.Core.Images.Size"/>1 is lesser, then <see cref="T:GTiff2Tiles.Core.Images.Size"/>2
+            </summary>
+            <param name="size1"><see cref="T:GTiff2Tiles.Core.Images.Size"/> 1</param>
+            <param name="size2"><see cref="T:GTiff2Tiles.Core.Images.Size"/> 2</param>
+            <returns><see langword="true"/> if <see cref="T:GTiff2Tiles.Core.Images.Size"/>1 is lesser;
+            <see langword="false"/>otherwise</returns>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Images.Size.op_GreaterThan(GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Images.Size)">
+            <summary>
+            Check if <see cref="T:GTiff2Tiles.Core.Images.Size"/>1 is bigger, then <see cref="T:GTiff2Tiles.Core.Images.Size"/>2
+            </summary>
+            <param name="size1"><see cref="T:GTiff2Tiles.Core.Images.Size"/> 1</param>
+            <param name="size2"><see cref="T:GTiff2Tiles.Core.Images.Size"/> 2</param>
+            <returns><see langword="true"/> if <see cref="T:GTiff2Tiles.Core.Images.Size"/>1 is bigger;
+            <see langword="false"/>otherwise</returns>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Images.Size.op_LessThanOrEqual(GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Images.Size)">
+            <summary>
+            Check if <see cref="T:GTiff2Tiles.Core.Images.Size"/>1 is lesser or equal, then <see cref="T:GTiff2Tiles.Core.Images.Size"/>2
+            </summary>
+            <param name="size1"><see cref="T:GTiff2Tiles.Core.Images.Size"/> 1</param>
+            <param name="size2"><see cref="T:GTiff2Tiles.Core.Images.Size"/> 2</param>
+            <returns><see langword="true"/> if <see cref="T:GTiff2Tiles.Core.Images.Size"/>1 is lesser or equal;
+            <see langword="false"/>otherwise</returns>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Images.Size.op_GreaterThanOrEqual(GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Images.Size)">
+            <summary>
+            Check if <see cref="T:GTiff2Tiles.Core.Images.Size"/>1 is bigger or equal, then <see cref="T:GTiff2Tiles.Core.Images.Size"/>2
+            </summary>
+            <param name="size1"><see cref="T:GTiff2Tiles.Core.Images.Size"/> 1</param>
+            <param name="size2"><see cref="T:GTiff2Tiles.Core.Images.Size"/> 2</param>
+            <returns><see langword="true"/> if <see cref="T:GTiff2Tiles.Core.Images.Size"/>1 is bigger or equal;
+            <see langword="false"/>otherwise</returns>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Images.Size.op_Addition(GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Images.Size)">
+            <summary>
+            Sum <see cref="T:GTiff2Tiles.Core.Images.Size"/>s
+            </summary>
+            <param name="size1"><see cref="T:GTiff2Tiles.Core.Images.Size"/> 1</param>
+            <param name="size2"><see cref="T:GTiff2Tiles.Core.Images.Size"/> 2</param>
+            <returns>New <see cref="T:GTiff2Tiles.Core.Images.Size"/></returns>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Images.Size.op_Subtraction(GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Images.Size)">
+            <summary>
+            Subtruct <see cref="T:GTiff2Tiles.Core.Images.Size"/>s
+            </summary>
+            <param name="size1"><see cref="T:GTiff2Tiles.Core.Images.Size"/> 1</param>
+            <param name="size2"><see cref="T:GTiff2Tiles.Core.Images.Size"/> 2</param>
+            <returns>New <see cref="T:GTiff2Tiles.Core.Images.Size"/></returns>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Images.Size.op_Multiply(GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Images.Size)">
+            <summary>
+            Multiply <see cref="T:GTiff2Tiles.Core.Images.Size"/>s
+            </summary>
+            <param name="size1"><see cref="T:GTiff2Tiles.Core.Images.Size"/> 1</param>
+            <param name="size2"><see cref="T:GTiff2Tiles.Core.Images.Size"/> 2</param>
+            <returns>New <see cref="T:GTiff2Tiles.Core.Images.Size"/></returns>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Images.Size.op_Division(GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Images.Size)">
+            <summary>
+            Divide <see cref="T:GTiff2Tiles.Core.Images.Size"/>s
+            </summary>
+            <param name="size1"><see cref="T:GTiff2Tiles.Core.Images.Size"/> 1</param>
+            <param name="size2"><see cref="T:GTiff2Tiles.Core.Images.Size"/> 2</param>
+            <returns>New <see cref="T:GTiff2Tiles.Core.Images.Size"/></returns>
         </member>
         <member name="T:GTiff2Tiles.Core.Localization.Strings">
             <summary>

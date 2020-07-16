@@ -12,12 +12,12 @@ namespace GTiff2Tiles.Core.Images
         /// <summary>
         /// Image's width
         /// </summary>
-        public readonly int Width;
+        public int Width { get; }
 
         /// <summary>
         /// Image's height
         /// </summary>
-        public readonly int Height;
+        public int Height { get; }
 
         #endregion
 
@@ -40,10 +40,13 @@ namespace GTiff2Tiles.Core.Images
         /// <returns>Resolution of this size</returns>
         public long GetResoultion() => Width * Height;
 
-        #region Equals
+        #region Bool compare overrides
 
         /// <inheritdoc />
         public override bool Equals(object size) => Equals(size as Size);
+
+        /// <inheritdoc />
+        public override int GetHashCode() => HashCode.Combine(Width, Height);
 
         /// <inheritdoc />
         public bool Equals(Size other)
@@ -61,7 +64,7 @@ namespace GTiff2Tiles.Core.Images
         /// <param name="size2">Size 2</param>
         /// <returns><see langword="true"/> if sizes are equal;
         /// <see langword="false"/>otherwise</returns>
-        public static bool? operator ==(Size size1, Size size2) => size1?.Equals(size2);
+        public static bool operator ==(Size size1, Size size2) => size1 != null && size1.Equals(size2);
 
         /// <summary>
         /// Check two sizes for non-equality
@@ -70,10 +73,83 @@ namespace GTiff2Tiles.Core.Images
         /// <param name="size2">Size 2</param>
         /// <returns><see langword="true"/> if sizes are not equal;
         /// <see langword="false"/>otherwise</returns>
-        public static bool? operator !=(Size size1, Size size2) => !(size1 == size2);
+        public static bool operator !=(Size size1, Size size2) => !(size1 == size2);
 
-        /// <inheritdoc />
-        public override int GetHashCode() => HashCode.Combine(Width, Height);
+        /// <summary>
+        /// Check if <see cref="Size"/>1 is lesser, then <see cref="Size"/>2
+        /// </summary>
+        /// <param name="size1"><see cref="Size"/> 1</param>
+        /// <param name="size2"><see cref="Size"/> 2</param>
+        /// <returns><see langword="true"/> if <see cref="Size"/>1 is lesser;
+        /// <see langword="false"/>otherwise</returns>
+        public static bool operator <(Size size1, Size size2) =>
+            size1.Width < size2.Width && size1.Height < size2.Height;
+
+        /// <summary>
+        /// Check if <see cref="Size"/>1 is bigger, then <see cref="Size"/>2
+        /// </summary>
+        /// <param name="size1"><see cref="Size"/> 1</param>
+        /// <param name="size2"><see cref="Size"/> 2</param>
+        /// <returns><see langword="true"/> if <see cref="Size"/>1 is bigger;
+        /// <see langword="false"/>otherwise</returns>
+        public static bool operator >(Size size1, Size size2) =>
+            size1.Width > size2.Width && size1.Height > size2.Height;
+
+        /// <summary>
+        /// Check if <see cref="Size"/>1 is lesser or equal, then <see cref="Size"/>2
+        /// </summary>
+        /// <param name="size1"><see cref="Size"/> 1</param>
+        /// <param name="size2"><see cref="Size"/> 2</param>
+        /// <returns><see langword="true"/> if <see cref="Size"/>1 is lesser or equal;
+        /// <see langword="false"/>otherwise</returns>
+        public static bool operator <=(Size size1, Size size2) =>
+            size1.Width <= size2.Width && size1.Height <= size2.Height;
+
+        /// <summary>
+        /// Check if <see cref="Size"/>1 is bigger or equal, then <see cref="Size"/>2
+        /// </summary>
+        /// <param name="size1"><see cref="Size"/> 1</param>
+        /// <param name="size2"><see cref="Size"/> 2</param>
+        /// <returns><see langword="true"/> if <see cref="Size"/>1 is bigger or equal;
+        /// <see langword="false"/>otherwise</returns>
+        public static bool operator >=(Size size1, Size size2) =>
+            size1.Width >= size2.Width && size1.Height >= size2.Height;
+
+        #endregion
+
+        #region Math operations
+
+        /// <summary>
+        /// Sum <see cref="Size"/>s
+        /// </summary>
+        /// <param name="size1"><see cref="Size"/> 1</param>
+        /// <param name="size2"><see cref="Size"/> 2</param>
+        /// <returns>New <see cref="Size"/></returns>
+        public static Size operator +(Size size1, Size size2) => new Size(size1.Width + size2.Width, size1.Height + size2.Height);
+
+        /// <summary>
+        /// Subtruct <see cref="Size"/>s
+        /// </summary>
+        /// <param name="size1"><see cref="Size"/> 1</param>
+        /// <param name="size2"><see cref="Size"/> 2</param>
+        /// <returns>New <see cref="Size"/></returns>
+        public static Size operator -(Size size1, Size size2) => new Size(size1.Width - size2.Width, size1.Height - size2.Height);
+
+        /// <summary>
+        /// Multiply <see cref="Size"/>s
+        /// </summary>
+        /// <param name="size1"><see cref="Size"/> 1</param>
+        /// <param name="size2"><see cref="Size"/> 2</param>
+        /// <returns>New <see cref="Size"/></returns>
+        public static Size operator *(Size size1, Size size2) => new Size(size1.Width * size2.Width, size1.Height * size2.Height);
+
+        /// <summary>
+        /// Divide <see cref="Size"/>s
+        /// </summary>
+        /// <param name="size1"><see cref="Size"/> 1</param>
+        /// <param name="size2"><see cref="Size"/> 2</param>
+        /// <returns>New <see cref="Size"/></returns>
+        public static Size operator /(Size size1, Size size2) => new Size(size1.Width / size2.Width, size1.Height / size2.Height);
 
         #endregion
 
