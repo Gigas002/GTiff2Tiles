@@ -135,6 +135,101 @@
             <param name="radians">Value to convert</param>
             <returns>Converted degrees</returns>
         </member>
+        <member name="M:GTiff2Tiles.Core.Coordinates.Coordinate.Equals(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:GTiff2Tiles.Core.Coordinates.Coordinate.GetHashCode">
+            <inheritdoc />
+        </member>
+        <member name="M:GTiff2Tiles.Core.Coordinates.Coordinate.Equals(GTiff2Tiles.Core.Coordinates.ICoordinate)">
+            <inheritdoc />
+        </member>
+        <member name="M:GTiff2Tiles.Core.Coordinates.Coordinate.op_Equality(GTiff2Tiles.Core.Coordinates.Coordinate,GTiff2Tiles.Core.Coordinates.Coordinate)">
+            <summary>
+            Check two coordinates for equality
+            </summary>
+            <param name="coordinate1">Coordinate 1</param>
+            <param name="coordinate2">Coordinate 2</param>
+            <returns><see langword="true"/> if coordinates are equal;
+            <see langword="false"/>otherwise</returns>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Coordinates.Coordinate.op_Inequality(GTiff2Tiles.Core.Coordinates.Coordinate,GTiff2Tiles.Core.Coordinates.Coordinate)">
+            <summary>
+            Check two coordinates for non-equality
+            </summary>
+            <param name="coordinate1">Coordinate 1</param>
+            <param name="coordinate2">Coordinate 2</param>
+            <returns><see langword="true"/> if coordinates are not equal;
+            <see langword="false"/>otherwise</returns>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Coordinates.Coordinate.op_LessThan(GTiff2Tiles.Core.Coordinates.Coordinate,GTiff2Tiles.Core.Coordinates.Coordinate)">
+            <summary>
+            Check if coordinate1 is lesser, then coordinate2
+            </summary>
+            <param name="coordinate1">Coordinate 1</param>
+            <param name="coordinate2">Coordinate 2</param>
+            <returns><see langword="true"/> if coordinate1 is lesser;
+            <see langword="false"/>otherwise</returns>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Coordinates.Coordinate.op_GreaterThan(GTiff2Tiles.Core.Coordinates.Coordinate,GTiff2Tiles.Core.Coordinates.Coordinate)">
+            <summary>
+            Check if coordinate1 is bigger, then coordinate2
+            </summary>
+            <param name="coordinate1">Coordinate 1</param>
+            <param name="coordinate2">Coordinate 2</param>
+            <returns><see langword="true"/> if coordinate1 is bigger;
+            <see langword="false"/>otherwise</returns>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Coordinates.Coordinate.op_LessThanOrEqual(GTiff2Tiles.Core.Coordinates.Coordinate,GTiff2Tiles.Core.Coordinates.Coordinate)">
+            <summary>
+            Check if coordinate1 is lesser or equal, then coordinate2
+            </summary>
+            <param name="coordinate1">Coordinate 1</param>
+            <param name="coordinate2">Coordinate 2</param>
+            <returns><see langword="true"/> if coordinate1 is lesser or equal;
+            <see langword="false"/>otherwise</returns>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Coordinates.Coordinate.op_GreaterThanOrEqual(GTiff2Tiles.Core.Coordinates.Coordinate,GTiff2Tiles.Core.Coordinates.Coordinate)">
+            <summary>
+            Check if coordinate1 is bigger or equal, then coordinate2
+            </summary>
+            <param name="coordinate1">Coordinate 1</param>
+            <param name="coordinate2">Coordinate 2</param>
+            <returns><see langword="true"/> if coordinate1 is bigger or equal;
+            <see langword="false"/>otherwise</returns>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Coordinates.Coordinate.op_Addition(GTiff2Tiles.Core.Coordinates.Coordinate,GTiff2Tiles.Core.Coordinates.Coordinate)">
+            <summary>
+            Sum coordinates
+            </summary>
+            <param name="coordinate1">Coordinate 1</param>
+            <param name="coordinate2">Coordinate 2</param>
+            <returns>New coordinate</returns>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Coordinates.Coordinate.op_Subtraction(GTiff2Tiles.Core.Coordinates.Coordinate,GTiff2Tiles.Core.Coordinates.Coordinate)">
+            <summary>
+            Subtruct coordinates
+            </summary>
+            <param name="coordinate1">Coordinate 1</param>
+            <param name="coordinate2">Coordinate 2</param>
+            <returns>New coordinate</returns>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Coordinates.Coordinate.op_Multiply(GTiff2Tiles.Core.Coordinates.Coordinate,GTiff2Tiles.Core.Coordinates.Coordinate)">
+            <summary>
+            Multiply coordinates
+            </summary>
+            <param name="coordinate1">Coordinate 1</param>
+            <param name="coordinate2">Coordinate 2</param>
+            <returns>New coordinate</returns>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Coordinates.Coordinate.op_Division(GTiff2Tiles.Core.Coordinates.Coordinate,GTiff2Tiles.Core.Coordinates.Coordinate)">
+            <summary>
+            Divide coordinates
+            </summary>
+            <param name="coordinate1">Coordinate 1</param>
+            <param name="coordinate2">Coordinate 2</param>
+            <returns>New coordinate</returns>
+        </member>
         <member name="T:GTiff2Tiles.Core.Coordinates.GeoCoordinate">
             <summary>
             Abstract class for geographical coordinates

@@ -6,7 +6,7 @@ namespace GTiff2Tiles.Core.Coordinates
     /// <summary>
     /// Interface for any coordinate
     /// </summary>
-    public interface ICoordinate //: IEquatable<ICoordinate>
+    public interface ICoordinate : IEquatable<ICoordinate>
     {
         #region Properties
 
