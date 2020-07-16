@@ -1334,6 +1334,34 @@
         <member name="P:GTiff2Tiles.Core.Tiles.Tile.TmsCompatible">
             <inheritdoc />
         </member>
+        <member name="M:GTiff2Tiles.Core.Tiles.Tile.#ctor(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Images.Size,System.Collections.Generic.IEnumerable{System.Byte},System.String,System.Boolean,GTiff2Tiles.Core.Enums.CoordinateType)">
+            <summary>
+            Creates new tile
+            </summary>
+            <param name="number">Tile number</param>
+            <param name="size">Tile size</param>
+            <param name="d">Tile bytes</param>
+            <param name="extension">Tile extension</param>
+            <param name="tmsCompatible">Is tms compatible?</param>
+            <param name="coordinateType">Type of coordinates</param>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Tiles.Tile.#ctor(GTiff2Tiles.Core.Coordinates.GeoCoordinate,GTiff2Tiles.Core.Coordinates.GeoCoordinate,System.Int32,GTiff2Tiles.Core.Images.Size,System.Collections.Generic.IEnumerable{System.Byte},System.String,System.Boolean)">
+            <summary>
+            Creates new tile from coordinate values
+            </summary>
+            <param name="minCoordinate">Minimum coordinate</param>
+            <param name="maxCoordinate">Maximum coordinate</param>
+            <param name="z">Zoom</param>
+            <param name="size">Tile size</param>
+            <param name="d">Tile bytes</param>
+            <param name="extension">Tile extension</param>
+            <param name="tmsCompatible">Is tms compatible?</param>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Tiles.Tile.Finalize">
+            <summary>
+            Calls <see cref="M:GTiff2Tiles.Core.Tiles.Tile.Dispose(System.Boolean)"/> on this tile.
+            </summary>
+        </member>
         <member name="M:GTiff2Tiles.Core.Tiles.Tile.Dispose">
             <inheritdoc />
         </member>

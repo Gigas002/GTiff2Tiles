@@ -2,7 +2,6 @@
 using GTiff2Tiles.Core.Constants;
 using GTiff2Tiles.Core.Coordinates;
 using GTiff2Tiles.Core.Enums;
-using GTiff2Tiles.Core.Exceptions.Tile;
 using GTiff2Tiles.Core.Images;
 
 // ReSharper disable MemberCanBePrivate.Global
@@ -48,10 +47,7 @@ namespace GTiff2Tiles.Core.Tiles
                           string extension = FileExtensions.Png, bool tmsCompatible = false,
                           CoordinateType coordinateType = CoordinateType.Mercator,
                           int bandsCount = DefaultBandsCount)
-        {
-            (Number, Bytes, Extension, TmsCompatible, Size, BandsCount) = (number, d, extension, tmsCompatible, size ?? DefaultSize, bandsCount);
-            (MinCoordinate, MaxCoordinate) = Number.ToGeoCoordinates(coordinateType, Size.Width, tmsCompatible);
-        }
+            : base(number, size, d, extension, tmsCompatible, coordinateType) => BandsCount = bandsCount;
 
         /// <summary>
         /// Creates new tile from coordinate values
@@ -68,17 +64,7 @@ namespace GTiff2Tiles.Core.Tiles
                           Size size = null, IEnumerable<byte> d = null,
                           string extension = FileExtensions.Png,
                           bool tmsCompatible = false, int bandsCount = DefaultBandsCount)
-        {
-            Size = size ?? DefaultSize;
-            (Number minNumber, Number maxNumber) =
-                GeoCoordinate.GetNumbers(minCoordinate, maxCoordinate, z, Size.Width, tmsCompatible);
-
-            if (!minNumber.Equals(maxNumber))
-                throw new TileException();
-
-            (Number, Bytes, Extension, TmsCompatible, BandsCount) = (minNumber, d, extension, tmsCompatible, bandsCount);
-            (MinCoordinate, MaxCoordinate) = (minCoordinate, maxCoordinate);
-        }
+            : base(minCoordinate, maxCoordinate, z, size, d, extension, tmsCompatible) => BandsCount = bandsCount;
 
         #endregion
     }

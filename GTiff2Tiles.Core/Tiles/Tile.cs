@@ -6,6 +6,8 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using GTiff2Tiles.Core.Coordinates;
+using GTiff2Tiles.Core.Enums;
+using GTiff2Tiles.Core.Exceptions.Tile;
 using GTiff2Tiles.Core.Images;
 
 // ReSharper disable VirtualMemberNeverOverridden.Global
@@ -18,7 +20,7 @@ namespace GTiff2Tiles.Core.Tiles
     /// <summary>
     /// Basic implementation of <see cref="ITile"/> interface
     /// </summary>
-    public abstract class Tile : ITile
+    public class Tile : ITile
     {
         #region Properties
 
@@ -53,6 +55,56 @@ namespace GTiff2Tiles.Core.Tiles
 
         /// <inheritdoc />
         public bool TmsCompatible { get; set; }
+
+        #endregion
+
+        #region Constructors/Destructors
+
+        /// <summary>
+        /// Creates new tile
+        /// </summary>
+        /// <param name="number">Tile number</param>
+        /// <param name="size">Tile size</param>
+        /// <param name="d">Tile bytes</param>
+        /// <param name="extension">Tile extension</param>
+        /// <param name="tmsCompatible">Is tms compatible?</param>
+        /// <param name="coordinateType">Type of coordinates</param>
+        protected Tile(Number number, Size size = null, IEnumerable<byte> d = null, string extension = Constants.FileExtensions.Png,
+                       bool tmsCompatible = false, CoordinateType coordinateType = CoordinateType.Geodetic)
+        {
+            (Number, Bytes, Extension, TmsCompatible, Size) = (number, d, extension, tmsCompatible, size ?? DefaultSize);
+            (MinCoordinate, MaxCoordinate) = Number.ToGeoCoordinates(coordinateType, Size.Width, tmsCompatible);
+        }
+
+        /// <summary>
+        /// Creates new tile from coordinate values
+        /// </summary>
+        /// <param name="minCoordinate">Minimum coordinate</param>
+        /// <param name="maxCoordinate">Maximum coordinate</param>
+        /// <param name="z">Zoom</param>
+        /// <param name="size">Tile size</param>
+        /// <param name="d">Tile bytes</param>
+        /// <param name="extension">Tile extension</param>
+        /// <param name="tmsCompatible">Is tms compatible?</param>
+        protected Tile(GeoCoordinate minCoordinate, GeoCoordinate maxCoordinate, int z, Size size = null,
+                       IEnumerable<byte> d = null, string extension = Constants.FileExtensions.Png,
+                       bool tmsCompatible = false)
+        {
+            Size = size ?? DefaultSize;
+            (Number minNumber, Number maxNumber) =
+                GeoCoordinate.GetNumbers(minCoordinate, maxCoordinate, z, Size.Width, tmsCompatible);
+
+            if (!minNumber.Equals(maxNumber))
+                throw new TileException();
+
+            (Number, Bytes, Extension, TmsCompatible) = (minNumber, d, extension, tmsCompatible);
+            (MinCoordinate, MaxCoordinate) = (minCoordinate, maxCoordinate);
+        }
+
+        /// <summary>
+        /// Calls <see cref="Dispose(bool)"/> on this tile.
+        /// </summary>
+        ~Tile() => Dispose(false);
 
         #endregion
 
@@ -152,59 +204,6 @@ namespace GTiff2Tiles.Core.Tiles
         }
 
         #endregion
-
-        // TODO: IEquatable
-        //#region Equals
-
-        ///// <inheritdoc />
-        //public override bool Equals(object tile) => Equals(tile as ITile);
-
-        ///// <inheritdoc />
-        //public bool Equals(ITile other)
-        //{
-        //    if (other is null) return false;
-        //    if (ReferenceEquals(this, other)) return true;
-
-        //    return other.Number.Equals(Number) && other.TmsCompatible == TmsCompatible && other.Size.Equals(Size)
-        //        && other.MaxCoordinate.Equals(MaxCoordinate) && other.MinCoordinate.Equals(MinCoordinate);
-        //}
-
-        ///// <inheritdoc />
-        //public override int GetHashCode()
-        //{
-        //    // ReSharper disable NonReadonlyMemberInGetHashCode
-        //    HashCode hashCode = new HashCode();
-        //    hashCode.Add(MinCoordinate);
-        //    hashCode.Add(MaxCoordinate);
-        //    hashCode.Add(Number);
-        //    hashCode.Add(Size);
-        //    hashCode.Add(TmsCompatible);
-        //    // ReSharper restore NonReadonlyMemberInGetHashCode
-
-        //    return hashCode.ToHashCode();
-        //}
-
-        ///// <summary>
-        ///// Check two tiles for equality
-        ///// </summary>
-        ///// <param name="tile1">Tile 1</param>
-        ///// <param name="tile2">Tile 2</param>
-        ///// <returns><see langword="true"/> if tiles are equal;
-        ///// <see langword="false"/>otherwise</returns>
-        //public static bool? operator ==(Tile tile1, Tile tile2) =>
-        //    tile1?.Equals(tile2);
-
-        ///// <summary>
-        ///// Check two tiles for non-equality
-        ///// </summary>
-        ///// <param name="tile1">Tile 1</param>
-        ///// <param name="tile2">Tile 2</param>
-        ///// <returns><see langword="true"/> if tiles are not equal;
-        ///// <see langword="false"/>otherwise</returns>
-        //public static bool? operator !=(Tile tile1, Tile tile2) =>
-        //    !(tile1 == tile2);
-
-        //#endregion
 
         #endregion
     }
