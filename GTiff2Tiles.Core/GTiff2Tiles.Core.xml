@@ -640,6 +640,50 @@
             <param name="percentage">Current progress.</param>
             <param name="stopwatch">Get elapsed time from this.</param>
         </member>
+        <member name="T:GTiff2Tiles.Core.Images.Band">
+            <summary>
+            Represents image's band
+            </summary>
+        </member>
+        <member name="F:GTiff2Tiles.Core.Images.Band.DefaultValue">
+            <summary>
+            Default <see cref="T:GTiff2Tiles.Core.Images.Band"/> value
+            </summary>
+        </member>
+        <member name="P:GTiff2Tiles.Core.Images.Band.Value">
+            <summary>
+            Current value
+            </summary>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Images.Band.#ctor">
+            <summary>
+            Create band with default value
+            </summary>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Images.Band.#ctor(System.Int32)">
+            <summary>
+            Create band with desired value
+            </summary>
+            <param name="value"><see cref="T:System.Int32"/> in range from 0 to 255</param>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Images.Band.AddBands(NetVips.Image,System.Collections.Generic.IEnumerable{GTiff2Tiles.Core.Images.Band})">
+            <summary>
+            Add bands to <see cref="T:NetVips.Image"/>
+            </summary>
+            <param name="image">Target <see cref="T:NetVips.Image"/></param>
+            <param name="bands"><see cref="T:GTiff2Tiles.Core.Images.Band"/>s to add</param>
+            <returns><see cref="T:NetVips.Image"/> with new <see cref="T:GTiff2Tiles.Core.Images.Band"/>s</returns>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Images.Band.AddDefaultBands(NetVips.Image,System.Int32)">
+            <summary>
+            Add default <see cref="T:GTiff2Tiles.Core.Images.Band"/>s to <see cref="T:NetVips.Image"/> until
+            bands count is lesser than <see cref="T:NetVips.Image"/>'s current bands count
+            </summary>
+            <param name="image">Target <see cref="T:NetVips.Image"/></param>
+            <param name="bandsCount">Count of desired <see cref="T:GTiff2Tiles.Core.Images.Band"/>s in <see cref="T:NetVips.Image"/>,
+            NOT the count of <see cref="T:GTiff2Tiles.Core.Images.Band"/>s to add</param>
+            <returns><see cref="T:NetVips.Image"/> with new <see cref="T:GTiff2Tiles.Core.Images.Band"/>s</returns>
+        </member>
         <member name="T:GTiff2Tiles.Core.Images.IImage">
             <summary>
             Main interface for cropping different tiles.
@@ -731,7 +775,7 @@
         <member name="M:GTiff2Tiles.Core.Images.Raster.DisposeAsync">
             <inheritdoc />
         </member>
-        <member name="M:GTiff2Tiles.Core.Images.Raster.CreateTileImage(NetVips.Image,GTiff2Tiles.Core.Tiles.ITile,System.Int32)">
+        <member name="M:GTiff2Tiles.Core.Images.Raster.CreateTileImage(NetVips.Image,GTiff2Tiles.Core.Tiles.RasterTile)">
             <summary>
             Writes one tile of current zoom.
             <para/>Crops zoom directly from input image.
@@ -1259,7 +1303,7 @@
         </member>
         <member name="T:GTiff2Tiles.Core.Tiles.RasterTile">
             <summary>
-            Raster <see cref="T:GTiff2Tiles.Core.Tiles.Tile"/>
+            <see cref="T:GTiff2Tiles.Core.Images.Raster"/> <see cref="T:GTiff2Tiles.Core.Tiles.Tile"/>
             </summary>
         </member>
         <member name="F:GTiff2Tiles.Core.Tiles.RasterTile.DefaultBandsCount">

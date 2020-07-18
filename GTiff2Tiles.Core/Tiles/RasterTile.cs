@@ -11,12 +11,10 @@ using GTiff2Tiles.Core.Images;
 namespace GTiff2Tiles.Core.Tiles
 {
     /// <summary>
-    /// Raster <see cref="Tile"/>
+    /// <see cref="Raster"/> <see cref="Tile"/>
     /// </summary>
     public class RasterTile : Tile
     {
-        // TODO: Bands class?
-
         #region Properties/Constants
 
         /// <summary>

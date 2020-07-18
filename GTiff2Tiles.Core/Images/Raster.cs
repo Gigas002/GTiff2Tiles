@@ -9,7 +9,6 @@ using System.Threading.Channels;
 using System.Threading.Tasks;
 using GTiff2Tiles.Core.Coordinates;
 using GTiff2Tiles.Core.Enums;
-using GTiff2Tiles.Core.Extensions;
 using GTiff2Tiles.Core.Helpers;
 using GTiff2Tiles.Core.Tiles;
 using NetVips;
@@ -179,7 +178,7 @@ namespace GTiff2Tiles.Core.Images
         /// Writes one tile of current zoom.
         /// <para/>Crops zoom directly from input image.
         /// </summary>
-        private Image CreateTileImage(Image tileCache, ITile tile, int bands)
+        private Image CreateTileImage(Image tileCache, RasterTile tile)
         {
             //TODO: NetVips kernel
             const string kernel = NetVips.Enums.Kernel.Lanczos3;
@@ -197,7 +196,7 @@ namespace GTiff2Tiles.Core.Images
                                            .Resize(xScale, kernel, yScale);
 
             // Add alpha channel if needed
-            tempTileImage = tempTileImage.AddBands(bands);
+            tempTileImage = Band.AddDefaultBands(tempTileImage, tile.BandsCount);
 
             // Make transparent image and insert tile
             return Image.Black(tile.Size.Width, tile.Size.Height).NewFromImage(0, 0, 0, 0)
@@ -209,9 +208,9 @@ namespace GTiff2Tiles.Core.Images
 
         #region WriteTile
 
-        private void WriteTileToFile(Image tileCache, ITile tile, int bands)
+        private void WriteTileToFile(Image tileCache, RasterTile tile)
         {
-            using Image tileImage = CreateTileImage(tileCache, tile, bands);
+            using Image tileImage = CreateTileImage(tileCache, tile);
 
             //TODO: Validate tileImage, not tile!
             //if (!tile.Validate(false)) return;
@@ -219,9 +218,9 @@ namespace GTiff2Tiles.Core.Images
             tileImage.WriteToFile(tile.FileInfo.FullName);
         }
 
-        private IEnumerable<byte> WriteTileToEnumerable(Image tileCache, ITile tile, int bands)
+        private IEnumerable<byte> WriteTileToEnumerable(Image tileCache, RasterTile tile)
         {
-            using Image tileImage = CreateTileImage(tileCache, tile, bands);
+            using Image tileImage = CreateTileImage(tileCache, tile);
             //TODO: test this methods
             //return tileImage.WriteToBuffer(tile.Extension);
             return tileImage.WriteToMemory();
@@ -286,7 +285,7 @@ namespace GTiff2Tiles.Core.Images
                         CheckHelper.CheckDirectory(tileDirectoryInfo);
 
                         Number tileNumber = new Number(x, y, z);
-                        ITile tile = new RasterTile(tileNumber, extension: tileExtension, tmsCompatible: tmsCompatible,
+                        RasterTile tile = new RasterTile(tileNumber, extension: tileExtension, tmsCompatible: tmsCompatible,
                                                           size: tileSize, bandsCount: bands,
                                                           coordinateType: GeoCoordinateType)
                         {
@@ -295,7 +294,7 @@ namespace GTiff2Tiles.Core.Images
                         };
 
                         // ReSharper disable once AccessToDisposedClosure
-                        WriteTileToFile(tileCache, tile, bands);
+                        WriteTileToFile(tileCache, tile);
 
                         //Report progress.
                         counter++;
@@ -355,12 +354,12 @@ namespace GTiff2Tiles.Core.Images
                     void MakeTile(int x)
                     {
                         Number tileNumber = new Number(x, y, z);
-                        ITile tile = new RasterTile(tileNumber, extension: tileExtension, tmsCompatible: tmsCompatible,
+                        RasterTile tile = new RasterTile(tileNumber, extension: tileExtension, tmsCompatible: tmsCompatible,
                                                     size: tileSize, bandsCount: bands,
                                                     coordinateType: GeoCoordinateType);
 
                         // ReSharper disable once AccessToDisposedClosure
-                        tile.Bytes = WriteTileToEnumerable(tileCache, tile, bands);
+                        tile.Bytes = WriteTileToEnumerable(tileCache, tile);
 
                         if (!WriteTileToChannel(tile, channelWriter)) return;
 
@@ -427,14 +426,14 @@ namespace GTiff2Tiles.Core.Images
                         ITile MakeTile()
                         {
                             Number tileNumber = new Number(x, y, z);
-                            ITile tile = new RasterTile(tileNumber, extension: tileExtension,
+                            RasterTile tile = new RasterTile(tileNumber, extension: tileExtension,
                                                         tmsCompatible: tmsCompatible, size: tileSize, bandsCount: bands,
                                                         coordinateType: GeoCoordinateType);
 
                             try
                             {
                                 // ReSharper disable once AccessToDisposedClosure
-                                tile.Bytes = WriteTileToEnumerable(tileCache, tile, bands);
+                                tile.Bytes = WriteTileToEnumerable(tileCache, tile);
                                 //if (!tile.Validate(false)) return null;
                             }
                             finally
