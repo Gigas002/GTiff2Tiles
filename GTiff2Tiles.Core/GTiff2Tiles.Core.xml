@@ -1346,6 +1346,11 @@
             Basic implementation of <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/> interface
             </summary>
         </member>
+        <member name="F:GTiff2Tiles.Core.Tiles.Tile.DefaultSideSizeValue">
+            <summary>
+            Default value of <see cref="T:GTiff2Tiles.Core.Tiles.Tile"/>'s side size
+            </summary>
+        </member>
         <member name="F:GTiff2Tiles.Core.Tiles.Tile.DefaultSize">
             <summary>
             Default <see cref="T:GTiff2Tiles.Core.Tiles.Tile"/>'s <see cref="T:GTiff2Tiles.Core.Images.Size"/>
@@ -1389,7 +1394,7 @@
             Creates new <see cref="T:GTiff2Tiles.Core.Tiles.Tile"/>
             </summary>
             <param name="number"><see cref="P:GTiff2Tiles.Core.Tiles.Tile.Number"/></param>
-            <param name="size"><see cref="P:GTiff2Tiles.Core.Tiles.Tile.Size"/></param>
+            <param name="size"><see cref="P:GTiff2Tiles.Core.Tiles.Tile.Size"/>; should be a square</param>
             <param name="bytes"><see cref="P:GTiff2Tiles.Core.Tiles.Tile.Bytes"/></param>
             <param name="extension"><see cref="P:GTiff2Tiles.Core.Tiles.Tile.Extension"/></param>
             <param name="tmsCompatible">Is tms compatible?</param>
@@ -1402,7 +1407,7 @@
             <param name="minCoordinate">Minimum <see cref="T:GTiff2Tiles.Core.Coordinates.GeoCoordinate"/></param>
             <param name="maxCoordinate">Maximum <see cref="T:GTiff2Tiles.Core.Coordinates.GeoCoordinate"/></param>
             <param name="zoom">Zoom</param>
-            <param name="size"><see cref="P:GTiff2Tiles.Core.Tiles.Tile.Size"/></param>
+            <param name="size"><see cref="P:GTiff2Tiles.Core.Tiles.Tile.Size"/>; should be a square</param>
             <param name="bytes"><see cref="P:GTiff2Tiles.Core.Tiles.Tile.Bytes"/></param>
             <param name="extension"><see cref="P:GTiff2Tiles.Core.Tiles.Tile.Extension"/></param>
             <param name="tmsCompatible">Is tms compatible?</param>
@@ -1423,6 +1428,18 @@
         </member>
         <member name="M:GTiff2Tiles.Core.Tiles.Tile.DisposeAsync">
             <inheritdoc />
+        </member>
+        <member name="M:GTiff2Tiles.Core.Tiles.Tile.CheckSize">
+            <summary>
+            Check if <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/> is a square
+            </summary>
+            <returns><see langword="true"/> if it is a square;
+            <see langword="false"/> otherwise</returns>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Tiles.Tile.CheckSize(GTiff2Tiles.Core.Tiles.ITile)">
+            <inheritdoc cref="M:GTiff2Tiles.Core.Tiles.Tile.CheckSize"/>
+            <param name="tile"><see cref="T:GTiff2Tiles.Core.Tiles.ITile"/> to check</param>
+            <returns></returns>
         </member>
         <member name="M:GTiff2Tiles.Core.Tiles.Tile.Validate(System.Boolean)">
             <inheritdoc />

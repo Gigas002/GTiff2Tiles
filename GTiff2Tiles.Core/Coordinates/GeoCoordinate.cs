@@ -75,10 +75,8 @@ namespace GTiff2Tiles.Core.Coordinates
             //"Maximal scaledown zoom of the pyramid closest to the pixelSize."
             IEnumerable<int> range = Enumerable.Range(minZoom, maxZoom + 1);
 
-            foreach (int i in range)
-            {
-                if (pixelSize > Resolution(i, tileSize)) return Math.Max(0, i - 1);
-            }
+            foreach (int i in range.Where(i => pixelSize > Resolution(i, tileSize)))
+                return Math.Max(0, i - 1);
 
             return maxZoom - 1;
         }

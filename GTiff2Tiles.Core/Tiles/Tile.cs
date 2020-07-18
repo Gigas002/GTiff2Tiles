@@ -25,9 +25,14 @@ namespace GTiff2Tiles.Core.Tiles
         #region Properties
 
         /// <summary>
+        /// Default value of <see cref="Tile"/>'s side size
+        /// </summary>
+        private const int DefaultSideSizeValue = 256;
+
+        /// <summary>
         /// Default <see cref="Tile"/>'s <see cref="Images.Size"/>
         /// </summary>
-        public static readonly Size DefaultSize = new Size(256, 256);
+        public static readonly Size DefaultSize = new Size(DefaultSideSizeValue, DefaultSideSizeValue);
 
         /// <summary>
         /// <see cref="Tile"/>s with <see cref="Bytes"/> count lesser
@@ -70,7 +75,7 @@ namespace GTiff2Tiles.Core.Tiles
         /// Creates new <see cref="Tile"/>
         /// </summary>
         /// <param name="number"><see cref="Number"/></param>
-        /// <param name="size"><see cref="Size"/></param>
+        /// <param name="size"><see cref="Size"/>; should be a square</param>
         /// <param name="bytes"><see cref="Bytes"/></param>
         /// <param name="extension"><see cref="Extension"/></param>
         /// <param name="tmsCompatible">Is tms compatible?</param>
@@ -79,6 +84,9 @@ namespace GTiff2Tiles.Core.Tiles
                        bool tmsCompatible = false, CoordinateType coordinateType = CoordinateType.Geodetic)
         {
             (Number, Bytes, Extension, TmsCompatible, Size) = (number, bytes, extension, tmsCompatible, size ?? DefaultSize);
+
+            if (!CheckSize()) throw new TileException();
+
             (MinCoordinate, MaxCoordinate) = Number.ToGeoCoordinates(coordinateType, Size.Width, tmsCompatible);
         }
 
@@ -88,7 +96,7 @@ namespace GTiff2Tiles.Core.Tiles
         /// <param name="minCoordinate">Minimum <see cref="GeoCoordinate"/></param>
         /// <param name="maxCoordinate">Maximum <see cref="GeoCoordinate"/></param>
         /// <param name="zoom">Zoom</param>
-        /// <param name="size"><see cref="Size"/></param>
+        /// <param name="size"><see cref="Size"/>; should be a square</param>
         /// <param name="bytes"><see cref="Bytes"/></param>
         /// <param name="extension"><see cref="Extension"/></param>
         /// <param name="tmsCompatible">Is tms compatible?</param>
@@ -97,8 +105,10 @@ namespace GTiff2Tiles.Core.Tiles
                        bool tmsCompatible = false)
         {
             Size = size ?? DefaultSize;
-            (Number minNumber, Number maxNumber) =
-                GeoCoordinate.GetNumbers(minCoordinate, maxCoordinate, zoom, Size.Width, tmsCompatible);
+
+            if (!CheckSize()) throw new TileException();
+
+            (Number minNumber, Number maxNumber) = GeoCoordinate.GetNumbers(minCoordinate, maxCoordinate, zoom, Size.Width, tmsCompatible);
 
             if (!minNumber.Equals(maxNumber))
                 throw new TileException();
@@ -157,6 +167,22 @@ namespace GTiff2Tiles.Core.Tiles
                 return new ValueTask(Task.FromException(exception));
             }
         }
+
+        #endregion
+
+        #region CheckSize
+
+        /// <summary>
+        /// Check if <see cref="ITile"/> is a square
+        /// </summary>
+        /// <returns><see langword="true"/> if it is a square;
+        /// <see langword="false"/> otherwise</returns>
+        public bool CheckSize() => Size.Width == Size.Height;
+
+        /// <inheritdoc cref="CheckSize()"/>
+        /// <param name="tile"><see cref="ITile"/> to check</param>
+        /// <returns></returns>
+        public static bool CheckSize(ITile tile) => tile.Size.Width == tile.Size.Height;
 
         #endregion
 
