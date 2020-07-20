@@ -4,6 +4,6 @@
     {
         internal const int MinZ = 0;
 
-        internal const int MaxZ = 18;
+        internal const int MaxZ = 16;
     }
 }

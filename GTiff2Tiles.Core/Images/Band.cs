@@ -45,7 +45,7 @@ namespace GTiff2Tiles.Core.Images
         /// <param name="bands"><see cref="Band"/>s to add</param>
         public static void AddBands(ref Image image, IEnumerable<Band> bands)
         {
-            foreach (Band band in bands) image.Bandjoin(band.Value);
+            foreach (Band band in bands) image = image.Bandjoin(band.Value);
         }
 
         /// <summary>
@@ -60,10 +60,10 @@ namespace GTiff2Tiles.Core.Images
         public static void AddDefaultBands(ref Image image, int bandsCount)
         {
             List<Band> bandsToAdd = new List<Band>();
-            //image = image.Bandjoin(DefaultValue);
-            for (; image.Bands < bandsCount;) bandsToAdd.Add(new Band());
+            for (int i = bandsCount; i > image.Bands; i--) bandsToAdd.Add(new Band());
             AddBands(ref image, bandsToAdd);
         }
+
 
         #endregion
     }
