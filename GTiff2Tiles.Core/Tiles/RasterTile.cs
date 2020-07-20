@@ -35,7 +35,8 @@ namespace GTiff2Tiles.Core.Tiles
         /// Creates new <see cref="RasterTile"/>
         /// </summary>
         /// <param name="number"><see cref="Tile.Number"/></param>
-        /// <param name="size"><see cref="Tile.Size"/></param>
+        /// <param name="size"><see cref="Tile.Size"/>;
+        /// <remarks>should be a square, e.g. 256x256</remarks></param>
         /// <param name="bytes"><see cref="Tile.Bytes"/></param>
         /// <param name="extension"><see cref="Tile.Extension"/></param>
         /// <param name="tmsCompatible">Is tms compatible?</param>
@@ -53,7 +54,8 @@ namespace GTiff2Tiles.Core.Tiles
         /// <param name="minCoordinate">Minimum <see cref="GeoCoordinate"/></param>
         /// <param name="maxCoordinate">Maximum <see cref="GeoCoordinate"/></param>
         /// <param name="zoom">Zoom</param>
-        /// <param name="size"><see cref="Tile.Size"/></param>
+        /// <param name="size"><see cref="Tile.Size"/>;
+        /// <remarks>should be a square, e.g. 256x256</remarks></param>
         /// <param name="bytes"><see cref="Tile.Bytes"/></param>
         /// <param name="extension"><see cref="Tile.Extension"/></param>
         /// <param name="tmsCompatible">Is tms compatible?</param>

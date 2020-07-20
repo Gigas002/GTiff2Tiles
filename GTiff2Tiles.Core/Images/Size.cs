@@ -3,7 +3,7 @@
 namespace GTiff2Tiles.Core.Images
 {
     /// <summary>
-    /// Image size
+    /// <see cref="IImage"/>'s size
     /// </summary>
     public sealed class Size : IEquatable<Size>
     {
@@ -19,26 +19,25 @@ namespace GTiff2Tiles.Core.Images
         /// </summary>
         public int Height { get; }
 
+        /// <summary>
+        /// <see cref="IImage"/>'s resolution
+        /// </summary>
+        public int Resolution => Width * Height;
+
         #endregion
 
         #region Constructors
 
         /// <summary>
-        /// Creates size instance
+        /// Creates new <see cref="Size"/>
         /// </summary>
-        /// <param name="width">Width</param>
-        /// <param name="height">Height</param>
+        /// <param name="width"><see cref="Width"/></param>
+        /// <param name="height"><see cref="Height"/></param>
         public Size(int width, int height) => (Width, Height) = (width, height);
 
         #endregion
 
         #region Methods
-
-        /// <summary>
-        /// Gets resolution
-        /// </summary>
-        /// <returns>Resolution of this size</returns>
-        public long GetResoultion() => Width * Height;
 
         #region Bool compare overrides
 
@@ -58,20 +57,20 @@ namespace GTiff2Tiles.Core.Images
         }
 
         /// <summary>
-        /// Check two sizes for equality
+        /// Check two <see cref="Size"/>s for equality
         /// </summary>
-        /// <param name="size1">Size 1</param>
-        /// <param name="size2">Size 2</param>
-        /// <returns><see langword="true"/> if sizes are equal;
+        /// <param name="size1"><see cref="Size"/> 1</param>
+        /// <param name="size2"><see cref="Size"/> 2</param>
+        /// <returns><see langword="true"/> if <see cref="Size"/>s are equal;
         /// <see langword="false"/>otherwise</returns>
         public static bool operator ==(Size size1, Size size2) => size1 != null && size1.Equals(size2);
 
         /// <summary>
-        /// Check two sizes for non-equality
+        /// Check two <see cref="Size"/>s for non-equality
         /// </summary>
-        /// <param name="size1">Size 1</param>
-        /// <param name="size2">Size 2</param>
-        /// <returns><see langword="true"/> if sizes are not equal;
+        /// <param name="size1"><see cref="Size"/> 1</param>
+        /// <param name="size2"><see cref="Size"/> 2</param>
+        /// <returns><see langword="true"/> if <see cref="Size"/>s are not equal;
         /// <see langword="false"/>otherwise</returns>
         public static bool operator !=(Size size1, Size size2) => !(size1 == size2);
 

@@ -32,7 +32,7 @@ namespace GTiff2Tiles.Core.Tiles
         public GeoCoordinate MaxCoordinate { get; }
 
         /// <summary>
-        /// <see cref="Number"/> of this <see cref="ITile"/>
+        /// <see cref="Tiles.Number"/> of this <see cref="ITile"/>
         /// </summary>
         public Number Number { get; }
 

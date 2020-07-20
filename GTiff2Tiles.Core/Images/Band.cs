@@ -1,13 +1,17 @@
 ﻿using System.Collections.Generic;
 using NetVips;
 
+// ReSharper disable MemberCanBePrivate.Global
+
 namespace GTiff2Tiles.Core.Images
 {
     /// <summary>
-    /// Represents image's band
+    /// Represents <see cref="Raster"/> band
     /// </summary>
     public class Band
     {
+        #region Properties
+
         /// <summary>
         /// Default <see cref="Band"/> value
         /// </summary>
@@ -18,43 +22,49 @@ namespace GTiff2Tiles.Core.Images
         /// </summary>
         public int Value { get; }
 
-        /// <summary>
-        /// Create band with default value
-        /// </summary>
-        public Band() => Value = DefaultValue;
+        #endregion
+
+        #region Constructors
 
         /// <summary>
-        /// Create band with desired value
+        /// Creates new <see cref="Band"/>
         /// </summary>
-        /// <param name="value"><see cref="int"/> in range from 0 to 255</param>
-        public Band(int value) => Value = value;
+        /// <param name="value"><see cref="int"/> in range
+        /// from 0 to 255</param>
+        public Band(int value = DefaultValue) => Value = value;
+
+        #endregion
+
+        #region Methods
 
         /// <summary>
-        /// Add bands to <see cref="Image"/>
+        /// Add <see cref="Band"/>s to <see cref="Image"/>
         /// </summary>
-        /// <param name="image">Target <see cref="Image"/></param>
+        /// <param name="image">Reference on <see cref="Image"/>
+        /// to add <see cref="Band"/>s to</param>
         /// <param name="bands"><see cref="Band"/>s to add</param>
-        /// <returns><see cref="Image"/> with new <see cref="Band"/>s</returns>
-        public static Image AddBands(Image image, IEnumerable<Band> bands)
+        public static void AddBands(ref Image image, IEnumerable<Band> bands)
         {
             foreach (Band band in bands) image.Bandjoin(band.Value);
-
-            return image;
         }
 
         /// <summary>
         /// Add default <see cref="Band"/>s to <see cref="Image"/> until
         /// bands count is lesser than <see cref="Image"/>'s current bands count
         /// </summary>
-        /// <param name="image">Target <see cref="Image"/></param>
-        /// <param name="bandsCount">Count of desired <see cref="Band"/>s in <see cref="Image"/>,
-        /// NOT the count of <see cref="Band"/>s to add</param>
-        /// <returns><see cref="Image"/> with new <see cref="Band"/>s</returns>
-        public static Image AddDefaultBands(Image image, int bandsCount)
+        /// <param name="image">Reference on <see cref="Image"/>
+        /// to add <see cref="Band"/>s to</param>
+        /// <param name="bandsCount">Count of desired <see cref="Band"/>s
+        /// in <see cref="Image"/>;
+        /// <remarks>NOT the count of <see cref="Band"/>s to add</remarks></param>
+        public static void AddDefaultBands(ref Image image, int bandsCount)
         {
-            for (; image.Bands < bandsCount;) image = image.Bandjoin(DefaultValue);
-
-            return image;
+            List<Band> bandsToAdd = new List<Band>();
+            //image = image.Bandjoin(DefaultValue);
+            for (; image.Bands < bandsCount;) bandsToAdd.Add(new Band());
+            AddBands(ref image, bandsToAdd);
         }
+
+        #endregion
     }
 }

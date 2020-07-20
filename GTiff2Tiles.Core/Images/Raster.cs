@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Threading;
 using System.Threading.Channels;
 using System.Threading.Tasks;
@@ -16,7 +17,7 @@ using NetVips;
 namespace GTiff2Tiles.Core.Images
 {
     /// <summary>
-    /// Class for creating raster tiles.
+    /// Class for creating <see cref="RasterTile"/>s
     /// </summary>
     public sealed class Raster : IImage
     {
@@ -25,7 +26,7 @@ namespace GTiff2Tiles.Core.Images
         #region Private
 
         /// <summary>
-        /// This image's data.
+        /// This <see cref="Raster"/>'s data
         /// </summary>
         private Image Data { get; }
 
@@ -55,13 +56,17 @@ namespace GTiff2Tiles.Core.Images
         #region Constructor/Destructor
 
         /// <summary>
-        /// Creates new <see cref="Raster"/> object.
+        /// Creates new <see cref="Raster"/> object
         /// </summary>
-        /// <param name="inputFileInfo">Input GeoTiff image.</param>
+        /// <param name="inputFileInfo">Input GeoTiff image</param>
+        /// <param name="maxMemoryCache">Max size of input image to store in RAM
+        /// <remarks><para/>2GB by default</remarks></param>
+        /// <param name="coordinateType">Type of coordinates
+        /// <remarks><para/><see cref="GeodeticCoordinate"/> by default</remarks></param>
         public Raster(FileInfo inputFileInfo, long maxMemoryCache = 2147483648,
                       CoordinateType coordinateType = CoordinateType.Geodetic)
         {
-            //Disable NetVips warnings for tiff.
+            // Disable NetVips warnings for tiff
             NetVipsHelper.DisableLog();
 
             #region Check parameters
@@ -73,54 +78,66 @@ namespace GTiff2Tiles.Core.Images
             bool memory = inputFileInfo.Length <= maxMemoryCache;
             Data = Image.NewFromFile(inputFileInfo.FullName, memory, NetVips.Enums.Access.Random);
 
-            //Get border coordinates и raster sizes.
+            // Get border coordinates и raster sizes
             Size = new Size(Data.Width, Data.Height);
 
             GeoCoordinateType = coordinateType;
-
             (MinCoordinate, MaxCoordinate) = Gdal.Gdal.GetImageBorders(inputFileInfo, Size, GeoCoordinateType);
         }
 
-        public Raster(byte[] inputBytes, CoordinateType coordinateType = CoordinateType.Geodetic)
+        /// <summary>
+        /// Creates new <see cref="Raster"/> object
+        /// </summary>
+        /// <param name="inputBytes"><see cref="IEnumerable{T}"/> of GeoTiff's
+        /// <see cref="byte"/>s</param>
+        /// <param name="coordinateType">Type of coordinates
+        /// <remarks><para/><see cref="GeodeticCoordinate"/> by default</remarks></param>
+        public Raster(IEnumerable<byte> inputBytes, CoordinateType coordinateType = CoordinateType.Geodetic)
         {
-            //Disable NetVips warnings for tiff.
+            // Disable NetVips warnings for tiff
             NetVipsHelper.DisableLog();
 
-            Data = Image.NewFromBuffer(inputBytes, access: NetVips.Enums.Access.Random);
+            Data = Image.NewFromBuffer(inputBytes.ToArray(), access: NetVips.Enums.Access.Random);
 
-            //Get border coordinates и raster sizes.
+            // Get border coordinates и raster sizes
             Size = new Size(Data.Width, Data.Height);
 
             GeoCoordinateType = coordinateType;
 
+            //TODO: get coordinates without fileinfo
             FileInfo inputFileInfo = new FileInfo("tmp.tif");
             Data.WriteToFile(inputFileInfo.FullName);
-            //TODO: get coordinates without fileinfo
-            (MinCoordinate, MaxCoordinate) = Gdal.Gdal.GetImageBorders(inputFileInfo, Size, GeoCoordinateType);
-            inputFileInfo.Delete();
-        }
-
-        public Raster(Stream inputStream, CoordinateType coordinateType = CoordinateType.Geodetic)
-        {
-            //Disable NetVips warnings for tiff.
-            NetVipsHelper.DisableLog();
-
-            Data = Image.NewFromStream(inputStream, access: NetVips.Enums.Access.Random);
-
-            //Get border coordinates и raster sizes.
-            Size = new Size(Data.Width, Data.Height);
-
-            GeoCoordinateType = coordinateType;
-
-            FileInfo inputFileInfo = new FileInfo("tmp.tif");
-            Data.WriteToFile(inputFileInfo.FullName);
-            //TODO: get coordinates without fileinfo
             (MinCoordinate, MaxCoordinate) = Gdal.Gdal.GetImageBorders(inputFileInfo, Size, GeoCoordinateType);
             inputFileInfo.Delete();
         }
 
         /// <summary>
-        /// Destructor.
+        /// Creates new <see cref="Raster"/> object
+        /// </summary>
+        /// <param name="inputStream"><see cref="Stream"/> with GeoTiff</param>
+        /// <param name="coordinateType">Type of coordinates
+        /// <remarks><para/><see cref="GeodeticCoordinate"/> by default</remarks></param>
+        public Raster(Stream inputStream, CoordinateType coordinateType = CoordinateType.Geodetic)
+        {
+            // Disable NetVips warnings for tiff
+            NetVipsHelper.DisableLog();
+
+            Data = Image.NewFromStream(inputStream, access: NetVips.Enums.Access.Random);
+
+            // Get border coordinates и raster sizes
+            Size = new Size(Data.Width, Data.Height);
+
+            GeoCoordinateType = coordinateType;
+
+            //TODO: get coordinates without fileinfo
+            FileInfo inputFileInfo = new FileInfo("tmp.tif");
+            Data.WriteToFile(inputFileInfo.FullName);
+            (MinCoordinate, MaxCoordinate) = Gdal.Gdal.GetImageBorders(inputFileInfo, Size, GeoCoordinateType);
+            inputFileInfo.Delete();
+        }
+
+        /// <summary>
+        /// Destructor
         /// </summary>
         ~Raster() => Dispose(false);
 
@@ -196,7 +213,7 @@ namespace GTiff2Tiles.Core.Images
                                            .Resize(xScale, kernel, yScale);
 
             // Add alpha channel if needed
-            tempTileImage = Band.AddDefaultBands(tempTileImage, tile.BandsCount);
+            Band.AddDefaultBands(ref tempTileImage, tile.BandsCount);
 
             // Make transparent image and insert tile
             return Image.Black(tile.Size.Width, tile.Size.Height).NewFromImage(0, 0, 0, 0)
@@ -239,21 +256,22 @@ namespace GTiff2Tiles.Core.Images
 
         /// <inheritdoc />
         public async ValueTask WriteTilesToDirectoryAsync(DirectoryInfo outputDirectoryInfo, int minZ, int maxZ,
-                                                          Size tileSize,
-                                                          bool tmsCompatible = false,
+                                                          bool tmsCompatible = false, Size tileSize = null,
                                                           string tileExtension = Constants.FileExtensions.Png,
-                                                          int bands = Constants.Image.Raster.Bands,
-                                                          IProgress<double> progress = null, int threadsCount = 0,
-                                                          bool isPrintEstimatedTime = true, int tileCacheCount = 1000)
+                                                          int bandsCount = Constants.Image.Raster.Bands,
+                                                          int tileCacheCount = 1000, int threadsCount = 0,
+                                                          IProgress<double> progress = null,
+                                                          bool isPrintEstimatedTime = false)
         {
             #region Parameters checking
 
             progress ??= new Progress<double>();
-
-            #endregion
+            tileSize ??= Tile.DefaultSize;
 
             ParallelOptions parallelOptions = new ParallelOptions();
             if (threadsCount > 0) parallelOptions.MaxDegreeOfParallelism = threadsCount;
+
+            #region Progress stuff
 
             Stopwatch stopwatch = isPrintEstimatedTime ? Stopwatch.StartNew() : null;
             int tilesCount = Number.GetCount(MinCoordinate, MaxCoordinate, minZ, maxZ, tmsCompatible, tileSize);
@@ -261,18 +279,22 @@ namespace GTiff2Tiles.Core.Images
 
             if (tilesCount <= 0) return;
 
+            #endregion
+
+            #endregion
+
             // Create tile cache to read data from it
             using Image tileCache = Data.Tilecache(tileSize.Width, tileSize.Height, tileCacheCount, threaded: true);
 
-            //For each zoom.
+            // For each zoom
             for (int zoom = minZ; zoom <= maxZ; zoom++)
             {
-                //Get tiles min/max numbers.
+                // Get tiles min/max numbers
                 (Number minNumber, Number maxNumber) = GeoCoordinate.GetNumbers(MinCoordinate, MaxCoordinate,
                                                                                        zoom, tileSize.Width,
                                                                                 tmsCompatible);
 
-                //For each tile on given zoom calculate positions/sizes and save as file.
+                // For each tile on given zoom calculate positions/sizes and save as file
                 for (int tileY = minNumber.Y; tileY <= maxNumber.Y; tileY++)
                 {
                     int y = tileY;
@@ -280,28 +302,29 @@ namespace GTiff2Tiles.Core.Images
 
                     void MakeTile(int x)
                     {
-                        //Create directories for the tile. The overall structure looks like: outputDirectory/zoom/x/y.png.
+                        // Create directories for the tile
+                        // The overall structure looks like: outputDirectory/zoom/x/y.png
                         DirectoryInfo tileDirectoryInfo = new DirectoryInfo(Path.Combine(outputDirectoryInfo.FullName, $"{z}", $"{x}"));
                         CheckHelper.CheckDirectory(tileDirectoryInfo);
 
                         Number tileNumber = new Number(x, y, z);
                         RasterTile tile = new RasterTile(tileNumber, extension: tileExtension, tmsCompatible: tmsCompatible,
-                                                          size: tileSize, bandsCount: bands,
+                                                          size: tileSize, bandsCount: bandsCount,
                                                           coordinateType: GeoCoordinateType)
                         {
-                            //Warning: OpenLayers requires replacement of tileY to tileY+1
+                            // Warning: OpenLayers requires replacement of tileY to tileY+1
                             FileInfo = new FileInfo(Path.Combine(tileDirectoryInfo.FullName, $"{y}{tileExtension}"))
                         };
 
                         // ReSharper disable once AccessToDisposedClosure
                         WriteTileToFile(tileCache, tile);
 
-                        //Report progress.
+                        // Report progress
                         counter++;
                         double percentage = counter / tilesCount * 100.0;
                         progress.Report(percentage);
 
-                        //Estimated time left calculation.
+                        // Estimated time left calculation
                         ProgressHelper.PrintEstimatedTimeLeft(percentage, stopwatch);
                     }
 
@@ -311,41 +334,46 @@ namespace GTiff2Tiles.Core.Images
             }
         }
 
-        //TODO: args order
-        public async ValueTask WriteTilesToChannelAsync(ChannelWriter<ITile> channelWriter,
-                                                        bool tmsCompatible, string tileExtension,
-                                                        IProgress<double> progress, bool isPrintEstimatedTime,
-                                                        int minZ, int maxZ, int bands,
-                                                        Size tileSize, int threadsCount,
-                                                        int tileCacheCount)
+        /// <inheritdoc />
+        public async ValueTask WriteTilesToChannelAsync(ChannelWriter<ITile> channelWriter, int minZ, int maxZ,
+                                                        bool tmsCompatible = false, Size tileSize = null,
+                                                        int bandsCount = Constants.Image.Raster.Bands,
+                                                        int tileCacheCount = 1000, int threadsCount = 0,
+                                                        IProgress<double> progress = null,
+                                                        bool isPrintEstimatedTime = false)
         {
-            #region Progress stuff
+            #region Parameters checking
 
             progress ??= new Progress<double>();
+            tileSize ??= Tile.DefaultSize;
+
+            #region Progress stuff
 
             Stopwatch stopwatch = isPrintEstimatedTime ? Stopwatch.StartNew() : null;
             int tilesCount = Number.GetCount(MinCoordinate, MaxCoordinate, minZ, maxZ, tmsCompatible, tileSize);
             double counter = 0.0;
 
+            ParallelOptions parallelOptions = new ParallelOptions();
+            if (threadsCount > 0) parallelOptions.MaxDegreeOfParallelism = threadsCount;
+
             if (tilesCount <= 0) return;
 
             #endregion
 
-            ParallelOptions parallelOptions = new ParallelOptions();
-            if (threadsCount > 0) parallelOptions.MaxDegreeOfParallelism = threadsCount;
+            #endregion
 
             // Create tile cache to read data from it
             using Image tileCache = Data.Tilecache(tileSize.Width, tileSize.Height, tileCacheCount, threaded: true);
 
-            //For each zoom.
+            // For each zoom
             for (int zoom = minZ; zoom <= maxZ; zoom++)
             {
-                //Get tiles min/max numbers.
+                // Get tiles min/max numbers
                 (Number minNumber, Number maxNumber) = GeoCoordinate.GetNumbers(MinCoordinate, MaxCoordinate,
                                                                                 zoom, tileSize.Width,
                                                                                 tmsCompatible);
 
-                //For each tile on given zoom calculate positions/sizes and save as file.
+                // For each tile on given zoom calculate positions/sizes and save as file
                 for (int tileY = minNumber.Y; tileY <= maxNumber.Y; tileY++)
                 {
                     int y = tileY;
@@ -354,8 +382,8 @@ namespace GTiff2Tiles.Core.Images
                     void MakeTile(int x)
                     {
                         Number tileNumber = new Number(x, y, z);
-                        RasterTile tile = new RasterTile(tileNumber, extension: tileExtension, tmsCompatible: tmsCompatible,
-                                                    size: tileSize, bandsCount: bands,
+                        RasterTile tile = new RasterTile(tileNumber, tmsCompatible: tmsCompatible,
+                                                    size: tileSize, bandsCount: bandsCount,
                                                     coordinateType: GeoCoordinateType);
 
                         // ReSharper disable once AccessToDisposedClosure
@@ -363,12 +391,12 @@ namespace GTiff2Tiles.Core.Images
 
                         if (!WriteTileToChannel(tile, channelWriter)) return;
 
-                        //Report progress.
+                        // Report progress
                         counter++;
                         double percentage = counter / tilesCount * 100.0;
                         progress.Report(percentage);
 
-                        //Estimated time left calculation.
+                        // Estimated time left calculation
                         ProgressHelper.PrintEstimatedTimeLeft(percentage, stopwatch);
                     }
 
@@ -378,40 +406,47 @@ namespace GTiff2Tiles.Core.Images
             }
         }
 
-        //TODO: args order
-        public async IAsyncEnumerable<ITile> WriteTilesToAsyncEnumerable(bool tmsCompatible, string tileExtension,
-                                                                         IProgress<double> progress, bool isPrintEstimatedTime,
-                                                                         int minZ, int maxZ, int bands,
-                                                                         Size tileSize, int threadsCount,
-                                                                         int tileCacheCount)
+        /// <inheritdoc />
+        public async IAsyncEnumerable<ITile> WriteTilesToAsyncEnumerable(int minZ, int maxZ,
+                                                                         bool tmsCompatible = false, Size tileSize = null,
+                                                                         int bandsCount = Constants.Image.Raster.Bands,
+                                                                         int tileCacheCount = 1000, int threadsCount = 0,
+                                                                         IProgress<double> progress = null,
+                                                                         bool isPrintEstimatedTime = false)
         {
-            #region Progress stuff
+            #region Parameters checking
 
             progress ??= new Progress<double>();
+            tileSize ??= Tile.DefaultSize;
+            threadsCount = threadsCount <= 0 ? Environment.ProcessorCount : threadsCount;
+
+            #region Progress stuff
 
             Stopwatch stopwatch = isPrintEstimatedTime ? Stopwatch.StartNew() : null;
             int tilesCount = Number.GetCount(MinCoordinate, MaxCoordinate, minZ, maxZ, tmsCompatible, tileSize);
             double counter = 0.0;
 
-            //if (tilesCount <= 0) yield return null;
+            if (tilesCount <= 0) yield break;
+
+            #endregion
 
             #endregion
 
             using SemaphoreSlim semaphoreSlim = new SemaphoreSlim(threadsCount);
-            List<Task<ITile>> tasks = new List<Task<ITile>>();
+            HashSet<Task<ITile>> tasks = new HashSet<Task<ITile>>();
 
             // Create tile cache to read data from it
             using Image tileCache = Data.Tilecache(tileSize.Width, tileSize.Height, tileCacheCount, threaded: true);
 
-            //For each specified zoom.
+            // For each specified zoom
             for (int zoom = minZ; zoom <= maxZ; zoom++)
             {
-                //Get tiles min/max numbers.
+                // Get tiles min/max numbers
                 (Number minNumber, Number maxNumber) = GeoCoordinate.GetNumbers(MinCoordinate, MaxCoordinate,
                                                                                 zoom, tileSize.Width,
                                                                                 tmsCompatible);
 
-                //For each tile on given zoom calculate positions/sizes and save as file.
+                // For each tile on given zoom calculate positions/sizes and save as file
                 for (int tileY = minNumber.Y; tileY <= maxNumber.Y; tileY++)
                 {
                     //TODO: use Parallel.For somehow
@@ -426,9 +461,9 @@ namespace GTiff2Tiles.Core.Images
                         ITile MakeTile()
                         {
                             Number tileNumber = new Number(x, y, z);
-                            RasterTile tile = new RasterTile(tileNumber, extension: tileExtension,
-                                                        tmsCompatible: tmsCompatible, size: tileSize, bandsCount: bands,
-                                                        coordinateType: GeoCoordinateType);
+                            RasterTile tile = new RasterTile(tileNumber, tmsCompatible: tmsCompatible,
+                                                             size: tileSize, bandsCount: bandsCount,
+                                                             coordinateType: GeoCoordinateType);
 
                             try
                             {
@@ -438,12 +473,12 @@ namespace GTiff2Tiles.Core.Images
                             }
                             finally
                             {
-                                //Report progress.
+                                // Report progress
                                 counter++;
                                 double percentage = counter / tilesCount * 100.0;
                                 progress.Report(percentage);
 
-                                //Estimated time left calculation.
+                                // Estimated time left calculation
                                 ProgressHelper.PrintEstimatedTimeLeft(percentage, stopwatch);
 
                                 // ReSharper disable once AccessToDisposedClosure
@@ -458,9 +493,9 @@ namespace GTiff2Tiles.Core.Images
 
                     while (tasks.Count != 0)
                     {
-                        Task<ITile> task = await Task.WhenAny(tasks);
+                        Task<ITile> task = await Task.WhenAny(tasks).ConfigureAwait(false);
                         tasks.Remove(task);
-                        ITile tile = await task;
+                        ITile tile = await task.ConfigureAwait(false);
 
                         if (!Tile.Validate(tile, false)) continue;
 

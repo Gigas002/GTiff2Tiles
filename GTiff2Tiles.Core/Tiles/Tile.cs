@@ -75,11 +75,13 @@ namespace GTiff2Tiles.Core.Tiles
         /// Creates new <see cref="Tile"/>
         /// </summary>
         /// <param name="number"><see cref="Number"/></param>
-        /// <param name="size"><see cref="Size"/>; should be a square</param>
+        /// <param name="size"><see cref="Size"/>;
+        /// <remarks>should be a square, e.g. 256x256</remarks></param>
         /// <param name="bytes"><see cref="Bytes"/></param>
         /// <param name="extension"><see cref="Extension"/></param>
         /// <param name="tmsCompatible">Is tms compatible?</param>
         /// <param name="coordinateType">Type of <see cref="GeoCoordinate"/></param>
+        /// <exception cref="TileException"></exception>
         protected Tile(Number number, Size size = null, IEnumerable<byte> bytes = null, string extension = Constants.FileExtensions.Png,
                        bool tmsCompatible = false, CoordinateType coordinateType = CoordinateType.Geodetic)
         {
@@ -87,7 +89,7 @@ namespace GTiff2Tiles.Core.Tiles
 
             if (!CheckSize()) throw new TileException();
 
-            (MinCoordinate, MaxCoordinate) = Number.ToGeoCoordinates(coordinateType, Size.Width, tmsCompatible);
+            (MinCoordinate, MaxCoordinate) = Number.ToGeoCoordinates(coordinateType, Size, tmsCompatible);
         }
 
         /// <summary>
@@ -96,10 +98,12 @@ namespace GTiff2Tiles.Core.Tiles
         /// <param name="minCoordinate">Minimum <see cref="GeoCoordinate"/></param>
         /// <param name="maxCoordinate">Maximum <see cref="GeoCoordinate"/></param>
         /// <param name="zoom">Zoom</param>
-        /// <param name="size"><see cref="Size"/>; should be a square</param>
+        /// <param name="size"><see cref="Size"/>;
+        /// <remarks>should be a square, e.g. 256x256</remarks></param>
         /// <param name="bytes"><see cref="Bytes"/></param>
         /// <param name="extension"><see cref="Extension"/></param>
         /// <param name="tmsCompatible">Is tms compatible?</param>
+        /// <exception cref="TileException"></exception>
         protected Tile(GeoCoordinate minCoordinate, GeoCoordinate maxCoordinate, int zoom, Size size = null,
                        IEnumerable<byte> bytes = null, string extension = Constants.FileExtensions.Png,
                        bool tmsCompatible = false)
@@ -135,9 +139,7 @@ namespace GTiff2Tiles.Core.Tiles
             GC.SuppressFinalize(this);
         }
 
-        /// <summary>
-        /// Actually disposes the data.
-        /// </summary>
+        /// <inheritdoc cref="Dispose()"/>
         /// <param name="disposing">Dispose static fields?</param>
         protected virtual void Dispose(bool disposing)
         {

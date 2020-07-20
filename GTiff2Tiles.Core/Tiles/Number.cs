@@ -10,7 +10,7 @@ using GTiff2Tiles.Core.Images;
 namespace GTiff2Tiles.Core.Tiles
 {
     /// <summary>
-    /// <see cref="Number"/> of <seealso cref="ITile"/>
+    /// <see cref="Number"/> of <see cref="ITile"/>
     /// </summary>
     public class Number : IEquatable<Number>
     {
@@ -74,32 +74,23 @@ namespace GTiff2Tiles.Core.Tiles
         /// <summary>
         /// Convert <see cref="Number"/> to <see cref="GeodeticCoordinate"/>s
         /// </summary>
-        /// <param name="tileSize">Tile's size</param>
-        /// <returns><seealso cref="ValueTuple"/> of <seealso cref="GeodeticCoordinate"/>s</returns>
-        public (GeodeticCoordinate minCoordinate, GeodeticCoordinate maxCoordinate) ToGeodeticCoordinates(int tileSize)
-        {
-            double resolution = GeodeticCoordinate.Resolution(null, Z, tileSize);
+        /// <param name="tileSize"><see cref="Tile"/> <see cref="Size"/></param>
+        /// <returns><see cref="ValueTuple"/> of <see cref="GeodeticCoordinate"/>s</returns>
+        public (GeodeticCoordinate minCoordinate, GeodeticCoordinate maxCoordinate) ToGeodeticCoordinates(
+            Size tileSize) => ToGeodeticCoordinates(this, tileSize);
 
-            GeodeticCoordinate minCoordinate = new GeodeticCoordinate(X * tileSize * resolution - 180.0,
-                                                                      Y * tileSize * resolution - 90.0);
-            GeodeticCoordinate maxCoordinate = new GeodeticCoordinate((X + 1) * tileSize * resolution - 180.0,
-                                                                      (Y + 1) * tileSize * resolution - 90.0);
-
-            return (minCoordinate, maxCoordinate);
-        }
-
-        /// <inheritdoc cref="ToGeodeticCoordinates(int)"/>
+        /// <inheritdoc cref="ToGeodeticCoordinates(Size)"/>
         /// <param name="number"><see cref="Number"/> to convert</param>
         /// <param name="tileSize"></param>
         public static (GeodeticCoordinate minCoordinate, GeodeticCoordinate maxCoordinate) ToGeodeticCoordinates(
-            Number number, int tileSize)
+            Number number, Size tileSize)
         {
-            double resolution = GeodeticCoordinate.Resolution(null, number.Z, tileSize);
+            double resolution = GeodeticCoordinate.Resolution(null, number.Z, tileSize.Width);
 
-            GeodeticCoordinate minCoordinate = new GeodeticCoordinate(number.X * tileSize * resolution - 180.0,
-                                                                      number.Y * tileSize * resolution - 90.0);
-            GeodeticCoordinate maxCoordinate = new GeodeticCoordinate((number.X + 1) * tileSize * resolution - 180.0,
-                                                                      (number.Y + 1) * tileSize * resolution - 90.0);
+            GeodeticCoordinate minCoordinate = new GeodeticCoordinate(number.X * tileSize.Width * resolution - 180.0,
+                                                                      number.Y * tileSize.Height * resolution - 90.0);
+            GeodeticCoordinate maxCoordinate = new GeodeticCoordinate((number.X + 1) * tileSize.Width * resolution - 180.0,
+                                                                      (number.Y + 1) * tileSize.Height * resolution - 90.0);
 
             return (minCoordinate, maxCoordinate);
         }
@@ -107,21 +98,23 @@ namespace GTiff2Tiles.Core.Tiles
         /// <summary>
         /// Convert <see cref="Number"/> to <see cref="MercatorCoordinate"/>s
         /// </summary>
-        /// <param name="tileSize">Tile's size</param>
-        /// <returns><seealso cref="ValueTuple"/> of <seealso cref="MercatorCoordinate"/>s</returns>
-        public (MercatorCoordinate minCoordinate, MercatorCoordinate maxCoordinate) ToMercatorCoordinates(int tileSize)
+        /// <param name="tileSize"><see cref="Tile"/> <see cref="Size"/></param>
+        /// <returns><see cref="ValueTuple"/> of <see cref="MercatorCoordinate"/>s</returns>
+        public (MercatorCoordinate minCoordinate, MercatorCoordinate maxCoordinate) ToMercatorCoordinates(Size tileSize)
             => ToMercatorCoordinates(this, tileSize);
 
-        /// <inheritdoc cref="ToMercatorCoordinates(int)"/>
+        /// <inheritdoc cref="ToMercatorCoordinates(Size)"/>
         /// <param name="number"><see cref="Number"/> to convert</param>
         /// <param name="tileSize"></param>
         public static (MercatorCoordinate minCoordinate, MercatorCoordinate maxCoordinate) ToMercatorCoordinates(
-            Number number, int tileSize)
+            Number number, Size tileSize)
         {
-            PixelCoordinate minPixelCoordinate = new PixelCoordinate(number.X * tileSize, number.Y * tileSize);
-            PixelCoordinate maxPixelCoordinate = new PixelCoordinate((number.X + 1) * tileSize, (number.Y + 1) * tileSize);
-            MercatorCoordinate minCoordinate = minPixelCoordinate.ToMercatorCoordinate(number.Z, tileSize);
-            MercatorCoordinate maxCoordinate = maxPixelCoordinate.ToMercatorCoordinate(number.Z, tileSize);
+            PixelCoordinate minPixelCoordinate = new PixelCoordinate(number.X * tileSize.Width,
+                                                                     number.Y * tileSize.Height);
+            PixelCoordinate maxPixelCoordinate = new PixelCoordinate((number.X + 1) * tileSize.Width,
+                                                                     (number.Y + 1) * tileSize.Height);
+            MercatorCoordinate minCoordinate = minPixelCoordinate.ToMercatorCoordinate(number.Z, tileSize.Width);
+            MercatorCoordinate maxCoordinate = maxPixelCoordinate.ToMercatorCoordinate(number.Z, tileSize.Width);
 
             return (minCoordinate, maxCoordinate);
         }
@@ -130,20 +123,20 @@ namespace GTiff2Tiles.Core.Tiles
         /// Convert <see cref="Number"/> to <see cref="GeoCoordinate"/>s
         /// </summary>
         /// <param name="coordinateType">Type of <see cref="GeoCoordinate"/></param>
-        /// <param name="tileSize">Tile's size</param>
+        /// <param name="tileSize"><see cref="Tile"/> <see cref="Size"/></param>
         /// <param name="tmsCompatible">Is tms compatible?</param>
-        /// <returns><seealso cref="ValueTuple"/> of <seealso cref="GeoCoordinate"/>s</returns>
+        /// <returns><see cref="ValueTuple"/> of <see cref="GeoCoordinate"/>s</returns>
         public (GeoCoordinate minCoordinate, GeoCoordinate maxCoordinate) ToGeoCoordinates(
-            CoordinateType coordinateType, int tileSize, bool tmsCompatible) =>
+            CoordinateType coordinateType, Size tileSize, bool tmsCompatible) =>
             ToGeoCoordinates(this, coordinateType, tileSize, tmsCompatible);
 
-        /// <inheritdoc cref="ToGeoCoordinates(CoordinateType,int,bool)"/>
+        /// <inheritdoc cref="ToGeoCoordinates(CoordinateType,Size,bool)"/>
         /// <param name="number"><see cref="Number"/> to convert</param>
         /// <param name="coordinateType"></param>
         /// <param name="tileSize"></param>
         /// <param name="tmsCompatible"></param>
         public static (GeoCoordinate minCoordinate, GeoCoordinate maxCoordinate) ToGeoCoordinates(
-            Number number, CoordinateType coordinateType, int tileSize, bool tmsCompatible)
+            Number number, CoordinateType coordinateType, Size tileSize, bool tmsCompatible)
         {
             if (!tmsCompatible) number = Flip(number);
 
@@ -174,7 +167,8 @@ namespace GTiff2Tiles.Core.Tiles
         /// <summary>
         /// Get lower <see cref="Number"/>s for specified <see cref="Number"/> and zoom (>=10)
         /// </summary>
-        /// <param name="z">Zoom; must be >=10</param>
+        /// <param name="z">Zoom;
+        /// <remarks>must be >=10</remarks></param>
         /// <returns><see cref="ValueTuple"/> of lower <see cref="Number"/>s</returns>
         public (Number minNumber, Number maxNumber) GetLowerNumbers(int z) =>
             GetLowerNumbers(this, z);
@@ -202,15 +196,15 @@ namespace GTiff2Tiles.Core.Tiles
         #region GetCount
 
         /// <summary>
-        /// Get count of tiles in specified region
+        /// Get count of <see cref="Tile"/>s in specified region
         /// </summary>
         /// <param name="minCoordinate">Minimum <see cref="GeoCoordinate"/></param>
         /// <param name="maxCoordinate">Maximum <see cref="GeoCoordinate"/></param>
         /// <param name="minZ">Minimum zoom</param>
         /// <param name="maxZ">Maximum zoom</param>
         /// <param name="tmsCompatible">Is tms compatible?</param>
-        /// <param name="size">Tile's <see cref="Size"/></param>
-        /// <returns>Tiles count</returns>
+        /// <param name="size"><see cref="Tile"/>'s <see cref="Size"/></param>
+        /// <returns><see cref="Tile"/>s count</returns>
         public static int GetCount(GeoCoordinate minCoordinate, GeoCoordinate maxCoordinate,
                                    int minZ, int maxZ, bool tmsCompatible, Size size)
         {

@@ -640,9 +640,54 @@
             <param name="percentage">Current progress.</param>
             <param name="stopwatch">Get elapsed time from this.</param>
         </member>
+        <member name="T:GTiff2Tiles.Core.Images.Area">
+            <summary>
+            Represents read/write <see cref="T:GTiff2Tiles.Core.Images.Area"/>s of <see cref="T:GTiff2Tiles.Core.Images.IImage"/>
+            </summary>
+        </member>
+        <member name="P:GTiff2Tiles.Core.Images.Area.OriginCoordinate">
+            <summary>
+            Origin <see cref="T:GTiff2Tiles.Core.Coordinates.PixelCoordinate"/>
+            </summary>
+        </member>
+        <member name="P:GTiff2Tiles.Core.Images.Area.Size">
+            <summary>
+            <see cref="P:GTiff2Tiles.Core.Images.Area.Size"/> of <see cref="T:GTiff2Tiles.Core.Images.Area"/>
+            </summary>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Images.Area.#ctor(GTiff2Tiles.Core.Coordinates.PixelCoordinate,GTiff2Tiles.Core.Images.Size)">
+            <summary>
+            Creates new <see cref="T:GTiff2Tiles.Core.Images.Area"/>
+            </summary>
+            <param name="originCoordinate"><see cref="P:GTiff2Tiles.Core.Images.Area.OriginCoordinate"/></param>
+            <param name="size"><see cref="P:GTiff2Tiles.Core.Images.Area.Size"/></param>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Images.Area.GetAreas(GTiff2Tiles.Core.Coordinates.GeoCoordinate,GTiff2Tiles.Core.Coordinates.GeoCoordinate,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Coordinates.GeoCoordinate,GTiff2Tiles.Core.Coordinates.GeoCoordinate,GTiff2Tiles.Core.Images.Size)">
+            <inheritdoc cref="M:GTiff2Tiles.Core.Images.Area.GetAreas(GTiff2Tiles.Core.Images.IImage,GTiff2Tiles.Core.Tiles.ITile)"/>
+            <param name="imageMinCoordinate">Minimal <see cref="T:GTiff2Tiles.Core.Coordinates.GeoCoordinate"/>
+            of <see cref="T:GTiff2Tiles.Core.Images.IImage"/></param>
+            <param name="imageMaxCoordinate">Maximal <see cref="T:GTiff2Tiles.Core.Coordinates.GeoCoordinate"/>
+            of <see cref="T:GTiff2Tiles.Core.Images.IImage"/></param>
+            <param name="imageSize"><see cref="T:GTiff2Tiles.Core.Images.Size"/> of <see cref="T:GTiff2Tiles.Core.Images.IImage"/></param>
+            <param name="tileMinCoordinate">Minimal <see cref="T:GTiff2Tiles.Core.Coordinates.GeoCoordinate"/>
+            of <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/></param>
+            <param name="tileMaxCoordinate">Maximal <see cref="T:GTiff2Tiles.Core.Coordinates.GeoCoordinate"/>
+            of <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/></param>
+            <param name="tileSize"><see cref="T:GTiff2Tiles.Core.Images.Size"/> of <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/></param>
+            <returns></returns>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Images.Area.GetAreas(GTiff2Tiles.Core.Images.IImage,GTiff2Tiles.Core.Tiles.ITile)">
+            <summary>
+            Get <see cref="T:GTiff2Tiles.Core.Images.Area"/>s to read from input <see cref="T:GTiff2Tiles.Core.Images.IImage"/>
+            and to write to target <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>
+            </summary>
+            <param name="image">Source <see cref="T:GTiff2Tiles.Core.Images.IImage"/></param>
+            <param name="tile">Target <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/></param>
+            <returns><see cref="T:System.ValueTuple"/> of <see cref="T:GTiff2Tiles.Core.Images.Area"/>s to read and write</returns>
+        </member>
         <member name="T:GTiff2Tiles.Core.Images.Band">
             <summary>
-            Represents image's band
+            Represents <see cref="T:GTiff2Tiles.Core.Images.Raster"/> band
             </summary>
         </member>
         <member name="F:GTiff2Tiles.Core.Images.Band.DefaultValue">
@@ -655,57 +700,123 @@
             Current value
             </summary>
         </member>
-        <member name="M:GTiff2Tiles.Core.Images.Band.#ctor">
-            <summary>
-            Create band with default value
-            </summary>
-        </member>
         <member name="M:GTiff2Tiles.Core.Images.Band.#ctor(System.Int32)">
             <summary>
-            Create band with desired value
+            Creates new <see cref="T:GTiff2Tiles.Core.Images.Band"/>
             </summary>
-            <param name="value"><see cref="T:System.Int32"/> in range from 0 to 255</param>
+            <param name="value"><see cref="T:System.Int32"/> in range
+            from 0 to 255</param>
         </member>
-        <member name="M:GTiff2Tiles.Core.Images.Band.AddBands(NetVips.Image,System.Collections.Generic.IEnumerable{GTiff2Tiles.Core.Images.Band})">
+        <member name="M:GTiff2Tiles.Core.Images.Band.AddBands(NetVips.Image@,System.Collections.Generic.IEnumerable{GTiff2Tiles.Core.Images.Band})">
             <summary>
-            Add bands to <see cref="T:NetVips.Image"/>
+            Add <see cref="T:GTiff2Tiles.Core.Images.Band"/>s to <see cref="T:NetVips.Image"/>
             </summary>
-            <param name="image">Target <see cref="T:NetVips.Image"/></param>
+            <param name="image">Reference on <see cref="T:NetVips.Image"/>
+            to add <see cref="T:GTiff2Tiles.Core.Images.Band"/>s to</param>
             <param name="bands"><see cref="T:GTiff2Tiles.Core.Images.Band"/>s to add</param>
-            <returns><see cref="T:NetVips.Image"/> with new <see cref="T:GTiff2Tiles.Core.Images.Band"/>s</returns>
         </member>
-        <member name="M:GTiff2Tiles.Core.Images.Band.AddDefaultBands(NetVips.Image,System.Int32)">
+        <member name="M:GTiff2Tiles.Core.Images.Band.AddDefaultBands(NetVips.Image@,System.Int32)">
             <summary>
             Add default <see cref="T:GTiff2Tiles.Core.Images.Band"/>s to <see cref="T:NetVips.Image"/> until
             bands count is lesser than <see cref="T:NetVips.Image"/>'s current bands count
             </summary>
-            <param name="image">Target <see cref="T:NetVips.Image"/></param>
-            <param name="bandsCount">Count of desired <see cref="T:GTiff2Tiles.Core.Images.Band"/>s in <see cref="T:NetVips.Image"/>,
-            NOT the count of <see cref="T:GTiff2Tiles.Core.Images.Band"/>s to add</param>
-            <returns><see cref="T:NetVips.Image"/> with new <see cref="T:GTiff2Tiles.Core.Images.Band"/>s</returns>
+            <param name="image">Reference on <see cref="T:NetVips.Image"/>
+            to add <see cref="T:GTiff2Tiles.Core.Images.Band"/>s to</param>
+            <param name="bandsCount">Count of desired <see cref="T:GTiff2Tiles.Core.Images.Band"/>s
+            in <see cref="T:NetVips.Image"/>;
+            <remarks>NOT the count of <see cref="T:GTiff2Tiles.Core.Images.Band"/>s to add</remarks></param>
         </member>
         <member name="T:GTiff2Tiles.Core.Images.IImage">
             <summary>
-            Main interface for cropping different tiles.
+            Main interface for cropping different <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>s
+            </summary>
+        </member>
+        <member name="P:GTiff2Tiles.Core.Images.IImage.Size">
+            <summary>
+            <see cref="T:GTiff2Tiles.Core.Images.Size"/> (width, height)
+            </summary>
+        </member>
+        <member name="P:GTiff2Tiles.Core.Images.IImage.MinCoordinate">
+            <summary>
+            Minimal <see cref="T:GTiff2Tiles.Core.Coordinates.GeoCoordinate"/> of this <see cref="T:GTiff2Tiles.Core.Images.IImage"/>
+            </summary>
+        </member>
+        <member name="P:GTiff2Tiles.Core.Images.IImage.MaxCoordinate">
+            <summary>
+            Maximal <see cref="T:GTiff2Tiles.Core.Coordinates.GeoCoordinate"/> of this <see cref="T:GTiff2Tiles.Core.Images.IImage"/>
+            </summary>
+        </member>
+        <member name="P:GTiff2Tiles.Core.Images.IImage.GeoCoordinateType">
+            <summary>
+            Type of <see cref="T:GTiff2Tiles.Core.Coordinates.GeoCoordinate"/>
             </summary>
         </member>
         <member name="P:GTiff2Tiles.Core.Images.IImage.IsDisposed">
             <summary>
-            Shows if resources have already been disposed.
+            Shows if resources have already been disposed
             </summary>
         </member>
-        <member name="M:GTiff2Tiles.Core.Images.IImage.WriteTilesToDirectoryAsync(System.IO.DirectoryInfo,System.Int32,System.Int32,GTiff2Tiles.Core.Images.Size,System.Boolean,System.String,System.Int32,System.IProgress{System.Double},System.Int32,System.Boolean,System.Int32)">
+        <member name="M:GTiff2Tiles.Core.Images.IImage.WriteTilesToDirectoryAsync(System.IO.DirectoryInfo,System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,System.String,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Boolean)">
             <summary>
-            Crops input tiff for each zoom.
+            Crops current <see cref="T:GTiff2Tiles.Core.Images.IImage"/> on <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>s
+            and writes them to <paramref name="outputDirectoryInfo"/>
             </summary>
-            <param name="outputDirectoryInfo">Output directory.</param>
-            <param name="minZ">Minimum cropped zoom.</param>
-            <param name="maxZ">Maximum cropped zoom.</param>
-            <param name="tmsCompatible">Do you want to create tms-compatible tiles?</param>
-            <param name="tileExtension">Extension of ready tiles.</param>
-            <param name="progress">Progress.</param>
-            <param name="threadsCount">Threads count.</param>
+            <param name="outputDirectoryInfo">Directory for output <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>s</param>
+            <param name="tileExtension">Extension of ready <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>s
+            <remarks><para/>.png by default</remarks></param>
             <returns></returns>
+            <inheritdoc cref="M:GTiff2Tiles.Core.Images.IImage.WriteTilesToAsyncEnumerable(System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Boolean)"/>
+            <param name="minZ"></param>
+            <param name="maxZ"></param>
+            <param name="tmsCompatible"></param>
+            <param name="tileSize"></param>
+            <param name="bandsCount"></param>
+            <param name="tileCacheCount"></param>
+            <param name="threadsCount">T</param>
+            <param name="progress"></param>
+            <param name="isPrintEstimatedTime"></param>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Images.IImage.WriteTilesToChannelAsync(System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.ITile},System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Boolean)">
+            <summary>
+            Crops current <see cref="T:GTiff2Tiles.Core.Images.IImage"/> on <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>s
+            and writes them to <paramref name="channelWriter"/>
+            </summary>
+            <param name="channelWriter"><see cref="T:System.Threading.Channels.Channel"/> to write <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/> to</param>
+            <returns></returns>
+            <inheritdoc cref="M:GTiff2Tiles.Core.Images.IImage.WriteTilesToAsyncEnumerable(System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Boolean)"/>
+            <param name="minZ"></param>
+            <param name="maxZ"></param>
+            <param name="tmsCompatible"></param>
+            <param name="tileSize"></param>
+            <param name="bandsCount"></param>
+            <param name="tileCacheCount"></param>
+            <param name="threadsCount">T</param>
+            <param name="progress"></param>
+            <param name="isPrintEstimatedTime"></param>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Images.IImage.WriteTilesToAsyncEnumerable(System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Boolean)">
+            <summary>
+            Crops current <see cref="T:GTiff2Tiles.Core.Images.IImage"/> on <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>s
+            and writes them to <see cref="T:System.Collections.Generic.IAsyncEnumerable`1"/>
+            </summary>
+            <param name="minZ">Minimum cropped zoom</param>
+            <param name="maxZ">Maximum cropped zoom</param>
+            <param name="tmsCompatible">Do you want to create tms-compatible <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>s?
+            <remarks><para/><see langword="false"/> by default</remarks></param>
+            <param name="tileSize"><see cref="T:GTiff2Tiles.Core.Images.Size"/> of <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>s
+            <remarks><para/><see langword="null"/> by default, be sure to set it
+            for custom implementations of <see cref="T:GTiff2Tiles.Core.Images.IImage"/></remarks></param>
+            <param name="bandsCount">Count of <see cref="T:GTiff2Tiles.Core.Images.Band"/>s in ready <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>s
+            <remarks><para/>4 by default</remarks></param>
+            <param name="tileCacheCount">Count of <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/> to be in cache
+            <remarks><para/>1000 by default</remarks></param>
+            <param name="threadsCount">Threads count
+            <remarks><para/>Calculates automatically by default</remarks></param>
+            <param name="progress">Progress-reporter
+            <remarks><para/><see langword="null"/> by default</remarks></param>
+            <param name="isPrintEstimatedTime">Do you want to see estimated time left?
+            <remarks><para/><see langword="false"/> by default</remarks></param>
+            <returns><see cref="T:System.Collections.Generic.IAsyncEnumerable`1"/> of <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>s</returns>
         </member>
         <member name="T:GTiff2Tiles.Core.Images.Img">
             <summary>
@@ -729,12 +840,12 @@
         </member>
         <member name="T:GTiff2Tiles.Core.Images.Raster">
             <summary>
-            Class for creating raster tiles.
+            Class for creating <see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/>s
             </summary>
         </member>
         <member name="P:GTiff2Tiles.Core.Images.Raster.Data">
             <summary>
-            This image's data.
+            This <see cref="T:GTiff2Tiles.Core.Images.Raster"/>'s data
             </summary>
         </member>
         <member name="P:GTiff2Tiles.Core.Images.Raster.Size">
@@ -754,13 +865,34 @@
         </member>
         <member name="M:GTiff2Tiles.Core.Images.Raster.#ctor(System.IO.FileInfo,System.Int64,GTiff2Tiles.Core.Enums.CoordinateType)">
             <summary>
-            Creates new <see cref="T:GTiff2Tiles.Core.Images.Raster"/> object.
+            Creates new <see cref="T:GTiff2Tiles.Core.Images.Raster"/> object
             </summary>
-            <param name="inputFileInfo">Input GeoTiff image.</param>
+            <param name="inputFileInfo">Input GeoTiff image</param>
+            <param name="maxMemoryCache">Max size of input image to store in RAM
+            <remarks><para/>2GB by default</remarks></param>
+            <param name="coordinateType">Type of coordinates
+            <remarks><para/><see cref="T:GTiff2Tiles.Core.Coordinates.GeodeticCoordinate"/> by default</remarks></param>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Images.Raster.#ctor(System.Collections.Generic.IEnumerable{System.Byte},GTiff2Tiles.Core.Enums.CoordinateType)">
+            <summary>
+            Creates new <see cref="T:GTiff2Tiles.Core.Images.Raster"/> object
+            </summary>
+            <param name="inputBytes"><see cref="T:System.Collections.Generic.IEnumerable`1"/> of GeoTiff's
+            <see cref="T:System.Byte"/>s</param>
+            <param name="coordinateType">Type of coordinates
+            <remarks><para/><see cref="T:GTiff2Tiles.Core.Coordinates.GeodeticCoordinate"/> by default</remarks></param>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Images.Raster.#ctor(System.IO.Stream,GTiff2Tiles.Core.Enums.CoordinateType)">
+            <summary>
+            Creates new <see cref="T:GTiff2Tiles.Core.Images.Raster"/> object
+            </summary>
+            <param name="inputStream"><see cref="T:System.IO.Stream"/> with GeoTiff</param>
+            <param name="coordinateType">Type of coordinates
+            <remarks><para/><see cref="T:GTiff2Tiles.Core.Coordinates.GeodeticCoordinate"/> by default</remarks></param>
         </member>
         <member name="M:GTiff2Tiles.Core.Images.Raster.Finalize">
             <summary>
-            Destructor.
+            Destructor
             </summary>
         </member>
         <member name="M:GTiff2Tiles.Core.Images.Raster.Dispose">
@@ -781,12 +913,18 @@
             <para/>Crops zoom directly from input image.
             </summary>
         </member>
-        <member name="M:GTiff2Tiles.Core.Images.Raster.WriteTilesToDirectoryAsync(System.IO.DirectoryInfo,System.Int32,System.Int32,GTiff2Tiles.Core.Images.Size,System.Boolean,System.String,System.Int32,System.IProgress{System.Double},System.Int32,System.Boolean,System.Int32)">
+        <member name="M:GTiff2Tiles.Core.Images.Raster.WriteTilesToDirectoryAsync(System.IO.DirectoryInfo,System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,System.String,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Boolean)">
+            <inheritdoc />
+        </member>
+        <member name="M:GTiff2Tiles.Core.Images.Raster.WriteTilesToChannelAsync(System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.ITile},System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Boolean)">
+            <inheritdoc />
+        </member>
+        <member name="M:GTiff2Tiles.Core.Images.Raster.WriteTilesToAsyncEnumerable(System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Boolean)">
             <inheritdoc />
         </member>
         <member name="T:GTiff2Tiles.Core.Images.Size">
             <summary>
-            Image size
+            <see cref="T:GTiff2Tiles.Core.Images.IImage"/>'s size
             </summary>
         </member>
         <member name="P:GTiff2Tiles.Core.Images.Size.Width">
@@ -799,18 +937,17 @@
             Image's height
             </summary>
         </member>
+        <member name="P:GTiff2Tiles.Core.Images.Size.Resolution">
+            <summary>
+            <see cref="T:GTiff2Tiles.Core.Images.IImage"/>'s resolution
+            </summary>
+        </member>
         <member name="M:GTiff2Tiles.Core.Images.Size.#ctor(System.Int32,System.Int32)">
             <summary>
-            Creates size instance
+            Creates new <see cref="T:GTiff2Tiles.Core.Images.Size"/>
             </summary>
-            <param name="width">Width</param>
-            <param name="height">Height</param>
-        </member>
-        <member name="M:GTiff2Tiles.Core.Images.Size.GetResoultion">
-            <summary>
-            Gets resolution
-            </summary>
-            <returns>Resolution of this size</returns>
+            <param name="width"><see cref="P:GTiff2Tiles.Core.Images.Size.Width"/></param>
+            <param name="height"><see cref="P:GTiff2Tiles.Core.Images.Size.Height"/></param>
         </member>
         <member name="M:GTiff2Tiles.Core.Images.Size.Equals(System.Object)">
             <inheritdoc />
@@ -823,20 +960,20 @@
         </member>
         <member name="M:GTiff2Tiles.Core.Images.Size.op_Equality(GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Images.Size)">
             <summary>
-            Check two sizes for equality
+            Check two <see cref="T:GTiff2Tiles.Core.Images.Size"/>s for equality
             </summary>
-            <param name="size1">Size 1</param>
-            <param name="size2">Size 2</param>
-            <returns><see langword="true"/> if sizes are equal;
+            <param name="size1"><see cref="T:GTiff2Tiles.Core.Images.Size"/> 1</param>
+            <param name="size2"><see cref="T:GTiff2Tiles.Core.Images.Size"/> 2</param>
+            <returns><see langword="true"/> if <see cref="T:GTiff2Tiles.Core.Images.Size"/>s are equal;
             <see langword="false"/>otherwise</returns>
         </member>
         <member name="M:GTiff2Tiles.Core.Images.Size.op_Inequality(GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Images.Size)">
             <summary>
-            Check two sizes for non-equality
+            Check two <see cref="T:GTiff2Tiles.Core.Images.Size"/>s for non-equality
             </summary>
-            <param name="size1">Size 1</param>
-            <param name="size2">Size 2</param>
-            <returns><see langword="true"/> if sizes are not equal;
+            <param name="size1"><see cref="T:GTiff2Tiles.Core.Images.Size"/> 1</param>
+            <param name="size2"><see cref="T:GTiff2Tiles.Core.Images.Size"/> 2</param>
+            <returns><see langword="true"/> if <see cref="T:GTiff2Tiles.Core.Images.Size"/>s are not equal;
             <see langword="false"/>otherwise</returns>
         </member>
         <member name="M:GTiff2Tiles.Core.Images.Size.op_LessThan(GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Images.Size)">
@@ -1055,7 +1192,7 @@
         </member>
         <member name="P:GTiff2Tiles.Core.Tiles.ITile.Number">
             <summary>
-            <see cref="P:GTiff2Tiles.Core.Tiles.ITile.Number"/> of this <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>
+            <see cref="T:GTiff2Tiles.Core.Tiles.Number"/> of this <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>
             </summary>
         </member>
         <member name="P:GTiff2Tiles.Core.Tiles.ITile.Bytes">
@@ -1098,7 +1235,7 @@
         </member>
         <member name="T:GTiff2Tiles.Core.Tiles.Number">
             <summary>
-            <see cref="T:GTiff2Tiles.Core.Tiles.Number"/> of <seealso cref="T:GTiff2Tiles.Core.Tiles.ITile"/>
+            <see cref="T:GTiff2Tiles.Core.Tiles.Number"/> of <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>
             </summary>
         </member>
         <member name="P:GTiff2Tiles.Core.Tiles.Number.X">
@@ -1142,41 +1279,41 @@
             <inheritdoc cref="M:GTiff2Tiles.Core.Tiles.Number.Flip"/>
             <param name="number"><see cref="T:GTiff2Tiles.Core.Tiles.Number"/> to flip</param>
         </member>
-        <member name="M:GTiff2Tiles.Core.Tiles.Number.ToGeodeticCoordinates(System.Int32)">
+        <member name="M:GTiff2Tiles.Core.Tiles.Number.ToGeodeticCoordinates(GTiff2Tiles.Core.Images.Size)">
             <summary>
             Convert <see cref="T:GTiff2Tiles.Core.Tiles.Number"/> to <see cref="T:GTiff2Tiles.Core.Coordinates.GeodeticCoordinate"/>s
             </summary>
-            <param name="tileSize">Tile's size</param>
-            <returns><seealso cref="T:System.ValueTuple"/> of <seealso cref="T:GTiff2Tiles.Core.Coordinates.GeodeticCoordinate"/>s</returns>
+            <param name="tileSize"><see cref="T:GTiff2Tiles.Core.Tiles.Tile"/> <see cref="T:GTiff2Tiles.Core.Images.Size"/></param>
+            <returns><see cref="T:System.ValueTuple"/> of <see cref="T:GTiff2Tiles.Core.Coordinates.GeodeticCoordinate"/>s</returns>
         </member>
-        <member name="M:GTiff2Tiles.Core.Tiles.Number.ToGeodeticCoordinates(GTiff2Tiles.Core.Tiles.Number,System.Int32)">
-            <inheritdoc cref="M:GTiff2Tiles.Core.Tiles.Number.ToGeodeticCoordinates(System.Int32)"/>
+        <member name="M:GTiff2Tiles.Core.Tiles.Number.ToGeodeticCoordinates(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Images.Size)">
+            <inheritdoc cref="M:GTiff2Tiles.Core.Tiles.Number.ToGeodeticCoordinates(GTiff2Tiles.Core.Images.Size)"/>
             <param name="number"><see cref="T:GTiff2Tiles.Core.Tiles.Number"/> to convert</param>
             <param name="tileSize"></param>
         </member>
-        <member name="M:GTiff2Tiles.Core.Tiles.Number.ToMercatorCoordinates(System.Int32)">
+        <member name="M:GTiff2Tiles.Core.Tiles.Number.ToMercatorCoordinates(GTiff2Tiles.Core.Images.Size)">
             <summary>
             Convert <see cref="T:GTiff2Tiles.Core.Tiles.Number"/> to <see cref="T:GTiff2Tiles.Core.Coordinates.MercatorCoordinate"/>s
             </summary>
-            <param name="tileSize">Tile's size</param>
-            <returns><seealso cref="T:System.ValueTuple"/> of <seealso cref="T:GTiff2Tiles.Core.Coordinates.MercatorCoordinate"/>s</returns>
+            <param name="tileSize"><see cref="T:GTiff2Tiles.Core.Tiles.Tile"/> <see cref="T:GTiff2Tiles.Core.Images.Size"/></param>
+            <returns><see cref="T:System.ValueTuple"/> of <see cref="T:GTiff2Tiles.Core.Coordinates.MercatorCoordinate"/>s</returns>
         </member>
-        <member name="M:GTiff2Tiles.Core.Tiles.Number.ToMercatorCoordinates(GTiff2Tiles.Core.Tiles.Number,System.Int32)">
-            <inheritdoc cref="M:GTiff2Tiles.Core.Tiles.Number.ToMercatorCoordinates(System.Int32)"/>
+        <member name="M:GTiff2Tiles.Core.Tiles.Number.ToMercatorCoordinates(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Images.Size)">
+            <inheritdoc cref="M:GTiff2Tiles.Core.Tiles.Number.ToMercatorCoordinates(GTiff2Tiles.Core.Images.Size)"/>
             <param name="number"><see cref="T:GTiff2Tiles.Core.Tiles.Number"/> to convert</param>
             <param name="tileSize"></param>
         </member>
-        <member name="M:GTiff2Tiles.Core.Tiles.Number.ToGeoCoordinates(GTiff2Tiles.Core.Enums.CoordinateType,System.Int32,System.Boolean)">
+        <member name="M:GTiff2Tiles.Core.Tiles.Number.ToGeoCoordinates(GTiff2Tiles.Core.Enums.CoordinateType,GTiff2Tiles.Core.Images.Size,System.Boolean)">
             <summary>
             Convert <see cref="T:GTiff2Tiles.Core.Tiles.Number"/> to <see cref="T:GTiff2Tiles.Core.Coordinates.GeoCoordinate"/>s
             </summary>
             <param name="coordinateType">Type of <see cref="T:GTiff2Tiles.Core.Coordinates.GeoCoordinate"/></param>
-            <param name="tileSize">Tile's size</param>
+            <param name="tileSize"><see cref="T:GTiff2Tiles.Core.Tiles.Tile"/> <see cref="T:GTiff2Tiles.Core.Images.Size"/></param>
             <param name="tmsCompatible">Is tms compatible?</param>
-            <returns><seealso cref="T:System.ValueTuple"/> of <seealso cref="T:GTiff2Tiles.Core.Coordinates.GeoCoordinate"/>s</returns>
+            <returns><see cref="T:System.ValueTuple"/> of <see cref="T:GTiff2Tiles.Core.Coordinates.GeoCoordinate"/>s</returns>
         </member>
-        <member name="M:GTiff2Tiles.Core.Tiles.Number.ToGeoCoordinates(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Enums.CoordinateType,System.Int32,System.Boolean)">
-            <inheritdoc cref="M:GTiff2Tiles.Core.Tiles.Number.ToGeoCoordinates(GTiff2Tiles.Core.Enums.CoordinateType,System.Int32,System.Boolean)"/>
+        <member name="M:GTiff2Tiles.Core.Tiles.Number.ToGeoCoordinates(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Enums.CoordinateType,GTiff2Tiles.Core.Images.Size,System.Boolean)">
+            <inheritdoc cref="M:GTiff2Tiles.Core.Tiles.Number.ToGeoCoordinates(GTiff2Tiles.Core.Enums.CoordinateType,GTiff2Tiles.Core.Images.Size,System.Boolean)"/>
             <param name="number"><see cref="T:GTiff2Tiles.Core.Tiles.Number"/> to convert</param>
             <param name="coordinateType"></param>
             <param name="tileSize"></param>
@@ -1186,7 +1323,8 @@
             <summary>
             Get lower <see cref="T:GTiff2Tiles.Core.Tiles.Number"/>s for specified <see cref="T:GTiff2Tiles.Core.Tiles.Number"/> and zoom (>=10)
             </summary>
-            <param name="z">Zoom; must be >=10</param>
+            <param name="z">Zoom;
+            <remarks>must be >=10</remarks></param>
             <returns><see cref="T:System.ValueTuple"/> of lower <see cref="T:GTiff2Tiles.Core.Tiles.Number"/>s</returns>
         </member>
         <member name="M:GTiff2Tiles.Core.Tiles.Number.GetLowerNumbers(GTiff2Tiles.Core.Tiles.Number,System.Int32)">
@@ -1196,15 +1334,15 @@
         </member>
         <member name="M:GTiff2Tiles.Core.Tiles.Number.GetCount(GTiff2Tiles.Core.Coordinates.GeoCoordinate,GTiff2Tiles.Core.Coordinates.GeoCoordinate,System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size)">
             <summary>
-            Get count of tiles in specified region
+            Get count of <see cref="T:GTiff2Tiles.Core.Tiles.Tile"/>s in specified region
             </summary>
             <param name="minCoordinate">Minimum <see cref="T:GTiff2Tiles.Core.Coordinates.GeoCoordinate"/></param>
             <param name="maxCoordinate">Maximum <see cref="T:GTiff2Tiles.Core.Coordinates.GeoCoordinate"/></param>
             <param name="minZ">Minimum zoom</param>
             <param name="maxZ">Maximum zoom</param>
             <param name="tmsCompatible">Is tms compatible?</param>
-            <param name="size">Tile's <see cref="T:GTiff2Tiles.Core.Images.Size"/></param>
-            <returns>Tiles count</returns>
+            <param name="size"><see cref="T:GTiff2Tiles.Core.Tiles.Tile"/>'s <see cref="T:GTiff2Tiles.Core.Images.Size"/></param>
+            <returns><see cref="T:GTiff2Tiles.Core.Tiles.Tile"/>s count</returns>
         </member>
         <member name="M:GTiff2Tiles.Core.Tiles.Number.Equals(System.Object)">
             <inheritdoc />
@@ -1321,7 +1459,8 @@
             Creates new <see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/>
             </summary>
             <param name="number"><see cref="P:GTiff2Tiles.Core.Tiles.Tile.Number"/></param>
-            <param name="size"><see cref="P:GTiff2Tiles.Core.Tiles.Tile.Size"/></param>
+            <param name="size"><see cref="P:GTiff2Tiles.Core.Tiles.Tile.Size"/>;
+            <remarks>should be a square, e.g. 256x256</remarks></param>
             <param name="bytes"><see cref="P:GTiff2Tiles.Core.Tiles.Tile.Bytes"/></param>
             <param name="extension"><see cref="P:GTiff2Tiles.Core.Tiles.Tile.Extension"/></param>
             <param name="tmsCompatible">Is tms compatible?</param>
@@ -1335,7 +1474,8 @@
             <param name="minCoordinate">Minimum <see cref="T:GTiff2Tiles.Core.Coordinates.GeoCoordinate"/></param>
             <param name="maxCoordinate">Maximum <see cref="T:GTiff2Tiles.Core.Coordinates.GeoCoordinate"/></param>
             <param name="zoom">Zoom</param>
-            <param name="size"><see cref="P:GTiff2Tiles.Core.Tiles.Tile.Size"/></param>
+            <param name="size"><see cref="P:GTiff2Tiles.Core.Tiles.Tile.Size"/>;
+            <remarks>should be a square, e.g. 256x256</remarks></param>
             <param name="bytes"><see cref="P:GTiff2Tiles.Core.Tiles.Tile.Bytes"/></param>
             <param name="extension"><see cref="P:GTiff2Tiles.Core.Tiles.Tile.Extension"/></param>
             <param name="tmsCompatible">Is tms compatible?</param>
@@ -1394,11 +1534,13 @@
             Creates new <see cref="T:GTiff2Tiles.Core.Tiles.Tile"/>
             </summary>
             <param name="number"><see cref="P:GTiff2Tiles.Core.Tiles.Tile.Number"/></param>
-            <param name="size"><see cref="P:GTiff2Tiles.Core.Tiles.Tile.Size"/>; should be a square</param>
+            <param name="size"><see cref="P:GTiff2Tiles.Core.Tiles.Tile.Size"/>;
+            <remarks>should be a square, e.g. 256x256</remarks></param>
             <param name="bytes"><see cref="P:GTiff2Tiles.Core.Tiles.Tile.Bytes"/></param>
             <param name="extension"><see cref="P:GTiff2Tiles.Core.Tiles.Tile.Extension"/></param>
             <param name="tmsCompatible">Is tms compatible?</param>
             <param name="coordinateType">Type of <see cref="T:GTiff2Tiles.Core.Coordinates.GeoCoordinate"/></param>
+            <exception cref="T:GTiff2Tiles.Core.Exceptions.Tile.TileException"></exception>
         </member>
         <member name="M:GTiff2Tiles.Core.Tiles.Tile.#ctor(GTiff2Tiles.Core.Coordinates.GeoCoordinate,GTiff2Tiles.Core.Coordinates.GeoCoordinate,System.Int32,GTiff2Tiles.Core.Images.Size,System.Collections.Generic.IEnumerable{System.Byte},System.String,System.Boolean)">
             <summary>
@@ -1407,10 +1549,12 @@
             <param name="minCoordinate">Minimum <see cref="T:GTiff2Tiles.Core.Coordinates.GeoCoordinate"/></param>
             <param name="maxCoordinate">Maximum <see cref="T:GTiff2Tiles.Core.Coordinates.GeoCoordinate"/></param>
             <param name="zoom">Zoom</param>
-            <param name="size"><see cref="P:GTiff2Tiles.Core.Tiles.Tile.Size"/>; should be a square</param>
+            <param name="size"><see cref="P:GTiff2Tiles.Core.Tiles.Tile.Size"/>;
+            <remarks>should be a square, e.g. 256x256</remarks></param>
             <param name="bytes"><see cref="P:GTiff2Tiles.Core.Tiles.Tile.Bytes"/></param>
             <param name="extension"><see cref="P:GTiff2Tiles.Core.Tiles.Tile.Extension"/></param>
             <param name="tmsCompatible">Is tms compatible?</param>
+            <exception cref="T:GTiff2Tiles.Core.Exceptions.Tile.TileException"></exception>
         </member>
         <member name="M:GTiff2Tiles.Core.Tiles.Tile.Finalize">
             <summary>
@@ -1421,9 +1565,7 @@
             <inheritdoc />
         </member>
         <member name="M:GTiff2Tiles.Core.Tiles.Tile.Dispose(System.Boolean)">
-            <summary>
-            Actually disposes the data.
-            </summary>
+            <inheritdoc cref="M:GTiff2Tiles.Core.Tiles.Tile.Dispose"/>
             <param name="disposing">Dispose static fields?</param>
         </member>
         <member name="M:GTiff2Tiles.Core.Tiles.Tile.DisposeAsync">

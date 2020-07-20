@@ -4,14 +4,50 @@ using GTiff2Tiles.Core.Tiles;
 
 namespace GTiff2Tiles.Core.Images
 {
-    public struct Area
+    /// <summary>
+    /// Represents read/write <see cref="Area"/>s of <see cref="IImage"/>
+    /// </summary>
+    public class Area
     {
+        #region Properties
+
+        /// <summary>
+        /// Origin <see cref="PixelCoordinate"/>
+        /// </summary>
         public PixelCoordinate OriginCoordinate { get; }
 
+        /// <summary>
+        /// <see cref="Size"/> of <see cref="Area"/>
+        /// </summary>
         public Size Size { get; }
 
-        public Area(PixelCoordinate originCoordinate, int width, int height) => (OriginCoordinate, Size) = (originCoordinate, new Size(width, height));
+        #endregion
 
+        #region Constructors
+
+        /// <summary>
+        /// Creates new <see cref="Area"/>
+        /// </summary>
+        /// <param name="originCoordinate"><see cref="OriginCoordinate"/></param>
+        /// <param name="size"><see cref="Size"/></param>
+        public Area(PixelCoordinate originCoordinate, Size size) => (OriginCoordinate, Size) = (originCoordinate, size);
+
+        #endregion
+
+        #region Methods
+
+        /// <inheritdoc cref="GetAreas(IImage, ITile)"/>
+        /// <param name="imageMinCoordinate">Minimal <see cref="GeoCoordinate"/>
+        /// of <see cref="IImage"/></param>
+        /// <param name="imageMaxCoordinate">Maximal <see cref="GeoCoordinate"/>
+        /// of <see cref="IImage"/></param>
+        /// <param name="imageSize"><see cref="Images.Size"/> of <see cref="IImage"/></param>
+        /// <param name="tileMinCoordinate">Minimal <see cref="GeoCoordinate"/>
+        /// of <see cref="ITile"/></param>
+        /// <param name="tileMaxCoordinate">Maximal <see cref="GeoCoordinate"/>
+        /// of <see cref="ITile"/></param>
+        /// <param name="tileSize"><see cref="Images.Size"/> of <see cref="ITile"/></param>
+        /// <returns></returns>
         public static (Area readArea, Area writeArea) GetAreas(GeoCoordinate imageMinCoordinate,
                                                                GeoCoordinate imageMaxCoordinate, Size imageSize,
                                                                GeoCoordinate tileMinCoordinate,
@@ -66,15 +102,28 @@ namespace GTiff2Tiles.Core.Images
             writeXSize = writeXSize > 1.0 ? writeXSize : 1.0;
             writeYSize = writeYSize > 1.0 ? writeYSize : 1.0;
 
-            var readOriginCoordinate = new PixelCoordinate(readPosMinX, readPosMinY);
-            var writeOriginCoordinate = new PixelCoordinate(writePosMinX, writePosMinY);
-            Area readArea = new Area(readOriginCoordinate, (int)readXSize, (int)readYSize);
-            Area writeArea = new Area(writeOriginCoordinate, (int)writeXSize, (int)writeYSize);
+            PixelCoordinate readOriginCoordinate = new PixelCoordinate(readPosMinX, readPosMinY);
+            PixelCoordinate writeOriginCoordinate = new PixelCoordinate(writePosMinX, writePosMinY);
+            Size readSize = new Size((int)readXSize, (int)readYSize);
+            Size writeSize = new Size((int)writeXSize, (int)writeYSize);
+
+            Area readArea = new Area(readOriginCoordinate, readSize);
+            Area writeArea = new Area(writeOriginCoordinate, writeSize);
 
             return (readArea, writeArea);
         }
 
-        public static (Area readArea, Area writeArea) GetAreas(IImage image, ITile tile) => GetAreas(image.MinCoordinate, image.MaxCoordinate, image.Size,
-                                                                                                     tile.MinCoordinate, tile.MaxCoordinate, tile.Size);
+        /// <summary>
+        /// Get <see cref="Area"/>s to read from input <see cref="IImage"/>
+        /// and to write to target <see cref="ITile"/>
+        /// </summary>
+        /// <param name="image">Source <see cref="IImage"/></param>
+        /// <param name="tile">Target <see cref="ITile"/></param>
+        /// <returns><see cref="ValueTuple"/> of <see cref="Area"/>s to read and write</returns>
+        public static (Area readArea, Area writeArea) GetAreas(IImage image, ITile tile) =>
+            GetAreas(image.MinCoordinate, image.MaxCoordinate, image.Size,
+                     tile.MinCoordinate, tile.MaxCoordinate, tile.Size);
+
+        #endregion
     }
 }

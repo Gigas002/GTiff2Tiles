@@ -51,8 +51,12 @@ namespace GTiff2Tiles.Core.Images
             //TODO: args
             //Generate tiles.
             Size size = new Size(Constants.Image.Raster.TileSize, Constants.Image.Raster.TileSize);
-            await image.WriteTilesToDirectoryAsync(outputDirectoryInfo, minZ, maxZ, size, tmsCompatible, tileExtensionString, 4, progress,
-                                           threadsCount, false).ConfigureAwait(false);
+            await image.WriteTilesToDirectoryAsync(outputDirectoryInfo, minZ, maxZ,
+                                                   tileSize: size, tmsCompatible: tmsCompatible,
+                                                   tileExtension: tileExtensionString,
+                                                   bandsCount: 4, progress: progress,
+                                                   threadsCount: threadsCount, isPrintEstimatedTime: false)
+                       .ConfigureAwait(false);
         }
     }
 }
