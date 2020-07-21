@@ -15,6 +15,7 @@ Changes since 1.4.1:
 - Move to **[DBAD](https://dbad-license.org/)** license;
 - Configured CI/CD for full repo;
 - Reduced tile shifting in output tiles (resolved by updating **NetVips.Native to 8.10.0+**);
+- Added **Microsoft.CodeAnalysis.FxCopAnalyzers** dependency;
 
 ### Core
 

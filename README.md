@@ -84,6 +84,7 @@ In [Examples](https://github.com/Gigas002/GTiff2Tiles/tree/master/Examples/Input
 - [MaxRev.Gdal.WindowsRuntime.Minimal](https://www.nuget.org/packages/MaxRev.Gdal.WindowsRuntime.Minimal/) – 3.1.0.100;
 - [NetVips](https://www.nuget.org/packages/NetVips/) – 1.2.4;
 - [NetVips.Native](https://www.nuget.org/packages/NetVips.Native/) – 8.10.0-rc1;
+- [Microsoft.CodeAnalysis.FxCopAnalyzers](https://www.nuget.org/packages/Microsoft.CodeAnalysis.FxCopAnalyzers) – 3.0.0;
 
 ### Localization
 
