@@ -9,7 +9,7 @@ using CommandLine;
 using GTiff2Tiles.Console.Localization;
 using GTiff2Tiles.Core.Constants;
 using GTiff2Tiles.Core.Constants.Gdal;
-using GTiff2Tiles.Core.Enums.Image;
+using GTiff2Tiles.Core.Enums;
 using GTiff2Tiles.Core.Helpers;
 using GTiff2Tiles.Core.Images;
 

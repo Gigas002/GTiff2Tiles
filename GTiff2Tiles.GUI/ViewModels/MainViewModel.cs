@@ -9,7 +9,7 @@ using Prism.Mvvm;
 using Prism.Commands;
 using GTiff2Tiles.Core.Constants;
 using GTiff2Tiles.Core.Constants.Gdal;
-using GTiff2Tiles.Core.Enums.Image;
+using GTiff2Tiles.Core.Enums;
 using GTiff2Tiles.Core.Helpers;
 using GTiff2Tiles.Core.Images;
 using GTiff2Tiles.GUI.Constants;
@@ -224,7 +224,7 @@ namespace GTiff2Tiles.GUI.ViewModels
         /// <summary>
         /// Enum for tile extension.
         /// </summary>
-        private TileExtension RealTileExtension { get; set; } = Core.Enums.Image.TileExtension.Png;
+        private TileExtension RealTileExtension { get; set; } = Core.Enums.TileExtension.Png;
 
         /// <summary>
         /// Collection of supported tile extensions.
@@ -497,9 +497,9 @@ namespace GTiff2Tiles.GUI.ViewModels
             //Set tile extension. Png by default or unknown input
             RealTileExtension = TileExtension switch
             {
-                FileExtensions.Jpg => Core.Enums.Image.TileExtension.Jpg,
-                FileExtensions.Webp => Core.Enums.Image.TileExtension.Webp,
-                _ => Core.Enums.Image.TileExtension.Png
+                FileExtensions.Jpg => Core.Enums.TileExtension.Jpg,
+                FileExtensions.Webp => Core.Enums.TileExtension.Webp,
+                _ => Core.Enums.TileExtension.Png
             };
 
             //Disable controls.

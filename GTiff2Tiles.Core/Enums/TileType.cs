@@ -1,4 +1,4 @@
-﻿namespace GTiff2Tiles.Core.Enums.Image
+﻿namespace GTiff2Tiles.Core.Enums
 {
     /// <summary>
     /// Types of tiles to create

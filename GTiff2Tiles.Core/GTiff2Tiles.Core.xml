@@ -405,32 +405,32 @@
             <param name="tileSize">Tile's size</param>
             <returns>Converted <see cref="T:GTiff2Tiles.Core.Coordinates.PixelCoordinate"/></returns>
         </member>
-        <member name="T:GTiff2Tiles.Core.Enums.Image.TileExtension">
+        <member name="T:GTiff2Tiles.Core.Enums.TileExtension">
             <summary>
             Extensions of ready tiles
             </summary>
         </member>
-        <member name="F:GTiff2Tiles.Core.Enums.Image.TileExtension.Png">
+        <member name="F:GTiff2Tiles.Core.Enums.TileExtension.Png">
             <summary>
             .png
             </summary>
         </member>
-        <member name="F:GTiff2Tiles.Core.Enums.Image.TileExtension.Jpg">
+        <member name="F:GTiff2Tiles.Core.Enums.TileExtension.Jpg">
             <summary>
             .jpg
             </summary>
         </member>
-        <member name="F:GTiff2Tiles.Core.Enums.Image.TileExtension.Webp">
+        <member name="F:GTiff2Tiles.Core.Enums.TileExtension.Webp">
             <summary>
             .webp
             </summary>
         </member>
-        <member name="T:GTiff2Tiles.Core.Enums.Image.TileType">
+        <member name="T:GTiff2Tiles.Core.Enums.TileType">
             <summary>
             Types of tiles to create
             </summary>
         </member>
-        <member name="F:GTiff2Tiles.Core.Enums.Image.TileType.Raster">
+        <member name="F:GTiff2Tiles.Core.Enums.TileType.Raster">
             <summary>
             Raster images
             </summary>
@@ -823,7 +823,7 @@
             Example of class to use <see cref="T:GTiff2Tiles.Core.Images.IImage"/> interface.
             </summary>
         </member>
-        <member name="M:GTiff2Tiles.Core.Images.Img.GenerateTilesAsync(System.IO.FileInfo,System.IO.DirectoryInfo,System.Int32,System.Int32,GTiff2Tiles.Core.Enums.Image.TileType,System.Boolean,GTiff2Tiles.Core.Enums.Image.TileExtension,System.IProgress{System.Double},System.Int32)">
+        <member name="M:GTiff2Tiles.Core.Images.Img.GenerateTilesAsync(System.IO.FileInfo,System.IO.DirectoryInfo,System.Int32,System.Int32,GTiff2Tiles.Core.Enums.TileType,System.Boolean,GTiff2Tiles.Core.Enums.TileExtension,System.IProgress{System.Double},System.Int32)">
             <summary>
             Example of method to use <see cref="T:GTiff2Tiles.Core.Images.IImage"/> interface for cropping the tiles.
             </summary>

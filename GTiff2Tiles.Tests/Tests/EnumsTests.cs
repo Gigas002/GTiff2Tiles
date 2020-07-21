@@ -1,7 +1,7 @@
 ﻿#pragma warning disable CA1031 // Do not catch general exception types
 
 using System;
-using GTiff2Tiles.Core.Enums.Image;
+using GTiff2Tiles.Core.Enums;
 using NUnit.Framework;
 
 // ReSharper disable UnusedVariable
@@ -33,7 +33,7 @@ namespace GTiff2Tiles.Tests.Tests
         {
             try
             {
-                TileType raster = Core.Enums.Image.TileType.Raster;
+                TileType raster = Core.Enums.TileType.Raster;
             }
             catch (Exception exception) { Assert.Fail(exception.Message); }
 

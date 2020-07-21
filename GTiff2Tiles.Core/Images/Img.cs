@@ -2,7 +2,7 @@
 using System.IO;
 using System.Threading.Tasks;
 using GTiff2Tiles.Core.Constants;
-using GTiff2Tiles.Core.Enums.Image;
+using GTiff2Tiles.Core.Enums;
 
 namespace GTiff2Tiles.Core.Images
 {
