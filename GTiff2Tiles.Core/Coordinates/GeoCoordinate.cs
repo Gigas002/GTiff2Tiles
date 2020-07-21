@@ -27,6 +27,15 @@ namespace GTiff2Tiles.Core.Coordinates
             return pixelCoordinate.ToNumber(zoom, tileSize, tmsCompatible);
         }
 
+        /// <summary>
+        /// Gets <see cref="Number"/>s for specified <see cref="GeoCoordinate"/>s
+        /// </summary>
+        /// <param name="minCoordinate">Minimal <see cref="GeoCoordinate"/></param>
+        /// <param name="maxCoordinate">Maximal <see cref="GeoCoordinate"/></param>
+        /// <param name="zoom">Zoom</param>
+        /// <param name="tileSize"><see cref="ITile"/>'s side size</param>
+        /// <param name="tmsCompatible">Is <see cref="ITile"/> tme compatible?</param>
+        /// <returns><see cref="ValueTuple"/> of <see cref="Number"/>s</returns>
         public static (Number minNumber, Number maxNumber) GetNumbers(
             GeoCoordinate minCoordinate, GeoCoordinate maxCoordinate, int zoom, int tileSize,
             bool tmsCompatible)
@@ -48,7 +57,7 @@ namespace GTiff2Tiles.Core.Coordinates
         /// Convert current <see cref="GeoCoordinate"/> to <see cref="PixelCoordinate"/>
         /// </summary>
         /// <param name="zoom">Zoom</param>
-        /// <param name="tileSize">Tile's size</param>
+        /// <param name="tileSize"><see cref="ITile"/>'s side size</param>
         /// <returns>Converted <see cref="PixelCoordinate"/></returns>
         public virtual PixelCoordinate ToPixelCoordinate(int zoom, int tileSize) => null;
 
@@ -56,7 +65,7 @@ namespace GTiff2Tiles.Core.Coordinates
         /// Resolution for given zoom level (measured at Equator)
         /// </summary>
         /// <param name="zoom">Zoom</param>
-        /// <param name="tileSize">Tile's size</param>
+        /// <param name="tileSize"><see cref="ITile"/>'s side size</param>
         /// <returns>Resolution value</returns>
         public virtual double Resolution(int zoom, int tileSize) => -1.0;
 
@@ -64,7 +73,7 @@ namespace GTiff2Tiles.Core.Coordinates
         /// Calculate zoom from known pixel size
         /// </summary>
         /// <param name="pixelSize">Pixel size</param>
-        /// <param name="tileSize">Tile's size</param>
+        /// <param name="tileSize"><see cref="ITile"/>'s side size</param>
         /// <param name="minZoom">Minimal zoom
         /// <para/>0 by default</param>
         /// <param name="maxZoom">Maximal zoom
@@ -72,7 +81,6 @@ namespace GTiff2Tiles.Core.Coordinates
         /// <returns>Approximate zoom value</returns>
         public int ZoomForPixelSize(int pixelSize, int tileSize, int minZoom = 0, int maxZoom = 32)
         {
-            //"Maximal scaledown zoom of the pyramid closest to the pixelSize."
             IEnumerable<int> range = Enumerable.Range(minZoom, maxZoom + 1);
 
             foreach (int i in range.Where(i => pixelSize > Resolution(i, tileSize)))

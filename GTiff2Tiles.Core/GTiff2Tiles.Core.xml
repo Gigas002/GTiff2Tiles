@@ -6,7 +6,7 @@
     <members>
         <member name="T:GTiff2Tiles.Core.Constants.DateTimePatterns">
             <summary>
-            String patterns for <see cref="T:System.DateTime"/>.
+            String patterns for <see cref="T:System.DateTime"/>
             </summary>
         </member>
         <member name="F:GTiff2Tiles.Core.Constants.DateTimePatterns.LongWithMs">
@@ -14,24 +14,34 @@
             yyyyMMddHHmmssfff
             </summary>
         </member>
+        <member name="F:GTiff2Tiles.Core.Constants.DateTimePatterns.ShortToDate">
+            <summary>
+            yyyyMMdd
+            </summary>
+        </member>
+        <member name="F:GTiff2Tiles.Core.Constants.DateTimePatterns.ShortToMonth">
+            <summary>
+            yyyyMM
+            </summary>
+        </member>
         <member name="T:GTiff2Tiles.Core.Constants.FileExtensions">
             <summary>
-            Used extensions.
+            Used extensions
             </summary>
         </member>
         <member name="F:GTiff2Tiles.Core.Constants.FileExtensions.Png">
             <summary>
-            .png.
+            .png
             </summary>
         </member>
         <member name="F:GTiff2Tiles.Core.Constants.FileExtensions.Tif">
             <summary>
-            .tif.
+            .tif
             </summary>
         </member>
         <member name="F:GTiff2Tiles.Core.Constants.FileExtensions.Jpg">
             <summary>
-            .webp
+            .jpg
             </summary>
         </member>
         <member name="F:GTiff2Tiles.Core.Constants.FileExtensions.Webp">
@@ -39,10 +49,24 @@
             .webp
             </summary>
         </member>
+        <member name="T:GTiff2Tiles.Core.Constants.Geodesic">
+            <summary>
+            Some geo-related constants
+            </summary>
+        </member>
+        <member name="F:GTiff2Tiles.Core.Constants.Geodesic.EquatorRadius">
+            <summary>
+            Radius of Earth, measured at equator
+            </summary>
+        </member>
+        <member name="F:GTiff2Tiles.Core.Constants.Geodesic.PolarRadius">
+            <summary>
+            Redius of Earth, measured at pole
+            </summary>
+        </member>
         <member name="F:GTiff2Tiles.Core.Constants.Geodesic.OriginShift">
             <summary>
-            20037508.342789244
-            2.0 * Math.PI * EquatorRadius 2.0;
+            Approximately 20037508.342789244
             </summary>
         </member>
         <member name="T:GTiff2Tiles.Core.Constants.Interpolations">
@@ -224,12 +248,23 @@
         <member name="M:GTiff2Tiles.Core.Coordinates.GeoCoordinate.ToNumber(System.Int32,System.Int32,System.Boolean)">
             <inheritdoc />
         </member>
+        <member name="M:GTiff2Tiles.Core.Coordinates.GeoCoordinate.GetNumbers(GTiff2Tiles.Core.Coordinates.GeoCoordinate,GTiff2Tiles.Core.Coordinates.GeoCoordinate,System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Gets <see cref="T:GTiff2Tiles.Core.Tiles.Number"/>s for specified <see cref="T:GTiff2Tiles.Core.Coordinates.GeoCoordinate"/>s
+            </summary>
+            <param name="minCoordinate">Minimal <see cref="T:GTiff2Tiles.Core.Coordinates.GeoCoordinate"/></param>
+            <param name="maxCoordinate">Maximal <see cref="T:GTiff2Tiles.Core.Coordinates.GeoCoordinate"/></param>
+            <param name="zoom">Zoom</param>
+            <param name="tileSize"><see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>'s side size</param>
+            <param name="tmsCompatible">Is <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/> tme compatible?</param>
+            <returns><see cref="T:System.ValueTuple"/> of <see cref="T:GTiff2Tiles.Core.Tiles.Number"/>s</returns>
+        </member>
         <member name="M:GTiff2Tiles.Core.Coordinates.GeoCoordinate.ToPixelCoordinate(System.Int32,System.Int32)">
             <summary>
             Convert current <see cref="T:GTiff2Tiles.Core.Coordinates.GeoCoordinate"/> to <see cref="T:GTiff2Tiles.Core.Coordinates.PixelCoordinate"/>
             </summary>
             <param name="zoom">Zoom</param>
-            <param name="tileSize">Tile's size</param>
+            <param name="tileSize"><see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>'s side size</param>
             <returns>Converted <see cref="T:GTiff2Tiles.Core.Coordinates.PixelCoordinate"/></returns>
         </member>
         <member name="M:GTiff2Tiles.Core.Coordinates.GeoCoordinate.Resolution(System.Int32,System.Int32)">
@@ -237,7 +272,7 @@
             Resolution for given zoom level (measured at Equator)
             </summary>
             <param name="zoom">Zoom</param>
-            <param name="tileSize">Tile's size</param>
+            <param name="tileSize"><see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>'s side size</param>
             <returns>Resolution value</returns>
         </member>
         <member name="M:GTiff2Tiles.Core.Coordinates.GeoCoordinate.ZoomForPixelSize(System.Int32,System.Int32,System.Int32,System.Int32)">
@@ -245,7 +280,7 @@
             Calculate zoom from known pixel size
             </summary>
             <param name="pixelSize">Pixel size</param>
-            <param name="tileSize">Tile's size</param>
+            <param name="tileSize"><see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>'s side size</param>
             <param name="minZoom">Minimal zoom
             <para/>0 by default</param>
             <param name="maxZoom">Maximal zoom
@@ -311,7 +346,8 @@
             Calculate <see cref="T:GTiff2Tiles.Core.Tiles.Number"/> for current <see cref="T:GTiff2Tiles.Core.Coordinates.ICoordinate"/>
             </summary>
             <param name="zoom">Zoom</param>
-            <param name="tileSize">Tile's size</param>
+            <param name="tileSize"><see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>'s side size</param>
+            <param name="tmsCompatible">Is <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/> tms compatible?</param>
             <returns><see cref="T:GTiff2Tiles.Core.Tiles.Number"/> in which this <see cref="T:GTiff2Tiles.Core.Coordinates.ICoordinate"/> belongs</returns>
         </member>
         <member name="T:GTiff2Tiles.Core.Coordinates.MercatorCoordinate">
@@ -360,7 +396,7 @@
             </summary>
             <param name="coordinateType">Type of coordinates</param>
             <param name="zoom">Zoom</param>
-            <param name="tileSize">Tile's size</param>
+            <param name="tileSize"><see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>'s side size</param>
             <returns>Converted to <see cref="T:GTiff2Tiles.Core.Coordinates.GeoCoordinate"/> value
             or null if something goes wrong</returns>
         </member>
@@ -369,7 +405,7 @@
             Convert current coordinate to <see cref="T:GTiff2Tiles.Core.Coordinates.GeodeticCoordinate"/>
             </summary>
             <param name="zoom">Zoom</param>
-            <param name="tileSize">Tile's size</param>
+            <param name="tileSize"><see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>'s side size</param>
             <returns>Converted <see cref="T:GTiff2Tiles.Core.Coordinates.GeodeticCoordinate"/></returns>
         </member>
         <member name="M:GTiff2Tiles.Core.Coordinates.PixelCoordinate.ToMercatorCoordinate(System.Int32,System.Int32)">
@@ -377,7 +413,7 @@
             Convert current coordinate to <see cref="T:GTiff2Tiles.Core.Coordinates.MercatorCoordinate"/>
             </summary>
             <param name="zoom">Zoom</param>
-            <param name="tileSize">Tile's size</param>
+            <param name="tileSize"><see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>'s side size</param>
             <returns>Converted <see cref="T:GTiff2Tiles.Core.Coordinates.MercatorCoordinate"/></returns>
         </member>
         <member name="M:GTiff2Tiles.Core.Coordinates.PixelCoordinate.ToRasterPixelCoordinate(System.Int32,System.Int32)">
@@ -385,7 +421,7 @@
             Move the origin of pixel coordinates to top-left corner
             </summary>
             <param name="zoom">Zoom</param>
-            <param name="tileSize">Tile's size</param>
+            <param name="tileSize"><see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>'s side size</param>
             <returns>Converted <see cref="T:GTiff2Tiles.Core.Coordinates.PixelCoordinate"/></returns>
         </member>
         <member name="T:GTiff2Tiles.Core.Enums.TileExtension">
@@ -625,20 +661,26 @@
         </member>
         <member name="T:GTiff2Tiles.Core.Helpers.NetVipsHelper">
             <summary>
-            Some additional methods for NetVips.
+            Some additional methods for NetVips
             </summary>
         </member>
         <member name="M:GTiff2Tiles.Core.Helpers.NetVipsHelper.DisableLog">
             <summary>
-            Disables NetVips log warnings.
+            Disables NetVips log warnings
+            </summary>
+        </member>
+        <member name="T:GTiff2Tiles.Core.Helpers.ProgressHelper">
+            <summary>
+            Class with methods to simplify progress-reporting
             </summary>
         </member>
         <member name="M:GTiff2Tiles.Core.Helpers.ProgressHelper.PrintEstimatedTimeLeft(System.Double,System.Diagnostics.Stopwatch)">
             <summary>
-            Prints estimated time left.
+            Prints estimated time left
             </summary>
-            <param name="percentage">Current progress.</param>
-            <param name="stopwatch">Get elapsed time from this.</param>
+            <param name="percentage">Current progress</param>
+            <param name="stopwatch">Time passed from the start;
+            <remarks>If set to <see langword="null"/> no time printed</remarks></param>
         </member>
         <member name="T:GTiff2Tiles.Core.Images.Area">
             <summary>

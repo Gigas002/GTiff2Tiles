@@ -28,7 +28,8 @@ namespace GTiff2Tiles.Core.Coordinates
         /// Calculate <see cref="Number"/> for current <see cref="ICoordinate"/>
         /// </summary>
         /// <param name="zoom">Zoom</param>
-        /// <param name="tileSize">Tile's size</param>
+        /// <param name="tileSize"><see cref="ITile"/>'s side size</param>
+        /// <param name="tmsCompatible">Is <see cref="ITile"/> tms compatible?</param>
         /// <returns><see cref="Number"/> in which this <see cref="ICoordinate"/> belongs</returns>
         public Number ToNumber(int zoom, int tileSize, bool tmsCompatible);
 

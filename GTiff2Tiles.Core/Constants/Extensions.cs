@@ -1,22 +1,22 @@
 ﻿namespace GTiff2Tiles.Core.Constants
 {
     /// <summary>
-    /// Used extensions.
+    /// Used extensions
     /// </summary>
     public static class FileExtensions
     {
         /// <summary>
-        /// .png.
+        /// .png
         /// </summary>
         public const string Png = ".png";
 
         /// <summary>
-        /// .tif.
+        /// .tif
         /// </summary>
         public const string Tif = ".tif";
 
         /// <summary>
-        /// .webp
+        /// .jpg
         /// </summary>
         public const string Jpg = ".jpg";
 

@@ -35,22 +35,22 @@ namespace GTiff2Tiles.Core.Coordinates
         /// </summary>
         /// <param name="coordinateType">Type of coordinates</param>
         /// <param name="zoom">Zoom</param>
-        /// <param name="tileSize">Tile's size</param>
+        /// <param name="tileSize"><see cref="ITile"/>'s side size</param>
         /// <returns>Converted to <see cref="GeoCoordinate"/> value
         /// or null if something goes wrong</returns>
-        public GeoCoordinate ToGeoCoordinate(CoordinateType coordinateType,
-                                             int zoom, int tileSize) => coordinateType switch
-                                             {
-                                                 CoordinateType.Geodetic => ToGeodeticCoordinate(zoom, tileSize),
-                                                 CoordinateType.Mercator => ToMercatorCoordinate(zoom, tileSize),
-                                                 _ => null
-                                             };
+        public GeoCoordinate ToGeoCoordinate(CoordinateType coordinateType, int zoom, int tileSize) =>
+            coordinateType switch
+            {
+                CoordinateType.Geodetic => ToGeodeticCoordinate(zoom, tileSize),
+                CoordinateType.Mercator => ToMercatorCoordinate(zoom, tileSize),
+                _ => null
+            };
 
         /// <summary>
         /// Convert current coordinate to <see cref="GeodeticCoordinate"/>
         /// </summary>
         /// <param name="zoom">Zoom</param>
-        /// <param name="tileSize">Tile's size</param>
+        /// <param name="tileSize"><see cref="ITile"/>'s side size</param>
         /// <returns>Converted <see cref="GeodeticCoordinate"/></returns>
         public GeodeticCoordinate ToGeodeticCoordinate(int zoom, int tileSize)
         {
@@ -62,7 +62,7 @@ namespace GTiff2Tiles.Core.Coordinates
         /// Convert current coordinate to <see cref="MercatorCoordinate"/>
         /// </summary>
         /// <param name="zoom">Zoom</param>
-        /// <param name="tileSize">Tile's size</param>
+        /// <param name="tileSize"><see cref="ITile"/>'s side size</param>
         /// <returns>Converted <see cref="MercatorCoordinate"/></returns>
         public MercatorCoordinate ToMercatorCoordinate(int zoom, int tileSize)
         {
@@ -77,7 +77,7 @@ namespace GTiff2Tiles.Core.Coordinates
         /// Move the origin of pixel coordinates to top-left corner
         /// </summary>
         /// <param name="zoom">Zoom</param>
-        /// <param name="tileSize">Tile's size</param>
+        /// <param name="tileSize"><see cref="ITile"/>'s side size</param>
         /// <returns>Converted <see cref="PixelCoordinate"/></returns>
         public PixelCoordinate ToRasterPixelCoordinate(int zoom, int tileSize)
         {
