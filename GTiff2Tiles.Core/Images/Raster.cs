@@ -8,18 +8,23 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Channels;
 using System.Threading.Tasks;
+using GTiff2Tiles.Core.Constants;
 using GTiff2Tiles.Core.Coordinates;
 using GTiff2Tiles.Core.Enums;
 using GTiff2Tiles.Core.Helpers;
 using GTiff2Tiles.Core.Tiles;
 using NetVips;
 
+// ReSharper disable ClassWithVirtualMembersNeverInherited.Global
+// ReSharper disable MemberCanBePrivate.Global
+// ReSharper disable UnusedMember.Global
+
 namespace GTiff2Tiles.Core.Images
 {
     /// <summary>
     /// Class for creating <see cref="RasterTile"/>s
     /// </summary>
-    public sealed class Raster : IImage
+    public class Raster : IImage
     {
         #region Properties
 
@@ -104,7 +109,7 @@ namespace GTiff2Tiles.Core.Images
 
             GeoCoordinateType = coordinateType;
 
-            //TODO: get coordinates without fileinfo
+            // TODO: get coordinates without fileinfo
             FileInfo inputFileInfo = new FileInfo("tmp.tif");
             Data.WriteToFile(inputFileInfo.FullName);
             (MinCoordinate, MaxCoordinate) = Gdal.Gdal.GetImageBorders(inputFileInfo, Size, GeoCoordinateType);
@@ -129,7 +134,7 @@ namespace GTiff2Tiles.Core.Images
 
             GeoCoordinateType = coordinateType;
 
-            //TODO: get coordinates without fileinfo
+            // TODO: get coordinates without fileinfo
             FileInfo inputFileInfo = new FileInfo("tmp.tif");
             Data.WriteToFile(inputFileInfo.FullName);
             (MinCoordinate, MaxCoordinate) = Gdal.Gdal.GetImageBorders(inputFileInfo, Size, GeoCoordinateType);
@@ -154,11 +159,9 @@ namespace GTiff2Tiles.Core.Images
             GC.SuppressFinalize(this);
         }
 
-        /// <summary>
-        /// Actually disposes the data.
-        /// </summary>
-        /// <param name="disposing"></param>
-        private void Dispose(bool disposing)
+        /// <inheritdoc cref="Dispose()"/>
+        /// <param name="disposing">Dispose static fields?</param>
+        protected virtual void Dispose(bool disposing)
         {
             if (IsDisposed) return;
 
@@ -192,15 +195,17 @@ namespace GTiff2Tiles.Core.Images
         #region Create tile image
 
         /// <summary>
-        /// Writes one tile of current zoom.
-        /// <para/>Crops zoom directly from input image.
+        /// Create <see cref="Image"/> for one <see cref="RasterTile"/>
+        /// from input <see cref="Image"/> or tile cache
         /// </summary>
-        private Image CreateTileImage(Image tileCache, RasterTile tile)
+        /// <param name="tileCache">Source <see cref="Image"/>
+        /// or tile cache</param>
+        /// <param name="tile">Target <see cref="RasterTile"/></param>
+        /// <param name="interpolation">Interpolation of ready tiles</param>
+        /// <returns>Ready <see cref="Image"/> for <see cref="RasterTile"/></returns>
+        public Image CreateTileImage(Image tileCache, RasterTile tile, string interpolation)
         {
-            //TODO: NetVips kernel
-            const string kernel = NetVips.Enums.Kernel.Lanczos3;
-
-            //Get postitions and sizes for current tile.
+            // Get postitions and sizes for current tile
             (Area readArea, Area writeArea) = Area.GetAreas(this, tile);
 
             // Scaling calculations
@@ -210,44 +215,88 @@ namespace GTiff2Tiles.Core.Images
             // Crop and resize tile
             Image tempTileImage = tileCache.Crop((int)readArea.OriginCoordinate.X, (int)readArea.OriginCoordinate.Y,
                                                  readArea.Size.Width, readArea.Size.Height)
-                                           .Resize(xScale, kernel, yScale);
+                                           .Resize(xScale, interpolation, yScale);
 
             // Add alpha channel if needed
             Band.AddDefaultBands(ref tempTileImage, tile.BandsCount);
 
             // Make transparent image and insert tile
             return Image.Black(tile.Size.Width, tile.Size.Height).NewFromImage(0, 0, 0, 0)
-                          .Insert(tempTileImage, (int)writeArea.OriginCoordinate.X,
-                                  (int)writeArea.OriginCoordinate.Y);
+                        .Insert(tempTileImage, (int)writeArea.OriginCoordinate.X,
+                                (int)writeArea.OriginCoordinate.Y);
         }
 
         #endregion
 
         #region WriteTile
 
-        private void WriteTileToFile(Image tileCache, RasterTile tile)
+        /// <summary>
+        /// Gets data from source <see cref="Image"/>
+        /// or tile cache for specified <see cref="RasterTile"/>
+        /// and writes it to ready file
+        /// </summary>
+        /// <param name="tileCache">Source <see cref="Image"/>
+        /// or tile cache</param>
+        /// <param name="tile">Target <see cref="RasterTile"/></param>
+        /// <param name="interpolation">Interpolation of ready tiles</param>
+        public void WriteTileToFile(Image tileCache, RasterTile tile, string interpolation)
         {
-            using Image tileImage = CreateTileImage(tileCache, tile);
+            using Image tileImage = CreateTileImage(tileCache, tile, interpolation);
 
-            //TODO: Validate tileImage, not tile!
+            // TODO: Validate tileImage, not tile!
             //if (!tile.Validate(false)) return;
 
             tileImage.WriteToFile(tile.FileInfo.FullName);
         }
 
-        private IEnumerable<byte> WriteTileToEnumerable(Image tileCache, RasterTile tile)
+        /// <summary>
+        /// Gets data from source <see cref="Image"/>
+        /// or tile cache for specified <see cref="RasterTile"/>
+        /// and writes it to <see cref="IEnumerable{T}"/>
+        /// </summary>
+        /// <param name="tileCache">Source <see cref="Image"/>
+        /// or tile cache</param>
+        /// <param name="tile">Target <see cref="RasterTile"/></param>
+        /// <param name="interpolation">Interpolation of ready tiles</param>
+        /// <returns><see cref="RasterTile"/>'s <see cref="byte"/>s</returns>
+        public IEnumerable<byte> WriteTileToEnumerable(Image tileCache, RasterTile tile,
+                                                       string interpolation)
         {
-            using Image tileImage = CreateTileImage(tileCache, tile);
-            //TODO: test this methods
+            using Image tileImage = CreateTileImage(tileCache, tile, interpolation);
+
+            // TODO: test this methods
             //return tileImage.WriteToBuffer(tile.Extension);
             return tileImage.WriteToMemory();
         }
 
-        private bool WriteTileToChannel(ITile tile, ChannelWriter<ITile> channelWriter)
-        {
-            //tile.D = WriteTileToEnumerable(tileCache, tile, bands);
+        /// <summary>
+        /// Writes specified <see cref="ITile"/> to <see cref="Channel"/>
+        /// </summary>
+        /// <param name="tile"><see cref="RasterTile"/> to write</param>
+        /// <param name="channelWriter">Target <see cref="ChannelWriter{T}"/></param>
+        /// <returns><see langword="true"/> if <see cref="ITile"/> was written;
+        /// <see langword="false"/> otherwise</returns>
+        public static bool WriteTileToChannel(ITile tile, ChannelWriter<ITile> channelWriter) =>
+            tile.Validate(false) && channelWriter.TryWrite(tile);
 
-            return tile.Validate(false) && channelWriter.TryWrite(tile);
+        /// <summary>
+        /// Gets data from source <see cref="Image"/>
+        /// or tile cache for specified <see cref="RasterTile"/>
+        /// and writes it to <see cref="ChannelWriter{T}"/>
+        /// </summary>
+        /// <param name="tileCache">Source <see cref="Image"/>
+        /// or tile cache</param>
+        /// <param name="tile">Target <see cref="RasterTile"/></param>
+        /// <param name="channelWriter">Target <see cref="ChannelWriter{T}"/></param>
+        /// <param name="interpolation">Interpolation of ready tiles</param>
+        /// <returns><see langword="true"/> if <see cref="ITile"/> was written;
+        /// <see langword="false"/> otherwise</returns>
+        public bool WriteTileToChannel(Image tileCache, RasterTile tile, ChannelWriter<ITile> channelWriter,
+                                       string interpolation)
+        {
+            tile.Bytes = WriteTileToEnumerable(tileCache, tile, interpolation);
+
+            return WriteTileToChannel(tile, channelWriter);
         }
 
         #endregion
@@ -257,7 +306,8 @@ namespace GTiff2Tiles.Core.Images
         /// <inheritdoc />
         public async ValueTask WriteTilesToDirectoryAsync(DirectoryInfo outputDirectoryInfo, int minZ, int maxZ,
                                                           bool tmsCompatible = false, Size tileSize = null,
-                                                          string tileExtension = Constants.FileExtensions.Png,
+                                                          string tileExtension = FileExtensions.Png,
+                                                          string interpolation = Interpolations.Lanczos3,
                                                           int bandsCount = RasterTile.DefaultBandsCount,
                                                           int tileCacheCount = 1000, int threadsCount = 0,
                                                           IProgress<double> progress = null,
@@ -317,7 +367,7 @@ namespace GTiff2Tiles.Core.Images
                         };
 
                         // ReSharper disable once AccessToDisposedClosure
-                        WriteTileToFile(tileCache, tile);
+                        WriteTileToFile(tileCache, tile, interpolation);
 
                         // Report progress
                         counter++;
@@ -337,6 +387,7 @@ namespace GTiff2Tiles.Core.Images
         /// <inheritdoc />
         public async ValueTask WriteTilesToChannelAsync(ChannelWriter<ITile> channelWriter, int minZ, int maxZ,
                                                         bool tmsCompatible = false, Size tileSize = null,
+                                                        string interpolation = Interpolations.Lanczos3,
                                                         int bandsCount = RasterTile.DefaultBandsCount,
                                                         int tileCacheCount = 1000, int threadsCount = 0,
                                                         IProgress<double> progress = null,
@@ -387,9 +438,7 @@ namespace GTiff2Tiles.Core.Images
                                                     coordinateType: GeoCoordinateType);
 
                         // ReSharper disable once AccessToDisposedClosure
-                        tile.Bytes = WriteTileToEnumerable(tileCache, tile);
-
-                        if (!WriteTileToChannel(tile, channelWriter)) return;
+                        if (!WriteTileToChannel(tileCache, tile, channelWriter, interpolation)) return;
 
                         // Report progress
                         counter++;
@@ -409,6 +458,7 @@ namespace GTiff2Tiles.Core.Images
         /// <inheritdoc />
         public async IAsyncEnumerable<ITile> WriteTilesToAsyncEnumerable(int minZ, int maxZ,
                                                                          bool tmsCompatible = false, Size tileSize = null,
+                                                                         string interpolation = Interpolations.Lanczos3,
                                                                          int bandsCount = RasterTile.DefaultBandsCount,
                                                                          int tileCacheCount = 1000, int threadsCount = 0,
                                                                          IProgress<double> progress = null,
@@ -449,7 +499,7 @@ namespace GTiff2Tiles.Core.Images
                 // For each tile on given zoom calculate positions/sizes and save as file
                 for (int tileY = minNumber.Y; tileY <= maxNumber.Y; tileY++)
                 {
-                    //TODO: use Parallel.For somehow
+                    // TODO: use Parallel.For somehow
                     for (int tileX = minNumber.X; tileX <= maxNumber.X; tileX++)
                     {
                         await semaphoreSlim.WaitAsync();
@@ -468,7 +518,7 @@ namespace GTiff2Tiles.Core.Images
                             try
                             {
                                 // ReSharper disable once AccessToDisposedClosure
-                                tile.Bytes = WriteTileToEnumerable(tileCache, tile);
+                                tile.Bytes = WriteTileToEnumerable(tileCache, tile, interpolation);
                                 //if (!tile.Validate(false)) return null;
                             }
                             finally

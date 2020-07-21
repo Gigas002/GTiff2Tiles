@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading.Channels;
 using System.Threading.Tasks;
+using GTiff2Tiles.Core.Constants;
 using GTiff2Tiles.Core.Coordinates;
 using GTiff2Tiles.Core.Enums;
 using GTiff2Tiles.Core.Tiles;
@@ -61,6 +62,7 @@ namespace GTiff2Tiles.Core.Images
         /// <param name="maxZ"></param>
         /// <param name="tmsCompatible"></param>
         /// <param name="tileSize"></param>
+        /// <param name="interpolation"></param>
         /// <param name="bandsCount"></param>
         /// <param name="tileCacheCount"></param>
         /// <param name="threadsCount">T</param>
@@ -68,7 +70,8 @@ namespace GTiff2Tiles.Core.Images
         /// <param name="isPrintEstimatedTime"></param>
         public ValueTask WriteTilesToDirectoryAsync(DirectoryInfo outputDirectoryInfo, int minZ, int maxZ,
                                                     bool tmsCompatible = false, Size tileSize = null,
-                                                    string tileExtension = Constants.FileExtensions.Png,
+                                                    string tileExtension = FileExtensions.Png,
+                                                    string interpolation = Interpolations.Lanczos3,
                                                     int bandsCount = RasterTile.DefaultBandsCount,
                                                     int tileCacheCount = 1000, int threadsCount = 0,
                                                     IProgress<double> progress = null,
@@ -85,6 +88,7 @@ namespace GTiff2Tiles.Core.Images
         /// <param name="maxZ"></param>
         /// <param name="tmsCompatible"></param>
         /// <param name="tileSize"></param>
+        /// <param name="interpolation"></param>
         /// <param name="bandsCount"></param>
         /// <param name="tileCacheCount"></param>
         /// <param name="threadsCount">T</param>
@@ -92,6 +96,7 @@ namespace GTiff2Tiles.Core.Images
         /// <param name="isPrintEstimatedTime"></param>
         public ValueTask WriteTilesToChannelAsync(ChannelWriter<ITile> channelWriter, int minZ, int maxZ,
                                                   bool tmsCompatible = false, Size tileSize = null,
+                                                  string interpolation = Interpolations.Lanczos3,
                                                   int bandsCount = RasterTile.DefaultBandsCount,
                                                   int tileCacheCount = 1000, int threadsCount = 0,
                                                   IProgress<double> progress = null,
@@ -108,6 +113,8 @@ namespace GTiff2Tiles.Core.Images
         /// <param name="tileSize"><see cref="Images.Size"/> of <see cref="ITile"/>s
         /// <remarks><para/><see langword="null"/> by default, be sure to set it
         /// for custom implementations of <see cref="IImage"/></remarks></param>
+        /// <param name="interpolation">Interpolation of ready tiles
+        /// <remarks><para/><see cref="Interpolations.Lanczos3"/> by default</remarks></param>
         /// <param name="bandsCount">Count of <see cref="Band"/>s in ready <see cref="ITile"/>s
         /// <remarks><para/>4 by default</remarks></param>
         /// <param name="tileCacheCount">Count of <see cref="ITile"/> to be in cache
@@ -121,6 +128,7 @@ namespace GTiff2Tiles.Core.Images
         /// <returns><see cref="IAsyncEnumerable{T}"/> of <see cref="ITile"/>s</returns>
         public IAsyncEnumerable<ITile> WriteTilesToAsyncEnumerable(int minZ, int maxZ,
                                                                    bool tmsCompatible = false, Size tileSize = null,
+                                                                   string interpolation = Interpolations.Lanczos3,
                                                                    int bandsCount = RasterTile.DefaultBandsCount,
                                                                    int tileCacheCount = 1000, int threadsCount = 0,
                                                                    IProgress<double> progress = null,
