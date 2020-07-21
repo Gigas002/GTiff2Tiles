@@ -75,16 +75,6 @@
             2.0 * Math.PI * EquatorRadius 2.0;
             </summary>
         </member>
-        <member name="T:GTiff2Tiles.Core.Constants.Image.Interpolations">
-            <summary>
-            Represents the interpolation algorithms.
-            </summary>
-        </member>
-        <member name="F:GTiff2Tiles.Core.Constants.Image.Interpolations.Bicubic">
-            <summary>
-            Bicubic interpoilation.
-            </summary>
-        </member>
         <member name="T:GTiff2Tiles.Core.Constants.Image.Raster">
             <summary>
             <see cref="T:GTiff2Tiles.Core.Images.Raster"/> constants.
@@ -99,6 +89,29 @@
             <summary>
             Output tile's size.
             </summary>
+        </member>
+        <member name="T:GTiff2Tiles.Core.Constants.Interpolations">
+            <summary>
+            Represents the interpolation algorithms
+            </summary>
+        </member>
+        <member name="F:GTiff2Tiles.Core.Constants.Interpolations.Nearest">
+            <summary>Nearest-neighbour interpolation.</summary>
+        </member>
+        <member name="F:GTiff2Tiles.Core.Constants.Interpolations.Linear">
+            <summary>Linear interpolation.</summary>
+        </member>
+        <member name="F:GTiff2Tiles.Core.Constants.Interpolations.Cubic">
+            <summary>Cubic interpolation.</summary>
+        </member>
+        <member name="F:GTiff2Tiles.Core.Constants.Interpolations.Mitchell">
+            <summary>Mitchell</summary>
+        </member>
+        <member name="F:GTiff2Tiles.Core.Constants.Interpolations.Lanczos2">
+            <summary>Two-lobe Lanczos.</summary>
+        </member>
+        <member name="F:GTiff2Tiles.Core.Constants.Interpolations.Lanczos3">
+            <summary>Three-lobe Lanczos.</summary>
         </member>
         <member name="T:GTiff2Tiles.Core.Coordinates.Coordinate">
             <summary>
