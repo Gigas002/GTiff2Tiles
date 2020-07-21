@@ -3,6 +3,7 @@ using System.IO;
 using System.Threading.Tasks;
 using GTiff2Tiles.Core.Constants;
 using GTiff2Tiles.Core.Enums;
+using GTiff2Tiles.Core.Tiles;
 
 namespace GTiff2Tiles.Core.Images
 {
@@ -50,7 +51,7 @@ namespace GTiff2Tiles.Core.Images
 
             //TODO: args
             //Generate tiles.
-            Size size = new Size(Constants.Image.Raster.TileSize, Constants.Image.Raster.TileSize);
+            Size size = Tile.DefaultSize;
             await image.WriteTilesToDirectoryAsync(outputDirectoryInfo, minZ, maxZ,
                                                    tileSize: size, tmsCompatible: tmsCompatible,
                                                    tileExtension: tileExtensionString,

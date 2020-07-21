@@ -75,21 +75,6 @@
             2.0 * Math.PI * EquatorRadius 2.0;
             </summary>
         </member>
-        <member name="T:GTiff2Tiles.Core.Constants.Image.Raster">
-            <summary>
-            <see cref="T:GTiff2Tiles.Core.Images.Raster"/> constants.
-            </summary>
-        </member>
-        <member name="F:GTiff2Tiles.Core.Constants.Image.Raster.Bands">
-            <summary>
-            Number of bands in output tiles.
-            </summary>
-        </member>
-        <member name="F:GTiff2Tiles.Core.Constants.Image.Raster.TileSize">
-            <summary>
-            Output tile's size.
-            </summary>
-        </member>
         <member name="T:GTiff2Tiles.Core.Constants.Interpolations">
             <summary>
             Represents the interpolation algorithms

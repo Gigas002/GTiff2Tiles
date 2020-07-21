@@ -69,7 +69,7 @@ namespace GTiff2Tiles.Core.Images
         public ValueTask WriteTilesToDirectoryAsync(DirectoryInfo outputDirectoryInfo, int minZ, int maxZ,
                                                     bool tmsCompatible = false, Size tileSize = null,
                                                     string tileExtension = Constants.FileExtensions.Png,
-                                                    int bandsCount = Constants.Image.Raster.Bands,
+                                                    int bandsCount = RasterTile.DefaultBandsCount,
                                                     int tileCacheCount = 1000, int threadsCount = 0,
                                                     IProgress<double> progress = null,
                                                     bool isPrintEstimatedTime = false);
@@ -92,7 +92,7 @@ namespace GTiff2Tiles.Core.Images
         /// <param name="isPrintEstimatedTime"></param>
         public ValueTask WriteTilesToChannelAsync(ChannelWriter<ITile> channelWriter, int minZ, int maxZ,
                                                   bool tmsCompatible = false, Size tileSize = null,
-                                                  int bandsCount = Constants.Image.Raster.Bands,
+                                                  int bandsCount = RasterTile.DefaultBandsCount,
                                                   int tileCacheCount = 1000, int threadsCount = 0,
                                                   IProgress<double> progress = null,
                                                   bool isPrintEstimatedTime = false);
@@ -121,7 +121,7 @@ namespace GTiff2Tiles.Core.Images
         /// <returns><see cref="IAsyncEnumerable{T}"/> of <see cref="ITile"/>s</returns>
         public IAsyncEnumerable<ITile> WriteTilesToAsyncEnumerable(int minZ, int maxZ,
                                                                    bool tmsCompatible = false, Size tileSize = null,
-                                                                   int bandsCount = Constants.Image.Raster.Bands,
+                                                                   int bandsCount = RasterTile.DefaultBandsCount,
                                                                    int tileCacheCount = 1000, int threadsCount = 0,
                                                                    IProgress<double> progress = null,
                                                                    bool isPrintEstimatedTime = false);
