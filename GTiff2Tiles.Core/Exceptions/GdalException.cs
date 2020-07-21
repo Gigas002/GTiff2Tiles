@@ -1,36 +1,36 @@
 ﻿using System;
 
-namespace GTiff2Tiles.Core.Exceptions.Tile
+namespace GTiff2Tiles.Core.Exceptions
 {
     /// <inheritdoc />
     /// <summary>
-    /// Exceptions, happened in Tile.TileTileTools.cs.
+    /// Exceptions, happened in Image.Gdal.cs.
     /// </summary>
-    public sealed class TileException : Exception
+    public sealed class GdalException : Exception
     {
         #region Constructors
 
         /// <inheritdoc />
         /// <summary>
-        /// Creates new <see cref="TileException"/> object with passed error message.
+        /// Creates new <see cref="GdalException"/> object with passed error message.
         /// </summary>
         /// <param name="errorMessage">Error message.</param>
-        public TileException(string errorMessage) : base(errorMessage) { }
+        public GdalException(string errorMessage) : base(errorMessage) { }
 
         /// <inheritdoc />
         /// <summary>
-        /// Creates new <see cref="TileException"/> object with passed error message
+        /// Creates new <see cref="GdalException"/> object with passed error message
         /// and a reference to the inner exception that is the cause of this exception.
         /// </summary>
         /// <param name="errorMessage">Error message.</param>
         /// <param name="innerException">Inner exception.</param>
-        public TileException(string errorMessage, Exception innerException) : base(errorMessage, innerException) { }
+        public GdalException(string errorMessage, Exception innerException) : base(errorMessage, innerException) { }
 
         /// <inheritdoc />
         /// <summary>
-        /// Creates new <see cref="TileException"/> object without error message.
+        /// Creates new <see cref="GdalException"/> object without error message.
         /// </summary>
-        public TileException() { }
+        public GdalException() { }
 
         #endregion
     }

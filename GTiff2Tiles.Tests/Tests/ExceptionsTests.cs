@@ -1,9 +1,7 @@
 ﻿#pragma warning disable CA1031 // Do not catch general exception types
 
 using System;
-using GTiff2Tiles.Core.Exceptions.Gdal;
-using GTiff2Tiles.Core.Exceptions.Image;
-using GTiff2Tiles.Core.Exceptions.Tile;
+using GTiff2Tiles.Core.Exceptions;
 using NUnit.Framework;
 
 // ReSharper disable UnusedVariable

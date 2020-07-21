@@ -435,88 +435,88 @@
             Raster images
             </summary>
         </member>
-        <member name="T:GTiff2Tiles.Core.Exceptions.Gdal.GdalException">
+        <member name="T:GTiff2Tiles.Core.Exceptions.GdalException">
             <inheritdoc />
             <summary>
             Exceptions, happened in Image.Gdal.cs.
             </summary>
         </member>
-        <member name="M:GTiff2Tiles.Core.Exceptions.Gdal.GdalException.#ctor(System.String)">
+        <member name="M:GTiff2Tiles.Core.Exceptions.GdalException.#ctor(System.String)">
             <inheritdoc />
             <summary>
-            Creates new <see cref="T:GTiff2Tiles.Core.Exceptions.Gdal.GdalException"/> object with passed error message.
+            Creates new <see cref="T:GTiff2Tiles.Core.Exceptions.GdalException"/> object with passed error message.
             </summary>
             <param name="errorMessage">Error message.</param>
         </member>
-        <member name="M:GTiff2Tiles.Core.Exceptions.Gdal.GdalException.#ctor(System.String,System.Exception)">
+        <member name="M:GTiff2Tiles.Core.Exceptions.GdalException.#ctor(System.String,System.Exception)">
             <inheritdoc />
             <summary>
-            Creates new <see cref="T:GTiff2Tiles.Core.Exceptions.Gdal.GdalException"/> object with passed error message
+            Creates new <see cref="T:GTiff2Tiles.Core.Exceptions.GdalException"/> object with passed error message
             and a reference to the inner exception that is the cause of this exception.
             </summary>
             <param name="errorMessage">Error message.</param>
             <param name="innerException">Inner exception.</param>
         </member>
-        <member name="M:GTiff2Tiles.Core.Exceptions.Gdal.GdalException.#ctor">
+        <member name="M:GTiff2Tiles.Core.Exceptions.GdalException.#ctor">
             <inheritdoc />
             <summary>
-            Creates new <see cref="T:GTiff2Tiles.Core.Exceptions.Gdal.GdalException"/> object without error message.
+            Creates new <see cref="T:GTiff2Tiles.Core.Exceptions.GdalException"/> object without error message.
             </summary>
         </member>
-        <member name="T:GTiff2Tiles.Core.Exceptions.Image.RasterException">
+        <member name="T:GTiff2Tiles.Core.Exceptions.RasterException">
             <inheritdoc />
             <summary>
             Exceptions, happened in Image.Raster.cs.
             </summary>
         </member>
-        <member name="M:GTiff2Tiles.Core.Exceptions.Image.RasterException.#ctor(System.String)">
+        <member name="M:GTiff2Tiles.Core.Exceptions.RasterException.#ctor(System.String)">
             <inheritdoc />
             <summary>
-            Creates new <see cref="T:GTiff2Tiles.Core.Exceptions.Image.RasterException"/> object with passed error message.
+            Creates new <see cref="T:GTiff2Tiles.Core.Exceptions.RasterException"/> object with passed error message.
             </summary>
             <param name="errorMessage">Error message.</param>
         </member>
-        <member name="M:GTiff2Tiles.Core.Exceptions.Image.RasterException.#ctor(System.String,System.Exception)">
+        <member name="M:GTiff2Tiles.Core.Exceptions.RasterException.#ctor(System.String,System.Exception)">
             <inheritdoc />
             <summary>
-            Creates new <see cref="T:GTiff2Tiles.Core.Exceptions.Image.RasterException"/> object with passed error message
+            Creates new <see cref="T:GTiff2Tiles.Core.Exceptions.RasterException"/> object with passed error message
             and a reference to the inner exception that is the cause of this exception.
             </summary>
             <param name="errorMessage">Error message.</param>
             <param name="innerException">Inner exception.</param>
         </member>
-        <member name="M:GTiff2Tiles.Core.Exceptions.Image.RasterException.#ctor">
+        <member name="M:GTiff2Tiles.Core.Exceptions.RasterException.#ctor">
             <inheritdoc />
             <summary>
-            Creates new <see cref="T:GTiff2Tiles.Core.Exceptions.Image.RasterException"/> object without error message.
+            Creates new <see cref="T:GTiff2Tiles.Core.Exceptions.RasterException"/> object without error message.
             </summary>
         </member>
-        <member name="T:GTiff2Tiles.Core.Exceptions.Tile.TileException">
+        <member name="T:GTiff2Tiles.Core.Exceptions.TileException">
             <inheritdoc />
             <summary>
             Exceptions, happened in Tile.TileTileTools.cs.
             </summary>
         </member>
-        <member name="M:GTiff2Tiles.Core.Exceptions.Tile.TileException.#ctor(System.String)">
+        <member name="M:GTiff2Tiles.Core.Exceptions.TileException.#ctor(System.String)">
             <inheritdoc />
             <summary>
-            Creates new <see cref="T:GTiff2Tiles.Core.Exceptions.Tile.TileException"/> object with passed error message.
+            Creates new <see cref="T:GTiff2Tiles.Core.Exceptions.TileException"/> object with passed error message.
             </summary>
             <param name="errorMessage">Error message.</param>
         </member>
-        <member name="M:GTiff2Tiles.Core.Exceptions.Tile.TileException.#ctor(System.String,System.Exception)">
+        <member name="M:GTiff2Tiles.Core.Exceptions.TileException.#ctor(System.String,System.Exception)">
             <inheritdoc />
             <summary>
-            Creates new <see cref="T:GTiff2Tiles.Core.Exceptions.Tile.TileException"/> object with passed error message
+            Creates new <see cref="T:GTiff2Tiles.Core.Exceptions.TileException"/> object with passed error message
             and a reference to the inner exception that is the cause of this exception.
             </summary>
             <param name="errorMessage">Error message.</param>
             <param name="innerException">Inner exception.</param>
         </member>
-        <member name="M:GTiff2Tiles.Core.Exceptions.Tile.TileException.#ctor">
+        <member name="M:GTiff2Tiles.Core.Exceptions.TileException.#ctor">
             <inheritdoc />
             <summary>
-            Creates new <see cref="T:GTiff2Tiles.Core.Exceptions.Tile.TileException"/> object without error message.
+            Creates new <see cref="T:GTiff2Tiles.Core.Exceptions.TileException"/> object without error message.
             </summary>
         </member>
         <member name="T:GTiff2Tiles.Core.Gdal.Gdal">
@@ -1540,7 +1540,7 @@
             <param name="extension"><see cref="P:GTiff2Tiles.Core.Tiles.Tile.Extension"/></param>
             <param name="tmsCompatible">Is tms compatible?</param>
             <param name="coordinateType">Type of <see cref="T:GTiff2Tiles.Core.Coordinates.GeoCoordinate"/></param>
-            <exception cref="T:GTiff2Tiles.Core.Exceptions.Tile.TileException"></exception>
+            <exception cref="T:GTiff2Tiles.Core.Exceptions.TileException"></exception>
         </member>
         <member name="M:GTiff2Tiles.Core.Tiles.Tile.#ctor(GTiff2Tiles.Core.Coordinates.GeoCoordinate,GTiff2Tiles.Core.Coordinates.GeoCoordinate,System.Int32,GTiff2Tiles.Core.Images.Size,System.Collections.Generic.IEnumerable{System.Byte},System.String,System.Boolean)">
             <summary>
@@ -1554,7 +1554,7 @@
             <param name="bytes"><see cref="P:GTiff2Tiles.Core.Tiles.Tile.Bytes"/></param>
             <param name="extension"><see cref="P:GTiff2Tiles.Core.Tiles.Tile.Extension"/></param>
             <param name="tmsCompatible">Is tms compatible?</param>
-            <exception cref="T:GTiff2Tiles.Core.Exceptions.Tile.TileException"></exception>
+            <exception cref="T:GTiff2Tiles.Core.Exceptions.TileException"></exception>
         </member>
         <member name="M:GTiff2Tiles.Core.Tiles.Tile.Finalize">
             <summary>

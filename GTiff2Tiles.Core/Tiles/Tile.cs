@@ -7,7 +7,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using GTiff2Tiles.Core.Coordinates;
 using GTiff2Tiles.Core.Enums;
-using GTiff2Tiles.Core.Exceptions.Tile;
+using GTiff2Tiles.Core.Exceptions;
 using GTiff2Tiles.Core.Images;
 
 // ReSharper disable VirtualMemberNeverOverridden.Global
