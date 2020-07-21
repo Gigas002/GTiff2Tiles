@@ -8,7 +8,7 @@ using GTiff2Tiles.Core.Localization;
 namespace GTiff2Tiles.Core.Helpers
 {
     /// <summary>
-    /// Class with static methods for check the errors.
+    /// Class with static methods to check for errors
     /// </summary>
     public static class CheckHelper
     {
@@ -28,13 +28,13 @@ namespace GTiff2Tiles.Core.Helpers
             if (string.IsNullOrWhiteSpace(gdalInfoString))
                 throw new Exception(string.Format(Strings.StringIsEmpty, nameof(gdalInfoString)));
 
-            //TODO: Don't convert on EPSG:3867 aka mercator
+            //TODO: Don't convert on EPSG:3857 aka mercator
             //Check projection.
-            if (!proj4String.Contains(Constants.Gdal.Gdal.LongLat) || !proj4String.Contains(Constants.Gdal.Gdal.Wgs84))
+            if (!proj4String.Contains(Proj.LongLat) || !proj4String.Contains(Proj.Wgs84))
                 return false;
 
             //Other checks.
-            return gdalInfoString.Contains(Constants.Gdal.Gdal.Byte);
+            return gdalInfoString.Contains(Gdal.Gdal.Byte);
         }
 
         #endregion

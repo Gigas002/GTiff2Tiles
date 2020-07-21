@@ -20,6 +20,33 @@ namespace GTiff2Tiles.Core.Gdal
     /// </summary>
     public static class Gdal
     {
+        #region GdalInfo
+
+        /// <summary>
+        /// Type=Byte
+        /// </summary>
+        public const string Byte = "Type=Byte";
+
+        #endregion
+
+        #region GdalWarp
+
+        /// <summary>
+        /// Options for GdalWarp.
+        /// </summary>
+        public static readonly string[] RepairTifOptions =
+        {
+            "-overwrite", "-t_srs", "EPSG:4326", "-multi", "-srcnodata", "0", "-of", "GTiff", "-ot", "Byte"
+            //"-co", "TILED=YES",
+        };
+
+        /// <summary>
+        /// Name for temporary (converted) file.
+        /// </summary>
+        public const string TempFileName = "Temp";
+
+        #endregion
+
         #region GdalApps
 
         /// <summary>

@@ -20,12 +20,14 @@ namespace GTiff2Tiles.Core.Helpers
     public static class GdalHelper
     {
         /// <summary>
-        /// Shows if everything has been configured.
+        /// Shows if everything has been configured
         /// </summary>
         private static bool IsConfigured { get; set; }
 
         /// <summary>
-        /// Setups gdalplugins and calls Gdal.AllRegister(), Ogr.RegisterAll(), Proj6.Configure().
+        /// Setups gdalplugins and calls <see cref="OSGeo.GDAL.Gdal.AllRegister()"/>,
+        /// <see cref="OSGeo.OGR.Ogr.RegisterAll()"/>,
+        /// <see cref="Proj6.Configure()"/>
         /// </summary>
         public static void ConfigureAll()
         {
@@ -85,7 +87,7 @@ namespace GTiff2Tiles.Core.Helpers
                 }
             }
 
-            //TODO: Cyrillic paths for GdalBuildVrt
+            // TODO: Cyrillic paths for GdalBuildVrt
             //string gdalFileNameIsUtf8 = "NO";
             //Gdal.SetConfigOption("GDAL_FILENAME_IS_UTF8", gdalFileNameIsUtf8);
 

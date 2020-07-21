@@ -37,10 +37,10 @@ namespace GTiff2Tiles.Tests.Tests.Gdal
                 if (!await CheckHelper.CheckInputFileAsync(inputFileInfo))
                 {
                     string tempFilePath = Path.Combine(tempDirectoryInfo.FullName,
-                                                       $"{Core.Constants.Gdal.Gdal.TempFileName}{FileExtensions.Tif}");
+                                                       $"{Core.Gdal.Gdal.TempFileName}{FileExtensions.Tif}");
                     FileInfo tempFileInfo = new FileInfo(tempFilePath);
 
-                    await Core.Gdal.Gdal.WarpAsync(inputFileInfo, tempFileInfo, Core.Constants.Gdal.Gdal.RepairTifOptions);
+                    await Core.Gdal.Gdal.WarpAsync(inputFileInfo, tempFileInfo, Core.Gdal.Gdal.RepairTifOptions);
                 }
 
                 //Check if temp file was created successfuly.
@@ -75,10 +75,10 @@ namespace GTiff2Tiles.Tests.Tests.Gdal
                 if (!await CheckHelper.CheckInputFileAsync(inputFileInfo))
                 {
                     string tempFilePath = Path.Combine(tempDirectoryInfo.FullName,
-                                                       $"{Core.Constants.Gdal.Gdal.TempFileName}{FileExtensions.Tif}");
+                                                       $"{Core.Gdal.Gdal.TempFileName}{FileExtensions.Tif}");
                     FileInfo tempFileInfo = new FileInfo(tempFilePath);
 
-                    await Core.Gdal.Gdal.WarpAsync(inputFileInfo, tempFileInfo, Core.Constants.Gdal.Gdal.RepairTifOptions);
+                    await Core.Gdal.Gdal.WarpAsync(inputFileInfo, tempFileInfo, Core.Gdal.Gdal.RepairTifOptions);
                 }
 
                 //Check if temp file was created successfuly.

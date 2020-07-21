@@ -39,36 +39,6 @@
             .webp
             </summary>
         </member>
-        <member name="T:GTiff2Tiles.Core.Constants.Gdal.Gdal">
-            <summary>
-            Static class with Gdal constants.
-            </summary>
-        </member>
-        <member name="F:GTiff2Tiles.Core.Constants.Gdal.Gdal.LongLat">
-            <summary>
-            +proj=longlat
-            </summary>
-        </member>
-        <member name="F:GTiff2Tiles.Core.Constants.Gdal.Gdal.Wgs84">
-            <summary>
-            +datum=WGS84
-            </summary>
-        </member>
-        <member name="F:GTiff2Tiles.Core.Constants.Gdal.Gdal.Byte">
-            <summary>
-            Type=Byte
-            </summary>
-        </member>
-        <member name="F:GTiff2Tiles.Core.Constants.Gdal.Gdal.RepairTifOptions">
-            <summary>
-            Options for GdalWarp.
-            </summary>
-        </member>
-        <member name="F:GTiff2Tiles.Core.Constants.Gdal.Gdal.TempFileName">
-            <summary>
-            Name for temporary (converted) file.
-            </summary>
-        </member>
         <member name="F:GTiff2Tiles.Core.Constants.Geodesic.OriginShift">
             <summary>
             20037508.342789244
@@ -97,6 +67,21 @@
         </member>
         <member name="F:GTiff2Tiles.Core.Constants.Interpolations.Lanczos3">
             <summary>Three-lobe Lanczos.</summary>
+        </member>
+        <member name="T:GTiff2Tiles.Core.Constants.Proj">
+            <summary>
+            Proj constants
+            </summary>
+        </member>
+        <member name="F:GTiff2Tiles.Core.Constants.Proj.LongLat">
+            <summary>
+            +proj=longlat
+            </summary>
+        </member>
+        <member name="F:GTiff2Tiles.Core.Constants.Proj.Wgs84">
+            <summary>
+            For EPSG:4326 AND World Mercator, BUT not Spherical Mercator (EPSG:3857)
+            </summary>
         </member>
         <member name="T:GTiff2Tiles.Core.Coordinates.Coordinate">
             <summary>
@@ -522,6 +507,21 @@
             Gdal's method to work with input files.
             </summary>
         </member>
+        <member name="F:GTiff2Tiles.Core.Gdal.Gdal.Byte">
+            <summary>
+            Type=Byte
+            </summary>
+        </member>
+        <member name="F:GTiff2Tiles.Core.Gdal.Gdal.RepairTifOptions">
+            <summary>
+            Options for GdalWarp.
+            </summary>
+        </member>
+        <member name="F:GTiff2Tiles.Core.Gdal.Gdal.TempFileName">
+            <summary>
+            Name for temporary (converted) file.
+            </summary>
+        </member>
         <member name="M:GTiff2Tiles.Core.Gdal.Gdal.WarpAsync(System.IO.FileInfo,System.IO.FileInfo,System.String[],OSGeo.GDAL.Gdal.GDALProgressFuncDelegate)">
             <summary>
             Runs GdalWarp with passed parameters.
@@ -570,7 +570,7 @@
         </member>
         <member name="T:GTiff2Tiles.Core.Helpers.CheckHelper">
             <summary>
-            Class with static methods for check the errors.
+            Class with static methods to check for errors
             </summary>
         </member>
         <member name="M:GTiff2Tiles.Core.Helpers.CheckHelper.CheckTifInfo(System.String,System.String)">
@@ -613,12 +613,14 @@
         </member>
         <member name="P:GTiff2Tiles.Core.Helpers.GdalHelper.IsConfigured">
             <summary>
-            Shows if everything has been configured.
+            Shows if everything has been configured
             </summary>
         </member>
         <member name="M:GTiff2Tiles.Core.Helpers.GdalHelper.ConfigureAll">
             <summary>
-            Setups gdalplugins and calls Gdal.AllRegister(), Ogr.RegisterAll(), Proj6.Configure().
+            Setups gdalplugins and calls <see cref="M:OSGeo.GDAL.Gdal.AllRegister"/>,
+            <see cref="M:OSGeo.OGR.Ogr.RegisterAll"/>,
+            <see cref="M:MaxRev.Gdal.Core.Proj6.Configure"/>
             </summary>
         </member>
         <member name="T:GTiff2Tiles.Core.Helpers.NetVipsHelper">

@@ -18,11 +18,11 @@ namespace GTiff2Tiles.Tests.Tests
         {
             try
             {
-                string lonLat = Core.Constants.Gdal.Gdal.LongLat;
-                string wgs84 = Core.Constants.Gdal.Gdal.Wgs84;
-                string typeByte = Core.Constants.Gdal.Gdal.Byte;
-                string[] repairTifOptions = Core.Constants.Gdal.Gdal.RepairTifOptions;
-                string tempFileName = Core.Constants.Gdal.Gdal.TempFileName;
+                string lonLat = Core.Constants.Proj.LongLat;
+                string wgs84 = Core.Constants.Proj.Wgs84;
+                string typeByte = Core.Gdal.Gdal.Byte;
+                string[] repairTifOptions = Core.Gdal.Gdal.RepairTifOptions;
+                string tempFileName = Core.Gdal.Gdal.TempFileName;
             }
             catch (Exception exception) { Assert.Fail(exception.Message); }
 
