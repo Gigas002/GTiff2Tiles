@@ -1,5 +1,8 @@
 ﻿using System;
 
+// ReSharper disable UnusedMember.Global
+// ReSharper disable MemberCanBePrivate.Global
+
 namespace GTiff2Tiles.Core.Constants
 {
     /// <summary>
