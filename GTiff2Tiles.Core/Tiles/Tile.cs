@@ -184,7 +184,12 @@ namespace GTiff2Tiles.Core.Tiles
         /// <inheritdoc cref="CheckSize()"/>
         /// <param name="tile"><see cref="ITile"/> to check</param>
         /// <returns></returns>
-        public static bool CheckSize(ITile tile) => tile.Size.Width == tile.Size.Height;
+        public static bool CheckSize(ITile tile)
+        {
+            if (tile == null) throw new ArgumentNullException(nameof(tile));
+
+            return tile.Size.Width == tile.Size.Height;
+        }
 
         #endregion
 
@@ -219,6 +224,8 @@ namespace GTiff2Tiles.Core.Tiles
         {
             // 0 1
             // 2 3
+
+            if (number == null) throw new ArgumentNullException(nameof(number));
 
             int tilePosition;
 
