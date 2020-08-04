@@ -32,6 +32,13 @@ namespace GTiff2Tiles.Core.GeoTiffs
         #region Private
 
         /// <summary>
+        /// Name for temporary file
+        /// <para/>see <see cref="Raster(IEnumerable{byte}, CoordinateSystem)"/>
+        /// and <see cref="Raster(Stream, CoordinateSystem)"/>
+        /// </summary>
+        private readonly string _tempFileName = $"{DateTime.Now.ToString(DateTimePatterns.LongWithMs)}_tmp.tif";
+
+        /// <summary>
         /// This <see cref="Raster"/>'s data
         /// </summary>
         private Image Data { get; }
@@ -105,7 +112,7 @@ namespace GTiff2Tiles.Core.GeoTiffs
             GeoCoordinateSystem = coordinateSystem;
 
             // TODO: get coordinates without fileinfo
-            FileInfo inputFileInfo = new FileInfo("tmp.tif");
+            FileInfo inputFileInfo = new FileInfo(_tempFileName);
             Data.WriteToFile(inputFileInfo.FullName);
             (MinCoordinate, MaxCoordinate) = GdalWorker.GetImageBorders(inputFileInfo.FullName, Size, GeoCoordinateSystem);
             inputFileInfo.Delete();
@@ -127,7 +134,7 @@ namespace GTiff2Tiles.Core.GeoTiffs
             GeoCoordinateSystem = coordinateSystem;
 
             // TODO: get coordinates without fileinfo
-            FileInfo inputFileInfo = new FileInfo("tmp.tif");
+            FileInfo inputFileInfo = new FileInfo(_tempFileName);
             Data.WriteToFile(inputFileInfo.FullName);
             (MinCoordinate, MaxCoordinate) = GdalWorker.GetImageBorders(inputFileInfo.FullName, Size, GeoCoordinateSystem);
             inputFileInfo.Delete();
