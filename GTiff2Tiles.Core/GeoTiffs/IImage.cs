@@ -16,7 +16,7 @@ namespace GTiff2Tiles.Core.GeoTiffs
     /// <summary>
     /// Main interface for cropping different <see cref="ITile"/>s
     /// </summary>
-    public interface IImage : IAsyncDisposable, IDisposable
+    public interface IGeoTiff : IAsyncDisposable, IDisposable
     {
         #region Properties
 
@@ -26,12 +26,12 @@ namespace GTiff2Tiles.Core.GeoTiffs
         public Size Size { get; }
 
         /// <summary>
-        /// Minimal <see cref="GeoCoordinate"/> of this <see cref="IImage"/>
+        /// Minimal <see cref="GeoCoordinate"/> of this <see cref="IGeoTiff"/>
         /// </summary>
         public GeoCoordinate MinCoordinate { get; }
 
         /// <summary>
-        /// Maximal <see cref="GeoCoordinate"/> of this <see cref="IImage"/>
+        /// Maximal <see cref="GeoCoordinate"/> of this <see cref="IGeoTiff"/>
         /// </summary>
         public GeoCoordinate MaxCoordinate { get; }
 
@@ -112,7 +112,7 @@ namespace GTiff2Tiles.Core.GeoTiffs
                                           bool isPrintEstimatedTime = false);
 
         /// <summary>
-        /// Crops current <see cref="IImage"/> on <see cref="ITile"/>s
+        /// Crops current <see cref="IGeoTiff"/> on <see cref="ITile"/>s
         /// and writes them to <paramref name="outputDirectoryPath"/>
         /// </summary>
         /// <param name="outputDirectoryPath">Directory for output <see cref="ITile"/>s</param>
@@ -149,7 +149,7 @@ namespace GTiff2Tiles.Core.GeoTiffs
                                         bool isPrintEstimatedTime = false);
 
         /// <summary>
-        /// Crops current <see cref="IImage"/> on <see cref="ITile"/>s
+        /// Crops current <see cref="IGeoTiff"/> on <see cref="ITile"/>s
         /// and writes them to <paramref name="channelWriter"/>
         /// </summary>
         /// <param name="channelWriter"><see cref="Channel"/> to write <see cref="ITile"/> to</param>
@@ -162,7 +162,7 @@ namespace GTiff2Tiles.Core.GeoTiffs
         /// <param name="interpolation"></param>
         /// <param name="bandsCount"></param>
         /// <param name="tileCacheCount"></param>
-        /// <param name="threadsCount">T</param>
+        /// <param name="threadsCount"></param>
         /// <param name="progress"></param>
         /// <param name="isPrintEstimatedTime"></param>
         public Task WriteTilesToChannelAsync(ChannelWriter<ITile> channelWriter, int minZ, int maxZ,
@@ -174,20 +174,11 @@ namespace GTiff2Tiles.Core.GeoTiffs
                                                   bool isPrintEstimatedTime = false);
 
         /// <summary>
-        /// Crops current <see cref="IImage"/> on <see cref="ITile"/>s
+        /// Crops current <see cref="IGeoTiff"/> on <see cref="ITile"/>s
         /// and writes them to <see cref="IEnumerable{T}"/>
         /// </summary>
         /// <returns><see cref="IEnumerable{T}"/> of <see cref="ITile"/>s</returns>
         /// <inheritdoc cref="WriteTilesToAsyncEnumerable"/>
-        /// <param name="minZ"></param>
-        /// <param name="maxZ"></param>
-        /// <param name="tmsCompatible"></param>
-        /// <param name="tileSize"></param>
-        /// <param name="interpolation"></param>
-        /// <param name="bandsCount"></param>
-        /// <param name="tileCacheCount"></param>
-        /// <param name="progress"></param>
-        /// <param name="isPrintEstimatedTime"></param>
         public IEnumerable<ITile> WriteTilesToEnumerable(int minZ, int maxZ,
                                                          bool tmsCompatible = false, Size tileSize = null,
                                                          string interpolation = Interpolations.Lanczos3,
@@ -197,7 +188,7 @@ namespace GTiff2Tiles.Core.GeoTiffs
                                                          bool isPrintEstimatedTime = false);
 
         /// <summary>
-        /// Crops current <see cref="IImage"/> on <see cref="ITile"/>s
+        /// Crops current <see cref="IGeoTiff"/> on <see cref="ITile"/>s
         /// and writes them to <see cref="IAsyncEnumerable{T}"/>
         /// </summary>
         /// <param name="minZ">Minimum cropped zoom</param>
@@ -206,7 +197,7 @@ namespace GTiff2Tiles.Core.GeoTiffs
         /// <remarks><para/><see langword="false"/> by default</remarks></param>
         /// <param name="tileSize"><see cref="GeoTiffs.Size"/> of <see cref="ITile"/>s
         /// <remarks><para/><see langword="null"/> by default, be sure to set it
-        /// for custom implementations of <see cref="IImage"/></remarks></param>
+        /// for custom implementations of <see cref="IGeoTiff"/></remarks></param>
         /// <param name="interpolation">Interpolation of ready tiles
         /// <remarks><para/><see cref="Interpolations.Lanczos3"/> by default</remarks></param>
         /// <param name="bandsCount">Count of <see cref="Band"/>s in ready <see cref="ITile"/>s

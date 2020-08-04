@@ -8,12 +8,12 @@ using GTiff2Tiles.Core.Tiles;
 namespace GTiff2Tiles.Core.GeoTiffs
 {
     /// <summary>
-    /// Example of class to use <see cref="IImage"/> interface.
+    /// Example of class to use <see cref="IGeoTiff"/> interface.
     /// </summary>
     public static class Img
     {
         /// <summary>
-        /// Example of method to use <see cref="IImage"/> interface for cropping the tiles.
+        /// Example of method to use <see cref="IGeoTiff"/> interface for cropping the tiles.
         /// </summary>
         /// <param name="inputFileInfo">Input GeoTIFF.</param>
         /// <param name="outputDirectoryInfo">Directory for cropped tiles.</param>
@@ -26,6 +26,7 @@ namespace GTiff2Tiles.Core.GeoTiffs
         /// <param name="progress">Progress.</param>
         /// <param name="threadsCount">Threads count.</param>
         /// <returns></returns>
+        [Obsolete("Don't use in production, will be removed in stable 2.0.0 release")]
         public static async ValueTask GenerateTilesAsync(FileInfo inputFileInfo, DirectoryInfo outputDirectoryInfo,
                                                          int minZ, int maxZ, TileType tileType,
                                                          CoordinateSystem targetSystem,
@@ -36,7 +37,7 @@ namespace GTiff2Tiles.Core.GeoTiffs
         {
             //This is example.
             //TODO: Better exception-handling
-            await using IImage image = tileType switch
+            await using IGeoTiff image = tileType switch
             {
                 TileType.Raster => new Raster(inputFileInfo?.FullName, targetSystem),
                 //TileType.Terrain => new Image(inputFileInfo),

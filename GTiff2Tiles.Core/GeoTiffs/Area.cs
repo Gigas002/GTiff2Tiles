@@ -7,7 +7,7 @@ using GTiff2Tiles.Core.Tiles;
 namespace GTiff2Tiles.Core.GeoTiffs
 {
     /// <summary>
-    /// Represents read/write <see cref="Area"/>s of <see cref="IImage"/>
+    /// Represents read/write <see cref="Area"/>s of <see cref="IGeoTiff"/>
     /// </summary>
     public class Area
     {
@@ -44,12 +44,12 @@ namespace GTiff2Tiles.Core.GeoTiffs
 
         #region Methods
 
-        /// <inheritdoc cref="GetAreas(IImage, ITile)"/>
+        /// <inheritdoc cref="GetAreas(IGeoTiff, ITile)"/>
         /// <param name="imageMinCoordinate">Minimal <see cref="GeoCoordinate"/>
-        /// of <see cref="IImage"/></param>
+        /// of <see cref="IGeoTiff"/></param>
         /// <param name="imageMaxCoordinate">Maximal <see cref="GeoCoordinate"/>
-        /// of <see cref="IImage"/></param>
-        /// <param name="imageSize"><see cref="GeoTiffs.Size"/> of <see cref="IImage"/></param>
+        /// of <see cref="IGeoTiff"/></param>
+        /// <param name="imageSize"><see cref="GeoTiffs.Size"/> of <see cref="IGeoTiff"/></param>
         /// <param name="tileMinCoordinate">Minimal <see cref="GeoCoordinate"/>
         /// of <see cref="ITile"/></param>
         /// <param name="tileMaxCoordinate">Maximal <see cref="GeoCoordinate"/>
@@ -129,13 +129,13 @@ namespace GTiff2Tiles.Core.GeoTiffs
         }
 
         /// <summary>
-        /// Get <see cref="Area"/>s to read from input <see cref="IImage"/>
+        /// Get <see cref="Area"/>s to read from input <see cref="IGeoTiff"/>
         /// and to write to target <see cref="ITile"/>
         /// </summary>
-        /// <param name="image">Source <see cref="IImage"/></param>
+        /// <param name="image">Source <see cref="IGeoTiff"/></param>
         /// <param name="tile">Target <see cref="ITile"/></param>
         /// <returns><see cref="ValueTuple"/> of <see cref="Area"/>s to read and write</returns>
-        public static (Area readArea, Area writeArea) GetAreas(IImage image, ITile tile)
+        public static (Area readArea, Area writeArea) GetAreas(IGeoTiff image, ITile tile)
         {
             if (image == null) throw new ArgumentNullException(nameof(image));
             if (tile == null) throw new ArgumentNullException(nameof(tile));

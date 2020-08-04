@@ -25,7 +25,7 @@ namespace GTiff2Tiles.Core.GeoTiffs
     /// <summary>
     /// Class for creating <see cref="RasterTile"/>s
     /// </summary>
-    public class Raster : IImage
+    public class Raster : IGeoTiff
     {
         #region Properties
 

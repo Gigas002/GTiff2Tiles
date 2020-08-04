@@ -5,7 +5,7 @@
 namespace GTiff2Tiles.Core.GeoTiffs
 {
     /// <summary>
-    /// <see cref="IImage"/>'s size
+    /// <see cref="IGeoTiff"/>'s size
     /// </summary>
     public sealed class Size : IEquatable<Size>
     {
@@ -22,7 +22,7 @@ namespace GTiff2Tiles.Core.GeoTiffs
         public int Height { get; }
 
         /// <summary>
-        /// <see cref="IImage"/>'s resolution
+        /// <see cref="IGeoTiff"/>'s resolution
         /// </summary>
         public int Resolution => Width * Height;
 
