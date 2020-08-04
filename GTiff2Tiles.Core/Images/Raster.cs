@@ -243,8 +243,8 @@ namespace GTiff2Tiles.Core.Images
         }
 
         /// <inheritdoc/>
-        public async ValueTask WriteTileToFileAsync(Image tileCache, RasterTile tile, string interpolation) =>
-            await Task.Run(() => WriteTileToFile(tileCache, tile, interpolation)).ConfigureAwait(false);
+        public Task WriteTileToFileAsync(Image tileCache, RasterTile tile, string interpolation) =>
+            Task.Run(() => WriteTileToFile(tileCache, tile, interpolation));
 
         /// <inheritdoc/>
         public IEnumerable<byte> WriteTileToEnumerable(Image tileCache, RasterTile tile,
@@ -362,18 +362,17 @@ namespace GTiff2Tiles.Core.Images
         }
 
         /// <inheritdoc />
-        public async ValueTask WriteTilesToDirectoryAsync(string outputDirectoryPath, int minZ, int maxZ,
-                                                          bool tmsCompatible = false, Size tileSize = null,
-                                                          string tileExtension = FileExtensions.Png,
-                                                          string interpolation = Interpolations.Lanczos3,
-                                                          int bandsCount = RasterTile.DefaultBandsCount,
-                                                          int tileCacheCount = 1000, int threadsCount = 0,
-                                                          IProgress<double> progress = null,
-                                                          bool isPrintEstimatedTime = false) =>
-            await Task.Run(() => WriteTilesToDirectory(outputDirectoryPath, minZ, maxZ, tmsCompatible, tileSize,
-                                                       tileExtension, interpolation, bandsCount, tileCacheCount,
-                                                       threadsCount, progress, isPrintEstimatedTime))
-                      .ConfigureAwait(false);
+        public Task WriteTilesToDirectoryAsync(string outputDirectoryPath, int minZ, int maxZ,
+                                               bool tmsCompatible = false, Size tileSize = null,
+                                               string tileExtension = FileExtensions.Png,
+                                               string interpolation = Interpolations.Lanczos3,
+                                               int bandsCount = RasterTile.DefaultBandsCount,
+                                               int tileCacheCount = 1000, int threadsCount = 0,
+                                               IProgress<double> progress = null,
+                                               bool isPrintEstimatedTime = false) =>
+            Task.Run(() => WriteTilesToDirectory(outputDirectoryPath, minZ, maxZ, tmsCompatible, tileSize,
+                                                 tileExtension, interpolation, bandsCount, tileCacheCount,
+                                                 threadsCount, progress, isPrintEstimatedTime));
 
         /// <inheritdoc />
         public void WriteTilesToChannel(ChannelWriter<ITile> channelWriter, int minZ, int maxZ,
@@ -444,16 +443,16 @@ namespace GTiff2Tiles.Core.Images
         }
 
         /// <inheritdoc />
-        public async ValueTask WriteTilesToChannelAsync(ChannelWriter<ITile> channelWriter, int minZ, int maxZ,
+        public Task WriteTilesToChannelAsync(ChannelWriter<ITile> channelWriter, int minZ, int maxZ,
                                                         bool tmsCompatible = false, Size tileSize = null,
                                                         string interpolation = Interpolations.Lanczos3,
                                                         int bandsCount = RasterTile.DefaultBandsCount,
                                                         int tileCacheCount = 1000, int threadsCount = 0,
                                                         IProgress<double> progress = null,
                                                         bool isPrintEstimatedTime = false) =>
-            await Task.Run(() => WriteTilesToChannel(channelWriter, minZ, maxZ, tmsCompatible, tileSize, interpolation,
-                                                     bandsCount, tileCacheCount, threadsCount, progress,
-                                                     isPrintEstimatedTime)).ConfigureAwait(false);
+            Task.Run(() => WriteTilesToChannel(channelWriter, minZ, maxZ, tmsCompatible, tileSize,
+                                               interpolation, bandsCount, tileCacheCount, threadsCount,
+                                               progress, isPrintEstimatedTime));
 
         /// <inheritdoc />
         public IEnumerable<ITile> WriteTilesToEnumerable(int minZ, int maxZ,
@@ -514,9 +513,7 @@ namespace GTiff2Tiles.Core.Images
                 for (int tileY = minNumber.Y; tileY <= maxNumber.Y; tileY++)
                 {
                     for (int tileX = minNumber.X; tileX <= maxNumber.X; tileX++)
-                    {
                         yield return MakeTile(tileX, tileY, zoom);
-                    }
                 }
             }
         }
@@ -535,7 +532,7 @@ namespace GTiff2Tiles.Core.Images
             WriteTilesToChannelAsync(channel.Writer, minZ, maxZ, tmsCompatible, tileSize,
                                      interpolation, bandsCount, tileCacheCount,
                                      threadsCount, progress, isPrintEstimatedTime)
-               .AsTask().ContinueWith(_ => channel.Writer.Complete(), TaskScheduler.Current);
+               .ContinueWith(_ => channel.Writer.Complete(), TaskScheduler.Current);
 
             return channel.Reader.ReadAllAsync();
         }

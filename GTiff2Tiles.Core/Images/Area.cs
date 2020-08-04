@@ -32,7 +32,13 @@ namespace GTiff2Tiles.Core.Images
         /// </summary>
         /// <param name="originCoordinate"><see cref="OriginCoordinate"/></param>
         /// <param name="size"><see cref="Size"/></param>
-        public Area(PixelCoordinate originCoordinate, Size size) => (OriginCoordinate, Size) = (originCoordinate, size);
+        public Area(PixelCoordinate originCoordinate, Size size)
+        {
+            if (originCoordinate == null) throw new ArgumentNullException(nameof(originCoordinate));
+            if (size == null) throw new ArgumentNullException(nameof(size));
+
+            (OriginCoordinate, Size) = (originCoordinate, size);
+        }
 
         #endregion
 

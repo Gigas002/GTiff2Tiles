@@ -41,7 +41,14 @@ namespace GTiff2Tiles.Core.Tiles
         /// <param name="x"><see cref="X"/></param>
         /// <param name="y"><see cref="Y"/></param>
         /// <param name="z">Zoom</param>
-        public Number(int x, int y, int z) => (X, Y, Z) = (x, y, z);
+        public Number(int x, int y, int z)
+        {
+            if (x < 0) throw new ArgumentNullException(nameof(x));
+            if (y < 0) throw new ArgumentNullException(nameof(y));
+            if (z < 0) throw new ArgumentNullException(nameof(z));
+
+            (X, Y, Z) = (x, y, z);
+        }
 
         #endregion
 
@@ -156,14 +163,14 @@ namespace GTiff2Tiles.Core.Tiles
                 case CoordinateType.Geodetic:
                     {
                         (GeodeticCoordinate minCoordinate, GeodeticCoordinate maxCoordinate) =
-                            ToGeodeticCoordinates(number, tileSize);
+                            number.ToGeodeticCoordinates(tileSize);
 
                         return (minCoordinate, maxCoordinate);
                     }
                 case CoordinateType.Mercator:
                     {
                         (MercatorCoordinate minCoordinate, MercatorCoordinate maxCoordinate) =
-                            ToMercatorCoordinates(number, tileSize);
+                            number.ToMercatorCoordinates(tileSize);
 
                         return (minCoordinate, maxCoordinate);
                     }

@@ -11,17 +11,17 @@
         </member>
         <member name="F:GTiff2Tiles.Core.Constants.DateTimePatterns.LongWithMs">
             <summary>
-            yyyyMMddHHmmssfff
+            Year, month, date, hour, minutes, seconds, ms
             </summary>
         </member>
         <member name="F:GTiff2Tiles.Core.Constants.DateTimePatterns.ShortToDate">
             <summary>
-            yyyyMMdd
+            Year, month and date
             </summary>
         </member>
         <member name="F:GTiff2Tiles.Core.Constants.DateTimePatterns.ShortToMonth">
             <summary>
-            yyyyMM
+            Year and month
             </summary>
         </member>
         <member name="T:GTiff2Tiles.Core.Constants.FileExtensions">
@@ -306,6 +306,26 @@
             Class for EPSG:4326 coordinates
             </summary>
         </member>
+        <member name="F:GTiff2Tiles.Core.Coordinates.GeodeticCoordinate.MaxPossibleLonValue">
+            <summary>
+            Maximal possible value of longitude for EPSG:4326
+            </summary>
+        </member>
+        <member name="F:GTiff2Tiles.Core.Coordinates.GeodeticCoordinate.MaxPossibleLatValue">
+            <summary>
+            Maximal possible value of latitude for EPSG:4326
+            </summary>
+        </member>
+        <member name="F:GTiff2Tiles.Core.Coordinates.GeodeticCoordinate.MinPossibleLonValue">
+            <summary>
+            Minimal possible value of longitude for EPSG:4326
+            </summary>
+        </member>
+        <member name="F:GTiff2Tiles.Core.Coordinates.GeodeticCoordinate.MinPossibleLatValue">
+            <summary>
+            Minimal possible value of latitude for EPSG:4326
+            </summary>
+        </member>
         <member name="P:GTiff2Tiles.Core.Coordinates.GeodeticCoordinate.Longitude">
             <summary>
             Analogue of <see cref="P:GTiff2Tiles.Core.Coordinates.Coordinate.X"/>
@@ -362,6 +382,26 @@
             Class for EPSG:3857 coordinates
             </summary>
         </member>
+        <member name="F:GTiff2Tiles.Core.Coordinates.MercatorCoordinate.MaxPossibleLonValue">
+            <summary>
+            Maximal possible value of longitude for EPSG:3857
+            </summary>
+        </member>
+        <member name="F:GTiff2Tiles.Core.Coordinates.MercatorCoordinate.MaxPossibleLatValue">
+            <summary>
+            Maximal possible value of latitude for EPSG:3857
+            </summary>
+        </member>
+        <member name="F:GTiff2Tiles.Core.Coordinates.MercatorCoordinate.MinPossibleLonValue">
+            <summary>
+            Minimal possible value of longitude for EPSG:3857
+            </summary>
+        </member>
+        <member name="F:GTiff2Tiles.Core.Coordinates.MercatorCoordinate.MinPossibleLatValue">
+            <summary>
+            Minimal possible value of latitude for EPSG:3857
+            </summary>
+        </member>
         <member name="M:GTiff2Tiles.Core.Coordinates.MercatorCoordinate.#ctor(System.Double,System.Double)">
             <inheritdoc />
             <param name="longitude"><see cref="P:GTiff2Tiles.Core.Coordinates.Coordinate.X"/> or Longitude</param>
@@ -398,7 +438,7 @@
             <param name="zoom">Zoom</param>
             <param name="tileSize"><see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>'s side size</param>
             <returns>Converted to <see cref="T:GTiff2Tiles.Core.Coordinates.GeoCoordinate"/> value
-            or null if something goes wrong</returns>
+            or <see langword="null"/> if something goes wrong</returns>
         </member>
         <member name="M:GTiff2Tiles.Core.Coordinates.PixelCoordinate.ToGeodeticCoordinate(System.Int32,System.Int32)">
             <summary>
@@ -521,87 +561,39 @@
         </member>
         <member name="T:GTiff2Tiles.Core.Exceptions.GdalException">
             <inheritdoc />
-            <summary>
-            Exceptions, happened in Image.Gdal.cs.
-            </summary>
         </member>
         <member name="M:GTiff2Tiles.Core.Exceptions.GdalException.#ctor(System.String)">
             <inheritdoc />
-            <summary>
-            Creates new <see cref="T:GTiff2Tiles.Core.Exceptions.GdalException"/> object with passed error message.
-            </summary>
-            <param name="errorMessage">Error message.</param>
         </member>
         <member name="M:GTiff2Tiles.Core.Exceptions.GdalException.#ctor(System.String,System.Exception)">
             <inheritdoc />
-            <summary>
-            Creates new <see cref="T:GTiff2Tiles.Core.Exceptions.GdalException"/> object with passed error message
-            and a reference to the inner exception that is the cause of this exception.
-            </summary>
-            <param name="errorMessage">Error message.</param>
-            <param name="innerException">Inner exception.</param>
         </member>
         <member name="M:GTiff2Tiles.Core.Exceptions.GdalException.#ctor">
             <inheritdoc />
-            <summary>
-            Creates new <see cref="T:GTiff2Tiles.Core.Exceptions.GdalException"/> object without error message.
-            </summary>
         </member>
         <member name="T:GTiff2Tiles.Core.Exceptions.RasterException">
             <inheritdoc />
-            <summary>
-            Exceptions, happened in Image.Raster.cs.
-            </summary>
         </member>
         <member name="M:GTiff2Tiles.Core.Exceptions.RasterException.#ctor(System.String)">
             <inheritdoc />
-            <summary>
-            Creates new <see cref="T:GTiff2Tiles.Core.Exceptions.RasterException"/> object with passed error message.
-            </summary>
-            <param name="errorMessage">Error message.</param>
         </member>
         <member name="M:GTiff2Tiles.Core.Exceptions.RasterException.#ctor(System.String,System.Exception)">
             <inheritdoc />
-            <summary>
-            Creates new <see cref="T:GTiff2Tiles.Core.Exceptions.RasterException"/> object with passed error message
-            and a reference to the inner exception that is the cause of this exception.
-            </summary>
-            <param name="errorMessage">Error message.</param>
-            <param name="innerException">Inner exception.</param>
         </member>
         <member name="M:GTiff2Tiles.Core.Exceptions.RasterException.#ctor">
             <inheritdoc />
-            <summary>
-            Creates new <see cref="T:GTiff2Tiles.Core.Exceptions.RasterException"/> object without error message.
-            </summary>
         </member>
         <member name="T:GTiff2Tiles.Core.Exceptions.TileException">
             <inheritdoc />
-            <summary>
-            Exceptions, happened in Tile.TileTileTools.cs.
-            </summary>
         </member>
         <member name="M:GTiff2Tiles.Core.Exceptions.TileException.#ctor(System.String)">
             <inheritdoc />
-            <summary>
-            Creates new <see cref="T:GTiff2Tiles.Core.Exceptions.TileException"/> object with passed error message.
-            </summary>
-            <param name="errorMessage">Error message.</param>
         </member>
         <member name="M:GTiff2Tiles.Core.Exceptions.TileException.#ctor(System.String,System.Exception)">
             <inheritdoc />
-            <summary>
-            Creates new <see cref="T:GTiff2Tiles.Core.Exceptions.TileException"/> object with passed error message
-            and a reference to the inner exception that is the cause of this exception.
-            </summary>
-            <param name="errorMessage">Error message.</param>
-            <param name="innerException">Inner exception.</param>
         </member>
         <member name="M:GTiff2Tiles.Core.Exceptions.TileException.#ctor">
             <inheritdoc />
-            <summary>
-            Creates new <see cref="T:GTiff2Tiles.Core.Exceptions.TileException"/> object without error message.
-            </summary>
         </member>
         <member name="T:GTiff2Tiles.Core.GdalWorker">
             <summary>
@@ -684,7 +676,7 @@
         </member>
         <member name="M:GTiff2Tiles.Core.GdalWorker.ConvertGeoTiffToTargetSystemAsync(System.String,System.String,GTiff2Tiles.Core.Enums.CoordinateSystems,System.IProgress{System.Double})">
             <summary>
-            Converts current GeoTIFF to a new file with target <see cref="T:GTiff2Tiles.Core.Enums.CoordinateSystems"/>
+            Converts current GeoTiff to a new file with target <see cref="T:GTiff2Tiles.Core.Enums.CoordinateSystems"/>
             through GdalWarp
             </summary>
             <param name="inputFilePath">Input GeoTiff's path</param>
@@ -1671,31 +1663,25 @@
             </summary>
         </member>
         <member name="M:GTiff2Tiles.Core.Tiles.RasterTile.#ctor(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Images.Size,System.Collections.Generic.IEnumerable{System.Byte},System.String,System.Boolean,GTiff2Tiles.Core.Enums.CoordinateType,System.Int32)">
-            <summary>
-            Creates new <see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/>
-            </summary>
-            <param name="number"><see cref="P:GTiff2Tiles.Core.Tiles.Tile.Number"/></param>
-            <param name="size"><see cref="P:GTiff2Tiles.Core.Tiles.Tile.Size"/>;
-            <remarks>should be a square, e.g. 256x256</remarks></param>
-            <param name="bytes"><see cref="P:GTiff2Tiles.Core.Tiles.Tile.Bytes"/></param>
-            <param name="extension"><see cref="P:GTiff2Tiles.Core.Tiles.Tile.Extension"/></param>
-            <param name="tmsCompatible">Is tms compatible?</param>
-            <param name="coordinateType">Type of <see cref="T:GTiff2Tiles.Core.Coordinates.GeoCoordinate"/></param>
             <param name="bandsCount"><see cref="P:GTiff2Tiles.Core.Tiles.RasterTile.BandsCount"/></param>
+            <inheritdoc cref="M:GTiff2Tiles.Core.Tiles.Tile.#ctor(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Images.Size,System.Collections.Generic.IEnumerable{System.Byte},System.String,System.Boolean,GTiff2Tiles.Core.Enums.CoordinateType)"/>
+            <param name="number"></param>
+            <param name="size"></param>
+            <param name="bytes"></param>
+            <param name="extension"></param>
+            <param name="tmsCompatible"></param>
+            <param name="coordinateType"></param>
         </member>
         <member name="M:GTiff2Tiles.Core.Tiles.RasterTile.#ctor(GTiff2Tiles.Core.Coordinates.GeoCoordinate,GTiff2Tiles.Core.Coordinates.GeoCoordinate,System.Int32,GTiff2Tiles.Core.Images.Size,System.Collections.Generic.IEnumerable{System.Byte},System.String,System.Boolean,System.Int32)">
-            <summary>
-            Creates new <see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/> from <see cref="T:GTiff2Tiles.Core.Coordinates.GeoCoordinate"/> values
-            </summary>
-            <param name="minCoordinate">Minimum <see cref="T:GTiff2Tiles.Core.Coordinates.GeoCoordinate"/></param>
-            <param name="maxCoordinate">Maximum <see cref="T:GTiff2Tiles.Core.Coordinates.GeoCoordinate"/></param>
-            <param name="zoom">Zoom</param>
-            <param name="size"><see cref="P:GTiff2Tiles.Core.Tiles.Tile.Size"/>;
-            <remarks>should be a square, e.g. 256x256</remarks></param>
-            <param name="bytes"><see cref="P:GTiff2Tiles.Core.Tiles.Tile.Bytes"/></param>
-            <param name="extension"><see cref="P:GTiff2Tiles.Core.Tiles.Tile.Extension"/></param>
-            <param name="tmsCompatible">Is tms compatible?</param>
             <param name="bandsCount"><see cref="P:GTiff2Tiles.Core.Tiles.RasterTile.BandsCount"/></param>
+            <inheritdoc cref="M:GTiff2Tiles.Core.Tiles.Tile.#ctor(GTiff2Tiles.Core.Coordinates.GeoCoordinate,GTiff2Tiles.Core.Coordinates.GeoCoordinate,System.Int32,GTiff2Tiles.Core.Images.Size,System.Collections.Generic.IEnumerable{System.Byte},System.String,System.Boolean)"/>
+            <param name="minCoordinate"></param>
+            <param name="maxCoordinate"></param>
+            <param name="zoom"></param>
+            <param name="size"></param>
+            <param name="bytes"></param>
+            <param name="extension"></param>
+            <param name="tmsCompatible"></param>
         </member>
         <member name="T:GTiff2Tiles.Core.Tiles.Tile">
             <summary>

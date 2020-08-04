@@ -1,6 +1,8 @@
 ﻿using System;
 using GTiff2Tiles.Core.Enums;
 
+// ReSharper disable MemberCanBePrivate.Global
+
 namespace GTiff2Tiles.Core.Coordinates
 {
     /// <summary>
@@ -8,12 +10,42 @@ namespace GTiff2Tiles.Core.Coordinates
     /// </summary>
     public class MercatorCoordinate : GeoCoordinate
     {
+        #region Properties/Constants
+
+        /// <summary>
+        /// Maximal possible value of longitude for EPSG:3857
+        /// </summary>
+        public const double MaxPossibleLonValue = 20026376.39;
+
+        /// <summary>
+        /// Maximal possible value of latitude for EPSG:3857
+        /// </summary>
+        public const double MaxPossibleLatValue = 20048966.10;
+
+        /// <summary>
+        /// Minimal possible value of longitude for EPSG:3857
+        /// </summary>
+        public const double MinPossibleLonValue = -MaxPossibleLonValue;
+
+        /// <summary>
+        /// Minimal possible value of latitude for EPSG:3857
+        /// </summary>
+        public const double MinPossibleLatValue = -MaxPossibleLatValue;
+
+        #endregion
+
         #region Constructors
 
         /// <inheritdoc />
         /// <param name="longitude"><see cref="Coordinate.X"/> or Longitude</param>
         /// <param name="latitude"><see cref="Coordinate.Y"/> or Latitude</param>
-        public MercatorCoordinate(double longitude, double latitude) : base(longitude, latitude) { }
+        public MercatorCoordinate(double longitude, double latitude) : base(longitude, latitude)
+        {
+            if (longitude < MinPossibleLonValue || longitude > MaxPossibleLonValue)
+                throw new ArgumentOutOfRangeException(nameof(longitude));
+            if (latitude < MinPossibleLatValue || latitude > MaxPossibleLatValue)
+                throw new ArgumentOutOfRangeException(nameof(latitude));
+        }
 
         #endregion
 

@@ -63,7 +63,7 @@ namespace GTiff2Tiles.Core.Images
         public void WriteTileToFile(Image tileCache, RasterTile tile, string interpolation);
 
         /// <inheritdoc cref="WriteTileToFile"/>
-        public ValueTask WriteTileToFileAsync(Image tileCache, RasterTile tile, string interpolation);
+        public Task WriteTileToFileAsync(Image tileCache, RasterTile tile, string interpolation);
 
         /// <summary>
         /// Gets data from source <see cref="Image"/>
@@ -130,7 +130,7 @@ namespace GTiff2Tiles.Core.Images
         /// <param name="threadsCount">T</param>
         /// <param name="progress"></param>
         /// <param name="isPrintEstimatedTime"></param>
-        public ValueTask WriteTilesToDirectoryAsync(string outputDirectoryPath, int minZ, int maxZ,
+        public Task WriteTilesToDirectoryAsync(string outputDirectoryPath, int minZ, int maxZ,
                                                     bool tmsCompatible = false, Size tileSize = null,
                                                     string tileExtension = FileExtensions.Png,
                                                     string interpolation = Interpolations.Lanczos3,
@@ -165,7 +165,7 @@ namespace GTiff2Tiles.Core.Images
         /// <param name="threadsCount">T</param>
         /// <param name="progress"></param>
         /// <param name="isPrintEstimatedTime"></param>
-        public ValueTask WriteTilesToChannelAsync(ChannelWriter<ITile> channelWriter, int minZ, int maxZ,
+        public Task WriteTilesToChannelAsync(ChannelWriter<ITile> channelWriter, int minZ, int maxZ,
                                                   bool tmsCompatible = false, Size tileSize = null,
                                                   string interpolation = Interpolations.Lanczos3,
                                                   int bandsCount = RasterTile.DefaultBandsCount,

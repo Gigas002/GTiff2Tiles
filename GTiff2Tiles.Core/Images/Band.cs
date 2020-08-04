@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using NetVips;
 
 // ReSharper disable MemberCanBePrivate.Global
@@ -32,7 +33,12 @@ namespace GTiff2Tiles.Core.Images
         /// </summary>
         /// <param name="value"><see cref="int"/> in range
         /// from 0 to 255</param>
-        public Band(int value = DefaultValue) => Value = value;
+        public Band(int value = DefaultValue)
+        {
+            if (value < 0) throw new ArgumentOutOfRangeException(nameof(value));
+
+            Value = value;
+        }
 
         #endregion
 
@@ -49,7 +55,7 @@ namespace GTiff2Tiles.Core.Images
             if (image == null) throw new ArgumentNullException(nameof(image));
             if (bands == null) throw new ArgumentNullException(nameof(bands));
 
-            foreach (Band band in bands) image = image.Bandjoin(band.Value);
+            image = bands.Aggregate(image, (current, band) => current.Bandjoin(band.Value));
         }
 
         /// <summary>

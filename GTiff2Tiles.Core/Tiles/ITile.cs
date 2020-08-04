@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using GTiff2Tiles.Core.Coordinates;
 using GTiff2Tiles.Core.Images;
 

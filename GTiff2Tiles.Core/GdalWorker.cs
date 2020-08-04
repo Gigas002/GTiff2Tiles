@@ -155,7 +155,7 @@ namespace GTiff2Tiles.Core
         /// <summary>
         /// Initialize Gdal, if it hadn't been initialized yet
         /// </summary>
-        private static void ConfigureGdal() => GdalHelper.ConfigureAll();
+        public static void ConfigureGdal() => GdalHelper.ConfigureAll();
 
         #endregion
 
@@ -217,7 +217,7 @@ namespace GTiff2Tiles.Core
         }
 
         /// <summary>
-        /// Converts current GeoTIFF to a new file with target <see cref="CoordinateSystems"/>
+        /// Converts current GeoTiff to a new file with target <see cref="CoordinateSystems"/>
         /// through GdalWarp
         /// </summary>
         /// <param name="inputFilePath">Input GeoTiff's path</param>
@@ -227,7 +227,7 @@ namespace GTiff2Tiles.Core
         /// <returns><see langword="true"/> if operation was sucessful;
         /// <para/><see langword="false"/> otherwise</returns>
         public static ValueTask<bool> ConvertGeoTiffToTargetSystemAsync(string inputFilePath,
-                                                                        string outputFilePath, CoordinateSystems targetSystem, IProgress<double> progress = null)
+            string outputFilePath, CoordinateSystems targetSystem, IProgress<double> progress = null)
         {
             List<string> gdalWarpOptions = ConvertCoordinateSystemOptions.ToList();
 

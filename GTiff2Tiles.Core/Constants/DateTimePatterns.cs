@@ -10,17 +10,17 @@ namespace GTiff2Tiles.Core.Constants
     public static class DateTimePatterns
     {
         /// <summary>
-        /// yyyyMMddHHmmssfff
+        /// Year, month, date, hour, minutes, seconds, ms
         /// </summary>
         public const string LongWithMs = "yyyyMMddHHmmssfff";
 
         /// <summary>
-        /// yyyyMMdd
+        /// Year, month and date
         /// </summary>
         public const string ShortToDate = "yyyyMMdd";
 
         /// <summary>
-        /// yyyyMM
+        /// Year and month
         /// </summary>
         public const string ShortToMonth = "yyyyMM";
     }

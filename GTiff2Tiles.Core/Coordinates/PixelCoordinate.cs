@@ -2,6 +2,8 @@
 using GTiff2Tiles.Core.Enums;
 using GTiff2Tiles.Core.Tiles;
 
+// ReSharper disable MemberCanBePrivate.Global
+
 namespace GTiff2Tiles.Core.Coordinates
 {
     /// <summary>
@@ -37,14 +39,13 @@ namespace GTiff2Tiles.Core.Coordinates
         /// <param name="zoom">Zoom</param>
         /// <param name="tileSize"><see cref="ITile"/>'s side size</param>
         /// <returns>Converted to <see cref="GeoCoordinate"/> value
-        /// or null if something goes wrong</returns>
-        public GeoCoordinate ToGeoCoordinate(CoordinateType coordinateType, int zoom, int tileSize) =>
-            coordinateType switch
-            {
-                CoordinateType.Geodetic => ToGeodeticCoordinate(zoom, tileSize),
-                CoordinateType.Mercator => ToMercatorCoordinate(zoom, tileSize),
-                _ => null
-            };
+        /// or <see langword="null"/> if something goes wrong</returns>
+        public GeoCoordinate ToGeoCoordinate(CoordinateType coordinateType, int zoom, int tileSize) => coordinateType switch
+        {
+            CoordinateType.Geodetic => ToGeodeticCoordinate(zoom, tileSize),
+            CoordinateType.Mercator => ToMercatorCoordinate(zoom, tileSize),
+            _ => null
+        };
 
         /// <summary>
         /// Convert current coordinate to <see cref="GeodeticCoordinate"/>

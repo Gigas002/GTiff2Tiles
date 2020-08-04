@@ -41,9 +41,8 @@ namespace GTiff2Tiles.Core.Coordinates
         /// <param name="tileSize"><see cref="ITile"/>'s side size</param>
         /// <param name="tmsCompatible">Is <see cref="ITile"/> tme compatible?</param>
         /// <returns><see cref="ValueTuple"/> of <see cref="Number"/>s</returns>
-        public static (Number minNumber, Number maxNumber) GetNumbers(
-            GeoCoordinate minCoordinate, GeoCoordinate maxCoordinate, int zoom, int tileSize,
-            bool tmsCompatible)
+        public static (Number minNumber, Number maxNumber) GetNumbers(GeoCoordinate minCoordinate,
+               GeoCoordinate maxCoordinate, int zoom, int tileSize, bool tmsCompatible)
         {
             if (minCoordinate == null) throw new ArgumentNullException(nameof(minCoordinate));
             if (maxCoordinate == null) throw new ArgumentNullException(nameof(maxCoordinate));

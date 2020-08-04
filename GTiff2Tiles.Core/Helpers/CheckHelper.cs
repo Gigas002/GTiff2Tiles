@@ -1,8 +1,9 @@
-﻿using System;
+﻿#nullable enable
+
+using System;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using GTiff2Tiles.Core.Constants;
 using GTiff2Tiles.Core.Enums;
 
 namespace GTiff2Tiles.Core.Helpers
@@ -26,7 +27,7 @@ namespace GTiff2Tiles.Core.Helpers
         /// <remarks><para/>If set <see keyword="null"/>, extension doesn't check</remarks></param>
         /// <returns><see langword="true"/> if everything is OK;
         /// <para/><see langword="false"/> otherwise</returns>
-        public static bool CheckFile(string filePath, bool? shouldExist = null, string fileExtension = null)
+        public static bool CheckFile(string filePath, bool? shouldExist = null, string? fileExtension = null)
         {
             // Check file path
             if (string.IsNullOrWhiteSpace(filePath)) return false;
@@ -34,7 +35,7 @@ namespace GTiff2Tiles.Core.Helpers
             // Check file extension
             if (!string.IsNullOrWhiteSpace(fileExtension))
             {
-                var actualExtension = Path.GetExtension(filePath);
+                string? actualExtension = Path.GetExtension(filePath);
 
                 if (actualExtension != fileExtension) return false;
             }

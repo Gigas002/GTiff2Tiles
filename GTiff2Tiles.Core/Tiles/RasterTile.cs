@@ -31,35 +31,29 @@ namespace GTiff2Tiles.Core.Tiles
 
         #region Constructors
 
-        /// <summary>
-        /// Creates new <see cref="RasterTile"/>
-        /// </summary>
-        /// <param name="number"><see cref="Tile.Number"/></param>
-        /// <param name="size"><see cref="Tile.Size"/>;
-        /// <remarks>should be a square, e.g. 256x256</remarks></param>
-        /// <param name="bytes"><see cref="Tile.Bytes"/></param>
-        /// <param name="extension"><see cref="Tile.Extension"/></param>
-        /// <param name="tmsCompatible">Is tms compatible?</param>
-        /// <param name="coordinateType">Type of <see cref="GeoCoordinate"/></param>
         /// <param name="bandsCount"><see cref="BandsCount"/></param>
+        /// <inheritdoc cref="Tile(Number,Size,IEnumerable{byte},string,bool,CoordinateType)"/>
+        /// <param name="number"></param>
+        /// <param name="size"></param>
+        /// <param name="bytes"></param>
+        /// <param name="extension"></param>
+        /// <param name="tmsCompatible"></param>
+        /// <param name="coordinateType"></param>
         public RasterTile(Number number, Size size = null, IEnumerable<byte> bytes = null,
                           string extension = FileExtensions.Png, bool tmsCompatible = false,
                           CoordinateType coordinateType = CoordinateType.Mercator,
                           int bandsCount = DefaultBandsCount)
             : base(number, size, bytes, extension, tmsCompatible, coordinateType) => BandsCount = bandsCount;
 
-        /// <summary>
-        /// Creates new <see cref="RasterTile"/> from <see cref="GeoCoordinate"/> values
-        /// </summary>
-        /// <param name="minCoordinate">Minimum <see cref="GeoCoordinate"/></param>
-        /// <param name="maxCoordinate">Maximum <see cref="GeoCoordinate"/></param>
-        /// <param name="zoom">Zoom</param>
-        /// <param name="size"><see cref="Tile.Size"/>;
-        /// <remarks>should be a square, e.g. 256x256</remarks></param>
-        /// <param name="bytes"><see cref="Tile.Bytes"/></param>
-        /// <param name="extension"><see cref="Tile.Extension"/></param>
-        /// <param name="tmsCompatible">Is tms compatible?</param>
         /// <param name="bandsCount"><see cref="BandsCount"/></param>
+        /// <inheritdoc cref="Tile(GeoCoordinate,GeoCoordinate,int,Size,IEnumerable{byte},string,bool)"/>
+        /// <param name="minCoordinate"></param>
+        /// <param name="maxCoordinate"></param>
+        /// <param name="zoom"></param>
+        /// <param name="size"></param>
+        /// <param name="bytes"></param>
+        /// <param name="extension"></param>
+        /// <param name="tmsCompatible"></param>
         public RasterTile(GeoCoordinate minCoordinate, GeoCoordinate maxCoordinate, int zoom,
                           Size size = null, IEnumerable<byte> bytes = null,
                           string extension = FileExtensions.Png,
