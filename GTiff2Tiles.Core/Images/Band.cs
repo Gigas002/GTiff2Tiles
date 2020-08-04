@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using GTiff2Tiles.Core.GeoTiffs;
 using NetVips;
 
 // ReSharper disable MemberCanBePrivate.Global
 
-namespace GTiff2Tiles.Core.GeoTiffs
+namespace GTiff2Tiles.Core.Images
 {
     /// <summary>
     /// Represents <see cref="Raster"/> band

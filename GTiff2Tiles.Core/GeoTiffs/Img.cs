@@ -3,6 +3,7 @@ using System.IO;
 using System.Threading.Tasks;
 using GTiff2Tiles.Core.Constants;
 using GTiff2Tiles.Core.Enums;
+using GTiff2Tiles.Core.Images;
 using GTiff2Tiles.Core.Tiles;
 
 namespace GTiff2Tiles.Core.GeoTiffs

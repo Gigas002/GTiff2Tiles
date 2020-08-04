@@ -12,6 +12,7 @@ using GTiff2Tiles.Core.Enums;
 using GTiff2Tiles.Core.Exceptions;
 using GTiff2Tiles.Core.GeoTiffs;
 using GTiff2Tiles.Core.Helpers;
+using GTiff2Tiles.Core.Images;
 using OSGeo.GDAL;
 using OSGeo.OSR;
 

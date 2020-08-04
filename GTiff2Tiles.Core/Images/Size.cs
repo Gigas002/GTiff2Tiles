@@ -1,8 +1,9 @@
 ﻿using System;
+using GTiff2Tiles.Core.GeoTiffs;
 
 // ReSharper disable UnusedMember.Global
 
-namespace GTiff2Tiles.Core.GeoTiffs
+namespace GTiff2Tiles.Core.Images
 {
     /// <summary>
     /// <see cref="IGeoTiff"/>'s size
