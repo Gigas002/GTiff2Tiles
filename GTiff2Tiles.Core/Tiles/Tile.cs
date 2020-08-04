@@ -75,21 +75,22 @@ namespace GTiff2Tiles.Core.Tiles
         /// Creates new <see cref="Tile"/>
         /// </summary>
         /// <param name="number"><see cref="Number"/></param>
+        /// <param name="coordinateSystem">Desired coordinate system</param>
         /// <param name="size"><see cref="Size"/>;
         /// <remarks>should be a square, e.g. 256x256</remarks></param>
         /// <param name="bytes"><see cref="Bytes"/></param>
         /// <param name="extension"><see cref="Extension"/></param>
         /// <param name="tmsCompatible">Is tms compatible?</param>
-        /// <param name="coordinateType">Type of <see cref="GeoCoordinate"/></param>
         /// <exception cref="TileException"></exception>
-        protected Tile(Number number, Size size = null, IEnumerable<byte> bytes = null, string extension = Constants.FileExtensions.Png,
-                       bool tmsCompatible = false, CoordinateType coordinateType = CoordinateType.Geodetic)
+        protected Tile(Number number, CoordinateSystem coordinateSystem, Size size = null,
+                       IEnumerable<byte> bytes = null, string extension = Constants.FileExtensions.Png,
+                       bool tmsCompatible = false)
         {
             (Number, Bytes, Extension, TmsCompatible, Size) = (number, bytes, extension, tmsCompatible, size ?? DefaultSize);
 
             if (!CheckSize()) throw new TileException();
 
-            (MinCoordinate, MaxCoordinate) = Number.ToGeoCoordinates(coordinateType, Size, tmsCompatible);
+            (MinCoordinate, MaxCoordinate) = Number.ToGeoCoordinates(coordinateSystem, Size, tmsCompatible);
         }
 
         /// <summary>

@@ -217,12 +217,12 @@ namespace GTiff2Tiles.Core
         }
 
         /// <summary>
-        /// Converts current GeoTiff to a new file with target <see cref="CoordinateSystems"/>
+        /// Converts current GeoTiff to a new file with target <see cref="CoordinateSystem"/>
         /// through GdalWarp
         /// </summary>
         /// <param name="inputFilePath">Input GeoTiff's path</param>
         /// <param name="outputFilePath">Output file's path</param>
-        /// <param name="targetSystem">Target <see cref="CoordinateSystems"/></param>
+        /// <param name="targetSystem">Target <see cref="CoordinateSystem"/></param>
         /// <param name="progress">GdalWarp's progress</param>
         /// <returns><see langword="true"/> if operation was sucessful;
         /// <para/><see langword="false"/> otherwise</returns>
@@ -258,7 +258,7 @@ namespace GTiff2Tiles.Core
         /// Gets supported coordinate system from proj string of GeoTIFF
         /// </summary>
         /// <param name="projString">Proj string of input GeoTIFF</param>
-        /// <returns>Input file's <see cref="CoordinateSystems"/></returns>
+        /// <returns>Input file's <see cref="CoordinateSystem"/></returns>
         public static CoordinateSystem GetCoordinateSystem(string projString)
         {
             if (string.IsNullOrWhiteSpace(projString)) throw new ArgumentNullException(nameof(projString));
@@ -303,11 +303,11 @@ namespace GTiff2Tiles.Core
         /// </summary>
         /// <param name="inputFilePath">Input GeoTiff's path</param>
         /// <param name="size">Image's <see cref="Size"/>s</param>
-        /// <param name="coordinateType">Type of coordinate</param>
+        /// <param name="coordinateSystem">Desired coordinate system</param>
         /// <returns><see cref="GeoCoordinate"/>s of this image borders if everything is OK;
         /// <para/>(<see langword="null"/>, <see langword="null"/>) otherwise</returns>
         public static (GeoCoordinate minCoordinate, GeoCoordinate maxCoordinate) GetImageBorders(
-            string inputFilePath, Size size, CoordinateType coordinateType)
+            string inputFilePath, Size size, CoordinateSystem coordinateSystem)
         {
             #region Parameters checking
 
@@ -323,16 +323,16 @@ namespace GTiff2Tiles.Core
             double maxX = geoTransform[0] + size.Width * geoTransform[1];
             double maxY = geoTransform[3];
 
-            switch (coordinateType)
+            switch (coordinateSystem)
             {
-                case CoordinateType.Geodetic:
+                case CoordinateSystem.Epsg4326:
                     {
                         GeodeticCoordinate minCoordinate = new GeodeticCoordinate(minX, minY);
                         GeodeticCoordinate maxCoordinate = new GeodeticCoordinate(maxX, maxY);
 
                         return (minCoordinate, maxCoordinate);
                     }
-                case CoordinateType.Mercator:
+                case CoordinateSystem.Epsg3857:
                     {
                         MercatorCoordinate minCoordinate = new MercatorCoordinate(minX, minY);
                         MercatorCoordinate maxCoordinate = new MercatorCoordinate(maxX, maxY);

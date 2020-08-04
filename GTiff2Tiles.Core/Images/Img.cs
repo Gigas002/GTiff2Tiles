@@ -34,14 +34,11 @@ namespace GTiff2Tiles.Core.Images
                                                          IProgress<double> progress = null,
                                                          int threadsCount = 5)
         {
-            CoordinateType coordinateType = targetSystem == CoordinateSystem.Epsg4326
-                                                ? CoordinateType.Geodetic
-                                                : CoordinateType.Mercator;
             //This is example.
             //TODO: Better exception-handling
             await using IImage image = tileType switch
             {
-                TileType.Raster => new Raster(inputFileInfo?.FullName, coordinateType: coordinateType),
+                TileType.Raster => new Raster(inputFileInfo?.FullName, targetSystem),
                 //TileType.Terrain => new Image(inputFileInfo),
                 _ => throw new Exception()
             };

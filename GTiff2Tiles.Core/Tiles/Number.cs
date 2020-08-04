@@ -140,34 +140,34 @@ namespace GTiff2Tiles.Core.Tiles
         /// <summary>
         /// Convert <see cref="Number"/> to <see cref="GeoCoordinate"/>s
         /// </summary>
-        /// <param name="coordinateType">Type of <see cref="GeoCoordinate"/></param>
+        /// <param name="coordinateSystem">Desired coordinate system</param>
         /// <param name="tileSize"><see cref="Tile"/> <see cref="Size"/></param>
         /// <param name="tmsCompatible">Is tms compatible?</param>
         /// <returns><see cref="ValueTuple"/> of <see cref="GeoCoordinate"/>s</returns>
         public (GeoCoordinate minCoordinate, GeoCoordinate maxCoordinate) ToGeoCoordinates(
-            CoordinateType coordinateType, Size tileSize, bool tmsCompatible) =>
-            ToGeoCoordinates(this, coordinateType, tileSize, tmsCompatible);
+            CoordinateSystem coordinateSystem, Size tileSize, bool tmsCompatible) =>
+            ToGeoCoordinates(this, coordinateSystem, tileSize, tmsCompatible);
 
-        /// <inheritdoc cref="ToGeoCoordinates(CoordinateType,Size,bool)"/>
+        /// <inheritdoc cref="ToGeoCoordinates(CoordinateSystem,Size,bool)"/>
         /// <param name="number"><see cref="Number"/> to convert</param>
-        /// <param name="coordinateType"></param>
+        /// <param name="coordinateSystem"></param>
         /// <param name="tileSize"></param>
         /// <param name="tmsCompatible"></param>
         public static (GeoCoordinate minCoordinate, GeoCoordinate maxCoordinate) ToGeoCoordinates(
-            Number number, CoordinateType coordinateType, Size tileSize, bool tmsCompatible)
+            Number number, CoordinateSystem coordinateSystem, Size tileSize, bool tmsCompatible)
         {
             if (!tmsCompatible) number = Flip(number);
 
-            switch (coordinateType)
+            switch (coordinateSystem)
             {
-                case CoordinateType.Geodetic:
+                case CoordinateSystem.Epsg4326:
                     {
                         (GeodeticCoordinate minCoordinate, GeodeticCoordinate maxCoordinate) =
                             number.ToGeodeticCoordinates(tileSize);
 
                         return (minCoordinate, maxCoordinate);
                     }
-                case CoordinateType.Mercator:
+                case CoordinateSystem.Epsg3857:
                     {
                         (MercatorCoordinate minCoordinate, MercatorCoordinate maxCoordinate) =
                             number.ToMercatorCoordinates(tileSize);

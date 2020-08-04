@@ -32,18 +32,18 @@ namespace GTiff2Tiles.Core.Tiles
         #region Constructors
 
         /// <param name="bandsCount"><see cref="BandsCount"/></param>
-        /// <inheritdoc cref="Tile(Number,Size,IEnumerable{byte},string,bool,CoordinateType)"/>
+        /// <inheritdoc cref="Tile(Number,CoordinateSystem,Size,IEnumerable{byte},string,bool)"/>
         /// <param name="number"></param>
+        /// <param name="coordinateSystem"></param>
         /// <param name="size"></param>
         /// <param name="bytes"></param>
         /// <param name="extension"></param>
         /// <param name="tmsCompatible"></param>
-        /// <param name="coordinateType"></param>
-        public RasterTile(Number number, Size size = null, IEnumerable<byte> bytes = null,
+        public RasterTile(Number number, CoordinateSystem coordinateSystem,
+                          Size size = null, IEnumerable<byte> bytes = null,
                           string extension = FileExtensions.Png, bool tmsCompatible = false,
-                          CoordinateType coordinateType = CoordinateType.Mercator,
                           int bandsCount = DefaultBandsCount)
-            : base(number, size, bytes, extension, tmsCompatible, coordinateType) => BandsCount = bandsCount;
+            : base(number, coordinateSystem, size, bytes, extension, tmsCompatible) => BandsCount = bandsCount;
 
         /// <param name="bandsCount"><see cref="BandsCount"/></param>
         /// <inheritdoc cref="Tile(GeoCoordinate,GeoCoordinate,int,Size,IEnumerable{byte},string,bool)"/>

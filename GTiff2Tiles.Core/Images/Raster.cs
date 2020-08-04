@@ -50,7 +50,7 @@ namespace GTiff2Tiles.Core.Images
         public GeoCoordinate MaxCoordinate { get; }
 
         /// <inheritdoc />
-        public CoordinateType GeoCoordinateType { get; }
+        public CoordinateSystem GeoCoordinateSystem { get; }
 
         /// <inheritdoc />
         public bool IsDisposed { get; private set; }
@@ -65,12 +65,10 @@ namespace GTiff2Tiles.Core.Images
         /// Creates new <see cref="Raster"/> object
         /// </summary>
         /// <param name="inputFilePath">Input GeoTiff's path</param>
+        /// <param name="coordinateSystem">Desired coordinate system</param>
         /// <param name="maxMemoryCache">Max size of input image to store in RAM
         /// <remarks><para/>2GB by default</remarks></param>
-        /// <param name="coordinateType">Type of coordinates
-        /// <remarks><para/><see cref="GeodeticCoordinate"/> by default</remarks></param>
-        public Raster(string inputFilePath, long maxMemoryCache = 2147483648,
-                      CoordinateType coordinateType = CoordinateType.Geodetic)
+        public Raster(string inputFilePath, CoordinateSystem coordinateSystem, long maxMemoryCache = 2147483648)
         {
             // Disable NetVips warnings for tiff
             NetVipsHelper.DisableLog();
@@ -87,18 +85,14 @@ namespace GTiff2Tiles.Core.Images
             // Get border coordinates и raster sizes
             Size = new Size(Data.Width, Data.Height);
 
-            GeoCoordinateType = coordinateType;
-            (MinCoordinate, MaxCoordinate) = GdalWorker.GetImageBorders(inputFilePath, Size, GeoCoordinateType);
+            GeoCoordinateSystem = coordinateSystem;
+            (MinCoordinate, MaxCoordinate) = GdalWorker.GetImageBorders(inputFilePath, Size, GeoCoordinateSystem);
         }
 
-        /// <summary>
-        /// Creates new <see cref="Raster"/> object
-        /// </summary>
-        /// <param name="inputBytes"><see cref="IEnumerable{T}"/> of GeoTiff's
-        /// <see cref="byte"/>s</param>
-        /// <param name="coordinateType">Type of coordinates
-        /// <remarks><para/><see cref="GeodeticCoordinate"/> by default</remarks></param>
-        public Raster(IEnumerable<byte> inputBytes, CoordinateType coordinateType = CoordinateType.Geodetic)
+        /// <inheritdoc cref="Raster(string,CoordinateSystem,long)"/>
+        /// <param name="inputBytes"><see cref="IEnumerable{T}"/> of GeoTiff's <see cref="byte"/>s</param>
+        /// <param name="coordinateSystem"></param>
+        public Raster(IEnumerable<byte> inputBytes, CoordinateSystem coordinateSystem)
         {
             // Disable NetVips warnings for tiff
             NetVipsHelper.DisableLog();
@@ -108,22 +102,19 @@ namespace GTiff2Tiles.Core.Images
             // Get border coordinates и raster sizes
             Size = new Size(Data.Width, Data.Height);
 
-            GeoCoordinateType = coordinateType;
+            GeoCoordinateSystem = coordinateSystem;
 
             // TODO: get coordinates without fileinfo
             FileInfo inputFileInfo = new FileInfo("tmp.tif");
             Data.WriteToFile(inputFileInfo.FullName);
-            (MinCoordinate, MaxCoordinate) = GdalWorker.GetImageBorders(inputFileInfo.FullName, Size, GeoCoordinateType);
+            (MinCoordinate, MaxCoordinate) = GdalWorker.GetImageBorders(inputFileInfo.FullName, Size, GeoCoordinateSystem);
             inputFileInfo.Delete();
         }
 
-        /// <summary>
-        /// Creates new <see cref="Raster"/> object
-        /// </summary>
+        /// <inheritdoc cref="Raster(string,CoordinateSystem,long)"/>
         /// <param name="inputStream"><see cref="Stream"/> with GeoTiff</param>
-        /// <param name="coordinateType">Type of coordinates
-        /// <remarks><para/><see cref="GeodeticCoordinate"/> by default</remarks></param>
-        public Raster(Stream inputStream, CoordinateType coordinateType = CoordinateType.Geodetic)
+        /// <param name="coordinateSystem"></param>
+        public Raster(Stream inputStream, CoordinateSystem coordinateSystem)
         {
             // Disable NetVips warnings for tiff
             NetVipsHelper.DisableLog();
@@ -133,12 +124,12 @@ namespace GTiff2Tiles.Core.Images
             // Get border coordinates и raster sizes
             Size = new Size(Data.Width, Data.Height);
 
-            GeoCoordinateType = coordinateType;
+            GeoCoordinateSystem = coordinateSystem;
 
             // TODO: get coordinates without fileinfo
             FileInfo inputFileInfo = new FileInfo("tmp.tif");
             Data.WriteToFile(inputFileInfo.FullName);
-            (MinCoordinate, MaxCoordinate) = GdalWorker.GetImageBorders(inputFileInfo.FullName, Size, GeoCoordinateType);
+            (MinCoordinate, MaxCoordinate) = GdalWorker.GetImageBorders(inputFileInfo.FullName, Size, GeoCoordinateSystem);
             inputFileInfo.Delete();
         }
 
@@ -329,8 +320,9 @@ namespace GTiff2Tiles.Core.Images
                 if (!CheckHelper.CheckDirectory(tileDirectoryPath)) throw new RasterException();
 
                 Number tileNumber = new Number(x, y, z);
-                RasterTile tile = new RasterTile(tileNumber, extension: tileExtension, tmsCompatible: tmsCompatible,
-                    size: tileSize, bandsCount: bandsCount, coordinateType: GeoCoordinateType)
+                RasterTile tile = new RasterTile(tileNumber, GeoCoordinateSystem,
+                                                 extension: tileExtension, tmsCompatible: tmsCompatible,
+                                                 size: tileSize, bandsCount: bandsCount)
                 {
                     // Warning: OpenLayers requires replacement of tileY to tileY+1
                     Path = Path.Combine(tileDirectoryPath, $"{y}{tileExtension}")
@@ -414,8 +406,8 @@ namespace GTiff2Tiles.Core.Images
             void MakeTile(int x, int y, int z)
             {
                 Number tileNumber = new Number(x, y, z);
-                RasterTile tile = new RasterTile(tileNumber, tmsCompatible: tmsCompatible,
-                    size: tileSize, bandsCount: bandsCount, coordinateType: GeoCoordinateType);
+                RasterTile tile = new RasterTile(tileNumber, GeoCoordinateSystem, tmsCompatible: tmsCompatible,
+                    size: tileSize, bandsCount: bandsCount);
 
                 // ReSharper disable once AccessToDisposedClosure
                 if (!WriteTileToChannel(tileCache, tile, channelWriter, interpolation)) return;
@@ -491,8 +483,8 @@ namespace GTiff2Tiles.Core.Images
             ITile MakeTile(int x, int y, int z)
             {
                 Number tileNumber = new Number(x, y, z);
-                RasterTile tile = new RasterTile(tileNumber, tmsCompatible: tmsCompatible,
-                    size: tileSize, bandsCount: bandsCount, coordinateType: GeoCoordinateType);
+                RasterTile tile = new RasterTile(tileNumber, GeoCoordinateSystem, tmsCompatible: tmsCompatible,
+                    size: tileSize, bandsCount: bandsCount);
 
                 tile.Bytes = WriteTileToEnumerable(tileCache, tile, interpolation);
 

@@ -36,9 +36,9 @@ namespace GTiff2Tiles.Core.Images
         public GeoCoordinate MaxCoordinate { get; }
 
         /// <summary>
-        /// Type of <see cref="GeoCoordinate"/>
+        /// Type of desired <see cref="CoordinateSystem"/>
         /// </summary>
-        public CoordinateType GeoCoordinateType { get; }
+        public CoordinateSystem GeoCoordinateSystem { get; }
 
         /// <summary>
         /// Shows if resources have already been disposed

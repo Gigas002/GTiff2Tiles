@@ -279,22 +279,22 @@
             <param name="tileSize"><see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>'s side size</param>
             <returns>Converted <see cref="T:GTiff2Tiles.Core.Coordinates.PixelCoordinate"/></returns>
         </member>
-        <member name="M:GTiff2Tiles.Core.Coordinates.GeoCoordinate.Resolution(System.Int32,System.Int32,GTiff2Tiles.Core.Enums.CoordinateType)">
+        <member name="M:GTiff2Tiles.Core.Coordinates.GeoCoordinate.Resolution(System.Int32,System.Int32,GTiff2Tiles.Core.Enums.CoordinateSystem)">
             <summary>
             Resolution for given zoom level (measured at Equator)
             </summary>
             <param name="zoom">Zoom</param>
             <param name="tileSize"><see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>'s side size</param>
-            <param name="coordinateType">Type of <see cref="T:GTiff2Tiles.Core.Coordinates.GeoCoordinate"/></param>
+            <param name="coordinateSystem">Desired coordinate system</param>
             <returns>Resolution value</returns>
         </member>
-        <member name="M:GTiff2Tiles.Core.Coordinates.GeoCoordinate.ZoomForPixelSize(System.Int32,System.Int32,GTiff2Tiles.Core.Enums.CoordinateType,System.Int32,System.Int32)">
+        <member name="M:GTiff2Tiles.Core.Coordinates.GeoCoordinate.ZoomForPixelSize(System.Int32,System.Int32,GTiff2Tiles.Core.Enums.CoordinateSystem,System.Int32,System.Int32)">
             <summary>
             Calculate zoom from known pixel size
             </summary>
             <param name="pixelSize">Pixel size</param>
             <param name="tileSize"><see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>'s side size</param>
-            <param name="coordinateType">Type of <see cref="T:GTiff2Tiles.Core.Coordinates.GeoCoordinate"/></param>
+            <param name="coordinateSystem">Desired coordinate system</param>
             <param name="minZoom">Minimal zoom
             <para/>0 by default</param>
             <param name="maxZoom">Maximal zoom
@@ -351,7 +351,7 @@
             <returns>Converted <see cref="T:GTiff2Tiles.Core.Coordinates.MercatorCoordinate"/></returns>
         </member>
         <member name="M:GTiff2Tiles.Core.Coordinates.GeodeticCoordinate.Resolution(System.Int32,System.Int32)">
-            <inheritdoc cref="M:GTiff2Tiles.Core.Coordinates.GeoCoordinate.Resolution(System.Int32,System.Int32,GTiff2Tiles.Core.Enums.CoordinateType)"/>
+            <inheritdoc cref="!:GeoCoordinate.Resolution(int, int, CoordinateType)"/>
         </member>
         <member name="T:GTiff2Tiles.Core.Coordinates.ICoordinate">
             <summary>
@@ -417,7 +417,7 @@
             <returns>Converted <see cref="T:GTiff2Tiles.Core.Coordinates.GeodeticCoordinate"/></returns>
         </member>
         <member name="M:GTiff2Tiles.Core.Coordinates.MercatorCoordinate.Resolution(System.Int32,System.Int32)">
-            <inheritdoc cref="M:GTiff2Tiles.Core.Coordinates.GeoCoordinate.Resolution(System.Int32,System.Int32,GTiff2Tiles.Core.Enums.CoordinateType)"/>
+            <inheritdoc cref="!:GeoCoordinate.Resolution(int, int, CoordinateType)"/>
         </member>
         <member name="T:GTiff2Tiles.Core.Coordinates.PixelCoordinate">
             <summary>
@@ -430,11 +430,11 @@
         <member name="M:GTiff2Tiles.Core.Coordinates.PixelCoordinate.ToNumber(System.Int32,System.Int32,System.Boolean)">
             <inheritdoc />
         </member>
-        <member name="M:GTiff2Tiles.Core.Coordinates.PixelCoordinate.ToGeoCoordinate(GTiff2Tiles.Core.Enums.CoordinateType,System.Int32,System.Int32)">
+        <member name="M:GTiff2Tiles.Core.Coordinates.PixelCoordinate.ToGeoCoordinate(GTiff2Tiles.Core.Enums.CoordinateSystem,System.Int32,System.Int32)">
             <summary>
             Convert current coordinate to child of <see cref="T:GTiff2Tiles.Core.Coordinates.GeoCoordinate"/>
             </summary>
-            <param name="coordinateType">Type of coordinates</param>
+            <param name="coordinateSystem">Desired coordinate system</param>
             <param name="zoom">Zoom</param>
             <param name="tileSize"><see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>'s side size</param>
             <returns>Converted to <see cref="T:GTiff2Tiles.Core.Coordinates.GeoCoordinate"/> value
@@ -512,21 +512,6 @@
         <member name="F:GTiff2Tiles.Core.Enums.CoordinateSystem.Epsg900913">
             <summary>
             Replaced by <see cref="F:GTiff2Tiles.Core.Enums.CoordinateSystem.Epsg3857"/>
-            </summary>
-        </member>
-        <member name="T:GTiff2Tiles.Core.Enums.CoordinateType">
-            <summary>
-            Type of coordinates
-            </summary>
-        </member>
-        <member name="F:GTiff2Tiles.Core.Enums.CoordinateType.Geodetic">
-            <summary>
-            For EPSG:4326
-            </summary>
-        </member>
-        <member name="F:GTiff2Tiles.Core.Enums.CoordinateType.Mercator">
-            <summary>
-            For EPSG:3857
             </summary>
         </member>
         <member name="T:GTiff2Tiles.Core.Enums.TileExtension">
@@ -676,12 +661,12 @@
         </member>
         <member name="M:GTiff2Tiles.Core.GdalWorker.ConvertGeoTiffToTargetSystemAsync(System.String,System.String,GTiff2Tiles.Core.Enums.CoordinateSystem,System.IProgress{System.Double})">
             <summary>
-            Converts current GeoTiff to a new file with target <see cref="!:CoordinateSystems"/>
+            Converts current GeoTiff to a new file with target <see cref="T:GTiff2Tiles.Core.Enums.CoordinateSystem"/>
             through GdalWarp
             </summary>
             <param name="inputFilePath">Input GeoTiff's path</param>
             <param name="outputFilePath">Output file's path</param>
-            <param name="targetSystem">Target <see cref="!:CoordinateSystems"/></param>
+            <param name="targetSystem">Target <see cref="T:GTiff2Tiles.Core.Enums.CoordinateSystem"/></param>
             <param name="progress">GdalWarp's progress</param>
             <returns><see langword="true"/> if operation was sucessful;
             <para/><see langword="false"/> otherwise</returns>
@@ -691,7 +676,7 @@
             Gets supported coordinate system from proj string of GeoTIFF
             </summary>
             <param name="projString">Proj string of input GeoTIFF</param>
-            <returns>Input file's <see cref="!:CoordinateSystems"/></returns>
+            <returns>Input file's <see cref="T:GTiff2Tiles.Core.Enums.CoordinateSystem"/></returns>
         </member>
         <member name="M:GTiff2Tiles.Core.GdalWorker.GetGeoTransform(System.String)">
             <summary>
@@ -701,13 +686,13 @@
             <returns>Array of double coordinates and pixel sizes if everything is OK;
             <para/><see langword="null"/> otherwise</returns>
         </member>
-        <member name="M:GTiff2Tiles.Core.GdalWorker.GetImageBorders(System.String,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.CoordinateType)">
+        <member name="M:GTiff2Tiles.Core.GdalWorker.GetImageBorders(System.String,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.CoordinateSystem)">
             <summary>
             Gets the coordinates borders of the input Geotiff file
             </summary>
             <param name="inputFilePath">Input GeoTiff's path</param>
             <param name="size">Image's <see cref="T:GTiff2Tiles.Core.Images.Size"/>s</param>
-            <param name="coordinateType">Type of coordinate</param>
+            <param name="coordinateSystem">Desired coordinate system</param>
             <returns><see cref="T:GTiff2Tiles.Core.Coordinates.GeoCoordinate"/>s of this image borders if everything is OK;
             <para/>(<see langword="null"/>, <see langword="null"/>) otherwise</returns>
         </member>
@@ -894,9 +879,9 @@
             Maximal <see cref="T:GTiff2Tiles.Core.Coordinates.GeoCoordinate"/> of this <see cref="T:GTiff2Tiles.Core.Images.IImage"/>
             </summary>
         </member>
-        <member name="P:GTiff2Tiles.Core.Images.IImage.GeoCoordinateType">
+        <member name="P:GTiff2Tiles.Core.Images.IImage.GeoCoordinateSystem">
             <summary>
-            Type of <see cref="T:GTiff2Tiles.Core.Coordinates.GeoCoordinate"/>
+            Type of desired <see cref="T:GTiff2Tiles.Core.Enums.CoordinateSystem"/>
             </summary>
         </member>
         <member name="P:GTiff2Tiles.Core.Images.IImage.IsDisposed">
@@ -1077,38 +1062,30 @@
         <member name="P:GTiff2Tiles.Core.Images.Raster.MaxCoordinate">
             <inheritdoc />
         </member>
-        <member name="P:GTiff2Tiles.Core.Images.Raster.GeoCoordinateType">
+        <member name="P:GTiff2Tiles.Core.Images.Raster.GeoCoordinateSystem">
             <inheritdoc />
         </member>
         <member name="P:GTiff2Tiles.Core.Images.Raster.IsDisposed">
             <inheritdoc />
         </member>
-        <member name="M:GTiff2Tiles.Core.Images.Raster.#ctor(System.String,System.Int64,GTiff2Tiles.Core.Enums.CoordinateType)">
+        <member name="M:GTiff2Tiles.Core.Images.Raster.#ctor(System.String,GTiff2Tiles.Core.Enums.CoordinateSystem,System.Int64)">
             <summary>
             Creates new <see cref="T:GTiff2Tiles.Core.Images.Raster"/> object
             </summary>
             <param name="inputFilePath">Input GeoTiff's path</param>
+            <param name="coordinateSystem">Desired coordinate system</param>
             <param name="maxMemoryCache">Max size of input image to store in RAM
             <remarks><para/>2GB by default</remarks></param>
-            <param name="coordinateType">Type of coordinates
-            <remarks><para/><see cref="T:GTiff2Tiles.Core.Coordinates.GeodeticCoordinate"/> by default</remarks></param>
         </member>
-        <member name="M:GTiff2Tiles.Core.Images.Raster.#ctor(System.Collections.Generic.IEnumerable{System.Byte},GTiff2Tiles.Core.Enums.CoordinateType)">
-            <summary>
-            Creates new <see cref="T:GTiff2Tiles.Core.Images.Raster"/> object
-            </summary>
-            <param name="inputBytes"><see cref="T:System.Collections.Generic.IEnumerable`1"/> of GeoTiff's
-            <see cref="T:System.Byte"/>s</param>
-            <param name="coordinateType">Type of coordinates
-            <remarks><para/><see cref="T:GTiff2Tiles.Core.Coordinates.GeodeticCoordinate"/> by default</remarks></param>
+        <member name="M:GTiff2Tiles.Core.Images.Raster.#ctor(System.Collections.Generic.IEnumerable{System.Byte},GTiff2Tiles.Core.Enums.CoordinateSystem)">
+            <inheritdoc cref="M:GTiff2Tiles.Core.Images.Raster.#ctor(System.String,GTiff2Tiles.Core.Enums.CoordinateSystem,System.Int64)"/>
+            <param name="inputBytes"><see cref="T:System.Collections.Generic.IEnumerable`1"/> of GeoTiff's <see cref="T:System.Byte"/>s</param>
+            <param name="coordinateSystem"></param>
         </member>
-        <member name="M:GTiff2Tiles.Core.Images.Raster.#ctor(System.IO.Stream,GTiff2Tiles.Core.Enums.CoordinateType)">
-            <summary>
-            Creates new <see cref="T:GTiff2Tiles.Core.Images.Raster"/> object
-            </summary>
+        <member name="M:GTiff2Tiles.Core.Images.Raster.#ctor(System.IO.Stream,GTiff2Tiles.Core.Enums.CoordinateSystem)">
+            <inheritdoc cref="M:GTiff2Tiles.Core.Images.Raster.#ctor(System.String,GTiff2Tiles.Core.Enums.CoordinateSystem,System.Int64)"/>
             <param name="inputStream"><see cref="T:System.IO.Stream"/> with GeoTiff</param>
-            <param name="coordinateType">Type of coordinates
-            <remarks><para/><see cref="T:GTiff2Tiles.Core.Coordinates.GeodeticCoordinate"/> by default</remarks></param>
+            <param name="coordinateSystem"></param>
         </member>
         <member name="M:GTiff2Tiles.Core.Images.Raster.Finalize">
             <summary>
@@ -1532,19 +1509,19 @@
             <param name="number"><see cref="T:GTiff2Tiles.Core.Tiles.Number"/> to convert</param>
             <param name="tileSize"></param>
         </member>
-        <member name="M:GTiff2Tiles.Core.Tiles.Number.ToGeoCoordinates(GTiff2Tiles.Core.Enums.CoordinateType,GTiff2Tiles.Core.Images.Size,System.Boolean)">
+        <member name="M:GTiff2Tiles.Core.Tiles.Number.ToGeoCoordinates(GTiff2Tiles.Core.Enums.CoordinateSystem,GTiff2Tiles.Core.Images.Size,System.Boolean)">
             <summary>
             Convert <see cref="T:GTiff2Tiles.Core.Tiles.Number"/> to <see cref="T:GTiff2Tiles.Core.Coordinates.GeoCoordinate"/>s
             </summary>
-            <param name="coordinateType">Type of <see cref="T:GTiff2Tiles.Core.Coordinates.GeoCoordinate"/></param>
+            <param name="coordinateSystem">Desired coordinate system</param>
             <param name="tileSize"><see cref="T:GTiff2Tiles.Core.Tiles.Tile"/> <see cref="T:GTiff2Tiles.Core.Images.Size"/></param>
             <param name="tmsCompatible">Is tms compatible?</param>
             <returns><see cref="T:System.ValueTuple"/> of <see cref="T:GTiff2Tiles.Core.Coordinates.GeoCoordinate"/>s</returns>
         </member>
-        <member name="M:GTiff2Tiles.Core.Tiles.Number.ToGeoCoordinates(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Enums.CoordinateType,GTiff2Tiles.Core.Images.Size,System.Boolean)">
-            <inheritdoc cref="M:GTiff2Tiles.Core.Tiles.Number.ToGeoCoordinates(GTiff2Tiles.Core.Enums.CoordinateType,GTiff2Tiles.Core.Images.Size,System.Boolean)"/>
+        <member name="M:GTiff2Tiles.Core.Tiles.Number.ToGeoCoordinates(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Enums.CoordinateSystem,GTiff2Tiles.Core.Images.Size,System.Boolean)">
+            <inheritdoc cref="M:GTiff2Tiles.Core.Tiles.Number.ToGeoCoordinates(GTiff2Tiles.Core.Enums.CoordinateSystem,GTiff2Tiles.Core.Images.Size,System.Boolean)"/>
             <param name="number"><see cref="T:GTiff2Tiles.Core.Tiles.Number"/> to convert</param>
-            <param name="coordinateType"></param>
+            <param name="coordinateSystem"></param>
             <param name="tileSize"></param>
             <param name="tmsCompatible"></param>
         </member>
@@ -1663,15 +1640,15 @@
             Count of bands in <see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/>
             </summary>
         </member>
-        <member name="M:GTiff2Tiles.Core.Tiles.RasterTile.#ctor(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Images.Size,System.Collections.Generic.IEnumerable{System.Byte},System.String,System.Boolean,GTiff2Tiles.Core.Enums.CoordinateType,System.Int32)">
+        <member name="M:GTiff2Tiles.Core.Tiles.RasterTile.#ctor(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Enums.CoordinateSystem,GTiff2Tiles.Core.Images.Size,System.Collections.Generic.IEnumerable{System.Byte},System.String,System.Boolean,System.Int32)">
             <param name="bandsCount"><see cref="P:GTiff2Tiles.Core.Tiles.RasterTile.BandsCount"/></param>
-            <inheritdoc cref="M:GTiff2Tiles.Core.Tiles.Tile.#ctor(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Images.Size,System.Collections.Generic.IEnumerable{System.Byte},System.String,System.Boolean,GTiff2Tiles.Core.Enums.CoordinateType)"/>
+            <inheritdoc cref="M:GTiff2Tiles.Core.Tiles.Tile.#ctor(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Enums.CoordinateSystem,GTiff2Tiles.Core.Images.Size,System.Collections.Generic.IEnumerable{System.Byte},System.String,System.Boolean)"/>
             <param name="number"></param>
+            <param name="coordinateSystem"></param>
             <param name="size"></param>
             <param name="bytes"></param>
             <param name="extension"></param>
             <param name="tmsCompatible"></param>
-            <param name="coordinateType"></param>
         </member>
         <member name="M:GTiff2Tiles.Core.Tiles.RasterTile.#ctor(GTiff2Tiles.Core.Coordinates.GeoCoordinate,GTiff2Tiles.Core.Coordinates.GeoCoordinate,System.Int32,GTiff2Tiles.Core.Images.Size,System.Collections.Generic.IEnumerable{System.Byte},System.String,System.Boolean,System.Int32)">
             <param name="bandsCount"><see cref="P:GTiff2Tiles.Core.Tiles.RasterTile.BandsCount"/></param>
@@ -1732,17 +1709,17 @@
         <member name="P:GTiff2Tiles.Core.Tiles.Tile.TmsCompatible">
             <inheritdoc />
         </member>
-        <member name="M:GTiff2Tiles.Core.Tiles.Tile.#ctor(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Images.Size,System.Collections.Generic.IEnumerable{System.Byte},System.String,System.Boolean,GTiff2Tiles.Core.Enums.CoordinateType)">
+        <member name="M:GTiff2Tiles.Core.Tiles.Tile.#ctor(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Enums.CoordinateSystem,GTiff2Tiles.Core.Images.Size,System.Collections.Generic.IEnumerable{System.Byte},System.String,System.Boolean)">
             <summary>
             Creates new <see cref="T:GTiff2Tiles.Core.Tiles.Tile"/>
             </summary>
             <param name="number"><see cref="P:GTiff2Tiles.Core.Tiles.Tile.Number"/></param>
+            <param name="coordinateSystem">Desired coordinate system</param>
             <param name="size"><see cref="P:GTiff2Tiles.Core.Tiles.Tile.Size"/>;
             <remarks>should be a square, e.g. 256x256</remarks></param>
             <param name="bytes"><see cref="P:GTiff2Tiles.Core.Tiles.Tile.Bytes"/></param>
             <param name="extension"><see cref="P:GTiff2Tiles.Core.Tiles.Tile.Extension"/></param>
             <param name="tmsCompatible">Is tms compatible?</param>
-            <param name="coordinateType">Type of <see cref="T:GTiff2Tiles.Core.Coordinates.GeoCoordinate"/></param>
             <exception cref="T:GTiff2Tiles.Core.Exceptions.TileException"></exception>
         </member>
         <member name="M:GTiff2Tiles.Core.Tiles.Tile.#ctor(GTiff2Tiles.Core.Coordinates.GeoCoordinate,GTiff2Tiles.Core.Coordinates.GeoCoordinate,System.Int32,GTiff2Tiles.Core.Images.Size,System.Collections.Generic.IEnumerable{System.Byte},System.String,System.Boolean)">
