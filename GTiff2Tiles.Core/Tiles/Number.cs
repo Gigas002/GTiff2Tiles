@@ -12,7 +12,7 @@ namespace GTiff2Tiles.Core.Tiles
     /// <summary>
     /// <see cref="Number"/> of <see cref="ITile"/>
     /// </summary>
-    public class Number : IEquatable<Number>, IComparable<Number>
+    public class Number : IEquatable<Number>
     {
         #region Properties
 
@@ -276,70 +276,6 @@ namespace GTiff2Tiles.Core.Tiles
         /// <see langword="false"/>otherwise</returns>
         public static bool operator !=(Number number1, Number number2) =>
             !(number1 == number2);
-
-        /// <summary>
-        /// Check if <see cref="Number"/>1 is lesser, then <see cref="Number"/>2
-        /// </summary>
-        /// <param name="number1"><see cref="Number"/> 1</param>
-        /// <param name="number2"><see cref="Number"/> 2</param>
-        /// <returns><see langword="true"/> if <see cref="Number"/>1 is lesser;
-        /// <see langword="false"/>otherwise</returns>
-        public static bool operator <(Number number1, Number number2)
-        {
-            if (number1 == null) throw new ArgumentNullException(nameof(number1));
-            if (number2 == null) throw new ArgumentNullException(nameof(number2));
-
-            return number1.X < number2.X && number1.Y < number2.Y && number1.Z < number2.Z;
-        }
-
-        /// <summary>
-        /// Check if <see cref="Number"/>1 is bigger, then <see cref="Number"/>2
-        /// </summary>
-        /// <param name="number1"><see cref="Number"/> 1</param>
-        /// <param name="number2"><see cref="Number"/> 2</param>
-        /// <returns><see langword="true"/> if <see cref="Number"/>1 is bigger;
-        /// <see langword="false"/>otherwise</returns>
-        public static bool operator >(Number number1, Number number2)
-        {
-            if (number1 == null) throw new ArgumentNullException(nameof(number1));
-            if (number2 == null) throw new ArgumentNullException(nameof(number2));
-
-            return number1.X > number2.X && number1.Y > number2.Y && number1.Z > number2.Z;
-        }
-
-        /// <summary>
-        /// Check if <see cref="Number"/>1 is lesser or equal, then <see cref="Number"/>2
-        /// </summary>
-        /// <param name="number1"><see cref="Number"/> 1</param>
-        /// <param name="number2"><see cref="Number"/> 2</param>
-        /// <returns><see langword="true"/> if <see cref="Number"/>1 is lesser or equal;
-        /// <see langword="false"/>otherwise</returns>
-        public static bool operator <=(Number number1, Number number2)
-        {
-            if (number1 == null) throw new ArgumentNullException(nameof(number1));
-            if (number2 == null) throw new ArgumentNullException(nameof(number2));
-
-            return number1.X <= number2.X && number1.Y <= number2.Y && number1.Z <= number2.Z;
-        }
-
-        /// <summary>
-        /// Check if <see cref="Number"/>1 is bigger or equal, then <see cref="Number"/>2
-        /// </summary>
-        /// <param name="number1"><see cref="Number"/> 1</param>
-        /// <param name="number2"><see cref="Number"/> 2</param>
-        /// <returns><see langword="true"/> if <see cref="Number"/>1 is bigger or equal;
-        /// <see langword="false"/>otherwise</returns>
-        public static bool operator >=(Number number1, Number number2)
-        {
-            if (number1 == null) throw new ArgumentNullException(nameof(number1));
-            if (number2 == null) throw new ArgumentNullException(nameof(number2));
-
-            return number1.X >= number2.X && number1.Y >= number2.Y && number1.Z >= number2.Z;
-        }
-
-        /// <inheritdoc/>
-        public int CompareTo(Number other) => this < other ? -1 :
-                                              this == other ? 0 : 1;
 
         #endregion
 

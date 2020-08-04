@@ -7,7 +7,7 @@ namespace GTiff2Tiles.Core.Images
     /// <summary>
     /// <see cref="IImage"/>'s size
     /// </summary>
-    public sealed class Size : IEquatable<Size>, IComparable<Size>
+    public sealed class Size : IEquatable<Size>
     {
         #region Properties/Constants
 
@@ -81,70 +81,6 @@ namespace GTiff2Tiles.Core.Images
         /// <returns><see langword="true"/> if <see cref="Size"/>s are not equal;
         /// <see langword="false"/>otherwise</returns>
         public static bool operator !=(Size size1, Size size2) => !(size1 == size2);
-
-        /// <summary>
-        /// Check if <see cref="Size"/>1 is lesser, then <see cref="Size"/>2
-        /// </summary>
-        /// <param name="size1"><see cref="Size"/> 1</param>
-        /// <param name="size2"><see cref="Size"/> 2</param>
-        /// <returns><see langword="true"/> if <see cref="Size"/>1 is lesser;
-        /// <see langword="false"/>otherwise</returns>
-        public static bool operator <(Size size1, Size size2)
-        {
-            if (size1 == null) throw new ArgumentNullException(nameof(size1));
-            if (size2 == null) throw new ArgumentNullException(nameof(size2));
-
-            return size1.Width < size2.Width && size1.Height < size2.Height;
-        }
-
-        /// <summary>
-        /// Check if <see cref="Size"/>1 is bigger, then <see cref="Size"/>2
-        /// </summary>
-        /// <param name="size1"><see cref="Size"/> 1</param>
-        /// <param name="size2"><see cref="Size"/> 2</param>
-        /// <returns><see langword="true"/> if <see cref="Size"/>1 is bigger;
-        /// <see langword="false"/>otherwise</returns>
-        public static bool operator >(Size size1, Size size2)
-        {
-            if (size1 == null) throw new ArgumentNullException(nameof(size1));
-            if (size2 == null) throw new ArgumentNullException(nameof(size2));
-
-            return size1.Width > size2.Width && size1.Height > size2.Height;
-        }
-
-        /// <summary>
-        /// Check if <see cref="Size"/>1 is lesser or equal, then <see cref="Size"/>2
-        /// </summary>
-        /// <param name="size1"><see cref="Size"/> 1</param>
-        /// <param name="size2"><see cref="Size"/> 2</param>
-        /// <returns><see langword="true"/> if <see cref="Size"/>1 is lesser or equal;
-        /// <see langword="false"/>otherwise</returns>
-        public static bool operator <=(Size size1, Size size2)
-        {
-            if (size1 == null) throw new ArgumentNullException(nameof(size1));
-            if (size2 == null) throw new ArgumentNullException(nameof(size2));
-
-            return size1.Width <= size2.Width && size1.Height <= size2.Height;
-        }
-
-        /// <summary>
-        /// Check if <see cref="Size"/>1 is bigger or equal, then <see cref="Size"/>2
-        /// </summary>
-        /// <param name="size1"><see cref="Size"/> 1</param>
-        /// <param name="size2"><see cref="Size"/> 2</param>
-        /// <returns><see langword="true"/> if <see cref="Size"/>1 is bigger or equal;
-        /// <see langword="false"/>otherwise</returns>
-        public static bool operator >=(Size size1, Size size2)
-        {
-            if (size1 == null) throw new ArgumentNullException(nameof(size1));
-            if (size2 == null) throw new ArgumentNullException(nameof(size2));
-
-            return size1.Width >= size2.Width && size1.Height >= size2.Height;
-        }
-
-        /// <inheritdoc/>
-        public int CompareTo(Size other) => this < other ? -1 :
-                                            this == other ? 0 : 1;
 
         #endregion
 

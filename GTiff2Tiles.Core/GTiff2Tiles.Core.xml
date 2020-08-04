@@ -201,45 +201,6 @@
             <returns><see langword="true"/> if coordinates are not equal;
             <see langword="false"/>otherwise</returns>
         </member>
-        <member name="M:GTiff2Tiles.Core.Coordinates.Coordinate.op_LessThan(GTiff2Tiles.Core.Coordinates.Coordinate,GTiff2Tiles.Core.Coordinates.Coordinate)">
-            <summary>
-            Check if coordinate1 is lesser, then coordinate2
-            </summary>
-            <param name="coordinate1">Coordinate 1</param>
-            <param name="coordinate2">Coordinate 2</param>
-            <returns><see langword="true"/> if coordinate1 is lesser;
-            <see langword="false"/>otherwise</returns>
-        </member>
-        <member name="M:GTiff2Tiles.Core.Coordinates.Coordinate.op_GreaterThan(GTiff2Tiles.Core.Coordinates.Coordinate,GTiff2Tiles.Core.Coordinates.Coordinate)">
-            <summary>
-            Check if coordinate1 is bigger, then coordinate2
-            </summary>
-            <param name="coordinate1">Coordinate 1</param>
-            <param name="coordinate2">Coordinate 2</param>
-            <returns><see langword="true"/> if coordinate1 is bigger;
-            <see langword="false"/>otherwise</returns>
-        </member>
-        <member name="M:GTiff2Tiles.Core.Coordinates.Coordinate.op_LessThanOrEqual(GTiff2Tiles.Core.Coordinates.Coordinate,GTiff2Tiles.Core.Coordinates.Coordinate)">
-            <summary>
-            Check if coordinate1 is lesser or equal, then coordinate2
-            </summary>
-            <param name="coordinate1">Coordinate 1</param>
-            <param name="coordinate2">Coordinate 2</param>
-            <returns><see langword="true"/> if coordinate1 is lesser or equal;
-            <see langword="false"/>otherwise</returns>
-        </member>
-        <member name="M:GTiff2Tiles.Core.Coordinates.Coordinate.op_GreaterThanOrEqual(GTiff2Tiles.Core.Coordinates.Coordinate,GTiff2Tiles.Core.Coordinates.Coordinate)">
-            <summary>
-            Check if coordinate1 is bigger or equal, then coordinate2
-            </summary>
-            <param name="coordinate1">Coordinate 1</param>
-            <param name="coordinate2">Coordinate 2</param>
-            <returns><see langword="true"/> if coordinate1 is bigger or equal;
-            <see langword="false"/>otherwise</returns>
-        </member>
-        <member name="M:GTiff2Tiles.Core.Coordinates.Coordinate.CompareTo(GTiff2Tiles.Core.Coordinates.Coordinate)">
-            <inheritdoc/>
-        </member>
         <member name="M:GTiff2Tiles.Core.Coordinates.Coordinate.op_Addition(GTiff2Tiles.Core.Coordinates.Coordinate,GTiff2Tiles.Core.Coordinates.Coordinate)">
             <summary>
             Sum coordinates
@@ -1130,11 +1091,11 @@
         <member name="P:GTiff2Tiles.Core.Images.Raster.IsDisposed">
             <inheritdoc />
         </member>
-        <member name="M:GTiff2Tiles.Core.Images.Raster.#ctor(System.IO.FileInfo,System.Int64,GTiff2Tiles.Core.Enums.CoordinateType)">
+        <member name="M:GTiff2Tiles.Core.Images.Raster.#ctor(System.String,System.Int64,GTiff2Tiles.Core.Enums.CoordinateType)">
             <summary>
             Creates new <see cref="T:GTiff2Tiles.Core.Images.Raster"/> object
             </summary>
-            <param name="inputFileInfo">Input GeoTiff image</param>
+            <param name="inputFilePath">Input GeoTiff's path</param>
             <param name="maxMemoryCache">Max size of input image to store in RAM
             <remarks><para/>2GB by default</remarks></param>
             <param name="coordinateType">Type of coordinates
@@ -1269,45 +1230,6 @@
             <param name="size2"><see cref="T:GTiff2Tiles.Core.Images.Size"/> 2</param>
             <returns><see langword="true"/> if <see cref="T:GTiff2Tiles.Core.Images.Size"/>s are not equal;
             <see langword="false"/>otherwise</returns>
-        </member>
-        <member name="M:GTiff2Tiles.Core.Images.Size.op_LessThan(GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Images.Size)">
-            <summary>
-            Check if <see cref="T:GTiff2Tiles.Core.Images.Size"/>1 is lesser, then <see cref="T:GTiff2Tiles.Core.Images.Size"/>2
-            </summary>
-            <param name="size1"><see cref="T:GTiff2Tiles.Core.Images.Size"/> 1</param>
-            <param name="size2"><see cref="T:GTiff2Tiles.Core.Images.Size"/> 2</param>
-            <returns><see langword="true"/> if <see cref="T:GTiff2Tiles.Core.Images.Size"/>1 is lesser;
-            <see langword="false"/>otherwise</returns>
-        </member>
-        <member name="M:GTiff2Tiles.Core.Images.Size.op_GreaterThan(GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Images.Size)">
-            <summary>
-            Check if <see cref="T:GTiff2Tiles.Core.Images.Size"/>1 is bigger, then <see cref="T:GTiff2Tiles.Core.Images.Size"/>2
-            </summary>
-            <param name="size1"><see cref="T:GTiff2Tiles.Core.Images.Size"/> 1</param>
-            <param name="size2"><see cref="T:GTiff2Tiles.Core.Images.Size"/> 2</param>
-            <returns><see langword="true"/> if <see cref="T:GTiff2Tiles.Core.Images.Size"/>1 is bigger;
-            <see langword="false"/>otherwise</returns>
-        </member>
-        <member name="M:GTiff2Tiles.Core.Images.Size.op_LessThanOrEqual(GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Images.Size)">
-            <summary>
-            Check if <see cref="T:GTiff2Tiles.Core.Images.Size"/>1 is lesser or equal, then <see cref="T:GTiff2Tiles.Core.Images.Size"/>2
-            </summary>
-            <param name="size1"><see cref="T:GTiff2Tiles.Core.Images.Size"/> 1</param>
-            <param name="size2"><see cref="T:GTiff2Tiles.Core.Images.Size"/> 2</param>
-            <returns><see langword="true"/> if <see cref="T:GTiff2Tiles.Core.Images.Size"/>1 is lesser or equal;
-            <see langword="false"/>otherwise</returns>
-        </member>
-        <member name="M:GTiff2Tiles.Core.Images.Size.op_GreaterThanOrEqual(GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Images.Size)">
-            <summary>
-            Check if <see cref="T:GTiff2Tiles.Core.Images.Size"/>1 is bigger or equal, then <see cref="T:GTiff2Tiles.Core.Images.Size"/>2
-            </summary>
-            <param name="size1"><see cref="T:GTiff2Tiles.Core.Images.Size"/> 1</param>
-            <param name="size2"><see cref="T:GTiff2Tiles.Core.Images.Size"/> 2</param>
-            <returns><see langword="true"/> if <see cref="T:GTiff2Tiles.Core.Images.Size"/>1 is bigger or equal;
-            <see langword="false"/>otherwise</returns>
-        </member>
-        <member name="M:GTiff2Tiles.Core.Images.Size.CompareTo(GTiff2Tiles.Core.Images.Size)">
-            <inheritdoc/>
         </member>
         <member name="M:GTiff2Tiles.Core.Images.Size.op_Addition(GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Images.Size)">
             <summary>
@@ -1684,45 +1606,6 @@
             <param name="number2"><see cref="T:GTiff2Tiles.Core.Tiles.Number"/> 2</param>
             <returns><see langword="true"/> if <see cref="T:GTiff2Tiles.Core.Tiles.Number"/>s are not equal;
             <see langword="false"/>otherwise</returns>
-        </member>
-        <member name="M:GTiff2Tiles.Core.Tiles.Number.op_LessThan(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Tiles.Number)">
-            <summary>
-            Check if <see cref="T:GTiff2Tiles.Core.Tiles.Number"/>1 is lesser, then <see cref="T:GTiff2Tiles.Core.Tiles.Number"/>2
-            </summary>
-            <param name="number1"><see cref="T:GTiff2Tiles.Core.Tiles.Number"/> 1</param>
-            <param name="number2"><see cref="T:GTiff2Tiles.Core.Tiles.Number"/> 2</param>
-            <returns><see langword="true"/> if <see cref="T:GTiff2Tiles.Core.Tiles.Number"/>1 is lesser;
-            <see langword="false"/>otherwise</returns>
-        </member>
-        <member name="M:GTiff2Tiles.Core.Tiles.Number.op_GreaterThan(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Tiles.Number)">
-            <summary>
-            Check if <see cref="T:GTiff2Tiles.Core.Tiles.Number"/>1 is bigger, then <see cref="T:GTiff2Tiles.Core.Tiles.Number"/>2
-            </summary>
-            <param name="number1"><see cref="T:GTiff2Tiles.Core.Tiles.Number"/> 1</param>
-            <param name="number2"><see cref="T:GTiff2Tiles.Core.Tiles.Number"/> 2</param>
-            <returns><see langword="true"/> if <see cref="T:GTiff2Tiles.Core.Tiles.Number"/>1 is bigger;
-            <see langword="false"/>otherwise</returns>
-        </member>
-        <member name="M:GTiff2Tiles.Core.Tiles.Number.op_LessThanOrEqual(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Tiles.Number)">
-            <summary>
-            Check if <see cref="T:GTiff2Tiles.Core.Tiles.Number"/>1 is lesser or equal, then <see cref="T:GTiff2Tiles.Core.Tiles.Number"/>2
-            </summary>
-            <param name="number1"><see cref="T:GTiff2Tiles.Core.Tiles.Number"/> 1</param>
-            <param name="number2"><see cref="T:GTiff2Tiles.Core.Tiles.Number"/> 2</param>
-            <returns><see langword="true"/> if <see cref="T:GTiff2Tiles.Core.Tiles.Number"/>1 is lesser or equal;
-            <see langword="false"/>otherwise</returns>
-        </member>
-        <member name="M:GTiff2Tiles.Core.Tiles.Number.op_GreaterThanOrEqual(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Tiles.Number)">
-            <summary>
-            Check if <see cref="T:GTiff2Tiles.Core.Tiles.Number"/>1 is bigger or equal, then <see cref="T:GTiff2Tiles.Core.Tiles.Number"/>2
-            </summary>
-            <param name="number1"><see cref="T:GTiff2Tiles.Core.Tiles.Number"/> 1</param>
-            <param name="number2"><see cref="T:GTiff2Tiles.Core.Tiles.Number"/> 2</param>
-            <returns><see langword="true"/> if <see cref="T:GTiff2Tiles.Core.Tiles.Number"/>1 is bigger or equal;
-            <see langword="false"/>otherwise</returns>
-        </member>
-        <member name="M:GTiff2Tiles.Core.Tiles.Number.CompareTo(GTiff2Tiles.Core.Tiles.Number)">
-            <inheritdoc/>
         </member>
         <member name="M:GTiff2Tiles.Core.Tiles.Number.op_Addition(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Tiles.Number)">
             <summary>

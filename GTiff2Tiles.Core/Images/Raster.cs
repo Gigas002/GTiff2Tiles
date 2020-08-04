@@ -64,33 +64,11 @@ namespace GTiff2Tiles.Core.Images
         /// <summary>
         /// Creates new <see cref="Raster"/> object
         /// </summary>
-        /// <param name="inputFileInfo">Input GeoTiff image</param>
+        /// <param name="inputFilePath">Input GeoTiff's path</param>
         /// <param name="maxMemoryCache">Max size of input image to store in RAM
         /// <remarks><para/>2GB by default</remarks></param>
         /// <param name="coordinateType">Type of coordinates
         /// <remarks><para/><see cref="GeodeticCoordinate"/> by default</remarks></param>
-        public Raster(FileInfo inputFileInfo, long maxMemoryCache = 2147483648,
-                      CoordinateType coordinateType = CoordinateType.Geodetic)
-        {
-            // Disable NetVips warnings for tiff
-            NetVipsHelper.DisableLog();
-
-            #region Check parameters
-
-            CheckHelper.CheckFile(inputFileInfo.FullName, true);
-
-            #endregion
-
-            bool memory = inputFileInfo.Length <= maxMemoryCache;
-            Data = Image.NewFromFile(inputFileInfo.FullName, memory, NetVips.Enums.Access.Random);
-
-            // Get border coordinates и raster sizes
-            Size = new Size(Data.Width, Data.Height);
-
-            GeoCoordinateType = coordinateType;
-            (MinCoordinate, MaxCoordinate) = GdalWorker.GetImageBorders(inputFileInfo.FullName, Size, GeoCoordinateType);
-        }
-
         public Raster(string inputFilePath, long maxMemoryCache = 2147483648,
                       CoordinateType coordinateType = CoordinateType.Geodetic)
         {

@@ -8,7 +8,7 @@ namespace GTiff2Tiles.Core.Coordinates
     /// <summary>
     /// Basic realisation of <see cref="ICoordinate"/> interface
     /// </summary>
-    public class Coordinate : ICoordinate, IComparable<Coordinate>
+    public class Coordinate : ICoordinate
     {
         #region Properties
 
@@ -87,70 +87,6 @@ namespace GTiff2Tiles.Core.Coordinates
         /// <see langword="false"/>otherwise</returns>
         public static bool operator !=(Coordinate coordinate1, Coordinate coordinate2) =>
             !(coordinate1 == coordinate2);
-
-        /// <summary>
-        /// Check if coordinate1 is lesser, then coordinate2
-        /// </summary>
-        /// <param name="coordinate1">Coordinate 1</param>
-        /// <param name="coordinate2">Coordinate 2</param>
-        /// <returns><see langword="true"/> if coordinate1 is lesser;
-        /// <see langword="false"/>otherwise</returns>
-        public static bool operator <(Coordinate coordinate1, Coordinate coordinate2)
-        {
-            if (coordinate1 == null) throw new ArgumentNullException(nameof(coordinate1));
-            if (coordinate2 == null) throw new ArgumentNullException(nameof(coordinate2));
-
-            return coordinate1.X < coordinate2.X && coordinate1.Y < coordinate2.Y;
-        }
-
-        /// <summary>
-        /// Check if coordinate1 is bigger, then coordinate2
-        /// </summary>
-        /// <param name="coordinate1">Coordinate 1</param>
-        /// <param name="coordinate2">Coordinate 2</param>
-        /// <returns><see langword="true"/> if coordinate1 is bigger;
-        /// <see langword="false"/>otherwise</returns>
-        public static bool operator >(Coordinate coordinate1, Coordinate coordinate2)
-        {
-            if (coordinate1 == null) throw new ArgumentNullException(nameof(coordinate1));
-            if (coordinate2 == null) throw new ArgumentNullException(nameof(coordinate2));
-
-            return coordinate1.X > coordinate2.X && coordinate1.Y > coordinate2.Y;
-        }
-
-        /// <summary>
-        /// Check if coordinate1 is lesser or equal, then coordinate2
-        /// </summary>
-        /// <param name="coordinate1">Coordinate 1</param>
-        /// <param name="coordinate2">Coordinate 2</param>
-        /// <returns><see langword="true"/> if coordinate1 is lesser or equal;
-        /// <see langword="false"/>otherwise</returns>
-        public static bool operator <=(Coordinate coordinate1, Coordinate coordinate2)
-        {
-            if (coordinate1 == null) throw new ArgumentNullException(nameof(coordinate1));
-            if (coordinate2 == null) throw new ArgumentNullException(nameof(coordinate2));
-
-            return coordinate1.X <= coordinate2.X && coordinate1.Y <= coordinate2.Y;
-        }
-
-        /// <summary>
-        /// Check if coordinate1 is bigger or equal, then coordinate2
-        /// </summary>
-        /// <param name="coordinate1">Coordinate 1</param>
-        /// <param name="coordinate2">Coordinate 2</param>
-        /// <returns><see langword="true"/> if coordinate1 is bigger or equal;
-        /// <see langword="false"/>otherwise</returns>
-        public static bool operator >=(Coordinate coordinate1, Coordinate coordinate2)
-        {
-            if (coordinate1 == null) throw new ArgumentNullException(nameof(coordinate1));
-            if (coordinate2 == null) throw new ArgumentNullException(nameof(coordinate2));
-
-            return coordinate1.X >= coordinate2.X && coordinate1.Y >= coordinate2.Y;
-        }
-
-        /// <inheritdoc/>
-        public int CompareTo(Coordinate other) => this < other ? -1 :
-                                                  this == other ? 0 : 1;
 
         #endregion
 
