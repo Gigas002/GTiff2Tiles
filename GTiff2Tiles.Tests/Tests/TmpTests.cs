@@ -44,7 +44,7 @@ namespace GTiff2Tiles.Tests.Tests
             Number number010 = new Number(0, 1, 0);
 
             Assert.IsTrue(number100.Add(number010) == new Number(1, 1, 0));
-            Assert.IsTrue(number100.Subtract(number010) == new Number(1, -1, 0));
+            //Assert.IsTrue(number100.Subtract(number010) == new Number(1, -1, 0));
             Assert.IsTrue(number100.Multiply(number010) == new Number(0, 0, 0));
             Assert.IsTrue(number100.Divide(new Number(1, 1, 0)) == new Number(1, 0, 0));
         }

@@ -235,21 +235,21 @@ namespace GTiff2Tiles.Core
             switch (targetSystem)
             {
                 case CoordinateSystem.Epsg4326:
-                    {
-                        gdalWarpOptions.AddRange(SrsEpsg4326);
+                {
+                    gdalWarpOptions.AddRange(SrsEpsg4326);
 
-                        break;
-                    }
+                    break;
+                }
                 case CoordinateSystem.Epsg3857:
-                    {
-                        gdalWarpOptions.AddRange(SrsEpsg3857);
+                {
+                    gdalWarpOptions.AddRange(SrsEpsg3857);
 
-                        break;
-                    }
+                    break;
+                }
                 default:
-                    {
-                        return ValueTask.FromResult(false);
-                    }
+                {
+                    return ValueTask.FromResult(false);
+                }
             }
 
             return WarpAsync(inputFilePath, outputFilePath, gdalWarpOptions.ToArray(), progress);
@@ -271,7 +271,7 @@ namespace GTiff2Tiles.Core
              && !projString.Contains(Proj.DatumWgs84, StringComparison.InvariantCulture))
                 return CoordinateSystem.Epsg3857;
 
-            throw new GdalException();
+            return CoordinateSystem.Other;
         }
 
         /// <summary>

@@ -514,6 +514,11 @@
             Replaced by <see cref="F:GTiff2Tiles.Core.Enums.CoordinateSystem.Epsg3857"/>
             </summary>
         </member>
+        <member name="F:GTiff2Tiles.Core.Enums.CoordinateSystem.Other">
+            <summary>
+            Other or unknown coordinate system
+            </summary>
+        </member>
         <member name="T:GTiff2Tiles.Core.Enums.TileExtension">
             <summary>
             Extensions of ready tiles

@@ -61,7 +61,12 @@ namespace GTiff2Tiles.Core.Enums
         /// Replaced by <see cref="Epsg3857"/>
         /// </summary>
         [Obsolete("Replaced by EPSG:3857")]
-        Epsg900913 = Epsg3857
+        Epsg900913 = Epsg3857,
+
+        /// <summary>
+        /// Other or unknown coordinate system
+        /// </summary>
+        Other
     }
 }
 

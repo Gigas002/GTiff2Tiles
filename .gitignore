@@ -355,3 +355,4 @@ launchSettings.json
 /Secrets.txt
 *.config
 /Examples/NonTmsCompatible/GenerateTilesOutput
+/Examples/TmsCompatible/GenerateTilesOutput
