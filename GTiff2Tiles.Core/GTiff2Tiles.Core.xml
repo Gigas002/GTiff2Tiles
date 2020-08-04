@@ -205,6 +205,9 @@
             <returns><see langword="true"/> if coordinate1 is bigger or equal;
             <see langword="false"/>otherwise</returns>
         </member>
+        <member name="M:GTiff2Tiles.Core.Coordinates.Coordinate.CompareTo(GTiff2Tiles.Core.Coordinates.Coordinate)">
+            <inheritdoc/>
+        </member>
         <member name="M:GTiff2Tiles.Core.Coordinates.Coordinate.op_Addition(GTiff2Tiles.Core.Coordinates.Coordinate,GTiff2Tiles.Core.Coordinates.Coordinate)">
             <summary>
             Sum coordinates
@@ -212,6 +215,10 @@
             <param name="coordinate1">Coordinate 1</param>
             <param name="coordinate2">Coordinate 2</param>
             <returns>New coordinate</returns>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Coordinates.Coordinate.Add(GTiff2Tiles.Core.Coordinates.Coordinate)">
+            <inheritdoc cref="M:GTiff2Tiles.Core.Coordinates.Coordinate.op_Addition(GTiff2Tiles.Core.Coordinates.Coordinate,GTiff2Tiles.Core.Coordinates.Coordinate)"/>
+            <param name="other"><see cref="T:GTiff2Tiles.Core.Coordinates.Coordinate"/> to add</param>
         </member>
         <member name="M:GTiff2Tiles.Core.Coordinates.Coordinate.op_Subtraction(GTiff2Tiles.Core.Coordinates.Coordinate,GTiff2Tiles.Core.Coordinates.Coordinate)">
             <summary>
@@ -221,6 +228,10 @@
             <param name="coordinate2">Coordinate 2</param>
             <returns>New coordinate</returns>
         </member>
+        <member name="M:GTiff2Tiles.Core.Coordinates.Coordinate.Subtract(GTiff2Tiles.Core.Coordinates.Coordinate)">
+            <inheritdoc cref="M:GTiff2Tiles.Core.Coordinates.Coordinate.op_Subtraction(GTiff2Tiles.Core.Coordinates.Coordinate,GTiff2Tiles.Core.Coordinates.Coordinate)"/>
+            <param name="other"><see cref="T:GTiff2Tiles.Core.Coordinates.Coordinate"/> to subtract</param>
+        </member>
         <member name="M:GTiff2Tiles.Core.Coordinates.Coordinate.op_Multiply(GTiff2Tiles.Core.Coordinates.Coordinate,GTiff2Tiles.Core.Coordinates.Coordinate)">
             <summary>
             Multiply coordinates
@@ -229,6 +240,10 @@
             <param name="coordinate2">Coordinate 2</param>
             <returns>New coordinate</returns>
         </member>
+        <member name="M:GTiff2Tiles.Core.Coordinates.Coordinate.Multiply(GTiff2Tiles.Core.Coordinates.Coordinate)">
+            <inheritdoc cref="M:GTiff2Tiles.Core.Coordinates.Coordinate.op_Multiply(GTiff2Tiles.Core.Coordinates.Coordinate,GTiff2Tiles.Core.Coordinates.Coordinate)"/>
+            <param name="other"><see cref="T:GTiff2Tiles.Core.Coordinates.Coordinate"/> to multiply</param>
+        </member>
         <member name="M:GTiff2Tiles.Core.Coordinates.Coordinate.op_Division(GTiff2Tiles.Core.Coordinates.Coordinate,GTiff2Tiles.Core.Coordinates.Coordinate)">
             <summary>
             Divide coordinates
@@ -236,6 +251,10 @@
             <param name="coordinate1">Coordinate 1</param>
             <param name="coordinate2">Coordinate 2</param>
             <returns>New coordinate</returns>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Coordinates.Coordinate.Divide(GTiff2Tiles.Core.Coordinates.Coordinate)">
+            <inheritdoc cref="M:GTiff2Tiles.Core.Coordinates.Coordinate.op_Division(GTiff2Tiles.Core.Coordinates.Coordinate,GTiff2Tiles.Core.Coordinates.Coordinate)"/>
+            <param name="other"><see cref="T:GTiff2Tiles.Core.Coordinates.Coordinate"/> to divide on</param>
         </member>
         <member name="T:GTiff2Tiles.Core.Coordinates.GeoCoordinate">
             <summary>
@@ -423,6 +442,71 @@
             <param name="zoom">Zoom</param>
             <param name="tileSize"><see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>'s side size</param>
             <returns>Converted <see cref="T:GTiff2Tiles.Core.Coordinates.PixelCoordinate"/></returns>
+        </member>
+        <member name="T:GTiff2Tiles.Core.Enums.CoordinateSystems">
+            <summary>
+            Supported EPSG coordinate systems
+            </summary>
+        </member>
+        <member name="F:GTiff2Tiles.Core.Enums.CoordinateSystems.Epsg4326">
+            <summary>
+            EPSG:4326
+            </summary>
+        </member>
+        <member name="F:GTiff2Tiles.Core.Enums.CoordinateSystems.Epsg3857">
+            <summary>
+            EPSG:3857
+            </summary>
+        </member>
+        <member name="F:GTiff2Tiles.Core.Enums.CoordinateSystems.Epsg3587">
+            <summary>
+            Replaced by <see cref="F:GTiff2Tiles.Core.Enums.CoordinateSystems.Epsg3857"/>
+            </summary>
+        </member>
+        <member name="F:GTiff2Tiles.Core.Enums.CoordinateSystems.Epsg3785">
+            <summary>
+            Replaced by <see cref="F:GTiff2Tiles.Core.Enums.CoordinateSystems.Epsg3857"/>
+            </summary>
+        </member>
+        <member name="F:GTiff2Tiles.Core.Enums.CoordinateSystems.Epsg41001">
+            <summary>
+            Replaced by <see cref="F:GTiff2Tiles.Core.Enums.CoordinateSystems.Epsg3857"/>
+            </summary>
+        </member>
+        <member name="F:GTiff2Tiles.Core.Enums.CoordinateSystems.Epsg54004">
+            <summary>
+            Replaced by <see cref="F:GTiff2Tiles.Core.Enums.CoordinateSystems.Epsg3857"/>
+            </summary>
+        </member>
+        <member name="F:GTiff2Tiles.Core.Enums.CoordinateSystems.Epsg102113">
+            <summary>
+            Replaced by <see cref="F:GTiff2Tiles.Core.Enums.CoordinateSystems.Epsg3857"/>
+            </summary>
+        </member>
+        <member name="F:GTiff2Tiles.Core.Enums.CoordinateSystems.Epsg102100">
+            <summary>
+            Replaced by <see cref="F:GTiff2Tiles.Core.Enums.CoordinateSystems.Epsg3857"/>
+            </summary>
+        </member>
+        <member name="F:GTiff2Tiles.Core.Enums.CoordinateSystems.Epsg900913">
+            <summary>
+            Replaced by <see cref="F:GTiff2Tiles.Core.Enums.CoordinateSystems.Epsg3857"/>
+            </summary>
+        </member>
+        <member name="T:GTiff2Tiles.Core.Enums.CoordinateType">
+            <summary>
+            Type of coordinates
+            </summary>
+        </member>
+        <member name="F:GTiff2Tiles.Core.Enums.CoordinateType.Geodetic">
+            <summary>
+            For EPSG:4326
+            </summary>
+        </member>
+        <member name="F:GTiff2Tiles.Core.Enums.CoordinateType.Mercator">
+            <summary>
+            For EPSG:3857
+            </summary>
         </member>
         <member name="T:GTiff2Tiles.Core.Enums.TileExtension">
             <summary>
@@ -1107,6 +1191,9 @@
             <returns><see langword="true"/> if <see cref="T:GTiff2Tiles.Core.Images.Size"/>1 is bigger or equal;
             <see langword="false"/>otherwise</returns>
         </member>
+        <member name="M:GTiff2Tiles.Core.Images.Size.CompareTo(GTiff2Tiles.Core.Images.Size)">
+            <inheritdoc/>
+        </member>
         <member name="M:GTiff2Tiles.Core.Images.Size.op_Addition(GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Images.Size)">
             <summary>
             Sum <see cref="T:GTiff2Tiles.Core.Images.Size"/>s
@@ -1114,6 +1201,10 @@
             <param name="size1"><see cref="T:GTiff2Tiles.Core.Images.Size"/> 1</param>
             <param name="size2"><see cref="T:GTiff2Tiles.Core.Images.Size"/> 2</param>
             <returns>New <see cref="T:GTiff2Tiles.Core.Images.Size"/></returns>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Images.Size.Add(GTiff2Tiles.Core.Images.Size)">
+            <inheritdoc cref="M:GTiff2Tiles.Core.Images.Size.op_Addition(GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Images.Size)"/>
+            <param name="other"><see cref="T:GTiff2Tiles.Core.Images.Size"/> to add</param>
         </member>
         <member name="M:GTiff2Tiles.Core.Images.Size.op_Subtraction(GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Images.Size)">
             <summary>
@@ -1123,6 +1214,10 @@
             <param name="size2"><see cref="T:GTiff2Tiles.Core.Images.Size"/> 2</param>
             <returns>New <see cref="T:GTiff2Tiles.Core.Images.Size"/></returns>
         </member>
+        <member name="M:GTiff2Tiles.Core.Images.Size.Subtract(GTiff2Tiles.Core.Images.Size)">
+            <inheritdoc cref="M:GTiff2Tiles.Core.Images.Size.op_Subtraction(GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Images.Size)"/>
+            <param name="other"><see cref="T:GTiff2Tiles.Core.Images.Size"/> to subtract</param>
+        </member>
         <member name="M:GTiff2Tiles.Core.Images.Size.op_Multiply(GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Images.Size)">
             <summary>
             Multiply <see cref="T:GTiff2Tiles.Core.Images.Size"/>s
@@ -1131,6 +1226,10 @@
             <param name="size2"><see cref="T:GTiff2Tiles.Core.Images.Size"/> 2</param>
             <returns>New <see cref="T:GTiff2Tiles.Core.Images.Size"/></returns>
         </member>
+        <member name="M:GTiff2Tiles.Core.Images.Size.Multiply(GTiff2Tiles.Core.Images.Size)">
+            <inheritdoc cref="M:GTiff2Tiles.Core.Images.Size.op_Multiply(GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Images.Size)"/>
+            <param name="other"><see cref="T:GTiff2Tiles.Core.Images.Size"/> to multiply</param>
+        </member>
         <member name="M:GTiff2Tiles.Core.Images.Size.op_Division(GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Images.Size)">
             <summary>
             Divide <see cref="T:GTiff2Tiles.Core.Images.Size"/>s
@@ -1138,6 +1237,10 @@
             <param name="size1"><see cref="T:GTiff2Tiles.Core.Images.Size"/> 1</param>
             <param name="size2"><see cref="T:GTiff2Tiles.Core.Images.Size"/> 2</param>
             <returns>New <see cref="T:GTiff2Tiles.Core.Images.Size"/></returns>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Images.Size.Divide(GTiff2Tiles.Core.Images.Size)">
+            <inheritdoc cref="M:GTiff2Tiles.Core.Images.Size.op_Division(GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Images.Size)"/>
+            <param name="other"><see cref="T:GTiff2Tiles.Core.Images.Size"/> to divide on</param>
         </member>
         <member name="T:GTiff2Tiles.Core.Localization.Strings">
             <summary>
@@ -1502,6 +1605,9 @@
             <returns><see langword="true"/> if <see cref="T:GTiff2Tiles.Core.Tiles.Number"/>1 is bigger or equal;
             <see langword="false"/>otherwise</returns>
         </member>
+        <member name="M:GTiff2Tiles.Core.Tiles.Number.CompareTo(GTiff2Tiles.Core.Tiles.Number)">
+            <inheritdoc/>
+        </member>
         <member name="M:GTiff2Tiles.Core.Tiles.Number.op_Addition(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Tiles.Number)">
             <summary>
             Sum <see cref="T:GTiff2Tiles.Core.Tiles.Number"/>s
@@ -1509,6 +1615,10 @@
             <param name="number1"><see cref="T:GTiff2Tiles.Core.Tiles.Number"/> 1</param>
             <param name="number2"><see cref="T:GTiff2Tiles.Core.Tiles.Number"/> 2</param>
             <returns>New <see cref="T:GTiff2Tiles.Core.Tiles.Number"/></returns>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Tiles.Number.Add(GTiff2Tiles.Core.Tiles.Number)">
+            <inheritdoc cref="M:GTiff2Tiles.Core.Tiles.Number.op_Addition(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Tiles.Number)"/>
+            <param name="other"><see cref="T:GTiff2Tiles.Core.Tiles.Number"/> to add</param>
         </member>
         <member name="M:GTiff2Tiles.Core.Tiles.Number.op_Subtraction(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Tiles.Number)">
             <summary>
@@ -1518,6 +1628,10 @@
             <param name="number2"><see cref="T:GTiff2Tiles.Core.Tiles.Number"/> 2</param>
             <returns>New <see cref="T:GTiff2Tiles.Core.Tiles.Number"/></returns>
         </member>
+        <member name="M:GTiff2Tiles.Core.Tiles.Number.Subtract(GTiff2Tiles.Core.Tiles.Number)">
+            <inheritdoc cref="M:GTiff2Tiles.Core.Tiles.Number.op_Subtraction(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Tiles.Number)"/>
+            <param name="other"><see cref="T:GTiff2Tiles.Core.Tiles.Number"/> to subtract</param>
+        </member>
         <member name="M:GTiff2Tiles.Core.Tiles.Number.op_Multiply(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Tiles.Number)">
             <summary>
             Multiply <see cref="T:GTiff2Tiles.Core.Tiles.Number"/>s
@@ -1526,6 +1640,10 @@
             <param name="number2"><see cref="T:GTiff2Tiles.Core.Tiles.Number"/> 2</param>
             <returns>New <see cref="T:GTiff2Tiles.Core.Tiles.Number"/></returns>
         </member>
+        <member name="M:GTiff2Tiles.Core.Tiles.Number.Multiply(GTiff2Tiles.Core.Tiles.Number)">
+            <inheritdoc cref="M:GTiff2Tiles.Core.Tiles.Number.op_Multiply(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Tiles.Number)"/>
+            <param name="other"><see cref="T:GTiff2Tiles.Core.Tiles.Number"/> to multiply</param>
+        </member>
         <member name="M:GTiff2Tiles.Core.Tiles.Number.op_Division(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Tiles.Number)">
             <summary>
             Divide <see cref="T:GTiff2Tiles.Core.Tiles.Number"/>s
@@ -1533,6 +1651,10 @@
             <param name="number1"><see cref="T:GTiff2Tiles.Core.Tiles.Number"/> 1</param>
             <param name="number2"><see cref="T:GTiff2Tiles.Core.Tiles.Number"/> 2</param>
             <returns>New <see cref="T:GTiff2Tiles.Core.Tiles.Number"/></returns>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Tiles.Number.Divide(GTiff2Tiles.Core.Tiles.Number)">
+            <inheritdoc cref="M:GTiff2Tiles.Core.Tiles.Number.op_Division(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Tiles.Number)"/>
+            <param name="other"><see cref="T:GTiff2Tiles.Core.Tiles.Number"/> to divide on</param>
         </member>
         <member name="T:GTiff2Tiles.Core.Tiles.RasterTile">
             <summary>

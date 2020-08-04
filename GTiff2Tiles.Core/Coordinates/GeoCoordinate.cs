@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using GTiff2Tiles.Core.Tiles;
 
+// ReSharper disable UnusedMember.Global
+// ReSharper disable MemberCanBeProtected.Global
+
 namespace GTiff2Tiles.Core.Coordinates
 {
     /// <summary>
@@ -40,6 +43,9 @@ namespace GTiff2Tiles.Core.Coordinates
             GeoCoordinate minCoordinate, GeoCoordinate maxCoordinate, int zoom, int tileSize,
             bool tmsCompatible)
         {
+            if (minCoordinate == null) throw new ArgumentNullException(nameof(minCoordinate));
+            if (maxCoordinate == null) throw new ArgumentNullException(nameof(maxCoordinate));
+
             Number minCoordNumber = minCoordinate.ToNumber(zoom, tileSize, tmsCompatible);
             Number maxCoordNumber = maxCoordinate.ToNumber(zoom, tileSize, tmsCompatible);
 

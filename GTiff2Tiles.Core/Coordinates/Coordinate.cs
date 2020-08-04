@@ -1,12 +1,14 @@
 ﻿using System;
 using GTiff2Tiles.Core.Tiles;
 
+// ReSharper disable UnusedMember.Global
+
 namespace GTiff2Tiles.Core.Coordinates
 {
     /// <summary>
     /// Basic realisation of <see cref="ICoordinate"/> interface
     /// </summary>
-    public class Coordinate : ICoordinate
+    public class Coordinate : ICoordinate, IComparable<Coordinate>
     {
         #region Properties
 
@@ -93,8 +95,13 @@ namespace GTiff2Tiles.Core.Coordinates
         /// <param name="coordinate2">Coordinate 2</param>
         /// <returns><see langword="true"/> if coordinate1 is lesser;
         /// <see langword="false"/>otherwise</returns>
-        public static bool operator <(Coordinate coordinate1, Coordinate coordinate2) =>
-            coordinate1.X < coordinate2.X && coordinate1.Y < coordinate2.Y;
+        public static bool operator <(Coordinate coordinate1, Coordinate coordinate2)
+        {
+            if (coordinate1 == null) throw new ArgumentNullException(nameof(coordinate1));
+            if (coordinate2 == null) throw new ArgumentNullException(nameof(coordinate2));
+
+            return coordinate1.X < coordinate2.X && coordinate1.Y < coordinate2.Y;
+        }
 
         /// <summary>
         /// Check if coordinate1 is bigger, then coordinate2
@@ -103,8 +110,13 @@ namespace GTiff2Tiles.Core.Coordinates
         /// <param name="coordinate2">Coordinate 2</param>
         /// <returns><see langword="true"/> if coordinate1 is bigger;
         /// <see langword="false"/>otherwise</returns>
-        public static bool operator >(Coordinate coordinate1, Coordinate coordinate2) =>
-            coordinate1.X > coordinate2.X && coordinate1.Y > coordinate2.Y;
+        public static bool operator >(Coordinate coordinate1, Coordinate coordinate2)
+        {
+            if (coordinate1 == null) throw new ArgumentNullException(nameof(coordinate1));
+            if (coordinate2 == null) throw new ArgumentNullException(nameof(coordinate2));
+
+            return coordinate1.X > coordinate2.X && coordinate1.Y > coordinate2.Y;
+        }
 
         /// <summary>
         /// Check if coordinate1 is lesser or equal, then coordinate2
@@ -113,8 +125,13 @@ namespace GTiff2Tiles.Core.Coordinates
         /// <param name="coordinate2">Coordinate 2</param>
         /// <returns><see langword="true"/> if coordinate1 is lesser or equal;
         /// <see langword="false"/>otherwise</returns>
-        public static bool operator <=(Coordinate coordinate1, Coordinate coordinate2) =>
-            coordinate1.X <= coordinate2.X && coordinate1.Y <= coordinate2.Y;
+        public static bool operator <=(Coordinate coordinate1, Coordinate coordinate2)
+        {
+            if (coordinate1 == null) throw new ArgumentNullException(nameof(coordinate1));
+            if (coordinate2 == null) throw new ArgumentNullException(nameof(coordinate2));
+
+            return coordinate1.X <= coordinate2.X && coordinate1.Y <= coordinate2.Y;
+        }
 
         /// <summary>
         /// Check if coordinate1 is bigger or equal, then coordinate2
@@ -123,8 +140,17 @@ namespace GTiff2Tiles.Core.Coordinates
         /// <param name="coordinate2">Coordinate 2</param>
         /// <returns><see langword="true"/> if coordinate1 is bigger or equal;
         /// <see langword="false"/>otherwise</returns>
-        public static bool operator >=(Coordinate coordinate1, Coordinate coordinate2) =>
-            coordinate1.X >= coordinate2.X && coordinate1.Y >= coordinate2.Y;
+        public static bool operator >=(Coordinate coordinate1, Coordinate coordinate2)
+        {
+            if (coordinate1 == null) throw new ArgumentNullException(nameof(coordinate1));
+            if (coordinate2 == null) throw new ArgumentNullException(nameof(coordinate2));
+
+            return coordinate1.X >= coordinate2.X && coordinate1.Y >= coordinate2.Y;
+        }
+
+        /// <inheritdoc/>
+        public int CompareTo(Coordinate other) => this < other ? -1 :
+                                                  this == other ? 0 : 1;
 
         #endregion
 
@@ -136,8 +162,17 @@ namespace GTiff2Tiles.Core.Coordinates
         /// <param name="coordinate1">Coordinate 1</param>
         /// <param name="coordinate2">Coordinate 2</param>
         /// <returns>New coordinate</returns>
-        public static Coordinate operator +(Coordinate coordinate1, Coordinate coordinate2) =>
-            new Coordinate(coordinate1.X + coordinate2.X, coordinate1.Y + coordinate2.Y);
+        public static Coordinate operator +(Coordinate coordinate1, Coordinate coordinate2)
+        {
+            if (coordinate1 == null) throw new ArgumentNullException(nameof(coordinate1));
+            if (coordinate2 == null) throw new ArgumentNullException(nameof(coordinate2));
+
+            return new Coordinate(coordinate1.X + coordinate2.X, coordinate1.Y + coordinate2.Y);
+        }
+
+        /// <inheritdoc cref="op_Addition"/>
+        /// <param name="other"><see cref="Coordinate"/> to add</param>
+        public Coordinate Add(Coordinate other) => this + other;
 
         /// <summary>
         /// Subtruct coordinates
@@ -145,8 +180,17 @@ namespace GTiff2Tiles.Core.Coordinates
         /// <param name="coordinate1">Coordinate 1</param>
         /// <param name="coordinate2">Coordinate 2</param>
         /// <returns>New coordinate</returns>
-        public static Coordinate operator -(Coordinate coordinate1, Coordinate coordinate2) =>
-            new Coordinate(coordinate1.X - coordinate2.X, coordinate1.Y - coordinate2.Y);
+        public static Coordinate operator -(Coordinate coordinate1, Coordinate coordinate2)
+        {
+            if (coordinate1 == null) throw new ArgumentNullException(nameof(coordinate1));
+            if (coordinate2 == null) throw new ArgumentNullException(nameof(coordinate2));
+
+            return new Coordinate(coordinate1.X - coordinate2.X, coordinate1.Y - coordinate2.Y);
+        }
+
+        /// <inheritdoc cref="op_Subtraction"/>
+        /// <param name="other"><see cref="Coordinate"/> to subtract</param>
+        public Coordinate Subtract(Coordinate other) => this - other;
 
         /// <summary>
         /// Multiply coordinates
@@ -154,8 +198,17 @@ namespace GTiff2Tiles.Core.Coordinates
         /// <param name="coordinate1">Coordinate 1</param>
         /// <param name="coordinate2">Coordinate 2</param>
         /// <returns>New coordinate</returns>
-        public static Coordinate operator *(Coordinate coordinate1, Coordinate coordinate2) =>
-            new Coordinate(coordinate1.X * coordinate2.X, coordinate1.Y * coordinate2.Y);
+        public static Coordinate operator *(Coordinate coordinate1, Coordinate coordinate2)
+        {
+            if (coordinate1 == null) throw new ArgumentNullException(nameof(coordinate1));
+            if (coordinate2 == null) throw new ArgumentNullException(nameof(coordinate2));
+
+            return new Coordinate(coordinate1.X * coordinate2.X, coordinate1.Y * coordinate2.Y);
+        }
+
+        /// <inheritdoc cref="op_Multiply"/>
+        /// <param name="other"><see cref="Coordinate"/> to multiply</param>
+        public Coordinate Multiply(Coordinate other) => this * other;
 
         /// <summary>
         /// Divide coordinates
@@ -163,8 +216,17 @@ namespace GTiff2Tiles.Core.Coordinates
         /// <param name="coordinate1">Coordinate 1</param>
         /// <param name="coordinate2">Coordinate 2</param>
         /// <returns>New coordinate</returns>
-        public static Coordinate operator /(Coordinate coordinate1, Coordinate coordinate2) =>
-            new Coordinate(coordinate1.X / coordinate2.X, coordinate1.Y / coordinate2.Y);
+        public static Coordinate operator /(Coordinate coordinate1, Coordinate coordinate2)
+        {
+            if (coordinate1 == null) throw new ArgumentNullException(nameof(coordinate1));
+            if (coordinate2 == null) throw new ArgumentNullException(nameof(coordinate2));
+
+            return new Coordinate(coordinate1.X / coordinate2.X, coordinate1.Y / coordinate2.Y);
+        }
+
+        /// <inheritdoc cref="op_Division"/>
+        /// <param name="other"><see cref="Coordinate"/> to divide on</param>
+        public Coordinate Divide(Coordinate other) => this / other;
 
         #endregion
 

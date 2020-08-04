@@ -1,6 +1,8 @@
 ﻿using System;
 using GTiff2Tiles.Core.Tiles;
 
+// ReSharper disable UnusedMemberInSuper.Global
+
 namespace GTiff2Tiles.Core.Coordinates
 {
     /// <summary>
