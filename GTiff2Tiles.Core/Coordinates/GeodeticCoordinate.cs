@@ -1,4 +1,5 @@
 ﻿using System;
+using GTiff2Tiles.Core.Enums;
 
 // ReSharper disable UnusedMember.Global
 
@@ -59,17 +60,11 @@ namespace GTiff2Tiles.Core.Coordinates
             return new MercatorCoordinate(mercatorX, mercatorY);
         }
 
-        /// <inheritdoc />
-        public override double Resolution(int zoom, int tileSize) => Resolution(this, zoom, tileSize);
-
-        /// <inheritdoc cref="Resolution(int, int)"/>
-        /// <param name="coordinate">Safe to set to <see langword="null"/></param>
-        /// <param name="zoom"></param>
-        /// <param name="tileSize"></param>
-        /// <returns></returns>
-        public static double Resolution(GeoCoordinate coordinate, int zoom, int tileSize)
+        /// <inheritdoc cref="GeoCoordinate.Resolution(int, int, CoordinateType)"/>
+        public static double Resolution(int zoom, int tileSize)
         {
             double resFactor = 180.0 / tileSize;
+
             return resFactor / Math.Pow(2, zoom);
         }
 

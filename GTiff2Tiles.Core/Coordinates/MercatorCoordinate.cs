@@ -1,4 +1,5 @@
 ﻿using System;
+using GTiff2Tiles.Core.Enums;
 
 namespace GTiff2Tiles.Core.Coordinates
 {
@@ -43,15 +44,8 @@ namespace GTiff2Tiles.Core.Coordinates
             return new GeodeticCoordinate(geodeticLongitude, geodeticLatitude);
         }
 
-        /// <inheritdoc />
-        public override double Resolution(int zoom, int tileSize) => Resolution(this, zoom, tileSize);
-
-        /// <inheritdoc cref="Resolution(int, int)"/>
-        /// <param name="coordinate">Safe to set to <see langword="null"/></param>
-        /// <param name="zoom"></param>
-        /// <param name="tileSize"></param>
-        /// <returns></returns>
-        public static double Resolution(GeoCoordinate coordinate, int zoom, int tileSize)
+        /// <inheritdoc cref="GeoCoordinate.Resolution(int, int, CoordinateType)"/>
+        public static double Resolution(int zoom, int tileSize)
         {
             //156543.03392804062 for tileSize = 256
             double initialResolution = 2.0 * Constants.Geodesic.OriginShift / tileSize;

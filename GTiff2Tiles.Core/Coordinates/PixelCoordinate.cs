@@ -66,7 +66,7 @@ namespace GTiff2Tiles.Core.Coordinates
         /// <returns>Converted <see cref="MercatorCoordinate"/></returns>
         public MercatorCoordinate ToMercatorCoordinate(int zoom, int tileSize)
         {
-            double resolution = MercatorCoordinate.Resolution(null, zoom, tileSize);
+            double resolution = MercatorCoordinate.Resolution(zoom, tileSize);
             double mx = X * resolution - Constants.Geodesic.OriginShift;
             double my = Y * resolution - Constants.Geodesic.OriginShift;
 

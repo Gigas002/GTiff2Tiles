@@ -93,7 +93,7 @@ namespace GTiff2Tiles.Core.Tiles
             if (number == null) throw new ArgumentNullException(nameof(number));
             if (tileSize == null) throw new ArgumentNullException(nameof(tileSize));
 
-            double resolution = GeodeticCoordinate.Resolution(null, number.Z, tileSize.Width);
+            double resolution = GeodeticCoordinate.Resolution(number.Z, tileSize.Width);
 
             GeodeticCoordinate minCoordinate = new GeodeticCoordinate(number.X * tileSize.Width * resolution - 180.0,
                                                                       number.Y * tileSize.Height * resolution - 90.0);

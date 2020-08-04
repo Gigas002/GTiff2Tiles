@@ -318,20 +318,22 @@
             <param name="tileSize"><see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>'s side size</param>
             <returns>Converted <see cref="T:GTiff2Tiles.Core.Coordinates.PixelCoordinate"/></returns>
         </member>
-        <member name="M:GTiff2Tiles.Core.Coordinates.GeoCoordinate.Resolution(System.Int32,System.Int32)">
+        <member name="M:GTiff2Tiles.Core.Coordinates.GeoCoordinate.Resolution(System.Int32,System.Int32,GTiff2Tiles.Core.Enums.CoordinateType)">
             <summary>
             Resolution for given zoom level (measured at Equator)
             </summary>
             <param name="zoom">Zoom</param>
             <param name="tileSize"><see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>'s side size</param>
+            <param name="coordinateType">Type of <see cref="T:GTiff2Tiles.Core.Coordinates.GeoCoordinate"/></param>
             <returns>Resolution value</returns>
         </member>
-        <member name="M:GTiff2Tiles.Core.Coordinates.GeoCoordinate.ZoomForPixelSize(System.Int32,System.Int32,System.Int32,System.Int32)">
+        <member name="M:GTiff2Tiles.Core.Coordinates.GeoCoordinate.ZoomForPixelSize(System.Int32,System.Int32,GTiff2Tiles.Core.Enums.CoordinateType,System.Int32,System.Int32)">
             <summary>
             Calculate zoom from known pixel size
             </summary>
             <param name="pixelSize">Pixel size</param>
             <param name="tileSize"><see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>'s side size</param>
+            <param name="coordinateType">Type of <see cref="T:GTiff2Tiles.Core.Coordinates.GeoCoordinate"/></param>
             <param name="minZoom">Minimal zoom
             <para/>0 by default</param>
             <param name="maxZoom">Maximal zoom
@@ -368,14 +370,7 @@
             <returns>Converted <see cref="T:GTiff2Tiles.Core.Coordinates.MercatorCoordinate"/></returns>
         </member>
         <member name="M:GTiff2Tiles.Core.Coordinates.GeodeticCoordinate.Resolution(System.Int32,System.Int32)">
-            <inheritdoc />
-        </member>
-        <member name="M:GTiff2Tiles.Core.Coordinates.GeodeticCoordinate.Resolution(GTiff2Tiles.Core.Coordinates.GeoCoordinate,System.Int32,System.Int32)">
-            <inheritdoc cref="M:GTiff2Tiles.Core.Coordinates.GeodeticCoordinate.Resolution(System.Int32,System.Int32)"/>
-            <param name="coordinate">Safe to set to <see langword="null"/></param>
-            <param name="zoom"></param>
-            <param name="tileSize"></param>
-            <returns></returns>
+            <inheritdoc cref="M:GTiff2Tiles.Core.Coordinates.GeoCoordinate.Resolution(System.Int32,System.Int32,GTiff2Tiles.Core.Enums.CoordinateType)"/>
         </member>
         <member name="T:GTiff2Tiles.Core.Coordinates.ICoordinate">
             <summary>
@@ -421,14 +416,7 @@
             <returns>Converted <see cref="T:GTiff2Tiles.Core.Coordinates.GeodeticCoordinate"/></returns>
         </member>
         <member name="M:GTiff2Tiles.Core.Coordinates.MercatorCoordinate.Resolution(System.Int32,System.Int32)">
-            <inheritdoc />
-        </member>
-        <member name="M:GTiff2Tiles.Core.Coordinates.MercatorCoordinate.Resolution(GTiff2Tiles.Core.Coordinates.GeoCoordinate,System.Int32,System.Int32)">
-            <inheritdoc cref="M:GTiff2Tiles.Core.Coordinates.MercatorCoordinate.Resolution(System.Int32,System.Int32)"/>
-            <param name="coordinate">Safe to set to <see langword="null"/></param>
-            <param name="zoom"></param>
-            <param name="tileSize"></param>
-            <returns></returns>
+            <inheritdoc cref="M:GTiff2Tiles.Core.Coordinates.GeoCoordinate.Resolution(System.Int32,System.Int32,GTiff2Tiles.Core.Enums.CoordinateType)"/>
         </member>
         <member name="T:GTiff2Tiles.Core.Coordinates.PixelCoordinate">
             <summary>

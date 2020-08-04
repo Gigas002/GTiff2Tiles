@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using GTiff2Tiles.Core.Enums;
 using GTiff2Tiles.Core.Tiles;
 
+// ReSharper disable MemberCanBePrivate.Global
 // ReSharper disable UnusedMember.Global
 // ReSharper disable MemberCanBeProtected.Global
 
@@ -72,24 +74,32 @@ namespace GTiff2Tiles.Core.Coordinates
         /// </summary>
         /// <param name="zoom">Zoom</param>
         /// <param name="tileSize"><see cref="ITile"/>'s side size</param>
+        /// <param name="coordinateType">Type of <see cref="GeoCoordinate"/></param>
         /// <returns>Resolution value</returns>
-        public virtual double Resolution(int zoom, int tileSize) => -1.0;
+        protected static double Resolution(int zoom, int tileSize, CoordinateType coordinateType) => coordinateType switch
+        {
+            CoordinateType.Mercator => MercatorCoordinate.Resolution(zoom, tileSize),
+            CoordinateType.Geodetic => GeodeticCoordinate.Resolution(zoom, tileSize),
+            _ => -1.0
+        };
 
         /// <summary>
         /// Calculate zoom from known pixel size
         /// </summary>
         /// <param name="pixelSize">Pixel size</param>
         /// <param name="tileSize"><see cref="ITile"/>'s side size</param>
+        /// <param name="coordinateType">Type of <see cref="GeoCoordinate"/></param>
         /// <param name="minZoom">Minimal zoom
         /// <para/>0 by default</param>
         /// <param name="maxZoom">Maximal zoom
         /// <para/>32 by default</param>
         /// <returns>Approximate zoom value</returns>
-        public int ZoomForPixelSize(int pixelSize, int tileSize, int minZoom = 0, int maxZoom = 32)
+        public static int ZoomForPixelSize(int pixelSize, int tileSize, CoordinateType coordinateType,
+                                           int minZoom = 0, int maxZoom = 32)
         {
             IEnumerable<int> range = Enumerable.Range(minZoom, maxZoom + 1);
 
-            foreach (int i in range.Where(i => pixelSize > Resolution(i, tileSize)))
+            foreach (int i in range.Where(i => pixelSize > Resolution(i, tileSize, coordinateType)))
                 return Math.Max(0, i - 1);
 
             return maxZoom - 1;
