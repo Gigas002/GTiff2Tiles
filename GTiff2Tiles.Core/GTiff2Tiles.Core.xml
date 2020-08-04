@@ -351,7 +351,7 @@
             <returns>Converted <see cref="T:GTiff2Tiles.Core.Coordinates.MercatorCoordinate"/></returns>
         </member>
         <member name="M:GTiff2Tiles.Core.Coordinates.GeodeticCoordinate.Resolution(System.Int32,System.Int32)">
-            <inheritdoc cref="!:GeoCoordinate.Resolution(int, int, CoordinateType)"/>
+            <inheritdoc cref="M:GTiff2Tiles.Core.Coordinates.GeoCoordinate.Resolution(System.Int32,System.Int32,GTiff2Tiles.Core.Enums.CoordinateSystem)"/>
         </member>
         <member name="T:GTiff2Tiles.Core.Coordinates.ICoordinate">
             <summary>
@@ -417,7 +417,7 @@
             <returns>Converted <see cref="T:GTiff2Tiles.Core.Coordinates.GeodeticCoordinate"/></returns>
         </member>
         <member name="M:GTiff2Tiles.Core.Coordinates.MercatorCoordinate.Resolution(System.Int32,System.Int32)">
-            <inheritdoc cref="!:GeoCoordinate.Resolution(int, int, CoordinateType)"/>
+            <inheritdoc cref="M:GTiff2Tiles.Core.Coordinates.GeoCoordinate.Resolution(System.Int32,System.Int32,GTiff2Tiles.Core.Enums.CoordinateSystem)"/>
         </member>
         <member name="T:GTiff2Tiles.Core.Coordinates.PixelCoordinate">
             <summary>
@@ -1679,7 +1679,7 @@
         <member name="F:GTiff2Tiles.Core.Tiles.Tile.MinimalBytesCount">
             <summary>
             <see cref="T:GTiff2Tiles.Core.Tiles.Tile"/>s with <see cref="P:GTiff2Tiles.Core.Tiles.Tile.Bytes"/> count lesser
-            than this value won't pass <see cref="!:Validate(bool)"/> check
+            than this value won't pass <see cref="M:GTiff2Tiles.Core.Tiles.Tile.Validate(System.Boolean,System.Int32)"/> check
             </summary>
         </member>
         <member name="P:GTiff2Tiles.Core.Tiles.Tile.IsDisposed">

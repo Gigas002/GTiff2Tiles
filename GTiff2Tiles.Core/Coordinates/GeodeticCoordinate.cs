@@ -86,7 +86,7 @@ namespace GTiff2Tiles.Core.Coordinates
             return new MercatorCoordinate(mercatorX, mercatorY);
         }
 
-        /// <inheritdoc cref="GeoCoordinate.Resolution(int, int, CoordinateType)"/>
+        /// <inheritdoc cref="GeoCoordinate.Resolution(int, int, CoordinateSystem)"/>
         public static double Resolution(int zoom, int tileSize)
         {
             double resFactor = 180.0 / tileSize;

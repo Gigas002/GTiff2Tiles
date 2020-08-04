@@ -62,7 +62,7 @@ namespace GTiff2Tiles.Core.Helpers
         /// <remarks><para/>If set <see keyword="null"/>, emptyness doesn't check</remarks></param>
         /// <returns><see langword="true"/> if everything is OK;
         /// <para/><see langword="false"/> otherwise</returns>
-        public static bool CheckDirectory(string directoryPath, bool? shouldBeEmpty = null)
+        public static bool CheckDirectory(string? directoryPath, bool? shouldBeEmpty = null)
         {
             // Check directory's path
             if (string.IsNullOrWhiteSpace(directoryPath)) return false;

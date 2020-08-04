@@ -36,7 +36,7 @@ namespace GTiff2Tiles.Core.Tiles
 
         /// <summary>
         /// <see cref="Tile"/>s with <see cref="Bytes"/> count lesser
-        /// than this value won't pass <see cref="Validate(bool)"/> check
+        /// than this value won't pass <see cref="Validate(bool,int)"/> check
         /// </summary>
         public const int MinimalBytesCount = 355;
 

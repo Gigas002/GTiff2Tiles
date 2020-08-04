@@ -76,7 +76,7 @@ namespace GTiff2Tiles.Core.Coordinates
             return new GeodeticCoordinate(geodeticLongitude, geodeticLatitude);
         }
 
-        /// <inheritdoc cref="GeoCoordinate.Resolution(int, int, CoordinateType)"/>
+        /// <inheritdoc cref="GeoCoordinate.Resolution(int, int, CoordinateSystem)"/>
         public static double Resolution(int zoom, int tileSize)
         {
             //156543.03392804062 for tileSize = 256
