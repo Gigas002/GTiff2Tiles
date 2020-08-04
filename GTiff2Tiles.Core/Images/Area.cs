@@ -2,6 +2,8 @@
 using GTiff2Tiles.Core.Coordinates;
 using GTiff2Tiles.Core.Tiles;
 
+// ReSharper disable MemberCanBePrivate.Global
+
 namespace GTiff2Tiles.Core.Images
 {
     /// <summary>
@@ -53,6 +55,13 @@ namespace GTiff2Tiles.Core.Images
                                                                GeoCoordinate tileMinCoordinate,
                                                                GeoCoordinate tileMaxCoordinate, Size tileSize)
         {
+            if (imageMinCoordinate == null) throw new ArgumentNullException(nameof(imageMinCoordinate));
+            if (imageMaxCoordinate == null) throw new ArgumentNullException(nameof(imageMaxCoordinate));
+            if (imageSize == null) throw new ArgumentNullException(nameof(imageSize));
+            if (tileMinCoordinate == null) throw new ArgumentNullException(nameof(tileMinCoordinate));
+            if (tileMaxCoordinate == null) throw new ArgumentNullException(nameof(tileMaxCoordinate));
+            if (tileSize == null) throw new ArgumentNullException(nameof(tileSize));
+
             //Read from input geotiff in pixels.
             double readPosMinX = imageSize.Width * (tileMinCoordinate.X - imageMinCoordinate.X) / (imageMaxCoordinate.X - imageMinCoordinate.X);
             double readPosMaxX = imageSize.Width * (tileMaxCoordinate.X - imageMinCoordinate.X) / (imageMaxCoordinate.X - imageMinCoordinate.X);
@@ -120,9 +129,14 @@ namespace GTiff2Tiles.Core.Images
         /// <param name="image">Source <see cref="IImage"/></param>
         /// <param name="tile">Target <see cref="ITile"/></param>
         /// <returns><see cref="ValueTuple"/> of <see cref="Area"/>s to read and write</returns>
-        public static (Area readArea, Area writeArea) GetAreas(IImage image, ITile tile) =>
-            GetAreas(image.MinCoordinate, image.MaxCoordinate, image.Size,
-                     tile.MinCoordinate, tile.MaxCoordinate, tile.Size);
+        public static (Area readArea, Area writeArea) GetAreas(IImage image, ITile tile)
+        {
+            if (image == null) throw new ArgumentNullException(nameof(image));
+            if (tile == null) throw new ArgumentNullException(nameof(tile));
+
+            return GetAreas(image.MinCoordinate, image.MaxCoordinate, image.Size, tile.MinCoordinate,
+                            tile.MaxCoordinate, tile.Size);
+        }
 
         #endregion
     }
