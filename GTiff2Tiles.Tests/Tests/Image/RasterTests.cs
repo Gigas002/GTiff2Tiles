@@ -24,7 +24,7 @@ namespace GTiff2Tiles.Tests.Tests.Image
         public async Task GenerateTmsTilesAsync()
         {
             // TODO: coordinate system
-            var coordinateSystem = CoordinateSystems.Epsg4326;
+            var coordinateSystem = CoordinateSystem.Epsg4326;
 
             DirectoryInfo examplesDirectoryInfo = Helpers.TestHelper.GetExamplesDirectoryInfo();
 
@@ -82,7 +82,7 @@ namespace GTiff2Tiles.Tests.Tests.Image
         public async Task GenerateNonTmsTilesAsync()
         {
             // TODO: coordinate system
-            var coordinateSystem = CoordinateSystems.Epsg4326;
+            var coordinateSystem = CoordinateSystem.Epsg4326;
 
             DirectoryInfo examplesDirectoryInfo = Helpers.TestHelper.GetExamplesDirectoryInfo();
 

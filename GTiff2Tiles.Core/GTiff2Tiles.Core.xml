@@ -464,54 +464,54 @@
             <param name="tileSize"><see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>'s side size</param>
             <returns>Converted <see cref="T:GTiff2Tiles.Core.Coordinates.PixelCoordinate"/></returns>
         </member>
-        <member name="T:GTiff2Tiles.Core.Enums.CoordinateSystems">
+        <member name="T:GTiff2Tiles.Core.Enums.CoordinateSystem">
             <summary>
             Supported EPSG coordinate systems
             </summary>
         </member>
-        <member name="F:GTiff2Tiles.Core.Enums.CoordinateSystems.Epsg4326">
+        <member name="F:GTiff2Tiles.Core.Enums.CoordinateSystem.Epsg4326">
             <summary>
             EPSG:4326
             </summary>
         </member>
-        <member name="F:GTiff2Tiles.Core.Enums.CoordinateSystems.Epsg3857">
+        <member name="F:GTiff2Tiles.Core.Enums.CoordinateSystem.Epsg3857">
             <summary>
             EPSG:3857
             </summary>
         </member>
-        <member name="F:GTiff2Tiles.Core.Enums.CoordinateSystems.Epsg3587">
+        <member name="F:GTiff2Tiles.Core.Enums.CoordinateSystem.Epsg3587">
             <summary>
-            Replaced by <see cref="F:GTiff2Tiles.Core.Enums.CoordinateSystems.Epsg3857"/>
+            Replaced by <see cref="F:GTiff2Tiles.Core.Enums.CoordinateSystem.Epsg3857"/>
             </summary>
         </member>
-        <member name="F:GTiff2Tiles.Core.Enums.CoordinateSystems.Epsg3785">
+        <member name="F:GTiff2Tiles.Core.Enums.CoordinateSystem.Epsg3785">
             <summary>
-            Replaced by <see cref="F:GTiff2Tiles.Core.Enums.CoordinateSystems.Epsg3857"/>
+            Replaced by <see cref="F:GTiff2Tiles.Core.Enums.CoordinateSystem.Epsg3857"/>
             </summary>
         </member>
-        <member name="F:GTiff2Tiles.Core.Enums.CoordinateSystems.Epsg41001">
+        <member name="F:GTiff2Tiles.Core.Enums.CoordinateSystem.Epsg41001">
             <summary>
-            Replaced by <see cref="F:GTiff2Tiles.Core.Enums.CoordinateSystems.Epsg3857"/>
+            Replaced by <see cref="F:GTiff2Tiles.Core.Enums.CoordinateSystem.Epsg3857"/>
             </summary>
         </member>
-        <member name="F:GTiff2Tiles.Core.Enums.CoordinateSystems.Epsg54004">
+        <member name="F:GTiff2Tiles.Core.Enums.CoordinateSystem.Epsg54004">
             <summary>
-            Replaced by <see cref="F:GTiff2Tiles.Core.Enums.CoordinateSystems.Epsg3857"/>
+            Replaced by <see cref="F:GTiff2Tiles.Core.Enums.CoordinateSystem.Epsg3857"/>
             </summary>
         </member>
-        <member name="F:GTiff2Tiles.Core.Enums.CoordinateSystems.Epsg102113">
+        <member name="F:GTiff2Tiles.Core.Enums.CoordinateSystem.Epsg102113">
             <summary>
-            Replaced by <see cref="F:GTiff2Tiles.Core.Enums.CoordinateSystems.Epsg3857"/>
+            Replaced by <see cref="F:GTiff2Tiles.Core.Enums.CoordinateSystem.Epsg3857"/>
             </summary>
         </member>
-        <member name="F:GTiff2Tiles.Core.Enums.CoordinateSystems.Epsg102100">
+        <member name="F:GTiff2Tiles.Core.Enums.CoordinateSystem.Epsg102100">
             <summary>
-            Replaced by <see cref="F:GTiff2Tiles.Core.Enums.CoordinateSystems.Epsg3857"/>
+            Replaced by <see cref="F:GTiff2Tiles.Core.Enums.CoordinateSystem.Epsg3857"/>
             </summary>
         </member>
-        <member name="F:GTiff2Tiles.Core.Enums.CoordinateSystems.Epsg900913">
+        <member name="F:GTiff2Tiles.Core.Enums.CoordinateSystem.Epsg900913">
             <summary>
-            Replaced by <see cref="F:GTiff2Tiles.Core.Enums.CoordinateSystems.Epsg3857"/>
+            Replaced by <see cref="F:GTiff2Tiles.Core.Enums.CoordinateSystem.Epsg3857"/>
             </summary>
         </member>
         <member name="T:GTiff2Tiles.Core.Enums.CoordinateType">
@@ -674,14 +674,14 @@
             <returns>Proj <see cref="T:System.String"/> if everything OK;
             <para/><see langword="null"/> otherwise</returns>
         </member>
-        <member name="M:GTiff2Tiles.Core.GdalWorker.ConvertGeoTiffToTargetSystemAsync(System.String,System.String,GTiff2Tiles.Core.Enums.CoordinateSystems,System.IProgress{System.Double})">
+        <member name="M:GTiff2Tiles.Core.GdalWorker.ConvertGeoTiffToTargetSystemAsync(System.String,System.String,GTiff2Tiles.Core.Enums.CoordinateSystem,System.IProgress{System.Double})">
             <summary>
-            Converts current GeoTiff to a new file with target <see cref="T:GTiff2Tiles.Core.Enums.CoordinateSystems"/>
+            Converts current GeoTiff to a new file with target <see cref="!:CoordinateSystems"/>
             through GdalWarp
             </summary>
             <param name="inputFilePath">Input GeoTiff's path</param>
             <param name="outputFilePath">Output file's path</param>
-            <param name="targetSystem">Target <see cref="T:GTiff2Tiles.Core.Enums.CoordinateSystems"/></param>
+            <param name="targetSystem">Target <see cref="!:CoordinateSystems"/></param>
             <param name="progress">GdalWarp's progress</param>
             <returns><see langword="true"/> if operation was sucessful;
             <para/><see langword="false"/> otherwise</returns>
@@ -691,7 +691,7 @@
             Gets supported coordinate system from proj string of GeoTIFF
             </summary>
             <param name="projString">Proj string of input GeoTIFF</param>
-            <returns>Input file's <see cref="T:GTiff2Tiles.Core.Enums.CoordinateSystems"/></returns>
+            <returns>Input file's <see cref="!:CoordinateSystems"/></returns>
         </member>
         <member name="M:GTiff2Tiles.Core.GdalWorker.GetGeoTransform(System.String)">
             <summary>
@@ -739,7 +739,7 @@
             <returns><see langword="true"/> if everything is OK;
             <para/><see langword="false"/> otherwise</returns>
         </member>
-        <member name="M:GTiff2Tiles.Core.Helpers.CheckHelper.CheckInputFileAsync(System.String,GTiff2Tiles.Core.Enums.CoordinateSystems)">
+        <member name="M:GTiff2Tiles.Core.Helpers.CheckHelper.CheckInputFileAsync(System.String,GTiff2Tiles.Core.Enums.CoordinateSystem)">
             <summary>
             Checks the existance, projection and type
             </summary>
@@ -1042,7 +1042,7 @@
             Example of class to use <see cref="T:GTiff2Tiles.Core.Images.IImage"/> interface.
             </summary>
         </member>
-        <member name="M:GTiff2Tiles.Core.Images.Img.GenerateTilesAsync(System.IO.FileInfo,System.IO.DirectoryInfo,System.Int32,System.Int32,GTiff2Tiles.Core.Enums.TileType,GTiff2Tiles.Core.Enums.CoordinateSystems,System.Boolean,GTiff2Tiles.Core.Enums.TileExtension,System.IProgress{System.Double},System.Int32)">
+        <member name="M:GTiff2Tiles.Core.Images.Img.GenerateTilesAsync(System.IO.FileInfo,System.IO.DirectoryInfo,System.Int32,System.Int32,GTiff2Tiles.Core.Enums.TileType,GTiff2Tiles.Core.Enums.CoordinateSystem,System.Boolean,GTiff2Tiles.Core.Enums.TileExtension,System.IProgress{System.Double},System.Int32)">
             <summary>
             Example of method to use <see cref="T:GTiff2Tiles.Core.Images.IImage"/> interface for cropping the tiles.
             </summary>

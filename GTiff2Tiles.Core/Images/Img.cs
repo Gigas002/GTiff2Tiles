@@ -28,13 +28,13 @@ namespace GTiff2Tiles.Core.Images
         /// <returns></returns>
         public static async ValueTask GenerateTilesAsync(FileInfo inputFileInfo, DirectoryInfo outputDirectoryInfo,
                                                          int minZ, int maxZ, TileType tileType,
-                                                         CoordinateSystems targetSystem,
+                                                         CoordinateSystem targetSystem,
                                                          bool tmsCompatible = true,
                                                          TileExtension tileExtension = TileExtension.Png,
                                                          IProgress<double> progress = null,
                                                          int threadsCount = 5)
         {
-            CoordinateType coordinateType = targetSystem == CoordinateSystems.Epsg4326
+            CoordinateType coordinateType = targetSystem == CoordinateSystem.Epsg4326
                                                 ? CoordinateType.Geodetic
                                                 : CoordinateType.Mercator;
             //This is example.

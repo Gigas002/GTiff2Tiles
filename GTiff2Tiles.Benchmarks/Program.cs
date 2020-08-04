@@ -129,7 +129,7 @@ namespace GTiff2Tiles.Benchmarks
 
         private static async ValueTask RunTilingAsync()
         {
-            CoordinateSystems coordinateSystem = CoordinateSystems.Epsg4326;
+            CoordinateSystem coordinateSystem = CoordinateSystem.Epsg4326;
 
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();

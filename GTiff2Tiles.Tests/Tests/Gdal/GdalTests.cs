@@ -22,7 +22,7 @@ namespace GTiff2Tiles.Tests.Tests.Gdal
         public async Task CheckAndRepair3785Async()
         {
             // TODO: coordinate system
-            var coordinateSystem = CoordinateSystems.Epsg4326;
+            var coordinateSystem = CoordinateSystem.Epsg4326;
 
             DirectoryInfo examplesDirectoryInfo = Helpers.TestHelper.GetExamplesDirectoryInfo();
 
@@ -63,7 +63,7 @@ namespace GTiff2Tiles.Tests.Tests.Gdal
         public async Task CheckAndRepair3395Async()
         {
             // TODO: coordinate system
-            var coordinateSystem = CoordinateSystems.Epsg4326;
+            var coordinateSystem = CoordinateSystem.Epsg4326;
 
             DirectoryInfo examplesDirectoryInfo = Helpers.TestHelper.GetExamplesDirectoryInfo();
 

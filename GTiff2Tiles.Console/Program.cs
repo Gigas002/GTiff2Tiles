@@ -69,7 +69,7 @@ namespace GTiff2Tiles.Console
         private static async Task Main(string[] args)
         {
             // TODO: coordinate system option
-            var targetCoordinateSystem = CoordinateSystems.Epsg4326;
+            var targetCoordinateSystem = CoordinateSystem.Epsg4326;
 
             Stopwatch stopwatch = Stopwatch.StartNew();
 

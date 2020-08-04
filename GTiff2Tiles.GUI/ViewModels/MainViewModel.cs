@@ -390,7 +390,7 @@ namespace GTiff2Tiles.GUI.ViewModels
         public async void StartButtonAsync()
         {
             // TODO: coordinate system
-            var coordinateSystem = CoordinateSystems.Epsg4326;
+            var coordinateSystem = CoordinateSystem.Epsg4326;
 
             Stopwatch stopwatch = Stopwatch.StartNew();
 

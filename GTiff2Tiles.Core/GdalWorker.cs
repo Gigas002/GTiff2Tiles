@@ -227,19 +227,19 @@ namespace GTiff2Tiles.Core
         /// <returns><see langword="true"/> if operation was sucessful;
         /// <para/><see langword="false"/> otherwise</returns>
         public static ValueTask<bool> ConvertGeoTiffToTargetSystemAsync(string inputFilePath,
-            string outputFilePath, CoordinateSystems targetSystem, IProgress<double> progress = null)
+            string outputFilePath, CoordinateSystem targetSystem, IProgress<double> progress = null)
         {
             List<string> gdalWarpOptions = ConvertCoordinateSystemOptions.ToList();
 
             switch (targetSystem)
             {
-                case CoordinateSystems.Epsg4326:
+                case CoordinateSystem.Epsg4326:
                     {
                         gdalWarpOptions.AddRange(SrsEpsg4326);
 
                         break;
                     }
-                case CoordinateSystems.Epsg3857:
+                case CoordinateSystem.Epsg3857:
                     {
                         gdalWarpOptions.AddRange(SrsEpsg3857);
 
@@ -259,16 +259,16 @@ namespace GTiff2Tiles.Core
         /// </summary>
         /// <param name="projString">Proj string of input GeoTIFF</param>
         /// <returns>Input file's <see cref="CoordinateSystems"/></returns>
-        public static CoordinateSystems GetCoordinateSystem(string projString)
+        public static CoordinateSystem GetCoordinateSystem(string projString)
         {
             if (string.IsNullOrWhiteSpace(projString)) throw new ArgumentNullException(nameof(projString));
 
             if (projString.Contains(Proj.ProjLongLat, StringComparison.InvariantCulture)
              && projString.Contains(Proj.DatumWgs84, StringComparison.InvariantCulture))
-                return CoordinateSystems.Epsg4326;
+                return CoordinateSystem.Epsg4326;
             if (projString.Contains(Proj.ProjMerc, StringComparison.InvariantCulture)
              && !projString.Contains(Proj.DatumWgs84, StringComparison.InvariantCulture))
-                return CoordinateSystems.Epsg3857;
+                return CoordinateSystem.Epsg3857;
 
             throw new GdalException();
         }

@@ -20,7 +20,7 @@ namespace GTiff2Tiles.Tests.Tests
         public async Task CheckHelperTestsAsync()
         {
             // TODO: coordinate system
-            var coordinateSystem = CoordinateSystems.Epsg4326;
+            var coordinateSystem = CoordinateSystem.Epsg4326;
 
             try
             {

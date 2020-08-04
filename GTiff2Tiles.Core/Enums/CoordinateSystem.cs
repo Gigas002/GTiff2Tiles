@@ -1,4 +1,6 @@
-﻿using System;
+﻿#pragma warning disable CA1027 // Mark enums with FlagsAttribute
+
+using System;
 
 // ReSharper disable UnusedMember.Global
 
@@ -7,18 +9,17 @@ namespace GTiff2Tiles.Core.Enums
     /// <summary>
     /// Supported EPSG coordinate systems
     /// </summary>
-    [Flags]
-    public enum CoordinateSystems
+    public enum CoordinateSystem
     {
         /// <summary>
         /// EPSG:4326
         /// </summary>
-        Epsg4326 = 0,
+        Epsg4326,
 
         /// <summary>
         /// EPSG:3857
         /// </summary>
-        Epsg3857 = 1,
+        Epsg3857,
 
         /// <summary>
         /// Replaced by <see cref="Epsg3857"/>
@@ -63,3 +64,5 @@ namespace GTiff2Tiles.Core.Enums
         Epsg900913 = Epsg3857
     }
 }
+
+#pragma warning restore CA1027 // Mark enums with FlagsAttribute

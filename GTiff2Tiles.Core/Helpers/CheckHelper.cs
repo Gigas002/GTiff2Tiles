@@ -90,12 +90,12 @@ namespace GTiff2Tiles.Core.Helpers
         /// <param name="targetSystem">Target coordinate system</param>
         /// <returns><see langword="true"/> if file needs to be converted;
         /// <para/><see langword="false"/> otherwise</returns>
-        public static async ValueTask<bool> CheckInputFileAsync(string inputFilePath, CoordinateSystems targetSystem)
+        public static async ValueTask<bool> CheckInputFileAsync(string inputFilePath, CoordinateSystem targetSystem)
         {
             // Get proj and gdalInfo strings
             string projString = await GdalWorker.GetProjStringAsync(inputFilePath).ConfigureAwait(false);
             string gdalInfoString = await GdalWorker.InfoAsync(inputFilePath).ConfigureAwait(false);
-            CoordinateSystems inputSystem = GdalWorker.GetCoordinateSystem(projString);
+            CoordinateSystem inputSystem = GdalWorker.GetCoordinateSystem(projString);
 
             // Check if input image is ready for cropping
             return inputSystem == targetSystem && gdalInfoString.Contains(GdalWorker.Byte,
