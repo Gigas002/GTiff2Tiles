@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using GTiff2Tiles.Core.Constants;
+using GTiff2Tiles.Core.Enums;
 using GTiff2Tiles.Core.Localization;
 
 namespace GTiff2Tiles.Core.Helpers
@@ -14,63 +16,42 @@ namespace GTiff2Tiles.Core.Helpers
     {
         #region Methods
 
-        #region Private
-
-        /// <summary>
-        /// Check GdalInfo's strings.
-        /// Byte - type;
-        /// </summary>
-        /// <param name="gdalInfoString">String from <see cref="GdalWorker.InfoAsync"/> method.</param>
-        /// <param name="proj4String">Proj4 string.</param>
-        /// <returns><see langword="true"/>, if file is OK, <see langword="false"/> otherwise.</returns>
-        private static bool CheckTifInfo(string gdalInfoString, string proj4String)
-        {
-            if (string.IsNullOrWhiteSpace(gdalInfoString))
-                throw new Exception(string.Format(Strings.StringIsEmpty, nameof(gdalInfoString)));
-
-            //TODO: Don't convert on EPSG:3857 aka mercator
-            //Check projection.
-            if (!proj4String.Contains(Proj.LongLat) || !proj4String.Contains(Proj.Wgs84))
-                return false;
-
-            //Other checks.
-            return gdalInfoString.Contains(GdalWorker.Byte);
-        }
-
-        #endregion
-
         #region Internal
 
         /// <summary>
-        /// Checks, if file's path is not empty string and file exists, if it should.
+        /// Checks, if file's path is not empty string and file exists, if it should
         /// </summary>
-        /// <param name="fileInfo">File to check.</param>
+        /// <param name="fileInfo">File to check</param>
         /// <param name="shouldExist">Should it exist?</param>
-        /// <param name="fileExtension">Checks file extension.</param>
+        /// <param name="fileExtension">Checks file extension</param>
         internal static void CheckFile(FileInfo fileInfo, bool shouldExist, string fileExtension = null)
         {
-            //Update file state.
+            // Update file state 
             fileInfo.Refresh();
 
-            //Check file's path.
+            // Check file's path 
             if (string.IsNullOrWhiteSpace(fileInfo.FullName))
-                throw new Exception(string.Format(Strings.StringIsEmpty, nameof(fileInfo.FullName)));
+                throw new Exception(string.Format(CultureInfo.InvariantCulture,
+                                                  Strings.StringIsEmpty, nameof(fileInfo.FullName)));
 
-            //Check file's extension.
+            // Check file's extension
             if (!string.IsNullOrWhiteSpace(fileExtension))
                 if (fileInfo.Extension != fileExtension)
-                    throw new Exception(string.Format(Strings.WrongExtension, nameof(fileInfo), fileExtension,
+                    throw new Exception(string.Format(CultureInfo.InvariantCulture,
+                                                      Strings.WrongExtension, nameof(fileInfo), fileExtension,
                                                       fileInfo.FullName));
 
-            //Check file's existance.
+            // Check file's existance
             if (shouldExist)
             {
                 if (!fileInfo.Exists)
-                    throw new Exception(string.Format(Strings.DoesntExist, nameof(fileInfo), fileInfo.FullName));
+                    throw new Exception(string.Format(CultureInfo.InvariantCulture,
+                                                      Strings.DoesntExist, nameof(fileInfo), fileInfo.FullName));
             }
             else if (fileInfo.Exists)
             {
-                throw new Exception(string.Format(Strings.AlreadyExist, nameof(fileInfo), fileInfo.FullName));
+                throw new Exception(string.Format(CultureInfo.InvariantCulture,
+                                                  Strings.AlreadyExist, nameof(fileInfo), fileInfo.FullName));
             }
         }
 
@@ -80,18 +61,21 @@ namespace GTiff2Tiles.Core.Helpers
 
         /// <summary>
         /// Checks, if directory's path is not empty, creates directory if it doesn't exist
-        /// and checks if it's empty or not.
+        /// and checks if it's empty or not
         /// </summary>
-        /// <param name="directoryInfo">Directory to check.</param>
+        /// <param name="directoryInfo">Directory to check</param>
         /// <param name="shouldBeEmpty">Should directory be empty?
-        /// <para/>If set <see keyword="null"/>, emptyness doesn't check.</param>
+        /// <para/>If set <see keyword="null"/>, emptyness doesn't check</param>
         public static void CheckDirectory(DirectoryInfo directoryInfo, bool? shouldBeEmpty = null)
         {
-            //Check directory's path.
-            if (string.IsNullOrWhiteSpace(directoryInfo.FullName))
-                throw new Exception(string.Format(Strings.StringIsEmpty, nameof(directoryInfo.FullName)));
+            if (directoryInfo == null) throw new ArgumentNullException(nameof(directoryInfo));
 
-            //Try to create directory.
+            // Check directory's path
+            if (string.IsNullOrWhiteSpace(directoryInfo.FullName))
+                throw new Exception(string.Format(CultureInfo.InvariantCulture,
+                                                  Strings.StringIsEmpty, nameof(directoryInfo.FullName)));
+
+            // Try to create directory
             try
             {
                 directoryInfo.Create();
@@ -100,39 +84,46 @@ namespace GTiff2Tiles.Core.Helpers
             catch (Exception exception)
             {
                 throw new
-                    Exception(string.Format(Strings.UnableToCreate, nameof(directoryInfo), directoryInfo.FullName),
+                    Exception(string.Format(CultureInfo.InvariantCulture,
+                                            Strings.UnableToCreate, nameof(directoryInfo), directoryInfo.FullName),
                               exception);
             }
 
-            //Check directory's emptyness.
+            // Check directory's emptyness
             // ReSharper disable once ConvertIfStatementToSwitchStatement
             if (shouldBeEmpty == true)
             {
                 if (directoryInfo.EnumerateFileSystemInfos().Any())
-                    throw new Exception(string.Format(Strings.DirectoryIsntEmpty, directoryInfo.FullName));
+                    throw new Exception(string.Format(CultureInfo.InvariantCulture,
+                                                      Strings.DirectoryIsntEmpty, directoryInfo.FullName));
             }
             else if (shouldBeEmpty == false)
             {
                 if (!directoryInfo.EnumerateFileSystemInfos().Any())
-                    throw new Exception(string.Format(Strings.DirectoryIsEmpty, directoryInfo.FullName));
+                    throw new Exception(string.Format(CultureInfo.InvariantCulture,
+                                                      Strings.DirectoryIsEmpty, directoryInfo.FullName));
             }
         }
 
         /// <summary>
-        /// Checks the existance, projection and type.
+        /// Checks the existance, projection and type
         /// </summary>
-        /// <param name="inputFileInfo">Input file.</param>
-        /// <returns><see langword="true"/> if no errors in input file, <see langword="false"/> otherwise.</returns>
-        public static async ValueTask<bool> CheckInputFileAsync(FileInfo inputFileInfo)
+        /// <param name="inputFileInfo">Input geotiff</param>
+        /// <param name="targetSystem">Target coordinate system</param>
+        /// <returns><see langword="true"/> if file needs to be converted;
+        /// <para/><see langword="false"/> otherwise</returns>
+        public static async ValueTask<bool> CheckInputFileAsync(FileInfo inputFileInfo, CoordinateSystems targetSystem)
         {
             CheckFile(inputFileInfo, true, FileExtensions.Tif);
 
-            //Get proj4 and gdalInfo strings.
-            string proj4String = await GdalWorker.GetProj4StringAsync(inputFileInfo).ConfigureAwait(false);
+            // Get proj and gdalInfo strings
+            string projString = await GdalWorker.GetProjStringAsync(inputFileInfo).ConfigureAwait(false);
             string gdalInfoString = await GdalWorker.InfoAsync(inputFileInfo).ConfigureAwait(false);
+            CoordinateSystems inputSystem = GdalWorker.GetCoordinateSystem(projString);
 
-            //Check if input image is ready for cropping.
-            return CheckTifInfo(gdalInfoString, proj4String);
+            // Check if input image is ready for cropping
+            return inputSystem == targetSystem && gdalInfoString.Contains(GdalWorker.Byte,
+                                                                          StringComparison.InvariantCulture);
         }
 
         #endregion

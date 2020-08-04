@@ -19,10 +19,9 @@ namespace GTiff2Tiles.Tests.Tests
         {
             try
             {
-                string lonLat = Core.Constants.Proj.LongLat;
-                string wgs84 = Core.Constants.Proj.Wgs84;
-                string typeByte = GdalWorker.Byte;
-                string[] repairTifOptions = GdalWorker.RepairTifOptions;
+                string lonLat = Core.Constants.Proj.ProjLongLat;
+                string wgs84 = Core.Constants.Proj.DatumWgs84;
+                string[] repairTifOptions = GdalWorker.ConvertCoordinateSystemOptions;
                 string tempFileName = GdalWorker.TempFileName;
             }
             catch (Exception exception) { Assert.Fail(exception.Message); }

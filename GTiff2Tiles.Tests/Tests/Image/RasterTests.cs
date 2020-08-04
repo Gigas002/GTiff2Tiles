@@ -23,6 +23,9 @@ namespace GTiff2Tiles.Tests.Tests.Image
         [Test]
         public async Task GenerateTmsTilesAsync()
         {
+            // TODO: coordinate system
+            var coordinateSystem = CoordinateSystems.Epsg4326;
+
             DirectoryInfo examplesDirectoryInfo = Helpers.TestHelper.GetExamplesDirectoryInfo();
 
             DirectoryInfo tempDirectoryInfo =
@@ -48,13 +51,14 @@ namespace GTiff2Tiles.Tests.Tests.Image
                 //Check for errors.
                 CheckHelper.CheckDirectory(outputDirectoryInfo, true);
 
-                if (!await CheckHelper.CheckInputFileAsync(inputFileInfo))
+                if (!await CheckHelper.CheckInputFileAsync(inputFileInfo, coordinateSystem))
                 {
                     string tempFilePath = Path.Combine(tempDirectoryInfo.FullName,
                                                        $"{GdalWorker.TempFileName}{FileExtensions.Tif}");
                     FileInfo tempFileInfo = new FileInfo(tempFilePath);
 
-                    await GdalWorker.WarpAsync(inputFileInfo, tempFileInfo, GdalWorker.RepairTifOptions);
+                    await GdalWorker.ConvertGeoTiffToTargetSystemAsync(inputFileInfo, tempFileInfo, coordinateSystem,
+                                                                       progress).ConfigureAwait(false);
                     inputFileInfo = tempFileInfo;
                 }
 
@@ -76,6 +80,9 @@ namespace GTiff2Tiles.Tests.Tests.Image
         [Test]
         public async Task GenerateNonTmsTilesAsync()
         {
+            // TODO: coordinate system
+            var coordinateSystem = CoordinateSystems.Epsg4326;
+
             DirectoryInfo examplesDirectoryInfo = Helpers.TestHelper.GetExamplesDirectoryInfo();
 
             DirectoryInfo tempDirectoryInfo =
@@ -101,13 +108,14 @@ namespace GTiff2Tiles.Tests.Tests.Image
                 //Check for errors.
                 CheckHelper.CheckDirectory(outputDirectoryInfo, true);
 
-                if (!await CheckHelper.CheckInputFileAsync(inputFileInfo))
+                if (!await CheckHelper.CheckInputFileAsync(inputFileInfo, coordinateSystem))
                 {
                     string tempFilePath = Path.Combine(tempDirectoryInfo.FullName,
                                                        $"{GdalWorker.TempFileName}{FileExtensions.Tif}");
                     FileInfo tempFileInfo = new FileInfo(tempFilePath);
 
-                    await GdalWorker.WarpAsync(inputFileInfo, tempFileInfo, GdalWorker.RepairTifOptions);
+                    await GdalWorker.ConvertGeoTiffToTargetSystemAsync(inputFileInfo, tempFileInfo, coordinateSystem,
+                                                                       progress).ConfigureAwait(false);
                     inputFileInfo = tempFileInfo;
                 }
 

@@ -68,6 +68,9 @@ namespace GTiff2Tiles.Console
 
         private static async Task Main(string[] args)
         {
+            // TODO: coordinate system option
+            var coordinateSystem = CoordinateSystems.Epsg3857;
+
             Stopwatch stopwatch = Stopwatch.StartNew();
 
             try
@@ -104,19 +107,18 @@ namespace GTiff2Tiles.Console
                 //Check for errors.
                 CheckHelper.CheckDirectory(OutputDirectoryInfo, true);
 
-                if (!await CheckHelper.CheckInputFileAsync(InputFileInfo).ConfigureAwait(false))
+                if (!await CheckHelper.CheckInputFileAsync(InputFileInfo, coordinateSystem).ConfigureAwait(false))
                 {
                     string tempFilePath = Path.Combine(TempDirectoryInfo.FullName,
                                                        $"{GdalWorker.TempFileName}{FileExtensions.Tif}");
                     FileInfo tempFileInfo = new FileInfo(tempFilePath);
 
-                    await GdalWorker.WarpAsync(InputFileInfo, tempFileInfo, GdalWorker.RepairTifOptions)
-                                    .ConfigureAwait(false);
+                    await GdalWorker.ConvertGeoTiffToTargetSystemAsync(InputFileInfo, tempFileInfo, coordinateSystem,
+                                                         consoleProgress).ConfigureAwait(false);
                     InputFileInfo = tempFileInfo;
                 }
 
                 //Run tiling.
-                //TODO: tileType
                 await Img.GenerateTilesAsync(InputFileInfo, OutputDirectoryInfo, MinZ, MaxZ, TileType.Raster,
                                              TmsCompatible, TileExtension,
                                              consoleProgress, ThreadsCount).ConfigureAwait(false);
@@ -132,10 +134,10 @@ namespace GTiff2Tiles.Console
             System.Console.WriteLine(Strings.Done, Environment.NewLine, stopwatch.Elapsed.Days, stopwatch.Elapsed.Hours,
                                      stopwatch.Elapsed.Minutes, stopwatch.Elapsed.Seconds,
                                      stopwatch.Elapsed.Milliseconds);
-            #if DEBUG
+#if DEBUG
             System.Console.WriteLine(Strings.PressAnyKey);
             System.Console.ReadKey();
-            #endif
+#endif
         }
 
         #region Methods

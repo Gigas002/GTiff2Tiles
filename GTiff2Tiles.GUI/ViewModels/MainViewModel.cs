@@ -389,6 +389,9 @@ namespace GTiff2Tiles.GUI.ViewModels
         /// <returns></returns>
         public async void StartButtonAsync()
         {
+            // TODO: coordinate system
+            var coordinateSystem = CoordinateSystems.Epsg4326;
+
             Stopwatch stopwatch = Stopwatch.StartNew();
 
             //Check properties for errors.
@@ -412,19 +415,18 @@ namespace GTiff2Tiles.GUI.ViewModels
                 //Check for errors.
                 CheckHelper.CheckDirectory(outputDirectoryInfo, true);
 
-                if (!await CheckHelper.CheckInputFileAsync(inputFileInfo).ConfigureAwait(true))
+                if (!await CheckHelper.CheckInputFileAsync(inputFileInfo, coordinateSystem).ConfigureAwait(true))
                 {
                     string tempFilePath = Path.Combine(tempDirectoryInfo.FullName,
                                                        $"{GdalWorker.TempFileName}{FileExtensions.Tif}");
                     FileInfo tempFileInfo = new FileInfo(tempFilePath);
 
-                    await GdalWorker.WarpAsync(inputFileInfo, tempFileInfo, GdalWorker.RepairTifOptions)
-                                    .ConfigureAwait(true);
+                    await GdalWorker.ConvertGeoTiffToTargetSystemAsync(inputFileInfo, tempFileInfo, coordinateSystem,
+                                                                       progress).ConfigureAwait(false);
                     inputFileInfo = tempFileInfo;
                 }
 
                 //Run tiling.
-                //TODO: tileType
                 await Img.GenerateTilesAsync(inputFileInfo, outputDirectoryInfo, MinZ, MaxZ, TileType.Raster,
                                              TmsCompatible, RealTileExtension, progress,
                                              ThreadsCount).ConfigureAwait(true);

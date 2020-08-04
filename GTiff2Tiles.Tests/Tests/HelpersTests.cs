@@ -4,6 +4,7 @@ using System;
 using System.IO;
 using System.Threading.Tasks;
 using GTiff2Tiles.Core.Constants;
+using GTiff2Tiles.Core.Enums;
 using GTiff2Tiles.Core.Helpers;
 using GTiff2Tiles.Tests.Constants;
 using NUnit.Framework;
@@ -18,6 +19,9 @@ namespace GTiff2Tiles.Tests.Tests
         [Test]
         public async Task CheckHelperTestsAsync()
         {
+            // TODO: coordinate system
+            var coordinateSystem = CoordinateSystems.Epsg4326;
+
             try
             {
                 DirectoryInfo examplesDirectoryInfo = Helpers.TestHelper.GetExamplesDirectoryInfo();
@@ -26,7 +30,7 @@ namespace GTiff2Tiles.Tests.Tests
                                                     $"{FileSystemEntries.Input4326}{FileExtensions.Tif}");
                 FileInfo inputFileInfo = new FileInfo(inputFilePath);
                 CheckHelper.CheckDirectory(examplesDirectoryInfo, false);
-                await CheckHelper.CheckInputFileAsync(inputFileInfo);
+                await CheckHelper.CheckInputFileAsync(inputFileInfo, coordinateSystem);
             }
             catch (Exception exception) { Assert.Fail(exception.Message); }
 

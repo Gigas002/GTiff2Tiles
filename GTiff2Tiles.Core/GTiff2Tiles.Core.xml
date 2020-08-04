@@ -75,34 +75,66 @@
             </summary>
         </member>
         <member name="F:GTiff2Tiles.Core.Constants.Interpolations.Nearest">
-            <summary>Nearest-neighbour interpolation.</summary>
+            <summary>
+            Nearest-neighbour interpolation
+            </summary>
         </member>
         <member name="F:GTiff2Tiles.Core.Constants.Interpolations.Linear">
-            <summary>Linear interpolation.</summary>
+            <summary>
+            Linear interpolation
+            </summary>
         </member>
         <member name="F:GTiff2Tiles.Core.Constants.Interpolations.Cubic">
-            <summary>Cubic interpolation.</summary>
+            <summary>
+            Cubic interpolation
+            </summary>
         </member>
         <member name="F:GTiff2Tiles.Core.Constants.Interpolations.Mitchell">
-            <summary>Mitchell</summary>
+            <summary>
+            Mitchell
+            </summary>
         </member>
         <member name="F:GTiff2Tiles.Core.Constants.Interpolations.Lanczos2">
-            <summary>Two-lobe Lanczos.</summary>
+            <summary>
+            Two-lobe Lanczos
+            </summary>
         </member>
         <member name="F:GTiff2Tiles.Core.Constants.Interpolations.Lanczos3">
-            <summary>Three-lobe Lanczos.</summary>
+            <summary>
+            Three-lobe Lanczos
+            </summary>
         </member>
         <member name="T:GTiff2Tiles.Core.Constants.Proj">
             <summary>
             Proj constants
             </summary>
         </member>
-        <member name="F:GTiff2Tiles.Core.Constants.Proj.LongLat">
+        <member name="F:GTiff2Tiles.Core.Constants.Proj.MercFull">
+            <summary>
+            Full PROJ string for Spherical Mercator (EPSG:3857) projection
+            </summary>
+        </member>
+        <member name="F:GTiff2Tiles.Core.Constants.Proj.LongLatFull">
+            <summary>
+            Full PROJ string for LongLat (EPSG:4326) projection
+            </summary>
+        </member>
+        <member name="F:GTiff2Tiles.Core.Constants.Proj.NoDefs">
+            <summary>
+            +no_defs
+            </summary>
+        </member>
+        <member name="F:GTiff2Tiles.Core.Constants.Proj.ProjMerc">
+            <summary>
+            +proj=merc
+            </summary>
+        </member>
+        <member name="F:GTiff2Tiles.Core.Constants.Proj.ProjLongLat">
             <summary>
             +proj=longlat
             </summary>
         </member>
-        <member name="F:GTiff2Tiles.Core.Constants.Proj.Wgs84">
+        <member name="F:GTiff2Tiles.Core.Constants.Proj.DatumWgs84">
             <summary>
             For EPSG:4326 AND World Mercator, BUT not Spherical Mercator (EPSG:3857)
             </summary>
@@ -624,7 +656,12 @@
         </member>
         <member name="T:GTiff2Tiles.Core.GdalWorker">
             <summary>
-            Gdal's method to work with input files.
+            Gdal's method to work with input files
+            </summary>
+        </member>
+        <member name="F:GTiff2Tiles.Core.GdalWorker._gdalProgress">
+            <summary>
+            Progress to report inside <see cref="M:GTiff2Tiles.Core.GdalWorker.GdalProgress(System.Double,System.IntPtr,System.IntPtr)"/>
             </summary>
         </member>
         <member name="F:GTiff2Tiles.Core.GdalWorker.Byte">
@@ -632,99 +669,131 @@
             Type=Byte
             </summary>
         </member>
-        <member name="F:GTiff2Tiles.Core.GdalWorker.RepairTifOptions">
+        <member name="F:GTiff2Tiles.Core.GdalWorker.SrsEpsg4326">
             <summary>
-            Options for GdalWarp.
+            -t_srs EPSG:4326
+            </summary>
+        </member>
+        <member name="F:GTiff2Tiles.Core.GdalWorker.SrsEpsg3857">
+            <summary>
+            -t_srs EPSG:3857
+            </summary>
+        </member>
+        <member name="F:GTiff2Tiles.Core.GdalWorker.ConvertCoordinateSystemOptions">
+            <summary>
+            Options for GdalWarp to convert GeoTIFF's coordinate system
+            <remarks><para/>Requires you to add target system param (-t_srs)</remarks>
             </summary>
         </member>
         <member name="F:GTiff2Tiles.Core.GdalWorker.TempFileName">
             <summary>
-            Name for temporary (converted) file.
+            Name for temporary (converted) GeoTIFF
             </summary>
         </member>
-        <member name="M:GTiff2Tiles.Core.GdalWorker.WarpAsync(System.IO.FileInfo,System.IO.FileInfo,System.String[],OSGeo.GDAL.Gdal.GDALProgressFuncDelegate)">
+        <member name="M:GTiff2Tiles.Core.GdalWorker.WarpAsync(System.IO.FileInfo,System.IO.FileInfo,System.String[],System.IProgress{System.Double})">
             <summary>
-            Runs GdalWarp with passed parameters.
+            Runs GdalWarp with passed parameters
             </summary>
-            <param name="inputFileInfo">Input GeoTiff file.</param>
-            <param name="outputFileInfo">Output file.</param>
-            <param name="options">Array of string parameters.</param>
-            <param name="callback">Delegate for progress reporting from Gdal.</param>
+            <param name="inputFileInfo">Input GeoTiff file</param>
+            <param name="outputFileInfo">Output file</param>
+            <param name="options">Array of string parameters</param>
+            <param name="progress">GdalWarp's progress</param>
             <returns></returns>
         </member>
         <member name="M:GTiff2Tiles.Core.GdalWorker.InfoAsync(System.IO.FileInfo,System.String[])">
             <summary>
-            Runs GdalInfo with passed parameters.
+            Runs GdalInfo with passed parameters
             </summary>
-            <param name="inputFileInfo">Input GeoTiff file.</param>
-            <param name="options">Array of string parameters for GdalInfo.</param>
-            <returns><see cref="T:System.String"/> from GdalInfo.</returns>
+            <param name="inputFileInfo">Input GeoTiff file</param>
+            <param name="options">Array of string parameters for GdalInfo</param>
+            <returns><see cref="T:System.String"/> from GdalInfo</returns>
         </member>
         <member name="M:GTiff2Tiles.Core.GdalWorker.ConfigureGdal">
             <summary>
-            Initialize Gdal, if it hadn't been initialized yet.
+            Initialize Gdal, if it hadn't been initialized yet
             </summary>
+        </member>
+        <member name="M:GTiff2Tiles.Core.GdalWorker.GdalProgress(System.Double,System.IntPtr,System.IntPtr)">
+            <summary>
+            Realistaion of <see cref="T:OSGeo.GDAL.Gdal.GDALProgressFuncDelegate"/>
+            </summary>
+            <param name="complete">Current progress;
+            <remarks><para/>values from 0.0 to 1.0</remarks></param>
+            <param name="message"></param>
+            <param name="data"></param>
+            <returns>Always 1</returns>
+        </member>
+        <member name="M:GTiff2Tiles.Core.GdalWorker.GetProjStringAsync(System.IO.FileInfo)">
+            <summary>
+            Gets proj string of input file
+            </summary>
+            <param name="inputFileInfo">Input GeoTiff file</param>
+            <returns>Proj string</returns>
+        </member>
+        <member name="M:GTiff2Tiles.Core.GdalWorker.ConvertGeoTiffToTargetSystemAsync(System.IO.FileInfo,System.IO.FileInfo,GTiff2Tiles.Core.Enums.CoordinateSystems,System.IProgress{System.Double})">
+            <summary>
+            Converts current GeoTIFF to a new file with target <see cref="T:GTiff2Tiles.Core.Enums.CoordinateSystems"/>
+            through GdalWarp
+            </summary>
+            <param name="inputFileInfo">Input GeoTIFF</param>
+            <param name="outputFileInfo">Output GeoTIFF</param>
+            <param name="targetSystem">Target <see cref="T:GTiff2Tiles.Core.Enums.CoordinateSystems"/></param>
+            <param name="progress">GdalWarp's progress</param>
+            <returns></returns>
+        </member>
+        <member name="M:GTiff2Tiles.Core.GdalWorker.GetCoordinateSystem(System.String)">
+            <summary>
+            Gets supported coordinate system from proj string of GeoTIFF
+            </summary>
+            <param name="projString">Proj string of input GeoTIFF</param>
+            <returns>Input file's <see cref="T:GTiff2Tiles.Core.Enums.CoordinateSystems"/></returns>
         </member>
         <member name="M:GTiff2Tiles.Core.GdalWorker.GetGeoTransform(System.IO.FileInfo)">
             <summary>
-            Gets the coordinates and pixel sizes of image.
+            Gets the coordinates and pixel sizes of image
             </summary>
-            <param name="inputFileInfo">Input GeoTiff file.</param>
-            <returns>Array of double coordinates and pixel sizes.</returns>
-        </member>
-        <member name="M:GTiff2Tiles.Core.GdalWorker.GetProj4StringAsync(System.IO.FileInfo)">
-            <summary>
-            Gets proj4 string of input file.
-            </summary>
-            <param name="inputFileInfo">Input GeoTiff file.</param>
-            <returns>Proj4 string.</returns>
+            <param name="inputFileInfo">Input GeoTiff file</param>
+            <returns>Array of double coordinates and pixel sizes</returns>
         </member>
         <member name="M:GTiff2Tiles.Core.GdalWorker.GetImageBorders(System.IO.FileInfo,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.CoordinateType)">
             <summary>
-            Gets the coordinates borders of the input Geotiff file.
+            Gets the coordinates borders of the input Geotiff file
             </summary>
-            <param name="inputFileInfo">Input GeoTiff file.</param>
-            <param name="rasterXSize">Raster's width.</param>
-            <param name="rasterYSize">Raster's height.</param>
-            <returns><see cref="T:System.ValueTuple`4"/> with WGS84 coordinates.</returns>
+            <param name="inputFileInfo">Input GeoTiff file</param>
+            <param name="size">Image's <see cref="T:GTiff2Tiles.Core.Images.Size"/>s</param>
+            <param name="coordinateType">Type of coordinate</param>
+            <returns><see cref="T:GTiff2Tiles.Core.Coordinates.GeoCoordinate"/>s of this image borders</returns>
         </member>
         <member name="T:GTiff2Tiles.Core.Helpers.CheckHelper">
             <summary>
             Class with static methods to check for errors
             </summary>
         </member>
-        <member name="M:GTiff2Tiles.Core.Helpers.CheckHelper.CheckTifInfo(System.String,System.String)">
-            <summary>
-            Check GdalInfo's strings.
-            Byte - type;
-            </summary>
-            <param name="gdalInfoString">String from <see cref="M:GTiff2Tiles.Core.GdalWorker.InfoAsync(System.IO.FileInfo,System.String[])"/> method.</param>
-            <param name="proj4String">Proj4 string.</param>
-            <returns><see langword="true"/>, if file is OK, <see langword="false"/> otherwise.</returns>
-        </member>
         <member name="M:GTiff2Tiles.Core.Helpers.CheckHelper.CheckFile(System.IO.FileInfo,System.Boolean,System.String)">
             <summary>
-            Checks, if file's path is not empty string and file exists, if it should.
+            Checks, if file's path is not empty string and file exists, if it should
             </summary>
-            <param name="fileInfo">File to check.</param>
+            <param name="fileInfo">File to check</param>
             <param name="shouldExist">Should it exist?</param>
-            <param name="fileExtension">Checks file extension.</param>
+            <param name="fileExtension">Checks file extension</param>
         </member>
         <member name="M:GTiff2Tiles.Core.Helpers.CheckHelper.CheckDirectory(System.IO.DirectoryInfo,System.Nullable{System.Boolean})">
             <summary>
             Checks, if directory's path is not empty, creates directory if it doesn't exist
-            and checks if it's empty or not.
+            and checks if it's empty or not
             </summary>
-            <param name="directoryInfo">Directory to check.</param>
+            <param name="directoryInfo">Directory to check</param>
             <param name="shouldBeEmpty">Should directory be empty?
-            <para/>If set <see keyword="null"/>, emptyness doesn't check.</param>
+            <para/>If set <see keyword="null"/>, emptyness doesn't check</param>
         </member>
-        <member name="M:GTiff2Tiles.Core.Helpers.CheckHelper.CheckInputFileAsync(System.IO.FileInfo)">
+        <member name="M:GTiff2Tiles.Core.Helpers.CheckHelper.CheckInputFileAsync(System.IO.FileInfo,GTiff2Tiles.Core.Enums.CoordinateSystems)">
             <summary>
-            Checks the existance, projection and type.
+            Checks the existance, projection and type
             </summary>
-            <param name="inputFileInfo">Input file.</param>
-            <returns><see langword="true"/> if no errors in input file, <see langword="false"/> otherwise.</returns>
+            <param name="inputFileInfo">Input geotiff</param>
+            <param name="targetSystem">Target coordinate system</param>
+            <returns><see langword="true"/> if file needs to be converted;
+            <para/><see langword="false"/> otherwise</returns>
         </member>
         <member name="T:GTiff2Tiles.Core.Helpers.GdalHelper">
             <summary>
