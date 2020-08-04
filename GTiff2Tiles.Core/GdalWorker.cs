@@ -248,7 +248,8 @@ namespace GTiff2Tiles.Core
                 }
                 default:
                 {
-                    return ValueTask.FromResult(false);
+                    //TODO: ValueTask.FromResult(false) throws an exception in CI
+                    return new ValueTask<bool>(false);
                 }
             }
 
