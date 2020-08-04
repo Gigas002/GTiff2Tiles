@@ -20,7 +20,7 @@ using NetVips;
 // ReSharper disable MemberCanBePrivate.Global
 // ReSharper disable UnusedMember.Global
 
-namespace GTiff2Tiles.Core.Images
+namespace GTiff2Tiles.Core.GeoTiffs
 {
     /// <summary>
     /// Class for creating <see cref="RasterTile"/>s

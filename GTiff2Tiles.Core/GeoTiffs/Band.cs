@@ -5,7 +5,7 @@ using NetVips;
 
 // ReSharper disable MemberCanBePrivate.Global
 
-namespace GTiff2Tiles.Core.Images
+namespace GTiff2Tiles.Core.GeoTiffs
 {
     /// <summary>
     /// Represents <see cref="Raster"/> band

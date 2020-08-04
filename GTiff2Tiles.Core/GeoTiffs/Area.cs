@@ -4,7 +4,7 @@ using GTiff2Tiles.Core.Tiles;
 
 // ReSharper disable MemberCanBePrivate.Global
 
-namespace GTiff2Tiles.Core.Images
+namespace GTiff2Tiles.Core.GeoTiffs
 {
     /// <summary>
     /// Represents read/write <see cref="Area"/>s of <see cref="IImage"/>
@@ -49,12 +49,12 @@ namespace GTiff2Tiles.Core.Images
         /// of <see cref="IImage"/></param>
         /// <param name="imageMaxCoordinate">Maximal <see cref="GeoCoordinate"/>
         /// of <see cref="IImage"/></param>
-        /// <param name="imageSize"><see cref="Images.Size"/> of <see cref="IImage"/></param>
+        /// <param name="imageSize"><see cref="GeoTiffs.Size"/> of <see cref="IImage"/></param>
         /// <param name="tileMinCoordinate">Minimal <see cref="GeoCoordinate"/>
         /// of <see cref="ITile"/></param>
         /// <param name="tileMaxCoordinate">Maximal <see cref="GeoCoordinate"/>
         /// of <see cref="ITile"/></param>
-        /// <param name="tileSize"><see cref="Images.Size"/> of <see cref="ITile"/></param>
+        /// <param name="tileSize"><see cref="GeoTiffs.Size"/> of <see cref="ITile"/></param>
         /// <returns></returns>
         public static (Area readArea, Area writeArea) GetAreas(GeoCoordinate imageMinCoordinate,
                                                                GeoCoordinate imageMaxCoordinate, Size imageSize,

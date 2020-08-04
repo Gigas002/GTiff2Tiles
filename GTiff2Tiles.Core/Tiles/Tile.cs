@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 using GTiff2Tiles.Core.Coordinates;
 using GTiff2Tiles.Core.Enums;
 using GTiff2Tiles.Core.Exceptions;
+using GTiff2Tiles.Core.GeoTiffs;
 using GTiff2Tiles.Core.Helpers;
-using GTiff2Tiles.Core.Images;
 
 // ReSharper disable VirtualMemberNeverOverridden.Global
 // ReSharper disable UnusedMember.Global
@@ -30,7 +30,7 @@ namespace GTiff2Tiles.Core.Tiles
         private const int DefaultSideSizeValue = 256;
 
         /// <summary>
-        /// Default <see cref="Tile"/>'s <see cref="Images.Size"/>
+        /// Default <see cref="Tile"/>'s <see cref="GeoTiffs.Size"/>
         /// </summary>
         public static readonly Size DefaultSize = new Size(DefaultSideSizeValue, DefaultSideSizeValue);
 

@@ -5,7 +5,7 @@ using GTiff2Tiles.Core.Constants;
 using GTiff2Tiles.Core.Enums;
 using GTiff2Tiles.Core.Tiles;
 
-namespace GTiff2Tiles.Core.Images
+namespace GTiff2Tiles.Core.GeoTiffs
 {
     /// <summary>
     /// Example of class to use <see cref="IImage"/> interface.

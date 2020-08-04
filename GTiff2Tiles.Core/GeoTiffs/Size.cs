@@ -2,7 +2,7 @@
 
 // ReSharper disable UnusedMember.Global
 
-namespace GTiff2Tiles.Core.Images
+namespace GTiff2Tiles.Core.GeoTiffs
 {
     /// <summary>
     /// <see cref="IImage"/>'s size

@@ -2,7 +2,7 @@
 using GTiff2Tiles.Core.Constants;
 using GTiff2Tiles.Core.Coordinates;
 using GTiff2Tiles.Core.Enums;
-using GTiff2Tiles.Core.Images;
+using GTiff2Tiles.Core.GeoTiffs;
 
 // ReSharper disable MemberCanBePrivate.Global
 // ReSharper disable UnusedAutoPropertyAccessor.Global

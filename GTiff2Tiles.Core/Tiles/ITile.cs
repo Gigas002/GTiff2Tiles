@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using GTiff2Tiles.Core.Coordinates;
-using GTiff2Tiles.Core.Images;
+using GTiff2Tiles.Core.GeoTiffs;
 
 // ReSharper disable UnusedMember.Global
 // ReSharper disable UnusedMemberInSuper.Global
@@ -41,7 +41,7 @@ namespace GTiff2Tiles.Core.Tiles
         public IEnumerable<byte> Bytes { get; set; }
 
         /// <summary>
-        /// <see cref="Images.Size"/> (width, height) of this <see cref="ITile"/>
+        /// <see cref="GeoTiffs.Size"/> (width, height) of this <see cref="ITile"/>
         /// </summary>
         public Size Size { get; }
 

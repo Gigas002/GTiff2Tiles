@@ -11,7 +11,7 @@ using NetVips;
 // ReSharper disable UnusedMember.Global
 // ReSharper disable UnusedMemberInSuper.Global
 
-namespace GTiff2Tiles.Core.Images
+namespace GTiff2Tiles.Core.GeoTiffs
 {
     /// <summary>
     /// Main interface for cropping different <see cref="ITile"/>s
@@ -21,7 +21,7 @@ namespace GTiff2Tiles.Core.Images
         #region Properties
 
         /// <summary>
-        /// <see cref="Images.Size"/> (width, height)
+        /// <see cref="GeoTiffs.Size"/> (width, height)
         /// </summary>
         public Size Size { get; }
 
@@ -204,7 +204,7 @@ namespace GTiff2Tiles.Core.Images
         /// <param name="maxZ">Maximum cropped zoom</param>
         /// <param name="tmsCompatible">Do you want to create tms-compatible <see cref="ITile"/>s?
         /// <remarks><para/><see langword="false"/> by default</remarks></param>
-        /// <param name="tileSize"><see cref="Images.Size"/> of <see cref="ITile"/>s
+        /// <param name="tileSize"><see cref="GeoTiffs.Size"/> of <see cref="ITile"/>s
         /// <remarks><para/><see langword="null"/> by default, be sure to set it
         /// for custom implementations of <see cref="IImage"/></remarks></param>
         /// <param name="interpolation">Interpolation of ready tiles

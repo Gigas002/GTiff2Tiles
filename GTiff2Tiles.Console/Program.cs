@@ -10,8 +10,8 @@ using GTiff2Tiles.Console.Localization;
 using GTiff2Tiles.Core;
 using GTiff2Tiles.Core.Constants;
 using GTiff2Tiles.Core.Enums;
+using GTiff2Tiles.Core.GeoTiffs;
 using GTiff2Tiles.Core.Helpers;
-using GTiff2Tiles.Core.Images;
 
 namespace GTiff2Tiles.Console
 {
