@@ -73,7 +73,7 @@ namespace GTiff2Tiles.Core.Helpers
                 }
                 else
                 {
-                    IEnumerable<FileInfo> dlls = executingDirectoryInfo?.EnumerateFiles("gdal_*.dll").Where(file => !file.Name.Contains("wrap"));
+                    IEnumerable<FileInfo> dlls = executingDirectoryInfo?.EnumerateFiles("gdal_*.dll").Where(file => !file.Name.Contains("wrap", StringComparison.InvariantCulture));
                     string driversPath = Path.Combine(executingDirectoryInfo.FullName, "gdalplugins");
                     Directory.CreateDirectory(driversPath);
 
