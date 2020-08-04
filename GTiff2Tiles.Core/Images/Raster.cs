@@ -239,6 +239,7 @@ namespace GTiff2Tiles.Core.Images
         {
             using Image tileImage = CreateTileImage(tileCache, tile, interpolation);
 
+            //TODO: validate size before writing
             tileImage.WriteToFile(tile.Path);
         }
 
@@ -252,6 +253,7 @@ namespace GTiff2Tiles.Core.Images
         {
             using Image tileImage = CreateTileImage(tileCache, tile, interpolation);
 
+            //TODO: validate size before writing
             return tileImage.WriteToMemory();
         }
 
@@ -264,6 +266,7 @@ namespace GTiff2Tiles.Core.Images
 
             tile.Bytes = WriteTileToEnumerable(tileCache, tile, interpolation);
 
+            //TODO: add size param
             return tile.Validate(false) && channelWriter.TryWrite(tile);
         }
 
@@ -275,6 +278,8 @@ namespace GTiff2Tiles.Core.Images
             if (channelWriter == null) throw new ArgumentNullException(nameof(channelWriter));
 
             tile.Bytes = WriteTileToEnumerable(tileCache, tile, interpolation);
+
+            //TODO: validate size before writing
 
             return channelWriter.WriteAsync(tile);
         }

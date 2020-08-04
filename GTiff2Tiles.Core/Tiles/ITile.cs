@@ -68,9 +68,10 @@ namespace GTiff2Tiles.Core.Tiles
         /// Checks if this <see cref="ITile"/> is not empty or too small
         /// </summary>
         /// <param name="isCheckPath">Do you want to check <see cref="Path"/>?</param>
+        /// <param name="minimalBytesCount">Minimal accepted count of <see cref="byte"/>s in this tile</param>
         /// <returns><see langword="true"/> if <see cref="ITile"/>'s valid;
         /// <para/><see langword="false"/> otherwise</returns>
-        public bool Validate(bool isCheckPath);
+        public bool Validate(bool isCheckPath, int minimalBytesCount);
 
         /// <summary>
         /// Calculates this <see cref="ITile"/> position in upper <see cref="ITile"/>

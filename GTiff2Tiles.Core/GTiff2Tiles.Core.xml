@@ -1447,11 +1447,12 @@
             Is <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/> tms compatible?
             </summary>
         </member>
-        <member name="M:GTiff2Tiles.Core.Tiles.ITile.Validate(System.Boolean)">
+        <member name="M:GTiff2Tiles.Core.Tiles.ITile.Validate(System.Boolean,System.Int32)">
             <summary>
             Checks if this <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/> is not empty or too small
             </summary>
             <param name="isCheckPath">Do you want to check <see cref="P:GTiff2Tiles.Core.Tiles.ITile.Path"/>?</param>
+            <param name="minimalBytesCount">Minimal accepted count of <see cref="T:System.Byte"/>s in this tile</param>
             <returns><see langword="true"/> if <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>'s valid;
             <para/><see langword="false"/> otherwise</returns>
         </member>
@@ -1701,7 +1702,7 @@
         <member name="F:GTiff2Tiles.Core.Tiles.Tile.MinimalBytesCount">
             <summary>
             <see cref="T:GTiff2Tiles.Core.Tiles.Tile"/>s with <see cref="P:GTiff2Tiles.Core.Tiles.Tile.Bytes"/> count lesser
-            than this value won't pass <see cref="M:GTiff2Tiles.Core.Tiles.Tile.Validate(System.Boolean)"/> check
+            than this value won't pass <see cref="!:Validate(bool)"/> check
             </summary>
         </member>
         <member name="P:GTiff2Tiles.Core.Tiles.Tile.IsDisposed">
@@ -1785,13 +1786,14 @@
             <param name="tile"><see cref="T:GTiff2Tiles.Core.Tiles.ITile"/> to check</param>
             <returns></returns>
         </member>
-        <member name="M:GTiff2Tiles.Core.Tiles.Tile.Validate(System.Boolean)">
+        <member name="M:GTiff2Tiles.Core.Tiles.Tile.Validate(System.Boolean,System.Int32)">
             <inheritdoc />
         </member>
-        <member name="M:GTiff2Tiles.Core.Tiles.Tile.Validate(GTiff2Tiles.Core.Tiles.ITile,System.Boolean)">
-            <inheritdoc cref="M:GTiff2Tiles.Core.Tiles.Tile.Validate(System.Boolean)"/>
+        <member name="M:GTiff2Tiles.Core.Tiles.Tile.Validate(GTiff2Tiles.Core.Tiles.ITile,System.Boolean,System.Int32)">
+            <inheritdoc cref="M:GTiff2Tiles.Core.Tiles.Tile.Validate(System.Boolean,System.Int32)"/>
             <param name="tile"><see cref="T:GTiff2Tiles.Core.Tiles.Tile"/> to check</param>
             <param name="isCheckPath"></param>
+            <param name="minimalBytesCount"></param>
         </member>
         <member name="M:GTiff2Tiles.Core.Tiles.Tile.CalculatePosition">
             <inheritdoc />

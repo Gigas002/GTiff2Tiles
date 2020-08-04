@@ -196,14 +196,16 @@ namespace GTiff2Tiles.Core.Tiles
         #region Validate
 
         /// <inheritdoc />
-        public bool Validate(bool isCheckPath) => Validate(this, isCheckPath);
+        public bool Validate(bool isCheckPath, int minimalBytesCount = MinimalBytesCount)
+            => Validate(this, isCheckPath);
 
-        /// <inheritdoc cref="Validate(bool)"/>
+        /// <inheritdoc cref="Validate(bool, int)"/>
         /// <param name="tile"><see cref="Tile"/> to check</param>
         /// <param name="isCheckPath"></param>
-        public static bool Validate(ITile tile, bool isCheckPath)
+        /// <param name="minimalBytesCount"></param>
+        public static bool Validate(ITile tile, bool isCheckPath, int minimalBytesCount = MinimalBytesCount)
         {
-            if (tile?.Bytes == null || tile.Bytes.Count() <= MinimalBytesCount) return false;
+            if (tile?.Bytes == null || tile.Bytes.Count() <= minimalBytesCount) return false;
 
             return !isCheckPath || CheckHelper.CheckFile(tile.Path);
         }
