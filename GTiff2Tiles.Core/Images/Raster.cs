@@ -87,7 +87,7 @@ namespace GTiff2Tiles.Core.Images
             Size = new Size(Data.Width, Data.Height);
 
             GeoCoordinateType = coordinateType;
-            (MinCoordinate, MaxCoordinate) = Gdal.Gdal.GetImageBorders(inputFileInfo, Size, GeoCoordinateType);
+            (MinCoordinate, MaxCoordinate) = GdalWorker.GetImageBorders(inputFileInfo, Size, GeoCoordinateType);
         }
 
         /// <summary>
@@ -112,7 +112,7 @@ namespace GTiff2Tiles.Core.Images
             // TODO: get coordinates without fileinfo
             FileInfo inputFileInfo = new FileInfo("tmp.tif");
             Data.WriteToFile(inputFileInfo.FullName);
-            (MinCoordinate, MaxCoordinate) = Gdal.Gdal.GetImageBorders(inputFileInfo, Size, GeoCoordinateType);
+            (MinCoordinate, MaxCoordinate) = GdalWorker.GetImageBorders(inputFileInfo, Size, GeoCoordinateType);
             inputFileInfo.Delete();
         }
 
@@ -137,7 +137,7 @@ namespace GTiff2Tiles.Core.Images
             // TODO: get coordinates without fileinfo
             FileInfo inputFileInfo = new FileInfo("tmp.tif");
             Data.WriteToFile(inputFileInfo.FullName);
-            (MinCoordinate, MaxCoordinate) = Gdal.Gdal.GetImageBorders(inputFileInfo, Size, GeoCoordinateType);
+            (MinCoordinate, MaxCoordinate) = GdalWorker.GetImageBorders(inputFileInfo, Size, GeoCoordinateType);
             inputFileInfo.Delete();
         }
 

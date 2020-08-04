@@ -5,11 +5,11 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
+using GTiff2Tiles.Core;
 using Prism.Mvvm;
 using Prism.Commands;
 using GTiff2Tiles.Core.Constants;
 using GTiff2Tiles.Core.Enums;
-using GTiff2Tiles.Core.Gdal;
 using GTiff2Tiles.Core.Helpers;
 using GTiff2Tiles.Core.Images;
 using GTiff2Tiles.GUI.Constants;
@@ -415,11 +415,11 @@ namespace GTiff2Tiles.GUI.ViewModels
                 if (!await CheckHelper.CheckInputFileAsync(inputFileInfo).ConfigureAwait(true))
                 {
                     string tempFilePath = Path.Combine(tempDirectoryInfo.FullName,
-                                                       $"{Gdal.TempFileName}{FileExtensions.Tif}");
+                                                       $"{GdalWorker.TempFileName}{FileExtensions.Tif}");
                     FileInfo tempFileInfo = new FileInfo(tempFilePath);
 
-                    await Core.Gdal.Gdal.WarpAsync(inputFileInfo, tempFileInfo, Gdal.RepairTifOptions)
-                              .ConfigureAwait(true);
+                    await GdalWorker.WarpAsync(inputFileInfo, tempFileInfo, GdalWorker.RepairTifOptions)
+                                    .ConfigureAwait(true);
                     inputFileInfo = tempFileInfo;
                 }
 

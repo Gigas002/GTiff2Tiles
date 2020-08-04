@@ -538,27 +538,27 @@
             Creates new <see cref="T:GTiff2Tiles.Core.Exceptions.TileException"/> object without error message.
             </summary>
         </member>
-        <member name="T:GTiff2Tiles.Core.Gdal.Gdal">
+        <member name="T:GTiff2Tiles.Core.GdalWorker">
             <summary>
             Gdal's method to work with input files.
             </summary>
         </member>
-        <member name="F:GTiff2Tiles.Core.Gdal.Gdal.Byte">
+        <member name="F:GTiff2Tiles.Core.GdalWorker.Byte">
             <summary>
             Type=Byte
             </summary>
         </member>
-        <member name="F:GTiff2Tiles.Core.Gdal.Gdal.RepairTifOptions">
+        <member name="F:GTiff2Tiles.Core.GdalWorker.RepairTifOptions">
             <summary>
             Options for GdalWarp.
             </summary>
         </member>
-        <member name="F:GTiff2Tiles.Core.Gdal.Gdal.TempFileName">
+        <member name="F:GTiff2Tiles.Core.GdalWorker.TempFileName">
             <summary>
             Name for temporary (converted) file.
             </summary>
         </member>
-        <member name="M:GTiff2Tiles.Core.Gdal.Gdal.WarpAsync(System.IO.FileInfo,System.IO.FileInfo,System.String[],OSGeo.GDAL.Gdal.GDALProgressFuncDelegate)">
+        <member name="M:GTiff2Tiles.Core.GdalWorker.WarpAsync(System.IO.FileInfo,System.IO.FileInfo,System.String[],OSGeo.GDAL.Gdal.GDALProgressFuncDelegate)">
             <summary>
             Runs GdalWarp with passed parameters.
             </summary>
@@ -568,7 +568,7 @@
             <param name="callback">Delegate for progress reporting from Gdal.</param>
             <returns></returns>
         </member>
-        <member name="M:GTiff2Tiles.Core.Gdal.Gdal.InfoAsync(System.IO.FileInfo,System.String[])">
+        <member name="M:GTiff2Tiles.Core.GdalWorker.InfoAsync(System.IO.FileInfo,System.String[])">
             <summary>
             Runs GdalInfo with passed parameters.
             </summary>
@@ -576,26 +576,26 @@
             <param name="options">Array of string parameters for GdalInfo.</param>
             <returns><see cref="T:System.String"/> from GdalInfo.</returns>
         </member>
-        <member name="M:GTiff2Tiles.Core.Gdal.Gdal.ConfigureGdal">
+        <member name="M:GTiff2Tiles.Core.GdalWorker.ConfigureGdal">
             <summary>
             Initialize Gdal, if it hadn't been initialized yet.
             </summary>
         </member>
-        <member name="M:GTiff2Tiles.Core.Gdal.Gdal.GetGeoTransform(System.IO.FileInfo)">
+        <member name="M:GTiff2Tiles.Core.GdalWorker.GetGeoTransform(System.IO.FileInfo)">
             <summary>
             Gets the coordinates and pixel sizes of image.
             </summary>
             <param name="inputFileInfo">Input GeoTiff file.</param>
             <returns>Array of double coordinates and pixel sizes.</returns>
         </member>
-        <member name="M:GTiff2Tiles.Core.Gdal.Gdal.GetProj4StringAsync(System.IO.FileInfo)">
+        <member name="M:GTiff2Tiles.Core.GdalWorker.GetProj4StringAsync(System.IO.FileInfo)">
             <summary>
             Gets proj4 string of input file.
             </summary>
             <param name="inputFileInfo">Input GeoTiff file.</param>
             <returns>Proj4 string.</returns>
         </member>
-        <member name="M:GTiff2Tiles.Core.Gdal.Gdal.GetImageBorders(System.IO.FileInfo,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.CoordinateType)">
+        <member name="M:GTiff2Tiles.Core.GdalWorker.GetImageBorders(System.IO.FileInfo,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.CoordinateType)">
             <summary>
             Gets the coordinates borders of the input Geotiff file.
             </summary>
@@ -614,7 +614,7 @@
             Check GdalInfo's strings.
             Byte - type;
             </summary>
-            <param name="gdalInfoString">String from <see cref="M:GTiff2Tiles.Core.Gdal.Gdal.InfoAsync(System.IO.FileInfo,System.String[])"/> method.</param>
+            <param name="gdalInfoString">String from <see cref="M:GTiff2Tiles.Core.GdalWorker.InfoAsync(System.IO.FileInfo,System.String[])"/> method.</param>
             <param name="proj4String">Proj4 string.</param>
             <returns><see langword="true"/>, if file is OK, <see langword="false"/> otherwise.</returns>
         </member>

@@ -13,12 +13,12 @@ using OSGeo.OSR;
 
 // ReSharper disable MemberCanBeInternal
 
-namespace GTiff2Tiles.Core.Gdal
+namespace GTiff2Tiles.Core
 {
     /// <summary>
     /// Gdal's method to work with input files.
     /// </summary>
-    public static class Gdal
+    public static class GdalWorker
     {
         #region GdalInfo
 
@@ -58,7 +58,7 @@ namespace GTiff2Tiles.Core.Gdal
         /// <param name="callback">Delegate for progress reporting from Gdal.</param>
         /// <returns></returns>
         public static async ValueTask WarpAsync(FileInfo inputFileInfo, FileInfo outputFileInfo, string[] options,
-                                           OSGeo.GDAL.Gdal.GDALProgressFuncDelegate callback = null)
+                                           Gdal.GDALProgressFuncDelegate callback = null)
         {
             #region Parameters checking
 
@@ -73,7 +73,7 @@ namespace GTiff2Tiles.Core.Gdal
 
             await Task.Run(() =>
             {
-                using Dataset inputDataset = OSGeo.GDAL.Gdal.Open(inputFileInfo.FullName, Access.GA_ReadOnly);
+                using Dataset inputDataset = Gdal.Open(inputFileInfo.FullName, Access.GA_ReadOnly);
 
                 GCHandle gcHandle = GCHandle.Alloc(new[] { Dataset.getCPtr(inputDataset).Handle },
                                                    GCHandleType.Pinned);
@@ -82,7 +82,7 @@ namespace GTiff2Tiles.Core.Gdal
 
                 // ReSharper disable once UnusedVariable
                 using Dataset resultDataset =
-                    OSGeo.GDAL.Gdal.wrapper_GDALWarpDestName(outputFileInfo.FullName, 1, gdalDatasetShadow,
+                    Gdal.wrapper_GDALWarpDestName(outputFileInfo.FullName, 1, gdalDatasetShadow,
                                                              new GDALWarpAppOptions(options), callback,
                                                              string.Empty);
 
@@ -114,9 +114,9 @@ namespace GTiff2Tiles.Core.Gdal
 
             await Task.Run(() =>
             {
-                using Dataset inputDataset = OSGeo.GDAL.Gdal.Open(inputFileInfo.FullName, Access.GA_ReadOnly);
+                using Dataset inputDataset = Gdal.Open(inputFileInfo.FullName, Access.GA_ReadOnly);
 
-                gdalInfoString = OSGeo.GDAL.Gdal.GDALInfo(inputDataset, new GDALInfoOptions(options));
+                gdalInfoString = Gdal.GDALInfo(inputDataset, new GDALInfoOptions(options));
 
                 if (string.IsNullOrWhiteSpace(gdalInfoString))
                     throw new GdalException(string.Format(Strings.StringIsEmpty, nameof(gdalInfoString)));
@@ -156,7 +156,7 @@ namespace GTiff2Tiles.Core.Gdal
             //Initialize Gdal, if needed.
             ConfigureGdal();
 
-            using Dataset inputDataset = OSGeo.GDAL.Gdal.Open(inputFileInfo.FullName, Access.GA_ReadOnly);
+            using Dataset inputDataset = Gdal.Open(inputFileInfo.FullName, Access.GA_ReadOnly);
 
             double[] geoTransform = new double[6];
             inputDataset.GetGeoTransform(geoTransform);
@@ -188,7 +188,7 @@ namespace GTiff2Tiles.Core.Gdal
 
             await Task.Run(() =>
             {
-                using Dataset dataset = OSGeo.GDAL.Gdal.Open(inputFileInfo.FullName, Access.GA_ReadOnly);
+                using Dataset dataset = Gdal.Open(inputFileInfo.FullName, Access.GA_ReadOnly);
 
                 string wkt = dataset.GetProjection();
 

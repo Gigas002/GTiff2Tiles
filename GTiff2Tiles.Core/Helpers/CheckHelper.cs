@@ -20,7 +20,7 @@ namespace GTiff2Tiles.Core.Helpers
         /// Check GdalInfo's strings.
         /// Byte - type;
         /// </summary>
-        /// <param name="gdalInfoString">String from <see cref="Core.Gdal.Gdal.InfoAsync"/> method.</param>
+        /// <param name="gdalInfoString">String from <see cref="GdalWorker.InfoAsync"/> method.</param>
         /// <param name="proj4String">Proj4 string.</param>
         /// <returns><see langword="true"/>, if file is OK, <see langword="false"/> otherwise.</returns>
         private static bool CheckTifInfo(string gdalInfoString, string proj4String)
@@ -34,7 +34,7 @@ namespace GTiff2Tiles.Core.Helpers
                 return false;
 
             //Other checks.
-            return gdalInfoString.Contains(Gdal.Gdal.Byte);
+            return gdalInfoString.Contains(GdalWorker.Byte);
         }
 
         #endregion
@@ -128,8 +128,8 @@ namespace GTiff2Tiles.Core.Helpers
             CheckFile(inputFileInfo, true, FileExtensions.Tif);
 
             //Get proj4 and gdalInfo strings.
-            string proj4String = await Gdal.Gdal.GetProj4StringAsync(inputFileInfo).ConfigureAwait(false);
-            string gdalInfoString = await Gdal.Gdal.InfoAsync(inputFileInfo).ConfigureAwait(false);
+            string proj4String = await GdalWorker.GetProj4StringAsync(inputFileInfo).ConfigureAwait(false);
+            string gdalInfoString = await GdalWorker.InfoAsync(inputFileInfo).ConfigureAwait(false);
 
             //Check if input image is ready for cropping.
             return CheckTifInfo(gdalInfoString, proj4String);

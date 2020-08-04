@@ -3,6 +3,7 @@
 using System;
 using System.IO;
 using System.Threading.Tasks;
+using GTiff2Tiles.Core;
 using GTiff2Tiles.Core.Constants;
 using GTiff2Tiles.Core.Enums;
 using GTiff2Tiles.Core.Helpers;
@@ -50,10 +51,10 @@ namespace GTiff2Tiles.Tests.Tests.Image
                 if (!await CheckHelper.CheckInputFileAsync(inputFileInfo))
                 {
                     string tempFilePath = Path.Combine(tempDirectoryInfo.FullName,
-                                                       $"{Core.Gdal.Gdal.TempFileName}{FileExtensions.Tif}");
+                                                       $"{GdalWorker.TempFileName}{FileExtensions.Tif}");
                     FileInfo tempFileInfo = new FileInfo(tempFilePath);
 
-                    await Core.Gdal.Gdal.WarpAsync(inputFileInfo, tempFileInfo, Core.Gdal.Gdal.RepairTifOptions);
+                    await GdalWorker.WarpAsync(inputFileInfo, tempFileInfo, GdalWorker.RepairTifOptions);
                     inputFileInfo = tempFileInfo;
                 }
 
@@ -103,10 +104,10 @@ namespace GTiff2Tiles.Tests.Tests.Image
                 if (!await CheckHelper.CheckInputFileAsync(inputFileInfo))
                 {
                     string tempFilePath = Path.Combine(tempDirectoryInfo.FullName,
-                                                       $"{Core.Gdal.Gdal.TempFileName}{FileExtensions.Tif}");
+                                                       $"{GdalWorker.TempFileName}{FileExtensions.Tif}");
                     FileInfo tempFileInfo = new FileInfo(tempFilePath);
 
-                    await Core.Gdal.Gdal.WarpAsync(inputFileInfo, tempFileInfo, Core.Gdal.Gdal.RepairTifOptions);
+                    await GdalWorker.WarpAsync(inputFileInfo, tempFileInfo, GdalWorker.RepairTifOptions);
                     inputFileInfo = tempFileInfo;
                 }
 
