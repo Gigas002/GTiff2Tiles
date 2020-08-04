@@ -69,6 +69,7 @@ namespace GTiff2Tiles.Tests.Tests.Image
                 const TileExtension tileExtension = TileExtension.Png;
 
                 await Img.GenerateTilesAsync(inputFileInfo, outputDirectoryInfo, minZ, maxZ, TileType.Raster,
+                                             coordinateSystem,
                                              tmsCompatible, tileExtension, progress, 0)
                          .ConfigureAwait(false);
             }
@@ -126,6 +127,7 @@ namespace GTiff2Tiles.Tests.Tests.Image
                 const TileExtension tileExtension = TileExtension.Png;
 
                 await Img.GenerateTilesAsync(inputFileInfo, outputDirectoryInfo, minZ, maxZ, TileType.Raster,
+                                             coordinateSystem,
                                              tmsCompatible, tileExtension, progress, 0)
                          .ConfigureAwait(false);
             }

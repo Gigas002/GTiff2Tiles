@@ -120,6 +120,7 @@ namespace GTiff2Tiles.Console
 
                 //Run tiling.
                 await Img.GenerateTilesAsync(InputFileInfo, OutputDirectoryInfo, MinZ, MaxZ, TileType.Raster,
+                                             coordinateSystem,
                                              TmsCompatible, TileExtension,
                                              consoleProgress, ThreadsCount).ConfigureAwait(false);
             }

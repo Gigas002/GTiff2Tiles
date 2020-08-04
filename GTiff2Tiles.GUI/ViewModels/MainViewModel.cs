@@ -428,6 +428,7 @@ namespace GTiff2Tiles.GUI.ViewModels
 
                 //Run tiling.
                 await Img.GenerateTilesAsync(inputFileInfo, outputDirectoryInfo, MinZ, MaxZ, TileType.Raster,
+                                             coordinateSystem,
                                              TmsCompatible, RealTileExtension, progress,
                                              ThreadsCount).ConfigureAwait(true);
             }

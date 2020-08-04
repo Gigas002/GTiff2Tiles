@@ -129,6 +129,8 @@ namespace GTiff2Tiles.Benchmarks
 
         private static async ValueTask RunTilingAsync()
         {
+            CoordinateSystems coordinateSystem = CoordinateSystems.Epsg4326;
+
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
 
@@ -140,7 +142,8 @@ namespace GTiff2Tiles.Benchmarks
             Directory.CreateDirectory(gtiff2TilesTempDirectoryPath);
 
             await Img.GenerateTilesAsync(InputFileInfo, new DirectoryInfo(gtiff2TilesOutputDirectoryPath), MinZ, MaxZ,
-                                         TileType.Raster, true, TileExtension.Png, null, ThreadsCount).ConfigureAwait(false);
+                                         TileType.Raster, coordinateSystem,
+                                         true, TileExtension.Png, null, ThreadsCount).ConfigureAwait(false);
 
             stopwatch.Stop();
             Console.WriteLine("GTiff2Tiles process ended.");

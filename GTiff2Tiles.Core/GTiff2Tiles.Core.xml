@@ -951,6 +951,53 @@
             Shows if resources have already been disposed
             </summary>
         </member>
+        <member name="M:GTiff2Tiles.Core.Images.IImage.WriteTileToFile(NetVips.Image,GTiff2Tiles.Core.Tiles.RasterTile,System.String)">
+            <summary>
+            Gets data from source <see cref="T:NetVips.Image"/>
+            or tile cache for specified <see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/>
+            and writes it to ready file
+            </summary>
+            <param name="tileCache">Source <see cref="T:NetVips.Image"/>
+            or tile cache</param>
+            <param name="tile">Target <see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/></param>
+            <param name="interpolation">Interpolation of ready tiles</param>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Images.IImage.WriteTileToFileAsync(NetVips.Image,GTiff2Tiles.Core.Tiles.RasterTile,System.String)">
+            <inheritdoc cref="M:GTiff2Tiles.Core.Images.IImage.WriteTileToFile(NetVips.Image,GTiff2Tiles.Core.Tiles.RasterTile,System.String)"/>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Images.IImage.WriteTileToEnumerable(NetVips.Image,GTiff2Tiles.Core.Tiles.RasterTile,System.String)">
+            <summary>
+            Gets data from source <see cref="T:NetVips.Image"/>
+            or tile cache for specified <see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/>
+            and writes it to <see cref="T:System.Collections.Generic.IEnumerable`1"/>
+            </summary>
+            <param name="tileCache">Source <see cref="T:NetVips.Image"/>
+            or tile cache</param>
+            <param name="tile">Target <see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/></param>
+            <param name="interpolation">Interpolation of ready tiles</param>
+            <returns><see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/>'s <see cref="T:System.Byte"/>s</returns>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Images.IImage.WriteTileToChannel(NetVips.Image,GTiff2Tiles.Core.Tiles.RasterTile,System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.ITile},System.String)">
+            <summary>
+            Gets data from source <see cref="T:NetVips.Image"/>
+            or tile cache for specified <see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/>
+            and writes it to <see cref="T:System.Threading.Channels.ChannelWriter`1"/>
+            </summary>
+            <param name="tileCache">Source <see cref="T:NetVips.Image"/>
+            or tile cache</param>
+            <param name="tile">Target <see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/></param>
+            <param name="channelWriter">Target <see cref="T:System.Threading.Channels.ChannelWriter`1"/></param>
+            <param name="interpolation">Interpolation of ready tiles</param>
+            <returns><see langword="true"/> if <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/> was written;
+            <see langword="false"/> otherwise</returns>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Images.IImage.WriteTileToChannelAsync(NetVips.Image,GTiff2Tiles.Core.Tiles.RasterTile,System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.ITile},System.String)">
+            <returns></returns>
+            <inheritdoc cref="M:GTiff2Tiles.Core.Images.IImage.WriteTileToChannel(NetVips.Image,GTiff2Tiles.Core.Tiles.RasterTile,System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.ITile},System.String)"/>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Images.IImage.WriteTilesToDirectory(System.IO.DirectoryInfo,System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,System.String,System.String,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Boolean)">
+            <inheritdoc cref="M:GTiff2Tiles.Core.Images.IImage.WriteTilesToDirectoryAsync(System.IO.DirectoryInfo,System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,System.String,System.String,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Boolean)"/>
+        </member>
         <member name="M:GTiff2Tiles.Core.Images.IImage.WriteTilesToDirectoryAsync(System.IO.DirectoryInfo,System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,System.String,System.String,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Boolean)">
             <summary>
             Crops current <see cref="T:GTiff2Tiles.Core.Images.IImage"/> on <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>s
@@ -972,6 +1019,9 @@
             <param name="progress"></param>
             <param name="isPrintEstimatedTime"></param>
         </member>
+        <member name="M:GTiff2Tiles.Core.Images.IImage.WriteTilesToChannel(System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.ITile},System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,System.String,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Boolean)">
+            <inheritdoc cref="M:GTiff2Tiles.Core.Images.IImage.WriteTilesToChannelAsync(System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.ITile},System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,System.String,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Boolean)"/>
+        </member>
         <member name="M:GTiff2Tiles.Core.Images.IImage.WriteTilesToChannelAsync(System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.ITile},System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,System.String,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Boolean)">
             <summary>
             Crops current <see cref="T:GTiff2Tiles.Core.Images.IImage"/> on <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>s
@@ -988,6 +1038,23 @@
             <param name="bandsCount"></param>
             <param name="tileCacheCount"></param>
             <param name="threadsCount">T</param>
+            <param name="progress"></param>
+            <param name="isPrintEstimatedTime"></param>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Images.IImage.WriteTilesToEnumerable(System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,System.String,System.Int32,System.Int32,System.IProgress{System.Double},System.Boolean)">
+            <summary>
+            Crops current <see cref="T:GTiff2Tiles.Core.Images.IImage"/> on <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>s
+            and writes them to <see cref="T:System.Collections.Generic.IEnumerable`1"/>
+            </summary>
+            <returns><see cref="T:System.Collections.Generic.IEnumerable`1"/> of <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>s</returns>
+            <inheritdoc cref="M:GTiff2Tiles.Core.Images.IImage.WriteTilesToAsyncEnumerable(System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,System.String,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Boolean)"/>
+            <param name="minZ"></param>
+            <param name="maxZ"></param>
+            <param name="tmsCompatible"></param>
+            <param name="tileSize"></param>
+            <param name="interpolation"></param>
+            <param name="bandsCount"></param>
+            <param name="tileCacheCount"></param>
             <param name="progress"></param>
             <param name="isPrintEstimatedTime"></param>
         </member>
@@ -1022,7 +1089,7 @@
             Example of class to use <see cref="T:GTiff2Tiles.Core.Images.IImage"/> interface.
             </summary>
         </member>
-        <member name="M:GTiff2Tiles.Core.Images.Img.GenerateTilesAsync(System.IO.FileInfo,System.IO.DirectoryInfo,System.Int32,System.Int32,GTiff2Tiles.Core.Enums.TileType,System.Boolean,GTiff2Tiles.Core.Enums.TileExtension,System.IProgress{System.Double},System.Int32)">
+        <member name="M:GTiff2Tiles.Core.Images.Img.GenerateTilesAsync(System.IO.FileInfo,System.IO.DirectoryInfo,System.Int32,System.Int32,GTiff2Tiles.Core.Enums.TileType,GTiff2Tiles.Core.Enums.CoordinateSystems,System.Boolean,GTiff2Tiles.Core.Enums.TileExtension,System.IProgress{System.Double},System.Int32)">
             <summary>
             Example of method to use <see cref="T:GTiff2Tiles.Core.Images.IImage"/> interface for cropping the tiles.
             </summary>
@@ -1031,6 +1098,7 @@
             <param name="minZ">Minimum cropped zoom.</param>
             <param name="maxZ">Maximum cropped zoom.</param>
             <param name="tileType">Type of tiles to create.</param>
+            <param name="targetSystem"></param>
             <param name="tmsCompatible">Are tiles compatible with tms?</param>
             <param name="tileExtension">Extension of ready tiles.</param>
             <param name="progress">Progress.</param>
@@ -1116,55 +1184,33 @@
             <returns>Ready <see cref="T:NetVips.Image"/> for <see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/></returns>
         </member>
         <member name="M:GTiff2Tiles.Core.Images.Raster.WriteTileToFile(NetVips.Image,GTiff2Tiles.Core.Tiles.RasterTile,System.String)">
-            <summary>
-            Gets data from source <see cref="T:NetVips.Image"/>
-            or tile cache for specified <see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/>
-            and writes it to ready file
-            </summary>
-            <param name="tileCache">Source <see cref="T:NetVips.Image"/>
-            or tile cache</param>
-            <param name="tile">Target <see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/></param>
-            <param name="interpolation">Interpolation of ready tiles</param>
+            <inheritdoc/>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Images.Raster.WriteTileToFileAsync(NetVips.Image,GTiff2Tiles.Core.Tiles.RasterTile,System.String)">
+            <inheritdoc/>
         </member>
         <member name="M:GTiff2Tiles.Core.Images.Raster.WriteTileToEnumerable(NetVips.Image,GTiff2Tiles.Core.Tiles.RasterTile,System.String)">
-            <summary>
-            Gets data from source <see cref="T:NetVips.Image"/>
-            or tile cache for specified <see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/>
-            and writes it to <see cref="T:System.Collections.Generic.IEnumerable`1"/>
-            </summary>
-            <param name="tileCache">Source <see cref="T:NetVips.Image"/>
-            or tile cache</param>
-            <param name="tile">Target <see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/></param>
-            <param name="interpolation">Interpolation of ready tiles</param>
-            <returns><see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/>'s <see cref="T:System.Byte"/>s</returns>
-        </member>
-        <member name="M:GTiff2Tiles.Core.Images.Raster.WriteTileToChannel(GTiff2Tiles.Core.Tiles.ITile,System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.ITile})">
-            <summary>
-            Writes specified <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/> to <see cref="T:System.Threading.Channels.Channel"/>
-            </summary>
-            <param name="tile"><see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/> to write</param>
-            <param name="channelWriter">Target <see cref="T:System.Threading.Channels.ChannelWriter`1"/></param>
-            <returns><see langword="true"/> if <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/> was written;
-            <see langword="false"/> otherwise</returns>
+            <inheritdoc/>
         </member>
         <member name="M:GTiff2Tiles.Core.Images.Raster.WriteTileToChannel(NetVips.Image,GTiff2Tiles.Core.Tiles.RasterTile,System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.ITile},System.String)">
-            <summary>
-            Gets data from source <see cref="T:NetVips.Image"/>
-            or tile cache for specified <see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/>
-            and writes it to <see cref="T:System.Threading.Channels.ChannelWriter`1"/>
-            </summary>
-            <param name="tileCache">Source <see cref="T:NetVips.Image"/>
-            or tile cache</param>
-            <param name="tile">Target <see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/></param>
-            <param name="channelWriter">Target <see cref="T:System.Threading.Channels.ChannelWriter`1"/></param>
-            <param name="interpolation">Interpolation of ready tiles</param>
-            <returns><see langword="true"/> if <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/> was written;
-            <see langword="false"/> otherwise</returns>
+            <inheritdoc/>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Images.Raster.WriteTileToChannelAsync(NetVips.Image,GTiff2Tiles.Core.Tiles.RasterTile,System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.ITile},System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Images.Raster.WriteTilesToDirectory(System.IO.DirectoryInfo,System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,System.String,System.String,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Boolean)">
+            <inheritdoc />
         </member>
         <member name="M:GTiff2Tiles.Core.Images.Raster.WriteTilesToDirectoryAsync(System.IO.DirectoryInfo,System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,System.String,System.String,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Boolean)">
             <inheritdoc />
         </member>
+        <member name="M:GTiff2Tiles.Core.Images.Raster.WriteTilesToChannel(System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.ITile},System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,System.String,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Boolean)">
+            <inheritdoc />
+        </member>
         <member name="M:GTiff2Tiles.Core.Images.Raster.WriteTilesToChannelAsync(System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.ITile},System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,System.String,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Boolean)">
+            <inheritdoc />
+        </member>
+        <member name="M:GTiff2Tiles.Core.Images.Raster.WriteTilesToEnumerable(System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,System.String,System.Int32,System.Int32,System.IProgress{System.Double},System.Boolean)">
             <inheritdoc />
         </member>
         <member name="M:GTiff2Tiles.Core.Images.Raster.WriteTilesToAsyncEnumerable(System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,System.String,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Boolean)">

@@ -1,11 +1,11 @@
 ﻿#pragma warning disable CA1031 // Do not catch general exception types
+#pragma warning disable CA1062 // Check args
 
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Threading;
 using System.Threading.Channels;
 using System.Threading.Tasks;
 using GTiff2Tiles.Core.Constants;
@@ -205,6 +205,9 @@ namespace GTiff2Tiles.Core.Images
         /// <returns>Ready <see cref="Image"/> for <see cref="RasterTile"/></returns>
         public Image CreateTileImage(Image tileCache, RasterTile tile, string interpolation)
         {
+            if (tileCache == null) throw new ArgumentNullException(nameof(tileCache));
+            if (tile == null) throw new ArgumentNullException(nameof(tile));
+
             // Get postitions and sizes for current tile
             (Area readArea, Area writeArea) = Area.GetAreas(this, tile);
 
@@ -230,35 +233,19 @@ namespace GTiff2Tiles.Core.Images
 
         #region WriteTile
 
-        /// <summary>
-        /// Gets data from source <see cref="Image"/>
-        /// or tile cache for specified <see cref="RasterTile"/>
-        /// and writes it to ready file
-        /// </summary>
-        /// <param name="tileCache">Source <see cref="Image"/>
-        /// or tile cache</param>
-        /// <param name="tile">Target <see cref="RasterTile"/></param>
-        /// <param name="interpolation">Interpolation of ready tiles</param>
+        /// <inheritdoc/>
         public void WriteTileToFile(Image tileCache, RasterTile tile, string interpolation)
         {
             using Image tileImage = CreateTileImage(tileCache, tile, interpolation);
 
-            // TODO: Validate tileImage, not tile!
-            //if (!tile.Validate(false)) return;
-
             tileImage.WriteToFile(tile.FileInfo.FullName);
         }
 
-        /// <summary>
-        /// Gets data from source <see cref="Image"/>
-        /// or tile cache for specified <see cref="RasterTile"/>
-        /// and writes it to <see cref="IEnumerable{T}"/>
-        /// </summary>
-        /// <param name="tileCache">Source <see cref="Image"/>
-        /// or tile cache</param>
-        /// <param name="tile">Target <see cref="RasterTile"/></param>
-        /// <param name="interpolation">Interpolation of ready tiles</param>
-        /// <returns><see cref="RasterTile"/>'s <see cref="byte"/>s</returns>
+        /// <inheritdoc/>
+        public async ValueTask WriteTileToFileAsync(Image tileCache, RasterTile tile, string interpolation) =>
+            await Task.Run(() => WriteTileToFile(tileCache, tile, interpolation)).ConfigureAwait(false);
+
+        /// <inheritdoc/>
         public IEnumerable<byte> WriteTileToEnumerable(Image tileCache, RasterTile tile,
                                                        string interpolation)
         {
@@ -269,34 +256,28 @@ namespace GTiff2Tiles.Core.Images
             return tileImage.WriteToMemory();
         }
 
-        /// <summary>
-        /// Writes specified <see cref="ITile"/> to <see cref="Channel"/>
-        /// </summary>
-        /// <param name="tile"><see cref="RasterTile"/> to write</param>
-        /// <param name="channelWriter">Target <see cref="ChannelWriter{T}"/></param>
-        /// <returns><see langword="true"/> if <see cref="ITile"/> was written;
-        /// <see langword="false"/> otherwise</returns>
-        public static bool WriteTileToChannel(ITile tile, ChannelWriter<ITile> channelWriter) =>
-            tile.Validate(false) && channelWriter.TryWrite(tile);
-
-        /// <summary>
-        /// Gets data from source <see cref="Image"/>
-        /// or tile cache for specified <see cref="RasterTile"/>
-        /// and writes it to <see cref="ChannelWriter{T}"/>
-        /// </summary>
-        /// <param name="tileCache">Source <see cref="Image"/>
-        /// or tile cache</param>
-        /// <param name="tile">Target <see cref="RasterTile"/></param>
-        /// <param name="channelWriter">Target <see cref="ChannelWriter{T}"/></param>
-        /// <param name="interpolation">Interpolation of ready tiles</param>
-        /// <returns><see langword="true"/> if <see cref="ITile"/> was written;
-        /// <see langword="false"/> otherwise</returns>
+        /// <inheritdoc/>
         public bool WriteTileToChannel(Image tileCache, RasterTile tile, ChannelWriter<ITile> channelWriter,
                                        string interpolation)
         {
+            if (tile == null) throw new ArgumentNullException(nameof(tile));
+            if (channelWriter == null) throw new ArgumentNullException(nameof(channelWriter));
+
             tile.Bytes = WriteTileToEnumerable(tileCache, tile, interpolation);
 
-            return WriteTileToChannel(tile, channelWriter);
+            return tile.Validate(false) && channelWriter.TryWrite(tile);
+        }
+
+        /// <inheritdoc/>
+        public ValueTask WriteTileToChannelAsync(Image tileCache, RasterTile tile,
+                                                 ChannelWriter<ITile> channelWriter, string interpolation)
+        {
+            if (tile == null) throw new ArgumentNullException(nameof(tile));
+            if (channelWriter == null) throw new ArgumentNullException(nameof(channelWriter));
+
+            tile.Bytes = WriteTileToEnumerable(tileCache, tile, interpolation);
+
+            return channelWriter.WriteAsync(tile);
         }
 
         #endregion
@@ -304,14 +285,14 @@ namespace GTiff2Tiles.Core.Images
         #region WriteTiles
 
         /// <inheritdoc />
-        public async ValueTask WriteTilesToDirectoryAsync(DirectoryInfo outputDirectoryInfo, int minZ, int maxZ,
-                                                          bool tmsCompatible = false, Size tileSize = null,
-                                                          string tileExtension = FileExtensions.Png,
-                                                          string interpolation = Interpolations.Lanczos3,
-                                                          int bandsCount = RasterTile.DefaultBandsCount,
-                                                          int tileCacheCount = 1000, int threadsCount = 0,
-                                                          IProgress<double> progress = null,
-                                                          bool isPrintEstimatedTime = false)
+        public void WriteTilesToDirectory(DirectoryInfo outputDirectoryInfo, int minZ, int maxZ,
+                                          bool tmsCompatible = false, Size tileSize = null,
+                                          string tileExtension = FileExtensions.Png,
+                                          string interpolation = Interpolations.Lanczos3,
+                                          int bandsCount = RasterTile.DefaultBandsCount,
+                                          int tileCacheCount = 1000, int threadsCount = 0,
+                                          IProgress<double> progress = null,
+                                          bool isPrintEstimatedTime = false)
         {
             #region Parameters checking
 
@@ -336,13 +317,39 @@ namespace GTiff2Tiles.Core.Images
             // Create tile cache to read data from it
             using Image tileCache = Data.Tilecache(tileSize.Width, tileSize.Height, tileCacheCount, threaded: true);
 
+            void MakeTile(int x, int y, int z)
+            {
+                // Create directories for the tile
+                // The overall structure looks like: outputDirectory/zoom/x/y.png
+                DirectoryInfo tileDirectoryInfo = new DirectoryInfo(Path.Combine(outputDirectoryInfo.FullName, $"{z}", $"{x}"));
+                CheckHelper.CheckDirectory(tileDirectoryInfo);
+
+                Number tileNumber = new Number(x, y, z);
+                RasterTile tile = new RasterTile(tileNumber, extension: tileExtension, tmsCompatible: tmsCompatible,
+                    size: tileSize, bandsCount: bandsCount, coordinateType: GeoCoordinateType)
+                {
+                    // Warning: OpenLayers requires replacement of tileY to tileY+1
+                    FileInfo = new FileInfo(Path.Combine(tileDirectoryInfo.FullName, $"{y}{tileExtension}"))
+                };
+
+                // ReSharper disable once AccessToDisposedClosure
+                WriteTileToFile(tileCache, tile, interpolation);
+
+                // Report progress
+                counter++;
+                double percentage = counter / tilesCount * 100.0;
+                progress.Report(percentage);
+
+                // Estimated time left calculation
+                ProgressHelper.PrintEstimatedTimeLeft(percentage, stopwatch);
+            }
+
             // For each zoom
             for (int zoom = minZ; zoom <= maxZ; zoom++)
             {
                 // Get tiles min/max numbers
                 (Number minNumber, Number maxNumber) = GeoCoordinate.GetNumbers(MinCoordinate, MaxCoordinate,
-                                                                                       zoom, tileSize.Width,
-                                                                                tmsCompatible);
+                        zoom, tileSize.Width, tmsCompatible);
 
                 // For each tile on given zoom calculate positions/sizes and save as file
                 for (int tileY = minNumber.Y; tileY <= maxNumber.Y; tileY++)
@@ -350,36 +357,89 @@ namespace GTiff2Tiles.Core.Images
                     int y = tileY;
                     int z = zoom;
 
-                    void MakeTile(int x)
-                    {
-                        // Create directories for the tile
-                        // The overall structure looks like: outputDirectory/zoom/x/y.png
-                        DirectoryInfo tileDirectoryInfo = new DirectoryInfo(Path.Combine(outputDirectoryInfo.FullName, $"{z}", $"{x}"));
-                        CheckHelper.CheckDirectory(tileDirectoryInfo);
+                    Parallel.For(minNumber.X, maxNumber.X + 1, parallelOptions, x => MakeTile(x, y, z));
+                }
+            }
+        }
 
-                        Number tileNumber = new Number(x, y, z);
-                        RasterTile tile = new RasterTile(tileNumber, extension: tileExtension, tmsCompatible: tmsCompatible,
-                                                          size: tileSize, bandsCount: bandsCount,
-                                                          coordinateType: GeoCoordinateType)
-                        {
-                            // Warning: OpenLayers requires replacement of tileY to tileY+1
-                            FileInfo = new FileInfo(Path.Combine(tileDirectoryInfo.FullName, $"{y}{tileExtension}"))
-                        };
+        /// <inheritdoc />
+        public async ValueTask WriteTilesToDirectoryAsync(DirectoryInfo outputDirectoryInfo, int minZ, int maxZ,
+                                                          bool tmsCompatible = false, Size tileSize = null,
+                                                          string tileExtension = FileExtensions.Png,
+                                                          string interpolation = Interpolations.Lanczos3,
+                                                          int bandsCount = RasterTile.DefaultBandsCount,
+                                                          int tileCacheCount = 1000, int threadsCount = 0,
+                                                          IProgress<double> progress = null,
+                                                          bool isPrintEstimatedTime = false) =>
+            await Task.Run(() => WriteTilesToDirectory(outputDirectoryInfo, minZ, maxZ, tmsCompatible, tileSize,
+                                                       tileExtension, interpolation, bandsCount, tileCacheCount,
+                                                       threadsCount, progress, isPrintEstimatedTime))
+                      .ConfigureAwait(false);
 
-                        // ReSharper disable once AccessToDisposedClosure
-                        WriteTileToFile(tileCache, tile, interpolation);
+        /// <inheritdoc />
+        public void WriteTilesToChannel(ChannelWriter<ITile> channelWriter, int minZ, int maxZ,
+                                        bool tmsCompatible = false, Size tileSize = null,
+                                        string interpolation = Interpolations.Lanczos3,
+                                        int bandsCount = RasterTile.DefaultBandsCount,
+                                        int tileCacheCount = 1000, int threadsCount = 0,
+                                        IProgress<double> progress = null,
+                                        bool isPrintEstimatedTime = false)
+        {
+            #region Parameters checking
 
-                        // Report progress
-                        counter++;
-                        double percentage = counter / tilesCount * 100.0;
-                        progress.Report(percentage);
+            progress ??= new Progress<double>();
+            tileSize ??= Tile.DefaultSize;
 
-                        // Estimated time left calculation
-                        ProgressHelper.PrintEstimatedTimeLeft(percentage, stopwatch);
-                    }
+            ParallelOptions parallelOptions = new ParallelOptions();
+            if (threadsCount > 0) parallelOptions.MaxDegreeOfParallelism = threadsCount;
 
-                    await Task.Run(() => Parallel.For(minNumber.X, maxNumber.X + 1, parallelOptions, MakeTile))
-                              .ConfigureAwait(false);
+            #region Progress stuff
+
+            Stopwatch stopwatch = isPrintEstimatedTime ? Stopwatch.StartNew() : null;
+            int tilesCount = Number.GetCount(MinCoordinate, MaxCoordinate, minZ, maxZ, tmsCompatible, tileSize);
+            double counter = 0.0;
+
+            if (tilesCount <= 0) return;
+
+            #endregion
+
+            #endregion
+
+            // Create tile cache to read data from it
+            using Image tileCache = Data.Tilecache(tileSize.Width, tileSize.Height, tileCacheCount, threaded: true);
+
+            void MakeTile(int x, int y, int z)
+            {
+                Number tileNumber = new Number(x, y, z);
+                RasterTile tile = new RasterTile(tileNumber, tmsCompatible: tmsCompatible,
+                    size: tileSize, bandsCount: bandsCount, coordinateType: GeoCoordinateType);
+
+                // ReSharper disable once AccessToDisposedClosure
+                if (!WriteTileToChannel(tileCache, tile, channelWriter, interpolation)) return;
+
+                // Report progress
+                counter++;
+                double percentage = counter / tilesCount * 100.0;
+                progress.Report(percentage);
+
+                // Estimated time left calculation
+                ProgressHelper.PrintEstimatedTimeLeft(percentage, stopwatch);
+            }
+
+            // For each zoom
+            for (int zoom = minZ; zoom <= maxZ; zoom++)
+            {
+                // Get tiles min/max numbers
+                (Number minNumber, Number maxNumber) = GeoCoordinate.GetNumbers(MinCoordinate, MaxCoordinate,
+                    zoom, tileSize.Width, tmsCompatible);
+
+                // For each tile on given zoom calculate positions/sizes and save as file
+                for (int tileY = minNumber.Y; tileY <= maxNumber.Y; tileY++)
+                {
+                    int y = tileY;
+                    int z = zoom;
+
+                    Parallel.For(minNumber.X, maxNumber.X + 1, parallelOptions, x => MakeTile(x, y, z));
                 }
             }
         }
@@ -391,84 +451,24 @@ namespace GTiff2Tiles.Core.Images
                                                         int bandsCount = RasterTile.DefaultBandsCount,
                                                         int tileCacheCount = 1000, int threadsCount = 0,
                                                         IProgress<double> progress = null,
-                                                        bool isPrintEstimatedTime = false)
-        {
-            #region Parameters checking
-
-            progress ??= new Progress<double>();
-            tileSize ??= Tile.DefaultSize;
-
-            #region Progress stuff
-
-            Stopwatch stopwatch = isPrintEstimatedTime ? Stopwatch.StartNew() : null;
-            int tilesCount = Number.GetCount(MinCoordinate, MaxCoordinate, minZ, maxZ, tmsCompatible, tileSize);
-            double counter = 0.0;
-
-            ParallelOptions parallelOptions = new ParallelOptions();
-            if (threadsCount > 0) parallelOptions.MaxDegreeOfParallelism = threadsCount;
-
-            if (tilesCount <= 0) return;
-
-            #endregion
-
-            #endregion
-
-            // Create tile cache to read data from it
-            using Image tileCache = Data.Tilecache(tileSize.Width, tileSize.Height, tileCacheCount, threaded: true);
-
-            // For each zoom
-            for (int zoom = minZ; zoom <= maxZ; zoom++)
-            {
-                // Get tiles min/max numbers
-                (Number minNumber, Number maxNumber) = GeoCoordinate.GetNumbers(MinCoordinate, MaxCoordinate,
-                                                                                zoom, tileSize.Width,
-                                                                                tmsCompatible);
-
-                // For each tile on given zoom calculate positions/sizes and save as file
-                for (int tileY = minNumber.Y; tileY <= maxNumber.Y; tileY++)
-                {
-                    int y = tileY;
-                    int z = zoom;
-
-                    void MakeTile(int x)
-                    {
-                        Number tileNumber = new Number(x, y, z);
-                        RasterTile tile = new RasterTile(tileNumber, tmsCompatible: tmsCompatible,
-                                                    size: tileSize, bandsCount: bandsCount,
-                                                    coordinateType: GeoCoordinateType);
-
-                        // ReSharper disable once AccessToDisposedClosure
-                        if (!WriteTileToChannel(tileCache, tile, channelWriter, interpolation)) return;
-
-                        // Report progress
-                        counter++;
-                        double percentage = counter / tilesCount * 100.0;
-                        progress.Report(percentage);
-
-                        // Estimated time left calculation
-                        ProgressHelper.PrintEstimatedTimeLeft(percentage, stopwatch);
-                    }
-
-                    await Task.Run(() => Parallel.For(minNumber.X, maxNumber.X + 1, parallelOptions, MakeTile))
-                              .ConfigureAwait(false);
-                }
-            }
-        }
+                                                        bool isPrintEstimatedTime = false) =>
+            await Task.Run(() => WriteTilesToChannel(channelWriter, minZ, maxZ, tmsCompatible, tileSize, interpolation,
+                                                     bandsCount, tileCacheCount, threadsCount, progress,
+                                                     isPrintEstimatedTime)).ConfigureAwait(false);
 
         /// <inheritdoc />
-        public async IAsyncEnumerable<ITile> WriteTilesToAsyncEnumerable(int minZ, int maxZ,
-                                                                         bool tmsCompatible = false, Size tileSize = null,
-                                                                         string interpolation = Interpolations.Lanczos3,
-                                                                         int bandsCount = RasterTile.DefaultBandsCount,
-                                                                         int tileCacheCount = 1000, int threadsCount = 0,
-                                                                         IProgress<double> progress = null,
-                                                                         bool isPrintEstimatedTime = false)
+        public IEnumerable<ITile> WriteTilesToEnumerable(int minZ, int maxZ,
+                                                         bool tmsCompatible = false, Size tileSize = null,
+                                                         string interpolation = Interpolations.Lanczos3,
+                                                         int bandsCount = RasterTile.DefaultBandsCount,
+                                                         int tileCacheCount = 1000,
+                                                         IProgress<double> progress = null,
+                                                         bool isPrintEstimatedTime = false)
         {
             #region Parameters checking
 
             progress ??= new Progress<double>();
             tileSize ??= Tile.DefaultSize;
-            threadsCount = threadsCount <= 0 ? Environment.ProcessorCount : threadsCount;
 
             #region Progress stuff
 
@@ -482,79 +482,63 @@ namespace GTiff2Tiles.Core.Images
 
             #endregion
 
-            using SemaphoreSlim semaphoreSlim = new SemaphoreSlim(threadsCount);
-            HashSet<Task<ITile>> tasks = new HashSet<Task<ITile>>();
-
             // Create tile cache to read data from it
             using Image tileCache = Data.Tilecache(tileSize.Width, tileSize.Height, tileCacheCount, threaded: true);
+
+            ITile MakeTile(int x, int y, int z)
+            {
+                Number tileNumber = new Number(x, y, z);
+                RasterTile tile = new RasterTile(tileNumber, tmsCompatible: tmsCompatible,
+                    size: tileSize, bandsCount: bandsCount, coordinateType: GeoCoordinateType);
+
+                tile.Bytes = WriteTileToEnumerable(tileCache, tile, interpolation);
+
+                // Report progress
+                counter++;
+                double percentage = counter / tilesCount * 100.0;
+                progress.Report(percentage);
+
+                // Estimated time left calculation
+                ProgressHelper.PrintEstimatedTimeLeft(percentage, stopwatch);
+
+                return tile;
+            }
 
             // For each specified zoom
             for (int zoom = minZ; zoom <= maxZ; zoom++)
             {
                 // Get tiles min/max numbers
                 (Number minNumber, Number maxNumber) = GeoCoordinate.GetNumbers(MinCoordinate, MaxCoordinate,
-                                                                                zoom, tileSize.Width,
-                                                                                tmsCompatible);
+                        zoom, tileSize.Width, tmsCompatible);
 
                 // For each tile on given zoom calculate positions/sizes and save as file
                 for (int tileY = minNumber.Y; tileY <= maxNumber.Y; tileY++)
                 {
-                    // TODO: use Parallel.For somehow
                     for (int tileX = minNumber.X; tileX <= maxNumber.X; tileX++)
                     {
-                        await semaphoreSlim.WaitAsync();
-
-                        int x = tileX;
-                        int y = tileY;
-                        int z = zoom;
-
-                        ITile MakeTile()
-                        {
-                            Number tileNumber = new Number(x, y, z);
-                            RasterTile tile = new RasterTile(tileNumber, tmsCompatible: tmsCompatible,
-                                                             size: tileSize, bandsCount: bandsCount,
-                                                             coordinateType: GeoCoordinateType);
-
-                            try
-                            {
-                                // ReSharper disable once AccessToDisposedClosure
-                                tile.Bytes = WriteTileToEnumerable(tileCache, tile, interpolation);
-                                //if (!tile.Validate(false)) return null;
-                            }
-                            finally
-                            {
-                                // Report progress
-                                counter++;
-                                double percentage = counter / tilesCount * 100.0;
-                                progress.Report(percentage);
-
-                                // Estimated time left calculation
-                                ProgressHelper.PrintEstimatedTimeLeft(percentage, stopwatch);
-
-                                // ReSharper disable once AccessToDisposedClosure
-                                semaphoreSlim.Release();
-                            }
-
-                            return tile;
-                        }
-
-                        tasks.Add(Task.Run(MakeTile));
+                        yield return MakeTile(tileX, tileY, zoom);
                     }
-
-                    while (tasks.Count != 0)
-                    {
-                        Task<ITile> task = await Task.WhenAny(tasks).ConfigureAwait(false);
-                        tasks.Remove(task);
-                        ITile tile = await task.ConfigureAwait(false);
-
-                        if (!Tile.Validate(tile, false)) continue;
-
-                        yield return tile;
-                    }
-
-                    tasks.Clear();
                 }
             }
+        }
+
+        /// <inheritdoc />
+        public IAsyncEnumerable<ITile> WriteTilesToAsyncEnumerable(int minZ, int maxZ,
+                                                                   bool tmsCompatible = false, Size tileSize = null,
+                                                                   string interpolation = Interpolations.Lanczos3,
+                                                                   int bandsCount = RasterTile.DefaultBandsCount,
+                                                                   int tileCacheCount = 1000, int threadsCount = 0,
+                                                                   IProgress<double> progress = null,
+                                                                   bool isPrintEstimatedTime = false)
+        {
+            Channel<ITile> channel = Channel.CreateUnbounded<ITile>();
+
+            WriteTilesToChannelAsync(channel.Writer, minZ, maxZ, tmsCompatible, tileSize,
+                                     interpolation, bandsCount, tileCacheCount,
+                                     threadsCount, progress, isPrintEstimatedTime)
+               .AsTask().ContinueWith(_ => channel.Writer.Complete(), TaskScheduler.Current);
+
+            return channel.Reader.ReadAllAsync();
         }
 
         #endregion
@@ -562,3 +546,6 @@ namespace GTiff2Tiles.Core.Images
         #endregion
     }
 }
+
+#pragma warning restore CA1031 // Do not catch general exception types
+#pragma warning restore CA1062 // Check args

@@ -20,6 +20,7 @@ namespace GTiff2Tiles.Core.Images
         /// <param name="minZ">Minimum cropped zoom.</param>
         /// <param name="maxZ">Maximum cropped zoom.</param>
         /// <param name="tileType">Type of tiles to create.</param>
+        /// <param name="targetSystem"></param>
         /// <param name="tmsCompatible">Are tiles compatible with tms?</param>
         /// <param name="tileExtension">Extension of ready tiles.</param>
         /// <param name="progress">Progress.</param>
@@ -27,16 +28,20 @@ namespace GTiff2Tiles.Core.Images
         /// <returns></returns>
         public static async ValueTask GenerateTilesAsync(FileInfo inputFileInfo, DirectoryInfo outputDirectoryInfo,
                                                          int minZ, int maxZ, TileType tileType,
+                                                         CoordinateSystems targetSystem,
                                                          bool tmsCompatible = true,
                                                          TileExtension tileExtension = TileExtension.Png,
                                                          IProgress<double> progress = null,
                                                          int threadsCount = 5)
         {
+            CoordinateType coordinateType = targetSystem == CoordinateSystems.Epsg4326
+                                                ? CoordinateType.Geodetic
+                                                : CoordinateType.Mercator;
             //This is example.
             //TODO: Better exception-handling
             await using IImage image = tileType switch
             {
-                TileType.Raster => new Raster(inputFileInfo),
+                TileType.Raster => new Raster(inputFileInfo, coordinateType: coordinateType),
                 //TileType.Terrain => new Image(inputFileInfo),
                 _ => throw new Exception()
             };

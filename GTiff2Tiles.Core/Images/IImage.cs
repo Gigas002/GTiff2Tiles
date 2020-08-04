@@ -7,6 +7,7 @@ using GTiff2Tiles.Core.Constants;
 using GTiff2Tiles.Core.Coordinates;
 using GTiff2Tiles.Core.Enums;
 using GTiff2Tiles.Core.Tiles;
+using NetVips;
 
 // ReSharper disable UnusedMember.Global
 // ReSharper disable UnusedMemberInSuper.Global
@@ -49,6 +50,68 @@ namespace GTiff2Tiles.Core.Images
 
         #region Methods
 
+        #region WriteTile
+
+        /// <summary>
+        /// Gets data from source <see cref="Image"/>
+        /// or tile cache for specified <see cref="RasterTile"/>
+        /// and writes it to ready file
+        /// </summary>
+        /// <param name="tileCache">Source <see cref="Image"/>
+        /// or tile cache</param>
+        /// <param name="tile">Target <see cref="RasterTile"/></param>
+        /// <param name="interpolation">Interpolation of ready tiles</param>
+        public void WriteTileToFile(Image tileCache, RasterTile tile, string interpolation);
+
+        /// <inheritdoc cref="WriteTileToFile"/>
+        public ValueTask WriteTileToFileAsync(Image tileCache, RasterTile tile, string interpolation);
+
+        /// <summary>
+        /// Gets data from source <see cref="Image"/>
+        /// or tile cache for specified <see cref="RasterTile"/>
+        /// and writes it to <see cref="IEnumerable{T}"/>
+        /// </summary>
+        /// <param name="tileCache">Source <see cref="Image"/>
+        /// or tile cache</param>
+        /// <param name="tile">Target <see cref="RasterTile"/></param>
+        /// <param name="interpolation">Interpolation of ready tiles</param>
+        /// <returns><see cref="RasterTile"/>'s <see cref="byte"/>s</returns>
+        public IEnumerable<byte> WriteTileToEnumerable(Image tileCache, RasterTile tile, string interpolation);
+
+        /// <summary>
+        /// Gets data from source <see cref="Image"/>
+        /// or tile cache for specified <see cref="RasterTile"/>
+        /// and writes it to <see cref="ChannelWriter{T}"/>
+        /// </summary>
+        /// <param name="tileCache">Source <see cref="Image"/>
+        /// or tile cache</param>
+        /// <param name="tile">Target <see cref="RasterTile"/></param>
+        /// <param name="channelWriter">Target <see cref="ChannelWriter{T}"/></param>
+        /// <param name="interpolation">Interpolation of ready tiles</param>
+        /// <returns><see langword="true"/> if <see cref="ITile"/> was written;
+        /// <see langword="false"/> otherwise</returns>
+        public bool WriteTileToChannel(Image tileCache, RasterTile tile, ChannelWriter<ITile> channelWriter,
+                                       string interpolation);
+
+        /// <returns></returns>
+        /// <inheritdoc cref="WriteTileToChannel"/>
+        public ValueTask WriteTileToChannelAsync(Image tileCache, RasterTile tile, ChannelWriter<ITile> channelWriter,
+                                                 string interpolation);
+
+        #endregion
+
+        #region WriteTiles
+
+        /// <inheritdoc cref="WriteTilesToDirectoryAsync"/>
+        public void WriteTilesToDirectory(DirectoryInfo outputDirectoryInfo, int minZ, int maxZ,
+                                          bool tmsCompatible = false, Size tileSize = null,
+                                          string tileExtension = FileExtensions.Png,
+                                          string interpolation = Interpolations.Lanczos3,
+                                          int bandsCount = RasterTile.DefaultBandsCount,
+                                          int tileCacheCount = 1000, int threadsCount = 0,
+                                          IProgress<double> progress = null,
+                                          bool isPrintEstimatedTime = false);
+
         /// <summary>
         /// Crops current <see cref="IImage"/> on <see cref="ITile"/>s
         /// and writes them to <paramref name="outputDirectoryInfo"/>
@@ -77,6 +140,15 @@ namespace GTiff2Tiles.Core.Images
                                                     IProgress<double> progress = null,
                                                     bool isPrintEstimatedTime = false);
 
+        /// <inheritdoc cref="WriteTilesToChannelAsync"/>
+        public void WriteTilesToChannel(ChannelWriter<ITile> channelWriter, int minZ, int maxZ,
+                                        bool tmsCompatible = false, Size tileSize = null,
+                                        string interpolation = Interpolations.Lanczos3,
+                                        int bandsCount = RasterTile.DefaultBandsCount,
+                                        int tileCacheCount = 1000, int threadsCount = 0,
+                                        IProgress<double> progress = null,
+                                        bool isPrintEstimatedTime = false);
+
         /// <summary>
         /// Crops current <see cref="IImage"/> on <see cref="ITile"/>s
         /// and writes them to <paramref name="channelWriter"/>
@@ -101,6 +173,29 @@ namespace GTiff2Tiles.Core.Images
                                                   int tileCacheCount = 1000, int threadsCount = 0,
                                                   IProgress<double> progress = null,
                                                   bool isPrintEstimatedTime = false);
+
+        /// <summary>
+        /// Crops current <see cref="IImage"/> on <see cref="ITile"/>s
+        /// and writes them to <see cref="IEnumerable{T}"/>
+        /// </summary>
+        /// <returns><see cref="IEnumerable{T}"/> of <see cref="ITile"/>s</returns>
+        /// <inheritdoc cref="WriteTilesToAsyncEnumerable"/>
+        /// <param name="minZ"></param>
+        /// <param name="maxZ"></param>
+        /// <param name="tmsCompatible"></param>
+        /// <param name="tileSize"></param>
+        /// <param name="interpolation"></param>
+        /// <param name="bandsCount"></param>
+        /// <param name="tileCacheCount"></param>
+        /// <param name="progress"></param>
+        /// <param name="isPrintEstimatedTime"></param>
+        public IEnumerable<ITile> WriteTilesToEnumerable(int minZ, int maxZ,
+                                                         bool tmsCompatible = false, Size tileSize = null,
+                                                         string interpolation = Interpolations.Lanczos3,
+                                                         int bandsCount = RasterTile.DefaultBandsCount,
+                                                         int tileCacheCount = 1000,
+                                                         IProgress<double> progress = null,
+                                                         bool isPrintEstimatedTime = false);
 
         /// <summary>
         /// Crops current <see cref="IImage"/> on <see cref="ITile"/>s
@@ -133,6 +228,8 @@ namespace GTiff2Tiles.Core.Images
                                                                    int tileCacheCount = 1000, int threadsCount = 0,
                                                                    IProgress<double> progress = null,
                                                                    bool isPrintEstimatedTime = false);
+
+        #endregion
 
         #endregion
     }
