@@ -1,11 +1,13 @@
 ﻿using System;
 
+// ReSharper disable UnusedMember.Global
+
 namespace GTiff2Tiles.Core.Images
 {
     /// <summary>
     /// <see cref="IImage"/>'s size
     /// </summary>
-    public sealed class Size : IEquatable<Size>
+    public sealed class Size : IEquatable<Size>, IComparable<Size>
     {
         #region Properties/Constants
 
@@ -33,7 +35,13 @@ namespace GTiff2Tiles.Core.Images
         /// </summary>
         /// <param name="width"><see cref="Width"/></param>
         /// <param name="height"><see cref="Height"/></param>
-        public Size(int width, int height) => (Width, Height) = (width, height);
+        public Size(int width, int height)
+        {
+            if (width <= 0) throw new ArgumentNullException(nameof(width));
+            if (height <= 0) throw new ArgumentNullException(nameof(height));
+
+            (Width, Height) = (width, height);
+        }
 
         #endregion
 
@@ -81,8 +89,13 @@ namespace GTiff2Tiles.Core.Images
         /// <param name="size2"><see cref="Size"/> 2</param>
         /// <returns><see langword="true"/> if <see cref="Size"/>1 is lesser;
         /// <see langword="false"/>otherwise</returns>
-        public static bool operator <(Size size1, Size size2) =>
-            size1.Width < size2.Width && size1.Height < size2.Height;
+        public static bool operator <(Size size1, Size size2)
+        {
+            if (size1 == null) throw new ArgumentNullException(nameof(size1));
+            if (size2 == null) throw new ArgumentNullException(nameof(size2));
+
+            return size1.Width < size2.Width && size1.Height < size2.Height;
+        }
 
         /// <summary>
         /// Check if <see cref="Size"/>1 is bigger, then <see cref="Size"/>2
@@ -91,8 +104,13 @@ namespace GTiff2Tiles.Core.Images
         /// <param name="size2"><see cref="Size"/> 2</param>
         /// <returns><see langword="true"/> if <see cref="Size"/>1 is bigger;
         /// <see langword="false"/>otherwise</returns>
-        public static bool operator >(Size size1, Size size2) =>
-            size1.Width > size2.Width && size1.Height > size2.Height;
+        public static bool operator >(Size size1, Size size2)
+        {
+            if (size1 == null) throw new ArgumentNullException(nameof(size1));
+            if (size2 == null) throw new ArgumentNullException(nameof(size2));
+
+            return size1.Width > size2.Width && size1.Height > size2.Height;
+        }
 
         /// <summary>
         /// Check if <see cref="Size"/>1 is lesser or equal, then <see cref="Size"/>2
@@ -101,8 +119,13 @@ namespace GTiff2Tiles.Core.Images
         /// <param name="size2"><see cref="Size"/> 2</param>
         /// <returns><see langword="true"/> if <see cref="Size"/>1 is lesser or equal;
         /// <see langword="false"/>otherwise</returns>
-        public static bool operator <=(Size size1, Size size2) =>
-            size1.Width <= size2.Width && size1.Height <= size2.Height;
+        public static bool operator <=(Size size1, Size size2)
+        {
+            if (size1 == null) throw new ArgumentNullException(nameof(size1));
+            if (size2 == null) throw new ArgumentNullException(nameof(size2));
+
+            return size1.Width <= size2.Width && size1.Height <= size2.Height;
+        }
 
         /// <summary>
         /// Check if <see cref="Size"/>1 is bigger or equal, then <see cref="Size"/>2
@@ -111,8 +134,17 @@ namespace GTiff2Tiles.Core.Images
         /// <param name="size2"><see cref="Size"/> 2</param>
         /// <returns><see langword="true"/> if <see cref="Size"/>1 is bigger or equal;
         /// <see langword="false"/>otherwise</returns>
-        public static bool operator >=(Size size1, Size size2) =>
-            size1.Width >= size2.Width && size1.Height >= size2.Height;
+        public static bool operator >=(Size size1, Size size2)
+        {
+            if (size1 == null) throw new ArgumentNullException(nameof(size1));
+            if (size2 == null) throw new ArgumentNullException(nameof(size2));
+
+            return size1.Width >= size2.Width && size1.Height >= size2.Height;
+        }
+
+        /// <inheritdoc/>
+        public int CompareTo(Size other) => this < other ? -1 :
+                                            this == other ? 0 : 1;
 
         #endregion
 
@@ -124,7 +156,17 @@ namespace GTiff2Tiles.Core.Images
         /// <param name="size1"><see cref="Size"/> 1</param>
         /// <param name="size2"><see cref="Size"/> 2</param>
         /// <returns>New <see cref="Size"/></returns>
-        public static Size operator +(Size size1, Size size2) => new Size(size1.Width + size2.Width, size1.Height + size2.Height);
+        public static Size operator +(Size size1, Size size2)
+        {
+            if (size1 == null) throw new ArgumentNullException(nameof(size1));
+            if (size2 == null) throw new ArgumentNullException(nameof(size2));
+
+            return new Size(size1.Width + size2.Width, size1.Height + size2.Height);
+        }
+
+        /// <inheritdoc cref="op_Addition"/>
+        /// <param name="other"><see cref="Size"/> to add</param>
+        public Size Add(Size other) => this + other;
 
         /// <summary>
         /// Subtruct <see cref="Size"/>s
@@ -132,7 +174,17 @@ namespace GTiff2Tiles.Core.Images
         /// <param name="size1"><see cref="Size"/> 1</param>
         /// <param name="size2"><see cref="Size"/> 2</param>
         /// <returns>New <see cref="Size"/></returns>
-        public static Size operator -(Size size1, Size size2) => new Size(size1.Width - size2.Width, size1.Height - size2.Height);
+        public static Size operator -(Size size1, Size size2)
+        {
+            if (size1 == null) throw new ArgumentNullException(nameof(size1));
+            if (size2 == null) throw new ArgumentNullException(nameof(size2));
+
+            return new Size(size1.Width - size2.Width, size1.Height - size2.Height);
+        }
+
+        /// <inheritdoc cref="op_Subtraction"/>
+        /// <param name="other"><see cref="Size"/> to subtract</param>
+        public Size Subtract(Size other) => this - other;
 
         /// <summary>
         /// Multiply <see cref="Size"/>s
@@ -140,7 +192,17 @@ namespace GTiff2Tiles.Core.Images
         /// <param name="size1"><see cref="Size"/> 1</param>
         /// <param name="size2"><see cref="Size"/> 2</param>
         /// <returns>New <see cref="Size"/></returns>
-        public static Size operator *(Size size1, Size size2) => new Size(size1.Width * size2.Width, size1.Height * size2.Height);
+        public static Size operator *(Size size1, Size size2)
+        {
+            if (size1 == null) throw new ArgumentNullException(nameof(size1));
+            if (size2 == null) throw new ArgumentNullException(nameof(size2));
+
+            return new Size(size1.Width * size2.Width, size1.Height * size2.Height);
+        }
+
+        /// <inheritdoc cref="op_Multiply"/>
+        /// <param name="other"><see cref="Size"/> to multiply</param>
+        public Size Multiply(Size other) => this * other;
 
         /// <summary>
         /// Divide <see cref="Size"/>s
@@ -148,7 +210,17 @@ namespace GTiff2Tiles.Core.Images
         /// <param name="size1"><see cref="Size"/> 1</param>
         /// <param name="size2"><see cref="Size"/> 2</param>
         /// <returns>New <see cref="Size"/></returns>
-        public static Size operator /(Size size1, Size size2) => new Size(size1.Width / size2.Width, size1.Height / size2.Height);
+        public static Size operator /(Size size1, Size size2)
+        {
+            if (size1 == null) throw new ArgumentNullException(nameof(size1));
+            if (size2 == null) throw new ArgumentNullException(nameof(size2));
+
+            return new Size(size1.Width / size2.Width, size1.Height / size2.Height);
+        }
+
+        /// <inheritdoc cref="op_Division"/>
+        /// <param name="other"><see cref="Size"/> to divide on</param>
+        public Size Divide(Size other) => this / other;
 
         #endregion
 
