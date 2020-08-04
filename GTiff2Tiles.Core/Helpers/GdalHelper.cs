@@ -5,6 +5,8 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using MaxRev.Gdal.Core;
+using OSGeo.GDAL;
+using OSGeo.OGR;
 
 /****************************************************************
  * Original class created by MaxRev and located in this repo: https://github.com/MaxRev-Dev/gdal.netcore
@@ -25,8 +27,8 @@ namespace GTiff2Tiles.Core.Helpers
         private static bool IsConfigured { get; set; }
 
         /// <summary>
-        /// Setups gdalplugins and calls <see cref="OSGeo.GDAL.Gdal.AllRegister()"/>,
-        /// <see cref="OSGeo.OGR.Ogr.RegisterAll()"/>,
+        /// Setups gdalplugins and calls <see cref="Gdal.AllRegister()"/>,
+        /// <see cref="Ogr.RegisterAll()"/>,
         /// <see cref="Proj6.Configure()"/>
         /// </summary>
         public static void ConfigureAll()
@@ -64,7 +66,7 @@ namespace GTiff2Tiles.Core.Helpers
                             File.Copy(Path.Combine(nativeDirectoryInfo.FullName, "jpeg.dll"),
                                       Path.Combine(executingDirectoryInfo.FullName, "jpeg.dll"));
 
-                        OSGeo.GDAL.Gdal.SetConfigOption("GDAL_DRIVER_PATH", driversPath);
+                        Gdal.SetConfigOption("GDAL_DRIVER_PATH", driversPath);
                     }
                     else
                     {
@@ -83,7 +85,7 @@ namespace GTiff2Tiles.Core.Helpers
                         File.Move(dll.FullName, destPath, true);
                     }
 
-                    OSGeo.GDAL.Gdal.SetConfigOption("GDAL_DRIVER_PATH", driversPath);
+                    Gdal.SetConfigOption("GDAL_DRIVER_PATH", driversPath);
                 }
             }
 
@@ -91,8 +93,8 @@ namespace GTiff2Tiles.Core.Helpers
             //string gdalFileNameIsUtf8 = "NO";
             //Gdal.SetConfigOption("GDAL_FILENAME_IS_UTF8", gdalFileNameIsUtf8);
 
-            OSGeo.GDAL.Gdal.AllRegister();
-            OSGeo.OGR.Ogr.RegisterAll();
+            Gdal.AllRegister();
+            Ogr.RegisterAll();
             Proj6.Configure();
 
             IsConfigured = true;
