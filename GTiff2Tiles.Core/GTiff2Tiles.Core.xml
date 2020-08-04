@@ -1007,15 +1007,15 @@
             <returns></returns>
             <inheritdoc cref="M:GTiff2Tiles.Core.Images.IImage.WriteTileToChannel(NetVips.Image,GTiff2Tiles.Core.Tiles.RasterTile,System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.ITile},System.String)"/>
         </member>
-        <member name="M:GTiff2Tiles.Core.Images.IImage.WriteTilesToDirectory(System.IO.DirectoryInfo,System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,System.String,System.String,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Boolean)">
-            <inheritdoc cref="M:GTiff2Tiles.Core.Images.IImage.WriteTilesToDirectoryAsync(System.IO.DirectoryInfo,System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,System.String,System.String,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Boolean)"/>
+        <member name="M:GTiff2Tiles.Core.Images.IImage.WriteTilesToDirectory(System.String,System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,System.String,System.String,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Boolean)">
+            <inheritdoc cref="M:GTiff2Tiles.Core.Images.IImage.WriteTilesToDirectoryAsync(System.String,System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,System.String,System.String,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Boolean)"/>
         </member>
-        <member name="M:GTiff2Tiles.Core.Images.IImage.WriteTilesToDirectoryAsync(System.IO.DirectoryInfo,System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,System.String,System.String,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Boolean)">
+        <member name="M:GTiff2Tiles.Core.Images.IImage.WriteTilesToDirectoryAsync(System.String,System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,System.String,System.String,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Boolean)">
             <summary>
             Crops current <see cref="T:GTiff2Tiles.Core.Images.IImage"/> on <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>s
-            and writes them to <paramref name="outputDirectoryInfo"/>
+            and writes them to <paramref name="outputDirectoryPath"/>
             </summary>
-            <param name="outputDirectoryInfo">Directory for output <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>s</param>
+            <param name="outputDirectoryPath">Directory for output <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>s</param>
             <param name="tileExtension">Extension of ready <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>s
             <remarks><para/>.png by default</remarks></param>
             <returns></returns>
@@ -1210,10 +1210,10 @@
         <member name="M:GTiff2Tiles.Core.Images.Raster.WriteTileToChannelAsync(NetVips.Image,GTiff2Tiles.Core.Tiles.RasterTile,System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.ITile},System.String)">
             <inheritdoc/>
         </member>
-        <member name="M:GTiff2Tiles.Core.Images.Raster.WriteTilesToDirectory(System.IO.DirectoryInfo,System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,System.String,System.String,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Boolean)">
+        <member name="M:GTiff2Tiles.Core.Images.Raster.WriteTilesToDirectory(System.String,System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,System.String,System.String,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Boolean)">
             <inheritdoc />
         </member>
-        <member name="M:GTiff2Tiles.Core.Images.Raster.WriteTilesToDirectoryAsync(System.IO.DirectoryInfo,System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,System.String,System.String,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Boolean)">
+        <member name="M:GTiff2Tiles.Core.Images.Raster.WriteTilesToDirectoryAsync(System.String,System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,System.String,System.String,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Boolean)">
             <inheritdoc />
         </member>
         <member name="M:GTiff2Tiles.Core.Images.Raster.WriteTilesToChannel(System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.ITile},System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,System.String,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Boolean)">
@@ -1530,9 +1530,9 @@
             <see cref="T:GTiff2Tiles.Core.Images.Size"/> (width, height) of this <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>
             </summary>
         </member>
-        <member name="P:GTiff2Tiles.Core.Tiles.ITile.FileInfo">
+        <member name="P:GTiff2Tiles.Core.Tiles.ITile.Path">
             <summary>
-            <see cref="T:System.IO.FileInfo"/> that represents this <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>
+            Path on disk of this <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>
             </summary>
         </member>
         <member name="P:GTiff2Tiles.Core.Tiles.ITile.Extension">
@@ -1549,7 +1549,7 @@
             <summary>
             Checks if this <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/> is not empty or too small
             </summary>
-            <param name="isCheckFileInfo">Do you want to check <see cref="P:GTiff2Tiles.Core.Tiles.ITile.FileInfo"/>?</param>
+            <param name="isCheckPath">Do you want to check <see cref="P:GTiff2Tiles.Core.Tiles.ITile.Path"/>?</param>
             <returns><see langword="true"/> if <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>'s valid;
             <para/><see langword="false"/> otherwise</returns>
         </member>
@@ -1865,7 +1865,7 @@
         <member name="P:GTiff2Tiles.Core.Tiles.Tile.Size">
             <inheritdoc />
         </member>
-        <member name="P:GTiff2Tiles.Core.Tiles.Tile.FileInfo">
+        <member name="P:GTiff2Tiles.Core.Tiles.Tile.Path">
             <inheritdoc />
         </member>
         <member name="P:GTiff2Tiles.Core.Tiles.Tile.Extension">
@@ -1934,7 +1934,7 @@
         <member name="M:GTiff2Tiles.Core.Tiles.Tile.Validate(GTiff2Tiles.Core.Tiles.ITile,System.Boolean)">
             <inheritdoc cref="M:GTiff2Tiles.Core.Tiles.Tile.Validate(System.Boolean)"/>
             <param name="tile"><see cref="T:GTiff2Tiles.Core.Tiles.Tile"/> to check</param>
-            <param name="isCheckFileInfo"></param>
+            <param name="isCheckPath"></param>
         </member>
         <member name="M:GTiff2Tiles.Core.Tiles.Tile.CalculatePosition">
             <inheritdoc />

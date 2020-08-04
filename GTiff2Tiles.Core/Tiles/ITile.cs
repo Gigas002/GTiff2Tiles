@@ -47,9 +47,9 @@ namespace GTiff2Tiles.Core.Tiles
         public Size Size { get; }
 
         /// <summary>
-        /// <see cref="System.IO.FileInfo"/> that represents this <see cref="ITile"/>
+        /// Path on disk of this <see cref="ITile"/>
         /// </summary>
-        public FileInfo FileInfo { get; set; }
+        public string Path { get; set; }
 
         /// <summary>
         /// Extension of <see cref="ITile"/>
@@ -68,10 +68,10 @@ namespace GTiff2Tiles.Core.Tiles
         /// <summary>
         /// Checks if this <see cref="ITile"/> is not empty or too small
         /// </summary>
-        /// <param name="isCheckFileInfo">Do you want to check <see cref="FileInfo"/>?</param>
+        /// <param name="isCheckPath">Do you want to check <see cref="Path"/>?</param>
         /// <returns><see langword="true"/> if <see cref="ITile"/>'s valid;
         /// <para/><see langword="false"/> otherwise</returns>
-        public bool Validate(bool isCheckFileInfo);
+        public bool Validate(bool isCheckPath);
 
         /// <summary>
         /// Calculates this <see cref="ITile"/> position in upper <see cref="ITile"/>

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Threading.Channels;
 using System.Threading.Tasks;
 using GTiff2Tiles.Core.Constants;
@@ -103,7 +102,7 @@ namespace GTiff2Tiles.Core.Images
         #region WriteTiles
 
         /// <inheritdoc cref="WriteTilesToDirectoryAsync"/>
-        public void WriteTilesToDirectory(DirectoryInfo outputDirectoryInfo, int minZ, int maxZ,
+        public void WriteTilesToDirectory(string outputDirectoryPath, int minZ, int maxZ,
                                           bool tmsCompatible = false, Size tileSize = null,
                                           string tileExtension = FileExtensions.Png,
                                           string interpolation = Interpolations.Lanczos3,
@@ -114,9 +113,9 @@ namespace GTiff2Tiles.Core.Images
 
         /// <summary>
         /// Crops current <see cref="IImage"/> on <see cref="ITile"/>s
-        /// and writes them to <paramref name="outputDirectoryInfo"/>
+        /// and writes them to <paramref name="outputDirectoryPath"/>
         /// </summary>
-        /// <param name="outputDirectoryInfo">Directory for output <see cref="ITile"/>s</param>
+        /// <param name="outputDirectoryPath">Directory for output <see cref="ITile"/>s</param>
         /// <param name="tileExtension">Extension of ready <see cref="ITile"/>s
         /// <remarks><para/>.png by default</remarks></param>
         /// <returns></returns>
@@ -131,7 +130,7 @@ namespace GTiff2Tiles.Core.Images
         /// <param name="threadsCount">T</param>
         /// <param name="progress"></param>
         /// <param name="isPrintEstimatedTime"></param>
-        public ValueTask WriteTilesToDirectoryAsync(DirectoryInfo outputDirectoryInfo, int minZ, int maxZ,
+        public ValueTask WriteTilesToDirectoryAsync(string outputDirectoryPath, int minZ, int maxZ,
                                                     bool tmsCompatible = false, Size tileSize = null,
                                                     string tileExtension = FileExtensions.Png,
                                                     string interpolation = Interpolations.Lanczos3,

@@ -60,7 +60,7 @@ namespace GTiff2Tiles.Core.Tiles
         public Size Size { get; }
 
         /// <inheritdoc />
-        public FileInfo FileInfo { get; set; }
+        public string Path { get; set; }
 
         /// <inheritdoc />
         public string Extension { get; }
@@ -197,16 +197,16 @@ namespace GTiff2Tiles.Core.Tiles
         #region Validate
 
         /// <inheritdoc />
-        public bool Validate(bool isCheckFileInfo) => Validate(this, isCheckFileInfo);
+        public bool Validate(bool isCheckPath) => Validate(this, isCheckPath);
 
         /// <inheritdoc cref="Validate(bool)"/>
         /// <param name="tile"><see cref="Tile"/> to check</param>
-        /// <param name="isCheckFileInfo"></param>
-        public static bool Validate(ITile tile, bool isCheckFileInfo)
+        /// <param name="isCheckPath"></param>
+        public static bool Validate(ITile tile, bool isCheckPath)
         {
             if (tile?.Bytes == null || tile.Bytes.Count() <= MinimalBytesCount) return false;
 
-            return !isCheckFileInfo || CheckHelper.CheckFile(tile.FileInfo.FullName);
+            return !isCheckPath || CheckHelper.CheckFile(tile.Path);
         }
 
         #endregion

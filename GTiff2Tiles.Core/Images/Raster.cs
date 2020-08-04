@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using GTiff2Tiles.Core.Constants;
 using GTiff2Tiles.Core.Coordinates;
 using GTiff2Tiles.Core.Enums;
+using GTiff2Tiles.Core.Exceptions;
 using GTiff2Tiles.Core.Helpers;
 using GTiff2Tiles.Core.Tiles;
 using NetVips;
@@ -88,6 +89,28 @@ namespace GTiff2Tiles.Core.Images
 
             GeoCoordinateType = coordinateType;
             (MinCoordinate, MaxCoordinate) = GdalWorker.GetImageBorders(inputFileInfo.FullName, Size, GeoCoordinateType);
+        }
+
+        public Raster(string inputFilePath, long maxMemoryCache = 2147483648,
+                      CoordinateType coordinateType = CoordinateType.Geodetic)
+        {
+            // Disable NetVips warnings for tiff
+            NetVipsHelper.DisableLog();
+
+            #region Check parameters
+
+            if (!CheckHelper.CheckFile(inputFilePath, true)) throw new RasterException();
+
+            #endregion
+
+            bool memory = new FileInfo(inputFilePath).Length <= maxMemoryCache;
+            Data = Image.NewFromFile(inputFilePath, memory, NetVips.Enums.Access.Random);
+
+            // Get border coordinates и raster sizes
+            Size = new Size(Data.Width, Data.Height);
+
+            GeoCoordinateType = coordinateType;
+            (MinCoordinate, MaxCoordinate) = GdalWorker.GetImageBorders(inputFilePath, Size, GeoCoordinateType);
         }
 
         /// <summary>
@@ -238,7 +261,7 @@ namespace GTiff2Tiles.Core.Images
         {
             using Image tileImage = CreateTileImage(tileCache, tile, interpolation);
 
-            tileImage.WriteToFile(tile.FileInfo.FullName);
+            tileImage.WriteToFile(tile.Path);
         }
 
         /// <inheritdoc/>
@@ -251,8 +274,6 @@ namespace GTiff2Tiles.Core.Images
         {
             using Image tileImage = CreateTileImage(tileCache, tile, interpolation);
 
-            // TODO: test this methods
-            //return tileImage.WriteToBuffer(tile.Extension);
             return tileImage.WriteToMemory();
         }
 
@@ -285,7 +306,7 @@ namespace GTiff2Tiles.Core.Images
         #region WriteTiles
 
         /// <inheritdoc />
-        public void WriteTilesToDirectory(DirectoryInfo outputDirectoryInfo, int minZ, int maxZ,
+        public void WriteTilesToDirectory(string outputDirectoryPath, int minZ, int maxZ,
                                           bool tmsCompatible = false, Size tileSize = null,
                                           string tileExtension = FileExtensions.Png,
                                           string interpolation = Interpolations.Lanczos3,
@@ -321,15 +342,15 @@ namespace GTiff2Tiles.Core.Images
             {
                 // Create directories for the tile
                 // The overall structure looks like: outputDirectory/zoom/x/y.png
-                DirectoryInfo tileDirectoryInfo = new DirectoryInfo(Path.Combine(outputDirectoryInfo.FullName, $"{z}", $"{x}"));
-                CheckHelper.CheckDirectory(tileDirectoryInfo.FullName);
+                string tileDirectoryPath = Path.Combine(outputDirectoryPath, $"{z}", $"{x}");
+                if (!CheckHelper.CheckDirectory(tileDirectoryPath)) throw new RasterException();
 
                 Number tileNumber = new Number(x, y, z);
                 RasterTile tile = new RasterTile(tileNumber, extension: tileExtension, tmsCompatible: tmsCompatible,
                     size: tileSize, bandsCount: bandsCount, coordinateType: GeoCoordinateType)
                 {
                     // Warning: OpenLayers requires replacement of tileY to tileY+1
-                    FileInfo = new FileInfo(Path.Combine(tileDirectoryInfo.FullName, $"{y}{tileExtension}"))
+                    Path = Path.Combine(tileDirectoryPath, $"{y}{tileExtension}")
                 };
 
                 // ReSharper disable once AccessToDisposedClosure
@@ -363,7 +384,7 @@ namespace GTiff2Tiles.Core.Images
         }
 
         /// <inheritdoc />
-        public async ValueTask WriteTilesToDirectoryAsync(DirectoryInfo outputDirectoryInfo, int minZ, int maxZ,
+        public async ValueTask WriteTilesToDirectoryAsync(string outputDirectoryPath, int minZ, int maxZ,
                                                           bool tmsCompatible = false, Size tileSize = null,
                                                           string tileExtension = FileExtensions.Png,
                                                           string interpolation = Interpolations.Lanczos3,
@@ -371,7 +392,7 @@ namespace GTiff2Tiles.Core.Images
                                                           int tileCacheCount = 1000, int threadsCount = 0,
                                                           IProgress<double> progress = null,
                                                           bool isPrintEstimatedTime = false) =>
-            await Task.Run(() => WriteTilesToDirectory(outputDirectoryInfo, minZ, maxZ, tmsCompatible, tileSize,
+            await Task.Run(() => WriteTilesToDirectory(outputDirectoryPath, minZ, maxZ, tmsCompatible, tileSize,
                                                        tileExtension, interpolation, bandsCount, tileCacheCount,
                                                        threadsCount, progress, isPrintEstimatedTime))
                       .ConfigureAwait(false);
