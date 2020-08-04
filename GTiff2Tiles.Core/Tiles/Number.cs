@@ -12,7 +12,7 @@ namespace GTiff2Tiles.Core.Tiles
     /// <summary>
     /// <see cref="Number"/> of <see cref="ITile"/>
     /// </summary>
-    public class Number : IEquatable<Number>
+    public class Number : IEquatable<Number>, IComparable<Number>
     {
         #region Properties
 
@@ -65,7 +65,12 @@ namespace GTiff2Tiles.Core.Tiles
 
         /// <inheritdoc cref="Flip()"/>
         /// <param name="number"><see cref="Number"/> to flip</param>
-        public static Number Flip(Number number) => new Number(number.X, FlipY(number.Y, number.Z), number.Z);
+        public static Number Flip(Number number)
+        {
+            if (number == null) throw new ArgumentNullException(nameof(number));
+
+            return new Number(number.X, FlipY(number.Y, number.Z), number.Z);
+        }
 
         #endregion
 
@@ -85,6 +90,9 @@ namespace GTiff2Tiles.Core.Tiles
         public static (GeodeticCoordinate minCoordinate, GeodeticCoordinate maxCoordinate) ToGeodeticCoordinates(
             Number number, Size tileSize)
         {
+            if (number == null) throw new ArgumentNullException(nameof(number));
+            if (tileSize == null) throw new ArgumentNullException(nameof(tileSize));
+
             double resolution = GeodeticCoordinate.Resolution(null, number.Z, tileSize.Width);
 
             GeodeticCoordinate minCoordinate = new GeodeticCoordinate(number.X * tileSize.Width * resolution - 180.0,
@@ -109,6 +117,9 @@ namespace GTiff2Tiles.Core.Tiles
         public static (MercatorCoordinate minCoordinate, MercatorCoordinate maxCoordinate) ToMercatorCoordinates(
             Number number, Size tileSize)
         {
+            if (number == null) throw new ArgumentNullException(nameof(number));
+            if (tileSize == null) throw new ArgumentNullException(nameof(tileSize));
+
             PixelCoordinate minPixelCoordinate = new PixelCoordinate(number.X * tileSize.Width,
                                                                      number.Y * tileSize.Height);
             PixelCoordinate maxPixelCoordinate = new PixelCoordinate((number.X + 1) * tileSize.Width,
@@ -178,7 +189,8 @@ namespace GTiff2Tiles.Core.Tiles
         /// <param name="z"></param>
         public static (Number minNumber, Number maxNumber) GetLowerNumbers(Number number, int z)
         {
-            if (z < 10) return (null, null);
+            if (number == null) throw new ArgumentNullException(nameof(number));
+            if (z < 10) throw new ArgumentNullException(nameof(z));
 
             int resolution = Convert.ToInt32(Math.Pow(2.0, z - 10.0));
 
@@ -208,6 +220,8 @@ namespace GTiff2Tiles.Core.Tiles
         public static int GetCount(GeoCoordinate minCoordinate, GeoCoordinate maxCoordinate,
                                    int minZ, int maxZ, bool tmsCompatible, Size size)
         {
+            if (size == null) throw new ArgumentNullException(nameof(size));
+
             int tilesCount = 0;
 
             for (int zoom = minZ; zoom <= maxZ; zoom++)
@@ -270,8 +284,13 @@ namespace GTiff2Tiles.Core.Tiles
         /// <param name="number2"><see cref="Number"/> 2</param>
         /// <returns><see langword="true"/> if <see cref="Number"/>1 is lesser;
         /// <see langword="false"/>otherwise</returns>
-        public static bool operator <(Number number1, Number number2) =>
-            number1.X < number2.X && number1.Y < number2.Y && number1.Z < number2.Z;
+        public static bool operator <(Number number1, Number number2)
+        {
+            if (number1 == null) throw new ArgumentNullException(nameof(number1));
+            if (number2 == null) throw new ArgumentNullException(nameof(number2));
+
+            return number1.X < number2.X && number1.Y < number2.Y && number1.Z < number2.Z;
+        }
 
         /// <summary>
         /// Check if <see cref="Number"/>1 is bigger, then <see cref="Number"/>2
@@ -280,8 +299,13 @@ namespace GTiff2Tiles.Core.Tiles
         /// <param name="number2"><see cref="Number"/> 2</param>
         /// <returns><see langword="true"/> if <see cref="Number"/>1 is bigger;
         /// <see langword="false"/>otherwise</returns>
-        public static bool operator >(Number number1, Number number2) =>
-            number1.X > number2.X && number1.Y > number2.Y && number1.Z > number2.Z;
+        public static bool operator >(Number number1, Number number2)
+        {
+            if (number1 == null) throw new ArgumentNullException(nameof(number1));
+            if (number2 == null) throw new ArgumentNullException(nameof(number2));
+
+            return number1.X > number2.X && number1.Y > number2.Y && number1.Z > number2.Z;
+        }
 
         /// <summary>
         /// Check if <see cref="Number"/>1 is lesser or equal, then <see cref="Number"/>2
@@ -290,8 +314,13 @@ namespace GTiff2Tiles.Core.Tiles
         /// <param name="number2"><see cref="Number"/> 2</param>
         /// <returns><see langword="true"/> if <see cref="Number"/>1 is lesser or equal;
         /// <see langword="false"/>otherwise</returns>
-        public static bool operator <=(Number number1, Number number2) =>
-            number1.X <= number2.X && number1.Y <= number2.Y && number1.Z <= number2.Z;
+        public static bool operator <=(Number number1, Number number2)
+        {
+            if (number1 == null) throw new ArgumentNullException(nameof(number1));
+            if (number2 == null) throw new ArgumentNullException(nameof(number2));
+
+            return number1.X <= number2.X && number1.Y <= number2.Y && number1.Z <= number2.Z;
+        }
 
         /// <summary>
         /// Check if <see cref="Number"/>1 is bigger or equal, then <see cref="Number"/>2
@@ -300,8 +329,17 @@ namespace GTiff2Tiles.Core.Tiles
         /// <param name="number2"><see cref="Number"/> 2</param>
         /// <returns><see langword="true"/> if <see cref="Number"/>1 is bigger or equal;
         /// <see langword="false"/>otherwise</returns>
-        public static bool operator >=(Number number1, Number number2) =>
-            number1.X >= number2.X && number1.Y >= number2.Y && number1.Z >= number2.Z;
+        public static bool operator >=(Number number1, Number number2)
+        {
+            if (number1 == null) throw new ArgumentNullException(nameof(number1));
+            if (number2 == null) throw new ArgumentNullException(nameof(number2));
+
+            return number1.X >= number2.X && number1.Y >= number2.Y && number1.Z >= number2.Z;
+        }
+
+        /// <inheritdoc/>
+        public int CompareTo(Number other) => this < other ? -1 :
+                                              this == other ? 0 : 1;
 
         #endregion
 
@@ -313,7 +351,17 @@ namespace GTiff2Tiles.Core.Tiles
         /// <param name="number1"><see cref="Number"/> 1</param>
         /// <param name="number2"><see cref="Number"/> 2</param>
         /// <returns>New <see cref="Number"/></returns>
-        public static Number operator +(Number number1, Number number2) => number1.Z != number2.Z ? null : new Number(number1.X + number2.X, number1.Y + number2.Y, number1.Z);
+        public static Number operator +(Number number1, Number number2)
+        {
+            if (number1 == null) throw new ArgumentNullException(nameof(number1));
+            if (number2 == null) throw new ArgumentNullException(nameof(number2));
+
+            return number1.Z != number2.Z ? null : new Number(number1.X + number2.X, number1.Y + number2.Y, number1.Z);
+        }
+
+        /// <inheritdoc cref="op_Addition"/>
+        /// <param name="other"><see cref="Number"/> to add</param>
+        public Number Add(Number other) => this + other;
 
         /// <summary>
         /// Subtruct <see cref="Number"/>s
@@ -321,7 +369,17 @@ namespace GTiff2Tiles.Core.Tiles
         /// <param name="number1"><see cref="Number"/> 1</param>
         /// <param name="number2"><see cref="Number"/> 2</param>
         /// <returns>New <see cref="Number"/></returns>
-        public static Number operator -(Number number1, Number number2) => number1.Z != number2.Z ? null : new Number(number1.X - number2.X, number1.Y - number2.Y, number1.Z);
+        public static Number operator -(Number number1, Number number2)
+        {
+            if (number1 == null) throw new ArgumentNullException(nameof(number1));
+            if (number2 == null) throw new ArgumentNullException(nameof(number2));
+
+            return number1.Z != number2.Z ? null : new Number(number1.X - number2.X, number1.Y - number2.Y, number1.Z);
+        }
+
+        /// <inheritdoc cref="op_Subtraction"/>
+        /// <param name="other"><see cref="Number"/> to subtract</param>
+        public Number Subtract(Number other) => this - other;
 
         /// <summary>
         /// Multiply <see cref="Number"/>s
@@ -329,7 +387,17 @@ namespace GTiff2Tiles.Core.Tiles
         /// <param name="number1"><see cref="Number"/> 1</param>
         /// <param name="number2"><see cref="Number"/> 2</param>
         /// <returns>New <see cref="Number"/></returns>
-        public static Number operator *(Number number1, Number number2) => number1.Z != number2.Z ? null : new Number(number1.X * number2.X, number1.Y * number2.Y, number1.Z);
+        public static Number operator *(Number number1, Number number2)
+        {
+            if (number1 == null) throw new ArgumentNullException(nameof(number1));
+            if (number2 == null) throw new ArgumentNullException(nameof(number2));
+
+            return number1.Z != number2.Z ? null : new Number(number1.X * number2.X, number1.Y * number2.Y, number1.Z);
+        }
+
+        /// <inheritdoc cref="op_Multiply"/>
+        /// <param name="other"><see cref="Number"/> to multiply</param>
+        public Number Multiply(Number other) => this * other;
 
         /// <summary>
         /// Divide <see cref="Number"/>s
@@ -337,7 +405,17 @@ namespace GTiff2Tiles.Core.Tiles
         /// <param name="number1"><see cref="Number"/> 1</param>
         /// <param name="number2"><see cref="Number"/> 2</param>
         /// <returns>New <see cref="Number"/></returns>
-        public static Number operator /(Number number1, Number number2) => number1.Z != number2.Z ? null : new Number(number1.X / number2.X, number1.Y / number2.Y, number1.Z);
+        public static Number operator /(Number number1, Number number2)
+        {
+            if (number1 == null) throw new ArgumentNullException(nameof(number1));
+            if (number2 == null) throw new ArgumentNullException(nameof(number2));
+
+            return number1.Z != number2.Z ? null : new Number(number1.X / number2.X, number1.Y / number2.Y, number1.Z);
+        }
+
+        /// <inheritdoc cref="op_Division"/>
+        /// <param name="other"><see cref="Number"/> to divide on</param>
+        public Number Divide(Number other) => this / other;
 
         #endregion
 
