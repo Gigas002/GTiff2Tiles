@@ -69,7 +69,8 @@ namespace GTiff2Tiles.Core.Tiles
         /// Checks if this <see cref="ITile"/> is not empty or too small
         /// </summary>
         /// <param name="isCheckFileInfo">Do you want to check <see cref="FileInfo"/>?</param>
-        /// <returns><see langword="true"/> if <see cref="ITile"/>'s valid; <see langword="false"/> otherwise</returns>
+        /// <returns><see langword="true"/> if <see cref="ITile"/>'s valid;
+        /// <para/><see langword="false"/> otherwise</returns>
         public bool Validate(bool isCheckFileInfo);
 
         /// <summary>

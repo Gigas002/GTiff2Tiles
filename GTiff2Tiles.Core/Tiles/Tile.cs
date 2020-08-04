@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using GTiff2Tiles.Core.Coordinates;
 using GTiff2Tiles.Core.Enums;
 using GTiff2Tiles.Core.Exceptions;
+using GTiff2Tiles.Core.Helpers;
 using GTiff2Tiles.Core.Images;
 
 // ReSharper disable VirtualMemberNeverOverridden.Global
@@ -179,7 +180,7 @@ namespace GTiff2Tiles.Core.Tiles
         /// </summary>
         /// <returns><see langword="true"/> if it is a square;
         /// <see langword="false"/> otherwise</returns>
-        public bool CheckSize() => Size.Width == Size.Height;
+        public bool CheckSize() => CheckSize(this);
 
         /// <inheritdoc cref="CheckSize()"/>
         /// <param name="tile"><see cref="ITile"/> to check</param>
@@ -205,9 +206,7 @@ namespace GTiff2Tiles.Core.Tiles
         {
             if (tile?.Bytes == null || tile.Bytes.Count() <= MinimalBytesCount) return false;
 
-            if (!isCheckFileInfo) return true;
-
-            return tile.FileInfo != null;
+            return !isCheckFileInfo || CheckHelper.CheckFile(tile.FileInfo.FullName);
         }
 
         #endregion

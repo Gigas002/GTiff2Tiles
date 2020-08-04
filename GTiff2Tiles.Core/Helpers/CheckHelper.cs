@@ -20,11 +20,13 @@ namespace GTiff2Tiles.Core.Helpers
         /// Checks, if file's path is not empty string and file exists, if it should
         /// </summary>
         /// <param name="filePath">File's path to check</param>
-        /// <param name="shouldExist">Should it exist?</param>
-        /// <param name="fileExtension">Checks file extension</param>
+        /// <param name="shouldExist">Should it exist?
+        /// <remarks><para/>If set <see keyword="null"/>, existance doesn't check</remarks></param>
+        /// <param name="fileExtension">Checks file extension
+        /// <remarks><para/>If set <see keyword="null"/>, extension doesn't check</remarks></param>
         /// <returns><see langword="true"/> if everything is OK;
         /// <para/><see langword="false"/> otherwise</returns>
-        public static bool CheckFile(string filePath, bool shouldExist, string fileExtension = null)
+        public static bool CheckFile(string filePath, bool? shouldExist = null, string fileExtension = null)
         {
             // Check file path
             if (string.IsNullOrWhiteSpace(filePath)) return false;
@@ -40,10 +42,10 @@ namespace GTiff2Tiles.Core.Helpers
             // Check file's existance
             bool existance = File.Exists(filePath);
 
-            switch (existance)
+            switch (shouldExist)
             {
-                case true when !shouldExist:
-                case false when shouldExist:
+                case true when !existance:
+                case false when existance:
                     return false;
             }
 
@@ -89,8 +91,6 @@ namespace GTiff2Tiles.Core.Helpers
         /// <para/><see langword="false"/> otherwise</returns>
         public static async ValueTask<bool> CheckInputFileAsync(string inputFilePath, CoordinateSystems targetSystem)
         {
-            CheckFile(inputFilePath, true, FileExtensions.Tif);
-
             // Get proj and gdalInfo strings
             string projString = await GdalWorker.GetProjStringAsync(inputFilePath).ConfigureAwait(false);
             string gdalInfoString = await GdalWorker.InfoAsync(inputFilePath).ConfigureAwait(false);
