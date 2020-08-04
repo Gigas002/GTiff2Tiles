@@ -413,15 +413,15 @@ namespace GTiff2Tiles.GUI.ViewModels
             try
             {
                 //Check for errors.
-                CheckHelper.CheckDirectory(outputDirectoryInfo, true);
+                CheckHelper.CheckDirectory(outputDirectoryInfo.FullName, true);
 
-                if (!await CheckHelper.CheckInputFileAsync(inputFileInfo, coordinateSystem).ConfigureAwait(true))
+                if (!await CheckHelper.CheckInputFileAsync(inputFileInfo.FullName, coordinateSystem).ConfigureAwait(true))
                 {
                     string tempFilePath = Path.Combine(tempDirectoryInfo.FullName,
                                                        $"{GdalWorker.TempFileName}{FileExtensions.Tif}");
                     FileInfo tempFileInfo = new FileInfo(tempFilePath);
 
-                    await GdalWorker.ConvertGeoTiffToTargetSystemAsync(inputFileInfo, tempFileInfo, coordinateSystem,
+                    await GdalWorker.ConvertGeoTiffToTargetSystemAsync(inputFileInfo.FullName, tempFileInfo.FullName, coordinateSystem,
                                                                        progress).ConfigureAwait(false);
                     inputFileInfo = tempFileInfo;
                 }

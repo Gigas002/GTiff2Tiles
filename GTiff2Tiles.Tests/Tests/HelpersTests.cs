@@ -29,8 +29,8 @@ namespace GTiff2Tiles.Tests.Tests
                                                     FileSystemEntries.InputDirectoryName,
                                                     $"{FileSystemEntries.Input4326}{FileExtensions.Tif}");
                 FileInfo inputFileInfo = new FileInfo(inputFilePath);
-                CheckHelper.CheckDirectory(examplesDirectoryInfo, false);
-                await CheckHelper.CheckInputFileAsync(inputFileInfo, coordinateSystem);
+                CheckHelper.CheckDirectory(examplesDirectoryInfo.FullName, false);
+                await CheckHelper.CheckInputFileAsync(inputFileInfo.FullName, coordinateSystem);
             }
             catch (Exception exception) { Assert.Fail(exception.Message); }
 

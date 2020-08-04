@@ -49,15 +49,15 @@ namespace GTiff2Tiles.Tests.Tests.Image
             try
             {
                 //Check for errors.
-                CheckHelper.CheckDirectory(outputDirectoryInfo, true);
+                CheckHelper.CheckDirectory(outputDirectoryInfo.FullName, true);
 
-                if (!await CheckHelper.CheckInputFileAsync(inputFileInfo, coordinateSystem))
+                if (!await CheckHelper.CheckInputFileAsync(inputFileInfo.FullName, coordinateSystem))
                 {
                     string tempFilePath = Path.Combine(tempDirectoryInfo.FullName,
                                                        $"{GdalWorker.TempFileName}{FileExtensions.Tif}");
                     FileInfo tempFileInfo = new FileInfo(tempFilePath);
 
-                    await GdalWorker.ConvertGeoTiffToTargetSystemAsync(inputFileInfo, tempFileInfo, coordinateSystem,
+                    await GdalWorker.ConvertGeoTiffToTargetSystemAsync(inputFileInfo.FullName, tempFileInfo.FullName, coordinateSystem,
                                                                        progress).ConfigureAwait(false);
                     inputFileInfo = tempFileInfo;
                 }
@@ -107,15 +107,15 @@ namespace GTiff2Tiles.Tests.Tests.Image
             try
             {
                 //Check for errors.
-                CheckHelper.CheckDirectory(outputDirectoryInfo, true);
+                CheckHelper.CheckDirectory(outputDirectoryInfo.FullName, true);
 
-                if (!await CheckHelper.CheckInputFileAsync(inputFileInfo, coordinateSystem))
+                if (!await CheckHelper.CheckInputFileAsync(inputFileInfo.FullName, coordinateSystem))
                 {
                     string tempFilePath = Path.Combine(tempDirectoryInfo.FullName,
                                                        $"{GdalWorker.TempFileName}{FileExtensions.Tif}");
                     FileInfo tempFileInfo = new FileInfo(tempFilePath);
 
-                    await GdalWorker.ConvertGeoTiffToTargetSystemAsync(inputFileInfo, tempFileInfo, coordinateSystem,
+                    await GdalWorker.ConvertGeoTiffToTargetSystemAsync(inputFileInfo.FullName, tempFileInfo.FullName, coordinateSystem,
                                                                        progress).ConfigureAwait(false);
                     inputFileInfo = tempFileInfo;
                 }

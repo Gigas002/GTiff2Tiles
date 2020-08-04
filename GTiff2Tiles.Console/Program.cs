@@ -69,7 +69,7 @@ namespace GTiff2Tiles.Console
         private static async Task Main(string[] args)
         {
             // TODO: coordinate system option
-            var coordinateSystem = CoordinateSystems.Epsg3857;
+            var targetCoordinateSystem = CoordinateSystems.Epsg4326;
 
             Stopwatch stopwatch = Stopwatch.StartNew();
 
@@ -105,22 +105,22 @@ namespace GTiff2Tiles.Console
             try
             {
                 //Check for errors.
-                CheckHelper.CheckDirectory(OutputDirectoryInfo, true);
+                CheckHelper.CheckDirectory(OutputDirectoryInfo.FullName, true);
 
-                if (!await CheckHelper.CheckInputFileAsync(InputFileInfo, coordinateSystem).ConfigureAwait(false))
+                if (!await CheckHelper.CheckInputFileAsync(InputFileInfo.FullName, targetCoordinateSystem).ConfigureAwait(false))
                 {
                     string tempFilePath = Path.Combine(TempDirectoryInfo.FullName,
                                                        $"{GdalWorker.TempFileName}{FileExtensions.Tif}");
                     FileInfo tempFileInfo = new FileInfo(tempFilePath);
 
-                    await GdalWorker.ConvertGeoTiffToTargetSystemAsync(InputFileInfo, tempFileInfo, coordinateSystem,
-                                                         consoleProgress).ConfigureAwait(false);
+                    await GdalWorker.ConvertGeoTiffToTargetSystemAsync(InputFileInfo.FullName, tempFileInfo.FullName, targetCoordinateSystem,
+                                                                       consoleProgress).ConfigureAwait(false);
                     InputFileInfo = tempFileInfo;
                 }
 
                 //Run tiling.
                 await Img.GenerateTilesAsync(InputFileInfo, OutputDirectoryInfo, MinZ, MaxZ, TileType.Raster,
-                                             coordinateSystem,
+                                             targetCoordinateSystem,
                                              TmsCompatible, TileExtension,
                                              consoleProgress, ThreadsCount).ConfigureAwait(false);
             }

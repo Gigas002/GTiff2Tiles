@@ -666,7 +666,7 @@
         </member>
         <member name="F:GTiff2Tiles.Core.GdalWorker.Byte">
             <summary>
-            Type=Byte
+            Type of bands
             </summary>
         </member>
         <member name="F:GTiff2Tiles.Core.GdalWorker.SrsEpsg4326">
@@ -690,23 +690,25 @@
             Name for temporary (converted) GeoTIFF
             </summary>
         </member>
-        <member name="M:GTiff2Tiles.Core.GdalWorker.WarpAsync(System.IO.FileInfo,System.IO.FileInfo,System.String[],System.IProgress{System.Double})">
+        <member name="M:GTiff2Tiles.Core.GdalWorker.WarpAsync(System.String,System.String,System.String[],System.IProgress{System.Double})">
             <summary>
             Runs GdalWarp with passed parameters
             </summary>
-            <param name="inputFileInfo">Input GeoTiff file</param>
-            <param name="outputFileInfo">Output file</param>
+            <param name="inputFilePath">Input GeoTiff's path</param>
+            <param name="outputFilePath">Output file's path</param>
             <param name="options">Array of string parameters</param>
             <param name="progress">GdalWarp's progress</param>
-            <returns></returns>
+            <returns><see langword="true"/> if operation was sucessful;
+            <para/><see langword="false"/> otherwise</returns>
         </member>
-        <member name="M:GTiff2Tiles.Core.GdalWorker.InfoAsync(System.IO.FileInfo,System.String[])">
+        <member name="M:GTiff2Tiles.Core.GdalWorker.InfoAsync(System.String,System.String[])">
             <summary>
             Runs GdalInfo with passed parameters
             </summary>
-            <param name="inputFileInfo">Input GeoTiff file</param>
+            <param name="inputFilePath">Input GeoTiff's path</param>
             <param name="options">Array of string parameters for GdalInfo</param>
-            <returns><see cref="T:System.String"/> from GdalInfo</returns>
+            <returns><see cref="T:System.String"/> from GdalInfo if everything OK;
+            <para/><see langword="null"/> otherwise</returns>
         </member>
         <member name="M:GTiff2Tiles.Core.GdalWorker.ConfigureGdal">
             <summary>
@@ -723,23 +725,25 @@
             <param name="data"></param>
             <returns>Always 1</returns>
         </member>
-        <member name="M:GTiff2Tiles.Core.GdalWorker.GetProjStringAsync(System.IO.FileInfo)">
+        <member name="M:GTiff2Tiles.Core.GdalWorker.GetProjStringAsync(System.String)">
             <summary>
             Gets proj string of input file
             </summary>
-            <param name="inputFileInfo">Input GeoTiff file</param>
-            <returns>Proj string</returns>
+            <param name="inputFilePath">Input GeoTiff's path</param>
+            <returns>Proj <see cref="T:System.String"/> if everything OK;
+            <para/><see langword="null"/> otherwise</returns>
         </member>
-        <member name="M:GTiff2Tiles.Core.GdalWorker.ConvertGeoTiffToTargetSystemAsync(System.IO.FileInfo,System.IO.FileInfo,GTiff2Tiles.Core.Enums.CoordinateSystems,System.IProgress{System.Double})">
+        <member name="M:GTiff2Tiles.Core.GdalWorker.ConvertGeoTiffToTargetSystemAsync(System.String,System.String,GTiff2Tiles.Core.Enums.CoordinateSystems,System.IProgress{System.Double})">
             <summary>
             Converts current GeoTIFF to a new file with target <see cref="T:GTiff2Tiles.Core.Enums.CoordinateSystems"/>
             through GdalWarp
             </summary>
-            <param name="inputFileInfo">Input GeoTIFF</param>
-            <param name="outputFileInfo">Output GeoTIFF</param>
+            <param name="inputFilePath">Input GeoTiff's path</param>
+            <param name="outputFilePath">Output file's path</param>
             <param name="targetSystem">Target <see cref="T:GTiff2Tiles.Core.Enums.CoordinateSystems"/></param>
             <param name="progress">GdalWarp's progress</param>
-            <returns></returns>
+            <returns><see langword="true"/> if operation was sucessful;
+            <para/><see langword="false"/> otherwise</returns>
         </member>
         <member name="M:GTiff2Tiles.Core.GdalWorker.GetCoordinateSystem(System.String)">
             <summary>
@@ -748,49 +752,55 @@
             <param name="projString">Proj string of input GeoTIFF</param>
             <returns>Input file's <see cref="T:GTiff2Tiles.Core.Enums.CoordinateSystems"/></returns>
         </member>
-        <member name="M:GTiff2Tiles.Core.GdalWorker.GetGeoTransform(System.IO.FileInfo)">
+        <member name="M:GTiff2Tiles.Core.GdalWorker.GetGeoTransform(System.String)">
             <summary>
             Gets the coordinates and pixel sizes of image
             </summary>
-            <param name="inputFileInfo">Input GeoTiff file</param>
-            <returns>Array of double coordinates and pixel sizes</returns>
+            <param name="inputFilePath">Input GeoTiff's path</param>
+            <returns>Array of double coordinates and pixel sizes if everything is OK;
+            <para/><see langword="null"/> otherwise</returns>
         </member>
-        <member name="M:GTiff2Tiles.Core.GdalWorker.GetImageBorders(System.IO.FileInfo,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.CoordinateType)">
+        <member name="M:GTiff2Tiles.Core.GdalWorker.GetImageBorders(System.String,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.CoordinateType)">
             <summary>
             Gets the coordinates borders of the input Geotiff file
             </summary>
-            <param name="inputFileInfo">Input GeoTiff file</param>
+            <param name="inputFilePath">Input GeoTiff's path</param>
             <param name="size">Image's <see cref="T:GTiff2Tiles.Core.Images.Size"/>s</param>
             <param name="coordinateType">Type of coordinate</param>
-            <returns><see cref="T:GTiff2Tiles.Core.Coordinates.GeoCoordinate"/>s of this image borders</returns>
+            <returns><see cref="T:GTiff2Tiles.Core.Coordinates.GeoCoordinate"/>s of this image borders if everything is OK;
+            <para/>(<see langword="null"/>, <see langword="null"/>) otherwise</returns>
         </member>
         <member name="T:GTiff2Tiles.Core.Helpers.CheckHelper">
             <summary>
             Class with static methods to check for errors
             </summary>
         </member>
-        <member name="M:GTiff2Tiles.Core.Helpers.CheckHelper.CheckFile(System.IO.FileInfo,System.Boolean,System.String)">
+        <member name="M:GTiff2Tiles.Core.Helpers.CheckHelper.CheckFile(System.String,System.Boolean,System.String)">
             <summary>
             Checks, if file's path is not empty string and file exists, if it should
             </summary>
-            <param name="fileInfo">File to check</param>
+            <param name="filePath">File's path to check</param>
             <param name="shouldExist">Should it exist?</param>
             <param name="fileExtension">Checks file extension</param>
+            <returns><see langword="true"/> if everything is OK;
+            <para/><see langword="false"/> otherwise</returns>
         </member>
-        <member name="M:GTiff2Tiles.Core.Helpers.CheckHelper.CheckDirectory(System.IO.DirectoryInfo,System.Nullable{System.Boolean})">
+        <member name="M:GTiff2Tiles.Core.Helpers.CheckHelper.CheckDirectory(System.String,System.Nullable{System.Boolean})">
             <summary>
             Checks, if directory's path is not empty, creates directory if it doesn't exist
             and checks if it's empty or not
             </summary>
-            <param name="directoryInfo">Directory to check</param>
+            <param name="directoryPath">Directory's path to check</param>
             <param name="shouldBeEmpty">Should directory be empty?
-            <para/>If set <see keyword="null"/>, emptyness doesn't check</param>
+            <remarks><para/>If set <see keyword="null"/>, emptyness doesn't check</remarks></param>
+            <returns><see langword="true"/> if everything is OK;
+            <para/><see langword="false"/> otherwise</returns>
         </member>
-        <member name="M:GTiff2Tiles.Core.Helpers.CheckHelper.CheckInputFileAsync(System.IO.FileInfo,GTiff2Tiles.Core.Enums.CoordinateSystems)">
+        <member name="M:GTiff2Tiles.Core.Helpers.CheckHelper.CheckInputFileAsync(System.String,GTiff2Tiles.Core.Enums.CoordinateSystems)">
             <summary>
             Checks the existance, projection and type
             </summary>
-            <param name="inputFileInfo">Input geotiff</param>
+            <param name="inputFilePath">Input GeoTiff's path</param>
             <param name="targetSystem">Target coordinate system</param>
             <returns><see langword="true"/> if file needs to be converted;
             <para/><see langword="false"/> otherwise</returns>

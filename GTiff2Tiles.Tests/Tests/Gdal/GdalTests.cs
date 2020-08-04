@@ -39,13 +39,13 @@ namespace GTiff2Tiles.Tests.Tests.Gdal
             try
             {
                 //Check and repair.
-                if (!await CheckHelper.CheckInputFileAsync(inputFileInfo, coordinateSystem))
+                if (!await CheckHelper.CheckInputFileAsync(inputFileInfo.FullName, coordinateSystem))
                 {
                     string tempFilePath = Path.Combine(tempDirectoryInfo.FullName,
                                                        $"{GdalWorker.TempFileName}{FileExtensions.Tif}");
                     FileInfo tempFileInfo = new FileInfo(tempFilePath);
 
-                    await GdalWorker.ConvertGeoTiffToTargetSystemAsync(inputFileInfo, tempFileInfo, coordinateSystem).ConfigureAwait(false);
+                    await GdalWorker.ConvertGeoTiffToTargetSystemAsync(inputFileInfo.FullName, tempFileInfo.FullName, coordinateSystem).ConfigureAwait(false);
                 }
 
                 //Check if temp file was created successfuly.
@@ -80,13 +80,13 @@ namespace GTiff2Tiles.Tests.Tests.Gdal
             try
             {
                 //Check and repair.
-                if (!await CheckHelper.CheckInputFileAsync(inputFileInfo, coordinateSystem))
+                if (!await CheckHelper.CheckInputFileAsync(inputFileInfo.FullName, coordinateSystem))
                 {
                     string tempFilePath = Path.Combine(tempDirectoryInfo.FullName,
                                                        $"{GdalWorker.TempFileName}{FileExtensions.Tif}");
                     FileInfo tempFileInfo = new FileInfo(tempFilePath);
 
-                    await GdalWorker.ConvertGeoTiffToTargetSystemAsync(inputFileInfo, tempFileInfo, coordinateSystem).ConfigureAwait(false);
+                    await GdalWorker.ConvertGeoTiffToTargetSystemAsync(inputFileInfo.FullName, tempFileInfo.FullName, coordinateSystem).ConfigureAwait(false);
                 }
 
                 //Check if temp file was created successfuly.

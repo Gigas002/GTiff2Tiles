@@ -76,7 +76,7 @@ namespace GTiff2Tiles.Core.Images
 
             #region Check parameters
 
-            CheckHelper.CheckFile(inputFileInfo, true);
+            CheckHelper.CheckFile(inputFileInfo.FullName, true);
 
             #endregion
 
@@ -87,7 +87,7 @@ namespace GTiff2Tiles.Core.Images
             Size = new Size(Data.Width, Data.Height);
 
             GeoCoordinateType = coordinateType;
-            (MinCoordinate, MaxCoordinate) = GdalWorker.GetImageBorders(inputFileInfo, Size, GeoCoordinateType);
+            (MinCoordinate, MaxCoordinate) = GdalWorker.GetImageBorders(inputFileInfo.FullName, Size, GeoCoordinateType);
         }
 
         /// <summary>
@@ -112,7 +112,7 @@ namespace GTiff2Tiles.Core.Images
             // TODO: get coordinates without fileinfo
             FileInfo inputFileInfo = new FileInfo("tmp.tif");
             Data.WriteToFile(inputFileInfo.FullName);
-            (MinCoordinate, MaxCoordinate) = GdalWorker.GetImageBorders(inputFileInfo, Size, GeoCoordinateType);
+            (MinCoordinate, MaxCoordinate) = GdalWorker.GetImageBorders(inputFileInfo.FullName, Size, GeoCoordinateType);
             inputFileInfo.Delete();
         }
 
@@ -137,7 +137,7 @@ namespace GTiff2Tiles.Core.Images
             // TODO: get coordinates without fileinfo
             FileInfo inputFileInfo = new FileInfo("tmp.tif");
             Data.WriteToFile(inputFileInfo.FullName);
-            (MinCoordinate, MaxCoordinate) = GdalWorker.GetImageBorders(inputFileInfo, Size, GeoCoordinateType);
+            (MinCoordinate, MaxCoordinate) = GdalWorker.GetImageBorders(inputFileInfo.FullName, Size, GeoCoordinateType);
             inputFileInfo.Delete();
         }
 
@@ -322,7 +322,7 @@ namespace GTiff2Tiles.Core.Images
                 // Create directories for the tile
                 // The overall structure looks like: outputDirectory/zoom/x/y.png
                 DirectoryInfo tileDirectoryInfo = new DirectoryInfo(Path.Combine(outputDirectoryInfo.FullName, $"{z}", $"{x}"));
-                CheckHelper.CheckDirectory(tileDirectoryInfo);
+                CheckHelper.CheckDirectory(tileDirectoryInfo.FullName);
 
                 Number tileNumber = new Number(x, y, z);
                 RasterTile tile = new RasterTile(tileNumber, extension: tileExtension, tmsCompatible: tmsCompatible,

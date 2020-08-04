@@ -2,7 +2,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -13,7 +12,6 @@ using GTiff2Tiles.Core.Enums;
 using GTiff2Tiles.Core.Exceptions;
 using GTiff2Tiles.Core.Helpers;
 using GTiff2Tiles.Core.Images;
-using GTiff2Tiles.Core.Localization;
 using OSGeo.GDAL;
 using OSGeo.OSR;
 
@@ -37,7 +35,7 @@ namespace GTiff2Tiles.Core
         #region GdalInfo
 
         /// <summary>
-        /// Type=Byte
+        /// Type of bands
         /// </summary>
         internal const string Byte = "Type=Byte";
 
@@ -79,19 +77,21 @@ namespace GTiff2Tiles.Core
         /// <summary>
         /// Runs GdalWarp with passed parameters
         /// </summary>
-        /// <param name="inputFileInfo">Input GeoTiff file</param>
-        /// <param name="outputFileInfo">Output file</param>
+        /// <param name="inputFilePath">Input GeoTiff's path</param>
+        /// <param name="outputFilePath">Output file's path</param>
         /// <param name="options">Array of string parameters</param>
         /// <param name="progress">GdalWarp's progress</param>
-        /// <returns></returns>
-        public static async ValueTask WarpAsync(FileInfo inputFileInfo, FileInfo outputFileInfo, string[] options,
-                                                IProgress<double> progress = null)
+        /// <returns><see langword="true"/> if operation was sucessful;
+        /// <para/><see langword="false"/> otherwise</returns>
+        public static async ValueTask<bool> WarpAsync(string inputFilePath, string outputFilePath,
+               string[] options, IProgress<double> progress = null)
         {
             #region Parameters checking
 
-            CheckHelper.CheckFile(inputFileInfo, true);
-            CheckHelper.CheckFile(outputFileInfo, false);
-            CheckHelper.CheckDirectory(outputFileInfo.Directory);
+            if (!CheckHelper.CheckFile(inputFilePath, true)) return false;
+            if (!CheckHelper.CheckFile(outputFilePath, false)) return false;
+            if (!CheckHelper.CheckDirectory(Path.GetDirectoryName(outputFilePath))) return false;
+            if (options == null || options.Length <= 0) return false;
 
             #endregion
 
@@ -103,7 +103,7 @@ namespace GTiff2Tiles.Core
 
             await Task.Run(() =>
             {
-                using Dataset inputDataset = Gdal.Open(inputFileInfo.FullName, Access.GA_ReadOnly);
+                using Dataset inputDataset = Gdal.Open(inputFilePath, Access.GA_ReadOnly);
 
                 GCHandle gcHandle = GCHandle.Alloc(new[] { Dataset.getCPtr(inputDataset).Handle },
                                                    GCHandleType.Pinned);
@@ -112,47 +112,40 @@ namespace GTiff2Tiles.Core
 
                 // ReSharper disable once UnusedVariable
                 using Dataset resultDataset =
-                    Gdal.wrapper_GDALWarpDestName(outputFileInfo.FullName, 1, gdalDatasetShadow,
-                        new GDALWarpAppOptions(options), callback, string.Empty);
+                    Gdal.wrapper_GDALWarpDestName(outputFilePath, 1, gdalDatasetShadow,
+                                                  new GDALWarpAppOptions(options), callback, string.Empty);
 
                 gcHandle.Free();
             }).ConfigureAwait(false);
 
             // Was file created?
-            CheckHelper.CheckFile(outputFileInfo, true);
+            return CheckHelper.CheckFile(outputFilePath, true);
         }
 
         /// <summary>
         /// Runs GdalInfo with passed parameters
         /// </summary>
-        /// <param name="inputFileInfo">Input GeoTiff file</param>
+        /// <param name="inputFilePath">Input GeoTiff's path</param>
         /// <param name="options">Array of string parameters for GdalInfo</param>
-        /// <returns><see cref="string"/> from GdalInfo</returns>
-        public static async ValueTask<string> InfoAsync(FileInfo inputFileInfo, string[] options = null)
+        /// <returns><see cref="string"/> from GdalInfo if everything OK;
+        /// <para/><see langword="null"/> otherwise</returns>
+        public static Task<string> InfoAsync(string inputFilePath, string[] options = null)
         {
             #region Parameters checking
 
-            CheckHelper.CheckFile(inputFileInfo, true);
+            if (!CheckHelper.CheckFile(inputFilePath, true)) return null;
 
             #endregion
 
             // Initialize Gdal, if needed
             ConfigureGdal();
 
-            string gdalInfoString = string.Empty;
-
-            await Task.Run(() =>
+            return Task.Run(() =>
             {
-                using Dataset inputDataset = Gdal.Open(inputFileInfo.FullName, Access.GA_ReadOnly);
+                using Dataset inputDataset = Gdal.Open(inputFilePath, Access.GA_ReadOnly);
 
-                gdalInfoString = Gdal.GDALInfo(inputDataset, new GDALInfoOptions(options));
-
-                if (string.IsNullOrWhiteSpace(gdalInfoString))
-                    throw new GdalException(string.Format(CultureInfo.InvariantCulture,
-                                                          Strings.StringIsEmpty, nameof(gdalInfoString)));
-            }).ConfigureAwait(false);
-
-            return gdalInfoString;
+                return Gdal.GDALInfo(inputDataset, new GDALInfoOptions(options));
+            });
         }
 
         #endregion
@@ -192,53 +185,49 @@ namespace GTiff2Tiles.Core
         /// <summary>
         /// Gets proj string of input file
         /// </summary>
-        /// <param name="inputFileInfo">Input GeoTiff file</param>
-        /// <returns>Proj string</returns>
-        public static async ValueTask<string> GetProjStringAsync(FileInfo inputFileInfo)
+        /// <param name="inputFilePath">Input GeoTiff's path</param>
+        /// <returns>Proj <see cref="string"/> if everything OK;
+        /// <para/><see langword="null"/> otherwise</returns>
+        public static Task<string> GetProjStringAsync(string inputFilePath)
         {
             #region Parameters checking
 
-            CheckHelper.CheckFile(inputFileInfo, true);
+            if (!CheckHelper.CheckFile(inputFilePath, true)) return null;
 
             #endregion
 
             // Initialize Gdal, if needed
             ConfigureGdal();
 
-            string projString = string.Empty;
-
-            await Task.Run(() =>
+            return Task.Run(() =>
             {
-                using Dataset dataset = Gdal.Open(inputFileInfo.FullName, Access.GA_ReadOnly);
+                using Dataset dataset = Gdal.Open(inputFilePath, Access.GA_ReadOnly);
 
                 string wkt = dataset.GetProjection();
 
                 using SpatialReference spatialReference = new SpatialReference(wkt);
 
-                spatialReference.ExportToProj4(out projString);
+                spatialReference.ExportToProj4(out string projString);
+
+                return projString;
 
                 // TODO: requires PROJ 6.2+
                 //spatialReference.ExportToPROJJSON(out string argout, null);
-
-                if (string.IsNullOrWhiteSpace(projString))
-                    throw new GdalException(string.Format(CultureInfo.InvariantCulture,
-                                                          Strings.StringIsEmpty, nameof(projString)));
-            }).ConfigureAwait(false);
-
-            return projString;
+            });
         }
 
         /// <summary>
         /// Converts current GeoTIFF to a new file with target <see cref="CoordinateSystems"/>
         /// through GdalWarp
         /// </summary>
-        /// <param name="inputFileInfo">Input GeoTIFF</param>
-        /// <param name="outputFileInfo">Output GeoTIFF</param>
+        /// <param name="inputFilePath">Input GeoTiff's path</param>
+        /// <param name="outputFilePath">Output file's path</param>
         /// <param name="targetSystem">Target <see cref="CoordinateSystems"/></param>
         /// <param name="progress">GdalWarp's progress</param>
-        /// <returns></returns>
-        public static ValueTask ConvertGeoTiffToTargetSystemAsync(FileInfo inputFileInfo,
-                FileInfo outputFileInfo, CoordinateSystems targetSystem, IProgress<double> progress = null)
+        /// <returns><see langword="true"/> if operation was sucessful;
+        /// <para/><see langword="false"/> otherwise</returns>
+        public static ValueTask<bool> ConvertGeoTiffToTargetSystemAsync(string inputFilePath,
+                                                                        string outputFilePath, CoordinateSystems targetSystem, IProgress<double> progress = null)
         {
             List<string> gdalWarpOptions = ConvertCoordinateSystemOptions.ToList();
 
@@ -258,11 +247,11 @@ namespace GTiff2Tiles.Core
                     }
                 default:
                     {
-                        throw new GdalException();
+                        return ValueTask.FromResult(false);
                     }
             }
 
-            return WarpAsync(inputFileInfo, outputFileInfo, gdalWarpOptions.ToArray(), progress);
+            return WarpAsync(inputFilePath, outputFilePath, gdalWarpOptions.ToArray(), progress);
         }
 
         /// <summary>
@@ -287,20 +276,21 @@ namespace GTiff2Tiles.Core
         /// <summary>
         /// Gets the coordinates and pixel sizes of image
         /// </summary>
-        /// <param name="inputFileInfo">Input GeoTiff file</param>
-        /// <returns>Array of double coordinates and pixel sizes</returns>
-        public static double[] GetGeoTransform(FileInfo inputFileInfo)
+        /// <param name="inputFilePath">Input GeoTiff's path</param>
+        /// <returns>Array of double coordinates and pixel sizes if everything is OK;
+        /// <para/><see langword="null"/> otherwise</returns>
+        public static double[] GetGeoTransform(string inputFilePath)
         {
             #region Parameters checking
 
-            CheckHelper.CheckFile(inputFileInfo, true);
+            if (!CheckHelper.CheckFile(inputFilePath, true)) return null;
 
             #endregion
 
             // Initialize Gdal, if needed
             ConfigureGdal();
 
-            using Dataset inputDataset = Gdal.Open(inputFileInfo.FullName, Access.GA_ReadOnly);
+            using Dataset inputDataset = Gdal.Open(inputFilePath, Access.GA_ReadOnly);
 
             double[] geoTransform = new double[6];
             inputDataset.GetGeoTransform(geoTransform);
@@ -311,22 +301,22 @@ namespace GTiff2Tiles.Core
         /// <summary>
         /// Gets the coordinates borders of the input Geotiff file
         /// </summary>
-        /// <param name="inputFileInfo">Input GeoTiff file</param>
+        /// <param name="inputFilePath">Input GeoTiff's path</param>
         /// <param name="size">Image's <see cref="Size"/>s</param>
         /// <param name="coordinateType">Type of coordinate</param>
-        /// <returns><see cref="GeoCoordinate"/>s of this image borders</returns>
+        /// <returns><see cref="GeoCoordinate"/>s of this image borders if everything is OK;
+        /// <para/>(<see langword="null"/>, <see langword="null"/>) otherwise</returns>
         public static (GeoCoordinate minCoordinate, GeoCoordinate maxCoordinate) GetImageBorders(
-            FileInfo inputFileInfo, Size size, CoordinateType coordinateType)
+            string inputFilePath, Size size, CoordinateType coordinateType)
         {
             #region Parameters checking
 
-            CheckHelper.CheckFile(inputFileInfo, true);
-
-            if (size == null) throw new ArgumentNullException(nameof(size));
+            if (!CheckHelper.CheckFile(inputFilePath, true)) return (null, null);
+            if (size == null) return (null, null);
 
             #endregion
 
-            double[] geoTransform = GetGeoTransform(inputFileInfo);
+            double[] geoTransform = GetGeoTransform(inputFilePath);
 
             double minX = geoTransform[0];
             double minY = geoTransform[3] - size.Height * geoTransform[1];
