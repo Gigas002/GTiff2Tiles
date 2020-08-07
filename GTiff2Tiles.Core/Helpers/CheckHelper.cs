@@ -22,14 +22,16 @@ namespace GTiff2Tiles.Core.Helpers
         /// Checks, if file's path is not empty string and file exists, if it should
         /// </summary>
         /// <param name="filePath">File's path to check</param>
-        /// <param name="checkExistance">Do you want to check if file exists?
-        /// <remarks><para/><see langword="true"/> by default</remarks></param>
+        /// <param name="shouldExist">Should the file exist?
+        /// <remarks><para/><see langword="true"/> by default;
+        /// <para/>set this to <see langword="null"/> if you don't know or care if file's already exists</remarks></param>
         /// <param name="fileExtension">Checks file extension
         /// <remarks><para/>If set to <see keyword="null"/>, extension doesn't check</remarks></param>
         /// <exception cref="ArgumentNullException"/>
         /// <exception cref="ArgumentException"/>
         /// <exception cref="FileNotFoundException"/>
-        public static void CheckFile(string filePath, bool checkExistance = true, string? fileExtension = null)
+        /// <exception cref="FileException"/>
+        public static void CheckFile(string filePath, bool? shouldExist = true, string? fileExtension = null)
         {
             // Check file path
             if (string.IsNullOrWhiteSpace(filePath)) throw new ArgumentNullException(nameof(filePath));
@@ -45,10 +47,12 @@ namespace GTiff2Tiles.Core.Helpers
             // Check file's existance
             bool existance = File.Exists(filePath);
 
-            switch (checkExistance)
+            switch (shouldExist)
             {
                 case true when !existance:
                     throw new FileNotFoundException("File doesn't exist", filePath);
+                case false when existance:
+                    throw new FileException("File already exists");
             }
         }
 

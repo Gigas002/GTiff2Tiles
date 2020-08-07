@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using GTiff2Tiles.Core;
 using GTiff2Tiles.Core.Coordinates;
 using GTiff2Tiles.Core.Enums;
+using GTiff2Tiles.Core.Exceptions;
 using GTiff2Tiles.Core.Helpers;
 using GTiff2Tiles.Core.Images;
 using NetVips;
@@ -224,8 +225,6 @@ namespace GTiff2Tiles.Tests.Tests
         [Test]
         public async Task WarpExistingOutput()
         {
-            // Probably should throw-catch another exception?
-
             // Only because File.Create can fail
             Constants.FileSystemEntries.OutputDirectoryInfo.Create();
 
@@ -244,7 +243,7 @@ namespace GTiff2Tiles.Tests.Tests
                 File.Create(outPath);
                 await GdalWorker.WarpAsync(inPath, outPath, options.ToArray(), progress);
             }
-            catch (Exception)
+            catch (FileException)
             {
                 Assert.Pass();
             }
@@ -548,8 +547,7 @@ namespace GTiff2Tiles.Tests.Tests
         [Test]
         public async Task ConvertGeoTiffToTargetSystemExistingOutput()
         {
-            // Probably should throw-catch another exception?
-
+            // Only because File.Create can fail
             Constants.FileSystemEntries.OutputDirectoryInfo.Create();
 
             string timestamp = DateTime.Now.ToString(Core.Constants.DateTimePatterns.LongWithMs,
@@ -565,7 +563,7 @@ namespace GTiff2Tiles.Tests.Tests
                 File.Create(outPath);
                 await GdalWorker.ConvertGeoTiffToTargetSystemAsync(inPath, outPath, cs, progress);
             }
-            catch (Exception)
+            catch (FileException)
             {
                 Assert.Pass();
             }

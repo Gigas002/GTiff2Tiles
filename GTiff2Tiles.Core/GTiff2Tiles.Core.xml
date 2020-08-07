@@ -635,6 +635,18 @@
         <member name="M:GTiff2Tiles.Core.Exceptions.DirectoryException.#ctor">
             <inheritdoc />
         </member>
+        <member name="T:GTiff2Tiles.Core.Exceptions.FileException">
+            <inheritdoc />
+        </member>
+        <member name="M:GTiff2Tiles.Core.Exceptions.FileException.#ctor(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:GTiff2Tiles.Core.Exceptions.FileException.#ctor(System.String,System.Exception)">
+            <inheritdoc />
+        </member>
+        <member name="M:GTiff2Tiles.Core.Exceptions.FileException.#ctor">
+            <inheritdoc />
+        </member>
         <member name="T:GTiff2Tiles.Core.Exceptions.RasterException">
             <inheritdoc />
         </member>
@@ -1035,18 +1047,20 @@
             Class with static methods to check for errors
             </summary>
         </member>
-        <member name="M:GTiff2Tiles.Core.Helpers.CheckHelper.CheckFile(System.String,System.Boolean,System.String)">
+        <member name="M:GTiff2Tiles.Core.Helpers.CheckHelper.CheckFile(System.String,System.Nullable{System.Boolean},System.String)">
             <summary>
             Checks, if file's path is not empty string and file exists, if it should
             </summary>
             <param name="filePath">File's path to check</param>
-            <param name="checkExistance">Do you want to check if file exists?
-            <remarks><para/><see langword="true"/> by default</remarks></param>
+            <param name="shouldExist">Should the file exist?
+            <remarks><para/><see langword="true"/> by default;
+            <para/>set this to <see langword="null"/> if you don't know or care if file's already exists</remarks></param>
             <param name="fileExtension">Checks file extension
             <remarks><para/>If set to <see keyword="null"/>, extension doesn't check</remarks></param>
             <exception cref="T:System.ArgumentNullException"/>
             <exception cref="T:System.ArgumentException"/>
             <exception cref="T:System.IO.FileNotFoundException"/>
+            <exception cref="T:GTiff2Tiles.Core.Exceptions.FileException"/>
         </member>
         <member name="M:GTiff2Tiles.Core.Helpers.CheckHelper.CheckDirectory(System.String,System.Nullable{System.Boolean})">
             <summary>
