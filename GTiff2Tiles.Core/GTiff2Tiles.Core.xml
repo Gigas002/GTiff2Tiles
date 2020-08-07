@@ -1404,7 +1404,6 @@
             Checks if this <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/> is not empty or too small
             </summary>
             <param name="isCheckPath">Do you want to check <see cref="P:GTiff2Tiles.Core.Tiles.ITile.Path"/>?</param>
-            <param name="minimalBytesCount">Minimal accepted count of <see cref="T:System.Byte"/>s in this tile</param>
             <returns><see langword="true"/> if <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>'s valid;
             <para/><see langword="false"/> otherwise</returns>
         </member>

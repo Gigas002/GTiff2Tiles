@@ -168,6 +168,8 @@ namespace GTiff2Tiles.Core.Tiles
             }
             catch (Exception exception)
             {
+                //Weird issue -- Doesn't work in CI
+                //return ValueTask.FromException(exception);
                 return new ValueTask(Task.FromException(exception));
             }
         }
