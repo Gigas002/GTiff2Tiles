@@ -920,7 +920,7 @@
         <member name="M:GTiff2Tiles.Core.GeoTiffs.Raster.DisposeAsync">
             <inheritdoc />
         </member>
-        <member name="M:GTiff2Tiles.Core.GeoTiffs.Raster.CreateTileImage(NetVips.Image,GTiff2Tiles.Core.Tiles.RasterTile,System.String)">
+        <member name="M:GTiff2Tiles.Core.GeoTiffs.Raster.CreateTileImage(NetVips.Image,GTiff2Tiles.Core.Tiles.RasterTile)">
             <summary>
             Create <see cref="T:NetVips.Image"/> for one <see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/>
             from input <see cref="T:NetVips.Image"/> or tile cache
@@ -928,11 +928,11 @@
             <param name="tileCache">Source <see cref="T:NetVips.Image"/>
             or tile cache</param>
             <param name="tile">Target <see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/></param>
-            <param name="interpolation">Interpolation of ready tiles</param>
             <returns>Ready <see cref="T:NetVips.Image"/> for <see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/></returns>
             <exception cref="T:System.ArgumentNullException"/>
+            <exception cref="T:System.ArgumentException"/>
         </member>
-        <member name="M:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToFile(NetVips.Image,GTiff2Tiles.Core.Tiles.RasterTile,System.String)">
+        <member name="M:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToFile(NetVips.Image,GTiff2Tiles.Core.Tiles.RasterTile)">
             <summary>
             Gets data from source <see cref="T:NetVips.Image"/>
             or tile cache for specified <see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/>
@@ -941,12 +941,11 @@
             <param name="tileCache">Source <see cref="T:NetVips.Image"/>
             or tile cache</param>
             <param name="tile">Target <see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/></param>
-            <param name="interpolation">Interpolation of ready tiles</param>
         </member>
-        <member name="M:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToFileAsync(NetVips.Image,GTiff2Tiles.Core.Tiles.RasterTile,System.String)">
-            <inheritdoc cref="M:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToFile(NetVips.Image,GTiff2Tiles.Core.Tiles.RasterTile,System.String)"/>
+        <member name="M:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToFileAsync(NetVips.Image,GTiff2Tiles.Core.Tiles.RasterTile)">
+            <inheritdoc cref="M:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToFile(NetVips.Image,GTiff2Tiles.Core.Tiles.RasterTile)"/>
         </member>
-        <member name="M:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToEnumerable(NetVips.Image,GTiff2Tiles.Core.Tiles.RasterTile,System.String)">
+        <member name="M:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToEnumerable(NetVips.Image,GTiff2Tiles.Core.Tiles.RasterTile)">
             <summary>
             Gets data from source <see cref="T:NetVips.Image"/>
             or tile cache for specified <see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/>
@@ -955,10 +954,9 @@
             <param name="tileCache">Source <see cref="T:NetVips.Image"/>
             or tile cache</param>
             <param name="tile">Target <see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/></param>
-            <param name="interpolation">Interpolation of ready tiles</param>
             <returns><see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/>'s <see cref="T:System.Byte"/>s</returns>
         </member>
-        <member name="M:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToChannel(NetVips.Image,GTiff2Tiles.Core.Tiles.RasterTile,System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.ITile},System.String)">
+        <member name="M:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToChannel(NetVips.Image,GTiff2Tiles.Core.Tiles.RasterTile,System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.ITile})">
             <summary>
             Gets data from source <see cref="T:NetVips.Image"/>
             or tile cache for specified <see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/>
@@ -968,16 +966,15 @@
             or tile cache</param>
             <param name="tile">Target <see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/></param>
             <param name="channelWriter">Target <see cref="T:System.Threading.Channels.ChannelWriter`1"/></param>
-            <param name="interpolation">Interpolation of ready tiles</param>
             <returns><see langword="true"/> if <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/> was written;
             <see langword="false"/> otherwise</returns>
             <exception cref="T:System.ArgumentNullException"/>
         </member>
-        <member name="M:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToChannelAsync(NetVips.Image,GTiff2Tiles.Core.Tiles.RasterTile,System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.ITile},System.String)">
+        <member name="M:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToChannelAsync(NetVips.Image,GTiff2Tiles.Core.Tiles.RasterTile,System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.ITile})">
             <returns></returns>
-            <inheritdoc cref="M:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToChannel(NetVips.Image,GTiff2Tiles.Core.Tiles.RasterTile,System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.ITile},System.String)"/>
+            <inheritdoc cref="M:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToChannel(NetVips.Image,GTiff2Tiles.Core.Tiles.RasterTile,System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.ITile})"/>
         </member>
-        <member name="M:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToDirectory(System.String,System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.TileExtension,System.String,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Boolean)">
+        <member name="M:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToDirectory(System.String,System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.TileExtension,GTiff2Tiles.Core.Enums.Interpolation,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Boolean)">
             <summary>
             Crops current <see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/> on <see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/>s
             and writes them to <paramref name="outputDirectoryPath"/>
@@ -985,7 +982,7 @@
             <param name="outputDirectoryPath">Directory for output <see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/>s</param>
             <param name="tileExtension">Extension of ready <see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/>s
             <remarks><para/>.png by default</remarks></param>
-            <inheritdoc cref="M:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToAsyncEnumerable(System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,System.String,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Boolean)"/>
+            <inheritdoc cref="M:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToAsyncEnumerable(System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.Interpolation,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Boolean)"/>
             <param name="minZ"></param>
             <param name="maxZ"></param>
             <param name="tmsCompatible"></param>
@@ -999,16 +996,16 @@
             <exception cref="T:System.ArgumentOutOfRangeException"/>
             <exception cref="T:GTiff2Tiles.Core.Exceptions.RasterException"/>
         </member>
-        <member name="M:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToDirectoryAsync(System.String,System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.TileExtension,System.String,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Boolean)">
-            <inheritdoc cref="M:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToDirectory(System.String,System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.TileExtension,System.String,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Boolean)"/>
+        <member name="M:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToDirectoryAsync(System.String,System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.TileExtension,GTiff2Tiles.Core.Enums.Interpolation,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Boolean)">
+            <inheritdoc cref="M:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToDirectory(System.String,System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.TileExtension,GTiff2Tiles.Core.Enums.Interpolation,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Boolean)"/>
         </member>
-        <member name="M:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToChannel(System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.ITile},System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,System.String,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Boolean)">
+        <member name="M:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToChannel(System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.ITile},System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.Interpolation,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Boolean)">
             <summary>
             Crops current <see cref="T:GTiff2Tiles.Core.GeoTiffs.Raster"/> on <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>s
             and writes them to <paramref name="channelWriter"/>
             </summary>
             <param name="channelWriter"><see cref="T:System.Threading.Channels.Channel"/> to write <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/> to</param>
-            <inheritdoc cref="M:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToAsyncEnumerable(System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,System.String,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Boolean)"/>
+            <inheritdoc cref="M:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToAsyncEnumerable(System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.Interpolation,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Boolean)"/>
             <param name="minZ"></param>
             <param name="maxZ"></param>
             <param name="tmsCompatible"></param>
@@ -1022,18 +1019,18 @@
             <exception cref="T:System.ArgumentOutOfRangeException"/>
             <exception cref="T:GTiff2Tiles.Core.Exceptions.RasterException"/>
         </member>
-        <member name="M:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToChannelAsync(System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.ITile},System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,System.String,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Boolean)">
-            <inheritdoc cref="M:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToChannel(System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.ITile},System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,System.String,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Boolean)"/>
+        <member name="M:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToChannelAsync(System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.ITile},System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.Interpolation,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Boolean)">
+            <inheritdoc cref="M:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToChannel(System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.ITile},System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.Interpolation,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Boolean)"/>
         </member>
-        <member name="M:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToEnumerable(System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,System.String,System.Int32,System.Int32,System.IProgress{System.Double},System.Boolean)">
+        <member name="M:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToEnumerable(System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.Interpolation,System.Int32,System.Int32,System.IProgress{System.Double},System.Boolean)">
             <summary>
             Crops current <see cref="T:GTiff2Tiles.Core.GeoTiffs.Raster"/> on <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>s
             and writes them to <see cref="T:System.Collections.Generic.IEnumerable`1"/>
             </summary>
             <returns><see cref="T:System.Collections.Generic.IEnumerable`1"/> of <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>s</returns>
-            <inheritdoc cref="M:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToAsyncEnumerable(System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,System.String,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Boolean)"/>
+            <inheritdoc cref="M:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToAsyncEnumerable(System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.Interpolation,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Boolean)"/>
         </member>
-        <member name="M:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToAsyncEnumerable(System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,System.String,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Boolean)">
+        <member name="M:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToAsyncEnumerable(System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.Interpolation,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Boolean)">
             <summary>
             Crops current <see cref="T:GTiff2Tiles.Core.GeoTiffs.Raster"/> on <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>s
             and writes them to <see cref="T:System.Collections.Generic.IAsyncEnumerable`1"/>
@@ -1049,7 +1046,7 @@
             <param name="tileSize"><see cref="T:GTiff2Tiles.Core.Images.Size"/> of <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>s
             <remarks><para/>256x256 by default</remarks></param>
             <param name="interpolation">Interpolation of ready tiles
-            <remarks><para/><see cref="F:GTiff2Tiles.Core.Constants.Interpolations.Lanczos3"/> by default</remarks></param>
+            <remarks><para/><see cref="F:GTiff2Tiles.Core.Enums.Interpolation.Lanczos3"/> by default</remarks></param>
             <param name="bandsCount">Count of <see cref="T:GTiff2Tiles.Core.Images.Band"/>s in ready <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>s
             <remarks><para/>4 by default</remarks></param>
             <param name="tileCacheCount">Count of <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/> to be in cache
@@ -1804,7 +1801,7 @@
             <remarks><para/>Must be in range (0, 4];
             <para/><see cref="F:GTiff2Tiles.Core.Tiles.RasterTile.DefaultBandsCount"/> by default</remarks></param>
             <param name="interpolation"><see cref="P:GTiff2Tiles.Core.Tiles.RasterTile.Interpolation"/>
-            <remarks><para/>Lanczos3 by default</remarks></param>
+            <remarks><para/><see cref="F:GTiff2Tiles.Core.Enums.Interpolation.Lanczos3"/> by default</remarks></param>
             <exception cref="T:System.ArgumentOutOfRangeException"/>
         </member>
         <member name="M:GTiff2Tiles.Core.Tiles.RasterTile.#ctor(GTiff2Tiles.Core.Coordinates.GeoCoordinate,GTiff2Tiles.Core.Coordinates.GeoCoordinate,System.Int32,GTiff2Tiles.Core.Images.Size,System.Collections.Generic.IEnumerable{System.Byte},GTiff2Tiles.Core.Enums.TileExtension,System.Boolean,System.Int32,GTiff2Tiles.Core.Enums.Interpolation)">
@@ -1820,7 +1817,7 @@
             <remarks><para/>Must be in range (0, 4];
             <para/><see cref="F:GTiff2Tiles.Core.Tiles.RasterTile.DefaultBandsCount"/> by default</remarks></param>
             <param name="interpolation"><see cref="P:GTiff2Tiles.Core.Tiles.RasterTile.Interpolation"/>
-            <remarks><para/>Lanczos3 by default</remarks></param>
+            <remarks><para/><see cref="F:GTiff2Tiles.Core.Enums.Interpolation.Lanczos3"/> by default</remarks></param>
             <exception cref="T:System.ArgumentOutOfRangeException"/>
         </member>
         <member name="T:GTiff2Tiles.Core.Tiles.Tile">

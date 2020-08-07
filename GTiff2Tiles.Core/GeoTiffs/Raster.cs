@@ -90,6 +90,7 @@ namespace GTiff2Tiles.Core.GeoTiffs
             NetVipsHelper.DisableLog();
 
             // Get coordinate system of input geotiff from gdal
+            // TODO: sync override
             string proj4String = GdalWorker.GetProjStringAsync(inputFilePath).Result;
             CoordinateSystem coordinateSystem = GdalWorker.GetCoordinateSystem(proj4String);
 
@@ -275,16 +276,26 @@ namespace GTiff2Tiles.Core.GeoTiffs
         /// <param name="tileCache">Source <see cref="Image"/>
         /// or tile cache</param>
         /// <param name="tile">Target <see cref="RasterTile"/></param>
-        /// <param name="interpolation">Interpolation of ready tiles</param>
         /// <returns>Ready <see cref="Image"/> for <see cref="RasterTile"/></returns>
         /// <exception cref="ArgumentNullException"/>
-        public Image CreateTileImage(Image tileCache, RasterTile tile, string interpolation)
+        /// <exception cref="ArgumentException"/>
+        public Image CreateTileImage(Image tileCache, RasterTile tile)
         {
             #region Preconditions checks
 
             if (tileCache == null) throw new ArgumentNullException(nameof(tileCache));
             if (tile == null) throw new ArgumentNullException(nameof(tile));
-            if (string.IsNullOrWhiteSpace(interpolation)) throw new ArgumentNullException(interpolation);
+
+            string interpolation = tile.Interpolation switch
+            {
+                Interpolation.Nearest => Interpolations.Nearest,
+                Interpolation.Linear => Interpolations.Linear,
+                Interpolation.Cubic => Interpolations.Cubic,
+                Interpolation.Mitchell => Interpolations.Mitchell,
+                Interpolation.Lanczos2 => Interpolations.Lanczos2,
+                Interpolation.Lanczos3 => Interpolations.Lanczos3,
+                _ => throw new ArgumentException("Tile has wrong interpolation", nameof(tile))
+            };
 
             #endregion
 
@@ -321,20 +332,19 @@ namespace GTiff2Tiles.Core.GeoTiffs
         /// <param name="tileCache">Source <see cref="Image"/>
         /// or tile cache</param>
         /// <param name="tile">Target <see cref="RasterTile"/></param>
-        /// <param name="interpolation">Interpolation of ready tiles</param>
-        public void WriteTileToFile(Image tileCache, RasterTile tile, string interpolation)
+        public void WriteTileToFile(Image tileCache, RasterTile tile)
         {
             // Preconditions checked inside CreateTileImage, don't need to check anything here
 
-            using Image tileImage = CreateTileImage(tileCache, tile, interpolation);
+            using Image tileImage = CreateTileImage(tileCache, tile);
 
             //TODO: validate size before writing
             tileImage.WriteToFile(tile.Path);
         }
 
         /// <inheritdoc cref="WriteTileToFile"/>
-        public Task WriteTileToFileAsync(Image tileCache, RasterTile tile, string interpolation) =>
-            Task.Run(() => WriteTileToFile(tileCache, tile, interpolation));
+        public Task WriteTileToFileAsync(Image tileCache, RasterTile tile) =>
+            Task.Run(() => WriteTileToFile(tileCache, tile));
 
         /// <summary>
         /// Gets data from source <see cref="Image"/>
@@ -344,14 +354,12 @@ namespace GTiff2Tiles.Core.GeoTiffs
         /// <param name="tileCache">Source <see cref="Image"/>
         /// or tile cache</param>
         /// <param name="tile">Target <see cref="RasterTile"/></param>
-        /// <param name="interpolation">Interpolation of ready tiles</param>
         /// <returns><see cref="RasterTile"/>'s <see cref="byte"/>s</returns>
-        public IEnumerable<byte> WriteTileToEnumerable(Image tileCache, RasterTile tile,
-                                                       string interpolation)
+        public IEnumerable<byte> WriteTileToEnumerable(Image tileCache, RasterTile tile)
         {
             // Preconditions checked inside CreateTileImage, don't need to check anything here
 
-            using Image tileImage = CreateTileImage(tileCache, tile, interpolation);
+            using Image tileImage = CreateTileImage(tileCache, tile);
 
             //TODO: validate size before writing
             return tileImage.WriteToMemory();
@@ -366,12 +374,10 @@ namespace GTiff2Tiles.Core.GeoTiffs
         /// or tile cache</param>
         /// <param name="tile">Target <see cref="RasterTile"/></param>
         /// <param name="channelWriter">Target <see cref="ChannelWriter{T}"/></param>
-        /// <param name="interpolation">Interpolation of ready tiles</param>
         /// <returns><see langword="true"/> if <see cref="ITile"/> was written;
         /// <see langword="false"/> otherwise</returns>
         /// <exception cref="ArgumentNullException"/>
-        public bool WriteTileToChannel(Image tileCache, RasterTile tile, ChannelWriter<ITile> channelWriter,
-                                       string interpolation)
+        public bool WriteTileToChannel(Image tileCache, RasterTile tile, ChannelWriter<ITile> channelWriter)
         {
             #region Preconditions checks
 
@@ -382,15 +388,14 @@ namespace GTiff2Tiles.Core.GeoTiffs
 
             #endregion
 
-            tile.Bytes = WriteTileToEnumerable(tileCache, tile, interpolation);
+            tile.Bytes = WriteTileToEnumerable(tileCache, tile);
 
             return tile.Validate(false) && channelWriter.TryWrite(tile);
         }
 
         /// <returns></returns>
         /// <inheritdoc cref="WriteTileToChannel"/>
-        public ValueTask WriteTileToChannelAsync(Image tileCache, RasterTile tile,
-                                                 ChannelWriter<ITile> channelWriter, string interpolation)
+        public ValueTask WriteTileToChannelAsync(Image tileCache, RasterTile tile, ChannelWriter<ITile> channelWriter)
         {
             #region Preconditions checks
 
@@ -401,7 +406,7 @@ namespace GTiff2Tiles.Core.GeoTiffs
 
             #endregion
 
-            tile.Bytes = WriteTileToEnumerable(tileCache, tile, interpolation);
+            tile.Bytes = WriteTileToEnumerable(tileCache, tile);
 
             return tile.Validate(false) ? channelWriter.WriteAsync(tile) : ValueTask.CompletedTask;
         }
@@ -433,7 +438,7 @@ namespace GTiff2Tiles.Core.GeoTiffs
         public void WriteTilesToDirectory(string outputDirectoryPath, int minZ, int maxZ,
                                           bool tmsCompatible = false, Size tileSize = null,
                                           TileExtension tileExtension = TileExtension.Png,
-                                          string interpolation = Interpolations.Lanczos3,
+                                          Interpolation interpolation = Interpolation.Lanczos3,
                                           int bandsCount = RasterTile.DefaultBandsCount,
                                           int tileCacheCount = 1000, int threadsCount = 0,
                                           IProgress<double> progress = null,
@@ -477,14 +482,15 @@ namespace GTiff2Tiles.Core.GeoTiffs
 
                 Number tileNumber = new Number(x, y, z);
                 RasterTile tile = new RasterTile(tileNumber, GeoCoordinateSystem, extension: tileExtension,
-                                                 tmsCompatible: tmsCompatible, size: tileSize, bandsCount: bandsCount);
+                                                 tmsCompatible: tmsCompatible, size: tileSize,
+                                                 bandsCount: bandsCount, interpolation: interpolation);
 
                 // Important: OpenLayers requires replacement of tileY to tileY+1
                 tile.Path = Path.Combine(tileDirectoryPath, $"{y}{tile.GetExtensionString()}");
 
                 // tile is validated inside of WriteTileToFile
                 // ReSharper disable once AccessToDisposedClosure
-                WriteTileToFile(tileCache, tile, interpolation);
+                WriteTileToFile(tileCache, tile);
 
                 // Report progress
                 counter++;
@@ -516,7 +522,7 @@ namespace GTiff2Tiles.Core.GeoTiffs
         public Task WriteTilesToDirectoryAsync(string outputDirectoryPath, int minZ, int maxZ,
                                                bool tmsCompatible = false, Size tileSize = null,
                                                TileExtension tileExtension = TileExtension.Png,
-                                               string interpolation = Interpolations.Lanczos3,
+                                               Interpolation interpolation = Interpolation.Lanczos3,
                                                int bandsCount = RasterTile.DefaultBandsCount,
                                                int tileCacheCount = 1000, int threadsCount = 0,
                                                IProgress<double> progress = null,
@@ -545,7 +551,7 @@ namespace GTiff2Tiles.Core.GeoTiffs
         /// <exception cref="RasterException"/>
         public void WriteTilesToChannel(ChannelWriter<ITile> channelWriter, int minZ, int maxZ,
                                         bool tmsCompatible = false, Size tileSize = null,
-                                        string interpolation = Interpolations.Lanczos3,
+                                        Interpolation interpolation = Interpolation.Lanczos3,
                                         int bandsCount = RasterTile.DefaultBandsCount,
                                         int tileCacheCount = 1000, int threadsCount = 0,
                                         IProgress<double> progress = null,
@@ -584,11 +590,11 @@ namespace GTiff2Tiles.Core.GeoTiffs
             {
                 Number tileNumber = new Number(x, y, z);
                 RasterTile tile = new RasterTile(tileNumber, GeoCoordinateSystem, tmsCompatible: tmsCompatible,
-                    size: tileSize, bandsCount: bandsCount);
+                    size: tileSize, bandsCount: bandsCount, interpolation: interpolation);
 
                 // Should not throw exception if tile was skipped
                 // ReSharper disable once AccessToDisposedClosure
-                if (!WriteTileToChannel(tileCache, tile, channelWriter, interpolation)) return;
+                if (!WriteTileToChannel(tileCache, tile, channelWriter)) return;
 
                 // Report progress
                 counter++;
@@ -619,7 +625,7 @@ namespace GTiff2Tiles.Core.GeoTiffs
         /// <inheritdoc cref="WriteTilesToChannel"/>
         public Task WriteTilesToChannelAsync(ChannelWriter<ITile> channelWriter, int minZ, int maxZ,
                                              bool tmsCompatible = false, Size tileSize = null,
-                                             string interpolation = Interpolations.Lanczos3,
+                                             Interpolation interpolation = Interpolation.Lanczos3,
                                              int bandsCount = RasterTile.DefaultBandsCount,
                                              int tileCacheCount = 1000, int threadsCount = 0,
                                              IProgress<double> progress = null,
@@ -636,7 +642,7 @@ namespace GTiff2Tiles.Core.GeoTiffs
         /// <inheritdoc cref="WriteTilesToAsyncEnumerable"/>
         public IEnumerable<ITile> WriteTilesToEnumerable(int minZ, int maxZ,
                                                          bool tmsCompatible = false, Size tileSize = null,
-                                                         string interpolation = Interpolations.Lanczos3,
+                                                         Interpolation interpolation = Interpolation.Lanczos3,
                                                          int bandsCount = RasterTile.DefaultBandsCount,
                                                          int tileCacheCount = 1000,
                                                          IProgress<double> progress = null,
@@ -671,9 +677,9 @@ namespace GTiff2Tiles.Core.GeoTiffs
             {
                 Number tileNumber = new Number(x, y, z);
                 RasterTile tile = new RasterTile(tileNumber, GeoCoordinateSystem, tmsCompatible: tmsCompatible,
-                    size: tileSize, bandsCount: bandsCount);
+                    size: tileSize, bandsCount: bandsCount, interpolation: interpolation);
 
-                tile.Bytes = WriteTileToEnumerable(tileCache, tile, interpolation);
+                tile.Bytes = WriteTileToEnumerable(tileCache, tile);
 
                 // Report progress
                 counter++;
@@ -716,7 +722,7 @@ namespace GTiff2Tiles.Core.GeoTiffs
         /// <param name="tileSize"><see cref="Images.Size"/> of <see cref="ITile"/>s
         /// <remarks><para/>256x256 by default</remarks></param>
         /// <param name="interpolation">Interpolation of ready tiles
-        /// <remarks><para/><see cref="Interpolations.Lanczos3"/> by default</remarks></param>
+        /// <remarks><para/><see cref="Interpolation.Lanczos3"/> by default</remarks></param>
         /// <param name="bandsCount">Count of <see cref="Band"/>s in ready <see cref="ITile"/>s
         /// <remarks><para/>4 by default</remarks></param>
         /// <param name="tileCacheCount">Count of <see cref="ITile"/> to be in cache
@@ -732,7 +738,7 @@ namespace GTiff2Tiles.Core.GeoTiffs
         /// <exception cref="RasterException"/>
         public IAsyncEnumerable<ITile> WriteTilesToAsyncEnumerable(int minZ, int maxZ,
                                                                    bool tmsCompatible = false, Size tileSize = null,
-                                                                   string interpolation = Interpolations.Lanczos3,
+                                                                   Interpolation interpolation = Interpolation.Lanczos3,
                                                                    int bandsCount = RasterTile.DefaultBandsCount,
                                                                    int tileCacheCount = 1000, int threadsCount = 0,
                                                                    IProgress<double> progress = null,

@@ -2,40 +2,39 @@
 
 namespace GTiff2Tiles.Core.Constants
 {
-    // TODO enum
     /// <summary>
     /// Represents the interpolation algorithms
     /// </summary>
-    public static class Interpolations
+    internal static class Interpolations
     {
         /// <summary>
         /// Nearest-neighbour interpolation
         /// </summary>
-        public const string Nearest = "nearest";
+        internal const string Nearest = "nearest";
 
         /// <summary>
         /// Linear interpolation
         /// </summary>
-        public const string Linear = "linear";
+        internal const string Linear = "linear";
 
         /// <summary>
         /// Cubic interpolation
         /// </summary>
-        public const string Cubic = "cubic";
+        internal const string Cubic = "cubic";
 
         /// <summary>
         /// Mitchell
         /// </summary>
-        public const string Mitchell = "mitchell";
+        internal const string Mitchell = "mitchell";
 
         /// <summary>
         /// Two-lobe Lanczos
         /// </summary>
-        public const string Lanczos2 = "lanczos2";
+        internal const string Lanczos2 = "lanczos2";
 
         /// <summary>
         /// Three-lobe Lanczos
         /// </summary>
-        public const string Lanczos3 = "lanczos3";
+        internal const string Lanczos3 = "lanczos3";
     }
 }
