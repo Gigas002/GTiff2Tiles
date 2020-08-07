@@ -110,7 +110,7 @@ namespace GTiff2Tiles.Console
                 if (!await CheckHelper.CheckInputFileAsync(InputFileInfo.FullName, targetCoordinateSystem).ConfigureAwait(false))
                 {
                     string tempFilePath = Path.Combine(TempDirectoryInfo.FullName,
-                                                       $"{GdalWorker.TempFileName}{FileExtensions.Tif}");
+                                                       $"{GdalWorker.TempFileName}");
                     FileInfo tempFileInfo = new FileInfo(tempFilePath);
 
                     await GdalWorker.ConvertGeoTiffToTargetSystemAsync(InputFileInfo.FullName, tempFileInfo.FullName, targetCoordinateSystem,

@@ -418,7 +418,7 @@ namespace GTiff2Tiles.GUI.ViewModels
                 if (!await CheckHelper.CheckInputFileAsync(inputFileInfo.FullName, coordinateSystem).ConfigureAwait(true))
                 {
                     string tempFilePath = Path.Combine(tempDirectoryInfo.FullName,
-                                                       $"{GdalWorker.TempFileName}{FileExtensions.Tif}");
+                                                       $"{GdalWorker.TempFileName}");
                     FileInfo tempFileInfo = new FileInfo(tempFilePath);
 
                     await GdalWorker.ConvertGeoTiffToTargetSystemAsync(inputFileInfo.FullName, tempFileInfo.FullName, coordinateSystem,

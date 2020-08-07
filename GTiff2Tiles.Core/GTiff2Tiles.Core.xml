@@ -693,7 +693,8 @@
         <member name="F:GTiff2Tiles.Core.GdalWorker.TempFileName">
             <summary>
             Name for temporary (converted) GeoTiff
-            <remarks><para/>It's recommended to add timestamp to your temp file's name</remarks>
+            <remarks><para/>Includes timestamp and .tif extension, see
+            <see cref="F:GTiff2Tiles.Core.Constants.DateTimePatterns.LongWithMs"/> for more info</remarks>
             </summary>
         </member>
         <member name="M:GTiff2Tiles.Core.GdalWorker.WarpAsync(System.String,System.String,System.String[],System.IProgress{System.Double})">

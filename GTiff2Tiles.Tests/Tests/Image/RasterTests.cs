@@ -54,7 +54,7 @@ namespace GTiff2Tiles.Tests.Tests.Image
                 if (!await CheckHelper.CheckInputFileAsync(inputFileInfo.FullName, coordinateSystem))
                 {
                     string tempFilePath = Path.Combine(tempDirectoryInfo.FullName,
-                                                       $"{GdalWorker.TempFileName}{FileExtensions.Tif}");
+                                                       $"{GdalWorker.TempFileName}");
                     FileInfo tempFileInfo = new FileInfo(tempFilePath);
 
                     await GdalWorker.ConvertGeoTiffToTargetSystemAsync(inputFileInfo.FullName, tempFileInfo.FullName, coordinateSystem,
@@ -112,7 +112,7 @@ namespace GTiff2Tiles.Tests.Tests.Image
                 if (!await CheckHelper.CheckInputFileAsync(inputFileInfo.FullName, coordinateSystem))
                 {
                     string tempFilePath = Path.Combine(tempDirectoryInfo.FullName,
-                                                       $"{GdalWorker.TempFileName}{FileExtensions.Tif}");
+                                                       $"{GdalWorker.TempFileName}");
                     FileInfo tempFileInfo = new FileInfo(tempFilePath);
 
                     await GdalWorker.ConvertGeoTiffToTargetSystemAsync(inputFileInfo.FullName, tempFileInfo.FullName, coordinateSystem,

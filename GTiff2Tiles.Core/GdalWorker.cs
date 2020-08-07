@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -63,12 +64,12 @@ namespace GTiff2Tiles.Core
             //"-co", "TILED=YES",
         };
 
-        //TODO: include datetime stuff
         /// <summary>
         /// Name for temporary (converted) GeoTiff
-        /// <remarks><para/>It's recommended to add timestamp to your temp file's name</remarks>
+        /// <remarks><para/>Includes timestamp and .tif extension, see
+        /// <see cref="DateTimePatterns.LongWithMs"/> for more info</remarks>
         /// </summary>
-        public const string TempFileName = "tmp_converted";
+        public static readonly string TempFileName = $"{DateTime.Now.ToString(DateTimePatterns.LongWithMs, CultureInfo.InvariantCulture)}_tmp_converted{FileExtensions.Tif}";
 
         #endregion
 
