@@ -626,18 +626,6 @@
         <member name="M:GTiff2Tiles.Core.Exceptions.DirectoryException.#ctor">
             <inheritdoc />
         </member>
-        <member name="T:GTiff2Tiles.Core.Exceptions.GdalException">
-            <inheritdoc />
-        </member>
-        <member name="M:GTiff2Tiles.Core.Exceptions.GdalException.#ctor(System.String)">
-            <inheritdoc />
-        </member>
-        <member name="M:GTiff2Tiles.Core.Exceptions.GdalException.#ctor(System.String,System.Exception)">
-            <inheritdoc />
-        </member>
-        <member name="M:GTiff2Tiles.Core.Exceptions.GdalException.#ctor">
-            <inheritdoc />
-        </member>
         <member name="T:GTiff2Tiles.Core.Exceptions.RasterException">
             <inheritdoc />
         </member>
@@ -648,18 +636,6 @@
             <inheritdoc />
         </member>
         <member name="M:GTiff2Tiles.Core.Exceptions.RasterException.#ctor">
-            <inheritdoc />
-        </member>
-        <member name="T:GTiff2Tiles.Core.Exceptions.TileException">
-            <inheritdoc />
-        </member>
-        <member name="M:GTiff2Tiles.Core.Exceptions.TileException.#ctor(System.String)">
-            <inheritdoc />
-        </member>
-        <member name="M:GTiff2Tiles.Core.Exceptions.TileException.#ctor(System.String,System.Exception)">
-            <inheritdoc />
-        </member>
-        <member name="M:GTiff2Tiles.Core.Exceptions.TileException.#ctor">
             <inheritdoc />
         </member>
         <member name="T:GTiff2Tiles.Core.GdalWorker">
