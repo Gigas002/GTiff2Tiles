@@ -168,7 +168,6 @@ namespace GTiff2Tiles.Core.Tiles
         /// <param name="tmsCompatible">Is tms compatible?</param>
         /// <returns><see cref="ValueTuple{T1, T2}"/> of <see cref="GeoCoordinate"/>s</returns>
         /// <exception cref="ArgumentNullException"/>
-        /// <exception cref="ArgumentException"/>
         public (GeoCoordinate minCoordinate, GeoCoordinate maxCoordinate) ToGeoCoordinates(
             CoordinateSystem coordinateSystem, Size tileSize, bool tmsCompatible) =>
             ToGeoCoordinates(this, coordinateSystem, tileSize, tmsCompatible);
@@ -178,6 +177,7 @@ namespace GTiff2Tiles.Core.Tiles
         /// <param name="coordinateSystem"></param>
         /// <param name="tileSize"></param>
         /// <param name="tmsCompatible"></param>
+        /// <exception cref="NotSupportedException"/>
         public static (GeoCoordinate minCoordinate, GeoCoordinate maxCoordinate) ToGeoCoordinates(
             Number number, CoordinateSystem coordinateSystem, Size tileSize, bool tmsCompatible)
         {
@@ -206,7 +206,7 @@ namespace GTiff2Tiles.Core.Tiles
                         return (minCoordinate, maxCoordinate);
                     }
                 default:
-                    throw new ArgumentException($"{coordinateSystem} is not supported", nameof(coordinateSystem));
+                    throw new NotSupportedException($"{coordinateSystem} is not supported");
             }
         }
 

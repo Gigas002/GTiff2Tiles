@@ -238,7 +238,7 @@ namespace GTiff2Tiles.Core
         /// <param name="targetSystem">Target <see cref="CoordinateSystem"/></param>
         /// <param name="progress">GdalWarp's progress
         /// <remarks><para/><see langword="null"/> by default</remarks></param>
-        /// <exception cref="ArgumentException"/>
+        /// <exception cref="NotSupportedException"/>
         public static Task ConvertGeoTiffToTargetSystemAsync(string inputFilePath,
             string outputFilePath, CoordinateSystem targetSystem, IProgress<double> progress = null)
         {
@@ -263,7 +263,7 @@ namespace GTiff2Tiles.Core
                     }
                 default:
                     {
-                        throw new ArgumentException($"{targetSystem} is not supported");
+                        throw new NotSupportedException($"{targetSystem} is not supported");
                     }
             }
 
@@ -330,7 +330,7 @@ namespace GTiff2Tiles.Core
         /// <returns><see cref="ValueTuple{T1,T2}"/> of
         /// <see cref="GeoCoordinate"/>s of image's borders</returns>
         /// <exception cref="ArgumentNullException"/>
-        /// <exception cref="ArgumentException"/>
+        /// <exception cref="NotSupportedException"/>
         public static (GeoCoordinate minCoordinate, GeoCoordinate maxCoordinate) GetImageBorders(
             string inputFilePath, Size size, CoordinateSystem coordinateSystem)
         {
@@ -366,7 +366,7 @@ namespace GTiff2Tiles.Core
                         return (minCoordinate, maxCoordinate);
                     }
                 default:
-                    throw new ArgumentException($"{coordinateSystem} is not supported");
+                    throw new NotSupportedException($"{coordinateSystem} is not supported");
             }
         }
 

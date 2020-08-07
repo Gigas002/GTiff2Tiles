@@ -462,6 +462,7 @@
             <param name="tileSize"><see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>'s side size</param>
             <returns>Converted to <see cref="T:GTiff2Tiles.Core.Coordinates.GeoCoordinate"/> value
             or <see langword="null"/> if something goes wrong</returns>
+            <exception cref="T:System.NotSupportedException"/>
         </member>
         <member name="M:GTiff2Tiles.Core.Coordinates.PixelCoordinate.ToGeodeticCoordinate(System.Int32,System.Int32)">
             <summary>
@@ -757,7 +758,7 @@
             <param name="targetSystem">Target <see cref="T:GTiff2Tiles.Core.Enums.CoordinateSystem"/></param>
             <param name="progress">GdalWarp's progress
             <remarks><para/><see langword="null"/> by default</remarks></param>
-            <exception cref="T:System.ArgumentException"/>
+            <exception cref="T:System.NotSupportedException"/>
         </member>
         <member name="M:GTiff2Tiles.Core.GdalWorker.GetCoordinateSystem(System.String)">
             <summary>
@@ -785,7 +786,7 @@
             <returns><see cref="T:System.ValueTuple`2"/> of
             <see cref="T:GTiff2Tiles.Core.Coordinates.GeoCoordinate"/>s of image's borders</returns>
             <exception cref="T:System.ArgumentNullException"/>
-            <exception cref="T:System.ArgumentException"/>
+            <exception cref="T:System.NotSupportedException"/>
         </member>
         <member name="T:GTiff2Tiles.Core.GeoTiffs.IGeoTiff">
             <summary>
@@ -1636,7 +1637,6 @@
             <param name="tmsCompatible">Is tms compatible?</param>
             <returns><see cref="T:System.ValueTuple`2"/> of <see cref="T:GTiff2Tiles.Core.Coordinates.GeoCoordinate"/>s</returns>
             <exception cref="T:System.ArgumentNullException"/>
-            <exception cref="T:System.ArgumentException"/>
         </member>
         <member name="M:GTiff2Tiles.Core.Tiles.Number.ToGeoCoordinates(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Enums.CoordinateSystem,GTiff2Tiles.Core.Images.Size,System.Boolean)">
             <inheritdoc cref="M:GTiff2Tiles.Core.Tiles.Number.ToGeoCoordinates(GTiff2Tiles.Core.Enums.CoordinateSystem,GTiff2Tiles.Core.Images.Size,System.Boolean)"/>
@@ -1644,6 +1644,7 @@
             <param name="coordinateSystem"></param>
             <param name="tileSize"></param>
             <param name="tmsCompatible"></param>
+            <exception cref="T:System.NotSupportedException"/>
         </member>
         <member name="M:GTiff2Tiles.Core.Tiles.Number.GetLowerNumbers(System.Int32)">
             <summary>

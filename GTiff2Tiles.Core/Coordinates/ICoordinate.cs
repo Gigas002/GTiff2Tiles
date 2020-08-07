@@ -4,7 +4,6 @@ using GTiff2Tiles.Core.Tiles;
 // ReSharper disable UnusedMemberInSuper.Global
 
 // TODO: use Size tileSize instead of int tileSize
-// TODO: rename ..Zoom to z
 
 namespace GTiff2Tiles.Core.Coordinates
 {

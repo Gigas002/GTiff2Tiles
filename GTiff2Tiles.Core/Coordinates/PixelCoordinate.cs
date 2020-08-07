@@ -58,13 +58,13 @@ namespace GTiff2Tiles.Core.Coordinates
         /// <param name="tileSize"><see cref="ITile"/>'s side size</param>
         /// <returns>Converted to <see cref="GeoCoordinate"/> value
         /// or <see langword="null"/> if something goes wrong</returns>
+        /// <exception cref="NotSupportedException"/>
         public GeoCoordinate ToGeoCoordinate(CoordinateSystem coordinateSystem, int z, int tileSize) =>
             coordinateSystem switch
             {
                 CoordinateSystem.Epsg4326 => ToGeodeticCoordinate(z, tileSize),
                 CoordinateSystem.Epsg3857 => ToMercatorCoordinate(z, tileSize),
-                _ => null
-                //todo throw notsupported
+                _ => throw new NotSupportedException($"{coordinateSystem} is not supported")
             };
 
         /// <summary>
