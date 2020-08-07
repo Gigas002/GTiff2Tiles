@@ -75,8 +75,8 @@ namespace GTiff2Tiles.Core.Helpers
 
             switch (shouldBeEmpty)
             {
-                case true when !containsAny:
-                case false when containsAny:
+                case true when containsAny:
+                case false when !containsAny:
                     return false;
             }
 
@@ -92,6 +92,8 @@ namespace GTiff2Tiles.Core.Helpers
         /// <para/><see langword="false"/> otherwise</returns>
         public static async ValueTask<bool> CheckInputFileAsync(string inputFilePath, CoordinateSystem targetSystem)
         {
+            if (!CheckFile(inputFilePath, true)) return false;
+
             // Get proj and gdalInfo strings
             string projString = await GdalWorker.GetProjStringAsync(inputFilePath).ConfigureAwait(false);
             string gdalInfoString = await GdalWorker.InfoAsync(inputFilePath).ConfigureAwait(false);
