@@ -27,17 +27,5 @@ namespace GTiff2Tiles.Tests.Tests
 
             Assert.Pass();
         }
-
-        [Test]
-        public void TileType()
-        {
-            try
-            {
-                TileType raster = Core.Enums.TileType.Raster;
-            }
-            catch (Exception exception) { Assert.Fail(exception.Message); }
-
-            Assert.Pass();
-        }
     }
 }

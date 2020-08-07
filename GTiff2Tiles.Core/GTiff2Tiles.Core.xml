@@ -623,16 +623,6 @@
             .webp
             </summary>
         </member>
-        <member name="T:GTiff2Tiles.Core.Enums.TileType">
-            <summary>
-            Types of tiles to create
-            </summary>
-        </member>
-        <member name="F:GTiff2Tiles.Core.Enums.TileType.Raster">
-            <summary>
-            Raster images
-            </summary>
-        </member>
         <member name="T:GTiff2Tiles.Core.Exceptions.DirectoryException">
             <inheritdoc />
         </member>
