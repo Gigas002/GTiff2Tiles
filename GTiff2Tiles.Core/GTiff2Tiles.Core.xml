@@ -548,6 +548,41 @@
             Other or unknown coordinate system
             </summary>
         </member>
+        <member name="T:GTiff2Tiles.Core.Enums.Interpolation">
+            <summary>
+            Represents the interpolation algorithms
+            </summary>
+        </member>
+        <member name="F:GTiff2Tiles.Core.Enums.Interpolation.Nearest">
+            <summary>
+            Nearest-neighbour interpolation
+            </summary>
+        </member>
+        <member name="F:GTiff2Tiles.Core.Enums.Interpolation.Linear">
+            <summary>
+            Linear interpolation
+            </summary>
+        </member>
+        <member name="F:GTiff2Tiles.Core.Enums.Interpolation.Cubic">
+            <summary>
+            Cubic interpolation
+            </summary>
+        </member>
+        <member name="F:GTiff2Tiles.Core.Enums.Interpolation.Mitchell">
+            <summary>
+            Mitchell
+            </summary>
+        </member>
+        <member name="F:GTiff2Tiles.Core.Enums.Interpolation.Lanczos2">
+            <summary>
+            Two-lobe Lanczos
+            </summary>
+        </member>
+        <member name="F:GTiff2Tiles.Core.Enums.Interpolation.Lanczos3">
+            <summary>
+            Three-lobe Lanczos
+            </summary>
+        </member>
         <member name="T:GTiff2Tiles.Core.Enums.TileExtension">
             <summary>
             Extensions of ready tiles
@@ -1752,7 +1787,12 @@
             Count of bands in <see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/>
             </summary>
         </member>
-        <member name="M:GTiff2Tiles.Core.Tiles.RasterTile.#ctor(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Enums.CoordinateSystem,GTiff2Tiles.Core.Images.Size,System.Collections.Generic.IEnumerable{System.Byte},GTiff2Tiles.Core.Enums.TileExtension,System.Boolean,System.Int32)">
+        <member name="P:GTiff2Tiles.Core.Tiles.RasterTile.Interpolation">
+            <summary>
+            Interpolation of this <see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/>
+            </summary>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Tiles.RasterTile.#ctor(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Enums.CoordinateSystem,GTiff2Tiles.Core.Images.Size,System.Collections.Generic.IEnumerable{System.Byte},GTiff2Tiles.Core.Enums.TileExtension,System.Boolean,System.Int32,GTiff2Tiles.Core.Enums.Interpolation)">
             <inheritdoc cref="M:GTiff2Tiles.Core.Tiles.Tile.#ctor(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Enums.CoordinateSystem,GTiff2Tiles.Core.Images.Size,System.Collections.Generic.IEnumerable{System.Byte},GTiff2Tiles.Core.Enums.TileExtension,System.Boolean)"/>
             <param name="number"></param>
             <param name="coordinateSystem"></param>
@@ -1763,9 +1803,11 @@
             <param name="bandsCount"><see cref="P:GTiff2Tiles.Core.Tiles.RasterTile.BandsCount"/>
             <remarks><para/>Must be in range (0, 4];
             <para/><see cref="F:GTiff2Tiles.Core.Tiles.RasterTile.DefaultBandsCount"/> by default</remarks></param>
+            <param name="interpolation"><see cref="P:GTiff2Tiles.Core.Tiles.RasterTile.Interpolation"/>
+            <remarks><para/>Lanczos3 by default</remarks></param>
             <exception cref="T:System.ArgumentOutOfRangeException"/>
         </member>
-        <member name="M:GTiff2Tiles.Core.Tiles.RasterTile.#ctor(GTiff2Tiles.Core.Coordinates.GeoCoordinate,GTiff2Tiles.Core.Coordinates.GeoCoordinate,System.Int32,GTiff2Tiles.Core.Images.Size,System.Collections.Generic.IEnumerable{System.Byte},GTiff2Tiles.Core.Enums.TileExtension,System.Boolean,System.Int32)">
+        <member name="M:GTiff2Tiles.Core.Tiles.RasterTile.#ctor(GTiff2Tiles.Core.Coordinates.GeoCoordinate,GTiff2Tiles.Core.Coordinates.GeoCoordinate,System.Int32,GTiff2Tiles.Core.Images.Size,System.Collections.Generic.IEnumerable{System.Byte},GTiff2Tiles.Core.Enums.TileExtension,System.Boolean,System.Int32,GTiff2Tiles.Core.Enums.Interpolation)">
             <inheritdoc cref="M:GTiff2Tiles.Core.Tiles.Tile.#ctor(GTiff2Tiles.Core.Coordinates.GeoCoordinate,GTiff2Tiles.Core.Coordinates.GeoCoordinate,System.Int32,GTiff2Tiles.Core.Images.Size,System.Collections.Generic.IEnumerable{System.Byte},GTiff2Tiles.Core.Enums.TileExtension,System.Boolean)"/>
             <param name="minCoordinate"></param>
             <param name="maxCoordinate"></param>
@@ -1777,6 +1819,8 @@
             <param name="bandsCount"><see cref="P:GTiff2Tiles.Core.Tiles.RasterTile.BandsCount"/>
             <remarks><para/>Must be in range (0, 4];
             <para/><see cref="F:GTiff2Tiles.Core.Tiles.RasterTile.DefaultBandsCount"/> by default</remarks></param>
+            <param name="interpolation"><see cref="P:GTiff2Tiles.Core.Tiles.RasterTile.Interpolation"/>
+            <remarks><para/>Lanczos3 by default</remarks></param>
             <exception cref="T:System.ArgumentOutOfRangeException"/>
         </member>
         <member name="T:GTiff2Tiles.Core.Tiles.Tile">

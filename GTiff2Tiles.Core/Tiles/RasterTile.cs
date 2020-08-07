@@ -11,8 +11,6 @@ using GTiff2Tiles.Core.Images;
 
 namespace GTiff2Tiles.Core.Tiles
 {
-    // TODO: add interpolation?
-
     /// <summary>
     /// <see cref="Raster"/> <see cref="Tile"/>
     /// </summary>
@@ -30,6 +28,11 @@ namespace GTiff2Tiles.Core.Tiles
         /// </summary>
         public int BandsCount { get; }
 
+        /// <summary>
+        /// Interpolation of this <see cref="RasterTile"/>
+        /// </summary>
+        public Interpolation Interpolation { get; }
+
         #endregion
 
         #region Constructors
@@ -44,11 +47,14 @@ namespace GTiff2Tiles.Core.Tiles
         /// <param name="bandsCount"><see cref="BandsCount"/>
         /// <remarks><para/>Must be in range (0, 4];
         /// <para/><see cref="DefaultBandsCount"/> by default</remarks></param>
+        /// <param name="interpolation"><see cref="Interpolation"/>
+        /// <remarks><para/>Lanczos3 by default</remarks></param>
         /// <exception cref="ArgumentOutOfRangeException"/>
         public RasterTile(Number number, CoordinateSystem coordinateSystem,
                           Size size = null, IEnumerable<byte> bytes = null,
                           TileExtension extension = TileExtension.Png, bool tmsCompatible = false,
-                          int bandsCount = DefaultBandsCount)
+                          int bandsCount = DefaultBandsCount,
+                          Interpolation interpolation = Interpolation.Lanczos3)
             : base(number, coordinateSystem, size, bytes, extension, tmsCompatible)
         {
             #region Preconditions checks
@@ -57,7 +63,7 @@ namespace GTiff2Tiles.Core.Tiles
 
             #endregion
 
-            BandsCount = bandsCount;
+            (BandsCount, Interpolation) = (bandsCount, interpolation);
         }
 
         /// <inheritdoc cref="Tile(GeoCoordinate,GeoCoordinate,int,Size,IEnumerable{byte},TileExtension,bool)"/>
@@ -71,11 +77,14 @@ namespace GTiff2Tiles.Core.Tiles
         /// <param name="bandsCount"><see cref="BandsCount"/>
         /// <remarks><para/>Must be in range (0, 4];
         /// <para/><see cref="DefaultBandsCount"/> by default</remarks></param>
+        /// <param name="interpolation"><see cref="Interpolation"/>
+        /// <remarks><para/>Lanczos3 by default</remarks></param>
         /// <exception cref="ArgumentOutOfRangeException"/>
         public RasterTile(GeoCoordinate minCoordinate, GeoCoordinate maxCoordinate, int zoom,
                           Size size = null, IEnumerable<byte> bytes = null,
                           TileExtension extension = TileExtension.Png,
-                          bool tmsCompatible = false, int bandsCount = DefaultBandsCount)
+                          bool tmsCompatible = false, int bandsCount = DefaultBandsCount,
+                          Interpolation interpolation = Interpolation.Lanczos3)
             : base(minCoordinate, maxCoordinate, zoom, size, bytes, extension, tmsCompatible)
         {
             #region Preconditions checks
@@ -84,7 +93,7 @@ namespace GTiff2Tiles.Core.Tiles
 
             #endregion
 
-            BandsCount = bandsCount;
+            (BandsCount, Interpolation) = (bandsCount, interpolation);
         }
 
         #endregion
