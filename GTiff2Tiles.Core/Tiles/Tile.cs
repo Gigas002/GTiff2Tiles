@@ -35,12 +35,6 @@ namespace GTiff2Tiles.Core.Tiles
         /// </summary>
         public static readonly Size DefaultSize = new Size(DefaultSideSizeValue, DefaultSideSizeValue);
 
-        /// <summary>
-        /// <see cref="Tile"/>s with <see cref="Bytes"/> count lesser
-        /// than this value won't pass <see cref="Validate(bool,int)"/> check
-        /// </summary>
-        public const int MinimalBytesCount = 355;
-
         /// <inheritdoc />
         public bool IsDisposed { get; set; }
 
@@ -67,6 +61,12 @@ namespace GTiff2Tiles.Core.Tiles
 
         /// <inheritdoc />
         public bool TmsCompatible { get; }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// <remarks><para/>355 by default</remarks>
+        /// </summary>
+        public int MinimalBytesCount { get; set; } = 355;
 
         #endregion
 
@@ -198,16 +198,14 @@ namespace GTiff2Tiles.Core.Tiles
         #region Validate
 
         /// <inheritdoc />
-        public bool Validate(bool isCheckPath, int minimalBytesCount = MinimalBytesCount)
-            => Validate(this, isCheckPath);
+        public bool Validate(bool isCheckPath) => Validate(this, isCheckPath);
 
-        /// <inheritdoc cref="Validate(bool, int)"/>
+        /// <inheritdoc cref="Validate(bool)"/>
         /// <param name="tile"><see cref="Tile"/> to check</param>
         /// <param name="isCheckPath"></param>
-        /// <param name="minimalBytesCount"></param>
-        public static bool Validate(ITile tile, bool isCheckPath, int minimalBytesCount = MinimalBytesCount)
+        public static bool Validate(ITile tile, bool isCheckPath)
         {
-            if (tile?.Bytes == null || tile.Bytes.Count() <= minimalBytesCount) return false;
+            if (tile?.Bytes == null || tile.Bytes.Count() <= tile.MinimalBytesCount) return false;
 
             return !isCheckPath || CheckHelper.CheckFile(tile.Path);
         }

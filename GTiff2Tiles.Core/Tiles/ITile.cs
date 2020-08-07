@@ -61,6 +61,12 @@ namespace GTiff2Tiles.Core.Tiles
         /// </summary>
         public bool TmsCompatible { get; }
 
+        /// <summary>
+        /// <see cref="ITile"/>s with <see cref="Bytes"/> count lesser
+        /// than this value won't pass <see cref="Validate(bool)"/> check
+        /// </summary>
+        public int MinimalBytesCount { get; set; }
+
         #endregion
 
         #region Methods
@@ -72,7 +78,7 @@ namespace GTiff2Tiles.Core.Tiles
         /// <param name="minimalBytesCount">Minimal accepted count of <see cref="byte"/>s in this tile</param>
         /// <returns><see langword="true"/> if <see cref="ITile"/>'s valid;
         /// <para/><see langword="false"/> otherwise</returns>
-        public bool Validate(bool isCheckPath, int minimalBytesCount);
+        public bool Validate(bool isCheckPath);
 
         /// <summary>
         /// Calculates this <see cref="ITile"/> position in upper <see cref="ITile"/>

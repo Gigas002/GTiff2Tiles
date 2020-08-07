@@ -1393,7 +1393,13 @@
             Is <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/> tms compatible?
             </summary>
         </member>
-        <member name="M:GTiff2Tiles.Core.Tiles.ITile.Validate(System.Boolean,System.Int32)">
+        <member name="P:GTiff2Tiles.Core.Tiles.ITile.MinimalBytesCount">
+            <summary>
+            <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>s with <see cref="P:GTiff2Tiles.Core.Tiles.ITile.Bytes"/> count lesser
+            than this value won't pass <see cref="M:GTiff2Tiles.Core.Tiles.ITile.Validate(System.Boolean)"/> check
+            </summary>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Tiles.ITile.Validate(System.Boolean)">
             <summary>
             Checks if this <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/> is not empty or too small
             </summary>
@@ -1652,12 +1658,6 @@
             Default <see cref="T:GTiff2Tiles.Core.Tiles.Tile"/>'s <see cref="T:GTiff2Tiles.Core.Images.Size"/>
             </summary>
         </member>
-        <member name="F:GTiff2Tiles.Core.Tiles.Tile.MinimalBytesCount">
-            <summary>
-            <see cref="T:GTiff2Tiles.Core.Tiles.Tile"/>s with <see cref="P:GTiff2Tiles.Core.Tiles.Tile.Bytes"/> count lesser
-            than this value won't pass <see cref="M:GTiff2Tiles.Core.Tiles.Tile.Validate(System.Boolean,System.Int32)"/> check
-            </summary>
-        </member>
         <member name="P:GTiff2Tiles.Core.Tiles.Tile.IsDisposed">
             <inheritdoc />
         </member>
@@ -1684,6 +1684,12 @@
         </member>
         <member name="P:GTiff2Tiles.Core.Tiles.Tile.TmsCompatible">
             <inheritdoc />
+        </member>
+        <member name="P:GTiff2Tiles.Core.Tiles.Tile.MinimalBytesCount">
+            <inheritdoc />
+            <summary>
+            <remarks><para/>355 by default</remarks>
+            </summary>
         </member>
         <member name="M:GTiff2Tiles.Core.Tiles.Tile.#ctor(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Enums.CoordinateSystem,GTiff2Tiles.Core.Images.Size,System.Collections.Generic.IEnumerable{System.Byte},GTiff2Tiles.Core.Enums.TileExtension,System.Boolean)">
             <summary>
@@ -1739,14 +1745,13 @@
             <param name="tile"><see cref="T:GTiff2Tiles.Core.Tiles.ITile"/> to check</param>
             <returns></returns>
         </member>
-        <member name="M:GTiff2Tiles.Core.Tiles.Tile.Validate(System.Boolean,System.Int32)">
+        <member name="M:GTiff2Tiles.Core.Tiles.Tile.Validate(System.Boolean)">
             <inheritdoc />
         </member>
-        <member name="M:GTiff2Tiles.Core.Tiles.Tile.Validate(GTiff2Tiles.Core.Tiles.ITile,System.Boolean,System.Int32)">
-            <inheritdoc cref="M:GTiff2Tiles.Core.Tiles.Tile.Validate(System.Boolean,System.Int32)"/>
+        <member name="M:GTiff2Tiles.Core.Tiles.Tile.Validate(GTiff2Tiles.Core.Tiles.ITile,System.Boolean)">
+            <inheritdoc cref="M:GTiff2Tiles.Core.Tiles.Tile.Validate(System.Boolean)"/>
             <param name="tile"><see cref="T:GTiff2Tiles.Core.Tiles.Tile"/> to check</param>
             <param name="isCheckPath"></param>
-            <param name="minimalBytesCount"></param>
         </member>
         <member name="M:GTiff2Tiles.Core.Tiles.Tile.CalculatePosition">
             <inheritdoc />

@@ -294,7 +294,6 @@ namespace GTiff2Tiles.Core.GeoTiffs
 
             tile.Bytes = WriteTileToEnumerable(tileCache, tile, interpolation);
 
-            //TODO: add size param
             return tile.Validate(false) && channelWriter.TryWrite(tile);
         }
 
