@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -196,13 +195,8 @@ namespace GTiff2Tiles.Core
 
         #region Public
 
-        /// <summary>
-        /// Gets proj <see cref="string"/> of input file
-        /// </summary>
-        /// <param name="inputFilePath">Input GeoTiff's path</param>
-        /// <returns>Proj <see cref="string"/> if everything OK;
-        /// <para/><see langword="null"/> otherwise</returns>
-        public static Task<string> GetProjStringAsync(string inputFilePath)
+        /// <inheritdoc cref="GetProjStringAsync"/>
+        public static string GetProjString(string inputFilePath)
         {
             #region Preconditions checks
 
@@ -213,22 +207,27 @@ namespace GTiff2Tiles.Core
             // Initialize Gdal, if needed
             ConfigureGdal();
 
-            return Task.Run(() =>
-            {
-                using Dataset dataset = Gdal.Open(inputFilePath, Access.GA_ReadOnly);
+            using Dataset dataset = Gdal.Open(inputFilePath, Access.GA_ReadOnly);
 
-                string wkt = dataset.GetProjection();
+            string wkt = dataset.GetProjection();
 
-                using SpatialReference spatialReference = new SpatialReference(wkt);
+            using SpatialReference spatialReference = new SpatialReference(wkt);
 
-                spatialReference.ExportToProj4(out string projString);
+            spatialReference.ExportToProj4(out string projString);
 
-                return projString;
+            // TODO: requires PROJ 6.2+
+            //spatialReference.ExportToPROJJSON(out string argout, null);
 
-                // TODO: requires PROJ 6.2+
-                //spatialReference.ExportToPROJJSON(out string argout, null);
-            });
+            return projString;
         }
+
+        /// <summary>
+        /// Gets proj <see cref="string"/> of input file
+        /// </summary>
+        /// <param name="inputFilePath">Input GeoTiff's path</param>
+        /// <returns>Proj <see cref="string"/> if everything OK;
+        /// <para/><see langword="null"/> otherwise</returns>
+        public static Task<string> GetProjStringAsync(string inputFilePath) => Task.Run(() => GetProjString(inputFilePath));
 
         /// <summary>
         /// Converts current GeoTiff to a new GeoTiff with target <see cref="CoordinateSystem"/>
@@ -251,21 +250,21 @@ namespace GTiff2Tiles.Core
             switch (targetSystem)
             {
                 case CoordinateSystem.Epsg4326:
-                    {
-                        gdalWarpOptions.AddRange(SrsEpsg4326);
+                {
+                    gdalWarpOptions.AddRange(SrsEpsg4326);
 
-                        break;
-                    }
+                    break;
+                }
                 case CoordinateSystem.Epsg3857:
-                    {
-                        gdalWarpOptions.AddRange(SrsEpsg3857);
+                {
+                    gdalWarpOptions.AddRange(SrsEpsg3857);
 
-                        break;
-                    }
+                    break;
+                }
                 default:
-                    {
-                        throw new NotSupportedException($"{targetSystem} is not supported");
-                    }
+                {
+                    throw new NotSupportedException($"{targetSystem} is not supported");
+                }
             }
 
             return WarpAsync(inputFilePath, outputFilePath, gdalWarpOptions.ToArray(), progress);

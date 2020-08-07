@@ -726,6 +726,9 @@
             <returns>Always 1</returns>
             <exception cref="T:System.ArgumentOutOfRangeException"/>
         </member>
+        <member name="M:GTiff2Tiles.Core.GdalWorker.GetProjString(System.String)">
+            <inheritdoc cref="M:GTiff2Tiles.Core.GdalWorker.GetProjStringAsync(System.String)"/>
+        </member>
         <member name="M:GTiff2Tiles.Core.GdalWorker.GetProjStringAsync(System.String)">
             <summary>
             Gets proj <see cref="T:System.String"/> of input file

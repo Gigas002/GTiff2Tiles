@@ -91,7 +91,7 @@ namespace GTiff2Tiles.Core.GeoTiffs
             NetVipsHelper.DisableLog();
 
             // Get coordinate system of input geotiff from gdal
-            string proj4String = GdalWorker.GetProjStringAsync(inputFilePath).Result;
+            string proj4String = GdalWorker.GetProjString(inputFilePath);
             CoordinateSystem coordinateSystem = GdalWorker.GetCoordinateSystem(proj4String);
 
             if (coordinateSystem == CoordinateSystem.Other)
