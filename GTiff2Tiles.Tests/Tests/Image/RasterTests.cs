@@ -68,10 +68,15 @@ namespace GTiff2Tiles.Tests.Tests.Image
                 const int threadsCount = Multithreading.ThreadsCount;
                 const TileExtension tileExtension = TileExtension.Png;
 
-                await Img.GenerateTilesAsync(inputFileInfo, outputDirectoryInfo, minZ, maxZ, TileType.Raster,
-                                             coordinateSystem,
-                                             tmsCompatible, tileExtension, progress, 0)
-                         .ConfigureAwait(false);
+                await using Raster image = new Raster(inputFileInfo.FullName, coordinateSystem);
+
+                // Generate tiles
+                await image.WriteTilesToDirectoryAsync(outputDirectoryInfo.FullName, minZ, maxZ, tmsCompatible,
+                                                       tileExtension: tileExtension,
+                                                       bandsCount: 4, progress: progress,
+                                                       threadsCount: 0, isPrintEstimatedTime: false)
+                           .ConfigureAwait(false);
+
             }
             catch (Exception exception) { Assert.Fail(exception.Message); }
 
@@ -126,10 +131,14 @@ namespace GTiff2Tiles.Tests.Tests.Image
                 const int threadsCount = Multithreading.ThreadsCount;
                 const TileExtension tileExtension = TileExtension.Png;
 
-                await Img.GenerateTilesAsync(inputFileInfo, outputDirectoryInfo, minZ, maxZ, TileType.Raster,
-                                             coordinateSystem,
-                                             tmsCompatible, tileExtension, progress, 0)
-                         .ConfigureAwait(false);
+                await using Raster image = new Raster(inputFileInfo.FullName, coordinateSystem);
+
+                // Generate tiles
+                await image.WriteTilesToDirectoryAsync(outputDirectoryInfo.FullName, minZ, maxZ, tmsCompatible,
+                                                       tileExtension: tileExtension,
+                                                       bandsCount: 4, progress: progress,
+                                                       threadsCount: 0, isPrintEstimatedTime: false)
+                           .ConfigureAwait(false);
             }
             catch (Exception exception) { Assert.Fail(exception.Message); }
 

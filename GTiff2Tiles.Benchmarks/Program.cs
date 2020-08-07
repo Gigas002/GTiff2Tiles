@@ -141,9 +141,14 @@ namespace GTiff2Tiles.Benchmarks
             Directory.CreateDirectory(gtiff2TilesOutputDirectoryPath);
             Directory.CreateDirectory(gtiff2TilesTempDirectoryPath);
 
-            await Img.GenerateTilesAsync(InputFileInfo, new DirectoryInfo(gtiff2TilesOutputDirectoryPath), MinZ, MaxZ,
-                                         TileType.Raster, coordinateSystem,
-                                         true, TileExtension.Png, null, ThreadsCount).ConfigureAwait(false);
+            await using Raster image = new Raster(InputFileInfo?.FullName, coordinateSystem);
+
+            // Generate tiles
+            await image.WriteTilesToDirectoryAsync(gtiff2TilesOutputDirectoryPath, MinZ, MaxZ, true,
+                                                   tileExtension: TileExtension.Png,
+                                                   bandsCount: 4,
+                                                   threadsCount: ThreadsCount, isPrintEstimatedTime: false)
+                       .ConfigureAwait(false);
 
             stopwatch.Stop();
             Console.WriteLine("GTiff2Tiles process ended.");

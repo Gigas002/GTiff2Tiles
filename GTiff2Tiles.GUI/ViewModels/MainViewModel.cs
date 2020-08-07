@@ -426,11 +426,15 @@ namespace GTiff2Tiles.GUI.ViewModels
                     inputFileInfo = tempFileInfo;
                 }
 
-                //Run tiling.
-                await Img.GenerateTilesAsync(inputFileInfo, outputDirectoryInfo, MinZ, MaxZ, TileType.Raster,
-                                             coordinateSystem,
-                                             TmsCompatible, RealTileExtension, progress,
-                                             ThreadsCount).ConfigureAwait(true);
+                await using Raster image = new Raster(inputFileInfo.FullName, coordinateSystem);
+
+                // Generate tiles
+                await image.WriteTilesToDirectoryAsync(outputDirectoryInfo.FullName, MinZ, MaxZ, TmsCompatible,
+                                                       tileExtension: RealTileExtension,
+                                                       bandsCount: 4, progress: progress,
+                                                       threadsCount: ThreadsCount, isPrintEstimatedTime: false)
+                           .ConfigureAwait(false);
+
             }
             catch (Exception exception)
             {

@@ -814,27 +814,6 @@
             Type of desired <see cref="T:GTiff2Tiles.Core.Enums.CoordinateSystem"/>
             </summary>
         </member>
-        <member name="T:GTiff2Tiles.Core.GeoTiffs.Img">
-            <summary>
-            Example of class to use <see cref="T:GTiff2Tiles.Core.GeoTiffs.IGeoTiff"/> interface.
-            </summary>
-        </member>
-        <member name="M:GTiff2Tiles.Core.GeoTiffs.Img.GenerateTilesAsync(System.IO.FileInfo,System.IO.DirectoryInfo,System.Int32,System.Int32,GTiff2Tiles.Core.Enums.TileType,GTiff2Tiles.Core.Enums.CoordinateSystem,System.Boolean,GTiff2Tiles.Core.Enums.TileExtension,System.IProgress{System.Double},System.Int32)">
-            <summary>
-            Example of method to use <see cref="T:GTiff2Tiles.Core.GeoTiffs.IGeoTiff"/> interface for cropping the tiles.
-            </summary>
-            <param name="inputFileInfo">Input GeoTIFF.</param>
-            <param name="outputDirectoryInfo">Directory for cropped tiles.</param>
-            <param name="minZ">Minimum cropped zoom.</param>
-            <param name="maxZ">Maximum cropped zoom.</param>
-            <param name="tileType">Type of tiles to create.</param>
-            <param name="targetSystem"></param>
-            <param name="tmsCompatible">Are tiles compatible with tms?</param>
-            <param name="tileExtension">Extension of ready tiles.</param>
-            <param name="progress">Progress.</param>
-            <param name="threadsCount">Threads count.</param>
-            <returns></returns>
-        </member>
         <member name="T:GTiff2Tiles.Core.GeoTiffs.Raster">
             <summary>
             Class, representing <see cref="T:GTiff2Tiles.Core.GeoTiffs.Raster"/> GeoTiff.
