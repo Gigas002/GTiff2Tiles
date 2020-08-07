@@ -56,15 +56,15 @@ namespace GTiff2Tiles.Core.Coordinates
 
         /// <inheritdoc />
         /// <exception cref="ArgumentOutOfRangeException"/>
-        public override PixelCoordinate ToPixelCoordinate(int zoom, int tileSize)
+        public override PixelCoordinate ToPixelCoordinate(int z, int tileSize)
         {
             #region Preconditions checks
 
-            if (zoom < 0) throw new ArgumentOutOfRangeException(nameof(zoom));
+            if (z < 0) throw new ArgumentOutOfRangeException(nameof(z));
 
             #endregion
 
-            double resolution = Resolution(zoom, tileSize);
+            double resolution = Resolution(z, tileSize);
 
             double px = (X + Constants.Geodesic.OriginShift) / resolution;
             double py = (Y + Constants.Geodesic.OriginShift) / resolution;
@@ -88,18 +88,18 @@ namespace GTiff2Tiles.Core.Coordinates
 
         /// <inheritdoc cref="GeoCoordinate.Resolution(int, int, CoordinateSystem)"/>
         /// <exception cref="ArgumentOutOfRangeException"/>
-        public static double Resolution(int zoom, int tileSize)
+        public static double Resolution(int z, int tileSize)
         {
             #region Preconditions checks
 
-            if (zoom < 0) throw new ArgumentOutOfRangeException(nameof(zoom));
+            if (z < 0) throw new ArgumentOutOfRangeException(nameof(z));
 
             #endregion
 
             //156543.03392804062 for tileSize = 256
             double initialResolution = 2.0 * Constants.Geodesic.OriginShift / tileSize;
 
-            return initialResolution / Math.Pow(2.0, zoom);
+            return initialResolution / Math.Pow(2.0, z);
         }
 
         #endregion

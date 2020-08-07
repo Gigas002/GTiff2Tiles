@@ -34,7 +34,7 @@ namespace GTiff2Tiles.Core.Coordinates
         #region Methods
 
         /// <inheritdoc />
-        public virtual Number ToNumber(int zoom, int tileSize, bool tmsCompatible) => null;
+        public virtual Number ToNumber(int z, int tileSize, bool tmsCompatible) => null;
 
         /// <summary>
         /// Converts degrees to radians

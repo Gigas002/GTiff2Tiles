@@ -267,7 +267,7 @@
             </summary>
             <param name="minCoordinate">Minimal <see cref="T:GTiff2Tiles.Core.Coordinates.GeoCoordinate"/></param>
             <param name="maxCoordinate">Maximal <see cref="T:GTiff2Tiles.Core.Coordinates.GeoCoordinate"/></param>
-            <param name="zoom">Zoom</param>
+            <param name="z">Zoom</param>
             <param name="tileSize"><see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>'s side size</param>
             <param name="tmsCompatible">Is <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/> tms compatible?</param>
             <returns><see cref="T:System.ValueTuple`2"/> of <see cref="T:GTiff2Tiles.Core.Tiles.Number"/>s</returns>
@@ -276,7 +276,7 @@
             <summary>
             Convert current <see cref="T:GTiff2Tiles.Core.Coordinates.GeoCoordinate"/> to <see cref="T:GTiff2Tiles.Core.Coordinates.PixelCoordinate"/>
             </summary>
-            <param name="zoom">Zoom
+            <param name="z">Zoom
             <remarks><para/>Must be >= 0</remarks></param>
             <param name="tileSize"><see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>'s side size</param>
             <returns>Converted <see cref="T:GTiff2Tiles.Core.Coordinates.PixelCoordinate"/></returns>
@@ -285,7 +285,7 @@
             <summary>
             Resolution for given zoom level (measured at Equator)
             </summary>
-            <param name="zoom">Zoom
+            <param name="z">Zoom
             <remarks><para/>Must be >= 0</remarks></param>
             <param name="tileSize"><see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>'s side size</param>
             <param name="coordinateSystem">Coordinate system</param>
@@ -298,11 +298,11 @@
             <param name="pixelSize">Pixel size</param>
             <param name="tileSize"><see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>'s side size</param>
             <param name="coordinateSystem">Coordinate system</param>
-            <param name="minZoom">Minimal zoom
-            <para/>Must be >= 0 and lesser or equal, than <paramref name="maxZoom"/>
+            <param name="minZ">Minimal zoom
+            <para/>Must be >= 0 and lesser or equal, than <paramref name="maxZ"/>
             <para/>0 by default</param>
-            <param name="maxZoom">Maximal zoom
-            <para/>Must be >= 0 and bigger or equal, than <paramref name="minZoom"/>
+            <param name="maxZ">Maximal zoom
+            <para/>Must be >= 0 and bigger or equal, than <paramref name="minZ"/>
             <para/>32 by default</param>
             <returns>Approximate zoom value</returns>
         </member>
@@ -382,7 +382,7 @@
             <summary>
             Calculate <see cref="T:GTiff2Tiles.Core.Tiles.Number"/> for current <see cref="T:GTiff2Tiles.Core.Coordinates.ICoordinate"/>
             </summary>
-            <param name="zoom">Zoom
+            <param name="z">Zoom
             <remarks><para/>Must be >= 0</remarks></param>
             <param name="tileSize"><see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>'s side size</param>
             <param name="tmsCompatible">Is <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/> tms compatible?</param>
@@ -457,7 +457,7 @@
             Convert current coordinate to child of <see cref="T:GTiff2Tiles.Core.Coordinates.GeoCoordinate"/>
             </summary>
             <param name="coordinateSystem">Coordinate system</param>
-            <param name="zoom">Zoom
+            <param name="z">Zoom
             <remarks><para/>Must be >= 0</remarks></param>
             <param name="tileSize"><see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>'s side size</param>
             <returns>Converted to <see cref="T:GTiff2Tiles.Core.Coordinates.GeoCoordinate"/> value
@@ -467,7 +467,7 @@
             <summary>
             Convert current coordinate to <see cref="T:GTiff2Tiles.Core.Coordinates.GeodeticCoordinate"/>
             </summary>
-            <param name="zoom">Zoom
+            <param name="z">Zoom
             <remarks><para/>Must be >= 0</remarks></param>
             <param name="tileSize"><see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>'s side size</param>
             <returns>Converted <see cref="T:GTiff2Tiles.Core.Coordinates.GeodeticCoordinate"/></returns>
@@ -477,7 +477,7 @@
             <summary>
             Convert current coordinate to <see cref="T:GTiff2Tiles.Core.Coordinates.MercatorCoordinate"/>
             </summary>
-            <param name="zoom">Zoom
+            <param name="z">Zoom
             <remarks><para/>Must be >= 0</remarks></param>
             <param name="tileSize"><see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>'s side size</param>
             <returns>Converted <see cref="T:GTiff2Tiles.Core.Coordinates.MercatorCoordinate"/></returns>
@@ -487,7 +487,7 @@
             <summary>
             Move the origin of pixel coordinates to top-left corner
             </summary>
-            <param name="zoom">Zoom
+            <param name="z">Zoom
             <remarks><para/>Must be >= 0</remarks></param>
             <param name="tileSize"><see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>'s side size</param>
             <returns>Converted <see cref="T:GTiff2Tiles.Core.Coordinates.PixelCoordinate"/></returns>
