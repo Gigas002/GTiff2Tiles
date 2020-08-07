@@ -172,10 +172,9 @@ namespace GTiff2Tiles.Core.Tiles
             }
             catch (Exception exception)
             {
-                //Weird issue -- Doesn't work in CI
-                // TODO: test in CI
-                return ValueTask.FromException(exception);
-                //return new ValueTask(Task.FromException(exception));
+                // Weird bug -- Doesn't work in CI
+                //return ValueTask.FromException(exception);
+                return new ValueTask(Task.FromException(exception));
             }
 
 #pragma warning restore CA1031 // Do not catch general exception types

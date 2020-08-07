@@ -256,10 +256,9 @@ namespace GTiff2Tiles.Core.GeoTiffs
             }
             catch (Exception exception)
             {
-                //Weird issue -- Doesn't work in CI
-                // TODO: test in CI
-                return ValueTask.FromException(exception);
-                //return new ValueTask(Task.FromException(exception));
+                // Weird bug -- Doesn't work in CI
+                //return ValueTask.FromException(exception);
+                return new ValueTask(Task.FromException(exception));
             }
 
 #pragma warning restore CA1031 // Do not catch general exception types
@@ -408,7 +407,9 @@ namespace GTiff2Tiles.Core.GeoTiffs
 
             tile.Bytes = WriteTileToEnumerable(tileCache, tile);
 
-            return tile.Validate(false) ? channelWriter.WriteAsync(tile) : ValueTask.CompletedTask;
+            // Weird bug -- Doesn't work in CI
+            //ValueTask.CompletedTask;
+            return tile.Validate(false) ? channelWriter.WriteAsync(tile) : new ValueTask(Task.CompletedTask);
         }
 
         #endregion
