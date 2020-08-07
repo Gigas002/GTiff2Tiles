@@ -118,7 +118,7 @@ namespace GTiff2Tiles.Core.Tiles
 
             #endregion
 
-            double resolution = GeodeticCoordinate.Resolution(number.Z, tileSize.Width);
+            double resolution = GeodeticCoordinate.Resolution(number.Z, tileSize);
 
             GeodeticCoordinate minCoordinate = new GeodeticCoordinate(number.X * tileSize.Width * resolution - 180.0,
                                                                       number.Y * tileSize.Height * resolution - 90.0);
@@ -154,8 +154,8 @@ namespace GTiff2Tiles.Core.Tiles
                                                                      number.Y * tileSize.Height);
             PixelCoordinate maxPixelCoordinate = new PixelCoordinate((number.X + 1) * tileSize.Width,
                                                                      (number.Y + 1) * tileSize.Height);
-            MercatorCoordinate minCoordinate = minPixelCoordinate.ToMercatorCoordinate(number.Z, tileSize.Width);
-            MercatorCoordinate maxCoordinate = maxPixelCoordinate.ToMercatorCoordinate(number.Z, tileSize.Width);
+            MercatorCoordinate minCoordinate = minPixelCoordinate.ToMercatorCoordinate(number.Z, tileSize);
+            MercatorCoordinate maxCoordinate = maxPixelCoordinate.ToMercatorCoordinate(number.Z, tileSize);
 
             return (minCoordinate, maxCoordinate);
         }
@@ -260,18 +260,18 @@ namespace GTiff2Tiles.Core.Tiles
         /// <param name="minZ">Minimal zoom</param>
         /// <param name="maxZ">Maximal zoom</param>
         /// <param name="tmsCompatible">Is tms compatible?</param>
-        /// <param name="size"><see cref="Tile"/>'s <see cref="Size"/></param>
+        /// <param name="tileSize"><see cref="Tile"/>'s <see cref="Size"/></param>
         /// <returns><see cref="Tile"/>s count</returns>
         /// <exception cref="ArgumentNullException"/>
         /// <exception cref="ArgumentOutOfRangeException"/>
         public static int GetCount(GeoCoordinate minCoordinate, GeoCoordinate maxCoordinate,
-                                   int minZ, int maxZ, bool tmsCompatible, Size size)
+                                   int minZ, int maxZ, bool tmsCompatible, Size tileSize)
         {
             #region Preconditions checks
 
             // Coordinates are checked inside GeoCoordinate.GetNumbers, no need to check it here
+            // Size is checked inside GeoCoordinate.GetNumbers
 
-            if (size == null) throw new ArgumentNullException(nameof(size));
             if (minZ < 0) throw new ArgumentOutOfRangeException(nameof(minZ));
             if (maxZ < minZ) throw new ArgumentOutOfRangeException(nameof(maxZ));
 
@@ -282,7 +282,7 @@ namespace GTiff2Tiles.Core.Tiles
             for (int zoom = minZ; zoom <= maxZ; zoom++)
             {
                 (Number minNumber, Number maxNumber) =
-                    GeoCoordinate.GetNumbers(minCoordinate, maxCoordinate, zoom, size.Width, tmsCompatible);
+                    GeoCoordinate.GetNumbers(minCoordinate, maxCoordinate, zoom, tileSize, tmsCompatible);
 
                 int xsCount = Enumerable.Range(minNumber.X, maxNumber.X - minNumber.X + 1).Count();
                 int ysCount = Enumerable.Range(minNumber.Y, maxNumber.Y - minNumber.Y + 1).Count();

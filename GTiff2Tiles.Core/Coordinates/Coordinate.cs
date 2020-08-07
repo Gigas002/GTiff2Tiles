@@ -1,4 +1,5 @@
 ﻿using System;
+using GTiff2Tiles.Core.Images;
 using GTiff2Tiles.Core.Tiles;
 
 // ReSharper disable UnusedMember.Global
@@ -34,7 +35,7 @@ namespace GTiff2Tiles.Core.Coordinates
         #region Methods
 
         /// <inheritdoc />
-        public virtual Number ToNumber(int z, int tileSize, bool tmsCompatible) => null;
+        public virtual Number ToNumber(int z, Size tileSize, bool tmsCompatible) => null;
 
         /// <summary>
         /// Converts degrees to radians

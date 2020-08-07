@@ -116,7 +116,7 @@ namespace GTiff2Tiles.Core.Tiles
 
             if (!Size.IsSquare) throw new ArgumentException("This tile is not square", nameof(size));
 
-            (Number minNumber, Number maxNumber) = GeoCoordinate.GetNumbers(minCoordinate, maxCoordinate, zoom, Size.Width, tmsCompatible);
+            (Number minNumber, Number maxNumber) = GeoCoordinate.GetNumbers(minCoordinate, maxCoordinate, zoom, Size, tmsCompatible);
 
             if (!minNumber.Equals(maxNumber))
                 throw new ArgumentException("Passed coordinates doesn't fit in one tile");

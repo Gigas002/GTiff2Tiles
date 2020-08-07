@@ -1,9 +1,8 @@
 ﻿using System;
+using GTiff2Tiles.Core.Images;
 using GTiff2Tiles.Core.Tiles;
 
 // ReSharper disable UnusedMemberInSuper.Global
-
-// TODO: use Size tileSize instead of int tileSize
 
 namespace GTiff2Tiles.Core.Coordinates
 {
@@ -33,10 +32,10 @@ namespace GTiff2Tiles.Core.Coordinates
         /// </summary>
         /// <param name="z">Zoom
         /// <remarks><para/>Must be >= 0</remarks></param>
-        /// <param name="tileSize"><see cref="ITile"/>'s side size</param>
+        /// <param name="tileSize"><see cref="ITile"/>'s size</param>
         /// <param name="tmsCompatible">Is <see cref="ITile"/> tms compatible?</param>
         /// <returns><see cref="Number"/> in which this <see cref="ICoordinate"/> belongs</returns>
-        public Number ToNumber(int z, int tileSize, bool tmsCompatible);
+        public Number ToNumber(int z, Size tileSize, bool tmsCompatible);
 
         #endregion
     }

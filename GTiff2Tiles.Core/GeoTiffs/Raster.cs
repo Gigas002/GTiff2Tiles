@@ -90,7 +90,6 @@ namespace GTiff2Tiles.Core.GeoTiffs
             NetVipsHelper.DisableLog();
 
             // Get coordinate system of input geotiff from gdal
-            // TODO: sync override
             string proj4String = GdalWorker.GetProjStringAsync(inputFilePath).Result;
             CoordinateSystem coordinateSystem = GdalWorker.GetCoordinateSystem(proj4String);
 
@@ -505,7 +504,7 @@ namespace GTiff2Tiles.Core.GeoTiffs
             {
                 // Get tiles min/max numbers
                 (Number minNumber, Number maxNumber) = GeoCoordinate.GetNumbers(MinCoordinate, MaxCoordinate,
-                        zoom, tileSize.Width, tmsCompatible);
+                        zoom, tileSize, tmsCompatible);
 
                 // For each tile on given zoom calculate positions/sizes and save as file
                 for (int tileY = minNumber.Y; tileY <= maxNumber.Y; tileY++)
@@ -609,7 +608,7 @@ namespace GTiff2Tiles.Core.GeoTiffs
             {
                 // Get tiles min/max numbers
                 (Number minNumber, Number maxNumber) = GeoCoordinate.GetNumbers(MinCoordinate, MaxCoordinate,
-                    zoom, tileSize.Width, tmsCompatible);
+                    zoom, tileSize, tmsCompatible);
 
                 // For each tile on given zoom calculate positions/sizes and save as file
                 for (int tileY = minNumber.Y; tileY <= maxNumber.Y; tileY++)
@@ -696,7 +695,7 @@ namespace GTiff2Tiles.Core.GeoTiffs
             {
                 // Get tiles min/max numbers
                 (Number minNumber, Number maxNumber) = GeoCoordinate.GetNumbers(MinCoordinate, MaxCoordinate,
-                        zoom, tileSize.Width, tmsCompatible);
+                        zoom, tileSize, tmsCompatible);
 
                 // For each tile on given zoom calculate positions/sizes and save as file
                 for (int tileY = minNumber.Y; tileY <= maxNumber.Y; tileY++)

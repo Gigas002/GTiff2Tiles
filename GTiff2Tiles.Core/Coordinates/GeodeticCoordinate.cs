@@ -1,5 +1,6 @@
 ﻿using System;
 using GTiff2Tiles.Core.Enums;
+using GTiff2Tiles.Core.Images;
 
 // ReSharper disable MemberCanBePrivate.Global
 // ReSharper disable UnusedMember.Global
@@ -67,14 +68,8 @@ namespace GTiff2Tiles.Core.Coordinates
 
         /// <inheritdoc />
         /// <exception cref="ArgumentOutOfRangeException"/>
-        public override PixelCoordinate ToPixelCoordinate(int z, int tileSize)
+        public override PixelCoordinate ToPixelCoordinate(int z, Size tileSize)
         {
-            #region Preconditions checks
-
-            if (z < 0) throw new ArgumentOutOfRangeException(nameof(z));
-
-            #endregion
-
             double resolution = Resolution(z, tileSize);
 
             double pixelX = (180.0 + X) / resolution;
@@ -96,17 +91,21 @@ namespace GTiff2Tiles.Core.Coordinates
             return new MercatorCoordinate(mercatorX, mercatorY);
         }
 
-        /// <inheritdoc cref="GeoCoordinate.Resolution(int, int, CoordinateSystem)"/>
+        /// <inheritdoc cref="GeoCoordinate.Resolution(int,Size,CoordinateSystem)"/>
         /// <exception cref="ArgumentOutOfRangeException"/>
-        public static double Resolution(int z, int tileSize)
+        /// <exception cref="ArgumentNullException"/>
+        /// <exception cref="ArgumentException"/>
+        public static double Resolution(int z, Size tileSize)
         {
             #region Preconditions checks
 
             if (z < 0) throw new ArgumentOutOfRangeException(nameof(z));
+            if (tileSize == null) throw new ArgumentNullException(nameof(tileSize));
+            if (!tileSize.IsSquare) throw new ArgumentException($"{nameof(tileSize)} is not square", nameof(tileSize));
 
             #endregion
 
-            double resFactor = 180.0 / tileSize;
+            double resFactor = 180.0 / tileSize.Width;
 
             return resFactor / Math.Pow(2, z);
         }

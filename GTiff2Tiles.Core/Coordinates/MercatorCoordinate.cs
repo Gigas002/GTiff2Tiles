@@ -1,5 +1,6 @@
 ﻿using System;
 using GTiff2Tiles.Core.Enums;
+using GTiff2Tiles.Core.Images;
 
 // ReSharper disable MemberCanBePrivate.Global
 
@@ -55,15 +56,8 @@ namespace GTiff2Tiles.Core.Coordinates
         #region Methods
 
         /// <inheritdoc />
-        /// <exception cref="ArgumentOutOfRangeException"/>
-        public override PixelCoordinate ToPixelCoordinate(int z, int tileSize)
+        public override PixelCoordinate ToPixelCoordinate(int z, Size tileSize)
         {
-            #region Preconditions checks
-
-            if (z < 0) throw new ArgumentOutOfRangeException(nameof(z));
-
-            #endregion
-
             double resolution = Resolution(z, tileSize);
 
             double px = (X + Constants.Geodesic.OriginShift) / resolution;
@@ -86,18 +80,22 @@ namespace GTiff2Tiles.Core.Coordinates
             return new GeodeticCoordinate(geodeticLongitude, geodeticLatitude);
         }
 
-        /// <inheritdoc cref="GeoCoordinate.Resolution(int, int, CoordinateSystem)"/>
+        /// <inheritdoc cref="GeoCoordinate.Resolution(int, Size, CoordinateSystem)"/>
         /// <exception cref="ArgumentOutOfRangeException"/>
-        public static double Resolution(int z, int tileSize)
+        /// <exception cref="ArgumentNullException"/>
+        /// <exception cref="ArgumentException"/>
+        public static double Resolution(int z, Size tileSize)
         {
             #region Preconditions checks
 
             if (z < 0) throw new ArgumentOutOfRangeException(nameof(z));
+            if (tileSize == null) throw new ArgumentNullException(nameof(tileSize));
+            if (!tileSize.IsSquare) throw new ArgumentException($"{nameof(tileSize)} is not square", nameof(tileSize));
 
             #endregion
 
             //156543.03392804062 for tileSize = 256
-            double initialResolution = 2.0 * Constants.Geodesic.OriginShift / tileSize;
+            double initialResolution = 2.0 * Constants.Geodesic.OriginShift / tileSize.Width;
 
             return initialResolution / Math.Pow(2.0, z);
         }

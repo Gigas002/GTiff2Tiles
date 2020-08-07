@@ -157,7 +157,7 @@
             <param name="x">X coordinate value</param>
             <param name="y">Y coordinate value</param>
         </member>
-        <member name="M:GTiff2Tiles.Core.Coordinates.Coordinate.ToNumber(System.Int32,System.Int32,System.Boolean)">
+        <member name="M:GTiff2Tiles.Core.Coordinates.Coordinate.ToNumber(System.Int32,GTiff2Tiles.Core.Images.Size,System.Boolean)">
             <inheritdoc />
         </member>
         <member name="M:GTiff2Tiles.Core.Coordinates.Coordinate.DegreesToRadians(System.Double)">
@@ -257,46 +257,50 @@
         <member name="M:GTiff2Tiles.Core.Coordinates.GeoCoordinate.#ctor(System.Double,System.Double)">
             <inheritdoc />
         </member>
-        <member name="M:GTiff2Tiles.Core.Coordinates.GeoCoordinate.ToNumber(System.Int32,System.Int32,System.Boolean)">
+        <member name="M:GTiff2Tiles.Core.Coordinates.GeoCoordinate.ToNumber(System.Int32,GTiff2Tiles.Core.Images.Size,System.Boolean)">
             <inheritdoc />
             <exception cref="T:System.ArgumentOutOfRangeException"/>
         </member>
-        <member name="M:GTiff2Tiles.Core.Coordinates.GeoCoordinate.GetNumbers(GTiff2Tiles.Core.Coordinates.GeoCoordinate,GTiff2Tiles.Core.Coordinates.GeoCoordinate,System.Int32,System.Int32,System.Boolean)">
+        <member name="M:GTiff2Tiles.Core.Coordinates.GeoCoordinate.GetNumbers(GTiff2Tiles.Core.Coordinates.GeoCoordinate,GTiff2Tiles.Core.Coordinates.GeoCoordinate,System.Int32,GTiff2Tiles.Core.Images.Size,System.Boolean)">
             <summary>
             Gets <see cref="T:GTiff2Tiles.Core.Tiles.Number"/>s for specified <see cref="T:GTiff2Tiles.Core.Coordinates.GeoCoordinate"/>s
             </summary>
             <param name="minCoordinate">Minimal <see cref="T:GTiff2Tiles.Core.Coordinates.GeoCoordinate"/></param>
             <param name="maxCoordinate">Maximal <see cref="T:GTiff2Tiles.Core.Coordinates.GeoCoordinate"/></param>
             <param name="z">Zoom</param>
-            <param name="tileSize"><see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>'s side size</param>
+            <param name="tileSize"><see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>'s size
+            <remarks><para/>Must be square</remarks></param>
             <param name="tmsCompatible">Is <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/> tms compatible?</param>
             <returns><see cref="T:System.ValueTuple`2"/> of <see cref="T:GTiff2Tiles.Core.Tiles.Number"/>s</returns>
         </member>
-        <member name="M:GTiff2Tiles.Core.Coordinates.GeoCoordinate.ToPixelCoordinate(System.Int32,System.Int32)">
+        <member name="M:GTiff2Tiles.Core.Coordinates.GeoCoordinate.ToPixelCoordinate(System.Int32,GTiff2Tiles.Core.Images.Size)">
             <summary>
             Convert current <see cref="T:GTiff2Tiles.Core.Coordinates.GeoCoordinate"/> to <see cref="T:GTiff2Tiles.Core.Coordinates.PixelCoordinate"/>
             </summary>
             <param name="z">Zoom
             <remarks><para/>Must be >= 0</remarks></param>
-            <param name="tileSize"><see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>'s side size</param>
+            <param name="tileSize"><see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>'s size
+            <remarks><para/>Must be square</remarks></param>
             <returns>Converted <see cref="T:GTiff2Tiles.Core.Coordinates.PixelCoordinate"/></returns>
         </member>
-        <member name="M:GTiff2Tiles.Core.Coordinates.GeoCoordinate.Resolution(System.Int32,System.Int32,GTiff2Tiles.Core.Enums.CoordinateSystem)">
+        <member name="M:GTiff2Tiles.Core.Coordinates.GeoCoordinate.Resolution(System.Int32,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.CoordinateSystem)">
             <summary>
             Resolution for given zoom level (measured at Equator)
             </summary>
             <param name="z">Zoom
             <remarks><para/>Must be >= 0</remarks></param>
-            <param name="tileSize"><see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>'s side size</param>
+            <param name="tileSize"><see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>'s size
+            <remarks><para/>Must be square</remarks></param>
             <param name="coordinateSystem">Coordinate system</param>
             <returns>Resolution value or -1.0 if something goes wrong</returns>
         </member>
-        <member name="M:GTiff2Tiles.Core.Coordinates.GeoCoordinate.ZoomForPixelSize(System.Int32,System.Int32,GTiff2Tiles.Core.Enums.CoordinateSystem,System.Int32,System.Int32)">
+        <member name="M:GTiff2Tiles.Core.Coordinates.GeoCoordinate.ZoomForPixelSize(System.Int32,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.CoordinateSystem,System.Int32,System.Int32)">
             <summary>
             Calculate zoom from known pixel size
             </summary>
             <param name="pixelSize">Pixel size</param>
-            <param name="tileSize"><see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>'s side size</param>
+            <param name="tileSize"><see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>'s size
+            <remarks><para/>Must be square</remarks></param>
             <param name="coordinateSystem">Coordinate system</param>
             <param name="minZ">Minimal zoom
             <para/>Must be >= 0 and lesser or equal, than <paramref name="maxZ"/>
@@ -349,7 +353,7 @@
             <remarks><para/>Must be in range [-90.0, 90.0]</remarks></param>
             <exception cref="T:System.ArgumentOutOfRangeException"/>
         </member>
-        <member name="M:GTiff2Tiles.Core.Coordinates.GeodeticCoordinate.ToPixelCoordinate(System.Int32,System.Int32)">
+        <member name="M:GTiff2Tiles.Core.Coordinates.GeodeticCoordinate.ToPixelCoordinate(System.Int32,GTiff2Tiles.Core.Images.Size)">
             <inheritdoc />
             <exception cref="T:System.ArgumentOutOfRangeException"/>
         </member>
@@ -359,9 +363,11 @@
             </summary>
             <returns>Converted <see cref="T:GTiff2Tiles.Core.Coordinates.MercatorCoordinate"/></returns>
         </member>
-        <member name="M:GTiff2Tiles.Core.Coordinates.GeodeticCoordinate.Resolution(System.Int32,System.Int32)">
-            <inheritdoc cref="M:GTiff2Tiles.Core.Coordinates.GeoCoordinate.Resolution(System.Int32,System.Int32,GTiff2Tiles.Core.Enums.CoordinateSystem)"/>
+        <member name="M:GTiff2Tiles.Core.Coordinates.GeodeticCoordinate.Resolution(System.Int32,GTiff2Tiles.Core.Images.Size)">
+            <inheritdoc cref="M:GTiff2Tiles.Core.Coordinates.GeoCoordinate.Resolution(System.Int32,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.CoordinateSystem)"/>
             <exception cref="T:System.ArgumentOutOfRangeException"/>
+            <exception cref="T:System.ArgumentNullException"/>
+            <exception cref="T:System.ArgumentException"/>
         </member>
         <member name="T:GTiff2Tiles.Core.Coordinates.ICoordinate">
             <summary>
@@ -378,13 +384,13 @@
             Y coordinate value or Latitude
             </summary>
         </member>
-        <member name="M:GTiff2Tiles.Core.Coordinates.ICoordinate.ToNumber(System.Int32,System.Int32,System.Boolean)">
+        <member name="M:GTiff2Tiles.Core.Coordinates.ICoordinate.ToNumber(System.Int32,GTiff2Tiles.Core.Images.Size,System.Boolean)">
             <summary>
             Calculate <see cref="T:GTiff2Tiles.Core.Tiles.Number"/> for current <see cref="T:GTiff2Tiles.Core.Coordinates.ICoordinate"/>
             </summary>
             <param name="z">Zoom
             <remarks><para/>Must be >= 0</remarks></param>
-            <param name="tileSize"><see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>'s side size</param>
+            <param name="tileSize"><see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>'s size</param>
             <param name="tmsCompatible">Is <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/> tms compatible?</param>
             <returns><see cref="T:GTiff2Tiles.Core.Tiles.Number"/> in which this <see cref="T:GTiff2Tiles.Core.Coordinates.ICoordinate"/> belongs</returns>
         </member>
@@ -421,9 +427,8 @@
             <remarks><para/>Must be in range [-20048966.10, 20048966.10]</remarks></param>
             <exception cref="T:System.ArgumentOutOfRangeException"/>
         </member>
-        <member name="M:GTiff2Tiles.Core.Coordinates.MercatorCoordinate.ToPixelCoordinate(System.Int32,System.Int32)">
+        <member name="M:GTiff2Tiles.Core.Coordinates.MercatorCoordinate.ToPixelCoordinate(System.Int32,GTiff2Tiles.Core.Images.Size)">
             <inheritdoc />
-            <exception cref="T:System.ArgumentOutOfRangeException"/>
         </member>
         <member name="M:GTiff2Tiles.Core.Coordinates.MercatorCoordinate.ToGeodeticCoordinate">
             <summary>
@@ -431,9 +436,11 @@
             </summary>
             <returns>Converted <see cref="T:GTiff2Tiles.Core.Coordinates.GeodeticCoordinate"/></returns>
         </member>
-        <member name="M:GTiff2Tiles.Core.Coordinates.MercatorCoordinate.Resolution(System.Int32,System.Int32)">
-            <inheritdoc cref="M:GTiff2Tiles.Core.Coordinates.GeoCoordinate.Resolution(System.Int32,System.Int32,GTiff2Tiles.Core.Enums.CoordinateSystem)"/>
+        <member name="M:GTiff2Tiles.Core.Coordinates.MercatorCoordinate.Resolution(System.Int32,GTiff2Tiles.Core.Images.Size)">
+            <inheritdoc cref="M:GTiff2Tiles.Core.Coordinates.GeoCoordinate.Resolution(System.Int32,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.CoordinateSystem)"/>
             <exception cref="T:System.ArgumentOutOfRangeException"/>
+            <exception cref="T:System.ArgumentNullException"/>
+            <exception cref="T:System.ArgumentException"/>
         </member>
         <member name="T:GTiff2Tiles.Core.Coordinates.PixelCoordinate">
             <summary>
@@ -448,51 +455,63 @@
             <exception cref="T:System.ArgumentOutOfRangeException"/>
             <inheritdoc />
         </member>
-        <member name="M:GTiff2Tiles.Core.Coordinates.PixelCoordinate.ToNumber(System.Int32,System.Int32,System.Boolean)">
+        <member name="M:GTiff2Tiles.Core.Coordinates.PixelCoordinate.ToNumber(System.Int32,GTiff2Tiles.Core.Images.Size,System.Boolean)">
+            <param name="tileSize"><see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>'s size
+            <remarks><para/>Must be square</remarks></param>
             <inheritdoc />
+            <param name="z"></param>
+            <param name="tmsCompatible"></param>
             <exception cref="T:System.ArgumentOutOfRangeException"/>
+            <exception cref="T:System.ArgumentNullException"/>
+            <exception cref="T:System.ArgumentException"/>
         </member>
-        <member name="M:GTiff2Tiles.Core.Coordinates.PixelCoordinate.ToGeoCoordinate(GTiff2Tiles.Core.Enums.CoordinateSystem,System.Int32,System.Int32)">
+        <member name="M:GTiff2Tiles.Core.Coordinates.PixelCoordinate.ToGeoCoordinate(GTiff2Tiles.Core.Enums.CoordinateSystem,System.Int32,GTiff2Tiles.Core.Images.Size)">
             <summary>
             Convert current coordinate to child of <see cref="T:GTiff2Tiles.Core.Coordinates.GeoCoordinate"/>
             </summary>
             <param name="coordinateSystem">Coordinate system</param>
             <param name="z">Zoom
             <remarks><para/>Must be >= 0</remarks></param>
-            <param name="tileSize"><see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>'s side size</param>
+            <param name="tileSize"><see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>'s size
+            <remarks><para/>Must be square</remarks></param>
             <returns>Converted to <see cref="T:GTiff2Tiles.Core.Coordinates.GeoCoordinate"/> value
             or <see langword="null"/> if something goes wrong</returns>
             <exception cref="T:System.NotSupportedException"/>
         </member>
-        <member name="M:GTiff2Tiles.Core.Coordinates.PixelCoordinate.ToGeodeticCoordinate(System.Int32,System.Int32)">
+        <member name="M:GTiff2Tiles.Core.Coordinates.PixelCoordinate.ToGeodeticCoordinate(System.Int32,GTiff2Tiles.Core.Images.Size)">
             <summary>
             Convert current coordinate to <see cref="T:GTiff2Tiles.Core.Coordinates.GeodeticCoordinate"/>
             </summary>
             <param name="z">Zoom
             <remarks><para/>Must be >= 0</remarks></param>
-            <param name="tileSize"><see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>'s side size</param>
+            <param name="tileSize"><see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>'s size
+            <remarks><para/>Must be square</remarks></param>
             <returns>Converted <see cref="T:GTiff2Tiles.Core.Coordinates.GeodeticCoordinate"/></returns>
             <exception cref="T:System.ArgumentOutOfRangeException"/>
         </member>
-        <member name="M:GTiff2Tiles.Core.Coordinates.PixelCoordinate.ToMercatorCoordinate(System.Int32,System.Int32)">
+        <member name="M:GTiff2Tiles.Core.Coordinates.PixelCoordinate.ToMercatorCoordinate(System.Int32,GTiff2Tiles.Core.Images.Size)">
             <summary>
             Convert current coordinate to <see cref="T:GTiff2Tiles.Core.Coordinates.MercatorCoordinate"/>
             </summary>
             <param name="z">Zoom
             <remarks><para/>Must be >= 0</remarks></param>
-            <param name="tileSize"><see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>'s side size</param>
+            <param name="tileSize"><see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>'s size
+            <remarks><para/>Must be square</remarks></param>
             <returns>Converted <see cref="T:GTiff2Tiles.Core.Coordinates.MercatorCoordinate"/></returns>
             <exception cref="T:System.ArgumentOutOfRangeException"/>
         </member>
-        <member name="M:GTiff2Tiles.Core.Coordinates.PixelCoordinate.ToRasterPixelCoordinate(System.Int32,System.Int32)">
+        <member name="M:GTiff2Tiles.Core.Coordinates.PixelCoordinate.ToRasterPixelCoordinate(System.Int32,GTiff2Tiles.Core.Images.Size)">
             <summary>
             Move the origin of pixel coordinates to top-left corner
             </summary>
             <param name="z">Zoom
             <remarks><para/>Must be >= 0</remarks></param>
-            <param name="tileSize"><see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>'s side size</param>
+            <param name="tileSize"><see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>'s size
+            <remarks><para/>Must be square</remarks></param>
             <returns>Converted <see cref="T:GTiff2Tiles.Core.Coordinates.PixelCoordinate"/></returns>
             <exception cref="T:System.ArgumentOutOfRangeException"/>
+            <exception cref="T:System.ArgumentNullException"/>
+            <exception cref="T:System.ArgumentException"/>
         </member>
         <member name="T:GTiff2Tiles.Core.Enums.CoordinateSystem">
             <summary>
@@ -1646,7 +1665,7 @@
             <param name="minZ">Minimal zoom</param>
             <param name="maxZ">Maximal zoom</param>
             <param name="tmsCompatible">Is tms compatible?</param>
-            <param name="size"><see cref="T:GTiff2Tiles.Core.Tiles.Tile"/>'s <see cref="T:GTiff2Tiles.Core.Images.Size"/></param>
+            <param name="tileSize"><see cref="T:GTiff2Tiles.Core.Tiles.Tile"/>'s <see cref="T:GTiff2Tiles.Core.Images.Size"/></param>
             <returns><see cref="T:GTiff2Tiles.Core.Tiles.Tile"/>s count</returns>
             <exception cref="T:System.ArgumentNullException"/>
             <exception cref="T:System.ArgumentOutOfRangeException"/>

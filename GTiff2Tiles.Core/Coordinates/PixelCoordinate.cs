@@ -1,5 +1,6 @@
 ﻿using System;
 using GTiff2Tiles.Core.Enums;
+using GTiff2Tiles.Core.Images;
 using GTiff2Tiles.Core.Tiles;
 
 // ReSharper disable UnusedMember.Global
@@ -30,18 +31,26 @@ namespace GTiff2Tiles.Core.Coordinates
 
         #region Methods
 
+        /// <param name="tileSize"><see cref="ITile"/>'s size
+        /// <remarks><para/>Must be square</remarks></param>
         /// <inheritdoc />
+        /// <param name="z"></param>
+        /// <param name="tmsCompatible"></param>
         /// <exception cref="ArgumentOutOfRangeException"/>
-        public override Number ToNumber(int z, int tileSize, bool tmsCompatible)
+        /// <exception cref="ArgumentNullException"/>
+        /// <exception cref="ArgumentException"/>
+        public override Number ToNumber(int z, Size tileSize, bool tmsCompatible)
         {
             #region Preconditions checks
 
             if (z < 0) throw new ArgumentOutOfRangeException(nameof(z));
+            if (tileSize == null) throw new ArgumentNullException(nameof(tileSize));
+            if (!tileSize.IsSquare) throw new ArgumentException($"{nameof(tileSize)} is not square", nameof(tileSize));
 
             #endregion
 
-            int tileX = Convert.ToInt32(Math.Ceiling(X / tileSize) - 1.0);
-            int tileY = Convert.ToInt32(Math.Ceiling(Y / tileSize) - 1.0);
+            int tileX = Convert.ToInt32(Math.Ceiling(X / tileSize.Width) - 1.0);
+            int tileY = Convert.ToInt32(Math.Ceiling(Y / tileSize.Height) - 1.0);
 
             Number result = new Number(tileX, tileY, z);
             if (!tmsCompatible) result = result.Flip();
@@ -55,11 +64,12 @@ namespace GTiff2Tiles.Core.Coordinates
         /// <param name="coordinateSystem">Coordinate system</param>
         /// <param name="z">Zoom
         /// <remarks><para/>Must be >= 0</remarks></param>
-        /// <param name="tileSize"><see cref="ITile"/>'s side size</param>
+        /// <param name="tileSize"><see cref="ITile"/>'s size
+        /// <remarks><para/>Must be square</remarks></param>
         /// <returns>Converted to <see cref="GeoCoordinate"/> value
         /// or <see langword="null"/> if something goes wrong</returns>
         /// <exception cref="NotSupportedException"/>
-        public GeoCoordinate ToGeoCoordinate(CoordinateSystem coordinateSystem, int z, int tileSize) =>
+        public GeoCoordinate ToGeoCoordinate(CoordinateSystem coordinateSystem, int z, Size tileSize) =>
             coordinateSystem switch
             {
                 CoordinateSystem.Epsg4326 => ToGeodeticCoordinate(z, tileSize),
@@ -72,10 +82,11 @@ namespace GTiff2Tiles.Core.Coordinates
         /// </summary>
         /// <param name="z">Zoom
         /// <remarks><para/>Must be >= 0</remarks></param>
-        /// <param name="tileSize"><see cref="ITile"/>'s side size</param>
+        /// <param name="tileSize"><see cref="ITile"/>'s size
+        /// <remarks><para/>Must be square</remarks></param>
         /// <returns>Converted <see cref="GeodeticCoordinate"/></returns>
         /// <exception cref="ArgumentOutOfRangeException"/>
-        public GeodeticCoordinate ToGeodeticCoordinate(int z, int tileSize)
+        public GeodeticCoordinate ToGeodeticCoordinate(int z, Size tileSize)
         {
             #region Preconditions checks
 
@@ -93,10 +104,11 @@ namespace GTiff2Tiles.Core.Coordinates
         /// </summary>
         /// <param name="z">Zoom
         /// <remarks><para/>Must be >= 0</remarks></param>
-        /// <param name="tileSize"><see cref="ITile"/>'s side size</param>
+        /// <param name="tileSize"><see cref="ITile"/>'s size
+        /// <remarks><para/>Must be square</remarks></param>
         /// <returns>Converted <see cref="MercatorCoordinate"/></returns>
         /// <exception cref="ArgumentOutOfRangeException"/>
-        public MercatorCoordinate ToMercatorCoordinate(int z, int tileSize)
+        public MercatorCoordinate ToMercatorCoordinate(int z, Size tileSize)
         {
             #region Preconditions checks
 
@@ -116,20 +128,26 @@ namespace GTiff2Tiles.Core.Coordinates
         /// </summary>
         /// <param name="z">Zoom
         /// <remarks><para/>Must be >= 0</remarks></param>
-        /// <param name="tileSize"><see cref="ITile"/>'s side size</param>
+        /// <param name="tileSize"><see cref="ITile"/>'s size
+        /// <remarks><para/>Must be square</remarks></param>
         /// <returns>Converted <see cref="PixelCoordinate"/></returns>
         /// <exception cref="ArgumentOutOfRangeException"/>
-        public PixelCoordinate ToRasterPixelCoordinate(int z, int tileSize)
+        /// <exception cref="ArgumentNullException"/>
+        /// <exception cref="ArgumentException"/>
+        public PixelCoordinate ToRasterPixelCoordinate(int z, Size tileSize)
         {
             #region Preconditions checks
 
             if (z < 0) throw new ArgumentOutOfRangeException(nameof(z));
+            if (tileSize == null) throw new ArgumentNullException(nameof(tileSize));
+            if (!tileSize.IsSquare) throw new ArgumentException($"{nameof(tileSize)} is not square", nameof(tileSize));
 
             #endregion
 
             // TODO: Test
 
-            int mapSize = tileSize << z;
+            // If it's square -- it's safe to choose any side
+            int mapSize = tileSize.Height << z;
 
             return new PixelCoordinate(X, mapSize - Y);
         }
