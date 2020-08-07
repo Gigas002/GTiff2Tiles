@@ -38,14 +38,22 @@ namespace GTiff2Tiles.Core.Tiles
         /// <summary>
         /// Creates new <see cref="Number"/>
         /// </summary>
-        /// <param name="x"><see cref="X"/></param>
-        /// <param name="y"><see cref="Y"/></param>
-        /// <param name="z">Zoom</param>
+        /// <param name="x"><see cref="X"/>
+        /// <remarks><para/>Should be >= 0</remarks></param>
+        /// <param name="y"><see cref="Y"/>
+        /// <remarks><para/>Should be >= 0</remarks></param>
+        /// <param name="z">Zoom
+        /// <remarks><para/>Should be >= 0</remarks></param>
+        /// <exception cref="ArgumentOutOfRangeException"/>
         public Number(int x, int y, int z)
         {
-            if (x < 0) throw new ArgumentNullException(nameof(x));
-            if (y < 0) throw new ArgumentNullException(nameof(y));
-            if (z < 0) throw new ArgumentNullException(nameof(z));
+            #region Preconditions checks
+
+            if (x < 0) throw new ArgumentOutOfRangeException(nameof(x));
+            if (y < 0) throw new ArgumentOutOfRangeException(nameof(y));
+            if (z < 0) throw new ArgumentOutOfRangeException(nameof(z));
+
+            #endregion
 
             (X, Y, Z) = (x, y, z);
         }
@@ -57,7 +65,7 @@ namespace GTiff2Tiles.Core.Tiles
         #region Flip
 
         /// <summary>
-        /// Flips value of passed <see cref="Y"/>
+        /// Flips value of passed <see cref="Y"/> on specified zoom
         /// </summary>
         /// <param name="y"><see cref="Y"/> to flip</param>
         /// <param name="z">Zoom</param>
@@ -72,9 +80,14 @@ namespace GTiff2Tiles.Core.Tiles
 
         /// <inheritdoc cref="Flip()"/>
         /// <param name="number"><see cref="Number"/> to flip</param>
+        /// <exception cref="ArgumentNullException"/>
         public static Number Flip(Number number)
         {
+            #region Preconditions checks
+
             if (number == null) throw new ArgumentNullException(nameof(number));
+
+            #endregion
 
             return new Number(number.X, FlipY(number.Y, number.Z), number.Z);
         }
@@ -86,8 +99,9 @@ namespace GTiff2Tiles.Core.Tiles
         /// <summary>
         /// Convert <see cref="Number"/> to <see cref="GeodeticCoordinate"/>s
         /// </summary>
-        /// <param name="tileSize"><see cref="Tile"/> <see cref="Size"/></param>
-        /// <returns><see cref="ValueTuple"/> of <see cref="GeodeticCoordinate"/>s</returns>
+        /// <param name="tileSize"><see cref="Tile"/>'s <see cref="Size"/></param>
+        /// <returns><see cref="ValueTuple{T1,T2}"/> of <see cref="GeodeticCoordinate"/>s</returns>
+        /// <exception cref="ArgumentNullException"/>
         public (GeodeticCoordinate minCoordinate, GeodeticCoordinate maxCoordinate) ToGeodeticCoordinates(
             Size tileSize) => ToGeodeticCoordinates(this, tileSize);
 
@@ -97,8 +111,12 @@ namespace GTiff2Tiles.Core.Tiles
         public static (GeodeticCoordinate minCoordinate, GeodeticCoordinate maxCoordinate) ToGeodeticCoordinates(
             Number number, Size tileSize)
         {
+            #region Preconditions checks
+
             if (number == null) throw new ArgumentNullException(nameof(number));
             if (tileSize == null) throw new ArgumentNullException(nameof(tileSize));
+
+            #endregion
 
             double resolution = GeodeticCoordinate.Resolution(number.Z, tileSize.Width);
 
@@ -113,8 +131,9 @@ namespace GTiff2Tiles.Core.Tiles
         /// <summary>
         /// Convert <see cref="Number"/> to <see cref="MercatorCoordinate"/>s
         /// </summary>
-        /// <param name="tileSize"><see cref="Tile"/> <see cref="Size"/></param>
-        /// <returns><see cref="ValueTuple"/> of <see cref="MercatorCoordinate"/>s</returns>
+        /// <param name="tileSize"><see cref="Tile"/>'s <see cref="Size"/></param>
+        /// <returns><see cref="ValueTuple{T1, T2}"/> of <see cref="MercatorCoordinate"/>s</returns>
+        /// <exception cref="ArgumentNullException"/>
         public (MercatorCoordinate minCoordinate, MercatorCoordinate maxCoordinate) ToMercatorCoordinates(Size tileSize)
             => ToMercatorCoordinates(this, tileSize);
 
@@ -124,8 +143,12 @@ namespace GTiff2Tiles.Core.Tiles
         public static (MercatorCoordinate minCoordinate, MercatorCoordinate maxCoordinate) ToMercatorCoordinates(
             Number number, Size tileSize)
         {
+            #region Preconditions checks
+
             if (number == null) throw new ArgumentNullException(nameof(number));
             if (tileSize == null) throw new ArgumentNullException(nameof(tileSize));
+
+            #endregion
 
             PixelCoordinate minPixelCoordinate = new PixelCoordinate(number.X * tileSize.Width,
                                                                      number.Y * tileSize.Height);
@@ -141,9 +164,11 @@ namespace GTiff2Tiles.Core.Tiles
         /// Convert <see cref="Number"/> to <see cref="GeoCoordinate"/>s
         /// </summary>
         /// <param name="coordinateSystem">Desired coordinate system</param>
-        /// <param name="tileSize"><see cref="Tile"/> <see cref="Size"/></param>
+        /// <param name="tileSize"><see cref="Tile"/>'s <see cref="Size"/></param>
         /// <param name="tmsCompatible">Is tms compatible?</param>
-        /// <returns><see cref="ValueTuple"/> of <see cref="GeoCoordinate"/>s</returns>
+        /// <returns><see cref="ValueTuple{T1, T2}"/> of <see cref="GeoCoordinate"/>s</returns>
+        /// <exception cref="ArgumentNullException"/>
+        /// <exception cref="ArgumentException"/>
         public (GeoCoordinate minCoordinate, GeoCoordinate maxCoordinate) ToGeoCoordinates(
             CoordinateSystem coordinateSystem, Size tileSize, bool tmsCompatible) =>
             ToGeoCoordinates(this, coordinateSystem, tileSize, tmsCompatible);
@@ -156,7 +181,11 @@ namespace GTiff2Tiles.Core.Tiles
         public static (GeoCoordinate minCoordinate, GeoCoordinate maxCoordinate) ToGeoCoordinates(
             Number number, CoordinateSystem coordinateSystem, Size tileSize, bool tmsCompatible)
         {
+            #region Preconditions checks
+
             if (number == null) throw new ArgumentNullException(nameof(number));
+
+            #endregion
 
             if (!tmsCompatible) number = Flip(number);
 
@@ -176,7 +205,8 @@ namespace GTiff2Tiles.Core.Tiles
 
                         return (minCoordinate, maxCoordinate);
                     }
-                default: return (null, null);
+                default:
+                    throw new ArgumentException($"{coordinateSystem} is not supported", nameof(coordinateSystem));
             }
         }
 
@@ -185,11 +215,13 @@ namespace GTiff2Tiles.Core.Tiles
         #region GetLowerNumbers
 
         /// <summary>
-        /// Get lower <see cref="Number"/>s for specified <see cref="Number"/> and zoom (>=10)
+        /// Get lower <see cref="Number"/>s for specified <see cref="Number"/> and zoom
         /// </summary>
         /// <param name="z">Zoom;
-        /// <remarks>must be >=10</remarks></param>
-        /// <returns><see cref="ValueTuple"/> of lower <see cref="Number"/>s</returns>
+        /// <remarks><para/>Must be >= 10</remarks></param>
+        /// <returns><see cref="ValueTuple{T1, T2}"/> of lower <see cref="Number"/>s</returns>
+        /// <exception cref="ArgumentNullException"/>
+        /// <exception cref="ArgumentOutOfRangeException"/>
         public (Number minNumber, Number maxNumber) GetLowerNumbers(int z) =>
             GetLowerNumbers(this, z);
 
@@ -198,8 +230,12 @@ namespace GTiff2Tiles.Core.Tiles
         /// <param name="z"></param>
         public static (Number minNumber, Number maxNumber) GetLowerNumbers(Number number, int z)
         {
+            #region Preconditions checks
+
             if (number == null) throw new ArgumentNullException(nameof(number));
-            if (z < 10) throw new ArgumentNullException(nameof(z));
+            if (z < 10) throw new ArgumentOutOfRangeException(nameof(z));
+
+            #endregion
 
             int resolution = Convert.ToInt32(Math.Pow(2.0, z - 10.0));
 
@@ -219,17 +255,27 @@ namespace GTiff2Tiles.Core.Tiles
         /// <summary>
         /// Get count of <see cref="Tile"/>s in specified region
         /// </summary>
-        /// <param name="minCoordinate">Minimum <see cref="GeoCoordinate"/></param>
-        /// <param name="maxCoordinate">Maximum <see cref="GeoCoordinate"/></param>
-        /// <param name="minZ">Minimum zoom</param>
-        /// <param name="maxZ">Maximum zoom</param>
+        /// <param name="minCoordinate">Minimal <see cref="GeoCoordinate"/></param>
+        /// <param name="maxCoordinate">Maximal <see cref="GeoCoordinate"/></param>
+        /// <param name="minZ">Minimal zoom</param>
+        /// <param name="maxZ">Maximal zoom</param>
         /// <param name="tmsCompatible">Is tms compatible?</param>
         /// <param name="size"><see cref="Tile"/>'s <see cref="Size"/></param>
         /// <returns><see cref="Tile"/>s count</returns>
+        /// <exception cref="ArgumentNullException"/>
+        /// <exception cref="ArgumentOutOfRangeException"/>
         public static int GetCount(GeoCoordinate minCoordinate, GeoCoordinate maxCoordinate,
                                    int minZ, int maxZ, bool tmsCompatible, Size size)
         {
+            #region Preconditions checks
+
+            // Coordinates are checked inside GeoCoordinate.GetNumbers, no need to check it here
+
             if (size == null) throw new ArgumentNullException(nameof(size));
+            if (minZ < 0) throw new ArgumentOutOfRangeException(nameof(minZ));
+            if (maxZ < minZ) throw new ArgumentOutOfRangeException(nameof(maxZ));
+
+            #endregion
 
             int tilesCount = 0;
 
@@ -272,9 +318,8 @@ namespace GTiff2Tiles.Core.Tiles
         /// <param name="number1"><see cref="Number"/> 1</param>
         /// <param name="number2"><see cref="Number"/> 2</param>
         /// <returns><see langword="true"/> if <see cref="Number"/>s are equal;
-        /// <see langword="false"/>otherwise</returns>
-        public static bool operator ==(Number number1, Number number2) =>
-            number1?.Equals(number2) == true;
+        /// <see langword="false"/> otherwise</returns>
+        public static bool operator ==(Number number1, Number number2) => number1?.Equals(number2) == true;
 
         /// <summary>
         /// Check two <see cref="Number"/>s for non-equality
@@ -282,9 +327,8 @@ namespace GTiff2Tiles.Core.Tiles
         /// <param name="number1"><see cref="Number"/> 1</param>
         /// <param name="number2"><see cref="Number"/> 2</param>
         /// <returns><see langword="true"/> if <see cref="Number"/>s are not equal;
-        /// <see langword="false"/>otherwise</returns>
-        public static bool operator !=(Number number1, Number number2) =>
-            !(number1 == number2);
+        /// <see langword="false"/> otherwise</returns>
+        public static bool operator !=(Number number1, Number number2) => !(number1 == number2);
 
         #endregion
 
@@ -292,14 +336,23 @@ namespace GTiff2Tiles.Core.Tiles
 
         /// <summary>
         /// Sum <see cref="Number"/>s
+        /// <remarks><para/>Sums <see cref="X"/> and <see cref="Y"/>
+        /// only if <see cref="Z"/>'s are the same;
+        /// returns <see langword="null"/> otherwise</remarks>
         /// </summary>
         /// <param name="number1"><see cref="Number"/> 1</param>
         /// <param name="number2"><see cref="Number"/> 2</param>
-        /// <returns>New <see cref="Number"/></returns>
+        /// <returns>New <see cref="Number"/>, if <see cref="Z"/>s are the same;
+        /// <see langword="null"/> otherwise</returns>
+        /// <exception cref="ArgumentNullException"/>
         public static Number operator +(Number number1, Number number2)
         {
+            #region Preconditions checks
+
             if (number1 == null) throw new ArgumentNullException(nameof(number1));
             if (number2 == null) throw new ArgumentNullException(nameof(number2));
+
+            #endregion
 
             return number1.Z != number2.Z ? null : new Number(number1.X + number2.X, number1.Y + number2.Y, number1.Z);
         }
@@ -310,14 +363,23 @@ namespace GTiff2Tiles.Core.Tiles
 
         /// <summary>
         /// Subtruct <see cref="Number"/>s
+        /// <remarks><para/>Subtruct <see cref="X"/> and <see cref="Y"/>
+        /// only if <see cref="Z"/>'s are the same;
+        /// returns <see langword="null"/> otherwise</remarks>
         /// </summary>
         /// <param name="number1"><see cref="Number"/> 1</param>
         /// <param name="number2"><see cref="Number"/> 2</param>
-        /// <returns>New <see cref="Number"/></returns>
+        /// <returns>New <see cref="Number"/>, if <see cref="Z"/>s are the same;
+        /// <see langword="null"/> otherwise</returns>
+        /// <exception cref="ArgumentNullException"/>
         public static Number operator -(Number number1, Number number2)
         {
+            #region Preconditions checks
+
             if (number1 == null) throw new ArgumentNullException(nameof(number1));
             if (number2 == null) throw new ArgumentNullException(nameof(number2));
+
+            #endregion
 
             return number1.Z != number2.Z ? null : new Number(number1.X - number2.X, number1.Y - number2.Y, number1.Z);
         }
@@ -328,14 +390,23 @@ namespace GTiff2Tiles.Core.Tiles
 
         /// <summary>
         /// Multiply <see cref="Number"/>s
+        /// <remarks><para/>Multiply <see cref="X"/> and <see cref="Y"/>
+        /// only if <see cref="Z"/>'s are the same;
+        /// returns <see langword="null"/> otherwise</remarks>
         /// </summary>
         /// <param name="number1"><see cref="Number"/> 1</param>
         /// <param name="number2"><see cref="Number"/> 2</param>
-        /// <returns>New <see cref="Number"/></returns>
+        /// <returns>New <see cref="Number"/>, if <see cref="Z"/>s are the same;
+        /// <see langword="null"/> otherwise</returns>
+        /// <exception cref="ArgumentNullException"/>
         public static Number operator *(Number number1, Number number2)
         {
+            #region Preconditions checks
+
             if (number1 == null) throw new ArgumentNullException(nameof(number1));
             if (number2 == null) throw new ArgumentNullException(nameof(number2));
+
+            #endregion
 
             return number1.Z != number2.Z ? null : new Number(number1.X * number2.X, number1.Y * number2.Y, number1.Z);
         }
@@ -346,14 +417,23 @@ namespace GTiff2Tiles.Core.Tiles
 
         /// <summary>
         /// Divide <see cref="Number"/>s
+        /// <remarks><para/>Divide <see cref="X"/> and <see cref="Y"/>
+        /// only if <see cref="Z"/>'s are the same;
+        /// returns <see langword="null"/> otherwise</remarks>
         /// </summary>
         /// <param name="number1"><see cref="Number"/> 1</param>
         /// <param name="number2"><see cref="Number"/> 2</param>
-        /// <returns>New <see cref="Number"/></returns>
+        /// <returns>New <see cref="Number"/>, if <see cref="Z"/>s are the same;
+        /// <see langword="null"/> otherwise</returns>
+        /// <exception cref="ArgumentNullException"/>
         public static Number operator /(Number number1, Number number2)
         {
+            #region Preconditions checks
+
             if (number1 == null) throw new ArgumentNullException(nameof(number1));
             if (number2 == null) throw new ArgumentNullException(nameof(number2));
+
+            #endregion
 
             return number1.Z != number2.Z ? null : new Number(number1.X / number2.X, number1.Y / number2.Y, number1.Z);
         }

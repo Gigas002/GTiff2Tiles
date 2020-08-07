@@ -10,14 +10,19 @@ using GTiff2Tiles.Core.Tiles;
 namespace GTiff2Tiles.Core.GeoTiffs
 {
     /// <summary>
-    /// Main interface for cropping different <see cref="ITile"/>s
+    /// Main interface for different type of GeoTiffs and <see cref="ITile"/>
     /// </summary>
     public interface IGeoTiff : IAsyncDisposable, IDisposable
     {
         #region Properties
 
         /// <summary>
-        /// <see cref="Images.Size"/> (width, height)
+        /// Shows if resources have already been disposed
+        /// </summary>
+        public bool IsDisposed { get; }
+
+        /// <summary>
+        /// Image's <see cref="Images.Size"/> (width and height)
         /// </summary>
         public Size Size { get; }
 
@@ -35,11 +40,6 @@ namespace GTiff2Tiles.Core.GeoTiffs
         /// Type of desired <see cref="CoordinateSystem"/>
         /// </summary>
         public CoordinateSystem GeoCoordinateSystem { get; }
-
-        /// <summary>
-        /// Shows if resources have already been disposed
-        /// </summary>
-        public bool IsDisposed { get; }
 
         #endregion
     }

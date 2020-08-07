@@ -3,6 +3,9 @@ using GTiff2Tiles.Core.Tiles;
 
 // ReSharper disable UnusedMemberInSuper.Global
 
+// TODO: use Size tileSize instead of int tileSize
+// TODO: rename ..Zoom to z
+
 namespace GTiff2Tiles.Core.Coordinates
 {
     /// <summary>
@@ -29,7 +32,8 @@ namespace GTiff2Tiles.Core.Coordinates
         /// <summary>
         /// Calculate <see cref="Number"/> for current <see cref="ICoordinate"/>
         /// </summary>
-        /// <param name="zoom">Zoom</param>
+        /// <param name="zoom">Zoom
+        /// <remarks><para/>Must be >= 0</remarks></param>
         /// <param name="tileSize"><see cref="ITile"/>'s side size</param>
         /// <param name="tmsCompatible">Is <see cref="ITile"/> tms compatible?</param>
         /// <returns><see cref="Number"/> in which this <see cref="ICoordinate"/> belongs</returns>

@@ -8,7 +8,7 @@ using GTiff2Tiles.Core.Tiles;
 namespace GTiff2Tiles.Core.Images
 {
     /// <summary>
-    /// Represents read/write <see cref="Area"/>s of <see cref="IGeoTiff"/>
+    /// Represents read/write <see cref="Area"/>s of image
     /// </summary>
     public class Area
     {
@@ -20,7 +20,7 @@ namespace GTiff2Tiles.Core.Images
         public PixelCoordinate OriginCoordinate { get; }
 
         /// <summary>
-        /// <see cref="Size"/> of <see cref="Area"/>
+        /// <see cref="Images.Size"/> of <see cref="Area"/>
         /// </summary>
         public Size Size { get; }
 
@@ -33,10 +33,15 @@ namespace GTiff2Tiles.Core.Images
         /// </summary>
         /// <param name="originCoordinate"><see cref="OriginCoordinate"/></param>
         /// <param name="size"><see cref="Size"/></param>
+        /// <exception cref="ArgumentNullException"/>
         public Area(PixelCoordinate originCoordinate, Size size)
         {
+            #region Preconditions checks
+
             if (originCoordinate == null) throw new ArgumentNullException(nameof(originCoordinate));
             if (size == null) throw new ArgumentNullException(nameof(size));
+
+            #endregion
 
             (OriginCoordinate, Size) = (originCoordinate, size);
         }
@@ -62,6 +67,8 @@ namespace GTiff2Tiles.Core.Images
                                                                GeoCoordinate tileMinCoordinate,
                                                                GeoCoordinate tileMaxCoordinate, Size tileSize)
         {
+            #region Preconditions checks
+
             if (imageMinCoordinate == null) throw new ArgumentNullException(nameof(imageMinCoordinate));
             if (imageMaxCoordinate == null) throw new ArgumentNullException(nameof(imageMaxCoordinate));
             if (imageSize == null) throw new ArgumentNullException(nameof(imageSize));
@@ -69,19 +76,21 @@ namespace GTiff2Tiles.Core.Images
             if (tileMaxCoordinate == null) throw new ArgumentNullException(nameof(tileMaxCoordinate));
             if (tileSize == null) throw new ArgumentNullException(nameof(tileSize));
 
-            //Read from input geotiff in pixels.
+            #endregion
+
+            // Read from input geotiff in pixels
             double readPosMinX = imageSize.Width * (tileMinCoordinate.X - imageMinCoordinate.X) / (imageMaxCoordinate.X - imageMinCoordinate.X);
             double readPosMaxX = imageSize.Width * (tileMaxCoordinate.X - imageMinCoordinate.X) / (imageMaxCoordinate.X - imageMinCoordinate.X);
             double readPosMinY = imageSize.Height - imageSize.Height * (tileMaxCoordinate.Y - imageMinCoordinate.Y) / (imageMaxCoordinate.Y - imageMinCoordinate.Y);
             double readPosMaxY = imageSize.Height - imageSize.Height * (tileMinCoordinate.Y - imageMinCoordinate.Y) / (imageMaxCoordinate.Y - imageMinCoordinate.Y);
 
-            //If outside of tiff.
+            // If outside of tiff -- set to 0.0/Max
             readPosMinX = readPosMinX < 0.0 ? 0.0 : readPosMinX > imageSize.Width ? imageSize.Width : readPosMinX;
             readPosMaxX = readPosMaxX < 0.0 ? 0.0 : readPosMaxX > imageSize.Width ? imageSize.Width : readPosMaxX;
             readPosMinY = readPosMinY < 0.0 ? 0.0 : readPosMinY > imageSize.Height ? imageSize.Height : readPosMinY;
             readPosMaxY = readPosMaxY < 0.0 ? 0.0 : readPosMaxY > imageSize.Height ? imageSize.Height : readPosMaxY;
 
-            //Output tile's borders in pixels.
+            // Output tile's borders in pixels
             double tilePixMinX = readPosMinX.Equals(0.0) ? imageMinCoordinate.X :
                                  readPosMinX.Equals(imageSize.Width) ? imageMaxCoordinate.X : tileMinCoordinate.X;
             double tilePixMaxX = readPosMaxX.Equals(0.0) ? imageMinCoordinate.X :
@@ -92,19 +101,19 @@ namespace GTiff2Tiles.Core.Images
                                  readPosMinY.Equals(imageSize.Height) ? imageMinCoordinate.Y : tileMaxCoordinate.Y;
 
 
-            //Positions of dataset to write in tile.
+            // Positions of dataset to write in tile
             double writePosMinX = tileSize.Width - tileSize.Width * (tileMaxCoordinate.X - tilePixMinX) / (tileMaxCoordinate.X - tileMinCoordinate.X);
             double writePosMaxX = tileSize.Width - tileSize.Width * (tileMaxCoordinate.X - tilePixMaxX) / (tileMaxCoordinate.X - tileMinCoordinate.X);
             double writePosMinY = tileSize.Height * (tileMaxCoordinate.Y - tilePixMaxY) / (tileMaxCoordinate.Y - tileMinCoordinate.Y);
             double writePosMaxY = tileSize.Height * (tileMaxCoordinate.Y - tilePixMinY) / (tileMaxCoordinate.Y - tileMinCoordinate.Y);
 
-            //Sizes to read and write.
+            // Sizes to read and write
             double readXSize = readPosMaxX - readPosMinX;
             double writeXSize = writePosMaxX - writePosMinX;
             double readYSize = Math.Abs(readPosMaxY - readPosMinY);
             double writeYSize = Math.Abs(writePosMaxY - writePosMinY);
 
-            //Shifts.
+            // Shifts
             double readXShift = readPosMinX - (int)readPosMinX;
             readXSize += readXShift;
             double readYShift = readPosMinY - (int)readPosMinY;
@@ -114,7 +123,7 @@ namespace GTiff2Tiles.Core.Images
             double writeYShift = writePosMinY - (int)writePosMinY;
             writeYSize += writeYShift;
 
-            //If output image sides are lesser then 1 - make image 1x1 pixels to prevent division by 0.
+            // If output image sides are lesser then 1 - make image 1x1 pixels to prevent division by 0
             writeXSize = writeXSize > 1.0 ? writeXSize : 1.0;
             writeYSize = writeYSize > 1.0 ? writeYSize : 1.0;
 
@@ -135,11 +144,16 @@ namespace GTiff2Tiles.Core.Images
         /// </summary>
         /// <param name="image">Source <see cref="IGeoTiff"/></param>
         /// <param name="tile">Target <see cref="ITile"/></param>
-        /// <returns><see cref="ValueTuple"/> of <see cref="Area"/>s to read and write</returns>
+        /// <returns><see cref="ValueTuple{T1, T2}"/> of <see cref="Area"/>s to read and write</returns>
+        /// <exception cref="ArgumentNullException"/>
         public static (Area readArea, Area writeArea) GetAreas(IGeoTiff image, ITile tile)
         {
+            #region Preconditions checks
+
             if (image == null) throw new ArgumentNullException(nameof(image));
             if (tile == null) throw new ArgumentNullException(nameof(tile));
+
+            #endregion
 
             return GetAreas(image.MinCoordinate, image.MaxCoordinate, image.Size, tile.MinCoordinate,
                             tile.MaxCoordinate, tile.Size);

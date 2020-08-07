@@ -1,6 +1,4 @@
-﻿#pragma warning disable CA1062 // Check args
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -20,7 +18,7 @@ using OSGeo.OSR;
 namespace GTiff2Tiles.Core
 {
     /// <summary>
-    /// Gdal's method to work with input files
+    /// Gdal's methods to work with input files
     /// </summary>
     public static class GdalWorker
     {
@@ -53,17 +51,22 @@ namespace GTiff2Tiles.Core
         private static readonly string[] SrsEpsg3857 = { "-t_srs", "EPSG:3857" };
 
         /// <summary>
-        /// Options for GdalWarp to convert GeoTIFF's coordinate system
-        /// <remarks><para/>Requires you to add target system param (-t_srs)</remarks>
+        /// Options for GdalWarp to convert GeoTiff's coordinate system;
+        /// <remarks><para/>Requires you to add target system param (-t_srs).
+        /// Included default args: <code>-overwrite -multi -srcnodata 0
+        /// -of GTiff -ot Byte</code></remarks>
         /// </summary>
         public static readonly string[] ConvertCoordinateSystemOptions =
         {
             "-overwrite", "-multi", "-srcnodata", "0", "-of", "GTiff", "-ot", "Byte"
+            // TODO: test performance with TILED
             //"-co", "TILED=YES",
         };
 
+        //TODO: include datetime stuff
         /// <summary>
-        /// Name for temporary (converted) GeoTIFF
+        /// Name for temporary (converted) GeoTiff
+        /// <remarks><para/>It's recommended to add timestamp to your temp file's name</remarks>
         /// </summary>
         public const string TempFileName = "tmp_converted";
 
@@ -78,19 +81,22 @@ namespace GTiff2Tiles.Core
         /// </summary>
         /// <param name="inputFilePath">Input GeoTiff's path</param>
         /// <param name="outputFilePath">Output file's path</param>
-        /// <param name="options">Array of string parameters</param>
-        /// <param name="progress">GdalWarp's progress</param>
-        /// <returns><see langword="true"/> if operation was sucessful;
-        /// <para/><see langword="false"/> otherwise</returns>
-        public static async ValueTask<bool> WarpAsync(string inputFilePath, string outputFilePath,
-               string[] options, IProgress<double> progress = null)
+        /// <param name="options">Array of string parameters
+        /// <remarks><para/>See <see cref="ConvertCoordinateSystemOptions"/> field for
+        /// more info</remarks></param>
+        /// <param name="progress">GdalWarp's progress
+        /// <remarks><para/><see langword="null"/> by default</remarks></param>
+        /// <exception cref="ArgumentNullException"/>
+        public static Task WarpAsync(string inputFilePath, string outputFilePath,
+                                     string[] options, IProgress<double> progress = null)
         {
-            #region Parameters checking
+            #region Preconditions checks
 
-            if (!CheckHelper.CheckFile(inputFilePath, true)) return false;
-            if (!CheckHelper.CheckFile(outputFilePath, false)) return false;
-            if (!CheckHelper.CheckDirectory(Path.GetDirectoryName(outputFilePath))) return false;
-            if (options == null || options.Length <= 0) return false;
+            CheckHelper.CheckFile(inputFilePath);
+            CheckHelper.CheckFile(outputFilePath, false);
+            CheckHelper.CheckDirectory(Path.GetDirectoryName(outputFilePath));
+
+            if (options == null || options.Length <= 0) throw new ArgumentNullException(nameof(options));
 
             #endregion
 
@@ -100,7 +106,7 @@ namespace GTiff2Tiles.Core
             // Initialize Gdal, if needed
             ConfigureGdal();
 
-            await Task.Run(() =>
+            return Task.Run(() =>
             {
                 using Dataset inputDataset = Gdal.Open(inputFilePath, Access.GA_ReadOnly);
 
@@ -109,30 +115,30 @@ namespace GTiff2Tiles.Core
                 SWIGTYPE_p_p_GDALDatasetShadow gdalDatasetShadow =
                     new SWIGTYPE_p_p_GDALDatasetShadow(gcHandle.AddrOfPinnedObject(), false, null);
 
+                // We need to create variable in order to correctly dispose result dataset,
+                // it's gdal's bindings issue
                 // ReSharper disable once UnusedVariable
                 using Dataset resultDataset =
                     Gdal.wrapper_GDALWarpDestName(outputFilePath, 1, gdalDatasetShadow,
                                                   new GDALWarpAppOptions(options), callback, string.Empty);
 
                 gcHandle.Free();
-            }).ConfigureAwait(false);
-
-            // Was file created?
-            return CheckHelper.CheckFile(outputFilePath, true);
+            });
         }
 
         /// <summary>
         /// Runs GdalInfo with passed parameters
         /// </summary>
         /// <param name="inputFilePath">Input GeoTiff's path</param>
-        /// <param name="options">Array of string parameters for GdalInfo</param>
+        /// <param name="options">Array of string parameters for GdalInfo
+        /// <remarks><para/><see langword="null"/> by default</remarks></param>
         /// <returns><see cref="string"/> from GdalInfo if everything OK;
         /// <para/><see langword="null"/> otherwise</returns>
         public static Task<string> InfoAsync(string inputFilePath, string[] options = null)
         {
-            #region Parameters checking
+            #region Preconditions checks
 
-            if (!CheckHelper.CheckFile(inputFilePath, true)) return null;
+            CheckHelper.CheckFile(inputFilePath);
 
             #endregion
 
@@ -163,15 +169,23 @@ namespace GTiff2Tiles.Core
         #region Private
 
         /// <summary>
-        /// Realistaion of <see cref="Gdal.GDALProgressFuncDelegate"/>
+        /// Implementation of <see cref="Gdal.GDALProgressFuncDelegate"/>
         /// </summary>
         /// <param name="complete">Current progress;
-        /// <remarks><para/>values from 0.0 to 1.0</remarks></param>
-        /// <param name="message"></param>
-        /// <param name="data"></param>
+        /// <remarks><para/>values in range from 0.0 to 1.0</remarks></param>
+        /// <param name="message">I actually don't know what that pointer means</param>
+        /// <param name="data">I actually don't know what that pointer means</param>
         /// <returns>Always 1</returns>
+        /// <exception cref="ArgumentOutOfRangeException"/>
         private static int GdalProgress(double complete, IntPtr message, IntPtr data)
         {
+            #region Preconditions checks
+
+            if (complete < 0.0 || complete > 1.0) throw new ArgumentOutOfRangeException(nameof(complete));
+
+            #endregion
+
+            // It's safe not to use progress-reporter for gdal
             _gdalProgress?.Report(complete * 100.0);
 
             return 1;
@@ -182,16 +196,16 @@ namespace GTiff2Tiles.Core
         #region Public
 
         /// <summary>
-        /// Gets proj string of input file
+        /// Gets proj <see cref="string"/> of input file
         /// </summary>
         /// <param name="inputFilePath">Input GeoTiff's path</param>
         /// <returns>Proj <see cref="string"/> if everything OK;
         /// <para/><see langword="null"/> otherwise</returns>
         public static Task<string> GetProjStringAsync(string inputFilePath)
         {
-            #region Parameters checking
+            #region Preconditions checks
 
-            if (!CheckHelper.CheckFile(inputFilePath, true)) return null;
+            CheckHelper.CheckFile(inputFilePath);
 
             #endregion
 
@@ -216,61 +230,70 @@ namespace GTiff2Tiles.Core
         }
 
         /// <summary>
-        /// Converts current GeoTiff to a new file with target <see cref="CoordinateSystem"/>
+        /// Converts current GeoTiff to a new GeoTiff with target <see cref="CoordinateSystem"/>
         /// through GdalWarp
         /// </summary>
         /// <param name="inputFilePath">Input GeoTiff's path</param>
-        /// <param name="outputFilePath">Output file's path</param>
+        /// <param name="outputFilePath">Output GeoTiff's path</param>
         /// <param name="targetSystem">Target <see cref="CoordinateSystem"/></param>
-        /// <param name="progress">GdalWarp's progress</param>
-        /// <returns><see langword="true"/> if operation was sucessful;
-        /// <para/><see langword="false"/> otherwise</returns>
-        public static ValueTask<bool> ConvertGeoTiffToTargetSystemAsync(string inputFilePath,
+        /// <param name="progress">GdalWarp's progress
+        /// <remarks><para/><see langword="null"/> by default</remarks></param>
+        /// <exception cref="ArgumentException"/>
+        public static Task ConvertGeoTiffToTargetSystemAsync(string inputFilePath,
             string outputFilePath, CoordinateSystem targetSystem, IProgress<double> progress = null)
         {
+            // Preconditions checks are done in WarpAsync method, no need to add them here too
+
+            // Don't use hashset
             List<string> gdalWarpOptions = ConvertCoordinateSystemOptions.ToList();
 
             switch (targetSystem)
             {
                 case CoordinateSystem.Epsg4326:
-                {
-                    gdalWarpOptions.AddRange(SrsEpsg4326);
+                    {
+                        gdalWarpOptions.AddRange(SrsEpsg4326);
 
-                    break;
-                }
+                        break;
+                    }
                 case CoordinateSystem.Epsg3857:
-                {
-                    gdalWarpOptions.AddRange(SrsEpsg3857);
+                    {
+                        gdalWarpOptions.AddRange(SrsEpsg3857);
 
-                    break;
-                }
+                        break;
+                    }
                 default:
-                {
-                    //TODO: ValueTask.FromResult(false) throws an exception in CI
-                    return new ValueTask<bool>(false);
-                }
+                    {
+                        throw new ArgumentException($"{targetSystem} is not supported");
+                    }
             }
 
             return WarpAsync(inputFilePath, outputFilePath, gdalWarpOptions.ToArray(), progress);
         }
 
         /// <summary>
-        /// Gets supported coordinate system from proj string of GeoTIFF
+        /// Gets supported coordinate system from proj string of GeoTiff
         /// </summary>
-        /// <param name="projString">Proj string of input GeoTIFF</param>
+        /// <param name="projString">Proj string of input GeoTiff</param>
         /// <returns>Input file's <see cref="CoordinateSystem"/></returns>
+        /// <exception cref="ArgumentNullException"/>
         public static CoordinateSystem GetCoordinateSystem(string projString)
         {
+            #region Preconditions checks
+
             if (string.IsNullOrWhiteSpace(projString)) throw new ArgumentNullException(nameof(projString));
 
-            if (projString.Contains(Proj.ProjLongLat, StringComparison.InvariantCulture)
-             && projString.Contains(Proj.DatumWgs84, StringComparison.InvariantCulture))
-                return CoordinateSystem.Epsg4326;
-            if (projString.Contains(Proj.ProjMerc, StringComparison.InvariantCulture)
-             && !projString.Contains(Proj.DatumWgs84, StringComparison.InvariantCulture))
-                return CoordinateSystem.Epsg3857;
+            #endregion
 
-            return CoordinateSystem.Other;
+            bool isWgs84 = projString.Contains(Proj.DatumWgs84, StringComparison.InvariantCulture);
+            bool isLongLat = projString.Contains(Proj.ProjLongLat, StringComparison.InvariantCulture);
+            bool isMerc = projString.Contains(Proj.ProjMerc, StringComparison.InvariantCulture);
+
+            return isWgs84 switch
+            {
+                true when isLongLat => CoordinateSystem.Epsg4326,
+                false when isMerc => CoordinateSystem.Epsg3857,
+                _ => CoordinateSystem.Other
+            };
         }
 
         /// <summary>
@@ -281,9 +304,9 @@ namespace GTiff2Tiles.Core
         /// <para/><see langword="null"/> otherwise</returns>
         public static double[] GetGeoTransform(string inputFilePath)
         {
-            #region Parameters checking
+            #region Preconditions checks
 
-            if (!CheckHelper.CheckFile(inputFilePath, true)) return null;
+            CheckHelper.CheckFile(inputFilePath);
 
             #endregion
 
@@ -304,15 +327,18 @@ namespace GTiff2Tiles.Core
         /// <param name="inputFilePath">Input GeoTiff's path</param>
         /// <param name="size">Image's <see cref="Size"/>s</param>
         /// <param name="coordinateSystem">Desired coordinate system</param>
-        /// <returns><see cref="GeoCoordinate"/>s of this image borders if everything is OK;
-        /// <para/>(<see langword="null"/>, <see langword="null"/>) otherwise</returns>
+        /// <returns><see cref="ValueTuple{T1,T2}"/> of
+        /// <see cref="GeoCoordinate"/>s of image's borders</returns>
+        /// <exception cref="ArgumentNullException"/>
+        /// <exception cref="ArgumentException"/>
         public static (GeoCoordinate minCoordinate, GeoCoordinate maxCoordinate) GetImageBorders(
             string inputFilePath, Size size, CoordinateSystem coordinateSystem)
         {
-            #region Parameters checking
+            #region Preconditions checks
 
-            if (!CheckHelper.CheckFile(inputFilePath, true)) return (null, null);
-            if (size == null) return (null, null);
+            // File is checked inside GeteGeoTransform method, no need to check it here
+
+            if (size == null) throw new ArgumentNullException(nameof(size));
 
             #endregion
 
@@ -339,7 +365,8 @@ namespace GTiff2Tiles.Core
 
                         return (minCoordinate, maxCoordinate);
                     }
-                default: return (null, null);
+                default:
+                    throw new ArgumentException($"{coordinateSystem} is not supported");
             }
         }
 
@@ -348,5 +375,3 @@ namespace GTiff2Tiles.Core
         #endregion
     }
 }
-
-#pragma warning restore CA1062 // Check args

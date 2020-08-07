@@ -11,7 +11,7 @@ using GTiff2Tiles.Core.Tiles;
 namespace GTiff2Tiles.Core.Coordinates
 {
     /// <summary>
-    /// Abstract class for geographical coordinates
+    /// Class for geographical coordinates
     /// </summary>
     public class GeoCoordinate : Coordinate
     {
@@ -25,8 +25,15 @@ namespace GTiff2Tiles.Core.Coordinates
         #region Methods
 
         /// <inheritdoc />
+        /// <exception cref="ArgumentOutOfRangeException"/>
         public override Number ToNumber(int zoom, int tileSize, bool tmsCompatible)
         {
+            #region Preconditions checks
+
+            if (zoom < 0) throw new ArgumentOutOfRangeException(nameof(zoom));
+
+            #endregion
+
             PixelCoordinate pixelCoordinate = ToPixelCoordinate(zoom, tileSize);
 
             return pixelCoordinate.ToNumber(zoom, tileSize, tmsCompatible);
@@ -39,13 +46,18 @@ namespace GTiff2Tiles.Core.Coordinates
         /// <param name="maxCoordinate">Maximal <see cref="GeoCoordinate"/></param>
         /// <param name="zoom">Zoom</param>
         /// <param name="tileSize"><see cref="ITile"/>'s side size</param>
-        /// <param name="tmsCompatible">Is <see cref="ITile"/> tme compatible?</param>
-        /// <returns><see cref="ValueTuple"/> of <see cref="Number"/>s</returns>
+        /// <param name="tmsCompatible">Is <see cref="ITile"/> tms compatible?</param>
+        /// <returns><see cref="ValueTuple{T1, T2}"/> of <see cref="Number"/>s</returns>
         public static (Number minNumber, Number maxNumber) GetNumbers(GeoCoordinate minCoordinate,
                GeoCoordinate maxCoordinate, int zoom, int tileSize, bool tmsCompatible)
         {
+            #region Preconditions checks
+
             if (minCoordinate == null) throw new ArgumentNullException(nameof(minCoordinate));
             if (maxCoordinate == null) throw new ArgumentNullException(nameof(maxCoordinate));
+            // zoom is checked on lower levels
+
+            #endregion
 
             Number minCoordNumber = minCoordinate.ToNumber(zoom, tileSize, tmsCompatible);
             Number maxCoordNumber = maxCoordinate.ToNumber(zoom, tileSize, tmsCompatible);
@@ -63,7 +75,8 @@ namespace GTiff2Tiles.Core.Coordinates
         /// <summary>
         /// Convert current <see cref="GeoCoordinate"/> to <see cref="PixelCoordinate"/>
         /// </summary>
-        /// <param name="zoom">Zoom</param>
+        /// <param name="zoom">Zoom
+        /// <remarks><para/>Must be >= 0</remarks></param>
         /// <param name="tileSize"><see cref="ITile"/>'s side size</param>
         /// <returns>Converted <see cref="PixelCoordinate"/></returns>
         public virtual PixelCoordinate ToPixelCoordinate(int zoom, int tileSize) => null;
@@ -71,10 +84,11 @@ namespace GTiff2Tiles.Core.Coordinates
         /// <summary>
         /// Resolution for given zoom level (measured at Equator)
         /// </summary>
-        /// <param name="zoom">Zoom</param>
+        /// <param name="zoom">Zoom
+        /// <remarks><para/>Must be >= 0</remarks></param>
         /// <param name="tileSize"><see cref="ITile"/>'s side size</param>
-        /// <param name="coordinateSystem">Desired coordinate system</param>
-        /// <returns>Resolution value</returns>
+        /// <param name="coordinateSystem">Coordinate system</param>
+        /// <returns>Resolution value or -1.0 if something goes wrong</returns>
         protected static double Resolution(int zoom, int tileSize, CoordinateSystem coordinateSystem) =>
             coordinateSystem switch
             {
@@ -88,15 +102,25 @@ namespace GTiff2Tiles.Core.Coordinates
         /// </summary>
         /// <param name="pixelSize">Pixel size</param>
         /// <param name="tileSize"><see cref="ITile"/>'s side size</param>
-        /// <param name="coordinateSystem">Desired coordinate system</param>
+        /// <param name="coordinateSystem">Coordinate system</param>
         /// <param name="minZoom">Minimal zoom
+        /// <para/>Must be >= 0 and lesser or equal, than <paramref name="maxZoom"/>
         /// <para/>0 by default</param>
         /// <param name="maxZoom">Maximal zoom
+        /// <para/>Must be >= 0 and bigger or equal, than <paramref name="minZoom"/>
         /// <para/>32 by default</param>
         /// <returns>Approximate zoom value</returns>
         public static int ZoomForPixelSize(int pixelSize, int tileSize, CoordinateSystem coordinateSystem,
                                            int minZoom = 0, int maxZoom = 32)
         {
+            #region Preconditions checks
+
+            if (pixelSize <= 0) throw new ArgumentOutOfRangeException(nameof(pixelSize));
+            if (minZoom < 0) throw new ArgumentOutOfRangeException(nameof(minZoom));
+            if (maxZoom < minZoom) throw new ArgumentOutOfRangeException(nameof(maxZoom));
+
+            #endregion
+
             IEnumerable<int> range = Enumerable.Range(minZoom, maxZoom + 1);
 
             foreach (int i in range.Where(i => pixelSize > Resolution(i, tileSize, coordinateSystem)))

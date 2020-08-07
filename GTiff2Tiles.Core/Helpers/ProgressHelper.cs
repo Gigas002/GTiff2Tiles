@@ -12,12 +12,18 @@ namespace GTiff2Tiles.Core.Helpers
         /// <summary>
         /// Prints estimated time left
         /// </summary>
-        /// <param name="percentage">Current progress</param>
+        /// <param name="percentage">Current progress;
+        /// <remarks><para/>should be in tange (0.0, 100.0]</remarks></param>
         /// <param name="stopwatch">Time passed from the start;
-        /// <remarks>If set to <see langword="null"/> no time printed</remarks></param>
+        /// <remarks><para/>If set to <see langword="null"/> no time printed</remarks></param>
         public static void PrintEstimatedTimeLeft(double percentage, Stopwatch stopwatch = null)
         {
+            #region Preconditions checks
+
             if (stopwatch == null) return;
+            if (percentage <= 0.0 || percentage > 100.0) return;
+
+            #endregion
 
             double timePassed = stopwatch.ElapsedMilliseconds;
             double estimatedAllTime = 100.0 * timePassed / percentage;

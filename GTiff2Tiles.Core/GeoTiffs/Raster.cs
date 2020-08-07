@@ -1,7 +1,4 @@
-﻿#pragma warning disable CA1031 // Do not catch general exception types
-#pragma warning disable CA1062 // Check args
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
@@ -25,7 +22,8 @@ using NetVips;
 namespace GTiff2Tiles.Core.GeoTiffs
 {
     /// <summary>
-    /// Class for creating <see cref="RasterTile"/>s
+    /// Class, representing <see cref="Raster"/> GeoTiff.
+    /// Used for creating <see cref="RasterTile"/>s
     /// </summary>
     public class Raster : IGeoTiff
     {
@@ -35,10 +33,10 @@ namespace GTiff2Tiles.Core.GeoTiffs
 
         /// <summary>
         /// Name for temporary file
-        /// <para/>see <see cref="Raster(IEnumerable{byte}, CoordinateSystem)"/>
-        /// and <see cref="Raster(Stream, CoordinateSystem)"/>
+        /// <remarks><para/>See <see cref="Raster(IEnumerable{byte}, CoordinateSystem)"/>
+        /// and <see cref="Raster(Stream, CoordinateSystem)"/></remarks>
         /// </summary>
-        private readonly string _tempFileName = $"{DateTime.Now.ToString(DateTimePatterns.LongWithMs, CultureInfo.InvariantCulture)}_tmp.tif";
+        private readonly string _tempFileName = $"{DateTime.Now.ToString(DateTimePatterns.LongWithMs, CultureInfo.InvariantCulture)}_tmp{FileExtensions.Tif}";
 
         /// <summary>
         /// This <see cref="Raster"/>'s data
@@ -72,21 +70,67 @@ namespace GTiff2Tiles.Core.GeoTiffs
 
         /// <summary>
         /// Creates new <see cref="Raster"/> object
+        /// <remarks><para/>Use this version ONLY if you don't know the <see cref="CoordinateSystem"/>
+        /// of this <see cref="Raster"/>. In other cases, prefer using other constructors!</remarks>
         /// </summary>
-        /// <param name="inputFilePath">Input GeoTiff's path</param>
-        /// <param name="coordinateSystem">Desired coordinate system</param>
-        /// <param name="maxMemoryCache">Max size of input image to store in RAM
-        /// <remarks><para/>2GB by default</remarks></param>
-        public Raster(string inputFilePath, CoordinateSystem coordinateSystem, long maxMemoryCache = 2147483648)
+        /// <inheritdoc cref="Raster(string,CoordinateSystem,long)"/>
+        /// <param name="inputFilePath"></param>
+        /// <param name="maxMemoryCache"></param>
+        public Raster(string inputFilePath, long maxMemoryCache = 2147483648)
         {
+            #region Preconditions checks
+
+            CheckHelper.CheckFile(inputFilePath, true, FileExtensions.Tif);
+
+            if (maxMemoryCache <= 0) throw new ArgumentOutOfRangeException(nameof(maxMemoryCache));
+
+            #endregion
+
             // Disable NetVips warnings for tiff
             NetVipsHelper.DisableLog();
 
-            #region Check parameters
+            // Get coordinate system of input geotiff from gdal
+            string proj4String = GdalWorker.GetProjStringAsync(inputFilePath).Result;
+            CoordinateSystem coordinateSystem = GdalWorker.GetCoordinateSystem(proj4String);
 
-            if (!CheckHelper.CheckFile(inputFilePath, true)) throw new RasterException();
+            if (coordinateSystem == CoordinateSystem.Other)
+                throw new NotSupportedException($"{coordinateSystem} is not supported");
+
+            bool memory = new FileInfo(inputFilePath).Length <= maxMemoryCache;
+            Data = Image.NewFromFile(inputFilePath, memory, NetVips.Enums.Access.Random);
+
+            // Get border coordinates и raster sizes
+            Size = new Size(Data.Width, Data.Height);
+
+            GeoCoordinateSystem = coordinateSystem;
+            (MinCoordinate, MaxCoordinate) = GdalWorker.GetImageBorders(inputFilePath, Size, GeoCoordinateSystem);
+        }
+
+        /// <summary>
+        /// Creates new <see cref="Raster"/> object
+        /// </summary>
+        /// <param name="inputFilePath">Input GeoTiff's path
+        /// <remarks><para/>Must have .tif extension</remarks></param>
+        /// <param name="coordinateSystem">GeoTiff's coordinate system
+        /// <remarks><para/>If set to <see cref="CoordinateSystem.Other"/>
+        /// throws <see cref="ArgumentOutOfRangeException"/></remarks></param>
+        /// <param name="maxMemoryCache">Max size of input image to store in RAM
+        /// <remarks><para/>Must be > 0. 2GB by default</remarks></param>
+        /// <exception cref="ArgumentOutOfRangeException"/>
+        /// <exception cref="NotSupportedException"/>
+        public Raster(string inputFilePath, CoordinateSystem coordinateSystem, long maxMemoryCache = 2147483648)
+        {
+            #region Preconditions checks
+
+            CheckHelper.CheckFile(inputFilePath, true, FileExtensions.Tif);
+
+            if (coordinateSystem == CoordinateSystem.Other) throw new NotSupportedException($"{coordinateSystem} is not supported");
+            if (maxMemoryCache <= 0) throw new ArgumentOutOfRangeException(nameof(maxMemoryCache));
 
             #endregion
+
+            // Disable NetVips warnings for tiff
+            NetVipsHelper.DisableLog();
 
             bool memory = new FileInfo(inputFilePath).Length <= maxMemoryCache;
             Data = Image.NewFromFile(inputFilePath, memory, NetVips.Enums.Access.Random);
@@ -103,10 +147,19 @@ namespace GTiff2Tiles.Core.GeoTiffs
         /// <param name="coordinateSystem"></param>
         public Raster(IEnumerable<byte> inputBytes, CoordinateSystem coordinateSystem)
         {
+            #region Preconditions checks
+
+            if (coordinateSystem == CoordinateSystem.Other) throw new NotSupportedException($"{coordinateSystem} is not supported");
+
+            #endregion
+
             // Disable NetVips warnings for tiff
             NetVipsHelper.DisableLog();
 
             Data = Image.NewFromBuffer(inputBytes.ToArray(), access: NetVips.Enums.Access.Random);
+
+            // Check if data is not null, it can be if inpuBytes is null or empty collection
+            if (Data == null) throw new ArgumentNullException(nameof(inputBytes));
 
             // Get border coordinates и raster sizes
             Size = new Size(Data.Width, Data.Height);
@@ -114,10 +167,13 @@ namespace GTiff2Tiles.Core.GeoTiffs
             GeoCoordinateSystem = coordinateSystem;
 
             // TODO: get coordinates without fileinfo
-            FileInfo inputFileInfo = new FileInfo(_tempFileName);
-            Data.WriteToFile(inputFileInfo.FullName);
-            (MinCoordinate, MaxCoordinate) = GdalWorker.GetImageBorders(inputFileInfo.FullName, Size, GeoCoordinateSystem);
-            inputFileInfo.Delete();
+            Data.WriteToFile(_tempFileName);
+
+            // Check if file was created successfully
+            CheckHelper.CheckFile(_tempFileName, true, FileExtensions.Tif);
+
+            (MinCoordinate, MaxCoordinate) = GdalWorker.GetImageBorders(_tempFileName, Size, GeoCoordinateSystem);
+            File.Delete(_tempFileName);
         }
 
         /// <inheritdoc cref="Raster(string,CoordinateSystem,long)"/>
@@ -125,6 +181,13 @@ namespace GTiff2Tiles.Core.GeoTiffs
         /// <param name="coordinateSystem"></param>
         public Raster(Stream inputStream, CoordinateSystem coordinateSystem)
         {
+            #region Preconditions checks
+
+            if (inputStream == null) throw new ArgumentNullException(nameof(inputStream));
+            if (coordinateSystem == CoordinateSystem.Other) throw new NotSupportedException($"{coordinateSystem} is not supported");
+
+            #endregion
+
             // Disable NetVips warnings for tiff
             NetVipsHelper.DisableLog();
 
@@ -136,14 +199,17 @@ namespace GTiff2Tiles.Core.GeoTiffs
             GeoCoordinateSystem = coordinateSystem;
 
             // TODO: get coordinates without fileinfo
-            FileInfo inputFileInfo = new FileInfo(_tempFileName);
-            Data.WriteToFile(inputFileInfo.FullName);
-            (MinCoordinate, MaxCoordinate) = GdalWorker.GetImageBorders(inputFileInfo.FullName, Size, GeoCoordinateSystem);
-            inputFileInfo.Delete();
+            Data.WriteToFile(_tempFileName);
+
+            // Check if file was created successfully
+            CheckHelper.CheckFile(_tempFileName, true, FileExtensions.Tif);
+
+            (MinCoordinate, MaxCoordinate) = GdalWorker.GetImageBorders(_tempFileName, Size, GeoCoordinateSystem);
+            File.Delete(_tempFileName);
         }
 
         /// <summary>
-        /// Destructor
+        /// Calls <see cref="Dispose(bool)"/> on this <see cref="Raster"/>
         /// </summary>
         ~Raster() => Dispose(false);
 
@@ -168,7 +234,7 @@ namespace GTiff2Tiles.Core.GeoTiffs
 
             if (disposing)
             {
-                //Occurs only if called by programmer. Dispose static things here.
+                // Occurs only if called by programmer. Dispose static things here
             }
 
             Data.Dispose();
@@ -179,6 +245,8 @@ namespace GTiff2Tiles.Core.GeoTiffs
         /// <inheritdoc />
         public ValueTask DisposeAsync()
         {
+#pragma warning disable CA1031 // Do not catch general exception types
+
             try
             {
                 Dispose();
@@ -188,9 +256,12 @@ namespace GTiff2Tiles.Core.GeoTiffs
             catch (Exception exception)
             {
                 //Weird issue -- Doesn't work in CI
-                //return ValueTask.FromException(exception);
-                return new ValueTask(Task.FromException(exception));
+                // TODO: test in CI
+                return ValueTask.FromException(exception);
+                //return new ValueTask(Task.FromException(exception));
             }
+
+#pragma warning restore CA1031 // Do not catch general exception types
         }
 
         #endregion
@@ -206,10 +277,16 @@ namespace GTiff2Tiles.Core.GeoTiffs
         /// <param name="tile">Target <see cref="RasterTile"/></param>
         /// <param name="interpolation">Interpolation of ready tiles</param>
         /// <returns>Ready <see cref="Image"/> for <see cref="RasterTile"/></returns>
+        /// <exception cref="ArgumentNullException"/>
         public Image CreateTileImage(Image tileCache, RasterTile tile, string interpolation)
         {
+            #region Preconditions checks
+
             if (tileCache == null) throw new ArgumentNullException(nameof(tileCache));
             if (tile == null) throw new ArgumentNullException(nameof(tile));
+            if (string.IsNullOrWhiteSpace(interpolation)) throw new ArgumentNullException(interpolation);
+
+            #endregion
 
             // Get postitions and sizes for current tile
             (Area readArea, Area writeArea) = Area.GetAreas(this, tile);
@@ -247,6 +324,8 @@ namespace GTiff2Tiles.Core.GeoTiffs
         /// <param name="interpolation">Interpolation of ready tiles</param>
         public void WriteTileToFile(Image tileCache, RasterTile tile, string interpolation)
         {
+            // Preconditions checked inside CreateTileImage, don't need to check anything here
+
             using Image tileImage = CreateTileImage(tileCache, tile, interpolation);
 
             //TODO: validate size before writing
@@ -270,6 +349,8 @@ namespace GTiff2Tiles.Core.GeoTiffs
         public IEnumerable<byte> WriteTileToEnumerable(Image tileCache, RasterTile tile,
                                                        string interpolation)
         {
+            // Preconditions checked inside CreateTileImage, don't need to check anything here
+
             using Image tileImage = CreateTileImage(tileCache, tile, interpolation);
 
             //TODO: validate size before writing
@@ -288,11 +369,18 @@ namespace GTiff2Tiles.Core.GeoTiffs
         /// <param name="interpolation">Interpolation of ready tiles</param>
         /// <returns><see langword="true"/> if <see cref="ITile"/> was written;
         /// <see langword="false"/> otherwise</returns>
+        /// <exception cref="ArgumentNullException"/>
         public bool WriteTileToChannel(Image tileCache, RasterTile tile, ChannelWriter<ITile> channelWriter,
                                        string interpolation)
         {
+            #region Preconditions checks
+
+            // tileCache and interpolation checked inside WriteTileToEnumerable
+
             if (tile == null) throw new ArgumentNullException(nameof(tile));
             if (channelWriter == null) throw new ArgumentNullException(nameof(channelWriter));
+
+            #endregion
 
             tile.Bytes = WriteTileToEnumerable(tileCache, tile, interpolation);
 
@@ -304,19 +392,44 @@ namespace GTiff2Tiles.Core.GeoTiffs
         public ValueTask WriteTileToChannelAsync(Image tileCache, RasterTile tile,
                                                  ChannelWriter<ITile> channelWriter, string interpolation)
         {
+            #region Preconditions checks
+
+            // tileCache and interpolation checked inside WriteTileToEnumerable
+
             if (tile == null) throw new ArgumentNullException(nameof(tile));
             if (channelWriter == null) throw new ArgumentNullException(nameof(channelWriter));
 
+            #endregion
+
             tile.Bytes = WriteTileToEnumerable(tileCache, tile, interpolation);
 
-            return !tile.Validate(false) ? ValueTask.CompletedTask : channelWriter.WriteAsync(tile);
+            return tile.Validate(false) ? channelWriter.WriteAsync(tile) : ValueTask.CompletedTask;
         }
 
         #endregion
 
         #region WriteTiles
 
-        /// <inheritdoc cref="WriteTilesToDirectoryAsync"/>
+        /// <summary>
+        /// Crops current <see cref="RasterTile"/> on <see cref="RasterTile"/>s
+        /// and writes them to <paramref name="outputDirectoryPath"/>
+        /// </summary>
+        /// <param name="outputDirectoryPath">Directory for output <see cref="RasterTile"/>s</param>
+        /// <param name="tileExtension">Extension of ready <see cref="RasterTile"/>s
+        /// <remarks><para/>.png by default</remarks></param>
+        /// <inheritdoc cref="WriteTilesToAsyncEnumerable"/>
+        /// <param name="minZ"></param>
+        /// <param name="maxZ"></param>
+        /// <param name="tmsCompatible"></param>
+        /// <param name="tileSize"></param>
+        /// <param name="interpolation"></param>
+        /// <param name="bandsCount"></param>
+        /// <param name="tileCacheCount"></param>
+        /// <param name="threadsCount">T</param>
+        /// <param name="progress"></param>
+        /// <param name="isPrintEstimatedTime"></param>
+        /// <exception cref="ArgumentOutOfRangeException"/>
+        /// <exception cref="RasterException"/>
         public void WriteTilesToDirectory(string outputDirectoryPath, int minZ, int maxZ,
                                           bool tmsCompatible = false, Size tileSize = null,
                                           TileExtension tileExtension = TileExtension.Png,
@@ -326,23 +439,29 @@ namespace GTiff2Tiles.Core.GeoTiffs
                                           IProgress<double> progress = null,
                                           bool isPrintEstimatedTime = false)
         {
-            #region Parameters checking
+            #region Preconditions checks
 
-            progress ??= new Progress<double>();
+            CheckHelper.CheckDirectory(outputDirectoryPath, true);
+            // minZ and maxZ checked inside Number.GetCount
             tileSize ??= Tile.DefaultSize;
+
+            // interpolation is checked on lower levels
+            // bandsCount checked inside RasterTile ctor
+            if (tileCacheCount <= 0) throw new ArgumentOutOfRangeException(nameof(tileCacheCount));
 
             ParallelOptions parallelOptions = new ParallelOptions();
             if (threadsCount > 0) parallelOptions.MaxDegreeOfParallelism = threadsCount;
 
-            #region Progress stuff
+            // It's safe to set progress to null
 
             Stopwatch stopwatch = isPrintEstimatedTime ? Stopwatch.StartNew() : null;
+
             int tilesCount = Number.GetCount(MinCoordinate, MaxCoordinate, minZ, maxZ, tmsCompatible, tileSize);
+
+            // if there's no tiles to crop
+            if (tilesCount <= 0) throw new RasterException("No tiles to crop in this raster");
+
             double counter = 0.0;
-
-            if (tilesCount <= 0) return;
-
-            #endregion
 
             #endregion
 
@@ -352,26 +471,26 @@ namespace GTiff2Tiles.Core.GeoTiffs
             void MakeTile(int x, int y, int z)
             {
                 // Create directories for the tile
-                // The overall structure looks like: outputDirectory/zoom/x/y.png
+                // The overall structure looks like: outputDirectory/z/x/y.extension
                 string tileDirectoryPath = Path.Combine(outputDirectoryPath, $"{z}", $"{x}");
-                if (!CheckHelper.CheckDirectory(tileDirectoryPath)) throw new RasterException();
+                CheckHelper.CheckDirectory(tileDirectoryPath);
 
                 Number tileNumber = new Number(x, y, z);
                 RasterTile tile = new RasterTile(tileNumber, GeoCoordinateSystem, extension: tileExtension,
                                                  tmsCompatible: tmsCompatible, size: tileSize, bandsCount: bandsCount);
 
-                // Warning: OpenLayers requires replacement of tileY to tileY+1
+                // Important: OpenLayers requires replacement of tileY to tileY+1
                 tile.Path = Path.Combine(tileDirectoryPath, $"{y}{tile.GetExtensionString()}");
 
+                // tile is validated inside of WriteTileToFile
                 // ReSharper disable once AccessToDisposedClosure
                 WriteTileToFile(tileCache, tile, interpolation);
 
                 // Report progress
                 counter++;
                 double percentage = counter / tilesCount * 100.0;
-                progress.Report(percentage);
+                progress?.Report(percentage);
 
-                // Estimated time left calculation
                 ProgressHelper.PrintEstimatedTimeLeft(percentage, stopwatch);
             }
 
@@ -393,25 +512,7 @@ namespace GTiff2Tiles.Core.GeoTiffs
             }
         }
 
-        /// <summary>
-        /// Crops current <see cref="RasterTile"/> on <see cref="RasterTile"/>s
-        /// and writes them to <paramref name="outputDirectoryPath"/>
-        /// </summary>
-        /// <param name="outputDirectoryPath">Directory for output <see cref="RasterTile"/>s</param>
-        /// <param name="tileExtension">Extension of ready <see cref="RasterTile"/>s
-        /// <remarks><para/>.png by default</remarks></param>
-        /// <returns></returns>
-        /// <inheritdoc cref="WriteTilesToAsyncEnumerable"/>
-        /// <param name="minZ"></param>
-        /// <param name="maxZ"></param>
-        /// <param name="tmsCompatible"></param>
-        /// <param name="tileSize"></param>
-        /// <param name="interpolation"></param>
-        /// <param name="bandsCount"></param>
-        /// <param name="tileCacheCount"></param>
-        /// <param name="threadsCount">T</param>
-        /// <param name="progress"></param>
-        /// <param name="isPrintEstimatedTime"></param>
+        /// <inheritdoc cref="WriteTilesToDirectory"/>
         public Task WriteTilesToDirectoryAsync(string outputDirectoryPath, int minZ, int maxZ,
                                                bool tmsCompatible = false, Size tileSize = null,
                                                TileExtension tileExtension = TileExtension.Png,
@@ -424,7 +525,24 @@ namespace GTiff2Tiles.Core.GeoTiffs
                                                  tileExtension, interpolation, bandsCount, tileCacheCount,
                                                  threadsCount, progress, isPrintEstimatedTime));
 
-        /// <inheritdoc cref="WriteTilesToChannelAsync"/>
+        /// <summary>
+        /// Crops current <see cref="Raster"/> on <see cref="ITile"/>s
+        /// and writes them to <paramref name="channelWriter"/>
+        /// </summary>
+        /// <param name="channelWriter"><see cref="Channel"/> to write <see cref="ITile"/> to</param>
+        /// <inheritdoc cref="WriteTilesToAsyncEnumerable"/>
+        /// <param name="minZ"></param>
+        /// <param name="maxZ"></param>
+        /// <param name="tmsCompatible"></param>
+        /// <param name="tileSize"></param>
+        /// <param name="interpolation"></param>
+        /// <param name="bandsCount"></param>
+        /// <param name="tileCacheCount"></param>
+        /// <param name="threadsCount"></param>
+        /// <param name="progress"></param>
+        /// <param name="isPrintEstimatedTime"></param>
+        /// <exception cref="ArgumentOutOfRangeException"/>
+        /// <exception cref="RasterException"/>
         public void WriteTilesToChannel(ChannelWriter<ITile> channelWriter, int minZ, int maxZ,
                                         bool tmsCompatible = false, Size tileSize = null,
                                         string interpolation = Interpolations.Lanczos3,
@@ -433,23 +551,29 @@ namespace GTiff2Tiles.Core.GeoTiffs
                                         IProgress<double> progress = null,
                                         bool isPrintEstimatedTime = false)
         {
-            #region Parameters checking
+            #region Preconditions checks
 
-            progress ??= new Progress<double>();
+            // channelWriter is checked on lower levels
+            // minZ and maxZ checked inside Number.GetCount
             tileSize ??= Tile.DefaultSize;
+
+            // interpolation is checked on lower levels
+            // bandsCount checked inside RasterTile ctor
+            if (tileCacheCount <= 0) throw new ArgumentOutOfRangeException(nameof(tileCacheCount));
 
             ParallelOptions parallelOptions = new ParallelOptions();
             if (threadsCount > 0) parallelOptions.MaxDegreeOfParallelism = threadsCount;
 
-            #region Progress stuff
+            // It's safe to set progress to null
 
             Stopwatch stopwatch = isPrintEstimatedTime ? Stopwatch.StartNew() : null;
+
             int tilesCount = Number.GetCount(MinCoordinate, MaxCoordinate, minZ, maxZ, tmsCompatible, tileSize);
+
+            // if there's no tiles to crop
+            if (tilesCount <= 0) throw new RasterException("No tiles to crop in this raster");
+
             double counter = 0.0;
-
-            if (tilesCount <= 0) return;
-
-            #endregion
 
             #endregion
 
@@ -462,15 +586,15 @@ namespace GTiff2Tiles.Core.GeoTiffs
                 RasterTile tile = new RasterTile(tileNumber, GeoCoordinateSystem, tmsCompatible: tmsCompatible,
                     size: tileSize, bandsCount: bandsCount);
 
+                // Should not throw exception if tile was skipped
                 // ReSharper disable once AccessToDisposedClosure
                 if (!WriteTileToChannel(tileCache, tile, channelWriter, interpolation)) return;
 
                 // Report progress
                 counter++;
                 double percentage = counter / tilesCount * 100.0;
-                progress.Report(percentage);
+                progress?.Report(percentage);
 
-                // Estimated time left calculation
                 ProgressHelper.PrintEstimatedTimeLeft(percentage, stopwatch);
             }
 
@@ -492,23 +616,7 @@ namespace GTiff2Tiles.Core.GeoTiffs
             }
         }
 
-        /// <summary>
-        /// Crops current <see cref="Raster"/> on <see cref="ITile"/>s
-        /// and writes them to <paramref name="channelWriter"/>
-        /// </summary>
-        /// <param name="channelWriter"><see cref="Channel"/> to write <see cref="ITile"/> to</param>
-        /// <returns></returns>
-        /// <inheritdoc cref="WriteTilesToAsyncEnumerable"/>
-        /// <param name="minZ"></param>
-        /// <param name="maxZ"></param>
-        /// <param name="tmsCompatible"></param>
-        /// <param name="tileSize"></param>
-        /// <param name="interpolation"></param>
-        /// <param name="bandsCount"></param>
-        /// <param name="tileCacheCount"></param>
-        /// <param name="threadsCount"></param>
-        /// <param name="progress"></param>
-        /// <param name="isPrintEstimatedTime"></param>
+        /// <inheritdoc cref="WriteTilesToChannel"/>
         public Task WriteTilesToChannelAsync(ChannelWriter<ITile> channelWriter, int minZ, int maxZ,
                                              bool tmsCompatible = false, Size tileSize = null,
                                              string interpolation = Interpolations.Lanczos3,
@@ -534,20 +642,25 @@ namespace GTiff2Tiles.Core.GeoTiffs
                                                          IProgress<double> progress = null,
                                                          bool isPrintEstimatedTime = false)
         {
-            #region Parameters checking
+            #region Preconditions checks
 
-            progress ??= new Progress<double>();
+            // minZ and maxZ checked inside Number.GetCount
             tileSize ??= Tile.DefaultSize;
 
-            #region Progress stuff
+            // interpolation is checked on lower levels
+            // bandsCount checked inside RasterTile ctor
+            if (tileCacheCount <= 0) throw new ArgumentOutOfRangeException(nameof(tileCacheCount));
+
+            // It's safe to set progress to null
 
             Stopwatch stopwatch = isPrintEstimatedTime ? Stopwatch.StartNew() : null;
+
             int tilesCount = Number.GetCount(MinCoordinate, MaxCoordinate, minZ, maxZ, tmsCompatible, tileSize);
+
+            // if there's no tiles to crop
+            if (tilesCount <= 0) throw new RasterException("No tiles to crop in this raster");
+
             double counter = 0.0;
-
-            if (tilesCount <= 0) yield break;
-
-            #endregion
 
             #endregion
 
@@ -565,9 +678,8 @@ namespace GTiff2Tiles.Core.GeoTiffs
                 // Report progress
                 counter++;
                 double percentage = counter / tilesCount * 100.0;
-                progress.Report(percentage);
+                progress?.Report(percentage);
 
-                // Estimated time left calculation
                 ProgressHelper.PrintEstimatedTimeLeft(percentage, stopwatch);
 
                 return tile;
@@ -593,8 +705,12 @@ namespace GTiff2Tiles.Core.GeoTiffs
         /// Crops current <see cref="Raster"/> on <see cref="ITile"/>s
         /// and writes them to <see cref="IAsyncEnumerable{T}"/>
         /// </summary>
-        /// <param name="minZ">Minimum cropped zoom</param>
-        /// <param name="maxZ">Maximum cropped zoom</param>
+        /// <param name="minZ">Minimum cropped zoom
+        /// <remarks><para/>Should be >= 0 and lesser or equal, than <paramref name="maxZ"/>
+        /// </remarks></param>
+        /// <param name="maxZ">Maximum cropped zoom
+        /// <remarks><para/>Should be >= 0 and bigger or equal, than <paramref name="minZ"/>
+        /// </remarks></param>
         /// <param name="tmsCompatible">Do you want to create tms-compatible <see cref="ITile"/>s?
         /// <remarks><para/><see langword="false"/> by default</remarks></param>
         /// <param name="tileSize"><see cref="Images.Size"/> of <see cref="ITile"/>s
@@ -612,6 +728,8 @@ namespace GTiff2Tiles.Core.GeoTiffs
         /// <param name="isPrintEstimatedTime">Do you want to see estimated time left?
         /// <remarks><para/><see langword="false"/> by default</remarks></param>
         /// <returns><see cref="IAsyncEnumerable{T}"/> of <see cref="ITile"/>s</returns>
+        /// <exception cref="ArgumentOutOfRangeException"/>
+        /// <exception cref="RasterException"/>
         public IAsyncEnumerable<ITile> WriteTilesToAsyncEnumerable(int minZ, int maxZ,
                                                                    bool tmsCompatible = false, Size tileSize = null,
                                                                    string interpolation = Interpolations.Lanczos3,
@@ -620,6 +738,8 @@ namespace GTiff2Tiles.Core.GeoTiffs
                                                                    IProgress<double> progress = null,
                                                                    bool isPrintEstimatedTime = false)
         {
+            // All preconditions checks are done in WriteTilesToChannelAsync method
+
             Channel<ITile> channel = Channel.CreateUnbounded<ITile>();
 
             WriteTilesToChannelAsync(channel.Writer, minZ, maxZ, tmsCompatible, tileSize,
@@ -635,6 +755,3 @@ namespace GTiff2Tiles.Core.GeoTiffs
         #endregion
     }
 }
-
-#pragma warning restore CA1031 // Do not catch general exception types
-#pragma warning restore CA1062 // Check args

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using GTiff2Tiles.Core.GeoTiffs;
 using NetVips;
 
 // ReSharper disable MemberCanBePrivate.Global
@@ -9,7 +8,7 @@ using NetVips;
 namespace GTiff2Tiles.Core.Images
 {
     /// <summary>
-    /// Represents <see cref="Raster"/> band
+    /// Represents image's band
     /// </summary>
     public class Band
     {
@@ -34,9 +33,14 @@ namespace GTiff2Tiles.Core.Images
         /// </summary>
         /// <param name="value"><see cref="int"/> in range
         /// from 0 to 255</param>
+        /// <exception cref="ArgumentOutOfRangeException"/>
         public Band(int value = DefaultValue)
         {
-            if (value < 0) throw new ArgumentOutOfRangeException(nameof(value));
+            #region Preconditions checks
+
+            if (value < 0 || value > 255) throw new ArgumentOutOfRangeException(nameof(value));
+
+            #endregion
 
             Value = value;
         }
@@ -50,11 +54,16 @@ namespace GTiff2Tiles.Core.Images
         /// </summary>
         /// <param name="image">Reference on <see cref="Image"/>
         /// to add <see cref="Band"/>s to</param>
-        /// <param name="bands"><see cref="Band"/>s to add</param>
+        /// <param name="bands">Collection of <see cref="Band"/>s to add</param>
+        /// <exception cref="ArgumentNullException"/>
         public static void AddBands(ref Image image, IEnumerable<Band> bands)
         {
+            #region Preconditions checks
+
             if (image == null) throw new ArgumentNullException(nameof(image));
             if (bands == null) throw new ArgumentNullException(nameof(bands));
+
+            #endregion
 
             image = bands.Aggregate(image, (current, band) => current.Bandjoin(band.Value));
         }
@@ -67,11 +76,17 @@ namespace GTiff2Tiles.Core.Images
         /// to add <see cref="Band"/>s to</param>
         /// <param name="bandsCount">Count of desired <see cref="Band"/>s
         /// in <see cref="Image"/>;
-        /// <remarks>NOT the count of <see cref="Band"/>s to add</remarks></param>
+        /// <remarks><para/>NOT the count of <see cref="Band"/>s to add</remarks></param>
+        /// <exception cref="ArgumentNullException"/>
         public static void AddDefaultBands(ref Image image, int bandsCount)
         {
+            #region Preconditions checks
+
             if (image == null) throw new ArgumentNullException(nameof(image));
 
+            #endregion
+
+            // Don't use HashSet
             List<Band> bandsToAdd = new List<Band>();
             for (int i = bandsCount; i > image.Bands; i--) bandsToAdd.Add(new Band());
             AddBands(ref image, bandsToAdd);

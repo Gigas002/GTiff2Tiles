@@ -1,12 +1,11 @@
 ﻿using System;
-using GTiff2Tiles.Core.GeoTiffs;
 
 // ReSharper disable UnusedMember.Global
 
 namespace GTiff2Tiles.Core.Images
 {
     /// <summary>
-    /// <see cref="IGeoTiff"/>'s size
+    /// <see cref="Size"/> of any image
     /// </summary>
     public sealed class Size : IEquatable<Size>
     {
@@ -23,9 +22,14 @@ namespace GTiff2Tiles.Core.Images
         public int Height { get; }
 
         /// <summary>
-        /// <see cref="IGeoTiff"/>'s resolution
+        /// Image's resolution
         /// </summary>
         public int Resolution => Width * Height;
+
+        /// <summary>
+        /// Shows if this tile is square (width == height)
+        /// </summary>
+        public bool IsSquare => Width == Height;
 
         #endregion
 
@@ -34,12 +38,19 @@ namespace GTiff2Tiles.Core.Images
         /// <summary>
         /// Creates new <see cref="Size"/>
         /// </summary>
-        /// <param name="width"><see cref="Width"/></param>
-        /// <param name="height"><see cref="Height"/></param>
+        /// <param name="width"><see cref="Width"/>
+        /// <remarks><para/>Shoukd be > 0</remarks></param>
+        /// <param name="height"><see cref="Height"/>
+        /// <remarks><para/>Shoukd be > 0</remarks></param>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
         public Size(int width, int height)
         {
-            if (width <= 0) throw new ArgumentNullException(nameof(width));
-            if (height <= 0) throw new ArgumentNullException(nameof(height));
+            #region Preconditions checks
+
+            if (width <= 0) throw new ArgumentOutOfRangeException(nameof(width));
+            if (height <= 0) throw new ArgumentOutOfRangeException(nameof(height));
+
+            #endregion
 
             (Width, Height) = (width, height);
         }
@@ -71,7 +82,7 @@ namespace GTiff2Tiles.Core.Images
         /// <param name="size1"><see cref="Size"/> 1</param>
         /// <param name="size2"><see cref="Size"/> 2</param>
         /// <returns><see langword="true"/> if <see cref="Size"/>s are equal;
-        /// <see langword="false"/>otherwise</returns>
+        /// <see langword="false"/> otherwise</returns>
         public static bool operator ==(Size size1, Size size2) => size1?.Equals(size2) == true;
 
         /// <summary>
@@ -80,7 +91,7 @@ namespace GTiff2Tiles.Core.Images
         /// <param name="size1"><see cref="Size"/> 1</param>
         /// <param name="size2"><see cref="Size"/> 2</param>
         /// <returns><see langword="true"/> if <see cref="Size"/>s are not equal;
-        /// <see langword="false"/>otherwise</returns>
+        /// <see langword="false"/> otherwise</returns>
         public static bool operator !=(Size size1, Size size2) => !(size1 == size2);
 
         #endregion
@@ -93,10 +104,15 @@ namespace GTiff2Tiles.Core.Images
         /// <param name="size1"><see cref="Size"/> 1</param>
         /// <param name="size2"><see cref="Size"/> 2</param>
         /// <returns>New <see cref="Size"/></returns>
+        /// <exception cref="ArgumentNullException"/>
         public static Size operator +(Size size1, Size size2)
         {
+            #region Preconditions checks
+
             if (size1 == null) throw new ArgumentNullException(nameof(size1));
             if (size2 == null) throw new ArgumentNullException(nameof(size2));
+
+            #endregion
 
             return new Size(size1.Width + size2.Width, size1.Height + size2.Height);
         }
@@ -111,10 +127,15 @@ namespace GTiff2Tiles.Core.Images
         /// <param name="size1"><see cref="Size"/> 1</param>
         /// <param name="size2"><see cref="Size"/> 2</param>
         /// <returns>New <see cref="Size"/></returns>
+        /// <exception cref="ArgumentNullException"/>
         public static Size operator -(Size size1, Size size2)
         {
+            #region Preconditions checks
+
             if (size1 == null) throw new ArgumentNullException(nameof(size1));
             if (size2 == null) throw new ArgumentNullException(nameof(size2));
+
+            #endregion
 
             return new Size(size1.Width - size2.Width, size1.Height - size2.Height);
         }
@@ -129,10 +150,15 @@ namespace GTiff2Tiles.Core.Images
         /// <param name="size1"><see cref="Size"/> 1</param>
         /// <param name="size2"><see cref="Size"/> 2</param>
         /// <returns>New <see cref="Size"/></returns>
+        /// <exception cref="ArgumentNullException"/>
         public static Size operator *(Size size1, Size size2)
         {
+            #region Preconditions checks
+
             if (size1 == null) throw new ArgumentNullException(nameof(size1));
             if (size2 == null) throw new ArgumentNullException(nameof(size2));
+
+            #endregion
 
             return new Size(size1.Width * size2.Width, size1.Height * size2.Height);
         }
@@ -147,10 +173,15 @@ namespace GTiff2Tiles.Core.Images
         /// <param name="size1"><see cref="Size"/> 1</param>
         /// <param name="size2"><see cref="Size"/> 2</param>
         /// <returns>New <see cref="Size"/></returns>
+        /// <exception cref="ArgumentNullException"/>
         public static Size operator /(Size size1, Size size2)
         {
+            #region Preconditions checks
+
             if (size1 == null) throw new ArgumentNullException(nameof(size1));
             if (size2 == null) throw new ArgumentNullException(nameof(size2));
+
+            #endregion
 
             return new Size(size1.Width / size2.Width, size1.Height / size2.Height);
         }

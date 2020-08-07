@@ -37,8 +37,11 @@ namespace GTiff2Tiles.Core.Coordinates
         #region Constructors
 
         /// <inheritdoc />
-        /// <param name="longitude"><see cref="Coordinate.X"/> or Longitude</param>
-        /// <param name="latitude"><see cref="Coordinate.Y"/> or Latitude</param>
+        /// <param name="longitude"><see cref="Coordinate.X"/> or Longitude
+        /// <remarks><para/>Must be in range [-20026376.39, 20026376.39]</remarks></param>
+        /// <param name="latitude"><see cref="Coordinate.Y"/> or Latitude
+        /// <remarks><para/>Must be in range [-20048966.10, 20048966.10]</remarks></param>
+        /// <exception cref="ArgumentOutOfRangeException"/>
         public MercatorCoordinate(double longitude, double latitude) : base(longitude, latitude)
         {
             if (longitude < MinPossibleLonValue || longitude > MaxPossibleLonValue)
@@ -52,8 +55,15 @@ namespace GTiff2Tiles.Core.Coordinates
         #region Methods
 
         /// <inheritdoc />
+        /// <exception cref="ArgumentOutOfRangeException"/>
         public override PixelCoordinate ToPixelCoordinate(int zoom, int tileSize)
         {
+            #region Preconditions checks
+
+            if (zoom < 0) throw new ArgumentOutOfRangeException(nameof(zoom));
+
+            #endregion
+
             double resolution = Resolution(zoom, tileSize);
 
             double px = (X + Constants.Geodesic.OriginShift) / resolution;
@@ -77,8 +87,15 @@ namespace GTiff2Tiles.Core.Coordinates
         }
 
         /// <inheritdoc cref="GeoCoordinate.Resolution(int, int, CoordinateSystem)"/>
+        /// <exception cref="ArgumentOutOfRangeException"/>
         public static double Resolution(int zoom, int tileSize)
         {
+            #region Preconditions checks
+
+            if (zoom < 0) throw new ArgumentOutOfRangeException(nameof(zoom));
+
+            #endregion
+
             //156543.03392804062 for tileSize = 256
             double initialResolution = 2.0 * Constants.Geodesic.OriginShift / tileSize;
 

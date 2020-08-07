@@ -6,7 +6,7 @@ using GTiff2Tiles.Core.Tiles;
 namespace GTiff2Tiles.Core.Coordinates
 {
     /// <summary>
-    /// Basic realisation of <see cref="ICoordinate"/> interface
+    /// Basic implementation of <see cref="ICoordinate"/> interface
     /// </summary>
     public class Coordinate : ICoordinate
     {

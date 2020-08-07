@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using GTiff2Tiles.Core.Coordinates;
 using GTiff2Tiles.Core.Enums;
 using GTiff2Tiles.Core.GeoTiffs;
@@ -10,6 +11,8 @@ using GTiff2Tiles.Core.Images;
 
 namespace GTiff2Tiles.Core.Tiles
 {
+    // TODO: add interpolation?
+
     /// <summary>
     /// <see cref="Raster"/> <see cref="Tile"/>
     /// </summary>
@@ -31,7 +34,6 @@ namespace GTiff2Tiles.Core.Tiles
 
         #region Constructors
 
-        /// <param name="bandsCount"><see cref="BandsCount"/></param>
         /// <inheritdoc cref="Tile(Number,CoordinateSystem,Size,IEnumerable{byte},TileExtension,bool)"/>
         /// <param name="number"></param>
         /// <param name="coordinateSystem"></param>
@@ -39,13 +41,25 @@ namespace GTiff2Tiles.Core.Tiles
         /// <param name="bytes"></param>
         /// <param name="extension"></param>
         /// <param name="tmsCompatible"></param>
+        /// <param name="bandsCount"><see cref="BandsCount"/>
+        /// <remarks><para/>Must be in range (0, 4];
+        /// <para/><see cref="DefaultBandsCount"/> by default</remarks></param>
+        /// <exception cref="ArgumentOutOfRangeException"/>
         public RasterTile(Number number, CoordinateSystem coordinateSystem,
                           Size size = null, IEnumerable<byte> bytes = null,
                           TileExtension extension = TileExtension.Png, bool tmsCompatible = false,
                           int bandsCount = DefaultBandsCount)
-            : base(number, coordinateSystem, size, bytes, extension, tmsCompatible) => BandsCount = bandsCount;
+            : base(number, coordinateSystem, size, bytes, extension, tmsCompatible)
+        {
+            #region Preconditions checks
 
-        /// <param name="bandsCount"><see cref="BandsCount"/></param>
+            if (bandsCount <= 0 || bandsCount > 4) throw new ArgumentOutOfRangeException(nameof(bandsCount));
+
+            #endregion
+
+            BandsCount = bandsCount;
+        }
+
         /// <inheritdoc cref="Tile(GeoCoordinate,GeoCoordinate,int,Size,IEnumerable{byte},TileExtension,bool)"/>
         /// <param name="minCoordinate"></param>
         /// <param name="maxCoordinate"></param>
@@ -54,11 +68,24 @@ namespace GTiff2Tiles.Core.Tiles
         /// <param name="bytes"></param>
         /// <param name="extension"></param>
         /// <param name="tmsCompatible"></param>
+        /// <param name="bandsCount"><see cref="BandsCount"/>
+        /// <remarks><para/>Must be in range (0, 4];
+        /// <para/><see cref="DefaultBandsCount"/> by default</remarks></param>
+        /// <exception cref="ArgumentOutOfRangeException"/>
         public RasterTile(GeoCoordinate minCoordinate, GeoCoordinate maxCoordinate, int zoom,
                           Size size = null, IEnumerable<byte> bytes = null,
                           TileExtension extension = TileExtension.Png,
                           bool tmsCompatible = false, int bandsCount = DefaultBandsCount)
-            : base(minCoordinate, maxCoordinate, zoom, size, bytes, extension, tmsCompatible) => BandsCount = bandsCount;
+            : base(minCoordinate, maxCoordinate, zoom, size, bytes, extension, tmsCompatible)
+        {
+            #region Preconditions checks
+
+            if (bandsCount <= 0 || bandsCount > 4) throw new ArgumentOutOfRangeException(nameof(bandsCount));
+
+            #endregion
+
+            BandsCount = bandsCount;
+        }
 
         #endregion
     }

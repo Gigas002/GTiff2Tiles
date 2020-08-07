@@ -2,6 +2,7 @@
 
 namespace GTiff2Tiles.Core.Constants
 {
+    // TODO enum
     /// <summary>
     /// Represents the interpolation algorithms
     /// </summary>

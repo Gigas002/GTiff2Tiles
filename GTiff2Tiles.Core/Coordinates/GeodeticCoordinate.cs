@@ -48,8 +48,11 @@ namespace GTiff2Tiles.Core.Coordinates
         #region Constructors
 
         /// <inheritdoc />
-        /// <param name="longitude"><see cref="Coordinate.X"/> or Longitude</param>
-        /// <param name="latitude"><see cref="Coordinate.Y"/> or Latitude</param>
+        /// <param name="longitude"><see cref="Coordinate.X"/> or Longitude
+        /// <remarks><para/>Must be in range [-180.0, 180.0]</remarks></param>
+        /// <param name="latitude"><see cref="Coordinate.Y"/> or Latitude
+        /// <remarks><para/>Must be in range [-90.0, 90.0]</remarks></param>
+        /// <exception cref="ArgumentOutOfRangeException"/>
         public GeodeticCoordinate(double longitude, double latitude) : base(longitude, latitude)
         {
             if (longitude < MinPossibleLonValue || longitude > MaxPossibleLonValue)
@@ -63,8 +66,15 @@ namespace GTiff2Tiles.Core.Coordinates
         #region Methods
 
         /// <inheritdoc />
+        /// <exception cref="ArgumentOutOfRangeException"/>
         public override PixelCoordinate ToPixelCoordinate(int zoom, int tileSize)
         {
+            #region Preconditions checks
+
+            if (zoom < 0) throw new ArgumentOutOfRangeException(nameof(zoom));
+
+            #endregion
+
             double resolution = Resolution(zoom, tileSize);
 
             double pixelX = (180.0 + X) / resolution;
@@ -87,8 +97,15 @@ namespace GTiff2Tiles.Core.Coordinates
         }
 
         /// <inheritdoc cref="GeoCoordinate.Resolution(int, int, CoordinateSystem)"/>
+        /// <exception cref="ArgumentOutOfRangeException"/>
         public static double Resolution(int zoom, int tileSize)
         {
+            #region Preconditions checks
+
+            if (zoom < 0) throw new ArgumentOutOfRangeException(nameof(zoom));
+
+            #endregion
+
             double resFactor = 180.0 / tileSize;
 
             return resFactor / Math.Pow(2, zoom);

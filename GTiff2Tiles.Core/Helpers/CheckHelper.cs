@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using GTiff2Tiles.Core.Enums;
+using GTiff2Tiles.Core.Exceptions;
 
 namespace GTiff2Tiles.Core.Helpers
 {
@@ -21,36 +22,34 @@ namespace GTiff2Tiles.Core.Helpers
         /// Checks, if file's path is not empty string and file exists, if it should
         /// </summary>
         /// <param name="filePath">File's path to check</param>
-        /// <param name="shouldExist">Should it exist?
-        /// <remarks><para/>If set <see keyword="null"/>, existance doesn't check</remarks></param>
+        /// <param name="checkExistance">Do you want to check if file exists?
+        /// <remarks><para/><see langword="true"/> by default</remarks></param>
         /// <param name="fileExtension">Checks file extension
-        /// <remarks><para/>If set <see keyword="null"/>, extension doesn't check</remarks></param>
-        /// <returns><see langword="true"/> if everything is OK;
-        /// <para/><see langword="false"/> otherwise</returns>
-        public static bool CheckFile(string filePath, bool? shouldExist = null, string? fileExtension = null)
+        /// <remarks><para/>If set to <see keyword="null"/>, extension doesn't check</remarks></param>
+        /// <exception cref="ArgumentNullException"/>
+        /// <exception cref="ArgumentException"/>
+        /// <exception cref="FileNotFoundException"/>
+        public static void CheckFile(string filePath, bool checkExistance = true, string? fileExtension = null)
         {
             // Check file path
-            if (string.IsNullOrWhiteSpace(filePath)) return false;
+            if (string.IsNullOrWhiteSpace(filePath)) throw new ArgumentNullException(nameof(filePath));
 
             // Check file extension
             if (!string.IsNullOrWhiteSpace(fileExtension))
             {
                 string? actualExtension = Path.GetExtension(filePath);
 
-                if (actualExtension != fileExtension) return false;
+                if (actualExtension != fileExtension) throw new ArgumentException($"Expected {fileExtension}, was {actualExtension}", nameof(fileExtension));
             }
 
             // Check file's existance
             bool existance = File.Exists(filePath);
 
-            switch (shouldExist)
+            switch (checkExistance)
             {
                 case true when !existance:
-                case false when existance:
-                    return false;
+                    throw new FileNotFoundException("File doesn't exist", filePath);
             }
-
-            return true;
         }
 
         /// <summary>
@@ -60,12 +59,12 @@ namespace GTiff2Tiles.Core.Helpers
         /// <param name="directoryPath">Directory's path to check</param>
         /// <param name="shouldBeEmpty">Should directory be empty?
         /// <remarks><para/>If set <see keyword="null"/>, emptyness doesn't check</remarks></param>
-        /// <returns><see langword="true"/> if everything is OK;
-        /// <para/><see langword="false"/> otherwise</returns>
-        public static bool CheckDirectory(string? directoryPath, bool? shouldBeEmpty = null)
+        /// <exception cref="ArgumentNullException"/>
+        /// <exception cref="DirectoryException"/>
+        public static void CheckDirectory(string? directoryPath, bool? shouldBeEmpty = null)
         {
             // Check directory's path
-            if (string.IsNullOrWhiteSpace(directoryPath)) return false;
+            if (string.IsNullOrWhiteSpace(directoryPath)) throw new ArgumentNullException(nameof(directoryPath));
 
             // Try to create directory
             DirectoryInfo directoryInfo = Directory.CreateDirectory(directoryPath);
@@ -76,11 +75,10 @@ namespace GTiff2Tiles.Core.Helpers
             switch (shouldBeEmpty)
             {
                 case true when containsAny:
+                    throw new DirectoryException($"Directory should be empty: {shouldBeEmpty}, actual status: {containsAny}");
                 case false when !containsAny:
-                    return false;
+                    throw new DirectoryException($"Directory should be empty: {shouldBeEmpty}, actual status: {containsAny}");
             }
-
-            return true;
         }
 
         /// <summary>
@@ -92,16 +90,16 @@ namespace GTiff2Tiles.Core.Helpers
         /// <para/><see langword="false"/> otherwise</returns>
         public static async ValueTask<bool> CheckInputFileAsync(string inputFilePath, CoordinateSystem targetSystem)
         {
-            if (!CheckFile(inputFilePath, true)) return false;
+            // File's path checked in other methods, so checking it here is not necessary
 
             // Get proj and gdalInfo strings
             string projString = await GdalWorker.GetProjStringAsync(inputFilePath).ConfigureAwait(false);
-            string gdalInfoString = await GdalWorker.InfoAsync(inputFilePath).ConfigureAwait(false);
             CoordinateSystem inputSystem = GdalWorker.GetCoordinateSystem(projString);
+            string gdalInfoString = await GdalWorker.InfoAsync(inputFilePath).ConfigureAwait(false);
 
             // Check if input image is ready for cropping
-            return inputSystem == targetSystem && gdalInfoString.Contains(GdalWorker.Byte,
-                                                                          StringComparison.InvariantCulture);
+            return inputSystem == targetSystem &&
+                   gdalInfoString.Contains(GdalWorker.Byte, StringComparison.InvariantCulture);
         }
 
         #endregion

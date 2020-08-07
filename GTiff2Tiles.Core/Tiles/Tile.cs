@@ -1,20 +1,16 @@
-﻿#pragma warning disable CA1031 // Do not catch general exception types
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using GTiff2Tiles.Core.Constants;
 using GTiff2Tiles.Core.Coordinates;
 using GTiff2Tiles.Core.Enums;
-using GTiff2Tiles.Core.Exceptions;
 using GTiff2Tiles.Core.Helpers;
 using GTiff2Tiles.Core.Images;
 
 // ReSharper disable VirtualMemberNeverOverridden.Global
 // ReSharper disable UnusedMember.Global
 // ReSharper disable MemberCanBePrivate.Global
-// ReSharper disable ClassWithVirtualMembersNeverInherited.Global
 
 namespace GTiff2Tiles.Core.Tiles
 {
@@ -32,6 +28,8 @@ namespace GTiff2Tiles.Core.Tiles
 
         /// <summary>
         /// Default <see cref="Tile"/>'s <see cref="Images.Size"/>
+        /// <remarks><para/>Uses <see cref="DefaultSideSizeValue"/>
+        /// as values for width and height</remarks>
         /// </summary>
         public static readonly Size DefaultSize = new Size(DefaultSideSizeValue, DefaultSideSizeValue);
 
@@ -78,18 +76,20 @@ namespace GTiff2Tiles.Core.Tiles
         /// <param name="number"><see cref="Number"/></param>
         /// <param name="coordinateSystem">Desired coordinate system</param>
         /// <param name="size"><see cref="Size"/>;
-        /// <remarks>should be a square, e.g. 256x256</remarks></param>
+        /// <remarks>should be a square, e.g. 256x256;
+        /// <para/>If set to <see langword="null"/>, uses <see cref="DefaultSize"/>
+        /// as value</remarks></param>
         /// <param name="bytes"><see cref="Bytes"/></param>
         /// <param name="extension"><see cref="Extension"/></param>
         /// <param name="tmsCompatible">Is tms compatible?</param>
-        /// <exception cref="TileException"></exception>
+        /// <exception cref="ArgumentException"/>
         protected Tile(Number number, CoordinateSystem coordinateSystem, Size size = null,
                        IEnumerable<byte> bytes = null, TileExtension extension = TileExtension.Png,
                        bool tmsCompatible = false)
         {
             (Number, Bytes, Extension, TmsCompatible, Size) = (number, bytes, extension, tmsCompatible, size ?? DefaultSize);
 
-            if (!CheckSize()) throw new TileException();
+            if (!Size.IsSquare) throw new ArgumentException("This tile is not square", nameof(size));
 
             (MinCoordinate, MaxCoordinate) = Number.ToGeoCoordinates(coordinateSystem, Size, tmsCompatible);
         }
@@ -97,34 +97,36 @@ namespace GTiff2Tiles.Core.Tiles
         /// <summary>
         /// Creates new <see cref="Tile"/> from <see cref="GeoCoordinate"/> values
         /// </summary>
-        /// <param name="minCoordinate">Minimum <see cref="GeoCoordinate"/></param>
-        /// <param name="maxCoordinate">Maximum <see cref="GeoCoordinate"/></param>
+        /// <param name="minCoordinate">Minimal <see cref="GeoCoordinate"/></param>
+        /// <param name="maxCoordinate">Maximal <see cref="GeoCoordinate"/></param>
         /// <param name="zoom">Zoom</param>
         /// <param name="size"><see cref="Size"/>;
-        /// <remarks>should be a square, e.g. 256x256</remarks></param>
+        /// <remarks>should be a square, e.g. 256x256;
+        /// <para/>If set to <see langword="null"/>, uses <see cref="DefaultSize"/>
+        /// as value</remarks></param>
         /// <param name="bytes"><see cref="Bytes"/></param>
         /// <param name="extension"><see cref="Extension"/></param>
         /// <param name="tmsCompatible">Is tms compatible?</param>
-        /// <exception cref="TileException"></exception>
+        /// <exception cref="ArgumentException"/>
         protected Tile(GeoCoordinate minCoordinate, GeoCoordinate maxCoordinate, int zoom, Size size = null,
                        IEnumerable<byte> bytes = null, TileExtension extension = TileExtension.Png,
                        bool tmsCompatible = false)
         {
             Size = size ?? DefaultSize;
 
-            if (!CheckSize()) throw new TileException();
+            if (!Size.IsSquare) throw new ArgumentException("This tile is not square", nameof(size));
 
             (Number minNumber, Number maxNumber) = GeoCoordinate.GetNumbers(minCoordinate, maxCoordinate, zoom, Size.Width, tmsCompatible);
 
             if (!minNumber.Equals(maxNumber))
-                throw new TileException();
+                throw new ArgumentException("Passed coordinates doesn't fit in one tile");
 
             (Number, Bytes, Extension, TmsCompatible) = (minNumber, bytes, extension, tmsCompatible);
             (MinCoordinate, MaxCoordinate) = (minCoordinate, maxCoordinate);
         }
 
         /// <summary>
-        /// Calls <see cref="Dispose(bool)"/> on this <see cref="Tile"/>.
+        /// Calls <see cref="Dispose(bool)"/> on this <see cref="Tile"/>
         /// </summary>
         ~Tile() => Dispose(false);
 
@@ -149,7 +151,7 @@ namespace GTiff2Tiles.Core.Tiles
 
             if (disposing)
             {
-                // Occurs only if called by programmer. Dispose static things here.
+                // Occurs only if called by programmer. Dispose static things here
             }
 
             Bytes = null;
@@ -160,6 +162,8 @@ namespace GTiff2Tiles.Core.Tiles
         /// <inheritdoc />
         public ValueTask DisposeAsync()
         {
+#pragma warning disable CA1031 // Do not catch general exception types
+
             try
             {
                 Dispose();
@@ -169,30 +173,12 @@ namespace GTiff2Tiles.Core.Tiles
             catch (Exception exception)
             {
                 //Weird issue -- Doesn't work in CI
-                //return ValueTask.FromException(exception);
-                return new ValueTask(Task.FromException(exception));
+                // TODO: test in CI
+                return ValueTask.FromException(exception);
+                //return new ValueTask(Task.FromException(exception));
             }
-        }
 
-        #endregion
-
-        #region CheckSize
-
-        /// <summary>
-        /// Check if <see cref="ITile"/> is a square
-        /// </summary>
-        /// <returns><see langword="true"/> if it is a square;
-        /// <see langword="false"/> otherwise</returns>
-        public bool CheckSize() => CheckSize(this);
-
-        /// <inheritdoc cref="CheckSize()"/>
-        /// <param name="tile"><see cref="ITile"/> to check</param>
-        /// <returns></returns>
-        public static bool CheckSize(ITile tile)
-        {
-            if (tile == null) throw new ArgumentNullException(nameof(tile));
-
-            return tile.Size.Width == tile.Size.Height;
+#pragma warning restore CA1031 // Do not catch general exception types
         }
 
         #endregion
@@ -209,7 +195,9 @@ namespace GTiff2Tiles.Core.Tiles
         {
             if (tile?.Bytes == null || tile.Bytes.Count() <= tile.MinimalBytesCount) return false;
 
-            return !isCheckPath || CheckHelper.CheckFile(tile.Path);
+            if (isCheckPath) CheckHelper.CheckFile(tile.Path);
+
+            return true;
         }
 
         #endregion
@@ -222,12 +210,17 @@ namespace GTiff2Tiles.Core.Tiles
         /// <inheritdoc cref="CalculatePosition()"/>
         /// <param name="number"><see cref="Tiles.Number"/> of <see cref="Tile"/></param>
         /// <param name="tmsCompatible">Is tms compatible?</param>
+        /// <exception cref="ArgumentNullException"/>
         public static int CalculatePosition(Number number, bool tmsCompatible)
         {
             // 0 1
             // 2 3
 
+            #region Preconditions checks
+
             if (number == null) throw new ArgumentNullException(nameof(number));
+
+            #endregion
 
             int tilePosition;
 
@@ -254,6 +247,7 @@ namespace GTiff2Tiles.Core.Tiles
 
         /// <param name="extension"><see cref="TileExtension"/> to convert</param>
         /// <inheritdoc cref="GetExtensionString()"/>
+        /// <exception cref="ArgumentOutOfRangeException"/>
         public static string GetExtensionString(TileExtension extension) => extension switch
         {
             TileExtension.Png => FileExtensions.Png,
@@ -267,5 +261,3 @@ namespace GTiff2Tiles.Core.Tiles
         #endregion
     }
 }
-
-#pragma warning restore CA1031 // Do not catch general exception types

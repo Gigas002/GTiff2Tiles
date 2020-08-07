@@ -14,6 +14,8 @@ using OSGeo.OGR;
 
 // ReSharper disable PossibleNullReferenceException
 
+// TODO: Remove and use class from Gdal.Netcore repo
+
 namespace GTiff2Tiles.Core.Helpers
 {
     /// <summary>
@@ -87,6 +89,10 @@ namespace GTiff2Tiles.Core.Helpers
 
                     Gdal.SetConfigOption("GDAL_DRIVER_PATH", driversPath);
                 }
+            }
+            else if (!RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+            {
+                throw new PlatformNotSupportedException("Current platform is not supported");
             }
 
             // TODO: Cyrillic paths for GdalBuildVrt
