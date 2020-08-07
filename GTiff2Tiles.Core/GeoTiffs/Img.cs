@@ -38,12 +38,13 @@ namespace GTiff2Tiles.Core.GeoTiffs
         {
             //This is example.
             //TODO: Better exception-handling
-            await using IGeoTiff image = tileType switch
-            {
-                TileType.Raster => new Raster(inputFileInfo?.FullName, targetSystem),
-                //TileType.Terrain => new Image(inputFileInfo),
-                _ => throw new Exception()
-            };
+            //await using IGeoTiff image = tileType switch
+            //{
+            //    TileType.Raster => new Raster(inputFileInfo?.FullName, targetSystem),
+            //    //TileType.Terrain => new Image(inputFileInfo),
+            //    _ => throw new Exception()
+            //};
+            await using Raster image = new Raster(inputFileInfo?.FullName, targetSystem);
 
             string tileExtensionString = tileExtension switch
             {

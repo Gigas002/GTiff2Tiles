@@ -234,7 +234,15 @@ namespace GTiff2Tiles.Core.GeoTiffs
 
         #region WriteTile
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// Gets data from source <see cref="Image"/>
+        /// or tile cache for specified <see cref="RasterTile"/>
+        /// and writes it to ready file
+        /// </summary>
+        /// <param name="tileCache">Source <see cref="Image"/>
+        /// or tile cache</param>
+        /// <param name="tile">Target <see cref="RasterTile"/></param>
+        /// <param name="interpolation">Interpolation of ready tiles</param>
         public void WriteTileToFile(Image tileCache, RasterTile tile, string interpolation)
         {
             using Image tileImage = CreateTileImage(tileCache, tile, interpolation);
@@ -243,11 +251,20 @@ namespace GTiff2Tiles.Core.GeoTiffs
             tileImage.WriteToFile(tile.Path);
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc cref="WriteTileToFile"/>
         public Task WriteTileToFileAsync(Image tileCache, RasterTile tile, string interpolation) =>
             Task.Run(() => WriteTileToFile(tileCache, tile, interpolation));
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// Gets data from source <see cref="Image"/>
+        /// or tile cache for specified <see cref="RasterTile"/>
+        /// and writes it to <see cref="IEnumerable{T}"/>
+        /// </summary>
+        /// <param name="tileCache">Source <see cref="Image"/>
+        /// or tile cache</param>
+        /// <param name="tile">Target <see cref="RasterTile"/></param>
+        /// <param name="interpolation">Interpolation of ready tiles</param>
+        /// <returns><see cref="RasterTile"/>'s <see cref="byte"/>s</returns>
         public IEnumerable<byte> WriteTileToEnumerable(Image tileCache, RasterTile tile,
                                                        string interpolation)
         {
@@ -257,7 +274,18 @@ namespace GTiff2Tiles.Core.GeoTiffs
             return tileImage.WriteToMemory();
         }
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// Gets data from source <see cref="Image"/>
+        /// or tile cache for specified <see cref="RasterTile"/>
+        /// and writes it to <see cref="ChannelWriter{T}"/>
+        /// </summary>
+        /// <param name="tileCache">Source <see cref="Image"/>
+        /// or tile cache</param>
+        /// <param name="tile">Target <see cref="RasterTile"/></param>
+        /// <param name="channelWriter">Target <see cref="ChannelWriter{T}"/></param>
+        /// <param name="interpolation">Interpolation of ready tiles</param>
+        /// <returns><see langword="true"/> if <see cref="ITile"/> was written;
+        /// <see langword="false"/> otherwise</returns>
         public bool WriteTileToChannel(Image tileCache, RasterTile tile, ChannelWriter<ITile> channelWriter,
                                        string interpolation)
         {
@@ -270,7 +298,8 @@ namespace GTiff2Tiles.Core.GeoTiffs
             return tile.Validate(false) && channelWriter.TryWrite(tile);
         }
 
-        /// <inheritdoc/>
+        /// <returns></returns>
+        /// <inheritdoc cref="WriteTileToChannel"/>
         public ValueTask WriteTileToChannelAsync(Image tileCache, RasterTile tile,
                                                  ChannelWriter<ITile> channelWriter, string interpolation)
         {
@@ -288,7 +317,7 @@ namespace GTiff2Tiles.Core.GeoTiffs
 
         #region WriteTiles
 
-        /// <inheritdoc />
+        /// <inheritdoc cref="WriteTilesToDirectoryAsync"/>
         public void WriteTilesToDirectory(string outputDirectoryPath, int minZ, int maxZ,
                                           bool tmsCompatible = false, Size tileSize = null,
                                           string tileExtension = FileExtensions.Png,
@@ -367,7 +396,25 @@ namespace GTiff2Tiles.Core.GeoTiffs
             }
         }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Crops current <see cref="RasterTile"/> on <see cref="RasterTile"/>s
+        /// and writes them to <paramref name="outputDirectoryPath"/>
+        /// </summary>
+        /// <param name="outputDirectoryPath">Directory for output <see cref="RasterTile"/>s</param>
+        /// <param name="tileExtension">Extension of ready <see cref="RasterTile"/>s
+        /// <remarks><para/>.png by default</remarks></param>
+        /// <returns></returns>
+        /// <inheritdoc cref="WriteTilesToAsyncEnumerable"/>
+        /// <param name="minZ"></param>
+        /// <param name="maxZ"></param>
+        /// <param name="tmsCompatible"></param>
+        /// <param name="tileSize"></param>
+        /// <param name="interpolation"></param>
+        /// <param name="bandsCount"></param>
+        /// <param name="tileCacheCount"></param>
+        /// <param name="threadsCount">T</param>
+        /// <param name="progress"></param>
+        /// <param name="isPrintEstimatedTime"></param>
         public Task WriteTilesToDirectoryAsync(string outputDirectoryPath, int minZ, int maxZ,
                                                bool tmsCompatible = false, Size tileSize = null,
                                                string tileExtension = FileExtensions.Png,
@@ -380,7 +427,7 @@ namespace GTiff2Tiles.Core.GeoTiffs
                                                  tileExtension, interpolation, bandsCount, tileCacheCount,
                                                  threadsCount, progress, isPrintEstimatedTime));
 
-        /// <inheritdoc />
+        /// <inheritdoc cref="WriteTilesToChannelAsync"/>
         public void WriteTilesToChannel(ChannelWriter<ITile> channelWriter, int minZ, int maxZ,
                                         bool tmsCompatible = false, Size tileSize = null,
                                         string interpolation = Interpolations.Lanczos3,
@@ -448,19 +495,40 @@ namespace GTiff2Tiles.Core.GeoTiffs
             }
         }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Crops current <see cref="Raster"/> on <see cref="ITile"/>s
+        /// and writes them to <paramref name="channelWriter"/>
+        /// </summary>
+        /// <param name="channelWriter"><see cref="Channel"/> to write <see cref="ITile"/> to</param>
+        /// <returns></returns>
+        /// <inheritdoc cref="WriteTilesToAsyncEnumerable"/>
+        /// <param name="minZ"></param>
+        /// <param name="maxZ"></param>
+        /// <param name="tmsCompatible"></param>
+        /// <param name="tileSize"></param>
+        /// <param name="interpolation"></param>
+        /// <param name="bandsCount"></param>
+        /// <param name="tileCacheCount"></param>
+        /// <param name="threadsCount"></param>
+        /// <param name="progress"></param>
+        /// <param name="isPrintEstimatedTime"></param>
         public Task WriteTilesToChannelAsync(ChannelWriter<ITile> channelWriter, int minZ, int maxZ,
-                                                        bool tmsCompatible = false, Size tileSize = null,
-                                                        string interpolation = Interpolations.Lanczos3,
-                                                        int bandsCount = RasterTile.DefaultBandsCount,
-                                                        int tileCacheCount = 1000, int threadsCount = 0,
-                                                        IProgress<double> progress = null,
-                                                        bool isPrintEstimatedTime = false) =>
+                                             bool tmsCompatible = false, Size tileSize = null,
+                                             string interpolation = Interpolations.Lanczos3,
+                                             int bandsCount = RasterTile.DefaultBandsCount,
+                                             int tileCacheCount = 1000, int threadsCount = 0,
+                                             IProgress<double> progress = null,
+                                             bool isPrintEstimatedTime = false) =>
             Task.Run(() => WriteTilesToChannel(channelWriter, minZ, maxZ, tmsCompatible, tileSize,
                                                interpolation, bandsCount, tileCacheCount, threadsCount,
                                                progress, isPrintEstimatedTime));
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Crops current <see cref="Raster"/> on <see cref="ITile"/>s
+        /// and writes them to <see cref="IEnumerable{T}"/>
+        /// </summary>
+        /// <returns><see cref="IEnumerable{T}"/> of <see cref="ITile"/>s</returns>
+        /// <inheritdoc cref="WriteTilesToAsyncEnumerable"/>
         public IEnumerable<ITile> WriteTilesToEnumerable(int minZ, int maxZ,
                                                          bool tmsCompatible = false, Size tileSize = null,
                                                          string interpolation = Interpolations.Lanczos3,
@@ -524,7 +592,29 @@ namespace GTiff2Tiles.Core.GeoTiffs
             }
         }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Crops current <see cref="Raster"/> on <see cref="ITile"/>s
+        /// and writes them to <see cref="IAsyncEnumerable{T}"/>
+        /// </summary>
+        /// <param name="minZ">Minimum cropped zoom</param>
+        /// <param name="maxZ">Maximum cropped zoom</param>
+        /// <param name="tmsCompatible">Do you want to create tms-compatible <see cref="ITile"/>s?
+        /// <remarks><para/><see langword="false"/> by default</remarks></param>
+        /// <param name="tileSize"><see cref="Images.Size"/> of <see cref="ITile"/>s
+        /// <remarks><para/>256x256 by default</remarks></param>
+        /// <param name="interpolation">Interpolation of ready tiles
+        /// <remarks><para/><see cref="Interpolations.Lanczos3"/> by default</remarks></param>
+        /// <param name="bandsCount">Count of <see cref="Band"/>s in ready <see cref="ITile"/>s
+        /// <remarks><para/>4 by default</remarks></param>
+        /// <param name="tileCacheCount">Count of <see cref="ITile"/> to be in cache
+        /// <remarks><para/>1000 by default</remarks></param>
+        /// <param name="threadsCount">Threads count
+        /// <remarks><para/>Calculates automatically by default</remarks></param>
+        /// <param name="progress">Progress-reporter
+        /// <remarks><para/><see langword="null"/> by default</remarks></param>
+        /// <param name="isPrintEstimatedTime">Do you want to see estimated time left?
+        /// <remarks><para/><see langword="false"/> by default</remarks></param>
+        /// <returns><see cref="IAsyncEnumerable{T}"/> of <see cref="ITile"/>s</returns>
         public IAsyncEnumerable<ITile> WriteTilesToAsyncEnumerable(int minZ, int maxZ,
                                                                    bool tmsCompatible = false, Size tileSize = null,
                                                                    string interpolation = Interpolations.Lanczos3,
