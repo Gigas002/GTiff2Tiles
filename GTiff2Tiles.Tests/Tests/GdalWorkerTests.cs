@@ -244,7 +244,7 @@ namespace GTiff2Tiles.Tests.Tests
                 File.Create(outPath);
                 await GdalWorker.WarpAsync(inPath, outPath, options.ToArray(), progress);
             }
-            catch (ApplicationException)
+            catch (Exception)
             {
                 Assert.Pass();
             }
@@ -565,7 +565,7 @@ namespace GTiff2Tiles.Tests.Tests
                 File.Create(outPath);
                 await GdalWorker.ConvertGeoTiffToTargetSystemAsync(inPath, outPath, cs, progress);
             }
-            catch (ApplicationException)
+            catch (Exception)
             {
                 Assert.Pass();
             }
