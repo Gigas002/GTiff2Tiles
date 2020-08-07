@@ -1,5 +1,4 @@
-﻿using GTiff2Tiles.Core.GeoTiffs;
-using GTiff2Tiles.Core.Images;
+﻿using GTiff2Tiles.Core.Images;
 using GTiff2Tiles.Core.Tiles;
 using NUnit.Framework;
 

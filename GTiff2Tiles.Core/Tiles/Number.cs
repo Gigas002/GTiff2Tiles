@@ -2,7 +2,6 @@
 using System.Linq;
 using GTiff2Tiles.Core.Coordinates;
 using GTiff2Tiles.Core.Enums;
-using GTiff2Tiles.Core.GeoTiffs;
 using GTiff2Tiles.Core.Images;
 
 // ReSharper disable UnusedMember.Global

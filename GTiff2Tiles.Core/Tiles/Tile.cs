@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using GTiff2Tiles.Core.Coordinates;
 using GTiff2Tiles.Core.Enums;
 using GTiff2Tiles.Core.Exceptions;
-using GTiff2Tiles.Core.GeoTiffs;
 using GTiff2Tiles.Core.Helpers;
 using GTiff2Tiles.Core.Images;
 
