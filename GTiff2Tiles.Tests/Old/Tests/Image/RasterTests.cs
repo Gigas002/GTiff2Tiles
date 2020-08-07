@@ -8,12 +8,12 @@ using GTiff2Tiles.Core.Constants;
 using GTiff2Tiles.Core.Enums;
 using GTiff2Tiles.Core.GeoTiffs;
 using GTiff2Tiles.Core.Helpers;
-using GTiff2Tiles.Tests.Constants;
+using GTiff2Tiles.Tests.Old.Constants;
 using NUnit.Framework;
 
 // ReSharper disable ConditionIsAlwaysTrueOrFalse
 
-namespace GTiff2Tiles.Tests.Tests.Image
+namespace GTiff2Tiles.Tests.Old.Tests.Image
 {
     public sealed class RasterTests
     {

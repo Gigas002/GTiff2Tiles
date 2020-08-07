@@ -1,9 +1,9 @@
 ﻿using System;
 using System.IO;
 using System.Reflection;
-using GTiff2Tiles.Tests.Constants;
+using GTiff2Tiles.Tests.Old.Constants;
 
-namespace GTiff2Tiles.Tests.Helpers
+namespace GTiff2Tiles.Tests.Old.Helpers
 {
     internal static class TestHelper
     {

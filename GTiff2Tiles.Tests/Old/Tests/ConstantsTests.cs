@@ -7,7 +7,7 @@ using NUnit.Framework;
 // ReSharper disable UnusedVariable
 #pragma warning disable 219
 
-namespace GTiff2Tiles.Tests.Tests
+namespace GTiff2Tiles.Tests.Old.Tests
 {
     public sealed class ConstantsTests
     {

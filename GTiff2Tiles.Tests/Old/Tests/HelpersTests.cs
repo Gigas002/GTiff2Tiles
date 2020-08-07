@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 using GTiff2Tiles.Core.Constants;
 using GTiff2Tiles.Core.Enums;
 using GTiff2Tiles.Core.Helpers;
-using GTiff2Tiles.Tests.Constants;
+using GTiff2Tiles.Tests.Old.Constants;
 using NUnit.Framework;
 
-namespace GTiff2Tiles.Tests.Tests
+namespace GTiff2Tiles.Tests.Old.Tests
 {
     public sealed class HelpersTests
     {

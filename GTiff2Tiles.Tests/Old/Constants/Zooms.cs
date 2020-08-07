@@ -1,4 +1,4 @@
-﻿namespace GTiff2Tiles.Tests.Constants
+﻿namespace GTiff2Tiles.Tests.Old.Constants
 {
     internal static class Zooms
     {

@@ -2,7 +2,7 @@
 using GTiff2Tiles.Core.Tiles;
 using NUnit.Framework;
 
-namespace GTiff2Tiles.Tests.Tests
+namespace GTiff2Tiles.Tests.Old.Tests
 {
     public sealed class TmpTests
     {
