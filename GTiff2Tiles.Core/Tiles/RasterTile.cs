@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using GTiff2Tiles.Core.Constants;
 using GTiff2Tiles.Core.Coordinates;
 using GTiff2Tiles.Core.Enums;
 using GTiff2Tiles.Core.GeoTiffs;
@@ -33,7 +32,7 @@ namespace GTiff2Tiles.Core.Tiles
         #region Constructors
 
         /// <param name="bandsCount"><see cref="BandsCount"/></param>
-        /// <inheritdoc cref="Tile(Number,CoordinateSystem,Size,IEnumerable{byte},string,bool)"/>
+        /// <inheritdoc cref="Tile(Number,CoordinateSystem,Size,IEnumerable{byte},TileExtension,bool)"/>
         /// <param name="number"></param>
         /// <param name="coordinateSystem"></param>
         /// <param name="size"></param>
@@ -42,12 +41,12 @@ namespace GTiff2Tiles.Core.Tiles
         /// <param name="tmsCompatible"></param>
         public RasterTile(Number number, CoordinateSystem coordinateSystem,
                           Size size = null, IEnumerable<byte> bytes = null,
-                          string extension = FileExtensions.Png, bool tmsCompatible = false,
+                          TileExtension extension = TileExtension.Png, bool tmsCompatible = false,
                           int bandsCount = DefaultBandsCount)
             : base(number, coordinateSystem, size, bytes, extension, tmsCompatible) => BandsCount = bandsCount;
 
         /// <param name="bandsCount"><see cref="BandsCount"/></param>
-        /// <inheritdoc cref="Tile(GeoCoordinate,GeoCoordinate,int,Size,IEnumerable{byte},string,bool)"/>
+        /// <inheritdoc cref="Tile(GeoCoordinate,GeoCoordinate,int,Size,IEnumerable{byte},TileExtension,bool)"/>
         /// <param name="minCoordinate"></param>
         /// <param name="maxCoordinate"></param>
         /// <param name="zoom"></param>
@@ -57,7 +56,7 @@ namespace GTiff2Tiles.Core.Tiles
         /// <param name="tmsCompatible"></param>
         public RasterTile(GeoCoordinate minCoordinate, GeoCoordinate maxCoordinate, int zoom,
                           Size size = null, IEnumerable<byte> bytes = null,
-                          string extension = FileExtensions.Png,
+                          TileExtension extension = TileExtension.Png,
                           bool tmsCompatible = false, int bandsCount = DefaultBandsCount)
             : base(minCoordinate, maxCoordinate, zoom, size, bytes, extension, tmsCompatible) => BandsCount = bandsCount;
 

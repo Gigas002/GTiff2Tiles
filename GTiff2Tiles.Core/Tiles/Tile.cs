@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using GTiff2Tiles.Core.Constants;
 using GTiff2Tiles.Core.Coordinates;
 using GTiff2Tiles.Core.Enums;
 using GTiff2Tiles.Core.Exceptions;
@@ -62,7 +63,7 @@ namespace GTiff2Tiles.Core.Tiles
         public string Path { get; set; }
 
         /// <inheritdoc />
-        public string Extension { get; }
+        public TileExtension Extension { get; }
 
         /// <inheritdoc />
         public bool TmsCompatible { get; }
@@ -83,7 +84,7 @@ namespace GTiff2Tiles.Core.Tiles
         /// <param name="tmsCompatible">Is tms compatible?</param>
         /// <exception cref="TileException"></exception>
         protected Tile(Number number, CoordinateSystem coordinateSystem, Size size = null,
-                       IEnumerable<byte> bytes = null, string extension = Constants.FileExtensions.Png,
+                       IEnumerable<byte> bytes = null, TileExtension extension = TileExtension.Png,
                        bool tmsCompatible = false)
         {
             (Number, Bytes, Extension, TmsCompatible, Size) = (number, bytes, extension, tmsCompatible, size ?? DefaultSize);
@@ -106,7 +107,7 @@ namespace GTiff2Tiles.Core.Tiles
         /// <param name="tmsCompatible">Is tms compatible?</param>
         /// <exception cref="TileException"></exception>
         protected Tile(GeoCoordinate minCoordinate, GeoCoordinate maxCoordinate, int zoom, Size size = null,
-                       IEnumerable<byte> bytes = null, string extension = Constants.FileExtensions.Png,
+                       IEnumerable<byte> bytes = null, TileExtension extension = TileExtension.Png,
                        bool tmsCompatible = false)
         {
             Size = size ?? DefaultSize;
@@ -243,6 +244,23 @@ namespace GTiff2Tiles.Core.Tiles
 
             return tilePosition;
         }
+
+        #endregion
+
+        #region GetExtensionString
+
+        /// <inheritdoc />
+        public string GetExtensionString() => GetExtensionString(Extension);
+
+        /// <param name="extension"><see cref="TileExtension"/> to convert</param>
+        /// <inheritdoc cref="GetExtensionString()"/>
+        public static string GetExtensionString(TileExtension extension) => extension switch
+        {
+            TileExtension.Png => FileExtensions.Png,
+            TileExtension.Jpg => FileExtensions.Jpg,
+            TileExtension.Webp => FileExtensions.Webp,
+            _ => throw new ArgumentOutOfRangeException(nameof(extension), extension, null)
+        };
 
         #endregion
 

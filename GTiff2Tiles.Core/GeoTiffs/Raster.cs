@@ -318,7 +318,7 @@ namespace GTiff2Tiles.Core.GeoTiffs
         /// <inheritdoc cref="WriteTilesToDirectoryAsync"/>
         public void WriteTilesToDirectory(string outputDirectoryPath, int minZ, int maxZ,
                                           bool tmsCompatible = false, Size tileSize = null,
-                                          string tileExtension = FileExtensions.Png,
+                                          TileExtension tileExtension = TileExtension.Png,
                                           string interpolation = Interpolations.Lanczos3,
                                           int bandsCount = RasterTile.DefaultBandsCount,
                                           int tileCacheCount = 1000, int threadsCount = 0,
@@ -356,13 +356,11 @@ namespace GTiff2Tiles.Core.GeoTiffs
                 if (!CheckHelper.CheckDirectory(tileDirectoryPath)) throw new RasterException();
 
                 Number tileNumber = new Number(x, y, z);
-                RasterTile tile = new RasterTile(tileNumber, GeoCoordinateSystem,
-                                                 extension: tileExtension, tmsCompatible: tmsCompatible,
-                                                 size: tileSize, bandsCount: bandsCount)
-                {
-                    // Warning: OpenLayers requires replacement of tileY to tileY+1
-                    Path = Path.Combine(tileDirectoryPath, $"{y}{tileExtension}")
-                };
+                RasterTile tile = new RasterTile(tileNumber, GeoCoordinateSystem, extension: tileExtension,
+                                                 tmsCompatible: tmsCompatible, size: tileSize, bandsCount: bandsCount);
+
+                // Warning: OpenLayers requires replacement of tileY to tileY+1
+                tile.Path = Path.Combine(tileDirectoryPath, $"{y}{tile.GetExtensionString()}");
 
                 // ReSharper disable once AccessToDisposedClosure
                 WriteTileToFile(tileCache, tile, interpolation);
@@ -415,7 +413,7 @@ namespace GTiff2Tiles.Core.GeoTiffs
         /// <param name="isPrintEstimatedTime"></param>
         public Task WriteTilesToDirectoryAsync(string outputDirectoryPath, int minZ, int maxZ,
                                                bool tmsCompatible = false, Size tileSize = null,
-                                               string tileExtension = FileExtensions.Png,
+                                               TileExtension tileExtension = TileExtension.Png,
                                                string interpolation = Interpolations.Lanczos3,
                                                int bandsCount = RasterTile.DefaultBandsCount,
                                                int tileCacheCount = 1000, int threadsCount = 0,

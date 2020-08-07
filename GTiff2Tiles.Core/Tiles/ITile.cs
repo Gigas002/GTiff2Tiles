@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using GTiff2Tiles.Core.Coordinates;
+using GTiff2Tiles.Core.Enums;
 using GTiff2Tiles.Core.Images;
 
 // ReSharper disable UnusedMember.Global
@@ -53,7 +54,7 @@ namespace GTiff2Tiles.Core.Tiles
         /// <summary>
         /// Extension of <see cref="ITile"/>
         /// </summary>
-        public string Extension { get; }
+        public TileExtension Extension { get; }
 
         /// <summary>
         /// Is <see cref="ITile"/> tms compatible?
@@ -78,6 +79,13 @@ namespace GTiff2Tiles.Core.Tiles
         /// </summary>
         /// <returns>Value in range from 0 to 3</returns>
         public int CalculatePosition();
+
+        /// <summary>
+        /// Get <see cref="string"/> from <see cref="TileExtension"/>
+        /// </summary>
+        /// <returns>Converted <see cref="string"/></returns>
+        /// <exception cref="ArgumentOutOfRangeException"/>
+        public string GetExtensionString();
 
         #endregion
     }

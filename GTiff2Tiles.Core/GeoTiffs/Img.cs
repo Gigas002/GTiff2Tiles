@@ -36,30 +36,12 @@ namespace GTiff2Tiles.Core.GeoTiffs
                                                          IProgress<double> progress = null,
                                                          int threadsCount = 5)
         {
-            //This is example.
-            //TODO: Better exception-handling
-            //await using IGeoTiff image = tileType switch
-            //{
-            //    TileType.Raster => new Raster(inputFileInfo?.FullName, targetSystem),
-            //    //TileType.Terrain => new Image(inputFileInfo),
-            //    _ => throw new Exception()
-            //};
             await using Raster image = new Raster(inputFileInfo?.FullName, targetSystem);
 
-            string tileExtensionString = tileExtension switch
-            {
-                TileExtension.Png => FileExtensions.Png,
-                TileExtension.Jpg => FileExtensions.Jpg,
-                TileExtension.Webp => FileExtensions.Webp,
-                _ => throw new ArgumentOutOfRangeException(nameof(tileExtension), tileExtension, null)
-            };
-
-            //TODO: args
             //Generate tiles.
-            Size size = Tile.DefaultSize;
             await image.WriteTilesToDirectoryAsync(outputDirectoryInfo?.FullName, minZ, maxZ,
-                                                   tileSize: size, tmsCompatible: tmsCompatible,
-                                                   tileExtension: tileExtensionString,
+                                                   tileSize: null, tmsCompatible: tmsCompatible,
+                                                   tileExtension: tileExtension,
                                                    bandsCount: 4, progress: progress,
                                                    threadsCount: threadsCount, isPrintEstimatedTime: false)
                        .ConfigureAwait(false);

@@ -873,10 +873,10 @@
             <returns></returns>
             <inheritdoc cref="M:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToChannel(NetVips.Image,GTiff2Tiles.Core.Tiles.RasterTile,System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.ITile},System.String)"/>
         </member>
-        <member name="M:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToDirectory(System.String,System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,System.String,System.String,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Boolean)">
-            <inheritdoc cref="M:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToDirectoryAsync(System.String,System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,System.String,System.String,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Boolean)"/>
+        <member name="M:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToDirectory(System.String,System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.TileExtension,System.String,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Boolean)">
+            <inheritdoc cref="M:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToDirectoryAsync(System.String,System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.TileExtension,System.String,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Boolean)"/>
         </member>
-        <member name="M:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToDirectoryAsync(System.String,System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,System.String,System.String,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Boolean)">
+        <member name="M:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToDirectoryAsync(System.String,System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.TileExtension,System.String,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Boolean)">
             <summary>
             Crops current <see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/> on <see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/>s
             and writes them to <paramref name="outputDirectoryPath"/>
@@ -1408,6 +1408,13 @@
             </summary>
             <returns>Value in range from 0 to 3</returns>
         </member>
+        <member name="M:GTiff2Tiles.Core.Tiles.ITile.GetExtensionString">
+            <summary>
+            Get <see cref="T:System.String"/> from <see cref="T:GTiff2Tiles.Core.Enums.TileExtension"/>
+            </summary>
+            <returns>Converted <see cref="T:System.String"/></returns>
+            <exception cref="T:System.ArgumentOutOfRangeException"/>
+        </member>
         <member name="T:GTiff2Tiles.Core.Tiles.Number">
             <summary>
             <see cref="T:GTiff2Tiles.Core.Tiles.Number"/> of <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>
@@ -1609,9 +1616,9 @@
             Count of bands in <see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/>
             </summary>
         </member>
-        <member name="M:GTiff2Tiles.Core.Tiles.RasterTile.#ctor(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Enums.CoordinateSystem,GTiff2Tiles.Core.Images.Size,System.Collections.Generic.IEnumerable{System.Byte},System.String,System.Boolean,System.Int32)">
+        <member name="M:GTiff2Tiles.Core.Tiles.RasterTile.#ctor(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Enums.CoordinateSystem,GTiff2Tiles.Core.Images.Size,System.Collections.Generic.IEnumerable{System.Byte},GTiff2Tiles.Core.Enums.TileExtension,System.Boolean,System.Int32)">
             <param name="bandsCount"><see cref="P:GTiff2Tiles.Core.Tiles.RasterTile.BandsCount"/></param>
-            <inheritdoc cref="M:GTiff2Tiles.Core.Tiles.Tile.#ctor(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Enums.CoordinateSystem,GTiff2Tiles.Core.Images.Size,System.Collections.Generic.IEnumerable{System.Byte},System.String,System.Boolean)"/>
+            <inheritdoc cref="M:GTiff2Tiles.Core.Tiles.Tile.#ctor(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Enums.CoordinateSystem,GTiff2Tiles.Core.Images.Size,System.Collections.Generic.IEnumerable{System.Byte},GTiff2Tiles.Core.Enums.TileExtension,System.Boolean)"/>
             <param name="number"></param>
             <param name="coordinateSystem"></param>
             <param name="size"></param>
@@ -1619,9 +1626,9 @@
             <param name="extension"></param>
             <param name="tmsCompatible"></param>
         </member>
-        <member name="M:GTiff2Tiles.Core.Tiles.RasterTile.#ctor(GTiff2Tiles.Core.Coordinates.GeoCoordinate,GTiff2Tiles.Core.Coordinates.GeoCoordinate,System.Int32,GTiff2Tiles.Core.Images.Size,System.Collections.Generic.IEnumerable{System.Byte},System.String,System.Boolean,System.Int32)">
+        <member name="M:GTiff2Tiles.Core.Tiles.RasterTile.#ctor(GTiff2Tiles.Core.Coordinates.GeoCoordinate,GTiff2Tiles.Core.Coordinates.GeoCoordinate,System.Int32,GTiff2Tiles.Core.Images.Size,System.Collections.Generic.IEnumerable{System.Byte},GTiff2Tiles.Core.Enums.TileExtension,System.Boolean,System.Int32)">
             <param name="bandsCount"><see cref="P:GTiff2Tiles.Core.Tiles.RasterTile.BandsCount"/></param>
-            <inheritdoc cref="M:GTiff2Tiles.Core.Tiles.Tile.#ctor(GTiff2Tiles.Core.Coordinates.GeoCoordinate,GTiff2Tiles.Core.Coordinates.GeoCoordinate,System.Int32,GTiff2Tiles.Core.Images.Size,System.Collections.Generic.IEnumerable{System.Byte},System.String,System.Boolean)"/>
+            <inheritdoc cref="M:GTiff2Tiles.Core.Tiles.Tile.#ctor(GTiff2Tiles.Core.Coordinates.GeoCoordinate,GTiff2Tiles.Core.Coordinates.GeoCoordinate,System.Int32,GTiff2Tiles.Core.Images.Size,System.Collections.Generic.IEnumerable{System.Byte},GTiff2Tiles.Core.Enums.TileExtension,System.Boolean)"/>
             <param name="minCoordinate"></param>
             <param name="maxCoordinate"></param>
             <param name="zoom"></param>
@@ -1678,7 +1685,7 @@
         <member name="P:GTiff2Tiles.Core.Tiles.Tile.TmsCompatible">
             <inheritdoc />
         </member>
-        <member name="M:GTiff2Tiles.Core.Tiles.Tile.#ctor(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Enums.CoordinateSystem,GTiff2Tiles.Core.Images.Size,System.Collections.Generic.IEnumerable{System.Byte},System.String,System.Boolean)">
+        <member name="M:GTiff2Tiles.Core.Tiles.Tile.#ctor(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Enums.CoordinateSystem,GTiff2Tiles.Core.Images.Size,System.Collections.Generic.IEnumerable{System.Byte},GTiff2Tiles.Core.Enums.TileExtension,System.Boolean)">
             <summary>
             Creates new <see cref="T:GTiff2Tiles.Core.Tiles.Tile"/>
             </summary>
@@ -1691,7 +1698,7 @@
             <param name="tmsCompatible">Is tms compatible?</param>
             <exception cref="T:GTiff2Tiles.Core.Exceptions.TileException"></exception>
         </member>
-        <member name="M:GTiff2Tiles.Core.Tiles.Tile.#ctor(GTiff2Tiles.Core.Coordinates.GeoCoordinate,GTiff2Tiles.Core.Coordinates.GeoCoordinate,System.Int32,GTiff2Tiles.Core.Images.Size,System.Collections.Generic.IEnumerable{System.Byte},System.String,System.Boolean)">
+        <member name="M:GTiff2Tiles.Core.Tiles.Tile.#ctor(GTiff2Tiles.Core.Coordinates.GeoCoordinate,GTiff2Tiles.Core.Coordinates.GeoCoordinate,System.Int32,GTiff2Tiles.Core.Images.Size,System.Collections.Generic.IEnumerable{System.Byte},GTiff2Tiles.Core.Enums.TileExtension,System.Boolean)">
             <summary>
             Creates new <see cref="T:GTiff2Tiles.Core.Tiles.Tile"/> from <see cref="T:GTiff2Tiles.Core.Coordinates.GeoCoordinate"/> values
             </summary>
@@ -1748,6 +1755,13 @@
             <inheritdoc cref="M:GTiff2Tiles.Core.Tiles.Tile.CalculatePosition"/>
             <param name="number"><see cref="T:GTiff2Tiles.Core.Tiles.Number"/> of <see cref="T:GTiff2Tiles.Core.Tiles.Tile"/></param>
             <param name="tmsCompatible">Is tms compatible?</param>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Tiles.Tile.GetExtensionString">
+            <inheritdoc />
+        </member>
+        <member name="M:GTiff2Tiles.Core.Tiles.Tile.GetExtensionString(GTiff2Tiles.Core.Enums.TileExtension)">
+            <param name="extension"><see cref="T:GTiff2Tiles.Core.Enums.TileExtension"/> to convert</param>
+            <inheritdoc cref="M:GTiff2Tiles.Core.Tiles.Tile.GetExtensionString"/>
         </member>
     </members>
 </doc>
