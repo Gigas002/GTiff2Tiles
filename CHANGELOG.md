@@ -8,7 +8,7 @@ Changes since 1.4.1:
 
 ### Overall
 
-- Update **.NET Core** version to **5.0.100-preview.6**;
+- Update **.NET Core** version to **5.0.100-preview.7**;
 - Drop support of **.NET Framework and .NET Standard**;
 - Fixed **Linux** build and apps;
 - Create **Docker image** for **GTiff2Tiles.Console** (*GitHub packages and Docker Hub*);
@@ -56,8 +56,8 @@ Changes since 1.4.1:
 
 ### Tests
 
-- Update **Microsoft.NET.Test.Sdk** package to **16.6.1**;
-- Update **NUnit3TestAdapter** package to **3.16.1**;
+- Update **Microsoft.NET.Test.Sdk** package to **16.7.0**;
+- Update **NUnit3TestAdapter** package to **3.17.0**;
 
 ## 21.10.2019 – Released 1.4.1
 

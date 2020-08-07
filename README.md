@@ -59,7 +59,7 @@ Previous versions can be found on [releases](https://github.com/Gigas002/GTiff2T
 
 ## Build
 
-Solution can be build in **VS2019 (16.6.4+)**. You can also build projects in **VSCode (1.47.1+)** with **omnisharp-vscode (1.22.1+)** extensions. Projects targets **.NET Core 5.0.0-preview.6**, so you’ll need **.NET Core 5.0.100-preview.6 SDK**.
+Solution can be build in **VS2019 (16.7.0+)**. You can also build projects in **VSCode (1.47.3+)** with **omnisharp-vscode (1.22.1+)** extensions. Projects targets **.NET Core 5.0.0-preview.7**, so you’ll need **.NET Core 5.0.100-preview.7 SDK**.
 
 Some of **Release** binaries are made by `publish-github-release.ps1` script. Take a look at it in the repo. Note, that running this script requires installed **PowerShell** or **[PowerShell Core](https://github.com/PowerShell/PowerShell)** for **Linux**/**OSX** systems.
 
@@ -150,9 +150,9 @@ Currently, application is available on **English** and **Russian** languages.
 ### Dependencies
 
 - GTiff2Tiles.Core;
-- [Microsoft.NET.Test.Sdk](https://www.nuget.org/packages/Microsoft.NET.Test.Sdk) – 16.6.1;
+- [Microsoft.NET.Test.Sdk](https://www.nuget.org/packages/Microsoft.NET.Test.Sdk) – 16.7.0;
 - [NUnit](https://www.nuget.org/packages/NUnit) – 3.12.0;
-- [NUnit3TestAdapter](https://www.nuget.org/packages/NUnit3TestAdapter/) – 3.16.1;
+- [NUnit3TestAdapter](https://www.nuget.org/packages/NUnit3TestAdapter/) – 3.17.0;
 
 ## GTiff2Tiles.Benchmarks
 
