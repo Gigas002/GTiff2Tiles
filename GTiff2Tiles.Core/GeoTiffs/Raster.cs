@@ -308,9 +308,7 @@ namespace GTiff2Tiles.Core.GeoTiffs
 
             tile.Bytes = WriteTileToEnumerable(tileCache, tile, interpolation);
 
-            //TODO: validate size before writing
-
-            return channelWriter.WriteAsync(tile);
+            return !tile.Validate(false) ? ValueTask.CompletedTask : channelWriter.WriteAsync(tile);
         }
 
         #endregion
