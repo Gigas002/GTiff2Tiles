@@ -4,6 +4,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Threading.Channels;
@@ -37,7 +38,7 @@ namespace GTiff2Tiles.Core.GeoTiffs
         /// <para/>see <see cref="Raster(IEnumerable{byte}, CoordinateSystem)"/>
         /// and <see cref="Raster(Stream, CoordinateSystem)"/>
         /// </summary>
-        private readonly string _tempFileName = $"{DateTime.Now.ToString(DateTimePatterns.LongWithMs)}_tmp.tif";
+        private readonly string _tempFileName = $"{DateTime.Now.ToString(DateTimePatterns.LongWithMs, CultureInfo.InvariantCulture)}_tmp.tif";
 
         /// <summary>
         /// This <see cref="Raster"/>'s data

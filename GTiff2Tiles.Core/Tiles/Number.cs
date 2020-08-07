@@ -156,6 +156,8 @@ namespace GTiff2Tiles.Core.Tiles
         public static (GeoCoordinate minCoordinate, GeoCoordinate maxCoordinate) ToGeoCoordinates(
             Number number, CoordinateSystem coordinateSystem, Size tileSize, bool tmsCompatible)
         {
+            if (number == null) throw new ArgumentNullException(nameof(number));
+
             if (!tmsCompatible) number = Flip(number);
 
             switch (coordinateSystem)
