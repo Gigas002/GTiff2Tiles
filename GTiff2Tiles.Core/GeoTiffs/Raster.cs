@@ -31,6 +31,7 @@ namespace GTiff2Tiles.Core.GeoTiffs
 
         #region Private
 
+        // TODO: consider removing timestamp
         /// <summary>
         /// Name for temporary file
         /// <remarks><para/>See <see cref="Raster(IEnumerable{byte}, CoordinateSystem)"/>

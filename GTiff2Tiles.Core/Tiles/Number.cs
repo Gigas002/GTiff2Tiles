@@ -319,7 +319,7 @@ namespace GTiff2Tiles.Core.Tiles
         /// <param name="number2"><see cref="Number"/> 2</param>
         /// <returns><see langword="true"/> if <see cref="Number"/>s are equal;
         /// <see langword="false"/> otherwise</returns>
-        public static bool operator ==(Number number1, Number number2) => number1?.Equals(number2) == true;
+        public static bool operator ==(Number number1, Number number2) => number1?.Equals(number2) ?? number2 is null;
 
         /// <summary>
         /// Check two <see cref="Number"/>s for non-equality

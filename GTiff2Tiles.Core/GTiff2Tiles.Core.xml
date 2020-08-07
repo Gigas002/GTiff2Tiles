@@ -683,8 +683,8 @@
         <member name="F:GTiff2Tiles.Core.GdalWorker.TempFileName">
             <summary>
             Name for temporary (converted) GeoTiff
-            <remarks><para/>Includes timestamp and .tif extension, see
-            <see cref="F:GTiff2Tiles.Core.Constants.DateTimePatterns.LongWithMs"/> for more info</remarks>
+            <remarks><para/>Includes .tif extension,
+            looks like: _tmp_converted.tif</remarks>
             </summary>
         </member>
         <member name="M:GTiff2Tiles.Core.GdalWorker.WarpAsync(System.String,System.String,System.String[],System.IProgress{System.Double})">
@@ -768,7 +768,7 @@
             </summary>
             <param name="inputFilePath">Input GeoTiff's path</param>
             <param name="size">Image's <see cref="T:GTiff2Tiles.Core.Images.Size"/>s</param>
-            <param name="coordinateSystem">Desired coordinate system</param>
+            <param name="coordinateSystem">Image's coordinate system</param>
             <returns><see cref="T:System.ValueTuple`2"/> of
             <see cref="T:GTiff2Tiles.Core.Coordinates.GeoCoordinate"/>s of image's borders</returns>
             <exception cref="T:System.ArgumentNullException"/>

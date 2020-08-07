@@ -44,12 +44,12 @@ namespace GTiff2Tiles.Core
         /// <summary>
         /// -t_srs EPSG:4326
         /// </summary>
-        private static readonly string[] SrsEpsg4326 = { "-t_srs", "EPSG:4326" };
+        public static readonly string[] SrsEpsg4326 = { "-t_srs", "EPSG:4326" };
 
         /// <summary>
         /// -t_srs EPSG:3857
         /// </summary>
-        private static readonly string[] SrsEpsg3857 = { "-t_srs", "EPSG:3857" };
+        public static readonly string[] SrsEpsg3857 = { "-t_srs", "EPSG:3857" };
 
         /// <summary>
         /// Options for GdalWarp to convert GeoTiff's coordinate system;
@@ -66,10 +66,10 @@ namespace GTiff2Tiles.Core
 
         /// <summary>
         /// Name for temporary (converted) GeoTiff
-        /// <remarks><para/>Includes timestamp and .tif extension, see
-        /// <see cref="DateTimePatterns.LongWithMs"/> for more info</remarks>
+        /// <remarks><para/>Includes .tif extension,
+        /// looks like: _tmp_converted.tif</remarks>
         /// </summary>
-        public static readonly string TempFileName = $"{DateTime.Now.ToString(DateTimePatterns.LongWithMs, CultureInfo.InvariantCulture)}_tmp_converted{FileExtensions.Tif}";
+        public static readonly string TempFileName = $"_tmp_converted{FileExtensions.Tif}";
 
         #endregion
 
@@ -327,7 +327,7 @@ namespace GTiff2Tiles.Core
         /// </summary>
         /// <param name="inputFilePath">Input GeoTiff's path</param>
         /// <param name="size">Image's <see cref="Size"/>s</param>
-        /// <param name="coordinateSystem">Desired coordinate system</param>
+        /// <param name="coordinateSystem">Image's coordinate system</param>
         /// <returns><see cref="ValueTuple{T1,T2}"/> of
         /// <see cref="GeoCoordinate"/>s of image's borders</returns>
         /// <exception cref="ArgumentNullException"/>

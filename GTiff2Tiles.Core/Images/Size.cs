@@ -83,7 +83,7 @@ namespace GTiff2Tiles.Core.Images
         /// <param name="size2"><see cref="Size"/> 2</param>
         /// <returns><see langword="true"/> if <see cref="Size"/>s are equal;
         /// <see langword="false"/> otherwise</returns>
-        public static bool operator ==(Size size1, Size size2) => size1?.Equals(size2) == true;
+        public static bool operator ==(Size size1, Size size2) => size1?.Equals(size2) ?? size2 is null;
 
         /// <summary>
         /// Check two <see cref="Size"/>s for non-equality

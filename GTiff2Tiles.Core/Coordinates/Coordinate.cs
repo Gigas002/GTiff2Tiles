@@ -77,7 +77,7 @@ namespace GTiff2Tiles.Core.Coordinates
         /// <returns><see langword="true"/> if coordinates are equal;
         /// <see langword="false"/>otherwise</returns>
         public static bool operator ==(Coordinate coordinate1, Coordinate coordinate2) =>
-            coordinate1?.Equals(coordinate2) == true;
+            coordinate1?.Equals(coordinate2) ?? coordinate2 is null;
 
         /// <summary>
         /// Check two coordinates for non-equality
