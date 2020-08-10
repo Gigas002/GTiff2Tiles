@@ -69,12 +69,12 @@ namespace GTiff2Tiles.Tests.Tests
             string outPath = Path.Combine(Constants.FileSystemEntries.OutputDirectoryPath,
                                           $"{timestamp}{GdalWorker.TempFileName}");
 
+            List<string> options = GdalWorker.ConvertCoordinateSystemOptions.ToList();
+            options.AddRange(GdalWorker.SrsEpsg3857);
+            Progress<double> progress = new Progress<double>(Console.WriteLine);
+
             try
             {
-                List<string> options = GdalWorker.ConvertCoordinateSystemOptions.ToList();
-                options.AddRange(GdalWorker.SrsEpsg3857);
-                Progress<double> progress = new Progress<double>(Console.WriteLine);
-
                 await GdalWorker.WarpAsync(inPath, outPath, options.ToArray(), progress).ConfigureAwait(false);
 
                 CheckHelper.CheckFile(outPath);
@@ -100,12 +100,12 @@ namespace GTiff2Tiles.Tests.Tests
             string outPath = Path.Combine(Constants.FileSystemEntries.OutputDirectoryPath,
                                           $"{timestamp}{GdalWorker.TempFileName}");
 
+            List<string> options = GdalWorker.ConvertCoordinateSystemOptions.ToList();
+            options.AddRange(GdalWorker.SrsEpsg4326);
+            Progress<double> progress = new Progress<double>(Console.WriteLine);
+
             try
             {
-                List<string> options = GdalWorker.ConvertCoordinateSystemOptions.ToList();
-                options.AddRange(GdalWorker.SrsEpsg4326);
-                Progress<double> progress = new Progress<double>(Console.WriteLine);
-
                 await GdalWorker.WarpAsync(inPath, outPath, options.ToArray(), progress).ConfigureAwait(false);
 
                 CheckHelper.CheckFile(outPath);
@@ -131,12 +131,12 @@ namespace GTiff2Tiles.Tests.Tests
             string outPath = Path.Combine(Constants.FileSystemEntries.OutputDirectoryPath,
                                           $"{timestamp}{GdalWorker.TempFileName}");
 
+            List<string> options = GdalWorker.ConvertCoordinateSystemOptions.ToList();
+            options.AddRange(GdalWorker.SrsEpsg4326);
+            Progress<double> progress = new Progress<double>(Console.WriteLine);
+
             try
             {
-                List<string> options = GdalWorker.ConvertCoordinateSystemOptions.ToList();
-                options.AddRange(GdalWorker.SrsEpsg4326);
-                Progress<double> progress = new Progress<double>(Console.WriteLine);
-
                 await GdalWorker.WarpAsync(inPath, outPath, options.ToArray(), progress).ConfigureAwait(false);
 
                 CheckHelper.CheckFile(outPath);
@@ -154,72 +154,48 @@ namespace GTiff2Tiles.Tests.Tests
         }
 
         [Test]
-        public async Task WarpNullInput()
+        public void WarpNullInput()
         {
             string timestamp = DateTime.Now.ToString(Core.Constants.DateTimePatterns.LongWithMs,
                                                      CultureInfo.InvariantCulture);
             string outPath = Path.Combine(Constants.FileSystemEntries.OutputDirectoryPath,
                                           $"{timestamp}{GdalWorker.TempFileName}");
 
-            try
-            {
-                List<string> options = GdalWorker.ConvertCoordinateSystemOptions.ToList();
-                options.AddRange(GdalWorker.SrsEpsg3857);
-                Progress<double> progress = new Progress<double>(Console.WriteLine);
+            List<string> options = GdalWorker.ConvertCoordinateSystemOptions.ToList();
+            options.AddRange(GdalWorker.SrsEpsg3857);
+            Progress<double> progress = new Progress<double>(Console.WriteLine);
 
-                await GdalWorker.WarpAsync(null, outPath, options.ToArray(), progress).ConfigureAwait(false);
-            }
-            catch (ArgumentNullException)
-            {
-                Assert.Pass();
-            }
-
-            Assert.Fail();
+            Assert.ThrowsAsync<ArgumentNullException>(async () =>
+               await GdalWorker.WarpAsync(null, outPath, options.ToArray(), progress).ConfigureAwait(false));
         }
 
         [Test]
-        public async Task WarpNonExistingInput()
+        public void WarpNonExistingInput()
         {
             string timestamp = DateTime.Now.ToString(Core.Constants.DateTimePatterns.LongWithMs,
                                                      CultureInfo.InvariantCulture);
             string outPath = Path.Combine(Constants.FileSystemEntries.OutputDirectoryPath,
                                           $"{timestamp}{GdalWorker.TempFileName}");
 
-            try
-            {
-                List<string> options = GdalWorker.ConvertCoordinateSystemOptions.ToList();
-                options.AddRange(GdalWorker.SrsEpsg3857);
-                Progress<double> progress = new Progress<double>(Console.WriteLine);
+            List<string> options = GdalWorker.ConvertCoordinateSystemOptions.ToList();
+            options.AddRange(GdalWorker.SrsEpsg3857);
+            Progress<double> progress = new Progress<double>(Console.WriteLine);
 
-                await GdalWorker.WarpAsync("ShouldFail", outPath, options.ToArray(), progress).ConfigureAwait(false);
-            }
-            catch (FileNotFoundException)
-            {
-                Assert.Pass();
-            }
-
-            Assert.Fail();
+            Assert.ThrowsAsync<FileNotFoundException>(async () =>
+               await GdalWorker.WarpAsync("ShouldFail", outPath, options.ToArray(), progress).ConfigureAwait(false));
         }
 
         [Test]
-        public async Task WarpNullOutput()
+        public void WarpNullOutput()
         {
             string inPath = Constants.FileSystemEntries.Input4326FilePath;
 
-            try
-            {
-                List<string> options = GdalWorker.ConvertCoordinateSystemOptions.ToList();
-                options.AddRange(GdalWorker.SrsEpsg3857);
-                Progress<double> progress = new Progress<double>(Console.WriteLine);
+            List<string> options = GdalWorker.ConvertCoordinateSystemOptions.ToList();
+            options.AddRange(GdalWorker.SrsEpsg3857);
+            Progress<double> progress = new Progress<double>(Console.WriteLine);
 
-                await GdalWorker.WarpAsync(inPath, null, options.ToArray(), progress).ConfigureAwait(false);
-            }
-            catch (ArgumentNullException)
-            {
-                Assert.Pass();
-            }
-
-            Assert.Fail();
+            Assert.ThrowsAsync<ArgumentNullException>(async () =>
+               await GdalWorker.WarpAsync(inPath, null, options.ToArray(), progress).ConfigureAwait(false));
         }
 
         [Test]
@@ -238,12 +214,12 @@ namespace GTiff2Tiles.Tests.Tests
             // Must dispose explicitly to delete correctly
             await fs.DisposeAsync().ConfigureAwait(false);
 
+            List<string> options = GdalWorker.ConvertCoordinateSystemOptions.ToList();
+            options.AddRange(GdalWorker.SrsEpsg3857);
+            Progress<double> progress = new Progress<double>(Console.WriteLine);
+
             try
             {
-                List<string> options = GdalWorker.ConvertCoordinateSystemOptions.ToList();
-                options.AddRange(GdalWorker.SrsEpsg3857);
-                Progress<double> progress = new Progress<double>(Console.WriteLine);
-
                 await GdalWorker.WarpAsync(inPath, outPath, options.ToArray(), progress).ConfigureAwait(false);
             }
             catch (FileException)
@@ -259,7 +235,7 @@ namespace GTiff2Tiles.Tests.Tests
         }
 
         [Test]
-        public async Task WarpNullOptions()
+        public void WarpNullOptions()
         {
             string timestamp = DateTime.Now.ToString(Core.Constants.DateTimePatterns.LongWithMs,
                                                      CultureInfo.InvariantCulture);
@@ -267,18 +243,10 @@ namespace GTiff2Tiles.Tests.Tests
             string outPath = Path.Combine(Constants.FileSystemEntries.OutputDirectoryPath,
                                           $"{timestamp}{GdalWorker.TempFileName}");
 
-            try
-            {
-                Progress<double> progress = new Progress<double>(Console.WriteLine);
+            Progress<double> progress = new Progress<double>(Console.WriteLine);
 
-                await GdalWorker.WarpAsync(inPath, outPath, null, progress).ConfigureAwait(false);
-            }
-            catch (ArgumentNullException)
-            {
-                Assert.Pass();
-            }
-
-            Assert.Fail();
+            Assert.ThrowsAsync<ArgumentNullException>(async () =>
+               await GdalWorker.WarpAsync(inPath, outPath, null, progress).ConfigureAwait(false));
         }
 
         [Test]
@@ -290,11 +258,11 @@ namespace GTiff2Tiles.Tests.Tests
             string outPath = Path.Combine(Constants.FileSystemEntries.OutputDirectoryPath,
                                           $"{timestamp}{GdalWorker.TempFileName}");
 
+            List<string> options = GdalWorker.ConvertCoordinateSystemOptions.ToList();
+            options.AddRange(GdalWorker.SrsEpsg3857);
+
             try
             {
-                List<string> options = GdalWorker.ConvertCoordinateSystemOptions.ToList();
-                options.AddRange(GdalWorker.SrsEpsg3857);
-
                 await GdalWorker.WarpAsync(inPath, outPath, options.ToArray()).ConfigureAwait(false);
 
                 CheckHelper.CheckFile(outPath);
@@ -319,40 +287,17 @@ namespace GTiff2Tiles.Tests.Tests
         public async Task InfoNormal()
         {
             string gdalInfo = await GdalWorker.InfoAsync(Constants.FileSystemEntries.Input4326FilePath).ConfigureAwait(false);
-            if (string.IsNullOrWhiteSpace(gdalInfo)) Assert.Fail();
 
-            Assert.Pass();
+            Assert.False(string.IsNullOrWhiteSpace(gdalInfo));
         }
 
         [Test]
-        public async Task InfoNullPath()
-        {
-            try
-            {
-                await GdalWorker.InfoAsync(null).ConfigureAwait(false);
-            }
-            catch (ArgumentNullException)
-            {
-                Assert.Pass();
-            }
-
-            Assert.Fail();
-        }
+        public void InfoNullPath() => Assert.ThrowsAsync<ArgumentNullException>(async () =>
+               await GdalWorker.InfoAsync(null).ConfigureAwait(false));
 
         [Test]
-        public async Task InfoNonExistantPath()
-        {
-            try
-            {
-                await GdalWorker.InfoAsync("ShouldFail").ConfigureAwait(false);
-            }
-            catch (FileNotFoundException)
-            {
-                Assert.Pass();
-            }
-
-            Assert.Fail();
-        }
+        public void InfoNonExistantPath() => Assert.ThrowsAsync<FileNotFoundException>(async () =>
+               await GdalWorker.InfoAsync("ShouldFail").ConfigureAwait(false));
 
         #endregion
 
@@ -362,40 +307,17 @@ namespace GTiff2Tiles.Tests.Tests
         public async Task GetProjStringNormal()
         {
             string proj = await GdalWorker.GetProjStringAsync(Constants.FileSystemEntries.Input4326FilePath).ConfigureAwait(false);
-            if (string.IsNullOrWhiteSpace(proj)) Assert.Fail();
 
-            Assert.Pass();
+            Assert.False(string.IsNullOrWhiteSpace(proj));
         }
 
         [Test]
-        public async Task GetProjStringNullPath()
-        {
-            try
-            {
-                await GdalWorker.GetProjStringAsync(null).ConfigureAwait(false);
-            }
-            catch (ArgumentNullException)
-            {
-                Assert.Pass();
-            }
-
-            Assert.Fail();
-        }
+        public void GetProjStringNullPath() => Assert.ThrowsAsync<ArgumentNullException>(async () =>
+               await GdalWorker.GetProjStringAsync(null).ConfigureAwait(false));
 
         [Test]
-        public async Task GetProjStringNonExistantPath()
-        {
-            try
-            {
-                await GdalWorker.GetProjStringAsync("ShouldFail").ConfigureAwait(false);
-            }
-            catch (FileNotFoundException)
-            {
-                Assert.Pass();
-            }
-
-            Assert.Fail();
-        }
+        public void GetProjStringNonExistantPath() => Assert.ThrowsAsync<FileNotFoundException>(async () =>
+               await GdalWorker.GetProjStringAsync("ShouldFail").ConfigureAwait(false));
 
         #endregion
 
@@ -489,7 +411,7 @@ namespace GTiff2Tiles.Tests.Tests
         }
 
         [Test]
-        public async Task ConvertGeoTiffToTargetSystemNullInput()
+        public void ConvertGeoTiffToTargetSystemNullInput()
         {
             string timestamp = DateTime.Now.ToString(Core.Constants.DateTimePatterns.LongWithMs,
                                                      CultureInfo.InvariantCulture);
@@ -498,20 +420,12 @@ namespace GTiff2Tiles.Tests.Tests
             const CoordinateSystem cs = CoordinateSystem.Epsg3857;
             Progress<double> progress = new Progress<double>(Console.WriteLine);
 
-            try
-            {
-                await GdalWorker.ConvertGeoTiffToTargetSystemAsync(null, outPath, cs, progress).ConfigureAwait(false);
-            }
-            catch (ArgumentNullException)
-            {
-                Assert.Pass();
-            }
-
-            Assert.Fail();
+            Assert.ThrowsAsync<ArgumentNullException>(async () =>
+               await GdalWorker.ConvertGeoTiffToTargetSystemAsync(null, outPath, cs, progress).ConfigureAwait(false));
         }
 
         [Test]
-        public async Task ConvertGeoTiffToTargetSystemNonExistingInput()
+        public void ConvertGeoTiffToTargetSystemNonExistingInput()
         {
             string timestamp = DateTime.Now.ToString(Core.Constants.DateTimePatterns.LongWithMs,
                                                      CultureInfo.InvariantCulture);
@@ -520,35 +434,19 @@ namespace GTiff2Tiles.Tests.Tests
             const CoordinateSystem cs = CoordinateSystem.Epsg3857;
             Progress<double> progress = new Progress<double>(Console.WriteLine);
 
-            try
-            {
-                await GdalWorker.ConvertGeoTiffToTargetSystemAsync("ShouldFail", outPath, cs, progress).ConfigureAwait(false);
-            }
-            catch (FileNotFoundException)
-            {
-                Assert.Pass();
-            }
-
-            Assert.Fail();
+            Assert.ThrowsAsync<FileNotFoundException>(async () =>
+               await GdalWorker.ConvertGeoTiffToTargetSystemAsync("ShouldFail", outPath, cs, progress).ConfigureAwait(false));
         }
 
         [Test]
-        public async Task ConvertGeoTiffToTargetSystemNullOutput()
+        public void ConvertGeoTiffToTargetSystemNullOutput()
         {
             string inPath = Constants.FileSystemEntries.Input4326FilePath;
             const CoordinateSystem cs = CoordinateSystem.Epsg3857;
             Progress<double> progress = new Progress<double>(Console.WriteLine);
 
-            try
-            {
-                await GdalWorker.ConvertGeoTiffToTargetSystemAsync(inPath, null, cs, progress).ConfigureAwait(false);
-            }
-            catch (ArgumentNullException)
-            {
-                Assert.Pass();
-            }
-
-            Assert.Fail();
+            Assert.ThrowsAsync<ArgumentNullException>(async () =>
+               await GdalWorker.ConvertGeoTiffToTargetSystemAsync(inPath, null, cs, progress).ConfigureAwait(false));
         }
 
         [Test]
@@ -586,7 +484,7 @@ namespace GTiff2Tiles.Tests.Tests
         }
 
         [Test]
-        public async Task ConvertGeoTiffToTargetSystemOtherCs()
+        public void ConvertGeoTiffToTargetSystemOtherCs()
         {
             string timestamp = DateTime.Now.ToString(Core.Constants.DateTimePatterns.LongWithMs,
                                                      CultureInfo.InvariantCulture);
@@ -596,16 +494,8 @@ namespace GTiff2Tiles.Tests.Tests
             const CoordinateSystem cs = CoordinateSystem.Other;
             Progress<double> progress = new Progress<double>(Console.WriteLine);
 
-            try
-            {
-                await GdalWorker.ConvertGeoTiffToTargetSystemAsync(inPath, outPath, cs, progress).ConfigureAwait(false);
-            }
-            catch (NotSupportedException)
-            {
-                Assert.Pass();
-            }
-
-            Assert.Fail();
+            Assert.ThrowsAsync<NotSupportedException>(async () =>
+               await GdalWorker.ConvertGeoTiffToTargetSystemAsync(inPath, outPath, cs, progress).ConfigureAwait(false));
         }
 
         [Test]
@@ -646,15 +536,15 @@ namespace GTiff2Tiles.Tests.Tests
         {
             string proj = await GdalWorker.GetProjStringAsync(Constants.FileSystemEntries.Input4326FilePath).ConfigureAwait(false);
             CoordinateSystem cs = GdalWorker.GetCoordinateSystem(proj);
-            if (cs != CoordinateSystem.Epsg4326) Assert.Fail();
+            Assert.True(cs == CoordinateSystem.Epsg4326);
 
             proj = await GdalWorker.GetProjStringAsync(Constants.FileSystemEntries.Input3785FilePath).ConfigureAwait(false);
             cs = GdalWorker.GetCoordinateSystem(proj);
-            if (cs != CoordinateSystem.Epsg3857) Assert.Fail();
+            Assert.True(cs == CoordinateSystem.Epsg3857);
 
             proj = await GdalWorker.GetProjStringAsync(Constants.FileSystemEntries.Input3395FilePath).ConfigureAwait(false);
             cs = GdalWorker.GetCoordinateSystem(proj);
-            if (cs != CoordinateSystem.Other) Assert.Fail();
+            Assert.True(cs == CoordinateSystem.Other);
 
             Assert.Pass();
         }
@@ -667,40 +557,16 @@ namespace GTiff2Tiles.Tests.Tests
         public void GetGeoTransformNormal()
         {
             double[] gt = GdalWorker.GetGeoTransform(Constants.FileSystemEntries.Input4326FilePath);
-            if (gt?.Any() != true) Assert.Fail();
-
-            Assert.Pass();
+            Assert.True(gt?.Any());
         }
 
         [Test]
-        public void GetGeoTransformNullPath()
-        {
-            try
-            {
-                GdalWorker.GetGeoTransform(null);
-            }
-            catch (ArgumentNullException)
-            {
-                Assert.Pass();
-            }
-
-            Assert.Fail();
-        }
+        public void GetGeoTransformNullPath() => Assert.Throws<ArgumentNullException>(() =>
+               GdalWorker.GetGeoTransform(null));
 
         [Test]
-        public void GetGeoTransformNonExistantPath()
-        {
-            try
-            {
-                GdalWorker.GetGeoTransform("ShouldFail");
-            }
-            catch (FileNotFoundException)
-            {
-                Assert.Pass();
-            }
-
-            Assert.Fail();
-        }
+        public void GetGeoTransformNonExistantPath() => Assert.Throws<FileNotFoundException>(() =>
+               GdalWorker.GetGeoTransform("ShouldFail"));
 
         #endregion
 
@@ -718,9 +584,7 @@ namespace GTiff2Tiles.Tests.Tests
 
             (GeoCoordinate minCoordinate, GeoCoordinate maxCoordinate) = GdalWorker.GetImageBorders(path, size, cs);
 
-            if (!(minCoordinate is GeodeticCoordinate && maxCoordinate is GeodeticCoordinate)) Assert.Fail();
-
-            Assert.Pass();
+            Assert.True(minCoordinate is GeodeticCoordinate && maxCoordinate is GeodeticCoordinate);
         }
 
         [Test]
@@ -733,16 +597,7 @@ namespace GTiff2Tiles.Tests.Tests
             string proj = await GdalWorker.GetProjStringAsync(path).ConfigureAwait(false);
             CoordinateSystem cs = GdalWorker.GetCoordinateSystem(proj);
 
-            try
-            {
-                GdalWorker.GetImageBorders(null, size, cs);
-            }
-            catch (ArgumentNullException)
-            {
-                Assert.Pass();
-            }
-
-            Assert.Fail();
+            Assert.Throws<ArgumentNullException>(() => GdalWorker.GetImageBorders(null, size, cs));
         }
 
         [Test]
@@ -755,16 +610,7 @@ namespace GTiff2Tiles.Tests.Tests
             string proj = await GdalWorker.GetProjStringAsync(path).ConfigureAwait(false);
             CoordinateSystem cs = GdalWorker.GetCoordinateSystem(proj);
 
-            try
-            {
-                GdalWorker.GetImageBorders("ShouldFail", size, cs);
-            }
-            catch (FileNotFoundException)
-            {
-                Assert.Pass();
-            }
-
-            Assert.Fail();
+            Assert.Throws<FileNotFoundException>(() => GdalWorker.GetImageBorders("ShouldFail", size, cs));
         }
 
         [Test]
@@ -775,16 +621,7 @@ namespace GTiff2Tiles.Tests.Tests
             string proj = await GdalWorker.GetProjStringAsync(path).ConfigureAwait(false);
             CoordinateSystem cs = GdalWorker.GetCoordinateSystem(proj);
 
-            try
-            {
-                GdalWorker.GetImageBorders(path, null, cs);
-            }
-            catch (ArgumentNullException)
-            {
-                Assert.Pass();
-            }
-
-            Assert.Fail();
+            Assert.Throws<ArgumentNullException>(() => GdalWorker.GetImageBorders(path, null, cs));
         }
 
         [Test]
@@ -796,16 +633,7 @@ namespace GTiff2Tiles.Tests.Tests
             Size size = new Size(image.Width, image.Height);
             const CoordinateSystem cs = CoordinateSystem.Other;
 
-            try
-            {
-                GdalWorker.GetImageBorders(path, size, cs);
-            }
-            catch (NotSupportedException)
-            {
-                Assert.Pass();
-            }
-
-            Assert.Fail();
+            Assert.Throws<NotSupportedException>(() => GdalWorker.GetImageBorders(path, size, cs));
         }
 
         [Test]

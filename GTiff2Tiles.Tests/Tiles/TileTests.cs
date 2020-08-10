@@ -15,7 +15,7 @@ using NUnit.Framework;
 
 // ReSharper disable UnusedVariable
 
-namespace GTiff2Tiles.Tests.Tiles
+namespace GTiff2Tiles.Tests.Tests.Tiles
 {
     public sealed class TileTests
     {
@@ -60,60 +60,42 @@ namespace GTiff2Tiles.Tests.Tiles
         }
 
         [Test]
-        public async Task FromNumberSmallBands()
+        public void FromNumberSmallBands()
         {
             Number number = new Number(1234, 123, 10);
             const CoordinateSystem cs = CoordinateSystem.Epsg4326;
             const int bandsCount = -1;
 
-            try
+            Assert.ThrowsAsync<ArgumentOutOfRangeException>(async () =>
             {
                 await using ITile tile = new RasterTile(number, cs, bandsCount: bandsCount);
-            }
-            catch (ArgumentOutOfRangeException)
-            {
-                Assert.Pass();
-            }
-
-            Assert.Fail();
+            });
         }
 
         [Test]
-        public async Task FromNumberMuchBands()
+        public void FromNumberMuchBands()
         {
             Number number = new Number(1234, 123, 10);
             const CoordinateSystem cs = CoordinateSystem.Epsg4326;
             const int bandsCount = 5;
 
-            try
+            Assert.ThrowsAsync<ArgumentOutOfRangeException>(async () =>
             {
                 await using ITile tile = new RasterTile(number, cs, bandsCount: bandsCount);
-            }
-            catch (ArgumentOutOfRangeException)
-            {
-                Assert.Pass();
-            }
-
-            Assert.Fail();
+            });
         }
 
         [Test]
-        public async Task FromNumberNotSquare()
+        public void FromNumberNotSquare()
         {
             Number number = new Number(1234, 123, 10);
             const CoordinateSystem cs = CoordinateSystem.Epsg4326;
             Size size = new Size(1, 256);
 
-            try
+            Assert.ThrowsAsync<ArgumentException>(async () =>
             {
                 await using ITile tile = new RasterTile(number, cs, size);
-            }
-            catch (ArgumentException)
-            {
-                Assert.Pass();
-            }
-
-            Assert.Fail();
+            });
         }
 
         #endregion
@@ -150,79 +132,55 @@ namespace GTiff2Tiles.Tests.Tiles
         }
 
         [Test]
-        public async Task FromCoordinatesSmallBands()
+        public void FromCoordinatesSmallBands()
         {
             GeoCoordinate coordinate = new GeodeticCoordinate(0.0, 0.0);
             const int zoom = 10;
             const int bandsCount = -1;
 
-            try
+            Assert.ThrowsAsync<ArgumentOutOfRangeException>(async () =>
             {
                 await using ITile tile = new RasterTile(coordinate, coordinate, zoom, bandsCount: bandsCount);
-            }
-            catch (ArgumentOutOfRangeException)
-            {
-                Assert.Pass();
-            }
-
-            Assert.Fail();
+            });
         }
 
         [Test]
-        public async Task FromCoordinatesMuchBands()
+        public void FromCoordinatesMuchBands()
         {
             GeoCoordinate coordinate = new GeodeticCoordinate(0.0, 0.0);
             const int zoom = 10;
             const int bandsCount = 5;
 
-            try
+            Assert.ThrowsAsync<ArgumentOutOfRangeException>(async () =>
             {
                 await using ITile tile = new RasterTile(coordinate, coordinate, zoom, bandsCount: bandsCount);
-            }
-            catch (ArgumentOutOfRangeException)
-            {
-                Assert.Pass();
-            }
-
-            Assert.Fail();
+            });
         }
 
         [Test]
-        public async Task FromCoordinatesNotSquare()
+        public void FromCoordinatesNotSquare()
         {
             GeoCoordinate coordinate = new GeodeticCoordinate(0.0, 0.0);
             const int zoom = 10;
             Size size = new Size(1, 256);
 
-            try
+            Assert.ThrowsAsync<ArgumentException>(async () =>
             {
                 await using ITile tile = new RasterTile(coordinate, coordinate, zoom, size);
-            }
-            catch (ArgumentException)
-            {
-                Assert.Pass();
-            }
-
-            Assert.Fail();
+            });
         }
 
         [Test]
-        public async Task FromCoordinatesMinNotEqualsMax()
+        public void FromCoordinatesMinNotEqualsMax()
         {
             GeoCoordinate min = new GeodeticCoordinate(0.0, 0.0);
             GeoCoordinate max = new GeodeticCoordinate(180.0, 90.0);
             const int zoom = 10;
 
-            try
+            Assert.ThrowsAsync<ArgumentException>(async () =>
             {
                 await using ITile tile = new RasterTile(min, max, zoom);
-            }
-            catch (ArgumentException)
-            {
-                Assert.Pass();
-            }
-
-            Assert.Fail();
+            });
         }
 
         #endregion
@@ -304,6 +262,8 @@ namespace GTiff2Tiles.Tests.Tiles
             tile.Bytes = null;
             tile.Path = string.Empty;
             tile.MinimalBytesCount = int.MinValue;
+
+            Assert.Pass();
         }
 
         #endregion
@@ -415,25 +375,12 @@ namespace GTiff2Tiles.Tests.Tiles
 
             int pos = tile.CalculatePosition();
 
-            if (pos >= 0 && pos <= 3) Assert.Pass();
-
-            Assert.Fail();
+            Assert.True(pos >= 0 && pos <= 3);
         }
 
         [Test]
-        public void CalculatePositionNullNumber()
-        {
-            try
-            {
-                Tile.CalculatePosition(null, false);
-            }
-            catch (ArgumentNullException)
-            {
-                Assert.Pass();
-            }
-
-            Assert.Fail();
-        }
+        public void CalculatePositionNullNumber() => Assert.Throws<ArgumentNullException>(() =>
+              Tile.CalculatePosition(null, false));
 
         #endregion
 

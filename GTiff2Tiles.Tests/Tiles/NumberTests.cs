@@ -1,6 +1,5 @@
 ﻿#pragma warning disable IDE0059 // Unnecessary assignment of a value
 #pragma warning disable CS0219 // The variable is assigned but it's value is never used
-#pragma warning disable CA1031 // Do not catch general exception types
 
 using System;
 using GTiff2Tiles.Core.Coordinates;
@@ -10,7 +9,7 @@ using NUnit.Framework;
 
 // ReSharper disable UnusedVariable
 
-namespace GTiff2Tiles.Tests.Tiles
+namespace GTiff2Tiles.Tests.Tests.Tiles
 {
     public sealed class NumberTests
     {
@@ -31,49 +30,22 @@ namespace GTiff2Tiles.Tests.Tiles
         }
 
         [Test]
-        public void CreateNumberBadX()
+        public void CreateNumberBadX() => Assert.Throws<ArgumentOutOfRangeException>(() =>
         {
-            try
-            {
-                Number number = new Number(-1, 0, 0);
-            }
-            catch (ArgumentOutOfRangeException)
-            {
-                Assert.Pass();
-            }
-
-            Assert.Fail();
-        }
+            Number number = new Number(-1, 0, 0);
+        });
 
         [Test]
-        public void CreateNumberBadY()
+        public void CreateNumberBadY() => Assert.Throws<ArgumentOutOfRangeException>(() =>
         {
-            try
-            {
-                Number number = new Number(0, -1, 0);
-            }
-            catch (ArgumentOutOfRangeException)
-            {
-                Assert.Pass();
-            }
-
-            Assert.Fail();
-        }
+            Number number = new Number(0, -1, 0);
+        });
 
         [Test]
-        public void CreateNumberBadZ()
+        public void CreateNumberBadZ() => Assert.Throws<ArgumentOutOfRangeException>(() =>
         {
-            try
-            {
-                Number number = new Number(0, 0, -1);
-            }
-            catch (ArgumentOutOfRangeException)
-            {
-                Assert.Pass();
-            }
-
-            Assert.Fail();
-        }
+            Number number = new Number(0, 0, -1);
+        });
 
         #endregion
 
@@ -86,6 +58,8 @@ namespace GTiff2Tiles.Tests.Tiles
             int x = number.X;
             int y = number.Y;
             int z = number.Z;
+
+            Assert.Pass();
         }
 
         #endregion
@@ -99,22 +73,12 @@ namespace GTiff2Tiles.Tests.Tiles
         {
             Number number = new Number(1234, 123, 10);
             number.Flip();
+
+            Assert.Pass();
         }
 
         [Test]
-        public void FlipNullNumber()
-        {
-            try
-            {
-                Number.Flip(null);
-            }
-            catch (ArgumentNullException)
-            {
-                Assert.Pass();
-            }
-
-            Assert.Fail();
-        }
+        public void FlipNullNumber() => Assert.Throws<ArgumentNullException>(() => Number.Flip(null));
 
         #endregion
 
@@ -137,32 +101,12 @@ namespace GTiff2Tiles.Tests.Tiles
         {
             Number number = new Number(1234, 123, 10);
 
-            try
-            {
-                number.ToGeodeticCoordinates(null);
-            }
-            catch (ArgumentNullException)
-            {
-                Assert.Pass();
-            }
-
-            Assert.Fail();
+            Assert.Throws<ArgumentNullException>(() => number.ToGeodeticCoordinates(null));
         }
 
         [Test]
-        public void ToGeodeticCoordinatesNullNumber()
-        {
-            try
-            {
-                Number.ToGeodeticCoordinates(null, Tile.DefaultSize);
-            }
-            catch (ArgumentNullException)
-            {
-                Assert.Pass();
-            }
-
-            Assert.Fail();
-        }
+        public void ToGeodeticCoordinatesNullNumber() => Assert.Throws<ArgumentNullException>(() =>
+               Number.ToGeodeticCoordinates(null, Tile.DefaultSize));
 
         #endregion
 
@@ -183,32 +127,12 @@ namespace GTiff2Tiles.Tests.Tiles
         {
             Number number = new Number(1234, 123, 10);
 
-            try
-            {
-                number.ToMercatorCoordinates(null);
-            }
-            catch (ArgumentNullException)
-            {
-                Assert.Pass();
-            }
-
-            Assert.Fail();
+            Assert.Throws<ArgumentNullException>(() => number.ToMercatorCoordinates(null));
         }
 
         [Test]
-        public void ToMercatorCoordinatesNullNumber()
-        {
-            try
-            {
-                Number.ToMercatorCoordinates(null, Tile.DefaultSize);
-            }
-            catch (ArgumentNullException)
-            {
-                Assert.Pass();
-            }
-
-            Assert.Fail();
-        }
+        public void ToMercatorCoordinatesNullNumber() => Assert.Throws<ArgumentNullException>(() =>
+               Number.ToMercatorCoordinates(null, Tile.DefaultSize));
 
         #endregion
 
@@ -242,13 +166,7 @@ namespace GTiff2Tiles.Tests.Tiles
             Number number = new Number(1234, 123, 10);
             const CoordinateSystem cs = CoordinateSystem.Other;
 
-            try { number.ToGeoCoordinates(cs, Tile.DefaultSize, true); }
-            catch (NotSupportedException)
-            {
-                Assert.Pass();
-            }
-
-            Assert.Fail();
+            Assert.Throws<NotSupportedException>(() => number.ToGeoCoordinates(cs, Tile.DefaultSize, true));
         }
 
         [Test]
@@ -256,16 +174,7 @@ namespace GTiff2Tiles.Tests.Tiles
         {
             const CoordinateSystem cs = CoordinateSystem.Epsg4326;
 
-            try
-            {
-                Number.ToGeoCoordinates(null, cs, Tile.DefaultSize, false);
-            }
-            catch (ArgumentNullException)
-            {
-                Assert.Pass();
-            }
-
-            Assert.Fail();
+            Assert.Throws<ArgumentNullException>(() => Number.ToGeoCoordinates(null, cs, Tile.DefaultSize, false));
         }
 
         #endregion
@@ -288,32 +197,12 @@ namespace GTiff2Tiles.Tests.Tiles
         {
             Number number = new Number(1234, 123, 10);
 
-            try
-            {
-                number.GetLowerNumbers(9);
-            }
-            catch (ArgumentOutOfRangeException)
-            {
-                Assert.Pass();
-            }
-
-            Assert.Fail();
+            Assert.Throws<ArgumentOutOfRangeException>(() => number.GetLowerNumbers(9));
         }
 
         [Test]
-        public void GetLowerNumbersNullNumberm()
-        {
-            try
-            {
-                Number.GetLowerNumbers(null, 10);
-            }
-            catch (ArgumentNullException)
-            {
-                Assert.Pass();
-            }
-
-            Assert.Fail();
-        }
+        public void GetLowerNumbersNullNumberm() => Assert.Throws<ArgumentNullException>(() =>
+               Number.GetLowerNumbers(null, 10));
 
         #endregion
 
@@ -336,16 +225,7 @@ namespace GTiff2Tiles.Tests.Tiles
             GeoCoordinate min = new GeodeticCoordinate(0.0, 0.0);
             GeoCoordinate max = new GeodeticCoordinate(180.0, 90.0);
 
-            try
-            {
-                Number.GetCount(min, max, -1, 9, false, Tile.DefaultSize);
-            }
-            catch (ArgumentOutOfRangeException)
-            {
-                Assert.Pass();
-            }
-
-            Assert.Fail();
+            Assert.Throws<ArgumentOutOfRangeException>(() => Number.GetCount(min, max, -1, 9, false, Tile.DefaultSize));
         }
 
         [Test]
@@ -354,16 +234,7 @@ namespace GTiff2Tiles.Tests.Tiles
             GeoCoordinate min = new GeodeticCoordinate(0.0, 0.0);
             GeoCoordinate max = new GeodeticCoordinate(180.0, 90.0);
 
-            try
-            {
-                Number.GetCount(min, max, 0, -1, false, Tile.DefaultSize);
-            }
-            catch (ArgumentOutOfRangeException)
-            {
-                Assert.Pass();
-            }
-
-            Assert.Fail();
+            Assert.Throws<ArgumentOutOfRangeException>(() => Number.GetCount(min, max, 0, -1, false, Tile.DefaultSize));
         }
 
         #endregion
@@ -514,16 +385,10 @@ namespace GTiff2Tiles.Tests.Tiles
         {
             Number number2 = new Number(1, 1, 0);
 
-            try
+            Assert.Throws<ArgumentNullException>(() =>
             {
                 Number add = null + number2;
-            }
-            catch (ArgumentNullException)
-            {
-                Assert.Pass();
-            }
-
-            Assert.Fail();
+            });
         }
 
         [Test]
@@ -531,16 +396,7 @@ namespace GTiff2Tiles.Tests.Tiles
         {
             Number number1 = new Number(0, 0, 0);
 
-            try
-            {
-                number1.Add(null);
-            }
-            catch (ArgumentNullException)
-            {
-                Assert.Pass();
-            }
-
-            Assert.Fail();
+            Assert.Throws<ArgumentNullException>(() => number1.Add(null));
         }
 
         [Test]
@@ -549,16 +405,7 @@ namespace GTiff2Tiles.Tests.Tiles
             Number number1 = new Number(0, 0, 0);
             Number number2 = new Number(1, 1, 1);
 
-            try
-            {
-                number1.Add(number2);
-            }
-            catch (ArgumentException)
-            {
-                Assert.Pass();
-            }
-
-            Assert.Fail();
+            Assert.Throws<ArgumentException>(() => number1.Add(number2));
         }
 
         #endregion
@@ -581,16 +428,10 @@ namespace GTiff2Tiles.Tests.Tiles
         {
             Number number2 = new Number(0, 0, 0);
 
-            try
+            Assert.Throws<ArgumentNullException>(() =>
             {
                 Number sub = null - number2;
-            }
-            catch (ArgumentNullException)
-            {
-                Assert.Pass();
-            }
-
-            Assert.Fail();
+            });
         }
 
         [Test]
@@ -598,16 +439,7 @@ namespace GTiff2Tiles.Tests.Tiles
         {
             Number number1 = new Number(1, 1, 0);
 
-            try
-            {
-                number1.Subtract(null);
-            }
-            catch (ArgumentNullException)
-            {
-                Assert.Pass();
-            }
-
-            Assert.Fail();
+            Assert.Throws<ArgumentNullException>(() => number1.Subtract(null));
         }
 
         [Test]
@@ -616,16 +448,7 @@ namespace GTiff2Tiles.Tests.Tiles
             Number number1 = new Number(1, 1, 1);
             Number number2 = new Number(0, 0, 0);
 
-            try
-            {
-                number1.Subtract(number2);
-            }
-            catch (ArgumentException)
-            {
-                Assert.Pass();
-            }
-
-            Assert.Fail();
+            Assert.Throws<ArgumentException>(() => number1.Subtract(number2));
         }
 
         #endregion
@@ -648,16 +471,10 @@ namespace GTiff2Tiles.Tests.Tiles
         {
             Number number2 = new Number(1, 1, 0);
 
-            try
+            Assert.Throws<ArgumentNullException>(() =>
             {
                 Number mul = null * number2;
-            }
-            catch (ArgumentNullException)
-            {
-                Assert.Pass();
-            }
-
-            Assert.Fail();
+            });
         }
 
         [Test]
@@ -665,16 +482,7 @@ namespace GTiff2Tiles.Tests.Tiles
         {
             Number number1 = new Number(0, 0, 0);
 
-            try
-            {
-                number1.Multiply(null);
-            }
-            catch (ArgumentNullException)
-            {
-                Assert.Pass();
-            }
-
-            Assert.Fail();
+            Assert.Throws<ArgumentNullException>(() => number1.Multiply(null));
         }
 
         [Test]
@@ -683,16 +491,7 @@ namespace GTiff2Tiles.Tests.Tiles
             Number number1 = new Number(0, 0, 0);
             Number number2 = new Number(1, 1, 1);
 
-            try
-            {
-                number1.Multiply(number2);
-            }
-            catch (ArgumentException)
-            {
-                Assert.Pass();
-            }
-
-            Assert.Fail();
+            Assert.Throws<ArgumentException>(() => number1.Multiply(number2));
         }
 
         #endregion
@@ -715,16 +514,10 @@ namespace GTiff2Tiles.Tests.Tiles
         {
             Number number2 = new Number(1, 1, 0);
 
-            try
+            Assert.Throws<ArgumentNullException>(() =>
             {
                 Number div = null / number2;
-            }
-            catch (ArgumentNullException)
-            {
-                Assert.Pass();
-            }
-
-            Assert.Fail();
+            });
         }
 
         [Test]
@@ -732,16 +525,7 @@ namespace GTiff2Tiles.Tests.Tiles
         {
             Number number1 = new Number(0, 0, 0);
 
-            try
-            {
-                number1.Divide(null);
-            }
-            catch (ArgumentNullException)
-            {
-                Assert.Pass();
-            }
-
-            Assert.Fail();
+            Assert.Throws<ArgumentNullException>(() => number1.Divide(null));
         }
 
         [Test]
@@ -750,16 +534,7 @@ namespace GTiff2Tiles.Tests.Tiles
             Number number1 = new Number(0, 0, 0);
             Number number2 = new Number(1, 1, 1);
 
-            try
-            {
-                number1.Divide(number2);
-            }
-            catch (ArgumentException)
-            {
-                Assert.Pass();
-            }
-
-            Assert.Fail();
+            Assert.Throws<ArgumentException>(() => number1.Divide(number2));
         }
 
         #endregion
@@ -770,4 +545,3 @@ namespace GTiff2Tiles.Tests.Tiles
 
 #pragma warning restore IDE0059 // Unnecessary assignment of a value
 #pragma warning restore CS0219 // The variable is assigned but it's value is never used
-#pragma warning restore CA1031 // Do not catch general exception types
