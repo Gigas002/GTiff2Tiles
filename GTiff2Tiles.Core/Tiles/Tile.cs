@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using GTiff2Tiles.Core.Constants;
@@ -194,7 +195,20 @@ namespace GTiff2Tiles.Core.Tiles
         {
             if (tile?.Bytes == null || tile.Bytes.Count() <= tile.MinimalBytesCount) return false;
 
-            if (isCheckPath) CheckHelper.CheckFile(tile.Path);
+            // ReSharper disable once InvertIf
+            if (isCheckPath)
+            {
+                try
+                {
+                    CheckHelper.CheckFile(tile.Path);
+                }
+                catch (Exception exception)
+                {
+                    if (exception is ArgumentNullException || exception is FileNotFoundException) return false;
+
+                    throw;
+                }
+            }
 
             return true;
         }
