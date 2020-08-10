@@ -5,13 +5,12 @@
 using System;
 using GTiff2Tiles.Core.Coordinates;
 using GTiff2Tiles.Core.Enums;
-using GTiff2Tiles.Core.Images;
 using GTiff2Tiles.Core.Tiles;
 using NUnit.Framework;
 
 // ReSharper disable UnusedVariable
 
-namespace GTiff2Tiles.Tests.Tests
+namespace GTiff2Tiles.Tests.Tiles
 {
     public sealed class NumberTests
     {

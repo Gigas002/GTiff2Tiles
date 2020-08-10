@@ -15,7 +15,7 @@ using NUnit.Framework;
 
 // ReSharper disable UnusedVariable
 
-namespace GTiff2Tiles.Tests.Tests
+namespace GTiff2Tiles.Tests.Tiles
 {
     public sealed class TileTests
     {
