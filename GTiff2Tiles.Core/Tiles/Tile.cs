@@ -35,7 +35,7 @@ namespace GTiff2Tiles.Core.Tiles
         public static readonly Size DefaultSize = new Size(DefaultSideSizeValue, DefaultSideSizeValue);
 
         /// <inheritdoc />
-        public bool IsDisposed { get; set; }
+        public bool IsDisposed { get; private set; }
 
         /// <inheritdoc />
         public GeoCoordinate MinCoordinate { get; }

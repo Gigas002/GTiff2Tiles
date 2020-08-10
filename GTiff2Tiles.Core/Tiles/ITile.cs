@@ -19,7 +19,7 @@ namespace GTiff2Tiles.Core.Tiles
         /// <summary>
         /// Shows if this <see cref="ITile"/>'s already disposed
         /// </summary>
-        public bool IsDisposed { get; set; }
+        public bool IsDisposed { get; }
 
         /// <summary>
         /// Minimal <see cref="GeoCoordinate"/> of this <see cref="ITile"/>
