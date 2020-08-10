@@ -1693,9 +1693,9 @@
             </summary>
             <param name="number1"><see cref="T:GTiff2Tiles.Core.Tiles.Number"/> 1</param>
             <param name="number2"><see cref="T:GTiff2Tiles.Core.Tiles.Number"/> 2</param>
-            <returns>New <see cref="T:GTiff2Tiles.Core.Tiles.Number"/>, if <see cref="P:GTiff2Tiles.Core.Tiles.Number.Z"/>s are the same;
-            <see langword="null"/> otherwise</returns>
+            <returns>New <see cref="T:GTiff2Tiles.Core.Tiles.Number"/>, if <see cref="P:GTiff2Tiles.Core.Tiles.Number.Z"/>s are the same</returns>
             <exception cref="T:System.ArgumentNullException"/>
+            <exception cref="T:System.ArgumentException"/>
         </member>
         <member name="M:GTiff2Tiles.Core.Tiles.Number.Add(GTiff2Tiles.Core.Tiles.Number)">
             <inheritdoc cref="M:GTiff2Tiles.Core.Tiles.Number.op_Addition(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Tiles.Number)"/>
@@ -1710,9 +1710,9 @@
             </summary>
             <param name="number1"><see cref="T:GTiff2Tiles.Core.Tiles.Number"/> 1</param>
             <param name="number2"><see cref="T:GTiff2Tiles.Core.Tiles.Number"/> 2</param>
-            <returns>New <see cref="T:GTiff2Tiles.Core.Tiles.Number"/>, if <see cref="P:GTiff2Tiles.Core.Tiles.Number.Z"/>s are the same;
-            <see langword="null"/> otherwise</returns>
+            <returns>New <see cref="T:GTiff2Tiles.Core.Tiles.Number"/>, if <see cref="P:GTiff2Tiles.Core.Tiles.Number.Z"/>s are the same</returns>
             <exception cref="T:System.ArgumentNullException"/>
+            <exception cref="T:System.ArgumentException"/>
         </member>
         <member name="M:GTiff2Tiles.Core.Tiles.Number.Subtract(GTiff2Tiles.Core.Tiles.Number)">
             <inheritdoc cref="M:GTiff2Tiles.Core.Tiles.Number.op_Subtraction(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Tiles.Number)"/>
@@ -1727,9 +1727,9 @@
             </summary>
             <param name="number1"><see cref="T:GTiff2Tiles.Core.Tiles.Number"/> 1</param>
             <param name="number2"><see cref="T:GTiff2Tiles.Core.Tiles.Number"/> 2</param>
-            <returns>New <see cref="T:GTiff2Tiles.Core.Tiles.Number"/>, if <see cref="P:GTiff2Tiles.Core.Tiles.Number.Z"/>s are the same;
-            <see langword="null"/> otherwise</returns>
+            <returns>New <see cref="T:GTiff2Tiles.Core.Tiles.Number"/>, if <see cref="P:GTiff2Tiles.Core.Tiles.Number.Z"/>s are the same</returns>
             <exception cref="T:System.ArgumentNullException"/>
+            <exception cref="T:System.ArgumentException"/>
         </member>
         <member name="M:GTiff2Tiles.Core.Tiles.Number.Multiply(GTiff2Tiles.Core.Tiles.Number)">
             <inheritdoc cref="M:GTiff2Tiles.Core.Tiles.Number.op_Multiply(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Tiles.Number)"/>
@@ -1744,9 +1744,9 @@
             </summary>
             <param name="number1"><see cref="T:GTiff2Tiles.Core.Tiles.Number"/> 1</param>
             <param name="number2"><see cref="T:GTiff2Tiles.Core.Tiles.Number"/> 2</param>
-            <returns>New <see cref="T:GTiff2Tiles.Core.Tiles.Number"/>, if <see cref="P:GTiff2Tiles.Core.Tiles.Number.Z"/>s are the same;
-            <see langword="null"/> otherwise</returns>
+            <returns>New <see cref="T:GTiff2Tiles.Core.Tiles.Number"/>, if <see cref="P:GTiff2Tiles.Core.Tiles.Number.Z"/>s are the same</returns>
             <exception cref="T:System.ArgumentNullException"/>
+            <exception cref="T:System.ArgumentException"/>
         </member>
         <member name="M:GTiff2Tiles.Core.Tiles.Number.Divide(GTiff2Tiles.Core.Tiles.Number)">
             <inheritdoc cref="M:GTiff2Tiles.Core.Tiles.Number.op_Division(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Tiles.Number)"/>

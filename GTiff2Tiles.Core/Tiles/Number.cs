@@ -205,8 +205,7 @@ namespace GTiff2Tiles.Core.Tiles
 
                         return (minCoordinate, maxCoordinate);
                     }
-                default:
-                    throw new NotSupportedException($"{coordinateSystem} is not supported");
+                default: throw new NotSupportedException($"{coordinateSystem} is not supported");
             }
         }
 
@@ -342,19 +341,20 @@ namespace GTiff2Tiles.Core.Tiles
         /// </summary>
         /// <param name="number1"><see cref="Number"/> 1</param>
         /// <param name="number2"><see cref="Number"/> 2</param>
-        /// <returns>New <see cref="Number"/>, if <see cref="Z"/>s are the same;
-        /// <see langword="null"/> otherwise</returns>
+        /// <returns>New <see cref="Number"/>, if <see cref="Z"/>s are the same</returns>
         /// <exception cref="ArgumentNullException"/>
+        /// <exception cref="ArgumentException"/>
         public static Number operator +(Number number1, Number number2)
         {
             #region Preconditions checks
 
             if (number1 == null) throw new ArgumentNullException(nameof(number1));
             if (number2 == null) throw new ArgumentNullException(nameof(number2));
+            if (number1.Z != number2.Z) throw new ArgumentException("Zoom of number1 isn't equal to zoom of number2");
 
             #endregion
 
-            return number1.Z != number2.Z ? null : new Number(number1.X + number2.X, number1.Y + number2.Y, number1.Z);
+            return new Number(number1.X + number2.X, number1.Y + number2.Y, number1.Z);
         }
 
         /// <inheritdoc cref="op_Addition"/>
@@ -369,19 +369,20 @@ namespace GTiff2Tiles.Core.Tiles
         /// </summary>
         /// <param name="number1"><see cref="Number"/> 1</param>
         /// <param name="number2"><see cref="Number"/> 2</param>
-        /// <returns>New <see cref="Number"/>, if <see cref="Z"/>s are the same;
-        /// <see langword="null"/> otherwise</returns>
+        /// <returns>New <see cref="Number"/>, if <see cref="Z"/>s are the same</returns>
         /// <exception cref="ArgumentNullException"/>
+        /// <exception cref="ArgumentException"/>
         public static Number operator -(Number number1, Number number2)
         {
             #region Preconditions checks
 
             if (number1 == null) throw new ArgumentNullException(nameof(number1));
             if (number2 == null) throw new ArgumentNullException(nameof(number2));
+            if (number1.Z != number2.Z) throw new ArgumentException("Zoom of number1 isn't equal to zoom of number2");
 
             #endregion
 
-            return number1.Z != number2.Z ? null : new Number(number1.X - number2.X, number1.Y - number2.Y, number1.Z);
+            return new Number(number1.X - number2.X, number1.Y - number2.Y, number1.Z);
         }
 
         /// <inheritdoc cref="op_Subtraction"/>
@@ -396,19 +397,20 @@ namespace GTiff2Tiles.Core.Tiles
         /// </summary>
         /// <param name="number1"><see cref="Number"/> 1</param>
         /// <param name="number2"><see cref="Number"/> 2</param>
-        /// <returns>New <see cref="Number"/>, if <see cref="Z"/>s are the same;
-        /// <see langword="null"/> otherwise</returns>
+        /// <returns>New <see cref="Number"/>, if <see cref="Z"/>s are the same</returns>
         /// <exception cref="ArgumentNullException"/>
+        /// <exception cref="ArgumentException"/>
         public static Number operator *(Number number1, Number number2)
         {
             #region Preconditions checks
 
             if (number1 == null) throw new ArgumentNullException(nameof(number1));
             if (number2 == null) throw new ArgumentNullException(nameof(number2));
+            if (number1.Z != number2.Z) throw new ArgumentException("Zoom of number1 isn't equal to zoom of number2");
 
             #endregion
 
-            return number1.Z != number2.Z ? null : new Number(number1.X * number2.X, number1.Y * number2.Y, number1.Z);
+            return new Number(number1.X * number2.X, number1.Y * number2.Y, number1.Z);
         }
 
         /// <inheritdoc cref="op_Multiply"/>
@@ -423,19 +425,20 @@ namespace GTiff2Tiles.Core.Tiles
         /// </summary>
         /// <param name="number1"><see cref="Number"/> 1</param>
         /// <param name="number2"><see cref="Number"/> 2</param>
-        /// <returns>New <see cref="Number"/>, if <see cref="Z"/>s are the same;
-        /// <see langword="null"/> otherwise</returns>
+        /// <returns>New <see cref="Number"/>, if <see cref="Z"/>s are the same</returns>
         /// <exception cref="ArgumentNullException"/>
+        /// <exception cref="ArgumentException"/>
         public static Number operator /(Number number1, Number number2)
         {
             #region Preconditions checks
 
             if (number1 == null) throw new ArgumentNullException(nameof(number1));
             if (number2 == null) throw new ArgumentNullException(nameof(number2));
+            if (number1.Z != number2.Z) throw new ArgumentException("Zoom of number1 isn't equal to zoom of number2");
 
             #endregion
 
-            return number1.Z != number2.Z ? null : new Number(number1.X / number2.X, number1.Y / number2.Y, number1.Z);
+            return new Number(number1.X / number2.X, number1.Y / number2.Y, number1.Z);
         }
 
         /// <inheritdoc cref="op_Division"/>
