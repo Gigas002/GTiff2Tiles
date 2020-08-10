@@ -293,6 +293,19 @@ namespace GTiff2Tiles.Tests.Tests
             Assert.Pass();
         }
 
+        [Test]
+        public async Task SetProperties()
+        {
+            Number number = new Number(1234, 123, 10);
+            const CoordinateSystem cs = CoordinateSystem.Epsg4326;
+
+            await using ITile tile = new RasterTile(number, cs);
+
+            tile.Bytes = null;
+            tile.Path = string.Empty;
+            tile.MinimalBytesCount = int.MinValue;
+        }
+
         #endregion
 
         #region Methods
