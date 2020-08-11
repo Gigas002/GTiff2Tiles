@@ -4,12 +4,40 @@ using GTiff2Tiles.Core.Enums;
 using GTiff2Tiles.Core.Tiles;
 using NUnit.Framework;
 
+// ReSharper disable UnusedVariable
+
 namespace GTiff2Tiles.Tests.Tests.Coordinates
 {
     [TestFixture]
     public sealed class GeoCoordinateTests
     {
         // Only static things tests here. Everything else is tested on derived classes
+
+        #region ToNumber
+
+        [Test]
+        public void ToNumberNormal()
+        {
+            GeoCoordinate coord = new GeodeticCoordinate(0.0, 0.0);
+
+            Assert.DoesNotThrow(() =>
+            {
+                Number num = coord.ToNumber(10, Tile.DefaultSize, false);
+            });
+        }
+
+        [Test]
+        public void ToNumberSmallZ()
+        {
+            GeoCoordinate coord = new GeodeticCoordinate(0.0, 0.0);
+
+            Assert.Throws<ArgumentOutOfRangeException>(() =>
+            {
+                Number num = coord.ToNumber(-1, Tile.DefaultSize, false);
+            });
+        }
+
+        #endregion
 
         #region GetNumbers
 
