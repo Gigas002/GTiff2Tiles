@@ -251,11 +251,10 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
             Number number = new Number(1234, 123, 10);
             const CoordinateSystem cs = CoordinateSystem.Epsg4326;
 
-            await using ITile tile = new RasterTile(number, cs);
-
-            tile.Bytes = null;
-            tile.Path = string.Empty;
-            tile.MinimalBytesCount = int.MinValue;
+            await using ITile tile = new RasterTile(number, cs)
+            {
+                Bytes = null, Path = string.Empty, MinimalBytesCount = int.MinValue
+            };
 
             Assert.Pass();
         }

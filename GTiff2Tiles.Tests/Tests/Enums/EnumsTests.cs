@@ -1,5 +1,11 @@
-﻿using GTiff2Tiles.Core.Enums;
+﻿#pragma warning disable CS0219 // The variable is assigned but it's value is never used
+#pragma warning disable CS0618 // Something is obsolete
+
+using GTiff2Tiles.Core.Enums;
 using NUnit.Framework;
+
+// ReSharper disable RedundantAssignment
+// ReSharper disable UnusedVariable
 
 namespace GTiff2Tiles.Tests.Tests.Enums
 {
@@ -41,3 +47,7 @@ namespace GTiff2Tiles.Tests.Tests.Enums
         });
     }
 }
+
+#pragma warning restore IDE0059 // Unnecessary assignment of a value
+#pragma warning restore CS0219 // The variable is assigned but it's value is never used
+#pragma warning restore CS0618 // Something is obsolete

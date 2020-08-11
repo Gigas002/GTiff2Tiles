@@ -1,6 +1,9 @@
 ﻿using GTiff2Tiles.Core.Exceptions;
 using NUnit.Framework;
 
+// ReSharper disable NotAccessedVariable
+// ReSharper disable RedundantAssignment
+
 namespace GTiff2Tiles.Tests.Tests.Exceptions
 {
     [TestFixture]
