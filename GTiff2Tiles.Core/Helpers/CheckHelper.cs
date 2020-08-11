@@ -31,7 +31,7 @@ namespace GTiff2Tiles.Core.Helpers
         /// <exception cref="ArgumentException"/>
         /// <exception cref="FileNotFoundException"/>
         /// <exception cref="FileException"/>
-        public static void CheckFile(string filePath, bool? shouldExist = true, string? fileExtension = null)
+        public static void CheckFile(string? filePath, bool? shouldExist = true, string? fileExtension = null)
         {
             // Check file path
             if (string.IsNullOrWhiteSpace(filePath)) throw new ArgumentNullException(nameof(filePath));
