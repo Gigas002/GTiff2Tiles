@@ -48,6 +48,5 @@ namespace GTiff2Tiles.Tests.Tests
     }
 }
 
-#pragma warning restore IDE0059 // Unnecessary assignment of a value
 #pragma warning restore CS0219 // The variable is assigned but it's value is never used
 #pragma warning restore CS0618 // Something is obsolete

@@ -9,6 +9,7 @@ using GTiff2Tiles.Core.Coordinates;
 using GTiff2Tiles.Core.Enums;
 using GTiff2Tiles.Core.Helpers;
 using GTiff2Tiles.Core.Images;
+using MaxRev.Gdal.Core;
 using OSGeo.GDAL;
 using OSGeo.OSR;
 
@@ -160,7 +161,7 @@ namespace GTiff2Tiles.Core
         /// <summary>
         /// Initialize Gdal, if it hadn't been initialized yet
         /// </summary>
-        public static void ConfigureGdal() => GdalHelper.ConfigureAll();
+        public static void ConfigureGdal() => GdalBase.ConfigureAll();
 
         #endregion
 

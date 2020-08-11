@@ -287,13 +287,15 @@ namespace GTiff2Tiles.Core.GeoTiffs
 
             string interpolation = tile.Interpolation switch
             {
-                Interpolation.Nearest => Interpolations.Nearest,
-                Interpolation.Linear => Interpolations.Linear,
-                Interpolation.Cubic => Interpolations.Cubic,
-                Interpolation.Mitchell => Interpolations.Mitchell,
-                Interpolation.Lanczos2 => Interpolations.Lanczos2,
-                Interpolation.Lanczos3 => Interpolations.Lanczos3,
+#pragma warning disable CA1308 // Normalize strings to uppercase
+                Interpolation.Nearest => nameof(Interpolation.Nearest).ToLowerInvariant(),
+                Interpolation.Linear => nameof(Interpolation.Linear).ToLowerInvariant(),
+                Interpolation.Cubic => nameof(Interpolation.Cubic).ToLowerInvariant(),
+                Interpolation.Mitchell => nameof(Interpolation.Mitchell).ToLowerInvariant(),
+                Interpolation.Lanczos2 => nameof(Interpolation.Lanczos2).ToLowerInvariant(),
+                Interpolation.Lanczos3 => nameof(Interpolation.Lanczos3).ToLowerInvariant(),
                 _ => throw new ArgumentException("Tile has wrong interpolation", nameof(tile))
+#pragma warning restore CA1308 // Normalize strings to uppercase
             };
 
             #endregion

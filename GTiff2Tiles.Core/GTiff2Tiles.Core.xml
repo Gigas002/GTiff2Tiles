@@ -69,41 +69,6 @@
             Approximately 20037508.342789244
             </summary>
         </member>
-        <member name="T:GTiff2Tiles.Core.Constants.Interpolations">
-            <summary>
-            Represents the interpolation algorithms
-            </summary>
-        </member>
-        <member name="F:GTiff2Tiles.Core.Constants.Interpolations.Nearest">
-            <summary>
-            Nearest-neighbour interpolation
-            </summary>
-        </member>
-        <member name="F:GTiff2Tiles.Core.Constants.Interpolations.Linear">
-            <summary>
-            Linear interpolation
-            </summary>
-        </member>
-        <member name="F:GTiff2Tiles.Core.Constants.Interpolations.Cubic">
-            <summary>
-            Cubic interpolation
-            </summary>
-        </member>
-        <member name="F:GTiff2Tiles.Core.Constants.Interpolations.Mitchell">
-            <summary>
-            Mitchell
-            </summary>
-        </member>
-        <member name="F:GTiff2Tiles.Core.Constants.Interpolations.Lanczos2">
-            <summary>
-            Two-lobe Lanczos
-            </summary>
-        </member>
-        <member name="F:GTiff2Tiles.Core.Constants.Interpolations.Lanczos3">
-            <summary>
-            Three-lobe Lanczos
-            </summary>
-        </member>
         <member name="T:GTiff2Tiles.Core.Constants.Proj">
             <summary>
             Proj constants
@@ -1081,23 +1046,6 @@
             <param name="targetSystem">Target coordinate system</param>
             <returns><see langword="true"/> if file needs to be converted;
             <para/><see langword="false"/> otherwise</returns>
-        </member>
-        <member name="T:GTiff2Tiles.Core.Helpers.GdalHelper">
-            <summary>
-            Configures all variables and options for GDAL including plugins and Proj6.db path
-            </summary>
-        </member>
-        <member name="P:GTiff2Tiles.Core.Helpers.GdalHelper.IsConfigured">
-            <summary>
-            Shows if everything has been configured
-            </summary>
-        </member>
-        <member name="M:GTiff2Tiles.Core.Helpers.GdalHelper.ConfigureAll">
-            <summary>
-            Setups gdalplugins and calls <see cref="M:OSGeo.GDAL.Gdal.AllRegister"/>,
-            <see cref="M:OSGeo.OGR.Ogr.RegisterAll"/>,
-            <see cref="M:MaxRev.Gdal.Core.Proj6.Configure"/>
-            </summary>
         </member>
         <member name="T:GTiff2Tiles.Core.Helpers.NetVipsHelper">
             <summary>
