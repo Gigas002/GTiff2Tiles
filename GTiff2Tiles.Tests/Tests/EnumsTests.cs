@@ -7,7 +7,7 @@ using NUnit.Framework;
 // ReSharper disable RedundantAssignment
 // ReSharper disable UnusedVariable
 
-namespace GTiff2Tiles.Tests.Tests.Enums
+namespace GTiff2Tiles.Tests.Tests
 {
     [TestFixture]
     public sealed class EnumsTests

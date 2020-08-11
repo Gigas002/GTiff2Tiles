@@ -4,7 +4,7 @@ using NUnit.Framework;
 // ReSharper disable NotAccessedVariable
 // ReSharper disable RedundantAssignment
 
-namespace GTiff2Tiles.Tests.Tests.Exceptions
+namespace GTiff2Tiles.Tests.Tests
 {
     [TestFixture]
     public sealed class ExceptionsTests
