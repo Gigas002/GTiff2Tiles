@@ -42,14 +42,14 @@ namespace GTiff2Tiles.Core.Coordinates
         /// </summary>
         /// <param name="degrees">Value to convert</param>
         /// <returns>Converted radians</returns>
-        public static double DegreesToRadians(double degrees) => Math.PI / 180.0 * degrees;
+        public static double DegreesToRadians(double degrees) => degrees * Math.PI / 180.0;
 
         /// <summary>
         /// Converts radians to degrees
         /// </summary>
         /// <param name="radians">Value to convert</param>
         /// <returns>Converted degrees</returns>
-        public static double RadiansToDegrees(double radians) => 180.0 / Math.PI * radians;
+        public static double RadiansToDegrees(double radians) => radians * 180.0 / Math.PI;
 
         #region Bool compare overrides
 
