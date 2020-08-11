@@ -20,15 +20,9 @@ using NUnit.Framework;
 
 namespace GTiff2Tiles.Tests.Tests
 {
+    [TestFixture]
     public sealed class GdalWorkerTests
     {
-        #region Setup
-
-        [SetUp]
-        public void Setup() { }
-
-        #endregion
-
         #region Properties tests
 
         [Test]

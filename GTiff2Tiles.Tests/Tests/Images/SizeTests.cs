@@ -9,15 +9,9 @@ using NUnit.Framework;
 
 namespace GTiff2Tiles.Tests.Tests.Images
 {
+    [TestFixture]
     public sealed class SizeTests
     {
-        #region Setup
-
-        [SetUp]
-        public void Setup() { }
-
-        #endregion
-
         #region Constructors
 
         [Test]

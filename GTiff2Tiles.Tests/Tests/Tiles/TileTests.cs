@@ -17,15 +17,9 @@ using NUnit.Framework;
 
 namespace GTiff2Tiles.Tests.Tests.Tiles
 {
+    [TestFixture]
     public sealed class TileTests
     {
-        #region Setup
-
-        [SetUp]
-        public void Setup() { }
-
-        #endregion
-
         #region Constructors
 
         #region FromNumber
