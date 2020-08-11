@@ -71,6 +71,7 @@ namespace GTiff2Tiles.Tests.Tests.Coordinates
         public void ToPixelCoordinateTest()
         {
             GeodeticCoordinate coord = new GeodeticCoordinate(0.0, 0.0);
+
             Assert.DoesNotThrow(() =>
             {
                 PixelCoordinate pCoord = coord.ToPixelCoordinate(10, Tile.DefaultSize);
@@ -81,6 +82,7 @@ namespace GTiff2Tiles.Tests.Tests.Coordinates
         public void ToMercatorCoordinateTest()
         {
             GeodeticCoordinate coord = new GeodeticCoordinate(0.0, 0.0);
+
             Assert.DoesNotThrow(() =>
             {
                 MercatorCoordinate mCoord = coord.ToMercatorCoordinate();
