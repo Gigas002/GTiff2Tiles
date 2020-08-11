@@ -93,12 +93,13 @@ namespace GTiff2Tiles.Core.Coordinates
         /// <remarks><para/>Must be square</remarks></param>
         /// <param name="coordinateSystem">Coordinate system</param>
         /// <returns>Resolution value or -1.0 if something goes wrong</returns>
-        protected static double Resolution(int z, Size tileSize, CoordinateSystem coordinateSystem) =>
+        /// <exception cref="NotSupportedException"/>
+        public static double Resolution(int z, Size tileSize, CoordinateSystem coordinateSystem) =>
             coordinateSystem switch
             {
                 CoordinateSystem.Epsg4326 => GeodeticCoordinate.Resolution(z, tileSize),
                 CoordinateSystem.Epsg3857 => MercatorCoordinate.Resolution(z, tileSize),
-                _ => -1.0
+                _ => throw new NotSupportedException($"{coordinateSystem} is not supported")
             };
 
         /// <summary>

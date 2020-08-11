@@ -258,6 +258,7 @@
             <remarks><para/>Must be square</remarks></param>
             <param name="coordinateSystem">Coordinate system</param>
             <returns>Resolution value or -1.0 if something goes wrong</returns>
+            <exception cref="T:System.NotSupportedException"/>
         </member>
         <member name="M:GTiff2Tiles.Core.Coordinates.GeoCoordinate.ZoomForPixelSize(System.Int32,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.CoordinateSystem,System.Int32,System.Int32)">
             <summary>
