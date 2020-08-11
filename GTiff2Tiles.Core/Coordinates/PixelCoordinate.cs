@@ -49,6 +49,7 @@ namespace GTiff2Tiles.Core.Coordinates
 
             #endregion
 
+            // TODO: Probably shouldn't subtract 1.0, needs tests on actual data
             int tileX = Convert.ToInt32(Math.Ceiling(X / tileSize.Width) - 1.0);
             int tileY = Convert.ToInt32(Math.Ceiling(Y / tileSize.Height) - 1.0);
 
@@ -143,8 +144,6 @@ namespace GTiff2Tiles.Core.Coordinates
             if (!tileSize.IsSquare) throw new ArgumentException($"{nameof(tileSize)} is not square", nameof(tileSize));
 
             #endregion
-
-            // TODO: Test
 
             // If it's square -- it's safe to choose any side
             int mapSize = tileSize.Height << z;
