@@ -1159,6 +1159,8 @@
             of <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/></param>
             <param name="tileSize"><see cref="T:GTiff2Tiles.Core.Images.Size"/> of <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/></param>
             <returns></returns>
+            <exception cref="T:System.ArgumentNullException"/>
+            <exception cref="T:System.ArgumentException"/>
         </member>
         <member name="M:GTiff2Tiles.Core.Images.Area.GetAreas(GTiff2Tiles.Core.GeoTiffs.IGeoTiff,GTiff2Tiles.Core.Tiles.ITile)">
             <summary>

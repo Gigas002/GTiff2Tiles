@@ -62,6 +62,8 @@ namespace GTiff2Tiles.Core.Images
         /// of <see cref="ITile"/></param>
         /// <param name="tileSize"><see cref="Images.Size"/> of <see cref="ITile"/></param>
         /// <returns></returns>
+        /// <exception cref="ArgumentNullException"/>
+        /// <exception cref="ArgumentException"/>
         public static (Area readArea, Area writeArea) GetAreas(GeoCoordinate imageMinCoordinate,
                                                                GeoCoordinate imageMaxCoordinate, Size imageSize,
                                                                GeoCoordinate tileMinCoordinate,
@@ -71,9 +73,19 @@ namespace GTiff2Tiles.Core.Images
 
             if (imageMinCoordinate == null) throw new ArgumentNullException(nameof(imageMinCoordinate));
             if (imageMaxCoordinate == null) throw new ArgumentNullException(nameof(imageMaxCoordinate));
+
+            // This is to prevent unclear DivideByZeroException exception
+            if (imageMinCoordinate == imageMaxCoordinate)
+                throw new ArgumentException($"{nameof(imageMinCoordinate)} equals to {nameof(imageMaxCoordinate)}");
+
             if (imageSize == null) throw new ArgumentNullException(nameof(imageSize));
             if (tileMinCoordinate == null) throw new ArgumentNullException(nameof(tileMinCoordinate));
             if (tileMaxCoordinate == null) throw new ArgumentNullException(nameof(tileMaxCoordinate));
+
+            // This is to prevent unclear DivideByZeroException exception
+            if (tileMinCoordinate == tileMaxCoordinate)
+                throw new ArgumentException($"{nameof(tileMinCoordinate)} equals to {nameof(tileMaxCoordinate)}");
+
             if (tileSize == null) throw new ArgumentNullException(nameof(tileSize));
 
             #endregion
