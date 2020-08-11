@@ -24,8 +24,8 @@ namespace GTiff2Tiles.Core.Helpers
         {
             #region Preconditions checks
 
-            if (stopwatch == null) throw new ArgumentNullException(nameof(stopwatch));
             if (percentage <= 0.0 || percentage > 100.0) throw new ArgumentOutOfRangeException(nameof(percentage));
+            if (stopwatch == null) throw new ArgumentNullException(nameof(stopwatch));
 
             #endregion
 
