@@ -16,6 +16,7 @@ Changes since 1.4.1:
 - Configured CI/CD for full repo;
 - Reduced tile shifting in output tiles (resolved by updating **NetVips.Native to 8.10.0+**);
 - Added **Microsoft.CodeAnalysis.FxCopAnalyzers** dependency;
+- Added **BitMiracle.LibTiff.NET** dependency;
 
 ### Core
 

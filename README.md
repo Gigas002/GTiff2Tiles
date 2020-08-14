@@ -85,6 +85,7 @@ In [Examples](https://github.com/Gigas002/GTiff2Tiles/tree/master/Examples/Input
 - [NetVips](https://www.nuget.org/packages/NetVips/) – 1.2.4;
 - [NetVips.Native](https://www.nuget.org/packages/NetVips.Native/) – 8.10.0-rc1;
 - [Microsoft.CodeAnalysis.FxCopAnalyzers](https://www.nuget.org/packages/Microsoft.CodeAnalysis.FxCopAnalyzers) – 3.3.0;
+- [BitMiracle.LibTiff.NET](https://www.nuget.org/packages/BitMiracle.LibTiff.NET) – 2.4.639
 
 ### Localization
 
