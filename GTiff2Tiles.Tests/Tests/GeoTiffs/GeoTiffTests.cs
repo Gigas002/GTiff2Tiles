@@ -22,6 +22,16 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
     [TestFixture]
     public sealed class GeoTiffTests
     {
+        #region SetUp and consts
+
+        [SetUp]
+        public void SetUp()
+        {
+
+        }
+
+        #endregion
+
         #region Constructors
 
         #region Create from file wo cs

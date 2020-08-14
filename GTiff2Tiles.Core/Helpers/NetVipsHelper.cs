@@ -2,6 +2,8 @@
 
 namespace GTiff2Tiles.Core.Helpers
 {
+    // TODO public
+
     /// <summary>
     /// Some additional methods for NetVips
     /// </summary>
