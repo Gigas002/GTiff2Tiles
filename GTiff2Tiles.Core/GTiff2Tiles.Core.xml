@@ -791,13 +791,6 @@
             Used for creating <see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/>s
             </summary>
         </member>
-        <member name="F:GTiff2Tiles.Core.GeoTiffs.Raster._tempFileName">
-            <summary>
-            Name for temporary file
-            <remarks><para/>See <see cref="M:GTiff2Tiles.Core.GeoTiffs.Raster.#ctor(System.Collections.Generic.IEnumerable{System.Byte},GTiff2Tiles.Core.Enums.CoordinateSystem)"/>
-            and <see cref="M:GTiff2Tiles.Core.GeoTiffs.Raster.#ctor(System.IO.Stream,GTiff2Tiles.Core.Enums.CoordinateSystem)"/></remarks>
-            </summary>
-        </member>
         <member name="P:GTiff2Tiles.Core.GeoTiffs.Raster.Data">
             <summary>
             This <see cref="T:GTiff2Tiles.Core.GeoTiffs.Raster"/>'s data
@@ -841,11 +834,6 @@
             <remarks><para/>Must be > 0. 2GB by default</remarks></param>
             <exception cref="T:System.ArgumentOutOfRangeException"/>
             <exception cref="T:System.NotSupportedException"/>
-        </member>
-        <member name="M:GTiff2Tiles.Core.GeoTiffs.Raster.#ctor(System.Collections.Generic.IEnumerable{System.Byte},GTiff2Tiles.Core.Enums.CoordinateSystem)">
-            <inheritdoc cref="M:GTiff2Tiles.Core.GeoTiffs.Raster.#ctor(System.String,GTiff2Tiles.Core.Enums.CoordinateSystem,System.Int64)"/>
-            <param name="inputBytes"><see cref="T:System.Collections.Generic.IEnumerable`1"/> of GeoTiff's <see cref="T:System.Byte"/>s</param>
-            <param name="coordinateSystem"></param>
         </member>
         <member name="M:GTiff2Tiles.Core.GeoTiffs.Raster.#ctor(System.IO.Stream,GTiff2Tiles.Core.Enums.CoordinateSystem)">
             <inheritdoc cref="M:GTiff2Tiles.Core.GeoTiffs.Raster.#ctor(System.String,GTiff2Tiles.Core.Enums.CoordinateSystem,System.Int64)"/>
@@ -1007,6 +995,20 @@
             <returns><see cref="T:System.Collections.Generic.IAsyncEnumerable`1"/> of <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>s</returns>
             <exception cref="T:System.ArgumentOutOfRangeException"/>
             <exception cref="T:GTiff2Tiles.Core.Exceptions.RasterException"/>
+        </member>
+        <member name="M:GTiff2Tiles.Core.GeoTiffs.Raster.GetBorders(System.IO.Stream,GTiff2Tiles.Core.Enums.CoordinateSystem)">
+            <summary>
+            Gets minimal and maximal coordinates from input GeoTiff's stream
+            </summary>
+            <param name="inputStream">Any kind of stream with GeoTiff's data</param>
+            <param name="coordinateSystem">GeoTiff's <see cref="T:GTiff2Tiles.Core.Enums.CoordinateSystem"/>
+            <remarks><para/>If set to <see cref="F:GTiff2Tiles.Core.Enums.CoordinateSystem.Other"/> throws
+            <see cref="T:System.NotSupportedException"/></remarks></param>
+            <returns><see cref="T:System.ValueTuple`2"/> of
+            <see cref="T:GTiff2Tiles.Core.Coordinates.GeoCoordinate"/>s of image's borders</returns>
+            <exception cref="T:System.ArgumentNullException"/>
+            <exception cref="T:System.NotSupportedException"/>
+            <exception cref="T:System.ArgumentException"/>
         </member>
         <member name="T:GTiff2Tiles.Core.Helpers.CheckHelper">
             <summary>

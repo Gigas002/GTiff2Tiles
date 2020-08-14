@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Globalization;
 using System.IO;
-using System.Linq;
+using BitMiracle.LibTiff.Classic;
 using System.Threading.Channels;
 using System.Threading.Tasks;
 using GTiff2Tiles.Core.Constants;
@@ -30,14 +29,6 @@ namespace GTiff2Tiles.Core.GeoTiffs
         #region Properties
 
         #region Private
-
-        // TODO: consider removing timestamp
-        /// <summary>
-        /// Name for temporary file
-        /// <remarks><para/>See <see cref="Raster(IEnumerable{byte}, CoordinateSystem)"/>
-        /// and <see cref="Raster(Stream, CoordinateSystem)"/></remarks>
-        /// </summary>
-        private readonly string _tempFileName = $"{DateTime.Now.ToString(DateTimePatterns.LongWithMs, CultureInfo.InvariantCulture)}_tmp{FileExtensions.Tif}";
 
         /// <summary>
         /// This <see cref="Raster"/>'s data
@@ -144,40 +135,6 @@ namespace GTiff2Tiles.Core.GeoTiffs
         }
 
         /// <inheritdoc cref="Raster(string,CoordinateSystem,long)"/>
-        /// <param name="inputBytes"><see cref="IEnumerable{T}"/> of GeoTiff's <see cref="byte"/>s</param>
-        /// <param name="coordinateSystem"></param>
-        public Raster(IEnumerable<byte> inputBytes, CoordinateSystem coordinateSystem)
-        {
-            #region Preconditions checks
-
-            if (coordinateSystem == CoordinateSystem.Other) throw new NotSupportedException($"{coordinateSystem} is not supported");
-
-            #endregion
-
-            // Disable NetVips warnings for tiff
-            NetVipsHelper.DisableLog();
-
-            Data = Image.NewFromBuffer(inputBytes.ToArray(), access: NetVips.Enums.Access.Random);
-
-            // Check if data is not null, it can be if inpuBytes is null or empty collection
-            if (Data == null) throw new ArgumentNullException(nameof(inputBytes));
-
-            // Get border coordinates и raster sizes
-            Size = new Size(Data.Width, Data.Height);
-
-            GeoCoordinateSystem = coordinateSystem;
-
-            // TODO: get coordinates without fileinfo
-            Data.WriteToFile(_tempFileName);
-
-            // Check if file was created successfully
-            CheckHelper.CheckFile(_tempFileName, true, FileExtensions.Tif);
-
-            (MinCoordinate, MaxCoordinate) = GdalWorker.GetImageBorders(_tempFileName, Size, GeoCoordinateSystem);
-            File.Delete(_tempFileName);
-        }
-
-        /// <inheritdoc cref="Raster(string,CoordinateSystem,long)"/>
         /// <param name="inputStream"><see cref="Stream"/> with GeoTiff</param>
         /// <param name="coordinateSystem"></param>
         public Raster(Stream inputStream, CoordinateSystem coordinateSystem)
@@ -192,21 +149,13 @@ namespace GTiff2Tiles.Core.GeoTiffs
             // Disable NetVips warnings for tiff
             NetVipsHelper.DisableLog();
 
+            (MinCoordinate, MaxCoordinate) = GetBorders(inputStream, coordinateSystem);
             Data = Image.NewFromStream(inputStream, access: NetVips.Enums.Access.Random);
 
             // Get border coordinates и raster sizes
             Size = new Size(Data.Width, Data.Height);
 
             GeoCoordinateSystem = coordinateSystem;
-
-            // TODO: get coordinates without fileinfo
-            Data.WriteToFile(_tempFileName);
-
-            // Check if file was created successfully
-            CheckHelper.CheckFile(_tempFileName, true, FileExtensions.Tif);
-
-            (MinCoordinate, MaxCoordinate) = GdalWorker.GetImageBorders(_tempFileName, Size, GeoCoordinateSystem);
-            File.Delete(_tempFileName);
         }
 
         /// <summary>
@@ -757,6 +706,74 @@ namespace GTiff2Tiles.Core.GeoTiffs
                .ContinueWith(_ => channel.Writer.Complete(), TaskScheduler.Current);
 
             return channel.Reader.ReadAllAsync();
+        }
+
+        #endregion
+
+        #region GetBorders
+
+        /// <summary>
+        /// Gets minimal and maximal coordinates from input GeoTiff's stream
+        /// </summary>
+        /// <param name="inputStream">Any kind of stream with GeoTiff's data</param>
+        /// <param name="coordinateSystem">GeoTiff's <see cref="CoordinateSystem"/>
+        /// <remarks><para/>If set to <see cref="CoordinateSystem.Other"/> throws
+        /// <see cref="NotSupportedException"/></remarks></param>
+        /// <returns><see cref="ValueTuple{T1,T2}"/> of
+        /// <see cref="GeoCoordinate"/>s of image's borders</returns>
+        /// <exception cref="ArgumentNullException"/>
+        /// <exception cref="NotSupportedException"/>
+        /// <exception cref="ArgumentException"/>
+        public static (GeoCoordinate minCoordinate, GeoCoordinate maxCoordinate) GetBorders(
+            Stream inputStream, CoordinateSystem coordinateSystem)
+        {
+            #region Preconditions checks
+
+            if (inputStream == null) throw new ArgumentNullException(nameof(inputStream));
+            // CoordinateSystem checked lower
+
+            #endregion
+
+            Tiff tiff = Tiff.ClientOpen(string.Empty, "r", inputStream, new TiffStream());
+
+            if (tiff == null) throw new ArgumentException($"{nameof(inputStream)} is broken");
+
+            // Get origin coordinates
+            FieldValue[] tiePointTag = tiff.GetField(TiffTag.GEOTIFF_MODELTIEPOINTTAG);
+
+            // Get pixel scale
+            FieldValue[] pixScaleTag = tiff.GetField(TiffTag.GEOTIFF_MODELPIXELSCALETAG);
+
+            // Image's sizes
+            int width = tiff.GetField(TiffTag.IMAGEWIDTH)[0].ToInt();
+            int height = tiff.GetField(TiffTag.IMAGELENGTH)[0].ToInt();
+
+            byte[] tiePoints = tiePointTag[1].GetBytes();
+            double pixelScale = BitConverter.ToDouble(pixScaleTag[1].GetBytes(), 0);
+
+            double minX = BitConverter.ToDouble(tiePoints, 24);
+            double maxY = BitConverter.ToDouble(tiePoints, 32);
+            double maxX = minX + width * pixelScale;
+            double minY = maxY - height * pixelScale;
+
+            switch (coordinateSystem)
+            {
+                case CoordinateSystem.Epsg4326:
+                    {
+                        GeodeticCoordinate minCoordinate = new GeodeticCoordinate(minX, minY);
+                        GeodeticCoordinate maxCoordinate = new GeodeticCoordinate(maxX, maxY);
+
+                        return (minCoordinate, maxCoordinate);
+                    }
+                case CoordinateSystem.Epsg3857:
+                    {
+                        MercatorCoordinate minCoordinate = new MercatorCoordinate(minX, minY);
+                        MercatorCoordinate maxCoordinate = new MercatorCoordinate(maxX, maxY);
+
+                        return (minCoordinate, maxCoordinate);
+                    }
+                default: throw new NotSupportedException($"{coordinateSystem} is not supported");
+            }
         }
 
         #endregion
