@@ -3,6 +3,7 @@
 
 using System;
 using System.Collections.Generic;
+using GTiff2Tiles.Core.Helpers;
 using GTiff2Tiles.Core.Images;
 using GTiff2Tiles.Tests.Constants;
 using NetVips;
@@ -15,7 +16,17 @@ namespace GTiff2Tiles.Tests.Tests.Images
     [TestFixture]
     public sealed class BandTests
     {
+        #region SetUp and consts
+
         private readonly string _in4326 = FileSystemEntries.Input4326FilePath;
+
+        [SetUp]
+        public void SetUp()
+        {
+            NetVipsHelper.DisableLog();
+        }
+
+        #endregion
 
         #region Constructors
 

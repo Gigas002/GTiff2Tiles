@@ -54,6 +54,7 @@ namespace GTiff2Tiles.Tests.Tests
             _gdalWarpOptions = GdalWorker.ConvertCoordinateSystemOptions.ToList();
 
             FileSystemEntries.OutputDirectoryInfo.Create();
+            NetVipsHelper.DisableLog();
         }
 
         #endregion

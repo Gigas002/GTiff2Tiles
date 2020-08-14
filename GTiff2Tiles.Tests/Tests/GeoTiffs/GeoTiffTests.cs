@@ -9,6 +9,7 @@ using GTiff2Tiles.Core;
 using GTiff2Tiles.Core.Coordinates;
 using GTiff2Tiles.Core.Enums;
 using GTiff2Tiles.Core.GeoTiffs;
+using GTiff2Tiles.Core.Helpers;
 using GTiff2Tiles.Core.Images;
 using GTiff2Tiles.Core.Tiles;
 using GTiff2Tiles.Tests.Constants;
@@ -24,10 +25,31 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
     {
         #region SetUp and consts
 
+        private string _timestamp;
+
+        private string _outPath;
+
+        private readonly string _in4326 = FileSystemEntries.Input4326FilePath;
+
+        private readonly string _in3785 = FileSystemEntries.Input3785FilePath;
+
+        private readonly string _in3395 = FileSystemEntries.Input3395FilePath;
+
+        private const CoordinateSystem Cs4326 = CoordinateSystem.Epsg4326;
+
+        private const CoordinateSystem Cs3857 = CoordinateSystem.Epsg3857;
+
+        private const CoordinateSystem CsOther = CoordinateSystem.Other;
+
         [SetUp]
         public void SetUp()
         {
+            _timestamp = DateTime.Now.ToString(Core.Constants.DateTimePatterns.LongWithMs,
+                                               CultureInfo.InvariantCulture);
+            _outPath = Path.Combine(FileSystemEntries.OutputDirectoryPath);
 
+            FileSystemEntries.OutputDirectoryInfo.Create();
+            NetVipsHelper.DisableLog();
         }
 
         #endregion
@@ -37,106 +59,56 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
         #region Create from file wo cs
 
         [Test]
-        public void CreateRasterFromFileWoCsNormal()
+        public void CreateRasterFromFileWoCsNormal() => Assert.DoesNotThrow(() =>
         {
-            string inputPath = FileSystemEntries.Input4326FilePath;
-            const int memCache = 13000000;
-
-            Assert.DoesNotThrow(() =>
-            {
-                Raster raster = new Raster(inputPath, memCache);
-            });
-        }
+            Raster raster = new Raster(_in4326, 13000000);
+        });
 
         [Test]
-        public void CreateRasterFromFileWoCsOtherCs()
+        public void CreateRasterFromFileWoCsOtherCs() => Assert.Throws<NotSupportedException>(() =>
         {
-            string inputPath = FileSystemEntries.Input3395FilePath;
-
-            Assert.Throws<NotSupportedException>(() =>
-            {
-                Raster raster = new Raster(inputPath);
-            });
-        }
+            Raster raster = new Raster(_in3395);
+        });
 
         [Test]
-        public void CreateRasterFromFileWoCsSmallMemChache()
+        public void CreateRasterFromFileWoCsSmallMemChache() => Assert.Throws<ArgumentOutOfRangeException>(() =>
         {
-            string inputPath = FileSystemEntries.Input4326FilePath;
-            const int memCache = -1;
-
-            Assert.Throws<ArgumentOutOfRangeException>(() =>
-            {
-                Raster raster = new Raster(inputPath, memCache);
-            });
-        }
+            Raster raster = new Raster(_in4326, -1);
+        });
 
         [Test]
-        public void CreateRasterFromFileWoCsDontUseMemCache()
+        public void CreateRasterFromFileWoCsDontUseMemCache() => Assert.DoesNotThrow(() =>
         {
-            string inputPath = FileSystemEntries.Input4326FilePath;
-            const int memCache = 1;
-
-            Assert.DoesNotThrow(() =>
-            {
-                Raster raster = new Raster(inputPath, memCache);
-            });
-        }
+            Raster raster = new Raster(_in4326, 1);
+        });
 
         #endregion
 
         #region Create from file with cs
 
         [Test]
-        public void CreateRasterFromFileWCsNormal()
+        public void CreateRasterFromFileWCsNormal() => Assert.DoesNotThrow(() =>
         {
-            string inputPath = FileSystemEntries.Input4326FilePath;
-            const CoordinateSystem cs = CoordinateSystem.Epsg4326;
-            const int memCache = 13000000;
-
-            Assert.DoesNotThrow(() =>
-            {
-                Raster raster = new Raster(inputPath, cs, memCache);
-            });
-        }
+            Raster raster = new Raster(_in4326, Cs4326, 13000000);
+        });
 
         [Test]
-        public void CreateRasterFromFileWCsOtherCs()
+        public void CreateRasterFromFileWCsOtherCs() => Assert.Throws<NotSupportedException>(() =>
         {
-            string inputPath = FileSystemEntries.Input4326FilePath;
-            const CoordinateSystem cs = CoordinateSystem.Other;
-
-            Assert.Throws<NotSupportedException>(() =>
-            {
-                Raster raster = new Raster(inputPath, cs);
-            });
-        }
+            Raster raster = new Raster(_in4326, CsOther);
+        });
 
         [Test]
-        public void CreateRasterFromFileWCsSmallMemChache()
+        public void CreateRasterFromFileWCsSmallMemChache() => Assert.Throws<ArgumentOutOfRangeException>(() =>
         {
-            string inputPath = FileSystemEntries.Input4326FilePath;
-            const CoordinateSystem cs = CoordinateSystem.Epsg4326;
-            const int memCache = -1;
-
-            Assert.Throws<ArgumentOutOfRangeException>(() =>
-            {
-                Raster raster = new Raster(inputPath, cs, memCache);
-            });
-        }
+            Raster raster = new Raster(_in4326, Cs4326, -1);
+        });
 
         [Test]
-        public void CreateRasterFromFileWCsDontUseMemCache()
+        public void CreateRasterFromFileWCsDontUseMemCache() => Assert.DoesNotThrow(() =>
         {
-            string inputPath = FileSystemEntries.Input4326FilePath;
-            const CoordinateSystem cs = CoordinateSystem.Epsg4326;
-            const int memCache = 1;
-
-            Assert.DoesNotThrow(() =>
-            {
-                Raster raster = new Raster(inputPath, cs, memCache);
-            });
-        }
+            Raster raster = new Raster(_in4326, Cs4326, 1);
+        });
 
         #endregion
 
@@ -145,38 +117,28 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
         [Test]
         public void CreateRasterFromStreamNormal()
         {
-            string inputPath = FileSystemEntries.Input4326FilePath;
-            using FileStream fs = File.OpenRead(inputPath);
-            const CoordinateSystem cs = CoordinateSystem.Epsg4326;
+            using FileStream fs = File.OpenRead(_in4326);
 
             Assert.DoesNotThrow(() =>
             {
-                Raster raster = new Raster(fs, cs);
+                Raster raster = new Raster(fs, Cs4326);
             });
         }
 
         [Test]
-        public void CreateRasterFromStreamNullStream()
+        public void CreateRasterFromStreamNullStream() => Assert.Throws<ArgumentNullException>(() =>
         {
-            string inputPath = FileSystemEntries.Input4326FilePath;
-            const CoordinateSystem cs = CoordinateSystem.Epsg4326;
-
-            Assert.Throws<ArgumentNullException>(() =>
-            {
-                Raster raster = new Raster(null, cs);
-            });
-        }
+            Raster raster = new Raster(null, Cs4326);
+        });
 
         [Test]
         public void CreateRasterFromStreamOtherCs()
         {
-            string inputPath = FileSystemEntries.Input4326FilePath;
-            using FileStream fs = File.OpenRead(inputPath);
-            const CoordinateSystem cs = CoordinateSystem.Other;
+            using FileStream fs = File.OpenRead(_in4326);
 
             Assert.Throws<NotSupportedException>(() =>
             {
-                Raster raster = new Raster(fs, cs);
+                Raster raster = new Raster(fs, CsOther);
             });
         }
 
@@ -187,24 +149,18 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
         #region Properties
 
         [Test]
-        public void GetProperties()
+        public void GetProperties() => Assert.DoesNotThrowAsync(async () =>
         {
-            string inputPath = FileSystemEntries.Input4326FilePath;
-            const CoordinateSystem cs = CoordinateSystem.Epsg4326;
+            await using IGeoTiff tiff = new Raster(_in4326, Cs4326);
+            bool d = tiff.IsDisposed;
+            Size s = tiff.Size;
+            GeoCoordinate mic = tiff.MinCoordinate;
+            GeoCoordinate mac = tiff.MaxCoordinate;
+            CoordinateSystem g = tiff.GeoCoordinateSystem;
 
-            Assert.DoesNotThrowAsync(async () =>
-            {
-                await using IGeoTiff tiff = new Raster(inputPath, cs);
-                bool d = tiff.IsDisposed;
-                Size s = tiff.Size;
-                GeoCoordinate mic = tiff.MinCoordinate;
-                GeoCoordinate mac = tiff.MaxCoordinate;
-                CoordinateSystem g = tiff.GeoCoordinateSystem;
-
-                Raster raster = (Raster)tiff;
-                Image data = raster.Data;
-            });
-        }
+            await using Raster raster = (Raster)tiff;
+            using Image data = raster.Data;
+        });
 
         #endregion
 
@@ -215,23 +171,19 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
         [Test]
         public void DisposeTest()
         {
-            string inputPath = FileSystemEntries.Input4326FilePath;
-            const CoordinateSystem cs = CoordinateSystem.Epsg4326;
+            Raster raster = new Raster(_in4326, Cs4326);
 
-            Raster raster = new Raster(inputPath, cs);
-            raster.Dispose();
+            Assert.DoesNotThrow(() => raster.Dispose());
 
             Assert.True(raster.IsDisposed);
         }
 
         [Test]
-        public async Task DisposeAsyncTest()
+        public void DisposeAsyncTest()
         {
-            string inputPath = FileSystemEntries.Input4326FilePath;
-            const CoordinateSystem cs = CoordinateSystem.Epsg4326;
+            Raster raster = new Raster(_in4326, Cs4326);
 
-            Raster raster = new Raster(inputPath, cs);
-            await raster.DisposeAsync();
+            Assert.DoesNotThrowAsync(async () => await raster.DisposeAsync());
 
             Assert.True(raster.IsDisposed);
         }
@@ -243,30 +195,24 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
         [Test]
         public void CreateTileImageNormal()
         {
-            string inputPath = FileSystemEntries.Input4326FilePath;
-            const CoordinateSystem cs = CoordinateSystem.Epsg4326;
-
-            using Raster raster = new Raster(inputPath, cs);
+            using Raster raster = new Raster(_in4326, Cs4326);
 
             Number number = new Number(1100, 213, 10);
-            RasterTile tile = new RasterTile(number, cs);
+            using RasterTile tile = new RasterTile(number, raster.GeoCoordinateSystem);
 
             Assert.DoesNotThrow(() =>
             {
-                Image image = raster.CreateTileImage(raster.Data, tile);
+                using Image image = raster.CreateTileImage(raster.Data, tile);
             });
         }
 
         [Test]
         public void CreateTileImageNullImage()
         {
-            string inputPath = FileSystemEntries.Input4326FilePath;
-            const CoordinateSystem cs = CoordinateSystem.Epsg4326;
-
-            using Raster raster = new Raster(inputPath, cs);
+            using Raster raster = new Raster(_in4326, Cs4326);
 
             Number number = new Number(1100, 213, 10);
-            using RasterTile tile = new RasterTile(number, cs);
+            using RasterTile tile = new RasterTile(number, raster.GeoCoordinateSystem);
 
             Assert.Throws<ArgumentNullException>(() =>
             {
@@ -277,32 +223,26 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
         [Test]
         public void CreateTileImageNullTile()
         {
-            string inputPath = FileSystemEntries.Input4326FilePath;
-            const CoordinateSystem cs = CoordinateSystem.Epsg4326;
-
-            using Raster raster = new Raster(inputPath, cs);
+            using Raster raster = new Raster(_in4326, Cs4326);
 
             Assert.Throws<ArgumentNullException>(() =>
             {
-                Image image = raster.CreateTileImage(raster.Data, null);
+                using Image image = raster.CreateTileImage(raster.Data, null);
             });
         }
 
         [Test]
         public void CreateTileImageDifferentInterpolations()
         {
-            string inputPath = FileSystemEntries.Input4326FilePath;
-            const CoordinateSystem cs = CoordinateSystem.Epsg4326;
-
-            Raster raster = new Raster(inputPath, cs);
+            using Raster raster = new Raster(_in4326, Cs4326);
 
             Number number = new Number(1100, 213, 10);
-            RasterTile t1 = new RasterTile(number, cs, interpolation: Interpolation.Nearest);
-            RasterTile t2 = new RasterTile(number, cs, interpolation: Interpolation.Linear);
-            RasterTile t3 = new RasterTile(number, cs, interpolation: Interpolation.Cubic);
-            RasterTile t4 = new RasterTile(number, cs, interpolation: Interpolation.Mitchell);
-            RasterTile t5 = new RasterTile(number, cs, interpolation: Interpolation.Lanczos2);
-            RasterTile t6 = new RasterTile(number, cs, interpolation: Interpolation.Lanczos3);
+            using RasterTile t1 = new RasterTile(number, raster.GeoCoordinateSystem, interpolation: Interpolation.Nearest);
+            using RasterTile t2 = new RasterTile(number, raster.GeoCoordinateSystem, interpolation: Interpolation.Linear);
+            using RasterTile t3 = new RasterTile(number, raster.GeoCoordinateSystem, interpolation: Interpolation.Cubic);
+            using RasterTile t4 = new RasterTile(number, raster.GeoCoordinateSystem, interpolation: Interpolation.Mitchell);
+            using RasterTile t5 = new RasterTile(number, raster.GeoCoordinateSystem, interpolation: Interpolation.Lanczos2);
+            using RasterTile t6 = new RasterTile(number, raster.GeoCoordinateSystem, interpolation: Interpolation.Lanczos3);
 
             Assert.DoesNotThrow(() => raster.CreateTileImage(raster.Data, t1));
             Assert.DoesNotThrow(() => raster.CreateTileImage(raster.Data, t2));
@@ -321,20 +261,12 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
         [Test]
         public void WriteTileToFileNormal()
         {
-            FileSystemEntries.OutputDirectoryInfo.Create();
+            string outPath = Path.Combine(_outPath, $"{_timestamp}_tile.png");
 
-            string inputPath = FileSystemEntries.Input4326FilePath;
-            const CoordinateSystem cs = CoordinateSystem.Epsg4326;
-
-            string timestamp = DateTime.Now.ToString(Core.Constants.DateTimePatterns.LongWithMs,
-                                                     CultureInfo.InvariantCulture);
-            string outPath = Path.Combine(FileSystemEntries.OutputDirectoryPath,
-                                          $"{timestamp}_tile.png");
-
-            Raster raster = new Raster(inputPath, cs);
+            Raster raster = new Raster(_in4326, Cs4326);
 
             Number number = new Number(1100, 213, 10);
-            RasterTile tile = new RasterTile(number, cs) { Path = outPath };
+            RasterTile tile = new RasterTile(number, Cs4326) { Path = outPath };
 
             Assert.DoesNotThrowAsync(async () => await raster.WriteTileToFileAsync(raster.Data, tile));
 
@@ -344,12 +276,7 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
         [Test]
         public void WriteTileToFileNullTile()
         {
-            FileSystemEntries.OutputDirectoryInfo.Create();
-
-            string inputPath = FileSystemEntries.Input4326FilePath;
-            const CoordinateSystem cs = CoordinateSystem.Epsg4326;
-
-            Raster raster = new Raster(inputPath, cs);
+            Raster raster = new Raster(_in4326, Cs4326);
 
             Assert.ThrowsAsync<ArgumentNullException>(async () => await raster.WriteTileToFileAsync(raster.Data, null));
         }
@@ -359,13 +286,10 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
         [Test]
         public void WriteTileToEnumberable()
         {
-            string inputPath = FileSystemEntries.Input4326FilePath;
-            const CoordinateSystem cs = CoordinateSystem.Epsg4326;
-
-            Raster raster = new Raster(inputPath, cs);
+            using Raster raster = new Raster(_in4326, Cs4326);
 
             Number number = new Number(1100, 213, 10);
-            RasterTile tile = new RasterTile(number, cs);
+            using RasterTile tile = new RasterTile(number, Cs4326);
 
             IEnumerable<byte> tileBytes = null;
 
@@ -378,13 +302,10 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
         [Test]
         public void WriteToChannelNormal()
         {
-            string inputPath = FileSystemEntries.Input4326FilePath;
-            const CoordinateSystem cs = CoordinateSystem.Epsg4326;
-
-            Raster raster = new Raster(inputPath, cs);
+            using Raster raster = new Raster(_in4326, Cs4326);
 
             Number number = new Number(1100, 213, 10);
-            RasterTile tile = new RasterTile(number, cs);
+            using RasterTile tile = new RasterTile(number, Cs4326);
 
             Channel<ITile> channel = Channel.CreateUnbounded<ITile>();
 
@@ -394,10 +315,7 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
         [Test]
         public void WriteToChannelNullTile()
         {
-            string inputPath = FileSystemEntries.Input4326FilePath;
-            const CoordinateSystem cs = CoordinateSystem.Epsg4326;
-
-            Raster raster = new Raster(inputPath, cs);
+            using Raster raster = new Raster(_in4326, Cs4326);
 
             Channel<ITile> channel = Channel.CreateUnbounded<ITile>();
 
@@ -407,13 +325,10 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
         [Test]
         public void WriteToChannelNullWriter()
         {
-            string inputPath = FileSystemEntries.Input4326FilePath;
-            const CoordinateSystem cs = CoordinateSystem.Epsg4326;
-
-            Raster raster = new Raster(inputPath, cs);
+            using Raster raster = new Raster(_in4326, Cs4326);
 
             Number number = new Number(1100, 213, 10);
-            RasterTile tile = new RasterTile(number, cs);
+            using RasterTile tile = new RasterTile(number, Cs4326);
 
             Assert.Throws<ArgumentNullException>(() => raster.WriteTileToChannel(raster.Data, tile, null));
         }
@@ -421,13 +336,10 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
         [Test]
         public void WriteToChannelAsyncNormal()
         {
-            string inputPath = FileSystemEntries.Input4326FilePath;
-            const CoordinateSystem cs = CoordinateSystem.Epsg4326;
-
-            Raster raster = new Raster(inputPath, cs);
+            Raster raster = new Raster(_in4326, Cs4326);
 
             Number number = new Number(1100, 213, 10);
-            RasterTile tile = new RasterTile(number, cs);
+            RasterTile tile = new RasterTile(number, raster.GeoCoordinateSystem);
 
             Channel<ITile> channel = Channel.CreateUnbounded<ITile>();
 
@@ -437,10 +349,7 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
         [Test]
         public void WriteToChannelAsyncNullTile()
         {
-            string inputPath = FileSystemEntries.Input4326FilePath;
-            const CoordinateSystem cs = CoordinateSystem.Epsg4326;
-
-            Raster raster = new Raster(inputPath, cs);
+            Raster raster = new Raster(_in4326, Cs4326);
 
             Channel<ITile> channel = Channel.CreateUnbounded<ITile>();
 
@@ -450,13 +359,10 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
         [Test]
         public void WriteToChannelAsyncNullWriter()
         {
-            string inputPath = FileSystemEntries.Input4326FilePath;
-            const CoordinateSystem cs = CoordinateSystem.Epsg4326;
-
-            Raster raster = new Raster(inputPath, cs);
+            Raster raster = new Raster(_in4326, Cs4326);
 
             Number number = new Number(1100, 213, 10);
-            RasterTile tile = new RasterTile(number, cs);
+            RasterTile tile = new RasterTile(number, raster.GeoCoordinateSystem);
 
             Assert.ThrowsAsync<ArgumentNullException>(async () => await raster.WriteTileToChannelAsync(raster.Data, tile, null));
         }
@@ -474,14 +380,9 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
         {
             // With default args
 
-            string inputPath = FileSystemEntries.Input4326FilePath;
-            const CoordinateSystem cs = CoordinateSystem.Epsg4326;
+            string outPath = Path.Combine(_outPath, _timestamp);
 
-            string timestamp = DateTime.Now.ToString(Core.Constants.DateTimePatterns.LongWithMs,
-                                                     CultureInfo.InvariantCulture);
-            string outPath = Path.Combine(FileSystemEntries.OutputDirectoryPath, timestamp);
-
-            Raster raster = new Raster(inputPath, cs);
+            Raster raster = new Raster(_in4326, Cs4326);
 
             Assert.DoesNotThrowAsync(async () => await raster.WriteTilesToDirectoryAsync(outPath, 0, 11));
 
@@ -493,14 +394,9 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
         {
             // With overriden args
 
-            string inputPath = FileSystemEntries.Input4326FilePath;
-            const CoordinateSystem cs = CoordinateSystem.Epsg4326;
+            string outPath = Path.Combine(_outPath, _timestamp);
 
-            string timestamp = DateTime.Now.ToString(Core.Constants.DateTimePatterns.LongWithMs,
-                                                     CultureInfo.InvariantCulture);
-            string outPath = Path.Combine(FileSystemEntries.OutputDirectoryPath, timestamp);
-
-            Raster raster = new Raster(inputPath, cs);
+            Raster raster = new Raster(_in4326, Cs4326);
 
             Assert.DoesNotThrowAsync(async () => await raster.WriteTilesToDirectoryAsync(outPath, 0, 11,
               true, new Size(64, 64), TileExtension.Jpg, Interpolation.Cubic, 3, 999, 10,
@@ -512,14 +408,9 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
         [Test]
         public void WriteTilesToDirectoryLowTileCacheCount()
         {
-            string inputPath = FileSystemEntries.Input4326FilePath;
-            const CoordinateSystem cs = CoordinateSystem.Epsg4326;
+            string outPath = Path.Combine(_outPath, _timestamp);
 
-            string timestamp = DateTime.Now.ToString(Core.Constants.DateTimePatterns.LongWithMs,
-                                                     CultureInfo.InvariantCulture);
-            string outPath = Path.Combine(FileSystemEntries.OutputDirectoryPath, timestamp);
-
-            Raster raster = new Raster(inputPath, cs);
+            Raster raster = new Raster(_in4326, Cs4326);
 
             Assert.ThrowsAsync<ArgumentOutOfRangeException>(async () => await raster.WriteTilesToDirectoryAsync(
                 outPath, 0, 11, tileCacheCount: 0));
@@ -534,15 +425,9 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
         [Test]
         public void Proj4326Ntms256PngLanczos3Bands4Directory()
         {
-            string inputPath = FileSystemEntries.Input4326FilePath;
-            const CoordinateSystem cs = CoordinateSystem.Epsg4326;
+            string outPath = Path.Combine(_outPath, $"{_timestamp}_4326_ntms_256_png_lanczos3_4");
 
-            string timestamp = DateTime.Now.ToString(Core.Constants.DateTimePatterns.LongWithMs,
-                                                     CultureInfo.InvariantCulture);
-            string outPath = Path.Combine(FileSystemEntries.OutputDirectoryPath, $"{timestamp}"
-                                          + "_4326_ntms_256_png_lanczos3_4");
-
-            Raster raster = new Raster(inputPath, cs);
+            Raster raster = new Raster(_in4326, Cs4326);
 
             Assert.DoesNotThrowAsync(async () => await raster.WriteTilesToDirectoryAsync(outPath, 0, 11));
         }
@@ -550,15 +435,9 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
         [Test]
         public void Proj4326Tms256PngLanczos3Bands4Directory()
         {
-            string inputPath = FileSystemEntries.Input4326FilePath;
-            const CoordinateSystem cs = CoordinateSystem.Epsg4326;
+            string outPath = Path.Combine(_outPath, $"{_timestamp}_4326_tms_256_png_lanczos3_4");
 
-            string timestamp = DateTime.Now.ToString(Core.Constants.DateTimePatterns.LongWithMs,
-                                                     CultureInfo.InvariantCulture);
-            string outPath = Path.Combine(FileSystemEntries.OutputDirectoryPath, $"{timestamp}"
-                                          + "_4326_tms_256_png_lanczos3_4");
-
-            Raster raster = new Raster(inputPath, cs);
+            Raster raster = new Raster(_in4326, Cs4326);
 
             Assert.DoesNotThrowAsync(async () => await raster.WriteTilesToDirectoryAsync(outPath, 0, 11,
                    true));
@@ -567,15 +446,9 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
         [Test]
         public void Proj4326Ntms128PngLanczos3Bands4Directory()
         {
-            string inputPath = FileSystemEntries.Input4326FilePath;
-            const CoordinateSystem cs = CoordinateSystem.Epsg4326;
+            string outPath = Path.Combine(_outPath, $"{_timestamp}_4326_ntms_128_png_lanczos3_4");
 
-            string timestamp = DateTime.Now.ToString(Core.Constants.DateTimePatterns.LongWithMs,
-                                                     CultureInfo.InvariantCulture);
-            string outPath = Path.Combine(FileSystemEntries.OutputDirectoryPath, $"{timestamp}"
-                                          + "_4326_ntms_128_png_lanczos3_4");
-
-            Raster raster = new Raster(inputPath, cs);
+            Raster raster = new Raster(_in4326, Cs4326);
 
             Assert.DoesNotThrowAsync(async () => await raster.WriteTilesToDirectoryAsync(outPath, 0, 11,
                    tileSize: new Size(128, 128)));
@@ -584,15 +457,9 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
         [Test]
         public void Proj4326Tms256WebpLanczos3Bands4Directory()
         {
-            string inputPath = FileSystemEntries.Input4326FilePath;
-            const CoordinateSystem cs = CoordinateSystem.Epsg4326;
+            string outPath = Path.Combine(_outPath, $"{_timestamp}_4326_tms_256_webp_lanczos3_4");
 
-            string timestamp = DateTime.Now.ToString(Core.Constants.DateTimePatterns.LongWithMs,
-                                                     CultureInfo.InvariantCulture);
-            string outPath = Path.Combine(FileSystemEntries.OutputDirectoryPath, $"{timestamp}"
-                                          + "_4326_tms_256_webp_lanczos3_4");
-
-            Raster raster = new Raster(inputPath, cs);
+            Raster raster = new Raster(_in4326, Cs4326);
 
             Assert.DoesNotThrowAsync(async () => await raster.WriteTilesToDirectoryAsync(outPath, 0, 11,
                    tileExtension: TileExtension.Webp));
@@ -601,15 +468,9 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
         [Test]
         public void Proj4326Ntms256JpgLanczos3Bands3Directory()
         {
-            string inputPath = FileSystemEntries.Input4326FilePath;
-            const CoordinateSystem cs = CoordinateSystem.Epsg4326;
+            string outPath = Path.Combine(_outPath, $"{_timestamp}_4326_ntms_256_jpg_lanczos3_3");
 
-            string timestamp = DateTime.Now.ToString(Core.Constants.DateTimePatterns.LongWithMs,
-                                                     CultureInfo.InvariantCulture);
-            string outPath = Path.Combine(FileSystemEntries.OutputDirectoryPath, $"{timestamp}"
-                                          + "_4326_ntms_256_jpg_lanczos3_3");
-
-            Raster raster = new Raster(inputPath, cs);
+            Raster raster = new Raster(_in4326, Cs4326);
 
             Assert.DoesNotThrowAsync(async () => await raster.WriteTilesToDirectoryAsync(outPath, 0, 11,
                    tileExtension: TileExtension.Jpg, bandsCount: 3));
@@ -618,15 +479,9 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
         [Test]
         public void Proj4326Ntms256PngCubicBands4Directory()
         {
-            string inputPath = FileSystemEntries.Input4326FilePath;
-            const CoordinateSystem cs = CoordinateSystem.Epsg4326;
+            string outPath = Path.Combine(_outPath, $"{_timestamp}_4326_ntms_256_png_cubic_4");
 
-            string timestamp = DateTime.Now.ToString(Core.Constants.DateTimePatterns.LongWithMs,
-                                                     CultureInfo.InvariantCulture);
-            string outPath = Path.Combine(FileSystemEntries.OutputDirectoryPath, $"{timestamp}"
-                                          + "_4326_ntms_256_png_cubic_4");
-
-            Raster raster = new Raster(inputPath, cs);
+            Raster raster = new Raster(_in4326, Cs4326);
 
             Assert.DoesNotThrowAsync(async () => await raster.WriteTilesToDirectoryAsync(outPath, 0, 11,
                    interpolation: Interpolation.Cubic));
@@ -635,15 +490,9 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
         [Test]
         public void Proj3857Ntms256PngLanczos3Bands4Directory()
         {
-            string inputPath = FileSystemEntries.Input3785FilePath;
-            const CoordinateSystem cs = CoordinateSystem.Epsg3857;
+            string outPath = Path.Combine(_outPath, $"{_timestamp}_3857_ntms_256_png_lanczos3_4");
 
-            string timestamp = DateTime.Now.ToString(Core.Constants.DateTimePatterns.LongWithMs,
-                                                     CultureInfo.InvariantCulture);
-            string outPath = Path.Combine(FileSystemEntries.OutputDirectoryPath, $"{timestamp}"
-                                          + "_3857_ntms_256_png_lanczos3_4");
-
-            Raster raster = new Raster(inputPath, cs);
+            Raster raster = new Raster(_in3785, Cs3857);
 
             Assert.DoesNotThrowAsync(async () => await raster.WriteTilesToDirectoryAsync(outPath, 0, 11));
         }
@@ -651,19 +500,12 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
         [Test]
         public async Task Proj4326To3857Directory()
         {
-            string inputPath = FileSystemEntries.Input4326FilePath;
-            const CoordinateSystem cs = CoordinateSystem.Epsg3857;
+            string outPath = Path.Combine(_outPath, $"{_timestamp}_4326_to_3857_tiles");
+            string tmp = Path.Combine(_outPath, $"{_timestamp}_4326_to_3857{GdalWorker.TempFileName}");
 
-            string timestamp = DateTime.Now.ToString(Core.Constants.DateTimePatterns.LongWithMs,
-                                                     CultureInfo.InvariantCulture);
-            string outPath = Path.Combine(FileSystemEntries.OutputDirectoryPath, $"{timestamp}"
-                                          + "_4326_to_3857_tiles");
+            await GdalWorker.ConvertGeoTiffToTargetSystemAsync(_in4326, tmp, Cs3857);
 
-            string tmp = Path.Combine(FileSystemEntries.OutputDirectoryPath, $"{timestamp}"
-                                                                                     + $"_4326_to_3857{GdalWorker.TempFileName}");
-            await GdalWorker.ConvertGeoTiffToTargetSystemAsync(inputPath, tmp, cs);
-
-            Raster raster = new Raster(tmp, cs);
+            Raster raster = new Raster(tmp, Cs3857);
 
             Assert.DoesNotThrowAsync(async () => await raster.WriteTilesToDirectoryAsync(outPath, 0, 11));
         }
@@ -671,19 +513,12 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
         [Test]
         public async Task Proj3857To4326Directory()
         {
-            string inputPath = FileSystemEntries.Input3785FilePath;
-            const CoordinateSystem cs = CoordinateSystem.Epsg4326;
+            string outPath = Path.Combine(_outPath, $"{_timestamp}_3857_to_4326_tiles");
+            string tmp = Path.Combine(_outPath, $"{_timestamp}_3857_to_4326{GdalWorker.TempFileName}");
 
-            string timestamp = DateTime.Now.ToString(Core.Constants.DateTimePatterns.LongWithMs,
-                                                     CultureInfo.InvariantCulture);
-            string outPath = Path.Combine(FileSystemEntries.OutputDirectoryPath, $"{timestamp}"
-                                          + "_3857_to_4326_tiles");
+            await GdalWorker.ConvertGeoTiffToTargetSystemAsync(_in3785, tmp, Cs4326);
 
-            string tmp = Path.Combine(FileSystemEntries.OutputDirectoryPath, $"{timestamp}"
-                                                                                     + $"_3857_to_4326{GdalWorker.TempFileName}");
-            await GdalWorker.ConvertGeoTiffToTargetSystemAsync(inputPath, tmp, cs);
-
-            Raster raster = new Raster(tmp, cs);
+            Raster raster = new Raster(tmp, Cs4326);
 
             Assert.DoesNotThrowAsync(async () => await raster.WriteTilesToDirectoryAsync(outPath, 0, 11));
         }
@@ -691,20 +526,12 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
         [Test]
         public async Task Proj3395To4326Directory()
         {
-            string inputPath = FileSystemEntries.Input3395FilePath;
-            const CoordinateSystem cs = CoordinateSystem.Epsg4326;
+            string outPath = Path.Combine(_outPath, $"{_timestamp}_3395_to_4326_tiles");
+            string tmp = Path.Combine(_outPath, $"{_timestamp}_3395_to_4326{GdalWorker.TempFileName}");
 
-            string timestamp = DateTime.Now.ToString(Core.Constants.DateTimePatterns.LongWithMs,
-                                                     CultureInfo.InvariantCulture);
-            string outPath = Path.Combine(FileSystemEntries.OutputDirectoryPath, $"{timestamp}"
-                                          + "_3395_to_4326_tiles");
+            await GdalWorker.ConvertGeoTiffToTargetSystemAsync(_in3395, tmp, Cs4326);
 
-            string tmp = Path.Combine(FileSystemEntries.OutputDirectoryPath, $"{timestamp}"
-                                        + $"_3395_to_4326{GdalWorker.TempFileName}");
-
-            await GdalWorker.ConvertGeoTiffToTargetSystemAsync(inputPath, tmp, cs);
-
-            Raster raster = new Raster(tmp, cs);
+            Raster raster = new Raster(tmp, Cs4326);
 
             Assert.DoesNotThrowAsync(async () => await raster.WriteTilesToDirectoryAsync(outPath, 0, 11));
         }
@@ -718,10 +545,7 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
         {
             // With default args
 
-            string inputPath = FileSystemEntries.Input4326FilePath;
-            const CoordinateSystem cs = CoordinateSystem.Epsg4326;
-
-            Raster raster = new Raster(inputPath, cs);
+            Raster raster = new Raster(_in4326, Cs4326);
 
             Channel<ITile> channel = Channel.CreateUnbounded<ITile>();
 
@@ -733,10 +557,7 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
         {
             // With overriden args
 
-            string inputPath = FileSystemEntries.Input4326FilePath;
-            const CoordinateSystem cs = CoordinateSystem.Epsg4326;
-
-            Raster raster = new Raster(inputPath, cs);
+            Raster raster = new Raster(_in4326, Cs4326);
 
             Channel<ITile> channel = Channel.CreateUnbounded<ITile>();
 
@@ -749,10 +570,7 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
         {
             // With default args
 
-            string inputPath = FileSystemEntries.Input4326FilePath;
-            const CoordinateSystem cs = CoordinateSystem.Epsg4326;
-
-            Raster raster = new Raster(inputPath, cs);
+            Raster raster = new Raster(_in4326, Cs4326);
 
             Channel<ITile> channel = Channel.CreateUnbounded<ITile>();
 
@@ -769,10 +587,7 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
         {
             // With default args
 
-            string inputPath = FileSystemEntries.Input4326FilePath;
-            const CoordinateSystem cs = CoordinateSystem.Epsg4326;
-
-            Raster raster = new Raster(inputPath, cs);
+            Raster raster = new Raster(_in4326, Cs4326);
 
             IEnumerable<ITile> tiles = null;
             Assert.DoesNotThrow(() => tiles = raster.WriteTilesToEnumerable(0, 11));
@@ -785,10 +600,7 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
         {
             // With overriden args
 
-            string inputPath = FileSystemEntries.Input4326FilePath;
-            const CoordinateSystem cs = CoordinateSystem.Epsg4326;
-
-            Raster raster = new Raster(inputPath, cs);
+            Raster raster = new Raster(_in4326, Cs4326);
 
             IEnumerable<ITile> tiles = null;
             Assert.DoesNotThrow(() => tiles = raster.WriteTilesToEnumerable(0, 11,
@@ -800,10 +612,7 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
         [Test]
         public void WriteTilesToEnumerableLowTileCache()
         {
-            string inputPath = FileSystemEntries.Input4326FilePath;
-            const CoordinateSystem cs = CoordinateSystem.Epsg4326;
-
-            Raster raster = new Raster(inputPath, cs);
+            Raster raster = new Raster(_in4326, Cs4326);
 
             Assert.Throws<ArgumentOutOfRangeException>(() =>
             {
@@ -820,10 +629,7 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
         {
             // With default args
 
-            string inputPath = FileSystemEntries.Input4326FilePath;
-            const CoordinateSystem cs = CoordinateSystem.Epsg4326;
-
-            Raster raster = new Raster(inputPath, cs);
+            Raster raster = new Raster(_in4326, Cs4326);
 
             IAsyncEnumerable<ITile> tiles = null;
             Assert.DoesNotThrow(() => tiles = raster.WriteTilesToAsyncEnumerable(0, 11));
@@ -839,10 +645,7 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
         {
             // With override args
 
-            string inputPath = FileSystemEntries.Input4326FilePath;
-            const CoordinateSystem cs = CoordinateSystem.Epsg4326;
-
-            Raster raster = new Raster(inputPath, cs);
+            Raster raster = new Raster(_in4326, Cs4326);
 
             IAsyncEnumerable<ITile> tiles = null;
             Assert.DoesNotThrow(() => tiles = raster.WriteTilesToAsyncEnumerable(0, 11,
@@ -863,9 +666,7 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
         [Test]
         public void GetBordersNormal()
         {
-            string inputPath = FileSystemEntries.Input4326FilePath;
-            const CoordinateSystem cs = CoordinateSystem.Epsg4326;
-            FileStream fs = File.OpenRead(inputPath);
+            FileStream fs = File.OpenRead(_in4326);
 
             GeodeticCoordinate expectedMin = new GeodeticCoordinate(13.367990255355835, 52.501827478408813);
             GeodeticCoordinate expectedMax = new GeodeticCoordinate(13.438467979431152, 52.534797191619873);
@@ -873,7 +674,7 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
             Coordinate min = null;
             Coordinate max = null;
 
-            Assert.DoesNotThrow(() => (min, max) = Raster.GetBorders(fs, cs));
+            Assert.DoesNotThrow(() => (min, max) = Raster.GetBorders(fs, Cs4326));
 
             Assert.True(min == expectedMin && max == expectedMax);
         }
@@ -881,9 +682,7 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
         [Test]
         public void GetBordersMercator()
         {
-            string inputPath = FileSystemEntries.Input3785FilePath;
-            const CoordinateSystem cs = CoordinateSystem.Epsg3857;
-            FileStream fs = File.OpenRead(inputPath);
+            FileStream fs = File.OpenRead(_in3785);
 
             MercatorCoordinate expectedMin = new MercatorCoordinate(15556898.732197443, 4247491.006264816);
             MercatorCoordinate expectedMax = new MercatorCoordinate(15567583.19555743, 4257812.3937404491);
@@ -891,40 +690,29 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
             Coordinate min = null;
             Coordinate max = null;
 
-            Assert.DoesNotThrow(() => (min, max) = Raster.GetBorders(fs, cs));
+            Assert.DoesNotThrow(() => (min, max) = Raster.GetBorders(fs, Cs3857));
 
             Assert.True(min == expectedMin && max == expectedMax);
         }
 
         [Test]
-        public void GetBordersNullStream()
-        {
-            {
-                const CoordinateSystem cs = CoordinateSystem.Epsg4326;
-
-                Assert.Throws<ArgumentNullException>(() => Raster.GetBorders(null, cs));
-            }
-        }
+        public void GetBordersNullStream() => Assert.Throws<ArgumentNullException>(() => Raster.GetBorders(null, Cs4326));
 
         [Test]
         public void GetBordersClosedStream()
         {
-            string inputPath = FileSystemEntries.Input4326FilePath;
-            const CoordinateSystem cs = CoordinateSystem.Epsg4326;
-            FileStream fs = File.OpenRead(inputPath);
+            FileStream fs = File.OpenRead(_in4326);
             fs.Dispose();
 
-            Assert.Throws<ArgumentException>(() => Raster.GetBorders(fs, cs));
+            Assert.Throws<ArgumentException>(() => Raster.GetBorders(fs, Cs4326));
         }
 
         [Test]
         public void GetBordersOtherCs()
         {
-            string inputPath = FileSystemEntries.Input4326FilePath;
-            const CoordinateSystem cs = CoordinateSystem.Other;
-            FileStream fs = File.OpenRead(inputPath);
+            FileStream fs = File.OpenRead(_in4326);
 
-            Assert.Throws<NotSupportedException>(() => Raster.GetBorders(fs, cs));
+            Assert.Throws<NotSupportedException>(() => Raster.GetBorders(fs, CsOther));
         }
 
         #endregion
