@@ -4,6 +4,7 @@
 using System;
 using System.Collections.Generic;
 using GTiff2Tiles.Core.Images;
+using GTiff2Tiles.Tests.Constants;
 using NetVips;
 using NUnit.Framework;
 
@@ -14,6 +15,8 @@ namespace GTiff2Tiles.Tests.Tests.Images
     [TestFixture]
     public sealed class BandTests
     {
+        private readonly string _in4326 = FileSystemEntries.Input4326FilePath;
+
         #region Constructors
 
         [Test]
@@ -61,19 +64,19 @@ namespace GTiff2Tiles.Tests.Tests.Images
         [Test]
         public void AddBandsNormal()
         {
-            string inputPath = Constants.FileSystemEntries.Input4326FilePath;
-            Image image = Image.NewFromFile(inputPath, true);
+            Image image = Image.NewFromFile(_in4326, true);
             IEnumerable<Band> bands = new[] { new Band() };
 
             int countOfBands = image.Bands;
             Assert.DoesNotThrow(() => Band.AddBands(ref image, bands));
             Assert.True(image.Bands > countOfBands);
+
+            image.Dispose();
         }
 
         [Test]
         public void AddBandsNullImage()
         {
-            string inputPath = Constants.FileSystemEntries.Input4326FilePath;
             Image image = null;
             IEnumerable<Band> bands = new[] { new Band() };
 
@@ -83,10 +86,11 @@ namespace GTiff2Tiles.Tests.Tests.Images
         [Test]
         public void AddBandsNullBands()
         {
-            string inputPath = Constants.FileSystemEntries.Input4326FilePath;
-            Image image = Image.NewFromFile(inputPath, true);
+            Image image = Image.NewFromFile(_in4326, true);
 
             Assert.Throws<ArgumentNullException>(() => Band.AddBands(ref image, null));
+
+            image.Dispose();
         }
 
         #endregion
@@ -97,24 +101,26 @@ namespace GTiff2Tiles.Tests.Tests.Images
         [Combinatorial]
         public void AddDefaultBandsBadValuesDoesntThrow([Values(-1, 0, 1, 2, 3)] int bandsCount)
         {
-            string inputPath = Constants.FileSystemEntries.Input4326FilePath;
-            Image image = Image.NewFromFile(inputPath, true);
+            Image image = Image.NewFromFile(_in4326, true);
 
             int countOfBands = image.Bands;
             Assert.DoesNotThrow(() => Band.AddDefaultBands(ref image, bandsCount));
             Assert.True(image.Bands == countOfBands);
+
+            image.Dispose();
         }
 
         [Test]
         [Combinatorial]
         public void AddDefaultBandsBadValuesNormal([Values(4, 5)] int bandsCount)
         {
-            string inputPath = Constants.FileSystemEntries.Input4326FilePath;
-            Image image = Image.NewFromFile(inputPath, true);
+            Image image = Image.NewFromFile(_in4326, true);
 
             int countOfBands = image.Bands;
             Assert.DoesNotThrow(() => Band.AddDefaultBands(ref image, bandsCount));
             Assert.True(image.Bands > countOfBands);
+
+            image.Dispose();
         }
 
         [Test]

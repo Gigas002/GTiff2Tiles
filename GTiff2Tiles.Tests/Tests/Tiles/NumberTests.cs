@@ -14,39 +14,58 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
     [TestFixture]
     public sealed class NumberTests
     {
+        #region Consts
+
         private const int GeodeticX = 1819;
 
         private const int GeodeticY = 309;
+
+        private const int GeodeticFlipY = 714;
 
         private const int MercatorX = 909;
 
         private const int MercatorY = 403;
 
+        private readonly GeodeticCoordinate _tokyoGeodeticMin = new GeodeticCoordinate(139.746094, 35.507812);
+
+        private readonly GeodeticCoordinate _tokyoGeodeticMax = new GeodeticCoordinate(139.921875, 35.683594);
+
+        private readonly MercatorCoordinate _tokyoMercatorMin = new MercatorCoordinate(15536896.12, 4226661.92);
+
+        private readonly MercatorCoordinate _tokyoMercatorMax = new MercatorCoordinate(15576031.88, 4265797.67);
+
+        private const CoordinateSystem Cs4326 = CoordinateSystem.Epsg4326;
+
+        private const CoordinateSystem Cs3857 = CoordinateSystem.Epsg3857;
+
+        private const CoordinateSystem CsOther = CoordinateSystem.Other;
+
+        #endregion
+
         #region Constructors
 
         [Test]
-        public void CreateNumberNormal()
+        public void CreateNumberNormal() => Assert.DoesNotThrow(() =>
         {
-            Number number = new Number(0, 0, 0);
-            Assert.Pass();
-        }
+            Number number = new Number(GeodeticX, GeodeticY, 10);
+        });
 
         [Test]
         public void CreateNumberBadX() => Assert.Throws<ArgumentOutOfRangeException>(() =>
         {
-            Number number = new Number(-1, 0, 0);
+            Number number = new Number(-GeodeticX, GeodeticY, 10);
         });
 
         [Test]
         public void CreateNumberBadY() => Assert.Throws<ArgumentOutOfRangeException>(() =>
         {
-            Number number = new Number(0, -1, 0);
+            Number number = new Number(GeodeticX, -GeodeticY, 10);
         });
 
         [Test]
         public void CreateNumberBadZ() => Assert.Throws<ArgumentOutOfRangeException>(() =>
         {
-            Number number = new Number(0, 0, -1);
+            Number number = new Number(GeodeticX, GeodeticY, -1);
         });
 
         #endregion
@@ -56,12 +75,11 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
         [Test]
         public void GetProperties()
         {
-            Number number = new Number(0, 0, 0);
-            int x = number.X;
-            int y = number.Y;
-            int z = number.Z;
+            Number number = new Number(GeodeticX, GeodeticY, 10);
 
-            Assert.Pass();
+            Assert.True(number.X == GeodeticX);
+            Assert.True(number.Y == GeodeticY);
+            Assert.True(number.Z == 10);
         }
 
         #endregion
@@ -73,12 +91,12 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
         [Test]
         public void FlipNormal()
         {
-            Number expexted = new Number(1819, 714, 10);
+            Number expected = new Number(GeodeticX, GeodeticFlipY, 10);
             Number number = new Number(GeodeticX, GeodeticY, 10);
+            Number result = null;
 
-            Number result = number.Flip();
-
-            Assert.True(result == expexted);
+            Assert.DoesNotThrow(() => result = number.Flip());
+            Assert.True(result == expected);
         }
 
         [Test]
@@ -95,15 +113,15 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
         {
             Number number = new Number(GeodeticX, GeodeticY, 10);
 
-            GeodeticCoordinate expectedMin = new GeodeticCoordinate(139.746094, 35.507812);
-            GeodeticCoordinate expectedMax = new GeodeticCoordinate(139.921875, 35.683594);
+            Coordinate minCoordinate = null;
+            Coordinate maxCoordinate = null;
 
-            (GeodeticCoordinate minCoordinate, GeodeticCoordinate maxCoordinate) = number.ToGeodeticCoordinates(Tile.DefaultSize, false);
+            Assert.DoesNotThrow(() => (minCoordinate, maxCoordinate) = number.ToGeodeticCoordinates(Tile.DefaultSize, false));
 
             Coordinate min = (Coordinate)minCoordinate.Round(6);
             Coordinate max = (Coordinate)maxCoordinate.Round(6);
 
-            Assert.True(min == expectedMin && max == expectedMax);
+            Assert.True(min == _tokyoGeodeticMin && max == _tokyoGeodeticMax);
         }
 
         [Test]
@@ -127,15 +145,15 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
         {
             Number number = new Number(MercatorX, MercatorY, 10);
 
-            MercatorCoordinate expectedMin = new MercatorCoordinate(15536896.12, 4226661.92);
-            MercatorCoordinate expectedMax = new MercatorCoordinate(15576031.88, 4265797.67);
+            Coordinate minCoordinate = null;
+            Coordinate maxCoordinate = null;
 
-            (MercatorCoordinate minCoordinate, MercatorCoordinate maxCoordinate) = number.ToMercatorCoordinates(Tile.DefaultSize, false);
+            Assert.DoesNotThrow(() => (minCoordinate, maxCoordinate) = number.ToMercatorCoordinates(Tile.DefaultSize, false));
 
             Coordinate min = (Coordinate)minCoordinate.Round(2);
             Coordinate max = (Coordinate)maxCoordinate.Round(2);
 
-            Assert.True(min == expectedMin && max == expectedMax);
+            Assert.True(min == _tokyoMercatorMin && max == _tokyoMercatorMax);
         }
 
         [Test]
@@ -158,50 +176,44 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
         public void ToGeoCoordinatesGeodetic()
         {
             Number number = new Number(GeodeticX, GeodeticY, 10);
-            const CoordinateSystem cs = CoordinateSystem.Epsg4326;
 
-            GeodeticCoordinate expectedMin = new GeodeticCoordinate(139.746094, 35.507812);
-            GeodeticCoordinate expectedMax = new GeodeticCoordinate(139.921875, 35.683594);
+            Coordinate minCoordinate = null;
+            Coordinate maxCoordinate = null;
 
-            (GeoCoordinate minCoordinate, GeoCoordinate maxCoordinate) = number.ToGeoCoordinates(cs, Tile.DefaultSize, false);
+            Assert.DoesNotThrow(() => (minCoordinate, maxCoordinate) = number.ToGeoCoordinates(Cs4326, Tile.DefaultSize, false));
 
             Coordinate min = (Coordinate)minCoordinate.Round(6);
             Coordinate max = (Coordinate)maxCoordinate.Round(6);
-            Assert.True(min == expectedMin && max == expectedMax);
+
+            Assert.True(min == _tokyoGeodeticMin && max == _tokyoGeodeticMax);
         }
 
         [Test]
         public void ToGeoCoordinatesMercator()
         {
             Number number = new Number(MercatorX, MercatorY, 10);
-            const CoordinateSystem cs = CoordinateSystem.Epsg3857;
 
-            MercatorCoordinate expectedMin = new MercatorCoordinate(15536896.12, 4226661.92);
-            MercatorCoordinate expectedMax = new MercatorCoordinate(15576031.88, 4265797.67);
+            Coordinate minCoordinate = null;
+            Coordinate maxCoordinate = null;
 
-            (GeoCoordinate minCoordinate, GeoCoordinate maxCoordinate) = number.ToGeoCoordinates(cs, Tile.DefaultSize, false);
+            Assert.DoesNotThrow(() => (minCoordinate, maxCoordinate) = number.ToGeoCoordinates(Cs3857, Tile.DefaultSize, false));
 
             Coordinate min = (Coordinate)minCoordinate.Round(2);
             Coordinate max = (Coordinate)maxCoordinate.Round(2);
-            Assert.True(min == expectedMin && max == expectedMax);
+
+            Assert.True(min == _tokyoMercatorMin && max == _tokyoMercatorMax);
         }
 
         [Test]
         public void ToGeoCoordinatesOtherSystem()
         {
             Number number = new Number(GeodeticX, GeodeticY, 10);
-            const CoordinateSystem cs = CoordinateSystem.Other;
 
-            Assert.Throws<NotSupportedException>(() => number.ToGeoCoordinates(cs, Tile.DefaultSize, true));
+            Assert.Throws<NotSupportedException>(() => number.ToGeoCoordinates(CsOther, Tile.DefaultSize, true));
         }
 
         [Test]
-        public void ToGeoCoordinatesNullNumber()
-        {
-            const CoordinateSystem cs = CoordinateSystem.Epsg4326;
-
-            Assert.Throws<ArgumentNullException>(() => Number.ToGeoCoordinates(null, cs, Tile.DefaultSize, false));
-        }
+        public void ToGeoCoordinatesNullNumber() => Assert.Throws<ArgumentNullException>(() => Number.ToGeoCoordinates(null, Cs4326, Tile.DefaultSize, false));
 
         #endregion
 
@@ -212,16 +224,20 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
         [Test]
         public void GetLowerNumbersNormal()
         {
-            Number number = new Number(1234, 123, 10);
+            Number number = new Number(GeodeticX, GeodeticY, 10);
+
+            Number minExpected = new Number(3638, 618, 11);
+            Number maxExpected = new Number(3639, 619, 11);
+
             (Number minNumber, Number maxNumber) = number.GetLowerNumbers(11);
 
-            Assert.Pass();
+            Assert.True(minNumber == minExpected && maxNumber == maxExpected);
         }
 
         [Test]
         public void GetLowerNumbersBadZoom()
         {
-            Number number = new Number(1234, 123, 10);
+            Number number = new Number(GeodeticX, GeodeticY, 10);
 
             Assert.Throws<ArgumentOutOfRangeException>(() => number.GetLowerNumbers(9));
         }
@@ -237,31 +253,20 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
         [Test]
         public void GetCountNormal()
         {
-            GeoCoordinate min = new GeodeticCoordinate(0.0, 0.0);
-            GeoCoordinate max = new GeodeticCoordinate(180.0, 90.0);
+            int count = 0;
 
-            int count = Number.GetCount(min, max, 0, 9, false, Tile.DefaultSize);
-
+            Assert.DoesNotThrow(() => count = Number.GetCount(_tokyoGeodeticMin, _tokyoGeodeticMax,
+                                                              0, 12, false, Tile.DefaultSize));
             Assert.True(count > 0);
         }
 
         [Test]
-        public void GetCountBadMinZ()
-        {
-            GeoCoordinate min = new GeodeticCoordinate(0.0, 0.0);
-            GeoCoordinate max = new GeodeticCoordinate(180.0, 90.0);
-
-            Assert.Throws<ArgumentOutOfRangeException>(() => Number.GetCount(min, max, -1, 9, false, Tile.DefaultSize));
-        }
+        public void GetCountBadMinZ() => Assert.Throws<ArgumentOutOfRangeException>(() => Number.GetCount(_tokyoGeodeticMin, _tokyoGeodeticMax,
+                                                                                                          -1, 9, false, Tile.DefaultSize));
 
         [Test]
-        public void GetCountBadMaxZ()
-        {
-            GeoCoordinate min = new GeodeticCoordinate(0.0, 0.0);
-            GeoCoordinate max = new GeodeticCoordinate(180.0, 90.0);
-
-            Assert.Throws<ArgumentOutOfRangeException>(() => Number.GetCount(min, max, 0, -1, false, Tile.DefaultSize));
-        }
+        public void GetCountBadMaxZ() => Assert.Throws<ArgumentOutOfRangeException>(() => Number.GetCount(_tokyoGeodeticMin, _tokyoGeodeticMax,
+                                                                                                          0, -1, false, Tile.DefaultSize));
 
         #endregion
 
@@ -274,11 +279,12 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
         [Test]
         public void GetHashCodeNormal()
         {
-            Number number = new Number(1234, 123, 10);
+            Number number = new Number(GeodeticX, GeodeticY, 10);
 
-            int hashCode = number.GetHashCode();
-
-            Assert.Pass();
+            Assert.DoesNotThrow(() =>
+            {
+                int hashCode = number.GetHashCode();
+            });
         }
 
         #endregion
@@ -288,8 +294,8 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
         [Test]
         public void EqualsByValueNormal()
         {
-            Number number1 = new Number(1234, 123, 10);
-            Number number2 = new Number(1234, 123, 10);
+            Number number1 = new Number(GeodeticX, GeodeticY, 10);
+            Number number2 = new Number(GeodeticX, GeodeticY, 10);
 
             Assert.True(number1.Equals((object)number2));
         }
@@ -297,7 +303,7 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
         [Test]
         public void EqualsByRefNormal()
         {
-            Number number1 = new Number(1234, 123, 10);
+            Number number1 = new Number(GeodeticX, GeodeticY, 10);
             Number number2 = number1;
 
             Assert.True(number1.Equals((object)number2));
@@ -306,7 +312,7 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
         [Test]
         public void EqualsOtherNull()
         {
-            Number number1 = new Number(1234, 123, 10);
+            Number number1 = new Number(GeodeticX, GeodeticY, 10);
 
             Assert.False(number1.Equals(null));
         }
@@ -316,8 +322,8 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
         [Test]
         public void EqualsOperatorNormalTrue()
         {
-            Number number1 = new Number(1234, 123, 10);
-            Number number2 = new Number(1234, 123, 10);
+            Number number1 = new Number(GeodeticX, GeodeticY, 10);
+            Number number2 = new Number(GeodeticX, GeodeticY, 10);
 
             Assert.True(number1 == number2);
         }
@@ -325,8 +331,8 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
         [Test]
         public void EqualsOperatorNormalFalse()
         {
-            Number number1 = new Number(1234, 123, 10);
-            Number number2 = new Number(1235, 123, 10);
+            Number number1 = new Number(GeodeticX, GeodeticY, 10);
+            Number number2 = new Number(GeodeticX + 1, GeodeticX, 10);
 
             Assert.False(number1 == number2);
         }
@@ -334,7 +340,7 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
         [Test]
         public void EqualsOperatorNumber1Null()
         {
-            Number number2 = new Number(1234, 123, 10);
+            Number number2 = new Number(GeodeticX, GeodeticY, 10);
 
             Assert.False(null == number2);
         }
@@ -342,7 +348,7 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
         [Test]
         public void EqualsOperatorNumber2Null()
         {
-            Number number1 = new Number(1234, 123, 10);
+            Number number1 = new Number(GeodeticX, GeodeticY, 10);
 
             Assert.False(number1 == null);
         }
@@ -354,8 +360,8 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
         [Test]
         public void NotEqualsOperatorNormalTrue()
         {
-            Number number1 = new Number(1234, 123, 10);
-            Number number2 = new Number(1235, 123, 10);
+            Number number1 = new Number(GeodeticX, GeodeticY, 10);
+            Number number2 = new Number(GeodeticX + 1, GeodeticY, 10);
 
             Assert.True(number1 != number2);
         }
@@ -363,8 +369,8 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
         [Test]
         public void NotEqualsOperatorNormalFalse()
         {
-            Number number1 = new Number(1234, 123, 10);
-            Number number2 = new Number(1234, 123, 10);
+            Number number1 = new Number(GeodeticX, GeodeticY, 10);
+            Number number2 = new Number(GeodeticX, GeodeticY, 10);
 
             Assert.False(number1 != number2);
         }
@@ -372,7 +378,7 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
         [Test]
         public void NotEqualsOperatorNumber1Null()
         {
-            Number number2 = new Number(1234, 123, 10);
+            Number number2 = new Number(GeodeticX, GeodeticY, 10);
 
             Assert.True(null != number2);
         }
@@ -380,7 +386,7 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
         [Test]
         public void NotEqualsOperatorNumber2Null()
         {
-            Number number1 = new Number(1234, 123, 10);
+            Number number1 = new Number(GeodeticX, GeodeticY, 10);
 
             Assert.True(number1 != null);
         }

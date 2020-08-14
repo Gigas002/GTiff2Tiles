@@ -15,12 +15,10 @@ namespace GTiff2Tiles.Tests.Tests.Images
         #region Constructors
 
         [Test]
-        public void CreateSizeNormal()
+        public void CreateSizeNormal() => Assert.DoesNotThrow(() =>
         {
             Size size = new Size(1, 1);
-
-            Assert.Pass();
-        }
+        });
 
         [Test]
         public void CreateSizeBadWidth() => Assert.Throws<ArgumentOutOfRangeException>(() =>
@@ -39,7 +37,7 @@ namespace GTiff2Tiles.Tests.Tests.Images
         #region Properties
 
         [Test]
-        public void GetProperties()
+        public void GetProperties() => Assert.DoesNotThrow(() =>
         {
             Size size = new Size(1, 2);
 
@@ -47,9 +45,7 @@ namespace GTiff2Tiles.Tests.Tests.Images
             int w = size.Width;
             int r = size.Resolution;
             bool isSquare = size.IsSquare;
-
-            Assert.Pass();
-        }
+        });
 
         #endregion
 
@@ -62,9 +58,10 @@ namespace GTiff2Tiles.Tests.Tests.Images
         {
             Size size = new Size(10, 10);
 
-            int hashCode = size.GetHashCode();
-
-            Assert.Pass();
+            Assert.DoesNotThrow(() =>
+            {
+                int hashCode = size.GetHashCode();
+            });
         }
 
         #endregion

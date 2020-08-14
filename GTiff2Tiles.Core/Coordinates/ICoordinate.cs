@@ -37,6 +37,8 @@ namespace GTiff2Tiles.Core.Coordinates
         /// <returns><see cref="Number"/> in which this <see cref="ICoordinate"/> belongs</returns>
         public Number ToNumber(int z, Size tileSize, bool tmsCompatible);
 
+        // TODO: remove from interface?
+
         /// <summary>
         /// Round coordinate's <see cref="X"/> and <see cref="Y"/>
         /// </summary>
