@@ -16,7 +16,7 @@ namespace GTiff2Tiles.Core.Coordinates
         /// <summary>
         /// Maximal possible value of longitude for EPSG:3857
         /// </summary>
-        public const double MaxPossibleLonValue = 20026376.39;
+        public const double MaxPossibleLonValue = 20037508.35; // 20026376.39;
 
         /// <summary>
         /// Maximal possible value of latitude for EPSG:3857
