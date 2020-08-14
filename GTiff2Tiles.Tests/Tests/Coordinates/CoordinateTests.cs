@@ -33,6 +33,35 @@ namespace GTiff2Tiles.Tests.Tests.Coordinates
             Assert.True(Math.Abs(expected - res) < double.Epsilon);
         }
 
+        #region Round
+
+        [Test]
+        public void RoundNormal()
+        {
+            Coordinate coord = new GeodeticCoordinate(12.341, 13.561);
+            Coordinate round = (Coordinate)coord.Round(2);
+            Coordinate expected = new GeodeticCoordinate(12.34, 13.56);
+
+            Assert.True(round == expected);
+        }
+
+        [Test]
+        public void RoundCoordinateNull()
+        {
+            Coordinate coord = new GeodeticCoordinate(12.341, 13.561);
+
+            Assert.Throws<ArgumentNullException>(() => Coordinate.Round(null, 2));
+        }
+
+        [Test]
+        public void RoundSmallDigits()
+        {
+            Coordinate coord = new GeodeticCoordinate(12.341, 13.561);
+            Assert.Throws<ArgumentOutOfRangeException>(() => Coordinate.Round(coord, -1));
+        }
+
+        #endregion
+
         #endregion
 
         #region Bool comparings

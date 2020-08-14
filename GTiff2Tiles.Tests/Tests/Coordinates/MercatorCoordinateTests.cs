@@ -13,6 +13,10 @@ namespace GTiff2Tiles.Tests.Tests.Coordinates
     [TestFixture]
     public sealed class MercatorCoordinateTests
     {
+        private const double TokyoLongitude = 15566858.37;
+
+        private const double TokyoLatitude = 4252956.14;
+
         #region Constructors
 
         [Test]
@@ -24,13 +28,13 @@ namespace GTiff2Tiles.Tests.Tests.Coordinates
         [Test]
         public void CreateMercatorCoordinateSmallLon() => Assert.Throws<ArgumentOutOfRangeException>(() =>
         {
-            MercatorCoordinate coord = new MercatorCoordinate(-20026377.0, 0.0);
+            MercatorCoordinate coord = new MercatorCoordinate(-20046377.0, 0.0);
         });
 
         [Test]
         public void CreateMercatorCoordinateBigLon() => Assert.Throws<ArgumentOutOfRangeException>(() =>
         {
-            MercatorCoordinate coord = new MercatorCoordinate(20026377.0, 0.0);
+            MercatorCoordinate coord = new MercatorCoordinate(20046377.0, 0.0);
         });
 
         [Test]
@@ -68,23 +72,37 @@ namespace GTiff2Tiles.Tests.Tests.Coordinates
         [Test]
         public void ToPixelCoordinateTest()
         {
-            MercatorCoordinate coord = new MercatorCoordinate(0.0, 0.0);
+            MercatorCoordinate coord = new MercatorCoordinate(TokyoLongitude, TokyoLatitude);
 
-            Assert.DoesNotThrow(() =>
-            {
-                PixelCoordinate pCoord = coord.ToPixelCoordinate(10, Tile.DefaultSize);
-            });
+            PixelCoordinate realCoord = new PixelCoordinate(232899.99305018864, 158891.99925568007);
+            PixelCoordinate pCoord = null;
+
+            Assert.DoesNotThrow(() => pCoord = coord.ToPixelCoordinate(10, Tile.DefaultSize));
+            Assert.True(pCoord == realCoord);
         }
 
         [Test]
         public void ToGeodeticCoordinateTest()
         {
-            MercatorCoordinate coord = new MercatorCoordinate(0.0, 0.0);
+            MercatorCoordinate coord = new MercatorCoordinate(TokyoLongitude, TokyoLatitude);
 
-            Assert.DoesNotThrow(() =>
-            {
-                GeodeticCoordinate gCoord = coord.ToGeodeticCoordinate();
-            });
+            GeodeticCoordinate realCoord = new GeodeticCoordinate(139.839468, 35.652832);
+            Coordinate gCoord = null;
+
+            Assert.DoesNotThrow(() => gCoord = (Coordinate)coord.ToGeodeticCoordinate().Round(6));
+            Assert.True(gCoord == realCoord);
+        }
+
+        [Test]
+        public void ToNumber()
+        {
+            MercatorCoordinate coord = new MercatorCoordinate(TokyoLongitude, TokyoLatitude);
+
+            Number realNumber = new Number(909, 403, 10);
+            Number number = null;
+
+            Assert.DoesNotThrow(() => number = coord.ToNumber(10, Tile.DefaultSize, false));
+            Assert.True(number == realNumber);
         }
 
         #region Resolution

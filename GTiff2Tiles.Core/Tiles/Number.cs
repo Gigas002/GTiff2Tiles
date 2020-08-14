@@ -162,8 +162,10 @@ namespace GTiff2Tiles.Core.Tiles
                                                                      number.Y * tileSize.Height);
             PixelCoordinate maxPixelCoordinate = new PixelCoordinate((number.X + 1) * tileSize.Width,
                                                                      (number.Y + 1) * tileSize.Height);
-            MercatorCoordinate minCoordinate = minPixelCoordinate.ToMercatorCoordinate(number.Z, tileSize);
-            MercatorCoordinate maxCoordinate = maxPixelCoordinate.ToMercatorCoordinate(number.Z, tileSize);
+            MercatorCoordinate minCoordinate = minPixelCoordinate.ToMercatorCoordinate(CoordinateSystem.Epsg3857,
+                number.Z, tileSize);
+            MercatorCoordinate maxCoordinate = maxPixelCoordinate.ToMercatorCoordinate(CoordinateSystem.Epsg3857,
+                number.Z, tileSize);
 
             return (minCoordinate, maxCoordinate);
         }

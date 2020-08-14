@@ -49,7 +49,6 @@ namespace GTiff2Tiles.Core.Coordinates
 
             #endregion
 
-            // TODO: Probably shouldn't subtract 1.0, needs tests on actual data
             int tileX = Convert.ToInt32(Math.Ceiling(X / tileSize.Width) - 1.0);
             int tileY = Convert.ToInt32(Math.Ceiling(Y / tileSize.Height) - 1.0);
 
@@ -62,7 +61,8 @@ namespace GTiff2Tiles.Core.Coordinates
         /// <summary>
         /// Convert current coordinate to child of <see cref="GeoCoordinate"/>
         /// </summary>
-        /// <param name="coordinateSystem">Coordinate system</param>
+        /// <param name="inputCoordinateSystem"><see cref="CoordinateSystem"/> from which pixel coordinates were maid</param>
+        /// <param name="targetCoordinateSystem">Coordinate system</param>
         /// <param name="z">Zoom
         /// <remarks><para/>Must be >= 0</remarks></param>
         /// <param name="tileSize"><see cref="ITile"/>'s size
@@ -70,24 +70,27 @@ namespace GTiff2Tiles.Core.Coordinates
         /// <returns>Converted to <see cref="GeoCoordinate"/> value
         /// or <see langword="null"/> if something goes wrong</returns>
         /// <exception cref="NotSupportedException"/>
-        public GeoCoordinate ToGeoCoordinate(CoordinateSystem coordinateSystem, int z, Size tileSize) =>
-            coordinateSystem switch
+        public GeoCoordinate ToGeoCoordinate(CoordinateSystem inputCoordinateSystem,
+                                             CoordinateSystem targetCoordinateSystem, int z, Size tileSize) =>
+            targetCoordinateSystem switch
             {
-                CoordinateSystem.Epsg4326 => ToGeodeticCoordinate(z, tileSize),
-                CoordinateSystem.Epsg3857 => ToMercatorCoordinate(z, tileSize),
-                _ => throw new NotSupportedException($"{coordinateSystem} is not supported")
+                CoordinateSystem.Epsg4326 => ToGeodeticCoordinate(inputCoordinateSystem, z, tileSize),
+                CoordinateSystem.Epsg3857 => ToMercatorCoordinate(inputCoordinateSystem, z, tileSize),
+                _ => throw new NotSupportedException($"{targetCoordinateSystem} is not supported")
             };
 
         /// <summary>
         /// Convert current coordinate to <see cref="GeodeticCoordinate"/>
         /// </summary>
+        /// <param name="inputCoordinateSystem"><see cref="CoordinateSystem"/> from which pixel coordinates were maid</param>
         /// <param name="z">Zoom
         /// <remarks><para/>Must be >= 0</remarks></param>
         /// <param name="tileSize"><see cref="ITile"/>'s size
         /// <remarks><para/>Must be square</remarks></param>
         /// <returns>Converted <see cref="GeodeticCoordinate"/></returns>
         /// <exception cref="ArgumentOutOfRangeException"/>
-        public GeodeticCoordinate ToGeodeticCoordinate(int z, Size tileSize)
+        /// <exception cref="NotSupportedException"/>
+        public GeodeticCoordinate ToGeodeticCoordinate(CoordinateSystem inputCoordinateSystem, int z, Size tileSize)
         {
             #region Preconditions checks
 
@@ -95,21 +98,42 @@ namespace GTiff2Tiles.Core.Coordinates
 
             #endregion
 
-            MercatorCoordinate mercatorCoordinate = ToMercatorCoordinate(z, tileSize);
+            switch (inputCoordinateSystem)
+            {
+                case CoordinateSystem.Epsg4326:
+                    {
+                        double resolution = GeodeticCoordinate.Resolution(z, tileSize);
 
-            return mercatorCoordinate.ToGeodeticCoordinate();
+                        double x = X * resolution - GeodeticCoordinate.MaxPossibleLonValue;
+                        double y = Y * resolution - GeodeticCoordinate.MaxPossibleLatValue;
+
+                        return new GeodeticCoordinate(x, y);
+                    }
+                case CoordinateSystem.Epsg3857:
+                    {
+                        MercatorCoordinate mercatorCoordinate = ToMercatorCoordinate(inputCoordinateSystem, z, tileSize);
+
+                        return mercatorCoordinate.ToGeodeticCoordinate();
+                    }
+                default:
+                    {
+                        throw new NotSupportedException();
+                    }
+            }
         }
 
         /// <summary>
         /// Convert current coordinate to <see cref="MercatorCoordinate"/>
         /// </summary>
+        /// <param name="inputCoordinateSystem"><see cref="CoordinateSystem"/> from which pixel coordinates were maid</param>
         /// <param name="z">Zoom
         /// <remarks><para/>Must be >= 0</remarks></param>
         /// <param name="tileSize"><see cref="ITile"/>'s size
         /// <remarks><para/>Must be square</remarks></param>
         /// <returns>Converted <see cref="MercatorCoordinate"/></returns>
         /// <exception cref="ArgumentOutOfRangeException"/>
-        public MercatorCoordinate ToMercatorCoordinate(int z, Size tileSize)
+        /// <exception cref="NotSupportedException"/>
+        public MercatorCoordinate ToMercatorCoordinate(CoordinateSystem inputCoordinateSystem, int z, Size tileSize)
         {
             #region Preconditions checks
 
@@ -117,11 +141,27 @@ namespace GTiff2Tiles.Core.Coordinates
 
             #endregion
 
-            double resolution = MercatorCoordinate.Resolution(z, tileSize);
-            double mx = X * resolution - Constants.Geodesic.OriginShift;
-            double my = Y * resolution - Constants.Geodesic.OriginShift;
+            switch (inputCoordinateSystem)
+            {
+                case CoordinateSystem.Epsg3857:
+                    {
+                        double resolution = MercatorCoordinate.Resolution(z, tileSize);
+                        double mx = X * resolution - Constants.Geodesic.OriginShift;
+                        double my = Y * resolution - Constants.Geodesic.OriginShift;
 
-            return new MercatorCoordinate(mx, my);
+                        return new MercatorCoordinate(mx, my);
+                    }
+                case CoordinateSystem.Epsg4326:
+                    {
+                        GeodeticCoordinate geodeticCoordinate = ToGeodeticCoordinate(inputCoordinateSystem, z, tileSize);
+
+                        return geodeticCoordinate.ToMercatorCoordinate();
+                    }
+                default:
+                    {
+                        throw new NotSupportedException($"{inputCoordinateSystem} is not supported");
+                    }
+            }
         }
 
         /// <summary>
