@@ -28,15 +28,6 @@ namespace GTiff2Tiles.Core.GeoTiffs
     {
         #region Properties
 
-        #region Private
-
-        /// <summary>
-        /// This <see cref="Raster"/>'s data
-        /// </summary>
-        private Image Data { get; }
-
-        #endregion
-
         #region Public
 
         /// <inheritdoc />
@@ -53,6 +44,11 @@ namespace GTiff2Tiles.Core.GeoTiffs
 
         /// <inheritdoc />
         public bool IsDisposed { get; private set; }
+
+        /// <summary>
+        /// This <see cref="Raster"/>'s data
+        /// </summary>
+        public Image Data { get; }
 
         #endregion
 
@@ -281,9 +277,19 @@ namespace GTiff2Tiles.Core.GeoTiffs
         /// </summary>
         /// <param name="tileCache">Source <see cref="Image"/>
         /// or tile cache</param>
-        /// <param name="tile">Target <see cref="RasterTile"/></param>
+        /// <param name="tile">Target <see cref="RasterTile"/>
+        /// <remarks><para/><see cref="Tile.Path"/> should not be null or whitespace</remarks></param>
+        /// <exception cref="ArgumentNullException"/>
         public void WriteTileToFile(Image tileCache, RasterTile tile)
         {
+            #region Preconditions checks
+
+            if (tile == null) throw new ArgumentNullException(nameof(tile));
+
+            CheckHelper.CheckFile(tile.Path, false);
+
+            #endregion
+
             // Preconditions checked inside CreateTileImage, don't need to check anything here
 
             using Image tileImage = CreateTileImage(tileCache, tile);

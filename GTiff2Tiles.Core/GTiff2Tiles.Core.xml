@@ -791,11 +791,6 @@
             Used for creating <see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/>s
             </summary>
         </member>
-        <member name="P:GTiff2Tiles.Core.GeoTiffs.Raster.Data">
-            <summary>
-            This <see cref="T:GTiff2Tiles.Core.GeoTiffs.Raster"/>'s data
-            </summary>
-        </member>
         <member name="P:GTiff2Tiles.Core.GeoTiffs.Raster.Size">
             <inheritdoc />
         </member>
@@ -810,6 +805,11 @@
         </member>
         <member name="P:GTiff2Tiles.Core.GeoTiffs.Raster.IsDisposed">
             <inheritdoc />
+        </member>
+        <member name="P:GTiff2Tiles.Core.GeoTiffs.Raster.Data">
+            <summary>
+            This <see cref="T:GTiff2Tiles.Core.GeoTiffs.Raster"/>'s data
+            </summary>
         </member>
         <member name="M:GTiff2Tiles.Core.GeoTiffs.Raster.#ctor(System.String,System.Int64)">
             <summary>
@@ -875,7 +875,9 @@
             </summary>
             <param name="tileCache">Source <see cref="T:NetVips.Image"/>
             or tile cache</param>
-            <param name="tile">Target <see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/></param>
+            <param name="tile">Target <see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/>
+            <remarks><para/><see cref="P:GTiff2Tiles.Core.Tiles.Tile.Path"/> should not be null or whitespace</remarks></param>
+            <exception cref="T:System.ArgumentNullException"/>
         </member>
         <member name="M:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToFileAsync(NetVips.Image,GTiff2Tiles.Core.Tiles.RasterTile)">
             <inheritdoc cref="M:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToFile(NetVips.Image,GTiff2Tiles.Core.Tiles.RasterTile)"/>
