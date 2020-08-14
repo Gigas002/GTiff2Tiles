@@ -154,6 +154,8 @@ Currently, application is available on **English** and **Russian** languages.
 - [Microsoft.NET.Test.Sdk](https://www.nuget.org/packages/Microsoft.NET.Test.Sdk) – 16.7.0;
 - [NUnit](https://www.nuget.org/packages/NUnit) – 3.12.0;
 - [NUnit3TestAdapter](https://www.nuget.org/packages/NUnit3TestAdapter/) – 3.17.0;
+- [coverlet.collector](https://www.nuget.org/packages/coverlet.collector) – 1.3.0;
+- [coverlet.msbuild](https://www.nuget.org/packages/coverlet.msbuild) – 2.9.0;
 
 ## GTiff2Tiles.Benchmarks
 

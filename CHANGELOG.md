@@ -59,6 +59,7 @@ Changes since 1.4.1:
 
 - Update **Microsoft.NET.Test.Sdk** package to **16.7.0**;
 - Update **NUnit3TestAdapter** package to **3.17.0**;
+- Add coverlet.collector and coverlet.msbuild dependencies for code coverage;
 
 ## 21.10.2019 – Released 1.4.1
 
