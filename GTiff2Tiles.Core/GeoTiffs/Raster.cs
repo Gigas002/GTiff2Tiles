@@ -183,7 +183,7 @@ namespace GTiff2Tiles.Core.GeoTiffs
                 // Occurs only if called by programmer. Dispose static things here
             }
 
-            Data.Dispose();
+            Data?.Dispose();
 
             IsDisposed = true;
         }
@@ -261,7 +261,7 @@ namespace GTiff2Tiles.Core.GeoTiffs
             Band.AddDefaultBands(ref tempTileImage, tile.BandsCount);
 
             // Make transparent image and insert tile
-            return Image.Black(tile.Size.Width, tile.Size.Height).NewFromImage(0, 0, 0, 0)
+            return Image.Black(tile.Size.Width, tile.Size.Height).NewFromImage(new int[tile.BandsCount])
                         .Insert(tempTileImage, (int)writeArea.OriginCoordinate.X,
                                 (int)writeArea.OriginCoordinate.Y);
         }
