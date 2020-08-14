@@ -2,6 +2,7 @@
 using GTiff2Tiles.Core.Images;
 using GTiff2Tiles.Core.Tiles;
 
+// ReSharper disable MemberCanBePrivate.Global
 // ReSharper disable UnusedMember.Global
 
 namespace GTiff2Tiles.Core.Coordinates
@@ -50,6 +51,26 @@ namespace GTiff2Tiles.Core.Coordinates
         /// <param name="radians">Value to convert</param>
         /// <returns>Converted degrees</returns>
         public static double RadiansToDegrees(double radians) => radians * 180.0 / Math.PI;
+
+        /// <inheritdoc/>
+        public ICoordinate Round(int digits) => Round(this, digits);
+
+        /// <inheritdoc cref="Round(int)"/>
+        /// <param name="coordinate"><see cref="ICoordinate"/> to round</param>
+        /// <param name="digits"></param>
+        /// <exception cref="ArgumentNullException"/>
+        /// <exception cref="ArgumentOutOfRangeException"/>
+        public static ICoordinate Round(ICoordinate coordinate, int digits)
+        {
+            #region Preconditions checks
+
+            if (coordinate == null) throw new ArgumentNullException(nameof(coordinate));
+            if (digits < 0) throw new ArgumentOutOfRangeException(nameof(digits));
+
+            #endregion
+
+            return new Coordinate(Math.Round(coordinate.X, digits), Math.Round(coordinate.Y, digits));
+        }
 
         #region Bool compare overrides
 

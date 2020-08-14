@@ -139,6 +139,16 @@
             <param name="radians">Value to convert</param>
             <returns>Converted degrees</returns>
         </member>
+        <member name="M:GTiff2Tiles.Core.Coordinates.Coordinate.Round(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Coordinates.Coordinate.Round(GTiff2Tiles.Core.Coordinates.ICoordinate,System.Int32)">
+            <inheritdoc cref="M:GTiff2Tiles.Core.Coordinates.Coordinate.Round(System.Int32)"/>
+            <param name="coordinate"><see cref="T:GTiff2Tiles.Core.Coordinates.ICoordinate"/> to round</param>
+            <param name="digits"></param>
+            <exception cref="T:System.ArgumentNullException"/>
+            <exception cref="T:System.ArgumentOutOfRangeException"/>
+        </member>
         <member name="M:GTiff2Tiles.Core.Coordinates.Coordinate.Equals(System.Object)">
             <inheritdoc />
         </member>
@@ -359,6 +369,14 @@
             <param name="tileSize"><see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>'s size</param>
             <param name="tmsCompatible">Is <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/> tms compatible?</param>
             <returns><see cref="T:GTiff2Tiles.Core.Tiles.Number"/> in which this <see cref="T:GTiff2Tiles.Core.Coordinates.ICoordinate"/> belongs</returns>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Coordinates.ICoordinate.Round(System.Int32)">
+            <summary>
+            Round coordinate's <see cref="P:GTiff2Tiles.Core.Coordinates.ICoordinate.X"/> and <see cref="P:GTiff2Tiles.Core.Coordinates.ICoordinate.Y"/>
+            </summary>
+            <param name="digits">Number of digits after zero in return falue
+            <remarks><para/>Must be bigger or equal, than 0</remarks></param>
+            <returns>New <see cref="T:GTiff2Tiles.Core.Coordinates.ICoordinate"/></returns>
         </member>
         <member name="T:GTiff2Tiles.Core.Coordinates.MercatorCoordinate">
             <summary>

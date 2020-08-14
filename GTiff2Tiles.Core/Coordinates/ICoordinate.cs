@@ -37,6 +37,14 @@ namespace GTiff2Tiles.Core.Coordinates
         /// <returns><see cref="Number"/> in which this <see cref="ICoordinate"/> belongs</returns>
         public Number ToNumber(int z, Size tileSize, bool tmsCompatible);
 
+        /// <summary>
+        /// Round coordinate's <see cref="X"/> and <see cref="Y"/>
+        /// </summary>
+        /// <param name="digits">Number of digits after zero in return falue
+        /// <remarks><para/>Must be bigger or equal, than 0</remarks></param>
+        /// <returns>New <see cref="ICoordinate"/></returns>
+        public ICoordinate Round(int digits);
+
         #endregion
     }
 }
