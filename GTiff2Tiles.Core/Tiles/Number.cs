@@ -100,16 +100,18 @@ namespace GTiff2Tiles.Core.Tiles
         /// Convert <see cref="Number"/> to <see cref="GeodeticCoordinate"/>s
         /// </summary>
         /// <param name="tileSize"><see cref="Tile"/>'s <see cref="Size"/></param>
+        /// <param name="tmsCompatible">Is tms compatible?</param>
         /// <returns><see cref="ValueTuple{T1,T2}"/> of <see cref="GeodeticCoordinate"/>s</returns>
         /// <exception cref="ArgumentNullException"/>
         public (GeodeticCoordinate minCoordinate, GeodeticCoordinate maxCoordinate) ToGeodeticCoordinates(
-            Size tileSize) => ToGeodeticCoordinates(this, tileSize);
+            Size tileSize, bool tmsCompatible) => ToGeodeticCoordinates(this, tileSize, tmsCompatible);
 
-        /// <inheritdoc cref="ToGeodeticCoordinates(Size)"/>
+        /// <inheritdoc cref="ToGeodeticCoordinates(Size, bool)"/>
         /// <param name="number"><see cref="Number"/> to convert</param>
         /// <param name="tileSize"></param>
+        /// <param name="tmsCompatible"></param>
         public static (GeodeticCoordinate minCoordinate, GeodeticCoordinate maxCoordinate) ToGeodeticCoordinates(
-            Number number, Size tileSize)
+            Number number, Size tileSize, bool tmsCompatible)
         {
             #region Preconditions checks
 
@@ -117,6 +119,8 @@ namespace GTiff2Tiles.Core.Tiles
             if (tileSize == null) throw new ArgumentNullException(nameof(tileSize));
 
             #endregion
+
+            if (!tmsCompatible) number = Flip(number);
 
             double resolution = GeodeticCoordinate.Resolution(number.Z, tileSize);
 
@@ -132,16 +136,18 @@ namespace GTiff2Tiles.Core.Tiles
         /// Convert <see cref="Number"/> to <see cref="MercatorCoordinate"/>s
         /// </summary>
         /// <param name="tileSize"><see cref="Tile"/>'s <see cref="Size"/></param>
+        /// <param name="tmsCompatible">Is tms compatible?</param>
         /// <returns><see cref="ValueTuple{T1, T2}"/> of <see cref="MercatorCoordinate"/>s</returns>
         /// <exception cref="ArgumentNullException"/>
-        public (MercatorCoordinate minCoordinate, MercatorCoordinate maxCoordinate) ToMercatorCoordinates(Size tileSize)
-            => ToMercatorCoordinates(this, tileSize);
+        public (MercatorCoordinate minCoordinate, MercatorCoordinate maxCoordinate) ToMercatorCoordinates(Size tileSize, bool tmsCompatible)
+            => ToMercatorCoordinates(this, tileSize, tmsCompatible);
 
-        /// <inheritdoc cref="ToMercatorCoordinates(Size)"/>
+        /// <inheritdoc cref="ToMercatorCoordinates(Size, bool)"/>
         /// <param name="number"><see cref="Number"/> to convert</param>
         /// <param name="tileSize"></param>
+        /// <param name="tmsCompatible"></param>
         public static (MercatorCoordinate minCoordinate, MercatorCoordinate maxCoordinate) ToMercatorCoordinates(
-            Number number, Size tileSize)
+            Number number, Size tileSize, bool tmsCompatible)
         {
             #region Preconditions checks
 
@@ -149,6 +155,8 @@ namespace GTiff2Tiles.Core.Tiles
             if (tileSize == null) throw new ArgumentNullException(nameof(tileSize));
 
             #endregion
+
+            if (!tmsCompatible) number = Flip(number);
 
             PixelCoordinate minPixelCoordinate = new PixelCoordinate(number.X * tileSize.Width,
                                                                      number.Y * tileSize.Height);
@@ -163,7 +171,7 @@ namespace GTiff2Tiles.Core.Tiles
         /// <summary>
         /// Convert <see cref="Number"/> to <see cref="GeoCoordinate"/>s
         /// </summary>
-        /// <param name="coordinateSystem">Desired coordinate system</param>
+        /// <param name="coordinateSystem">Desired number's coordinate system</param>
         /// <param name="tileSize"><see cref="Tile"/>'s <see cref="Size"/></param>
         /// <param name="tmsCompatible">Is tms compatible?</param>
         /// <returns><see cref="ValueTuple{T1, T2}"/> of <see cref="GeoCoordinate"/>s</returns>
@@ -187,21 +195,19 @@ namespace GTiff2Tiles.Core.Tiles
 
             #endregion
 
-            if (!tmsCompatible) number = Flip(number);
-
             switch (coordinateSystem)
             {
                 case CoordinateSystem.Epsg4326:
                     {
                         (GeodeticCoordinate minCoordinate, GeodeticCoordinate maxCoordinate) =
-                            number.ToGeodeticCoordinates(tileSize);
+                            number.ToGeodeticCoordinates(tileSize, tmsCompatible);
 
                         return (minCoordinate, maxCoordinate);
                     }
                 case CoordinateSystem.Epsg3857:
                     {
                         (MercatorCoordinate minCoordinate, MercatorCoordinate maxCoordinate) =
-                            number.ToMercatorCoordinates(tileSize);
+                            number.ToMercatorCoordinates(tileSize, tmsCompatible);
 
                         return (minCoordinate, maxCoordinate);
                     }

@@ -14,6 +14,14 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
     [TestFixture]
     public sealed class NumberTests
     {
+        private const int GeodeticX = 1819;
+
+        private const int GeodeticY = 309;
+
+        private const int MercatorX = 909;
+
+        private const int MercatorY = 403;
+
         #region Constructors
 
         [Test]
@@ -65,10 +73,12 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
         [Test]
         public void FlipNormal()
         {
-            Number number = new Number(1234, 123, 10);
-            number.Flip();
+            Number expexted = new Number(1819, 714, 10);
+            Number number = new Number(GeodeticX, GeodeticY, 10);
 
-            Assert.Pass();
+            Number result = number.Flip();
+
+            Assert.True(result == expexted);
         }
 
         [Test]
@@ -83,24 +93,30 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
         [Test]
         public void ToGeodeticCoordinatesNormal()
         {
-            Number number = new Number(1234, 123, 10);
+            Number number = new Number(GeodeticX, GeodeticY, 10);
 
-            number.ToGeodeticCoordinates(Tile.DefaultSize);
+            GeodeticCoordinate expectedMin = new GeodeticCoordinate(139.746094, 35.507812);
+            GeodeticCoordinate expectedMax = new GeodeticCoordinate(139.921875, 35.683594);
 
-            Assert.Pass();
+            (GeodeticCoordinate minCoordinate, GeodeticCoordinate maxCoordinate) = number.ToGeodeticCoordinates(Tile.DefaultSize, false);
+
+            Coordinate min = (Coordinate)minCoordinate.Round(6);
+            Coordinate max = (Coordinate)maxCoordinate.Round(6);
+
+            Assert.True(min == expectedMin && max == expectedMax);
         }
 
         [Test]
         public void ToGeodeticCoordinatesNullSize()
         {
-            Number number = new Number(1234, 123, 10);
+            Number number = new Number(GeodeticX, GeodeticY, 10);
 
-            Assert.Throws<ArgumentNullException>(() => number.ToGeodeticCoordinates(null));
+            Assert.Throws<ArgumentNullException>(() => number.ToGeodeticCoordinates(null, false));
         }
 
         [Test]
         public void ToGeodeticCoordinatesNullNumber() => Assert.Throws<ArgumentNullException>(() =>
-               Number.ToGeodeticCoordinates(null, Tile.DefaultSize));
+               Number.ToGeodeticCoordinates(null, Tile.DefaultSize, false));
 
         #endregion
 
@@ -109,55 +125,71 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
         [Test]
         public void ToMercatorCoordinatesNormal()
         {
-            Number number = new Number(1234, 123, 11);
+            Number number = new Number(MercatorX, MercatorY, 10);
 
-            number.ToMercatorCoordinates(Tile.DefaultSize);
+            MercatorCoordinate expectedMin = new MercatorCoordinate(15536896.12, 4226661.92);
+            MercatorCoordinate expectedMax = new MercatorCoordinate(15576031.88, 4265797.67);
 
-            Assert.Pass();
+            (MercatorCoordinate minCoordinate, MercatorCoordinate maxCoordinate) = number.ToMercatorCoordinates(Tile.DefaultSize, false);
+
+            Coordinate min = (Coordinate)minCoordinate.Round(2);
+            Coordinate max = (Coordinate)maxCoordinate.Round(2);
+
+            Assert.True(min == expectedMin && max == expectedMax);
         }
 
         [Test]
         public void ToMercatorCoordinatesNullSize()
         {
-            Number number = new Number(1234, 123, 10);
+            Number number = new Number(MercatorX, MercatorY, 10);
 
-            Assert.Throws<ArgumentNullException>(() => number.ToMercatorCoordinates(null));
+            Assert.Throws<ArgumentNullException>(() => number.ToMercatorCoordinates(null, false));
         }
 
         [Test]
         public void ToMercatorCoordinatesNullNumber() => Assert.Throws<ArgumentNullException>(() =>
-               Number.ToMercatorCoordinates(null, Tile.DefaultSize));
+               Number.ToMercatorCoordinates(null, Tile.DefaultSize, false));
 
         #endregion
 
         #region ToGeoCoordinates
 
         [Test]
-        public void ToGeoCoordinatesGeodesic()
+        public void ToGeoCoordinatesGeodetic()
         {
-            Number number = new Number(1234, 123, 10);
+            Number number = new Number(GeodeticX, GeodeticY, 10);
             const CoordinateSystem cs = CoordinateSystem.Epsg4326;
 
-            number.ToGeoCoordinates(cs, Tile.DefaultSize, false);
+            GeodeticCoordinate expectedMin = new GeodeticCoordinate(139.746094, 35.507812);
+            GeodeticCoordinate expectedMax = new GeodeticCoordinate(139.921875, 35.683594);
 
-            Assert.Pass();
+            (GeoCoordinate minCoordinate, GeoCoordinate maxCoordinate) = number.ToGeoCoordinates(cs, Tile.DefaultSize, false);
+
+            Coordinate min = (Coordinate)minCoordinate.Round(6);
+            Coordinate max = (Coordinate)maxCoordinate.Round(6);
+            Assert.True(min == expectedMin && max == expectedMax);
         }
 
         [Test]
         public void ToGeoCoordinatesMercator()
         {
-            Number number = new Number(1234, 123, 11);
+            Number number = new Number(MercatorX, MercatorY, 10);
             const CoordinateSystem cs = CoordinateSystem.Epsg3857;
 
-            number.ToGeoCoordinates(cs, Tile.DefaultSize, true);
+            MercatorCoordinate expectedMin = new MercatorCoordinate(15536896.12, 4226661.92);
+            MercatorCoordinate expectedMax = new MercatorCoordinate(15576031.88, 4265797.67);
 
-            Assert.Pass();
+            (GeoCoordinate minCoordinate, GeoCoordinate maxCoordinate) = number.ToGeoCoordinates(cs, Tile.DefaultSize, false);
+
+            Coordinate min = (Coordinate)minCoordinate.Round(2);
+            Coordinate max = (Coordinate)maxCoordinate.Round(2);
+            Assert.True(min == expectedMin && max == expectedMax);
         }
 
         [Test]
         public void ToGeoCoordinatesOtherSystem()
         {
-            Number number = new Number(1234, 123, 10);
+            Number number = new Number(GeodeticX, GeodeticY, 10);
             const CoordinateSystem cs = CoordinateSystem.Other;
 
             Assert.Throws<NotSupportedException>(() => number.ToGeoCoordinates(cs, Tile.DefaultSize, true));

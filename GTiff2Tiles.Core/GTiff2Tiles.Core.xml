@@ -1568,37 +1568,41 @@
             <param name="number"><see cref="T:GTiff2Tiles.Core.Tiles.Number"/> to flip</param>
             <exception cref="T:System.ArgumentNullException"/>
         </member>
-        <member name="M:GTiff2Tiles.Core.Tiles.Number.ToGeodeticCoordinates(GTiff2Tiles.Core.Images.Size)">
+        <member name="M:GTiff2Tiles.Core.Tiles.Number.ToGeodeticCoordinates(GTiff2Tiles.Core.Images.Size,System.Boolean)">
             <summary>
             Convert <see cref="T:GTiff2Tiles.Core.Tiles.Number"/> to <see cref="T:GTiff2Tiles.Core.Coordinates.GeodeticCoordinate"/>s
             </summary>
             <param name="tileSize"><see cref="T:GTiff2Tiles.Core.Tiles.Tile"/>'s <see cref="T:GTiff2Tiles.Core.Images.Size"/></param>
+            <param name="tmsCompatible">Is tms compatible?</param>
             <returns><see cref="T:System.ValueTuple`2"/> of <see cref="T:GTiff2Tiles.Core.Coordinates.GeodeticCoordinate"/>s</returns>
             <exception cref="T:System.ArgumentNullException"/>
         </member>
-        <member name="M:GTiff2Tiles.Core.Tiles.Number.ToGeodeticCoordinates(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Images.Size)">
-            <inheritdoc cref="M:GTiff2Tiles.Core.Tiles.Number.ToGeodeticCoordinates(GTiff2Tiles.Core.Images.Size)"/>
+        <member name="M:GTiff2Tiles.Core.Tiles.Number.ToGeodeticCoordinates(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Images.Size,System.Boolean)">
+            <inheritdoc cref="M:GTiff2Tiles.Core.Tiles.Number.ToGeodeticCoordinates(GTiff2Tiles.Core.Images.Size,System.Boolean)"/>
             <param name="number"><see cref="T:GTiff2Tiles.Core.Tiles.Number"/> to convert</param>
             <param name="tileSize"></param>
+            <param name="tmsCompatible"></param>
         </member>
-        <member name="M:GTiff2Tiles.Core.Tiles.Number.ToMercatorCoordinates(GTiff2Tiles.Core.Images.Size)">
+        <member name="M:GTiff2Tiles.Core.Tiles.Number.ToMercatorCoordinates(GTiff2Tiles.Core.Images.Size,System.Boolean)">
             <summary>
             Convert <see cref="T:GTiff2Tiles.Core.Tiles.Number"/> to <see cref="T:GTiff2Tiles.Core.Coordinates.MercatorCoordinate"/>s
             </summary>
             <param name="tileSize"><see cref="T:GTiff2Tiles.Core.Tiles.Tile"/>'s <see cref="T:GTiff2Tiles.Core.Images.Size"/></param>
+            <param name="tmsCompatible">Is tms compatible?</param>
             <returns><see cref="T:System.ValueTuple`2"/> of <see cref="T:GTiff2Tiles.Core.Coordinates.MercatorCoordinate"/>s</returns>
             <exception cref="T:System.ArgumentNullException"/>
         </member>
-        <member name="M:GTiff2Tiles.Core.Tiles.Number.ToMercatorCoordinates(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Images.Size)">
-            <inheritdoc cref="M:GTiff2Tiles.Core.Tiles.Number.ToMercatorCoordinates(GTiff2Tiles.Core.Images.Size)"/>
+        <member name="M:GTiff2Tiles.Core.Tiles.Number.ToMercatorCoordinates(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Images.Size,System.Boolean)">
+            <inheritdoc cref="M:GTiff2Tiles.Core.Tiles.Number.ToMercatorCoordinates(GTiff2Tiles.Core.Images.Size,System.Boolean)"/>
             <param name="number"><see cref="T:GTiff2Tiles.Core.Tiles.Number"/> to convert</param>
             <param name="tileSize"></param>
+            <param name="tmsCompatible"></param>
         </member>
         <member name="M:GTiff2Tiles.Core.Tiles.Number.ToGeoCoordinates(GTiff2Tiles.Core.Enums.CoordinateSystem,GTiff2Tiles.Core.Images.Size,System.Boolean)">
             <summary>
             Convert <see cref="T:GTiff2Tiles.Core.Tiles.Number"/> to <see cref="T:GTiff2Tiles.Core.Coordinates.GeoCoordinate"/>s
             </summary>
-            <param name="coordinateSystem">Desired coordinate system</param>
+            <param name="coordinateSystem">Desired number's coordinate system</param>
             <param name="tileSize"><see cref="T:GTiff2Tiles.Core.Tiles.Tile"/>'s <see cref="T:GTiff2Tiles.Core.Images.Size"/></param>
             <param name="tmsCompatible">Is tms compatible?</param>
             <returns><see cref="T:System.ValueTuple`2"/> of <see cref="T:GTiff2Tiles.Core.Coordinates.GeoCoordinate"/>s</returns>
