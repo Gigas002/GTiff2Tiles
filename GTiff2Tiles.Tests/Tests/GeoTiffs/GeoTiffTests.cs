@@ -493,7 +493,7 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
             Raster raster = new Raster(inputPath, cs);
 
             Assert.DoesNotThrowAsync(async () => await raster.WriteTilesToDirectoryAsync(outPath, 0, 11,
-              true, new Size(64, 64), TileExtension.Jpg, Interpolation.Cubic, 3, 999, -1,
+              true, new Size(64, 64), TileExtension.Jpg, Interpolation.Cubic, 3, 999, 10,
               new Progress<double>(), true));
 
             Directory.Delete(outPath, true);
@@ -502,8 +502,6 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
         [Test]
         public void WriteTilesToDirectoryLowTileCacheCount()
         {
-            // With overriden args
-
             string inputPath = FileSystemEntries.Input4326FilePath;
             const CoordinateSystem cs = CoordinateSystem.Epsg4326;
 
@@ -733,7 +731,7 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
             Channel<ITile> channel = Channel.CreateUnbounded<ITile>();
 
             Assert.DoesNotThrowAsync(async () => await raster.WriteTilesToChannelAsync(channel.Writer, 0, 11,
-                   true, new Size(128, 128), Interpolation.Cubic, 3, 999, 0, new Progress<double>(), true));
+                   true, new Size(128, 128), Interpolation.Cubic, 3, 999, 10, new Progress<double>(), true));
         }
 
         [Test]
@@ -784,7 +782,7 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
 
             IEnumerable<ITile> tiles = null;
             Assert.DoesNotThrow(() => tiles = raster.WriteTilesToEnumerable(0, 11,
-                                                                            true, new Size(128, 128), Interpolation.Mitchell, 3, 999, new Progress<double>(), true));
+                   true, new Size(128, 128), Interpolation.Mitchell, 3, 999, new Progress<double>(), true));
 
             Assert.True(tiles?.Any());
         }
@@ -838,7 +836,7 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
 
             IAsyncEnumerable<ITile> tiles = null;
             Assert.DoesNotThrow(() => tiles = raster.WriteTilesToAsyncEnumerable(0, 11,
-                   true, new Size(128, 128), Interpolation.Nearest, 3, 999, 0, new Progress<double>(), true));
+                   true, new Size(128, 128), Interpolation.Nearest, 3, 999, 10, new Progress<double>(), true));
 
             Assert.DoesNotThrowAsync(async () =>
             {
@@ -859,17 +857,33 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
             const CoordinateSystem cs = CoordinateSystem.Epsg4326;
             FileStream fs = File.OpenRead(inputPath);
 
-            // TODO
-
-            GeodeticCoordinate expectedMin = new GeodeticCoordinate(0.0, 0.0);
-            GeodeticCoordinate expectedMax = new GeodeticCoordinate(0.0, 0.0);
+            GeodeticCoordinate expectedMin = new GeodeticCoordinate(13.367990255355835, 52.501827478408813);
+            GeodeticCoordinate expectedMax = new GeodeticCoordinate(13.438467979431152, 52.534797191619873);
 
             Coordinate min = null;
             Coordinate max = null;
 
             Assert.DoesNotThrow(() => (min, max) = Raster.GetBorders(fs, cs));
 
-            //Assert.True(min == expectedMin && max == expectedMax);
+            Assert.True(min == expectedMin && max == expectedMax);
+        }
+
+        [Test]
+        public void GetBordersMercator()
+        {
+            string inputPath = FileSystemEntries.Input3785FilePath;
+            const CoordinateSystem cs = CoordinateSystem.Epsg3857;
+            FileStream fs = File.OpenRead(inputPath);
+
+            MercatorCoordinate expectedMin = new MercatorCoordinate(15556898.732197443, 4247491.006264816);
+            MercatorCoordinate expectedMax = new MercatorCoordinate(15567583.19555743, 4257812.3937404491);
+
+            Coordinate min = null;
+            Coordinate max = null;
+
+            Assert.DoesNotThrow(() => (min, max) = Raster.GetBorders(fs, cs));
+
+            Assert.True(min == expectedMin && max == expectedMax);
         }
 
         [Test]

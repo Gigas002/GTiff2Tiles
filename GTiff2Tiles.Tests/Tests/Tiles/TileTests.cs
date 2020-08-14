@@ -361,14 +361,25 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
         [Test]
         public async Task CalculatePosition()
         {
-            Number number = new Number(1234, 123, 10);
+            Number number = new Number(1230, 120, 10);
             const CoordinateSystem cs = CoordinateSystem.Epsg4326;
 
-            await using ITile tile = new RasterTile(number, cs);
+            ITile tile = new RasterTile(number, cs);
 
-            int pos = tile.CalculatePosition();
+            int pos0 = tile.CalculatePosition();
 
-            Assert.True(pos >= 0 && pos <= 3);
+            tile = new RasterTile(new Number(number.X + 1, number.Y, number.Z), cs);
+            int pos1 = tile.CalculatePosition();
+
+            tile = new RasterTile(new Number(number.X, number.Y + 1, number.Z), cs);
+            int pos2 = tile.CalculatePosition();
+
+            tile = new RasterTile(new Number(number.X + 1, number.Y + 1, number.Z), cs);
+            int pos3 = tile.CalculatePosition();
+
+            Assert.True(pos0 == 0 && pos1 == 1 && pos2 == 2 && pos3 == 3);
+
+            await tile.DisposeAsync();
         }
 
         [Test]
@@ -389,11 +400,9 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
 
             tile.GetExtensionString();
 
-            Tile.GetExtensionString(TileExtension.Png);
-            Tile.GetExtensionString(TileExtension.Jpg);
-            Tile.GetExtensionString(TileExtension.Webp);
-
-            Assert.Pass();
+            Assert.True(Tile.GetExtensionString(TileExtension.Png) == Core.Constants.FileExtensions.Png);
+            Assert.True(Tile.GetExtensionString(TileExtension.Jpg) == Core.Constants.FileExtensions.Jpg);
+            Assert.True(Tile.GetExtensionString(TileExtension.Webp) == Core.Constants.FileExtensions.Webp);
         }
 
         #endregion
