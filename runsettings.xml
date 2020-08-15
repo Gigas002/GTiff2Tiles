@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<RunSettings>
+  <DataCollectionRunSettings>
+    <DataCollectors>
+      <DataCollector friendlyName="XPlat code coverage">
+        <Configuration>
+          <Format>opencover</Format>          
+          <Exclude>[GTiff2Tiles.*]GTiff2Tiles.Core.Localization.*</Exclude> <!-- [Assembly-Filter]Type-Filter -->
+          <Include>[GTiff2Tiles.Core]*</Include> <!-- [Assembly-Filter]Type-Filter -->
+        </Configuration>
+      </DataCollector>
+    </DataCollectors>
+  </DataCollectionRunSettings>
+</RunSettings>
