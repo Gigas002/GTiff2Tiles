@@ -737,9 +737,13 @@ namespace GTiff2Tiles.Core.GeoTiffs
             #region Preconditions checks
 
             if (inputStream == null) throw new ArgumentNullException(nameof(inputStream));
+            if (!inputStream.CanRead) throw new ArgumentException($"{nameof(inputStream)} is broken");
             // CoordinateSystem checked lower
 
             #endregion
+
+            // Disable warnings from libtiff
+            Tiff.SetErrorHandler(new LibTiffHelper());
 
             Tiff tiff = Tiff.ClientOpen(string.Empty, "r", inputStream, new TiffStream());
 
@@ -766,19 +770,19 @@ namespace GTiff2Tiles.Core.GeoTiffs
             switch (coordinateSystem)
             {
                 case CoordinateSystem.Epsg4326:
-                    {
-                        GeodeticCoordinate minCoordinate = new GeodeticCoordinate(minX, minY);
-                        GeodeticCoordinate maxCoordinate = new GeodeticCoordinate(maxX, maxY);
+                {
+                    GeodeticCoordinate minCoordinate = new GeodeticCoordinate(minX, minY);
+                    GeodeticCoordinate maxCoordinate = new GeodeticCoordinate(maxX, maxY);
 
-                        return (minCoordinate, maxCoordinate);
-                    }
+                    return (minCoordinate, maxCoordinate);
+                }
                 case CoordinateSystem.Epsg3857:
-                    {
-                        MercatorCoordinate minCoordinate = new MercatorCoordinate(minX, minY);
-                        MercatorCoordinate maxCoordinate = new MercatorCoordinate(maxX, maxY);
+                {
+                    MercatorCoordinate minCoordinate = new MercatorCoordinate(minX, minY);
+                    MercatorCoordinate maxCoordinate = new MercatorCoordinate(maxX, maxY);
 
-                        return (minCoordinate, maxCoordinate);
-                    }
+                    return (minCoordinate, maxCoordinate);
+                }
                 default: throw new NotSupportedException($"{coordinateSystem} is not supported");
             }
         }

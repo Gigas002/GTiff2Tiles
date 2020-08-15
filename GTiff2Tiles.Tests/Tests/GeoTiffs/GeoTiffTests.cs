@@ -117,8 +117,6 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
         [Test]
         public void CreateRasterFromStreamNormal()
         {
-            // TODO
-
             using FileStream fs = File.OpenRead(_in4326);
 
             Assert.DoesNotThrow(() =>
@@ -676,8 +674,6 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
         [Test]
         public void GetBordersNormal()
         {
-            // TODO
-
             FileStream fs = File.OpenRead(_in4326);
 
             GeodeticCoordinate expectedMin = new GeodeticCoordinate(13.367990255355835, 52.501827478408813);
@@ -694,8 +690,6 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
         [Test]
         public void GetBordersMercator()
         {
-            // TODO
-
             FileStream fs = File.OpenRead(_in3785);
 
             MercatorCoordinate expectedMin = new MercatorCoordinate(15556898.732197443, 4247491.006264816);
@@ -715,8 +709,6 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
         [Test]
         public void GetBordersClosedStream()
         {
-            // TODO
-
             FileStream fs = File.OpenRead(_in4326);
             fs.Dispose();
 
@@ -726,8 +718,6 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
         [Test]
         public void GetBordersOtherCs()
         {
-            // TODO
-
             FileStream fs = File.OpenRead(_in4326);
 
             Assert.Throws<NotSupportedException>(() => Raster.GetBorders(fs, CsOther));

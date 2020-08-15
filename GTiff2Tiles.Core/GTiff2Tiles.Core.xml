@@ -1076,6 +1076,17 @@
             <returns><see langword="true"/> if file needs to be converted;
             <para/><see langword="false"/> otherwise</returns>
         </member>
+        <member name="T:GTiff2Tiles.Core.Helpers.LibTiffHelper">
+            <summary>
+            Class, that helps to disable libtiff's warnings
+            </summary>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Helpers.LibTiffHelper.WarningHandler(BitMiracle.LibTiff.Classic.Tiff,System.String,System.String,System.Object[])">
+            <inheritdoc />
+        </member>
+        <member name="M:GTiff2Tiles.Core.Helpers.LibTiffHelper.WarningHandlerExt(BitMiracle.LibTiff.Classic.Tiff,System.Object,System.String,System.String,System.Object[])">
+            <inheritdoc />
+        </member>
         <member name="T:GTiff2Tiles.Core.Helpers.NetVipsHelper">
             <summary>
             Some additional methods for NetVips
