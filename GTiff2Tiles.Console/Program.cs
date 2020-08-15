@@ -124,7 +124,7 @@ namespace GTiff2Tiles.Console
                 await image.WriteTilesToDirectoryAsync(OutputDirectoryInfo?.FullName, MinZ, MaxZ, TmsCompatible,
                                                        tileExtension: TileExtension,
                                                        bandsCount: 4, progress: consoleProgress,
-                                                       threadsCount: ThreadsCount, isPrintEstimatedTime: false)
+                                                       threadsCount: ThreadsCount)
                            .ConfigureAwait(false);
 
             }

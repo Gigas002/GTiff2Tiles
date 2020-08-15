@@ -432,7 +432,7 @@ namespace GTiff2Tiles.GUI.ViewModels
                 await image.WriteTilesToDirectoryAsync(outputDirectoryInfo.FullName, MinZ, MaxZ, TmsCompatible,
                                                        tileExtension: RealTileExtension,
                                                        bandsCount: 4, progress: progress,
-                                                       threadsCount: ThreadsCount, isPrintEstimatedTime: false)
+                                                       threadsCount: ThreadsCount)
                            .ConfigureAwait(false);
 
             }

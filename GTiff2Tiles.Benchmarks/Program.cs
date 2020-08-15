@@ -147,7 +147,7 @@ namespace GTiff2Tiles.Benchmarks
             await image.WriteTilesToDirectoryAsync(gtiff2TilesOutputDirectoryPath, MinZ, MaxZ, true,
                                                    tileExtension: TileExtension.Png,
                                                    bandsCount: 4,
-                                                   threadsCount: ThreadsCount, isPrintEstimatedTime: false)
+                                                   threadsCount: ThreadsCount)
                        .ConfigureAwait(false);
 
             stopwatch.Stop();

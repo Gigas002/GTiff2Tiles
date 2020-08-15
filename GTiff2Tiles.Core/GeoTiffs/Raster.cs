@@ -390,7 +390,7 @@ namespace GTiff2Tiles.Core.GeoTiffs
         /// <param name="tileCacheCount"></param>
         /// <param name="threadsCount">T</param>
         /// <param name="progress"></param>
-        /// <param name="isPrintEstimatedTime"></param>
+        /// <param name="printTimeAction"></param>
         /// <exception cref="ArgumentOutOfRangeException"/>
         /// <exception cref="RasterException"/>
         public void WriteTilesToDirectory(string outputDirectoryPath, int minZ, int maxZ,
@@ -400,7 +400,7 @@ namespace GTiff2Tiles.Core.GeoTiffs
                                           int bandsCount = RasterTile.DefaultBandsCount,
                                           int tileCacheCount = 1000, int threadsCount = 0,
                                           IProgress<double> progress = null,
-                                          bool isPrintEstimatedTime = false)
+                                          Action<string> printTimeAction = null)
         {
             #region Preconditions checks
 
@@ -417,7 +417,7 @@ namespace GTiff2Tiles.Core.GeoTiffs
 
             // It's safe to set progress to null
 
-            Stopwatch stopwatch = isPrintEstimatedTime ? Stopwatch.StartNew() : null;
+            Stopwatch stopwatch = printTimeAction == null ? null : Stopwatch.StartNew();
 
             int tilesCount = Number.GetCount(MinCoordinate, MaxCoordinate, minZ, maxZ, tmsCompatible, tileSize);
 
@@ -455,7 +455,7 @@ namespace GTiff2Tiles.Core.GeoTiffs
                 double percentage = counter / tilesCount * 100.0;
                 progress?.Report(percentage);
 
-                ProgressHelper.PrintEstimatedTimeLeft(percentage, stopwatch);
+                ProgressHelper.PrintEstimatedTimeLeft(percentage, stopwatch, printTimeAction);
             }
 
             // For each zoom
@@ -484,10 +484,10 @@ namespace GTiff2Tiles.Core.GeoTiffs
                                                int bandsCount = RasterTile.DefaultBandsCount,
                                                int tileCacheCount = 1000, int threadsCount = 0,
                                                IProgress<double> progress = null,
-                                               bool isPrintEstimatedTime = false) =>
+                                               Action<string> printTimeAction = null) =>
             Task.Run(() => WriteTilesToDirectory(outputDirectoryPath, minZ, maxZ, tmsCompatible, tileSize,
-                                                 tileExtension, interpolation, bandsCount, tileCacheCount,
-                                                 threadsCount, progress, isPrintEstimatedTime));
+                                             tileExtension, interpolation, bandsCount, tileCacheCount,
+                                             threadsCount, progress, printTimeAction));
 
         /// <summary>
         /// Crops current <see cref="Raster"/> on <see cref="ITile"/>s
@@ -504,7 +504,7 @@ namespace GTiff2Tiles.Core.GeoTiffs
         /// <param name="tileCacheCount"></param>
         /// <param name="threadsCount"></param>
         /// <param name="progress"></param>
-        /// <param name="isPrintEstimatedTime"></param>
+        /// <param name="printTimeAction"></param>
         /// <exception cref="ArgumentOutOfRangeException"/>
         /// <exception cref="RasterException"/>
         public void WriteTilesToChannel(ChannelWriter<ITile> channelWriter, int minZ, int maxZ,
@@ -513,7 +513,7 @@ namespace GTiff2Tiles.Core.GeoTiffs
                                         int bandsCount = RasterTile.DefaultBandsCount,
                                         int tileCacheCount = 1000, int threadsCount = 0,
                                         IProgress<double> progress = null,
-                                        bool isPrintEstimatedTime = false)
+                                        Action<string> printTimeAction = null)
         {
             #region Preconditions checks
 
@@ -530,7 +530,7 @@ namespace GTiff2Tiles.Core.GeoTiffs
 
             // It's safe to set progress to null
 
-            Stopwatch stopwatch = isPrintEstimatedTime ? Stopwatch.StartNew() : null;
+            Stopwatch stopwatch = printTimeAction == null ? null : Stopwatch.StartNew();
 
             int tilesCount = Number.GetCount(MinCoordinate, MaxCoordinate, minZ, maxZ, tmsCompatible, tileSize);
 
@@ -559,7 +559,7 @@ namespace GTiff2Tiles.Core.GeoTiffs
                 double percentage = counter / tilesCount * 100.0;
                 progress?.Report(percentage);
 
-                ProgressHelper.PrintEstimatedTimeLeft(percentage, stopwatch);
+                ProgressHelper.PrintEstimatedTimeLeft(percentage, stopwatch, printTimeAction);
             }
 
             // For each zoom
@@ -587,10 +587,10 @@ namespace GTiff2Tiles.Core.GeoTiffs
                                              int bandsCount = RasterTile.DefaultBandsCount,
                                              int tileCacheCount = 1000, int threadsCount = 0,
                                              IProgress<double> progress = null,
-                                             bool isPrintEstimatedTime = false) =>
+                                             Action<string> printTimeAction = null) =>
             Task.Run(() => WriteTilesToChannel(channelWriter, minZ, maxZ, tmsCompatible, tileSize,
-                                               interpolation, bandsCount, tileCacheCount, threadsCount,
-                                               progress, isPrintEstimatedTime));
+                                           interpolation, bandsCount, tileCacheCount, threadsCount,
+                                           progress, printTimeAction));
 
         /// <summary>
         /// Crops current <see cref="Raster"/> on <see cref="ITile"/>s
@@ -604,7 +604,7 @@ namespace GTiff2Tiles.Core.GeoTiffs
                                                          int bandsCount = RasterTile.DefaultBandsCount,
                                                          int tileCacheCount = 1000,
                                                          IProgress<double> progress = null,
-                                                         bool isPrintEstimatedTime = false)
+                                                         Action<string> printTimeAction = null)
         {
             #region Preconditions checks
 
@@ -617,7 +617,7 @@ namespace GTiff2Tiles.Core.GeoTiffs
 
             // It's safe to set progress to null
 
-            Stopwatch stopwatch = isPrintEstimatedTime ? Stopwatch.StartNew() : null;
+            Stopwatch stopwatch = printTimeAction == null ? null : Stopwatch.StartNew();
 
             int tilesCount = Number.GetCount(MinCoordinate, MaxCoordinate, minZ, maxZ, tmsCompatible, tileSize);
 
@@ -644,7 +644,7 @@ namespace GTiff2Tiles.Core.GeoTiffs
                 double percentage = counter / tilesCount * 100.0;
                 progress?.Report(percentage);
 
-                ProgressHelper.PrintEstimatedTimeLeft(percentage, stopwatch);
+                ProgressHelper.PrintEstimatedTimeLeft(percentage, stopwatch, printTimeAction);
 
                 return tile;
             }
@@ -689,8 +689,9 @@ namespace GTiff2Tiles.Core.GeoTiffs
         /// <remarks><para/>Calculates automatically by default</remarks></param>
         /// <param name="progress">Progress-reporter
         /// <remarks><para/><see langword="null"/> by default</remarks></param>
-        /// <param name="isPrintEstimatedTime">Do you want to see estimated time left?
-        /// <remarks><para/><see langword="false"/> by default</remarks></param>
+        /// <param name="printTimeAction"><see cref="Action{T}"/> to print estimated time
+        /// <remarks><para/><see langword="null"/> by default;
+        /// set to <see langword="null"/> if you don't want output</remarks></param>
         /// <returns><see cref="IAsyncEnumerable{T}"/> of <see cref="ITile"/>s</returns>
         /// <exception cref="ArgumentOutOfRangeException"/>
         /// <exception cref="RasterException"/>
@@ -700,7 +701,7 @@ namespace GTiff2Tiles.Core.GeoTiffs
                                                                    int bandsCount = RasterTile.DefaultBandsCount,
                                                                    int tileCacheCount = 1000, int threadsCount = 0,
                                                                    IProgress<double> progress = null,
-                                                                   bool isPrintEstimatedTime = false)
+                                                                   Action<string> printTimeAction = null)
         {
             // All preconditions checks are done in WriteTilesToChannelAsync method
 
@@ -708,7 +709,7 @@ namespace GTiff2Tiles.Core.GeoTiffs
 
             WriteTilesToChannelAsync(channel.Writer, minZ, maxZ, tmsCompatible, tileSize,
                                      interpolation, bandsCount, tileCacheCount,
-                                     threadsCount, progress, isPrintEstimatedTime)
+                                     threadsCount, progress, printTimeAction)
                .ContinueWith(_ => channel.Writer.Complete(), TaskScheduler.Current);
 
             return channel.Reader.ReadAllAsync();

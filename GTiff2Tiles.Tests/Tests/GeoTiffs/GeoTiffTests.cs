@@ -117,6 +117,8 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
         [Test]
         public void CreateRasterFromStreamNormal()
         {
+            // TODO
+
             using FileStream fs = File.OpenRead(_in4326);
 
             Assert.DoesNotThrow(() =>
@@ -396,11 +398,13 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
 
             string outPath = Path.Combine(_outPath, _timestamp);
 
+            static void Reporter(string s) { }
+
             Raster raster = new Raster(_in4326, Cs4326);
 
             Assert.DoesNotThrowAsync(async () => await raster.WriteTilesToDirectoryAsync(outPath, 0, 11,
               true, new Size(64, 64), TileExtension.Jpg, Interpolation.Cubic, 3, 999, 10,
-              new Progress<double>(), true));
+              new Progress<double>(), Reporter));
 
             Directory.Delete(outPath, true);
         }
@@ -557,12 +561,14 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
         {
             // With overriden args
 
+            static void Reporter(string s) { }
+
             Raster raster = new Raster(_in4326, Cs4326);
 
             Channel<ITile> channel = Channel.CreateUnbounded<ITile>();
 
             Assert.DoesNotThrowAsync(async () => await raster.WriteTilesToChannelAsync(channel.Writer, 0, 11,
-                   true, new Size(128, 128), Interpolation.Cubic, 3, 999, 10, new Progress<double>(), true));
+                   true, new Size(128, 128), Interpolation.Cubic, 3, 999, 10, new Progress<double>(), Reporter));
         }
 
         [Test]
@@ -600,11 +606,13 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
         {
             // With overriden args
 
+            static void Reporter(string s) { }
+
             Raster raster = new Raster(_in4326, Cs4326);
 
             IEnumerable<ITile> tiles = null;
             Assert.DoesNotThrow(() => tiles = raster.WriteTilesToEnumerable(0, 11,
-                   true, new Size(128, 128), Interpolation.Mitchell, 3, 999, new Progress<double>(), true));
+                   true, new Size(128, 128), Interpolation.Mitchell, 3, 999, new Progress<double>(), Reporter));
 
             Assert.True(tiles?.Any());
         }
@@ -645,11 +653,13 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
         {
             // With override args
 
+            static void Reporter(string s) { }
+
             Raster raster = new Raster(_in4326, Cs4326);
 
             IAsyncEnumerable<ITile> tiles = null;
             Assert.DoesNotThrow(() => tiles = raster.WriteTilesToAsyncEnumerable(0, 11,
-                   true, new Size(128, 128), Interpolation.Nearest, 3, 999, 10, new Progress<double>(), true));
+                   true, new Size(128, 128), Interpolation.Nearest, 3, 999, 10, new Progress<double>(), Reporter));
 
             Assert.DoesNotThrowAsync(async () =>
             {
@@ -666,6 +676,8 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
         [Test]
         public void GetBordersNormal()
         {
+            // TODO
+
             FileStream fs = File.OpenRead(_in4326);
 
             GeodeticCoordinate expectedMin = new GeodeticCoordinate(13.367990255355835, 52.501827478408813);
@@ -682,6 +694,8 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
         [Test]
         public void GetBordersMercator()
         {
+            // TODO
+
             FileStream fs = File.OpenRead(_in3785);
 
             MercatorCoordinate expectedMin = new MercatorCoordinate(15556898.732197443, 4247491.006264816);
@@ -701,6 +715,8 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
         [Test]
         public void GetBordersClosedStream()
         {
+            // TODO
+
             FileStream fs = File.OpenRead(_in4326);
             fs.Dispose();
 
@@ -710,6 +726,8 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
         [Test]
         public void GetBordersOtherCs()
         {
+            // TODO
+
             FileStream fs = File.OpenRead(_in4326);
 
             Assert.Throws<NotSupportedException>(() => Raster.GetBorders(fs, CsOther));

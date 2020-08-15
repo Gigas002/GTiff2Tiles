@@ -55,7 +55,9 @@ namespace GTiff2Tiles.Tests.Tests.Helpers
             const double prc = 10.0;
             Stopwatch sw = Stopwatch.StartNew();
 
-            Assert.DoesNotThrow(() => ProgressHelper.PrintEstimatedTimeLeft(prc, sw));
+            static void Reporter(string s) { }
+
+            Assert.DoesNotThrow(() => ProgressHelper.PrintEstimatedTimeLeft(prc, sw, Reporter));
         }
 
         [Test]
@@ -63,7 +65,18 @@ namespace GTiff2Tiles.Tests.Tests.Helpers
         {
             const double prc = 10.0;
 
-            Assert.DoesNotThrow(() => ProgressHelper.PrintEstimatedTimeLeft(prc));
+            static void Reporter(string s) { }
+
+            Assert.DoesNotThrow(() => ProgressHelper.PrintEstimatedTimeLeft(prc, null, Reporter));
+        }
+
+        [Test]
+        public void PrintEstimatedTimeLeftNullAction()
+        {
+            const double prc = 10.0;
+            Stopwatch sw = Stopwatch.StartNew();
+
+            Assert.DoesNotThrow(() => ProgressHelper.PrintEstimatedTimeLeft(prc, sw));
         }
 
         #endregion
