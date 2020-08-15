@@ -720,7 +720,7 @@ namespace GTiff2Tiles.Core.GeoTiffs
         #region GetBorders
 
         /// <summary>
-        /// Gets minimal and maximal coordinates from input GeoTiff's stream
+        /// Gets minimal and maximal coordinates from input GeoTiff
         /// </summary>
         /// <param name="inputStream">Any kind of stream with GeoTiff's data</param>
         /// <param name="coordinateSystem">GeoTiff's <see cref="CoordinateSystem"/>
@@ -745,9 +745,68 @@ namespace GTiff2Tiles.Core.GeoTiffs
             // Disable warnings from libtiff
             Tiff.SetErrorHandler(new LibTiffHelper());
 
+            // Don't dispose -- it disposes the inputStream as well
             Tiff tiff = Tiff.ClientOpen(string.Empty, "r", inputStream, new TiffStream());
 
             if (tiff == null) throw new ArgumentException($"{nameof(inputStream)} is broken");
+
+            // Get origin coordinates
+            FieldValue[] tiePointTag = tiff.GetField(TiffTag.GEOTIFF_MODELTIEPOINTTAG);
+
+            // Get pixel scale
+            FieldValue[] pixScaleTag = tiff.GetField(TiffTag.GEOTIFF_MODELPIXELSCALETAG);
+
+            // Image's sizes
+            int width = tiff.GetField(TiffTag.IMAGEWIDTH)[0].ToInt();
+            int height = tiff.GetField(TiffTag.IMAGELENGTH)[0].ToInt();
+
+            byte[] tiePoints = tiePointTag[1].GetBytes();
+            double pixelScale = BitConverter.ToDouble(pixScaleTag[1].GetBytes(), 0);
+
+            double minX = BitConverter.ToDouble(tiePoints, 24);
+            double maxY = BitConverter.ToDouble(tiePoints, 32);
+            double maxX = minX + width * pixelScale;
+            double minY = maxY - height * pixelScale;
+
+            switch (coordinateSystem)
+            {
+                case CoordinateSystem.Epsg4326:
+                {
+                    GeodeticCoordinate minCoordinate = new GeodeticCoordinate(minX, minY);
+                    GeodeticCoordinate maxCoordinate = new GeodeticCoordinate(maxX, maxY);
+
+                    return (minCoordinate, maxCoordinate);
+                }
+                case CoordinateSystem.Epsg3857:
+                {
+                    MercatorCoordinate minCoordinate = new MercatorCoordinate(minX, minY);
+                    MercatorCoordinate maxCoordinate = new MercatorCoordinate(maxX, maxY);
+
+                    return (minCoordinate, maxCoordinate);
+                }
+                default: throw new NotSupportedException($"{coordinateSystem} is not supported");
+            }
+        }
+
+        /// <inheritdoc cref="GetBorders(Stream, CoordinateSystem)"/>
+        /// <param name="filePath">Full path to GeoTiff file</param>
+        /// <param name="coordinateSystem"></param>
+        public static (GeoCoordinate minCoordinate, GeoCoordinate maxCoordinate) GetBorders(
+            string filePath, CoordinateSystem coordinateSystem)
+        {
+            #region Preconditions checks
+
+            CheckHelper.CheckFile(filePath, true, FileExtensions.Tif);
+            // CoordinateSystem checked lower
+
+            #endregion
+
+            // Disable warnings from libtiff
+            Tiff.SetErrorHandler(new LibTiffHelper());
+
+            using Tiff tiff = Tiff.Open(filePath, "r");
+
+            if (tiff == null) throw new ArgumentException($"{nameof(filePath)} is broken");
 
             // Get origin coordinates
             FieldValue[] tiePointTag = tiff.GetField(TiffTag.GEOTIFF_MODELTIEPOINTTAG);

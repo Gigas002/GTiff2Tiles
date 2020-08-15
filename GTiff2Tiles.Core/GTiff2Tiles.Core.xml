@@ -1024,7 +1024,7 @@
         </member>
         <member name="M:GTiff2Tiles.Core.GeoTiffs.Raster.GetBorders(System.IO.Stream,GTiff2Tiles.Core.Enums.CoordinateSystem)">
             <summary>
-            Gets minimal and maximal coordinates from input GeoTiff's stream
+            Gets minimal and maximal coordinates from input GeoTiff
             </summary>
             <param name="inputStream">Any kind of stream with GeoTiff's data</param>
             <param name="coordinateSystem">GeoTiff's <see cref="T:GTiff2Tiles.Core.Enums.CoordinateSystem"/>
@@ -1035,6 +1035,11 @@
             <exception cref="T:System.ArgumentNullException"/>
             <exception cref="T:System.NotSupportedException"/>
             <exception cref="T:System.ArgumentException"/>
+        </member>
+        <member name="M:GTiff2Tiles.Core.GeoTiffs.Raster.GetBorders(System.String,GTiff2Tiles.Core.Enums.CoordinateSystem)">
+            <inheritdoc cref="M:GTiff2Tiles.Core.GeoTiffs.Raster.GetBorders(System.IO.Stream,GTiff2Tiles.Core.Enums.CoordinateSystem)"/>
+            <param name="filePath">Full path to GeoTiff file</param>
+            <param name="coordinateSystem"></param>
         </member>
         <member name="T:GTiff2Tiles.Core.Helpers.CheckHelper">
             <summary>

@@ -351,9 +351,8 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
-launchSettings.json
+
+*.launchSettings.json
 /Secrets.txt
 *.config
-/Examples/NonTmsCompatible/GenerateTilesOutput
-/Examples/TmsCompatible/GenerateTilesOutput
 /Examples/Output

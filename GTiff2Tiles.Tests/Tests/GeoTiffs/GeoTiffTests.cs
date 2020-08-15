@@ -671,8 +671,10 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
 
         #region GetBorders
 
+        #region GetBorders using stream
+
         [Test]
-        public void GetBordersNormal()
+        public void GetBordersStreamNormal()
         {
             FileStream fs = File.OpenRead(_in4326);
 
@@ -688,7 +690,7 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
         }
 
         [Test]
-        public void GetBordersMercator()
+        public void GetBordersStreamMercator()
         {
             FileStream fs = File.OpenRead(_in3785);
 
@@ -704,7 +706,7 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
         }
 
         [Test]
-        public void GetBordersNullStream() => Assert.Throws<ArgumentNullException>(() => Raster.GetBorders(null, Cs4326));
+        public void GetBordersNullStream() => Assert.Throws<ArgumentNullException>(() => Raster.GetBorders(inputStream: null, Cs4326));
 
         [Test]
         public void GetBordersClosedStream()
@@ -716,12 +718,49 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
         }
 
         [Test]
-        public void GetBordersOtherCs()
+        public void GetBordersStreamOtherCs()
         {
             FileStream fs = File.OpenRead(_in4326);
 
             Assert.Throws<NotSupportedException>(() => Raster.GetBorders(fs, CsOther));
         }
+
+        #endregion
+
+        #region GetBorders using file path
+
+        [Test]
+        public void GetBordersFilePathNormal()
+        {
+            GeodeticCoordinate expectedMin = new GeodeticCoordinate(13.367990255355835, 52.501827478408813);
+            GeodeticCoordinate expectedMax = new GeodeticCoordinate(13.438467979431152, 52.534797191619873);
+
+            Coordinate min = null;
+            Coordinate max = null;
+
+            Assert.DoesNotThrow(() => (min, max) = Raster.GetBorders(_in4326, Cs4326));
+
+            Assert.True(min == expectedMin && max == expectedMax);
+        }
+
+        [Test]
+        public void GetBordersFilePathMercator()
+        {
+            MercatorCoordinate expectedMin = new MercatorCoordinate(15556898.732197443, 4247491.006264816);
+            MercatorCoordinate expectedMax = new MercatorCoordinate(15567583.19555743, 4257812.3937404491);
+
+            Coordinate min = null;
+            Coordinate max = null;
+
+            Assert.DoesNotThrow(() => (min, max) = Raster.GetBorders(_in3785, Cs3857));
+
+            Assert.True(min == expectedMin && max == expectedMax);
+        }
+
+        [Test]
+        public void GetBordersFilePathOtherCs() => Assert.Throws<NotSupportedException>(() => Raster.GetBorders(_in4326, CsOther));
+
+        #endregion
 
         #endregion
 
