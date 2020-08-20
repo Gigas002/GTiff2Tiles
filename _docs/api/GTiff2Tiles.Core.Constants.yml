@@ -1,0 +1,40 @@
+### YamlMime:ManagedReference
+items:
+- uid: GTiff2Tiles.Core.Constants
+  commentId: N:GTiff2Tiles.Core.Constants
+  id: GTiff2Tiles.Core.Constants
+  children:
+  - GTiff2Tiles.Core.Constants.DateTimePatterns
+  - GTiff2Tiles.Core.Constants.FileExtensions
+  - GTiff2Tiles.Core.Constants.Geodesic
+  - GTiff2Tiles.Core.Constants.Proj
+  langs:
+  - csharp
+  - vb
+  name: GTiff2Tiles.Core.Constants
+  nameWithType: GTiff2Tiles.Core.Constants
+  fullName: GTiff2Tiles.Core.Constants
+  type: Namespace
+  assemblies:
+  - GTiff2Tiles.Core
+references:
+- uid: GTiff2Tiles.Core.Constants.DateTimePatterns
+  commentId: T:GTiff2Tiles.Core.Constants.DateTimePatterns
+  name: DateTimePatterns
+  nameWithType: DateTimePatterns
+  fullName: GTiff2Tiles.Core.Constants.DateTimePatterns
+- uid: GTiff2Tiles.Core.Constants.FileExtensions
+  commentId: T:GTiff2Tiles.Core.Constants.FileExtensions
+  name: FileExtensions
+  nameWithType: FileExtensions
+  fullName: GTiff2Tiles.Core.Constants.FileExtensions
+- uid: GTiff2Tiles.Core.Constants.Geodesic
+  commentId: T:GTiff2Tiles.Core.Constants.Geodesic
+  name: Geodesic
+  nameWithType: Geodesic
+  fullName: GTiff2Tiles.Core.Constants.Geodesic
+- uid: GTiff2Tiles.Core.Constants.Proj
+  commentId: T:GTiff2Tiles.Core.Constants.Proj
+  name: Proj
+  nameWithType: Proj
+  fullName: GTiff2Tiles.Core.Constants.Proj

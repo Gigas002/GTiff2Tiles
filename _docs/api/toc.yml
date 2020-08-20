@@ -1,0 +1,86 @@
+### YamlMime:TableOfContent
+- uid: GTiff2Tiles.Core
+  name: GTiff2Tiles.Core
+  items:
+  - uid: GTiff2Tiles.Core.GdalWorker
+    name: GdalWorker
+- uid: GTiff2Tiles.Core.Constants
+  name: GTiff2Tiles.Core.Constants
+  items:
+  - uid: GTiff2Tiles.Core.Constants.DateTimePatterns
+    name: DateTimePatterns
+  - uid: GTiff2Tiles.Core.Constants.FileExtensions
+    name: FileExtensions
+  - uid: GTiff2Tiles.Core.Constants.Geodesic
+    name: Geodesic
+  - uid: GTiff2Tiles.Core.Constants.Proj
+    name: Proj
+- uid: GTiff2Tiles.Core.Coordinates
+  name: GTiff2Tiles.Core.Coordinates
+  items:
+  - uid: GTiff2Tiles.Core.Coordinates.Coordinate
+    name: Coordinate
+  - uid: GTiff2Tiles.Core.Coordinates.GeoCoordinate
+    name: GeoCoordinate
+  - uid: GTiff2Tiles.Core.Coordinates.GeodeticCoordinate
+    name: GeodeticCoordinate
+  - uid: GTiff2Tiles.Core.Coordinates.ICoordinate
+    name: ICoordinate
+  - uid: GTiff2Tiles.Core.Coordinates.MercatorCoordinate
+    name: MercatorCoordinate
+  - uid: GTiff2Tiles.Core.Coordinates.PixelCoordinate
+    name: PixelCoordinate
+- uid: GTiff2Tiles.Core.Enums
+  name: GTiff2Tiles.Core.Enums
+  items:
+  - uid: GTiff2Tiles.Core.Enums.CoordinateSystem
+    name: CoordinateSystem
+  - uid: GTiff2Tiles.Core.Enums.Interpolation
+    name: Interpolation
+  - uid: GTiff2Tiles.Core.Enums.TileExtension
+    name: TileExtension
+- uid: GTiff2Tiles.Core.Exceptions
+  name: GTiff2Tiles.Core.Exceptions
+  items:
+  - uid: GTiff2Tiles.Core.Exceptions.DirectoryException
+    name: DirectoryException
+  - uid: GTiff2Tiles.Core.Exceptions.FileException
+    name: FileException
+  - uid: GTiff2Tiles.Core.Exceptions.RasterException
+    name: RasterException
+- uid: GTiff2Tiles.Core.GeoTiffs
+  name: GTiff2Tiles.Core.GeoTiffs
+  items:
+  - uid: GTiff2Tiles.Core.GeoTiffs.IGeoTiff
+    name: IGeoTiff
+  - uid: GTiff2Tiles.Core.GeoTiffs.Raster
+    name: Raster
+- uid: GTiff2Tiles.Core.Helpers
+  name: GTiff2Tiles.Core.Helpers
+  items:
+  - uid: GTiff2Tiles.Core.Helpers.CheckHelper
+    name: CheckHelper
+  - uid: GTiff2Tiles.Core.Helpers.NetVipsHelper
+    name: NetVipsHelper
+  - uid: GTiff2Tiles.Core.Helpers.ProgressHelper
+    name: ProgressHelper
+- uid: GTiff2Tiles.Core.Images
+  name: GTiff2Tiles.Core.Images
+  items:
+  - uid: GTiff2Tiles.Core.Images.Area
+    name: Area
+  - uid: GTiff2Tiles.Core.Images.Band
+    name: Band
+  - uid: GTiff2Tiles.Core.Images.Size
+    name: Size
+- uid: GTiff2Tiles.Core.Tiles
+  name: GTiff2Tiles.Core.Tiles
+  items:
+  - uid: GTiff2Tiles.Core.Tiles.ITile
+    name: ITile
+  - uid: GTiff2Tiles.Core.Tiles.Number
+    name: Number
+  - uid: GTiff2Tiles.Core.Tiles.RasterTile
+    name: RasterTile
+  - uid: GTiff2Tiles.Core.Tiles.Tile
+    name: Tile

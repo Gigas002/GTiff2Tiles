@@ -1,0 +1,49 @@
+### YamlMime:ManagedReference
+items:
+- uid: GTiff2Tiles.Core.Tiles
+  commentId: N:GTiff2Tiles.Core.Tiles
+  id: GTiff2Tiles.Core.Tiles
+  children:
+  - GTiff2Tiles.Core.Tiles.ITile
+  - GTiff2Tiles.Core.Tiles.Number
+  - GTiff2Tiles.Core.Tiles.RasterTile
+  - GTiff2Tiles.Core.Tiles.Tile
+  langs:
+  - csharp
+  - vb
+  name: GTiff2Tiles.Core.Tiles
+  nameWithType: GTiff2Tiles.Core.Tiles
+  fullName: GTiff2Tiles.Core.Tiles
+  type: Namespace
+  assemblies:
+  - GTiff2Tiles.Core
+references:
+- uid: GTiff2Tiles.Core.Tiles.ITile
+  commentId: T:GTiff2Tiles.Core.Tiles.ITile
+  parent: GTiff2Tiles.Core.Tiles
+  name: ITile
+  nameWithType: ITile
+  fullName: GTiff2Tiles.Core.Tiles.ITile
+- uid: GTiff2Tiles.Core.Tiles.Number
+  commentId: T:GTiff2Tiles.Core.Tiles.Number
+  parent: GTiff2Tiles.Core.Tiles
+  name: Number
+  nameWithType: Number
+  fullName: GTiff2Tiles.Core.Tiles.Number
+- uid: GTiff2Tiles.Core.Tiles.RasterTile
+  commentId: T:GTiff2Tiles.Core.Tiles.RasterTile
+  parent: GTiff2Tiles.Core.Tiles
+  name: RasterTile
+  nameWithType: RasterTile
+  fullName: GTiff2Tiles.Core.Tiles.RasterTile
+- uid: GTiff2Tiles.Core.Tiles.Tile
+  commentId: T:GTiff2Tiles.Core.Tiles.Tile
+  parent: GTiff2Tiles.Core.Tiles
+  name: Tile
+  nameWithType: Tile
+  fullName: GTiff2Tiles.Core.Tiles.Tile
+- uid: GTiff2Tiles.Core.Tiles
+  commentId: N:GTiff2Tiles.Core.Tiles
+  name: GTiff2Tiles.Core.Tiles
+  nameWithType: GTiff2Tiles.Core.Tiles
+  fullName: GTiff2Tiles.Core.Tiles

@@ -136,6 +136,10 @@
     ],
     "resource": [],
     "overwrite": [],
+<<<<<<< HEAD
     "dest": "docs/pdf"
+=======
+    "dest": "_docs/_pdf"
+>>>>>>> 1461bd1b0da565753f7271403101c84a033862f0
   }
 }

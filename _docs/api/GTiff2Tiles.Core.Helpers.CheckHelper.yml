@@ -1,0 +1,735 @@
+### YamlMime:ManagedReference
+items:
+- uid: GTiff2Tiles.Core.Helpers.CheckHelper
+  commentId: T:GTiff2Tiles.Core.Helpers.CheckHelper
+  id: CheckHelper
+  parent: GTiff2Tiles.Core.Helpers
+  children:
+  - GTiff2Tiles.Core.Helpers.CheckHelper.CheckDirectory(System.String,System.Nullable{System.Boolean})
+  - GTiff2Tiles.Core.Helpers.CheckHelper.CheckFile(System.String,System.Nullable{System.Boolean},System.String)
+  - GTiff2Tiles.Core.Helpers.CheckHelper.CheckInputFileAsync(System.String,GTiff2Tiles.Core.Enums.CoordinateSystem)
+  langs:
+  - csharp
+  - vb
+  name: CheckHelper
+  nameWithType: CheckHelper
+  fullName: GTiff2Tiles.Core.Helpers.CheckHelper
+  type: Class
+  source:
+    remote:
+      path: GTiff2Tiles.Core/Helpers/CheckHelper.cs
+      branch: master
+      repo: https://github.com/Gigas002/GTiff2Tiles.git
+    id: CheckHelper
+    path: GTiff2Tiles.Core/Helpers/CheckHelper.cs
+    startLine: 14
+  assemblies:
+  - GTiff2Tiles.Core
+  namespace: GTiff2Tiles.Core.Helpers
+  summary: "\nClass with static methods to check for errors\n"
+  example: []
+  syntax:
+    content: public static class CheckHelper
+    content.vb: Public Module CheckHelper
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  modifiers.csharp:
+  - public
+  - static
+  - class
+  modifiers.vb:
+  - Public
+  - Module
+- uid: GTiff2Tiles.Core.Helpers.CheckHelper.CheckFile(System.String,System.Nullable{System.Boolean},System.String)
+  commentId: M:GTiff2Tiles.Core.Helpers.CheckHelper.CheckFile(System.String,System.Nullable{System.Boolean},System.String)
+  id: CheckFile(System.String,System.Nullable{System.Boolean},System.String)
+  parent: GTiff2Tiles.Core.Helpers.CheckHelper
+  langs:
+  - csharp
+  - vb
+  name: CheckFile(String, Nullable<Boolean>, String)
+  nameWithType: CheckHelper.CheckFile(String, Nullable<Boolean>, String)
+  fullName: GTiff2Tiles.Core.Helpers.CheckHelper.CheckFile(System.String, System.Nullable<System.Boolean>, System.String)
+  type: Method
+  source:
+    remote:
+      path: GTiff2Tiles.Core/Helpers/CheckHelper.cs
+      branch: master
+      repo: https://github.com/Gigas002/GTiff2Tiles.git
+    id: CheckFile
+    path: GTiff2Tiles.Core/Helpers/CheckHelper.cs
+    startLine: 33
+  assemblies:
+  - GTiff2Tiles.Core
+  namespace: GTiff2Tiles.Core.Helpers
+  summary: "\nChecks, if file&apos;s path is not empty string and file exists, if it should\n"
+  example: []
+  syntax:
+    content: public static void CheckFile(string filePath, bool? shouldExist, string fileExtension = null)
+    parameters:
+    - id: filePath
+      type: System.String
+      description: File&apos;s path to check
+    - id: shouldExist
+      type: System.Nullable{System.Boolean}
+      description: >-
+        Should the file exist?
+
+        <remarks><p></p><xref uid="langword_csharp_true" name="true" href=""></xref> by default;
+
+        <p></p>set this to <xref uid="langword_csharp_null" name="null" href=""></xref> if you don&apos;t know or care if file&apos;s already exists</remarks>
+    - id: fileExtension
+      type: System.String
+      description: >-
+        Checks file extension
+
+        <remarks><p></p>If set to <see keyword="null"></see>, extension doesn&apos;t check</remarks>
+    content.vb: Public Shared Sub CheckFile(filePath As String, shouldExist As Boolean?, fileExtension As String = Nothing)
+  overload: GTiff2Tiles.Core.Helpers.CheckHelper.CheckFile*
+  exceptions:
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+  - type: System.IO.FileNotFoundException
+    commentId: T:System.IO.FileNotFoundException
+  - type: GTiff2Tiles.Core.Exceptions.FileException
+    commentId: T:GTiff2Tiles.Core.Exceptions.FileException
+  nameWithType.vb: CheckHelper.CheckFile(String, Nullable(Of Boolean), String)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: GTiff2Tiles.Core.Helpers.CheckHelper.CheckFile(System.String, System.Nullable(Of System.Boolean), System.String)
+  name.vb: CheckFile(String, Nullable(Of Boolean), String)
+- uid: GTiff2Tiles.Core.Helpers.CheckHelper.CheckDirectory(System.String,System.Nullable{System.Boolean})
+  commentId: M:GTiff2Tiles.Core.Helpers.CheckHelper.CheckDirectory(System.String,System.Nullable{System.Boolean})
+  id: CheckDirectory(System.String,System.Nullable{System.Boolean})
+  parent: GTiff2Tiles.Core.Helpers.CheckHelper
+  langs:
+  - csharp
+  - vb
+  name: CheckDirectory(String, Nullable<Boolean>)
+  nameWithType: CheckHelper.CheckDirectory(String, Nullable<Boolean>)
+  fullName: GTiff2Tiles.Core.Helpers.CheckHelper.CheckDirectory(System.String, System.Nullable<System.Boolean>)
+  type: Method
+  source:
+    remote:
+      path: GTiff2Tiles.Core/Helpers/CheckHelper.cs
+      branch: master
+      repo: https://github.com/Gigas002/GTiff2Tiles.git
+    id: CheckDirectory
+    path: GTiff2Tiles.Core/Helpers/CheckHelper.cs
+    startLine: 67
+  assemblies:
+  - GTiff2Tiles.Core
+  namespace: GTiff2Tiles.Core.Helpers
+  summary: "\nChecks, if directory&apos;s path is not empty, creates directory if it doesn&apos;t exist\nand checks if it&apos;s empty or not\n"
+  example: []
+  syntax:
+    content: public static void CheckDirectory(string directoryPath, bool? shouldBeEmpty = default(bool? ))
+    parameters:
+    - id: directoryPath
+      type: System.String
+      description: Directory&apos;s path to check
+    - id: shouldBeEmpty
+      type: System.Nullable{System.Boolean}
+      description: >-
+        Should directory be empty?
+
+        <remarks><p></p>If set <see keyword="null"></see>, emptyness doesn&apos;t check</remarks>
+    content.vb: Public Shared Sub CheckDirectory(directoryPath As String, shouldBeEmpty As Boolean? = Nothing)
+  overload: GTiff2Tiles.Core.Helpers.CheckHelper.CheckDirectory*
+  exceptions:
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+  - type: GTiff2Tiles.Core.Exceptions.DirectoryException
+    commentId: T:GTiff2Tiles.Core.Exceptions.DirectoryException
+  nameWithType.vb: CheckHelper.CheckDirectory(String, Nullable(Of Boolean))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: GTiff2Tiles.Core.Helpers.CheckHelper.CheckDirectory(System.String, System.Nullable(Of System.Boolean))
+  name.vb: CheckDirectory(String, Nullable(Of Boolean))
+- uid: GTiff2Tiles.Core.Helpers.CheckHelper.CheckInputFileAsync(System.String,GTiff2Tiles.Core.Enums.CoordinateSystem)
+  commentId: M:GTiff2Tiles.Core.Helpers.CheckHelper.CheckInputFileAsync(System.String,GTiff2Tiles.Core.Enums.CoordinateSystem)
+  id: CheckInputFileAsync(System.String,GTiff2Tiles.Core.Enums.CoordinateSystem)
+  parent: GTiff2Tiles.Core.Helpers.CheckHelper
+  langs:
+  - csharp
+  - vb
+  name: CheckInputFileAsync(String, CoordinateSystem)
+  nameWithType: CheckHelper.CheckInputFileAsync(String, CoordinateSystem)
+  fullName: GTiff2Tiles.Core.Helpers.CheckHelper.CheckInputFileAsync(System.String, GTiff2Tiles.Core.Enums.CoordinateSystem)
+  type: Method
+  source:
+    remote:
+      path: GTiff2Tiles.Core/Helpers/CheckHelper.cs
+      branch: master
+      repo: https://github.com/Gigas002/GTiff2Tiles.git
+    id: CheckInputFileAsync
+    path: GTiff2Tiles.Core/Helpers/CheckHelper.cs
+    startLine: 94
+  assemblies:
+  - GTiff2Tiles.Core
+  namespace: GTiff2Tiles.Core.Helpers
+  summary: "\nChecks the existance, projection and type\n"
+  example: []
+  syntax:
+    content: public static ValueTask<bool> CheckInputFileAsync(string inputFilePath, CoordinateSystem targetSystem)
+    parameters:
+    - id: inputFilePath
+      type: System.String
+      description: Input GeoTiff&apos;s path
+    - id: targetSystem
+      type: GTiff2Tiles.Core.Enums.CoordinateSystem
+      description: Target coordinate system
+    return:
+      type: System.Threading.Tasks.ValueTask{System.Boolean}
+      description: >-
+        <xref uid="langword_csharp_true" name="true" href=""></xref> if file needs to be converted;
+
+        <p></p><xref uid="langword_csharp_false" name="false" href=""></xref> otherwise
+    content.vb: Public Shared Function CheckInputFileAsync(inputFilePath As String, targetSystem As CoordinateSystem) As ValueTask(Of Boolean)
+  overload: GTiff2Tiles.Core.Helpers.CheckHelper.CheckInputFileAsync*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+references:
+- uid: GTiff2Tiles.Core.Helpers
+  commentId: N:GTiff2Tiles.Core.Helpers
+  name: GTiff2Tiles.Core.Helpers
+  nameWithType: GTiff2Tiles.Core.Helpers
+  fullName: GTiff2Tiles.Core.Helpers
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.ArgumentNullException
+  commentId: T:System.ArgumentNullException
+  isExternal: true
+- uid: System.ArgumentException
+  commentId: T:System.ArgumentException
+  isExternal: true
+- uid: System.IO.FileNotFoundException
+  commentId: T:System.IO.FileNotFoundException
+  isExternal: true
+- uid: GTiff2Tiles.Core.Exceptions.FileException
+  commentId: T:GTiff2Tiles.Core.Exceptions.FileException
+  name: FileException
+  nameWithType: FileException
+  fullName: GTiff2Tiles.Core.Exceptions.FileException
+- uid: GTiff2Tiles.Core.Helpers.CheckHelper.CheckFile*
+  commentId: Overload:GTiff2Tiles.Core.Helpers.CheckHelper.CheckFile
+  name: CheckFile
+  nameWithType: CheckHelper.CheckFile
+  fullName: GTiff2Tiles.Core.Helpers.CheckHelper.CheckFile
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: System.Nullable{System.Boolean}
+  commentId: T:System.Nullable{System.Boolean}
+  parent: System
+  definition: System.Nullable`1
+  name: Nullable<Boolean>
+  nameWithType: Nullable<Boolean>
+  fullName: System.Nullable<System.Boolean>
+  nameWithType.vb: Nullable(Of Boolean)
+  fullName.vb: System.Nullable(Of System.Boolean)
+  name.vb: Nullable(Of Boolean)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GTiff2Tiles.Core.Exceptions.DirectoryException
+  commentId: T:GTiff2Tiles.Core.Exceptions.DirectoryException
+  name: DirectoryException
+  nameWithType: DirectoryException
+  fullName: GTiff2Tiles.Core.Exceptions.DirectoryException
+- uid: GTiff2Tiles.Core.Helpers.CheckHelper.CheckDirectory*
+  commentId: Overload:GTiff2Tiles.Core.Helpers.CheckHelper.CheckDirectory
+  name: CheckDirectory
+  nameWithType: CheckHelper.CheckDirectory
+  fullName: GTiff2Tiles.Core.Helpers.CheckHelper.CheckDirectory
+- uid: GTiff2Tiles.Core.Helpers.CheckHelper.CheckInputFileAsync*
+  commentId: Overload:GTiff2Tiles.Core.Helpers.CheckHelper.CheckInputFileAsync
+  name: CheckInputFileAsync
+  nameWithType: CheckHelper.CheckInputFileAsync
+  fullName: GTiff2Tiles.Core.Helpers.CheckHelper.CheckInputFileAsync
+- uid: GTiff2Tiles.Core.Enums.CoordinateSystem
+  commentId: T:GTiff2Tiles.Core.Enums.CoordinateSystem
+  parent: GTiff2Tiles.Core.Enums
+  name: CoordinateSystem
+  nameWithType: CoordinateSystem
+  fullName: GTiff2Tiles.Core.Enums.CoordinateSystem
+- uid: System.Threading.Tasks.ValueTask{System.Boolean}
+  commentId: T:System.Threading.Tasks.ValueTask{System.Boolean}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.ValueTask`1
+  name: ValueTask<Boolean>
+  nameWithType: ValueTask<Boolean>
+  fullName: System.Threading.Tasks.ValueTask<System.Boolean>
+  nameWithType.vb: ValueTask(Of Boolean)
+  fullName.vb: System.Threading.Tasks.ValueTask(Of System.Boolean)
+  name.vb: ValueTask(Of Boolean)
+  spec.csharp:
+  - uid: System.Threading.Tasks.ValueTask`1
+    name: ValueTask
+    nameWithType: ValueTask
+    fullName: System.Threading.Tasks.ValueTask
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.ValueTask`1
+    name: ValueTask
+    nameWithType: ValueTask
+    fullName: System.Threading.Tasks.ValueTask
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GTiff2Tiles.Core.Enums
+  commentId: N:GTiff2Tiles.Core.Enums
+  name: GTiff2Tiles.Core.Enums
+  nameWithType: GTiff2Tiles.Core.Enums
+  fullName: GTiff2Tiles.Core.Enums
+- uid: System.Threading.Tasks.ValueTask`1
+  commentId: T:System.Threading.Tasks.ValueTask`1
+  isExternal: true
+  name: ValueTask<TResult>
+  nameWithType: ValueTask<TResult>
+  fullName: System.Threading.Tasks.ValueTask<TResult>
+  nameWithType.vb: ValueTask(Of TResult)
+  fullName.vb: System.Threading.Tasks.ValueTask(Of TResult)
+  name.vb: ValueTask(Of TResult)
+  spec.csharp:
+  - uid: System.Threading.Tasks.ValueTask`1
+    name: ValueTask
+    nameWithType: ValueTask
+    fullName: System.Threading.Tasks.ValueTask
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.ValueTask`1
+    name: ValueTask
+    nameWithType: ValueTask
+    fullName: System.Threading.Tasks.ValueTask
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Threading.Tasks
+  commentId: N:System.Threading.Tasks
+  isExternal: true
+  name: System.Threading.Tasks
+  nameWithType: System.Threading.Tasks
+  fullName: System.Threading.Tasks

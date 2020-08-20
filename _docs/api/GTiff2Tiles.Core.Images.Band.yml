@@ -1,0 +1,705 @@
+### YamlMime:ManagedReference
+items:
+- uid: GTiff2Tiles.Core.Images.Band
+  commentId: T:GTiff2Tiles.Core.Images.Band
+  id: Band
+  parent: GTiff2Tiles.Core.Images
+  children:
+  - GTiff2Tiles.Core.Images.Band.#ctor(System.Int32)
+  - GTiff2Tiles.Core.Images.Band.AddBands(NetVips.Image@,System.Collections.Generic.IEnumerable{GTiff2Tiles.Core.Images.Band})
+  - GTiff2Tiles.Core.Images.Band.AddDefaultBands(NetVips.Image@,System.Int32)
+  - GTiff2Tiles.Core.Images.Band.DefaultValue
+  - GTiff2Tiles.Core.Images.Band.Value
+  langs:
+  - csharp
+  - vb
+  name: Band
+  nameWithType: Band
+  fullName: GTiff2Tiles.Core.Images.Band
+  type: Class
+  source:
+    remote:
+      path: GTiff2Tiles.Core/Images/Band.cs
+      branch: master
+      repo: https://github.com/Gigas002/GTiff2Tiles.git
+    id: Band
+    path: GTiff2Tiles.Core/Images/Band.cs
+    startLine: 12
+  assemblies:
+  - GTiff2Tiles.Core
+  namespace: GTiff2Tiles.Core.Images
+  summary: "\nRepresents image&apos;s band\n"
+  example: []
+  syntax:
+    content: public class Band
+    content.vb: Public Class Band
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: GTiff2Tiles.Core.Images.Band.DefaultValue
+  commentId: F:GTiff2Tiles.Core.Images.Band.DefaultValue
+  id: DefaultValue
+  parent: GTiff2Tiles.Core.Images.Band
+  langs:
+  - csharp
+  - vb
+  name: DefaultValue
+  nameWithType: Band.DefaultValue
+  fullName: GTiff2Tiles.Core.Images.Band.DefaultValue
+  type: Field
+  source:
+    remote:
+      path: GTiff2Tiles.Core/Images/Band.cs
+      branch: master
+      repo: https://github.com/Gigas002/GTiff2Tiles.git
+    id: DefaultValue
+    path: GTiff2Tiles.Core/Images/Band.cs
+    startLine: 19
+  assemblies:
+  - GTiff2Tiles.Core
+  namespace: GTiff2Tiles.Core.Images
+  summary: "\nDefault <xref href=\"GTiff2Tiles.Core.Images.Band\" data-throw-if-not-resolved=\"false\"></xref> value\n"
+  example: []
+  syntax:
+    content: public const int DefaultValue = 255
+    return:
+      type: System.Int32
+    content.vb: Public Const DefaultValue As Integer = 255
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: GTiff2Tiles.Core.Images.Band.Value
+  commentId: P:GTiff2Tiles.Core.Images.Band.Value
+  id: Value
+  parent: GTiff2Tiles.Core.Images.Band
+  langs:
+  - csharp
+  - vb
+  name: Value
+  nameWithType: Band.Value
+  fullName: GTiff2Tiles.Core.Images.Band.Value
+  type: Property
+  source:
+    remote:
+      path: GTiff2Tiles.Core/Images/Band.cs
+      branch: master
+      repo: https://github.com/Gigas002/GTiff2Tiles.git
+    id: Value
+    path: GTiff2Tiles.Core/Images/Band.cs
+    startLine: 24
+  assemblies:
+  - GTiff2Tiles.Core
+  namespace: GTiff2Tiles.Core.Images
+  summary: "\nCurrent value\n"
+  example: []
+  syntax:
+    content: public int Value { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property Value As Integer
+  overload: GTiff2Tiles.Core.Images.Band.Value*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: GTiff2Tiles.Core.Images.Band.#ctor(System.Int32)
+  commentId: M:GTiff2Tiles.Core.Images.Band.#ctor(System.Int32)
+  id: '#ctor(System.Int32)'
+  parent: GTiff2Tiles.Core.Images.Band
+  langs:
+  - csharp
+  - vb
+  name: Band(Int32)
+  nameWithType: Band.Band(Int32)
+  fullName: GTiff2Tiles.Core.Images.Band.Band(System.Int32)
+  type: Constructor
+  source:
+    remote:
+      path: GTiff2Tiles.Core/Images/Band.cs
+      branch: master
+      repo: https://github.com/Gigas002/GTiff2Tiles.git
+    id: .ctor
+    path: GTiff2Tiles.Core/Images/Band.cs
+    startLine: 36
+  assemblies:
+  - GTiff2Tiles.Core
+  namespace: GTiff2Tiles.Core.Images
+  summary: "\nCreates new <xref href=\"GTiff2Tiles.Core.Images.Band\" data-throw-if-not-resolved=\"false\"></xref>\n"
+  example: []
+  syntax:
+    content: public Band(int value = 255)
+    parameters:
+    - id: value
+      type: System.Int32
+      description: >-
+        <xref href="System.Int32" data-throw-if-not-resolved="false"></xref> in range
+            from 0 to 255
+    content.vb: Public Sub New(value As Integer = 255)
+  overload: GTiff2Tiles.Core.Images.Band.#ctor*
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    commentId: T:System.ArgumentOutOfRangeException
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: GTiff2Tiles.Core.Images.Band.AddBands(NetVips.Image@,System.Collections.Generic.IEnumerable{GTiff2Tiles.Core.Images.Band})
+  commentId: M:GTiff2Tiles.Core.Images.Band.AddBands(NetVips.Image@,System.Collections.Generic.IEnumerable{GTiff2Tiles.Core.Images.Band})
+  id: AddBands(NetVips.Image@,System.Collections.Generic.IEnumerable{GTiff2Tiles.Core.Images.Band})
+  parent: GTiff2Tiles.Core.Images.Band
+  langs:
+  - csharp
+  - vb
+  name: AddBands(ref Image, IEnumerable<Band>)
+  nameWithType: Band.AddBands(ref Image, IEnumerable<Band>)
+  fullName: GTiff2Tiles.Core.Images.Band.AddBands(ref NetVips.Image, System.Collections.Generic.IEnumerable<GTiff2Tiles.Core.Images.Band>)
+  type: Method
+  source:
+    remote:
+      path: GTiff2Tiles.Core/Images/Band.cs
+      branch: master
+      repo: https://github.com/Gigas002/GTiff2Tiles.git
+    id: AddBands
+    path: GTiff2Tiles.Core/Images/Band.cs
+    startLine: 58
+  assemblies:
+  - GTiff2Tiles.Core
+  namespace: GTiff2Tiles.Core.Images
+  summary: "\nAdd <xref href=\"GTiff2Tiles.Core.Images.Band\" data-throw-if-not-resolved=\"false\"></xref>s to <xref href=\"NetVips.Image\" data-throw-if-not-resolved=\"false\"></xref>\n"
+  example: []
+  syntax:
+    content: public static void AddBands(ref Image image, IEnumerable<Band> bands)
+    parameters:
+    - id: image
+      type: NetVips.Image
+      description: >-
+        Reference on <xref href="NetVips.Image" data-throw-if-not-resolved="false"></xref>
+
+        to add <xref href="GTiff2Tiles.Core.Images.Band" data-throw-if-not-resolved="false"></xref>s to
+    - id: bands
+      type: System.Collections.Generic.IEnumerable{GTiff2Tiles.Core.Images.Band}
+      description: Collection of <xref href="GTiff2Tiles.Core.Images.Band" data-throw-if-not-resolved="false"></xref>s to add
+    content.vb: Public Shared Sub AddBands(ByRef image As Image, bands As IEnumerable(Of Band))
+  overload: GTiff2Tiles.Core.Images.Band.AddBands*
+  exceptions:
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+  nameWithType.vb: Band.AddBands(ByRef Image, IEnumerable(Of Band))
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: GTiff2Tiles.Core.Images.Band.AddBands(ByRef NetVips.Image, System.Collections.Generic.IEnumerable(Of GTiff2Tiles.Core.Images.Band))
+  name.vb: AddBands(ByRef Image, IEnumerable(Of Band))
+- uid: GTiff2Tiles.Core.Images.Band.AddDefaultBands(NetVips.Image@,System.Int32)
+  commentId: M:GTiff2Tiles.Core.Images.Band.AddDefaultBands(NetVips.Image@,System.Int32)
+  id: AddDefaultBands(NetVips.Image@,System.Int32)
+  parent: GTiff2Tiles.Core.Images.Band
+  langs:
+  - csharp
+  - vb
+  name: AddDefaultBands(ref Image, Int32)
+  nameWithType: Band.AddDefaultBands(ref Image, Int32)
+  fullName: GTiff2Tiles.Core.Images.Band.AddDefaultBands(ref NetVips.Image, System.Int32)
+  type: Method
+  source:
+    remote:
+      path: GTiff2Tiles.Core/Images/Band.cs
+      branch: master
+      repo: https://github.com/Gigas002/GTiff2Tiles.git
+    id: AddDefaultBands
+    path: GTiff2Tiles.Core/Images/Band.cs
+    startLine: 80
+  assemblies:
+  - GTiff2Tiles.Core
+  namespace: GTiff2Tiles.Core.Images
+  summary: "\nAdd default <xref href=\"GTiff2Tiles.Core.Images.Band\" data-throw-if-not-resolved=\"false\"></xref>s to <xref href=\"NetVips.Image\" data-throw-if-not-resolved=\"false\"></xref> until\nbands count is lesser than <xref href=\"NetVips.Image\" data-throw-if-not-resolved=\"false\"></xref>&apos;s current bands count\n"
+  example: []
+  syntax:
+    content: public static void AddDefaultBands(ref Image image, int bandsCount)
+    parameters:
+    - id: image
+      type: NetVips.Image
+      description: >-
+        Reference on <xref href="NetVips.Image" data-throw-if-not-resolved="false"></xref>
+
+        to add <xref href="GTiff2Tiles.Core.Images.Band" data-throw-if-not-resolved="false"></xref>s to
+    - id: bandsCount
+      type: System.Int32
+      description: >-
+        Count of desired <xref href="GTiff2Tiles.Core.Images.Band" data-throw-if-not-resolved="false"></xref>s
+
+        in <xref href="NetVips.Image" data-throw-if-not-resolved="false"></xref>;
+
+        <remarks><p></p>NOT the count of <xref href="GTiff2Tiles.Core.Images.Band" data-throw-if-not-resolved="false"></xref>s to add</remarks>
+    content.vb: Public Shared Sub AddDefaultBands(ByRef image As Image, bandsCount As Integer)
+  overload: GTiff2Tiles.Core.Images.Band.AddDefaultBands*
+  exceptions:
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+  nameWithType.vb: Band.AddDefaultBands(ByRef Image, Int32)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: GTiff2Tiles.Core.Images.Band.AddDefaultBands(ByRef NetVips.Image, System.Int32)
+  name.vb: AddDefaultBands(ByRef Image, Int32)
+references:
+- uid: GTiff2Tiles.Core.Images
+  commentId: N:GTiff2Tiles.Core.Images
+  name: GTiff2Tiles.Core.Images
+  nameWithType: GTiff2Tiles.Core.Images
+  fullName: GTiff2Tiles.Core.Images
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: GTiff2Tiles.Core.Images.Band
+  commentId: T:GTiff2Tiles.Core.Images.Band
+  name: Band
+  nameWithType: Band
+  fullName: GTiff2Tiles.Core.Images.Band
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: GTiff2Tiles.Core.Images.Band.Value*
+  commentId: Overload:GTiff2Tiles.Core.Images.Band.Value
+  name: Value
+  nameWithType: Band.Value
+  fullName: GTiff2Tiles.Core.Images.Band.Value
+- uid: System.ArgumentOutOfRangeException
+  commentId: T:System.ArgumentOutOfRangeException
+  isExternal: true
+- uid: GTiff2Tiles.Core.Images.Band.#ctor*
+  commentId: Overload:GTiff2Tiles.Core.Images.Band.#ctor
+  name: Band
+  nameWithType: Band.Band
+  fullName: GTiff2Tiles.Core.Images.Band.Band
+- uid: NetVips.Image
+  commentId: T:NetVips.Image
+  parent: NetVips
+  isExternal: true
+  name: Image
+  nameWithType: Image
+  fullName: NetVips.Image
+- uid: System.ArgumentNullException
+  commentId: T:System.ArgumentNullException
+  isExternal: true
+- uid: GTiff2Tiles.Core.Images.Band.AddBands*
+  commentId: Overload:GTiff2Tiles.Core.Images.Band.AddBands
+  name: AddBands
+  nameWithType: Band.AddBands
+  fullName: GTiff2Tiles.Core.Images.Band.AddBands
+- uid: System.Collections.Generic.IEnumerable{GTiff2Tiles.Core.Images.Band}
+  commentId: T:System.Collections.Generic.IEnumerable{GTiff2Tiles.Core.Images.Band}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  name: IEnumerable<Band>
+  nameWithType: IEnumerable<Band>
+  fullName: System.Collections.Generic.IEnumerable<GTiff2Tiles.Core.Images.Band>
+  nameWithType.vb: IEnumerable(Of Band)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of GTiff2Tiles.Core.Images.Band)
+  name.vb: IEnumerable(Of Band)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: GTiff2Tiles.Core.Images.Band
+    name: Band
+    nameWithType: Band
+    fullName: GTiff2Tiles.Core.Images.Band
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: GTiff2Tiles.Core.Images.Band
+    name: Band
+    nameWithType: Band
+    fullName: GTiff2Tiles.Core.Images.Band
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: NetVips
+  commentId: N:NetVips
+  isExternal: true
+  name: NetVips
+  nameWithType: NetVips
+  fullName: NetVips
+- uid: System.Collections.Generic.IEnumerable`1
+  commentId: T:System.Collections.Generic.IEnumerable`1
+  isExternal: true
+  name: IEnumerable<T>
+  nameWithType: IEnumerable<T>
+  fullName: System.Collections.Generic.IEnumerable<T>
+  nameWithType.vb: IEnumerable(Of T)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
+  name.vb: IEnumerable(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+- uid: GTiff2Tiles.Core.Images.Band.AddDefaultBands*
+  commentId: Overload:GTiff2Tiles.Core.Images.Band.AddDefaultBands
+  name: AddDefaultBands
+  nameWithType: Band.AddDefaultBands
+  fullName: GTiff2Tiles.Core.Images.Band.AddDefaultBands

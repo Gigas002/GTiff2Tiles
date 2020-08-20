@@ -1,0 +1,34 @@
+### YamlMime:ManagedReference
+items:
+- uid: GTiff2Tiles.Core.GeoTiffs
+  commentId: N:GTiff2Tiles.Core.GeoTiffs
+  id: GTiff2Tiles.Core.GeoTiffs
+  children:
+  - GTiff2Tiles.Core.GeoTiffs.IGeoTiff
+  - GTiff2Tiles.Core.GeoTiffs.Raster
+  langs:
+  - csharp
+  - vb
+  name: GTiff2Tiles.Core.GeoTiffs
+  nameWithType: GTiff2Tiles.Core.GeoTiffs
+  fullName: GTiff2Tiles.Core.GeoTiffs
+  type: Namespace
+  assemblies:
+  - GTiff2Tiles.Core
+references:
+- uid: GTiff2Tiles.Core.GeoTiffs.IGeoTiff
+  commentId: T:GTiff2Tiles.Core.GeoTiffs.IGeoTiff
+  parent: GTiff2Tiles.Core.GeoTiffs
+  name: IGeoTiff
+  nameWithType: IGeoTiff
+  fullName: GTiff2Tiles.Core.GeoTiffs.IGeoTiff
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster
+  commentId: T:GTiff2Tiles.Core.GeoTiffs.Raster
+  name: Raster
+  nameWithType: Raster
+  fullName: GTiff2Tiles.Core.GeoTiffs.Raster
+- uid: GTiff2Tiles.Core.GeoTiffs
+  commentId: N:GTiff2Tiles.Core.GeoTiffs
+  name: GTiff2Tiles.Core.GeoTiffs
+  nameWithType: GTiff2Tiles.Core.GeoTiffs
+  fullName: GTiff2Tiles.Core.GeoTiffs

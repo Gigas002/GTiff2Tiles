@@ -1,0 +1,1256 @@
+### YamlMime:ManagedReference
+items:
+- uid: GTiff2Tiles.Core.Tiles.RasterTile
+  commentId: T:GTiff2Tiles.Core.Tiles.RasterTile
+  id: RasterTile
+  parent: GTiff2Tiles.Core.Tiles
+  children:
+  - GTiff2Tiles.Core.Tiles.RasterTile.#ctor(GTiff2Tiles.Core.Coordinates.GeoCoordinate,GTiff2Tiles.Core.Coordinates.GeoCoordinate,System.Int32,GTiff2Tiles.Core.Images.Size,System.Collections.Generic.IEnumerable{System.Byte},GTiff2Tiles.Core.Enums.TileExtension,System.Boolean,System.Int32,GTiff2Tiles.Core.Enums.Interpolation)
+  - GTiff2Tiles.Core.Tiles.RasterTile.#ctor(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Enums.CoordinateSystem,GTiff2Tiles.Core.Images.Size,System.Collections.Generic.IEnumerable{System.Byte},GTiff2Tiles.Core.Enums.TileExtension,System.Boolean,System.Int32,GTiff2Tiles.Core.Enums.Interpolation)
+  - GTiff2Tiles.Core.Tiles.RasterTile.BandsCount
+  - GTiff2Tiles.Core.Tiles.RasterTile.DefaultBandsCount
+  - GTiff2Tiles.Core.Tiles.RasterTile.Interpolation
+  langs:
+  - csharp
+  - vb
+  name: RasterTile
+  nameWithType: RasterTile
+  fullName: GTiff2Tiles.Core.Tiles.RasterTile
+  type: Class
+  source:
+    remote:
+      path: GTiff2Tiles.Core/Tiles/RasterTile.cs
+      branch: master
+      repo: https://github.com/Gigas002/GTiff2Tiles.git
+    id: RasterTile
+    path: GTiff2Tiles.Core/Tiles/RasterTile.cs
+    startLine: 16
+  assemblies:
+  - GTiff2Tiles.Core
+  namespace: GTiff2Tiles.Core.Tiles
+  summary: "\n<xref href=\"GTiff2Tiles.Core.GeoTiffs.Raster\" data-throw-if-not-resolved=\"false\"></xref> <xref href=\"GTiff2Tiles.Core.Tiles.Tile\" data-throw-if-not-resolved=\"false\"></xref>\n"
+  example: []
+  syntax:
+    content: 'public class RasterTile : Tile, ITile, IDisposable, IAsyncDisposable'
+    content.vb: >-
+      Public Class RasterTile
+
+          Inherits Tile
+
+          Implements ITile, IDisposable, IAsyncDisposable
+  inheritance:
+  - System.Object
+  - GTiff2Tiles.Core.Tiles.Tile
+  implements:
+  - GTiff2Tiles.Core.Tiles.ITile
+  - System.IDisposable
+  - System.IAsyncDisposable
+  inheritedMembers:
+  - GTiff2Tiles.Core.Tiles.Tile.DefaultSize
+  - GTiff2Tiles.Core.Tiles.Tile.IsDisposed
+  - GTiff2Tiles.Core.Tiles.Tile.MinCoordinate
+  - GTiff2Tiles.Core.Tiles.Tile.MaxCoordinate
+  - GTiff2Tiles.Core.Tiles.Tile.Number
+  - GTiff2Tiles.Core.Tiles.Tile.Bytes
+  - GTiff2Tiles.Core.Tiles.Tile.Size
+  - GTiff2Tiles.Core.Tiles.Tile.Path
+  - GTiff2Tiles.Core.Tiles.Tile.Extension
+  - GTiff2Tiles.Core.Tiles.Tile.TmsCompatible
+  - GTiff2Tiles.Core.Tiles.Tile.MinimalBytesCount
+  - GTiff2Tiles.Core.Tiles.Tile.Dispose
+  - GTiff2Tiles.Core.Tiles.Tile.Dispose(System.Boolean)
+  - GTiff2Tiles.Core.Tiles.Tile.DisposeAsync
+  - GTiff2Tiles.Core.Tiles.Tile.Validate(System.Boolean)
+  - GTiff2Tiles.Core.Tiles.Tile.Validate(GTiff2Tiles.Core.Tiles.ITile,System.Boolean)
+  - GTiff2Tiles.Core.Tiles.Tile.CalculatePosition
+  - GTiff2Tiles.Core.Tiles.Tile.CalculatePosition(GTiff2Tiles.Core.Tiles.Number,System.Boolean)
+  - GTiff2Tiles.Core.Tiles.Tile.GetExtensionString
+  - GTiff2Tiles.Core.Tiles.Tile.GetExtensionString(GTiff2Tiles.Core.Enums.TileExtension)
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: GTiff2Tiles.Core.Tiles.RasterTile.DefaultBandsCount
+  commentId: F:GTiff2Tiles.Core.Tiles.RasterTile.DefaultBandsCount
+  id: DefaultBandsCount
+  parent: GTiff2Tiles.Core.Tiles.RasterTile
+  langs:
+  - csharp
+  - vb
+  name: DefaultBandsCount
+  nameWithType: RasterTile.DefaultBandsCount
+  fullName: GTiff2Tiles.Core.Tiles.RasterTile.DefaultBandsCount
+  type: Field
+  source:
+    remote:
+      path: GTiff2Tiles.Core/Tiles/RasterTile.cs
+      branch: master
+      repo: https://github.com/Gigas002/GTiff2Tiles.git
+    id: DefaultBandsCount
+    path: GTiff2Tiles.Core/Tiles/RasterTile.cs
+    startLine: 23
+  assemblies:
+  - GTiff2Tiles.Core
+  namespace: GTiff2Tiles.Core.Tiles
+  summary: "\nDefault count of bands\n"
+  example: []
+  syntax:
+    content: public const int DefaultBandsCount = 4
+    return:
+      type: System.Int32
+    content.vb: Public Const DefaultBandsCount As Integer = 4
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: GTiff2Tiles.Core.Tiles.RasterTile.BandsCount
+  commentId: P:GTiff2Tiles.Core.Tiles.RasterTile.BandsCount
+  id: BandsCount
+  parent: GTiff2Tiles.Core.Tiles.RasterTile
+  langs:
+  - csharp
+  - vb
+  name: BandsCount
+  nameWithType: RasterTile.BandsCount
+  fullName: GTiff2Tiles.Core.Tiles.RasterTile.BandsCount
+  type: Property
+  source:
+    remote:
+      path: GTiff2Tiles.Core/Tiles/RasterTile.cs
+      branch: master
+      repo: https://github.com/Gigas002/GTiff2Tiles.git
+    id: BandsCount
+    path: GTiff2Tiles.Core/Tiles/RasterTile.cs
+    startLine: 28
+  assemblies:
+  - GTiff2Tiles.Core
+  namespace: GTiff2Tiles.Core.Tiles
+  summary: "\nCount of bands in <xref href=\"GTiff2Tiles.Core.Tiles.RasterTile\" data-throw-if-not-resolved=\"false\"></xref>\n"
+  example: []
+  syntax:
+    content: public int BandsCount { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property BandsCount As Integer
+  overload: GTiff2Tiles.Core.Tiles.RasterTile.BandsCount*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: GTiff2Tiles.Core.Tiles.RasterTile.Interpolation
+  commentId: P:GTiff2Tiles.Core.Tiles.RasterTile.Interpolation
+  id: Interpolation
+  parent: GTiff2Tiles.Core.Tiles.RasterTile
+  langs:
+  - csharp
+  - vb
+  name: Interpolation
+  nameWithType: RasterTile.Interpolation
+  fullName: GTiff2Tiles.Core.Tiles.RasterTile.Interpolation
+  type: Property
+  source:
+    remote:
+      path: GTiff2Tiles.Core/Tiles/RasterTile.cs
+      branch: master
+      repo: https://github.com/Gigas002/GTiff2Tiles.git
+    id: Interpolation
+    path: GTiff2Tiles.Core/Tiles/RasterTile.cs
+    startLine: 33
+  assemblies:
+  - GTiff2Tiles.Core
+  namespace: GTiff2Tiles.Core.Tiles
+  summary: "\nInterpolation of this <xref href=\"GTiff2Tiles.Core.Tiles.RasterTile\" data-throw-if-not-resolved=\"false\"></xref>\n"
+  example: []
+  syntax:
+    content: public Interpolation Interpolation { get; }
+    parameters: []
+    return:
+      type: GTiff2Tiles.Core.Enums.Interpolation
+    content.vb: Public ReadOnly Property Interpolation As Interpolation
+  overload: GTiff2Tiles.Core.Tiles.RasterTile.Interpolation*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: GTiff2Tiles.Core.Tiles.RasterTile.#ctor(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Enums.CoordinateSystem,GTiff2Tiles.Core.Images.Size,System.Collections.Generic.IEnumerable{System.Byte},GTiff2Tiles.Core.Enums.TileExtension,System.Boolean,System.Int32,GTiff2Tiles.Core.Enums.Interpolation)
+  commentId: M:GTiff2Tiles.Core.Tiles.RasterTile.#ctor(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Enums.CoordinateSystem,GTiff2Tiles.Core.Images.Size,System.Collections.Generic.IEnumerable{System.Byte},GTiff2Tiles.Core.Enums.TileExtension,System.Boolean,System.Int32,GTiff2Tiles.Core.Enums.Interpolation)
+  id: '#ctor(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Enums.CoordinateSystem,GTiff2Tiles.Core.Images.Size,System.Collections.Generic.IEnumerable{System.Byte},GTiff2Tiles.Core.Enums.TileExtension,System.Boolean,System.Int32,GTiff2Tiles.Core.Enums.Interpolation)'
+  parent: GTiff2Tiles.Core.Tiles.RasterTile
+  langs:
+  - csharp
+  - vb
+  name: RasterTile(Number, CoordinateSystem, Size, IEnumerable<Byte>, TileExtension, Boolean, Int32, Interpolation)
+  nameWithType: RasterTile.RasterTile(Number, CoordinateSystem, Size, IEnumerable<Byte>, TileExtension, Boolean, Int32, Interpolation)
+  fullName: GTiff2Tiles.Core.Tiles.RasterTile.RasterTile(GTiff2Tiles.Core.Tiles.Number, GTiff2Tiles.Core.Enums.CoordinateSystem, GTiff2Tiles.Core.Images.Size, System.Collections.Generic.IEnumerable<System.Byte>, GTiff2Tiles.Core.Enums.TileExtension, System.Boolean, System.Int32, GTiff2Tiles.Core.Enums.Interpolation)
+  type: Constructor
+  source:
+    remote:
+      path: GTiff2Tiles.Core/Tiles/RasterTile.cs
+      branch: master
+      repo: https://github.com/Gigas002/GTiff2Tiles.git
+    id: .ctor
+    path: GTiff2Tiles.Core/Tiles/RasterTile.cs
+    startLine: 52
+  assemblies:
+  - GTiff2Tiles.Core
+  namespace: GTiff2Tiles.Core.Tiles
+  example: []
+  syntax:
+    content: public RasterTile(Number number, CoordinateSystem coordinateSystem, Size size = null, IEnumerable<byte> bytes = null, TileExtension extension = TileExtension.Png, bool tmsCompatible = false, int bandsCount = 4, Interpolation interpolation = Interpolation.Lanczos3)
+    parameters:
+    - id: number
+      type: GTiff2Tiles.Core.Tiles.Number
+      description: ''
+    - id: coordinateSystem
+      type: GTiff2Tiles.Core.Enums.CoordinateSystem
+      description: ''
+    - id: size
+      type: GTiff2Tiles.Core.Images.Size
+      description: ''
+    - id: bytes
+      type: System.Collections.Generic.IEnumerable{System.Byte}
+      description: ''
+    - id: extension
+      type: GTiff2Tiles.Core.Enums.TileExtension
+      description: ''
+    - id: tmsCompatible
+      type: System.Boolean
+      description: ''
+    - id: bandsCount
+      type: System.Int32
+      description: >-
+        <xref href="GTiff2Tiles.Core.Tiles.RasterTile.BandsCount" data-throw-if-not-resolved="false"></xref>
+
+        <remarks><p></p>Must be in range (0, 4];
+
+        <p></p><xref href="GTiff2Tiles.Core.Tiles.RasterTile.DefaultBandsCount" data-throw-if-not-resolved="false"></xref> by default</remarks>
+    - id: interpolation
+      type: GTiff2Tiles.Core.Enums.Interpolation
+      description: >-
+        <xref href="GTiff2Tiles.Core.Tiles.RasterTile.Interpolation" data-throw-if-not-resolved="false"></xref>
+
+        <remarks><p></p><xref href="GTiff2Tiles.Core.Enums.Interpolation.Lanczos3" data-throw-if-not-resolved="false"></xref> by default</remarks>
+    content.vb: Public Sub New(number As Number, coordinateSystem As CoordinateSystem, size As Size = Nothing, bytes As IEnumerable(Of Byte) = Nothing, extension As TileExtension = TileExtension.Png, tmsCompatible As Boolean = False, bandsCount As Integer = 4, interpolation As Interpolation = Interpolation.Lanczos3)
+  overload: GTiff2Tiles.Core.Tiles.RasterTile.#ctor*
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    commentId: T:System.ArgumentOutOfRangeException
+  nameWithType.vb: RasterTile.RasterTile(Number, CoordinateSystem, Size, IEnumerable(Of Byte), TileExtension, Boolean, Int32, Interpolation)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: GTiff2Tiles.Core.Tiles.RasterTile.RasterTile(GTiff2Tiles.Core.Tiles.Number, GTiff2Tiles.Core.Enums.CoordinateSystem, GTiff2Tiles.Core.Images.Size, System.Collections.Generic.IEnumerable(Of System.Byte), GTiff2Tiles.Core.Enums.TileExtension, System.Boolean, System.Int32, GTiff2Tiles.Core.Enums.Interpolation)
+  name.vb: RasterTile(Number, CoordinateSystem, Size, IEnumerable(Of Byte), TileExtension, Boolean, Int32, Interpolation)
+- uid: GTiff2Tiles.Core.Tiles.RasterTile.#ctor(GTiff2Tiles.Core.Coordinates.GeoCoordinate,GTiff2Tiles.Core.Coordinates.GeoCoordinate,System.Int32,GTiff2Tiles.Core.Images.Size,System.Collections.Generic.IEnumerable{System.Byte},GTiff2Tiles.Core.Enums.TileExtension,System.Boolean,System.Int32,GTiff2Tiles.Core.Enums.Interpolation)
+  commentId: M:GTiff2Tiles.Core.Tiles.RasterTile.#ctor(GTiff2Tiles.Core.Coordinates.GeoCoordinate,GTiff2Tiles.Core.Coordinates.GeoCoordinate,System.Int32,GTiff2Tiles.Core.Images.Size,System.Collections.Generic.IEnumerable{System.Byte},GTiff2Tiles.Core.Enums.TileExtension,System.Boolean,System.Int32,GTiff2Tiles.Core.Enums.Interpolation)
+  id: '#ctor(GTiff2Tiles.Core.Coordinates.GeoCoordinate,GTiff2Tiles.Core.Coordinates.GeoCoordinate,System.Int32,GTiff2Tiles.Core.Images.Size,System.Collections.Generic.IEnumerable{System.Byte},GTiff2Tiles.Core.Enums.TileExtension,System.Boolean,System.Int32,GTiff2Tiles.Core.Enums.Interpolation)'
+  parent: GTiff2Tiles.Core.Tiles.RasterTile
+  langs:
+  - csharp
+  - vb
+  name: RasterTile(GeoCoordinate, GeoCoordinate, Int32, Size, IEnumerable<Byte>, TileExtension, Boolean, Int32, Interpolation)
+  nameWithType: RasterTile.RasterTile(GeoCoordinate, GeoCoordinate, Int32, Size, IEnumerable<Byte>, TileExtension, Boolean, Int32, Interpolation)
+  fullName: GTiff2Tiles.Core.Tiles.RasterTile.RasterTile(GTiff2Tiles.Core.Coordinates.GeoCoordinate, GTiff2Tiles.Core.Coordinates.GeoCoordinate, System.Int32, GTiff2Tiles.Core.Images.Size, System.Collections.Generic.IEnumerable<System.Byte>, GTiff2Tiles.Core.Enums.TileExtension, System.Boolean, System.Int32, GTiff2Tiles.Core.Enums.Interpolation)
+  type: Constructor
+  source:
+    remote:
+      path: GTiff2Tiles.Core/Tiles/RasterTile.cs
+      branch: master
+      repo: https://github.com/Gigas002/GTiff2Tiles.git
+    id: .ctor
+    path: GTiff2Tiles.Core/Tiles/RasterTile.cs
+    startLine: 82
+  assemblies:
+  - GTiff2Tiles.Core
+  namespace: GTiff2Tiles.Core.Tiles
+  example: []
+  syntax:
+    content: public RasterTile(GeoCoordinate minCoordinate, GeoCoordinate maxCoordinate, int zoom, Size size = null, IEnumerable<byte> bytes = null, TileExtension extension = TileExtension.Png, bool tmsCompatible = false, int bandsCount = 4, Interpolation interpolation = Interpolation.Lanczos3)
+    parameters:
+    - id: minCoordinate
+      type: GTiff2Tiles.Core.Coordinates.GeoCoordinate
+      description: ''
+    - id: maxCoordinate
+      type: GTiff2Tiles.Core.Coordinates.GeoCoordinate
+      description: ''
+    - id: zoom
+      type: System.Int32
+      description: ''
+    - id: size
+      type: GTiff2Tiles.Core.Images.Size
+      description: ''
+    - id: bytes
+      type: System.Collections.Generic.IEnumerable{System.Byte}
+      description: ''
+    - id: extension
+      type: GTiff2Tiles.Core.Enums.TileExtension
+      description: ''
+    - id: tmsCompatible
+      type: System.Boolean
+      description: ''
+    - id: bandsCount
+      type: System.Int32
+      description: >-
+        <xref href="GTiff2Tiles.Core.Tiles.RasterTile.BandsCount" data-throw-if-not-resolved="false"></xref>
+
+        <remarks><p></p>Must be in range (0, 4];
+
+        <p></p><xref href="GTiff2Tiles.Core.Tiles.RasterTile.DefaultBandsCount" data-throw-if-not-resolved="false"></xref> by default</remarks>
+    - id: interpolation
+      type: GTiff2Tiles.Core.Enums.Interpolation
+      description: >-
+        <xref href="GTiff2Tiles.Core.Tiles.RasterTile.Interpolation" data-throw-if-not-resolved="false"></xref>
+
+        <remarks><p></p><xref href="GTiff2Tiles.Core.Enums.Interpolation.Lanczos3" data-throw-if-not-resolved="false"></xref> by default</remarks>
+    content.vb: Public Sub New(minCoordinate As GeoCoordinate, maxCoordinate As GeoCoordinate, zoom As Integer, size As Size = Nothing, bytes As IEnumerable(Of Byte) = Nothing, extension As TileExtension = TileExtension.Png, tmsCompatible As Boolean = False, bandsCount As Integer = 4, interpolation As Interpolation = Interpolation.Lanczos3)
+  overload: GTiff2Tiles.Core.Tiles.RasterTile.#ctor*
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    commentId: T:System.ArgumentOutOfRangeException
+  nameWithType.vb: RasterTile.RasterTile(GeoCoordinate, GeoCoordinate, Int32, Size, IEnumerable(Of Byte), TileExtension, Boolean, Int32, Interpolation)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: GTiff2Tiles.Core.Tiles.RasterTile.RasterTile(GTiff2Tiles.Core.Coordinates.GeoCoordinate, GTiff2Tiles.Core.Coordinates.GeoCoordinate, System.Int32, GTiff2Tiles.Core.Images.Size, System.Collections.Generic.IEnumerable(Of System.Byte), GTiff2Tiles.Core.Enums.TileExtension, System.Boolean, System.Int32, GTiff2Tiles.Core.Enums.Interpolation)
+  name.vb: RasterTile(GeoCoordinate, GeoCoordinate, Int32, Size, IEnumerable(Of Byte), TileExtension, Boolean, Int32, Interpolation)
+references:
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster
+  commentId: T:GTiff2Tiles.Core.GeoTiffs.Raster
+  name: Raster
+  nameWithType: Raster
+  fullName: GTiff2Tiles.Core.GeoTiffs.Raster
+- uid: GTiff2Tiles.Core.Tiles.Tile
+  commentId: T:GTiff2Tiles.Core.Tiles.Tile
+  parent: GTiff2Tiles.Core.Tiles
+  name: Tile
+  nameWithType: Tile
+  fullName: GTiff2Tiles.Core.Tiles.Tile
+- uid: GTiff2Tiles.Core.Tiles
+  commentId: N:GTiff2Tiles.Core.Tiles
+  name: GTiff2Tiles.Core.Tiles
+  nameWithType: GTiff2Tiles.Core.Tiles
+  fullName: GTiff2Tiles.Core.Tiles
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: GTiff2Tiles.Core.Tiles.ITile
+  commentId: T:GTiff2Tiles.Core.Tiles.ITile
+  parent: GTiff2Tiles.Core.Tiles
+  name: ITile
+  nameWithType: ITile
+  fullName: GTiff2Tiles.Core.Tiles.ITile
+- uid: System.IDisposable
+  commentId: T:System.IDisposable
+  parent: System
+  isExternal: true
+  name: IDisposable
+  nameWithType: IDisposable
+  fullName: System.IDisposable
+- uid: System.IAsyncDisposable
+  commentId: T:System.IAsyncDisposable
+  parent: System
+  isExternal: true
+  name: IAsyncDisposable
+  nameWithType: IAsyncDisposable
+  fullName: System.IAsyncDisposable
+- uid: GTiff2Tiles.Core.Tiles.Tile.DefaultSize
+  commentId: F:GTiff2Tiles.Core.Tiles.Tile.DefaultSize
+  parent: GTiff2Tiles.Core.Tiles.Tile
+  name: DefaultSize
+  nameWithType: Tile.DefaultSize
+  fullName: GTiff2Tiles.Core.Tiles.Tile.DefaultSize
+- uid: GTiff2Tiles.Core.Tiles.Tile.IsDisposed
+  commentId: P:GTiff2Tiles.Core.Tiles.Tile.IsDisposed
+  parent: GTiff2Tiles.Core.Tiles.Tile
+  name: IsDisposed
+  nameWithType: Tile.IsDisposed
+  fullName: GTiff2Tiles.Core.Tiles.Tile.IsDisposed
+- uid: GTiff2Tiles.Core.Tiles.Tile.MinCoordinate
+  commentId: P:GTiff2Tiles.Core.Tiles.Tile.MinCoordinate
+  parent: GTiff2Tiles.Core.Tiles.Tile
+  name: MinCoordinate
+  nameWithType: Tile.MinCoordinate
+  fullName: GTiff2Tiles.Core.Tiles.Tile.MinCoordinate
+- uid: GTiff2Tiles.Core.Tiles.Tile.MaxCoordinate
+  commentId: P:GTiff2Tiles.Core.Tiles.Tile.MaxCoordinate
+  parent: GTiff2Tiles.Core.Tiles.Tile
+  name: MaxCoordinate
+  nameWithType: Tile.MaxCoordinate
+  fullName: GTiff2Tiles.Core.Tiles.Tile.MaxCoordinate
+- uid: GTiff2Tiles.Core.Tiles.Tile.Number
+  commentId: P:GTiff2Tiles.Core.Tiles.Tile.Number
+  parent: GTiff2Tiles.Core.Tiles.Tile
+  name: Number
+  nameWithType: Tile.Number
+  fullName: GTiff2Tiles.Core.Tiles.Tile.Number
+- uid: GTiff2Tiles.Core.Tiles.Tile.Bytes
+  commentId: P:GTiff2Tiles.Core.Tiles.Tile.Bytes
+  parent: GTiff2Tiles.Core.Tiles.Tile
+  name: Bytes
+  nameWithType: Tile.Bytes
+  fullName: GTiff2Tiles.Core.Tiles.Tile.Bytes
+- uid: GTiff2Tiles.Core.Tiles.Tile.Size
+  commentId: P:GTiff2Tiles.Core.Tiles.Tile.Size
+  parent: GTiff2Tiles.Core.Tiles.Tile
+  name: Size
+  nameWithType: Tile.Size
+  fullName: GTiff2Tiles.Core.Tiles.Tile.Size
+- uid: GTiff2Tiles.Core.Tiles.Tile.Path
+  commentId: P:GTiff2Tiles.Core.Tiles.Tile.Path
+  parent: GTiff2Tiles.Core.Tiles.Tile
+  name: Path
+  nameWithType: Tile.Path
+  fullName: GTiff2Tiles.Core.Tiles.Tile.Path
+- uid: GTiff2Tiles.Core.Tiles.Tile.Extension
+  commentId: P:GTiff2Tiles.Core.Tiles.Tile.Extension
+  parent: GTiff2Tiles.Core.Tiles.Tile
+  name: Extension
+  nameWithType: Tile.Extension
+  fullName: GTiff2Tiles.Core.Tiles.Tile.Extension
+- uid: GTiff2Tiles.Core.Tiles.Tile.TmsCompatible
+  commentId: P:GTiff2Tiles.Core.Tiles.Tile.TmsCompatible
+  parent: GTiff2Tiles.Core.Tiles.Tile
+  name: TmsCompatible
+  nameWithType: Tile.TmsCompatible
+  fullName: GTiff2Tiles.Core.Tiles.Tile.TmsCompatible
+- uid: GTiff2Tiles.Core.Tiles.Tile.MinimalBytesCount
+  commentId: P:GTiff2Tiles.Core.Tiles.Tile.MinimalBytesCount
+  parent: GTiff2Tiles.Core.Tiles.Tile
+  name: MinimalBytesCount
+  nameWithType: Tile.MinimalBytesCount
+  fullName: GTiff2Tiles.Core.Tiles.Tile.MinimalBytesCount
+- uid: GTiff2Tiles.Core.Tiles.Tile.Dispose
+  commentId: M:GTiff2Tiles.Core.Tiles.Tile.Dispose
+  parent: GTiff2Tiles.Core.Tiles.Tile
+  name: Dispose()
+  nameWithType: Tile.Dispose()
+  fullName: GTiff2Tiles.Core.Tiles.Tile.Dispose()
+  spec.csharp:
+  - uid: GTiff2Tiles.Core.Tiles.Tile.Dispose
+    name: Dispose
+    nameWithType: Tile.Dispose
+    fullName: GTiff2Tiles.Core.Tiles.Tile.Dispose
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GTiff2Tiles.Core.Tiles.Tile.Dispose
+    name: Dispose
+    nameWithType: Tile.Dispose
+    fullName: GTiff2Tiles.Core.Tiles.Tile.Dispose
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GTiff2Tiles.Core.Tiles.Tile.Dispose(System.Boolean)
+  commentId: M:GTiff2Tiles.Core.Tiles.Tile.Dispose(System.Boolean)
+  parent: GTiff2Tiles.Core.Tiles.Tile
+  isExternal: true
+  name: Dispose(Boolean)
+  nameWithType: Tile.Dispose(Boolean)
+  fullName: GTiff2Tiles.Core.Tiles.Tile.Dispose(System.Boolean)
+  spec.csharp:
+  - uid: GTiff2Tiles.Core.Tiles.Tile.Dispose(System.Boolean)
+    name: Dispose
+    nameWithType: Tile.Dispose
+    fullName: GTiff2Tiles.Core.Tiles.Tile.Dispose
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GTiff2Tiles.Core.Tiles.Tile.Dispose(System.Boolean)
+    name: Dispose
+    nameWithType: Tile.Dispose
+    fullName: GTiff2Tiles.Core.Tiles.Tile.Dispose
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GTiff2Tiles.Core.Tiles.Tile.DisposeAsync
+  commentId: M:GTiff2Tiles.Core.Tiles.Tile.DisposeAsync
+  parent: GTiff2Tiles.Core.Tiles.Tile
+  name: DisposeAsync()
+  nameWithType: Tile.DisposeAsync()
+  fullName: GTiff2Tiles.Core.Tiles.Tile.DisposeAsync()
+  spec.csharp:
+  - uid: GTiff2Tiles.Core.Tiles.Tile.DisposeAsync
+    name: DisposeAsync
+    nameWithType: Tile.DisposeAsync
+    fullName: GTiff2Tiles.Core.Tiles.Tile.DisposeAsync
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GTiff2Tiles.Core.Tiles.Tile.DisposeAsync
+    name: DisposeAsync
+    nameWithType: Tile.DisposeAsync
+    fullName: GTiff2Tiles.Core.Tiles.Tile.DisposeAsync
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GTiff2Tiles.Core.Tiles.Tile.Validate(System.Boolean)
+  commentId: M:GTiff2Tiles.Core.Tiles.Tile.Validate(System.Boolean)
+  parent: GTiff2Tiles.Core.Tiles.Tile
+  isExternal: true
+  name: Validate(Boolean)
+  nameWithType: Tile.Validate(Boolean)
+  fullName: GTiff2Tiles.Core.Tiles.Tile.Validate(System.Boolean)
+  spec.csharp:
+  - uid: GTiff2Tiles.Core.Tiles.Tile.Validate(System.Boolean)
+    name: Validate
+    nameWithType: Tile.Validate
+    fullName: GTiff2Tiles.Core.Tiles.Tile.Validate
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GTiff2Tiles.Core.Tiles.Tile.Validate(System.Boolean)
+    name: Validate
+    nameWithType: Tile.Validate
+    fullName: GTiff2Tiles.Core.Tiles.Tile.Validate
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GTiff2Tiles.Core.Tiles.Tile.Validate(GTiff2Tiles.Core.Tiles.ITile,System.Boolean)
+  commentId: M:GTiff2Tiles.Core.Tiles.Tile.Validate(GTiff2Tiles.Core.Tiles.ITile,System.Boolean)
+  parent: GTiff2Tiles.Core.Tiles.Tile
+  isExternal: true
+  name: Validate(ITile, Boolean)
+  nameWithType: Tile.Validate(ITile, Boolean)
+  fullName: GTiff2Tiles.Core.Tiles.Tile.Validate(GTiff2Tiles.Core.Tiles.ITile, System.Boolean)
+  spec.csharp:
+  - uid: GTiff2Tiles.Core.Tiles.Tile.Validate(GTiff2Tiles.Core.Tiles.ITile,System.Boolean)
+    name: Validate
+    nameWithType: Tile.Validate
+    fullName: GTiff2Tiles.Core.Tiles.Tile.Validate
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: GTiff2Tiles.Core.Tiles.ITile
+    name: ITile
+    nameWithType: ITile
+    fullName: GTiff2Tiles.Core.Tiles.ITile
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GTiff2Tiles.Core.Tiles.Tile.Validate(GTiff2Tiles.Core.Tiles.ITile,System.Boolean)
+    name: Validate
+    nameWithType: Tile.Validate
+    fullName: GTiff2Tiles.Core.Tiles.Tile.Validate
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: GTiff2Tiles.Core.Tiles.ITile
+    name: ITile
+    nameWithType: ITile
+    fullName: GTiff2Tiles.Core.Tiles.ITile
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GTiff2Tiles.Core.Tiles.Tile.CalculatePosition
+  commentId: M:GTiff2Tiles.Core.Tiles.Tile.CalculatePosition
+  parent: GTiff2Tiles.Core.Tiles.Tile
+  name: CalculatePosition()
+  nameWithType: Tile.CalculatePosition()
+  fullName: GTiff2Tiles.Core.Tiles.Tile.CalculatePosition()
+  spec.csharp:
+  - uid: GTiff2Tiles.Core.Tiles.Tile.CalculatePosition
+    name: CalculatePosition
+    nameWithType: Tile.CalculatePosition
+    fullName: GTiff2Tiles.Core.Tiles.Tile.CalculatePosition
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GTiff2Tiles.Core.Tiles.Tile.CalculatePosition
+    name: CalculatePosition
+    nameWithType: Tile.CalculatePosition
+    fullName: GTiff2Tiles.Core.Tiles.Tile.CalculatePosition
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GTiff2Tiles.Core.Tiles.Tile.CalculatePosition(GTiff2Tiles.Core.Tiles.Number,System.Boolean)
+  commentId: M:GTiff2Tiles.Core.Tiles.Tile.CalculatePosition(GTiff2Tiles.Core.Tiles.Number,System.Boolean)
+  parent: GTiff2Tiles.Core.Tiles.Tile
+  isExternal: true
+  name: CalculatePosition(Number, Boolean)
+  nameWithType: Tile.CalculatePosition(Number, Boolean)
+  fullName: GTiff2Tiles.Core.Tiles.Tile.CalculatePosition(GTiff2Tiles.Core.Tiles.Number, System.Boolean)
+  spec.csharp:
+  - uid: GTiff2Tiles.Core.Tiles.Tile.CalculatePosition(GTiff2Tiles.Core.Tiles.Number,System.Boolean)
+    name: CalculatePosition
+    nameWithType: Tile.CalculatePosition
+    fullName: GTiff2Tiles.Core.Tiles.Tile.CalculatePosition
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: GTiff2Tiles.Core.Tiles.Number
+    name: Number
+    nameWithType: Number
+    fullName: GTiff2Tiles.Core.Tiles.Number
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GTiff2Tiles.Core.Tiles.Tile.CalculatePosition(GTiff2Tiles.Core.Tiles.Number,System.Boolean)
+    name: CalculatePosition
+    nameWithType: Tile.CalculatePosition
+    fullName: GTiff2Tiles.Core.Tiles.Tile.CalculatePosition
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: GTiff2Tiles.Core.Tiles.Number
+    name: Number
+    nameWithType: Number
+    fullName: GTiff2Tiles.Core.Tiles.Number
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GTiff2Tiles.Core.Tiles.Tile.GetExtensionString
+  commentId: M:GTiff2Tiles.Core.Tiles.Tile.GetExtensionString
+  parent: GTiff2Tiles.Core.Tiles.Tile
+  name: GetExtensionString()
+  nameWithType: Tile.GetExtensionString()
+  fullName: GTiff2Tiles.Core.Tiles.Tile.GetExtensionString()
+  spec.csharp:
+  - uid: GTiff2Tiles.Core.Tiles.Tile.GetExtensionString
+    name: GetExtensionString
+    nameWithType: Tile.GetExtensionString
+    fullName: GTiff2Tiles.Core.Tiles.Tile.GetExtensionString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GTiff2Tiles.Core.Tiles.Tile.GetExtensionString
+    name: GetExtensionString
+    nameWithType: Tile.GetExtensionString
+    fullName: GTiff2Tiles.Core.Tiles.Tile.GetExtensionString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GTiff2Tiles.Core.Tiles.Tile.GetExtensionString(GTiff2Tiles.Core.Enums.TileExtension)
+  commentId: M:GTiff2Tiles.Core.Tiles.Tile.GetExtensionString(GTiff2Tiles.Core.Enums.TileExtension)
+  parent: GTiff2Tiles.Core.Tiles.Tile
+  name: GetExtensionString(TileExtension)
+  nameWithType: Tile.GetExtensionString(TileExtension)
+  fullName: GTiff2Tiles.Core.Tiles.Tile.GetExtensionString(GTiff2Tiles.Core.Enums.TileExtension)
+  spec.csharp:
+  - uid: GTiff2Tiles.Core.Tiles.Tile.GetExtensionString(GTiff2Tiles.Core.Enums.TileExtension)
+    name: GetExtensionString
+    nameWithType: Tile.GetExtensionString
+    fullName: GTiff2Tiles.Core.Tiles.Tile.GetExtensionString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: GTiff2Tiles.Core.Enums.TileExtension
+    name: TileExtension
+    nameWithType: TileExtension
+    fullName: GTiff2Tiles.Core.Enums.TileExtension
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GTiff2Tiles.Core.Tiles.Tile.GetExtensionString(GTiff2Tiles.Core.Enums.TileExtension)
+    name: GetExtensionString
+    nameWithType: Tile.GetExtensionString
+    fullName: GTiff2Tiles.Core.Tiles.Tile.GetExtensionString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: GTiff2Tiles.Core.Enums.TileExtension
+    name: TileExtension
+    nameWithType: TileExtension
+    fullName: GTiff2Tiles.Core.Enums.TileExtension
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: GTiff2Tiles.Core.Tiles.RasterTile
+  commentId: T:GTiff2Tiles.Core.Tiles.RasterTile
+  parent: GTiff2Tiles.Core.Tiles
+  name: RasterTile
+  nameWithType: RasterTile
+  fullName: GTiff2Tiles.Core.Tiles.RasterTile
+- uid: GTiff2Tiles.Core.Tiles.RasterTile.BandsCount*
+  commentId: Overload:GTiff2Tiles.Core.Tiles.RasterTile.BandsCount
+  name: BandsCount
+  nameWithType: RasterTile.BandsCount
+  fullName: GTiff2Tiles.Core.Tiles.RasterTile.BandsCount
+- uid: GTiff2Tiles.Core.Tiles.RasterTile.Interpolation*
+  commentId: Overload:GTiff2Tiles.Core.Tiles.RasterTile.Interpolation
+  name: Interpolation
+  nameWithType: RasterTile.Interpolation
+  fullName: GTiff2Tiles.Core.Tiles.RasterTile.Interpolation
+- uid: GTiff2Tiles.Core.Enums.Interpolation
+  commentId: T:GTiff2Tiles.Core.Enums.Interpolation
+  parent: GTiff2Tiles.Core.Enums
+  name: Interpolation
+  nameWithType: Interpolation
+  fullName: GTiff2Tiles.Core.Enums.Interpolation
+- uid: GTiff2Tiles.Core.Enums
+  commentId: N:GTiff2Tiles.Core.Enums
+  name: GTiff2Tiles.Core.Enums
+  nameWithType: GTiff2Tiles.Core.Enums
+  fullName: GTiff2Tiles.Core.Enums
+- uid: GTiff2Tiles.Core.Tiles.RasterTile.BandsCount
+  commentId: P:GTiff2Tiles.Core.Tiles.RasterTile.BandsCount
+  isExternal: true
+- uid: GTiff2Tiles.Core.Tiles.RasterTile.DefaultBandsCount
+  commentId: F:GTiff2Tiles.Core.Tiles.RasterTile.DefaultBandsCount
+  isExternal: true
+- uid: GTiff2Tiles.Core.Tiles.RasterTile.Interpolation
+  commentId: P:GTiff2Tiles.Core.Tiles.RasterTile.Interpolation
+  isExternal: true
+- uid: GTiff2Tiles.Core.Enums.Interpolation.Lanczos3
+  commentId: F:GTiff2Tiles.Core.Enums.Interpolation.Lanczos3
+  isExternal: true
+- uid: System.ArgumentOutOfRangeException
+  commentId: T:System.ArgumentOutOfRangeException
+  isExternal: true
+- uid: GTiff2Tiles.Core.Tiles.Tile.#ctor(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Enums.CoordinateSystem,GTiff2Tiles.Core.Images.Size,System.Collections.Generic.IEnumerable{System.Byte},GTiff2Tiles.Core.Enums.TileExtension,System.Boolean)
+  commentId: M:GTiff2Tiles.Core.Tiles.Tile.#ctor(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Enums.CoordinateSystem,GTiff2Tiles.Core.Images.Size,System.Collections.Generic.IEnumerable{System.Byte},GTiff2Tiles.Core.Enums.TileExtension,System.Boolean)
+  isExternal: true
+- uid: GTiff2Tiles.Core.Tiles.RasterTile.#ctor*
+  commentId: Overload:GTiff2Tiles.Core.Tiles.RasterTile.#ctor
+  name: RasterTile
+  nameWithType: RasterTile.RasterTile
+  fullName: GTiff2Tiles.Core.Tiles.RasterTile.RasterTile
+- uid: GTiff2Tiles.Core.Tiles.Number
+  commentId: T:GTiff2Tiles.Core.Tiles.Number
+  parent: GTiff2Tiles.Core.Tiles
+  name: Number
+  nameWithType: Number
+  fullName: GTiff2Tiles.Core.Tiles.Number
+- uid: GTiff2Tiles.Core.Enums.CoordinateSystem
+  commentId: T:GTiff2Tiles.Core.Enums.CoordinateSystem
+  parent: GTiff2Tiles.Core.Enums
+  name: CoordinateSystem
+  nameWithType: CoordinateSystem
+  fullName: GTiff2Tiles.Core.Enums.CoordinateSystem
+- uid: GTiff2Tiles.Core.Images.Size
+  commentId: T:GTiff2Tiles.Core.Images.Size
+  parent: GTiff2Tiles.Core.Images
+  name: Size
+  nameWithType: Size
+  fullName: GTiff2Tiles.Core.Images.Size
+- uid: System.Collections.Generic.IEnumerable{System.Byte}
+  commentId: T:System.Collections.Generic.IEnumerable{System.Byte}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  name: IEnumerable<Byte>
+  nameWithType: IEnumerable<Byte>
+  fullName: System.Collections.Generic.IEnumerable<System.Byte>
+  nameWithType.vb: IEnumerable(Of Byte)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of System.Byte)
+  name.vb: IEnumerable(Of Byte)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Byte
+    name: Byte
+    nameWithType: Byte
+    fullName: System.Byte
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Byte
+    name: Byte
+    nameWithType: Byte
+    fullName: System.Byte
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GTiff2Tiles.Core.Enums.TileExtension
+  commentId: T:GTiff2Tiles.Core.Enums.TileExtension
+  parent: GTiff2Tiles.Core.Enums
+  name: TileExtension
+  nameWithType: TileExtension
+  fullName: GTiff2Tiles.Core.Enums.TileExtension
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: GTiff2Tiles.Core.Images
+  commentId: N:GTiff2Tiles.Core.Images
+  name: GTiff2Tiles.Core.Images
+  nameWithType: GTiff2Tiles.Core.Images
+  fullName: GTiff2Tiles.Core.Images
+- uid: System.Collections.Generic.IEnumerable`1
+  commentId: T:System.Collections.Generic.IEnumerable`1
+  isExternal: true
+  name: IEnumerable<T>
+  nameWithType: IEnumerable<T>
+  fullName: System.Collections.Generic.IEnumerable<T>
+  nameWithType.vb: IEnumerable(Of T)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
+  name.vb: IEnumerable(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+- uid: GTiff2Tiles.Core.Tiles.Tile.#ctor(GTiff2Tiles.Core.Coordinates.GeoCoordinate,GTiff2Tiles.Core.Coordinates.GeoCoordinate,System.Int32,GTiff2Tiles.Core.Images.Size,System.Collections.Generic.IEnumerable{System.Byte},GTiff2Tiles.Core.Enums.TileExtension,System.Boolean)
+  commentId: M:GTiff2Tiles.Core.Tiles.Tile.#ctor(GTiff2Tiles.Core.Coordinates.GeoCoordinate,GTiff2Tiles.Core.Coordinates.GeoCoordinate,System.Int32,GTiff2Tiles.Core.Images.Size,System.Collections.Generic.IEnumerable{System.Byte},GTiff2Tiles.Core.Enums.TileExtension,System.Boolean)
+  isExternal: true
+- uid: GTiff2Tiles.Core.Coordinates.GeoCoordinate
+  commentId: T:GTiff2Tiles.Core.Coordinates.GeoCoordinate
+  parent: GTiff2Tiles.Core.Coordinates
+  name: GeoCoordinate
+  nameWithType: GeoCoordinate
+  fullName: GTiff2Tiles.Core.Coordinates.GeoCoordinate
+- uid: GTiff2Tiles.Core.Coordinates
+  commentId: N:GTiff2Tiles.Core.Coordinates
+  name: GTiff2Tiles.Core.Coordinates
+  nameWithType: GTiff2Tiles.Core.Coordinates
+  fullName: GTiff2Tiles.Core.Coordinates

@@ -1,0 +1,258 @@
+### YamlMime:ManagedReference
+items:
+- uid: GTiff2Tiles.Core.Enums.Interpolation
+  commentId: T:GTiff2Tiles.Core.Enums.Interpolation
+  id: Interpolation
+  parent: GTiff2Tiles.Core.Enums
+  children:
+  - GTiff2Tiles.Core.Enums.Interpolation.Cubic
+  - GTiff2Tiles.Core.Enums.Interpolation.Lanczos2
+  - GTiff2Tiles.Core.Enums.Interpolation.Lanczos3
+  - GTiff2Tiles.Core.Enums.Interpolation.Linear
+  - GTiff2Tiles.Core.Enums.Interpolation.Mitchell
+  - GTiff2Tiles.Core.Enums.Interpolation.Nearest
+  langs:
+  - csharp
+  - vb
+  name: Interpolation
+  nameWithType: Interpolation
+  fullName: GTiff2Tiles.Core.Enums.Interpolation
+  type: Enum
+  source:
+    remote:
+      path: GTiff2Tiles.Core/Enums/Interpolation.cs
+      branch: master
+      repo: https://github.com/Gigas002/GTiff2Tiles.git
+    id: Interpolation
+    path: GTiff2Tiles.Core/Enums/Interpolation.cs
+    startLine: 7
+  assemblies:
+  - GTiff2Tiles.Core
+  namespace: GTiff2Tiles.Core.Enums
+  summary: "\nRepresents the interpolation algorithms\n"
+  example: []
+  syntax:
+    content: public enum Interpolation
+    content.vb: Public Enum Interpolation
+  modifiers.csharp:
+  - public
+  - enum
+  modifiers.vb:
+  - Public
+  - Enum
+- uid: GTiff2Tiles.Core.Enums.Interpolation.Nearest
+  commentId: F:GTiff2Tiles.Core.Enums.Interpolation.Nearest
+  id: Nearest
+  parent: GTiff2Tiles.Core.Enums.Interpolation
+  langs:
+  - csharp
+  - vb
+  name: Nearest
+  nameWithType: Interpolation.Nearest
+  fullName: GTiff2Tiles.Core.Enums.Interpolation.Nearest
+  type: Field
+  source:
+    remote:
+      path: GTiff2Tiles.Core/Enums/Interpolation.cs
+      branch: master
+      repo: https://github.com/Gigas002/GTiff2Tiles.git
+    id: Nearest
+    path: GTiff2Tiles.Core/Enums/Interpolation.cs
+    startLine: 12
+  assemblies:
+  - GTiff2Tiles.Core
+  namespace: GTiff2Tiles.Core.Enums
+  summary: "\nNearest-neighbour interpolation\n"
+  example: []
+  syntax:
+    content: Nearest = 0
+    return:
+      type: GTiff2Tiles.Core.Enums.Interpolation
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: GTiff2Tiles.Core.Enums.Interpolation.Linear
+  commentId: F:GTiff2Tiles.Core.Enums.Interpolation.Linear
+  id: Linear
+  parent: GTiff2Tiles.Core.Enums.Interpolation
+  langs:
+  - csharp
+  - vb
+  name: Linear
+  nameWithType: Interpolation.Linear
+  fullName: GTiff2Tiles.Core.Enums.Interpolation.Linear
+  type: Field
+  source:
+    remote:
+      path: GTiff2Tiles.Core/Enums/Interpolation.cs
+      branch: master
+      repo: https://github.com/Gigas002/GTiff2Tiles.git
+    id: Linear
+    path: GTiff2Tiles.Core/Enums/Interpolation.cs
+    startLine: 17
+  assemblies:
+  - GTiff2Tiles.Core
+  namespace: GTiff2Tiles.Core.Enums
+  summary: "\nLinear interpolation\n"
+  example: []
+  syntax:
+    content: Linear = 1
+    return:
+      type: GTiff2Tiles.Core.Enums.Interpolation
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: GTiff2Tiles.Core.Enums.Interpolation.Cubic
+  commentId: F:GTiff2Tiles.Core.Enums.Interpolation.Cubic
+  id: Cubic
+  parent: GTiff2Tiles.Core.Enums.Interpolation
+  langs:
+  - csharp
+  - vb
+  name: Cubic
+  nameWithType: Interpolation.Cubic
+  fullName: GTiff2Tiles.Core.Enums.Interpolation.Cubic
+  type: Field
+  source:
+    remote:
+      path: GTiff2Tiles.Core/Enums/Interpolation.cs
+      branch: master
+      repo: https://github.com/Gigas002/GTiff2Tiles.git
+    id: Cubic
+    path: GTiff2Tiles.Core/Enums/Interpolation.cs
+    startLine: 22
+  assemblies:
+  - GTiff2Tiles.Core
+  namespace: GTiff2Tiles.Core.Enums
+  summary: "\nCubic interpolation\n"
+  example: []
+  syntax:
+    content: Cubic = 2
+    return:
+      type: GTiff2Tiles.Core.Enums.Interpolation
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: GTiff2Tiles.Core.Enums.Interpolation.Mitchell
+  commentId: F:GTiff2Tiles.Core.Enums.Interpolation.Mitchell
+  id: Mitchell
+  parent: GTiff2Tiles.Core.Enums.Interpolation
+  langs:
+  - csharp
+  - vb
+  name: Mitchell
+  nameWithType: Interpolation.Mitchell
+  fullName: GTiff2Tiles.Core.Enums.Interpolation.Mitchell
+  type: Field
+  source:
+    remote:
+      path: GTiff2Tiles.Core/Enums/Interpolation.cs
+      branch: master
+      repo: https://github.com/Gigas002/GTiff2Tiles.git
+    id: Mitchell
+    path: GTiff2Tiles.Core/Enums/Interpolation.cs
+    startLine: 27
+  assemblies:
+  - GTiff2Tiles.Core
+  namespace: GTiff2Tiles.Core.Enums
+  summary: "\nMitchell\n"
+  example: []
+  syntax:
+    content: Mitchell = 3
+    return:
+      type: GTiff2Tiles.Core.Enums.Interpolation
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: GTiff2Tiles.Core.Enums.Interpolation.Lanczos2
+  commentId: F:GTiff2Tiles.Core.Enums.Interpolation.Lanczos2
+  id: Lanczos2
+  parent: GTiff2Tiles.Core.Enums.Interpolation
+  langs:
+  - csharp
+  - vb
+  name: Lanczos2
+  nameWithType: Interpolation.Lanczos2
+  fullName: GTiff2Tiles.Core.Enums.Interpolation.Lanczos2
+  type: Field
+  source:
+    remote:
+      path: GTiff2Tiles.Core/Enums/Interpolation.cs
+      branch: master
+      repo: https://github.com/Gigas002/GTiff2Tiles.git
+    id: Lanczos2
+    path: GTiff2Tiles.Core/Enums/Interpolation.cs
+    startLine: 32
+  assemblies:
+  - GTiff2Tiles.Core
+  namespace: GTiff2Tiles.Core.Enums
+  summary: "\nTwo-lobe Lanczos\n"
+  example: []
+  syntax:
+    content: Lanczos2 = 4
+    return:
+      type: GTiff2Tiles.Core.Enums.Interpolation
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: GTiff2Tiles.Core.Enums.Interpolation.Lanczos3
+  commentId: F:GTiff2Tiles.Core.Enums.Interpolation.Lanczos3
+  id: Lanczos3
+  parent: GTiff2Tiles.Core.Enums.Interpolation
+  langs:
+  - csharp
+  - vb
+  name: Lanczos3
+  nameWithType: Interpolation.Lanczos3
+  fullName: GTiff2Tiles.Core.Enums.Interpolation.Lanczos3
+  type: Field
+  source:
+    remote:
+      path: GTiff2Tiles.Core/Enums/Interpolation.cs
+      branch: master
+      repo: https://github.com/Gigas002/GTiff2Tiles.git
+    id: Lanczos3
+    path: GTiff2Tiles.Core/Enums/Interpolation.cs
+    startLine: 37
+  assemblies:
+  - GTiff2Tiles.Core
+  namespace: GTiff2Tiles.Core.Enums
+  summary: "\nThree-lobe Lanczos\n"
+  example: []
+  syntax:
+    content: Lanczos3 = 5
+    return:
+      type: GTiff2Tiles.Core.Enums.Interpolation
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+references:
+- uid: GTiff2Tiles.Core.Enums
+  commentId: N:GTiff2Tiles.Core.Enums
+  name: GTiff2Tiles.Core.Enums
+  nameWithType: GTiff2Tiles.Core.Enums
+  fullName: GTiff2Tiles.Core.Enums
+- uid: GTiff2Tiles.Core.Enums.Interpolation
+  commentId: T:GTiff2Tiles.Core.Enums.Interpolation
+  parent: GTiff2Tiles.Core.Enums
+  name: Interpolation
+  nameWithType: Interpolation
+  fullName: GTiff2Tiles.Core.Enums.Interpolation
