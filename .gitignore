@@ -357,3 +357,4 @@ MigrationBackup/
 *.config
 /Examples/Output
 /Docs/api
+/Docs/_pdf/GTiff2Tiles.json
