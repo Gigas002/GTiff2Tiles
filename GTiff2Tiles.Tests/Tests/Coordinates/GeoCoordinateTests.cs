@@ -2,6 +2,7 @@
 using GTiff2Tiles.Core.Coordinates;
 using GTiff2Tiles.Core.Enums;
 using GTiff2Tiles.Core.Tiles;
+using GTiff2Tiles.Tests.Constants;
 using NUnit.Framework;
 
 // ReSharper disable UnusedVariable
@@ -11,6 +12,16 @@ namespace GTiff2Tiles.Tests.Tests.Coordinates
     [TestFixture]
     public sealed class GeoCoordinateTests
     {
+        #region Consts
+
+        private const CoordinateSystem Cs4326 = CoordinateSystem.Epsg4326;
+
+        private const CoordinateSystem Cs3857 = CoordinateSystem.Epsg3857;
+
+        private const CoordinateSystem CsOther = CoordinateSystem.Other;
+
+        #endregion
+
         // Only static things tests here. Everything else is tested on derived classes
 
         #region ToNumber
@@ -18,7 +29,8 @@ namespace GTiff2Tiles.Tests.Tests.Coordinates
         [Test]
         public void ToNumberNormal()
         {
-            GeoCoordinate coord = new GeodeticCoordinate(0.0, 0.0);
+            GeoCoordinate coord = new GeodeticCoordinate(Locations.TokyoGeodeticLongitude,
+                                                         Locations.TokyoGeodeticLatitude);
 
             Assert.DoesNotThrow(() =>
             {
@@ -29,7 +41,8 @@ namespace GTiff2Tiles.Tests.Tests.Coordinates
         [Test]
         public void ToNumberSmallZ()
         {
-            GeoCoordinate coord = new GeodeticCoordinate(0.0, 0.0);
+            GeoCoordinate coord = new GeodeticCoordinate(Locations.TokyoGeodeticLongitude,
+                                                         Locations.TokyoGeodeticLatitude);
 
             Assert.Throws<ArgumentOutOfRangeException>(() =>
             {
@@ -42,29 +55,13 @@ namespace GTiff2Tiles.Tests.Tests.Coordinates
         #region GetNumbers
 
         [Test]
-        public void GetNumbersNormal()
-        {
-            GeodeticCoordinate minCoord = new GeodeticCoordinate(0.0, 0.0);
-            GeodeticCoordinate maxCoord = new GeodeticCoordinate(0.0, 0.0);
-
-            Assert.DoesNotThrow(() => GeoCoordinate.GetNumbers(minCoord, maxCoord, 10, Tile.DefaultSize, false));
-        }
+        public void GetNumbersNormal() => Assert.DoesNotThrow(() => GeoCoordinate.GetNumbers(Locations.TokyoGeodeticMin, Locations.TokyoGeodeticMax, 10, Tile.DefaultSize, false));
 
         [Test]
-        public void GetNumbersNullMinCoordinate()
-        {
-            GeodeticCoordinate maxCoord = new GeodeticCoordinate(0.0, 0.0);
-
-            Assert.Throws<ArgumentNullException>(() => GeoCoordinate.GetNumbers(null, maxCoord, 10, Tile.DefaultSize, false));
-        }
+        public void GetNumbersNullMinCoordinate() => Assert.Throws<ArgumentNullException>(() => GeoCoordinate.GetNumbers(null, Locations.TokyoGeodeticMax, 10, Tile.DefaultSize, false));
 
         [Test]
-        public void GetNumbersNullMaxCoordinate()
-        {
-            GeodeticCoordinate minCoord = new GeodeticCoordinate(0.0, 0.0);
-
-            Assert.Throws<ArgumentNullException>(() => GeoCoordinate.GetNumbers(minCoord, null, 10, Tile.DefaultSize, false));
-        }
+        public void GetNumbersNullMaxCoordinate() => Assert.Throws<ArgumentNullException>(() => GeoCoordinate.GetNumbers(Locations.TokyoGeodeticMin, null, 10, Tile.DefaultSize, false));
 
         #endregion
 
@@ -73,9 +70,9 @@ namespace GTiff2Tiles.Tests.Tests.Coordinates
         [Test]
         public void ResolutionTests()
         {
-            Assert.DoesNotThrow(() => GeoCoordinate.Resolution(10, Tile.DefaultSize, CoordinateSystem.Epsg4326));
-            Assert.DoesNotThrow(() => GeoCoordinate.Resolution(10, Tile.DefaultSize, CoordinateSystem.Epsg3857));
-            Assert.Throws<NotSupportedException>(() => GeoCoordinate.Resolution(10, Tile.DefaultSize, CoordinateSystem.Other));
+            Assert.DoesNotThrow(() => GeoCoordinate.Resolution(10, Tile.DefaultSize, Cs4326));
+            Assert.DoesNotThrow(() => GeoCoordinate.Resolution(10, Tile.DefaultSize, Cs3857));
+            Assert.Throws<NotSupportedException>(() => GeoCoordinate.Resolution(10, Tile.DefaultSize, CsOther));
         }
 
         #endregion
@@ -83,39 +80,19 @@ namespace GTiff2Tiles.Tests.Tests.Coordinates
         #region ZoomForPixelSize
 
         [Test]
-        public void ZoomForPixelSizeNormal()
+        public void ZoomForPixelSizeNormal() => Assert.DoesNotThrow(() =>
         {
-            const CoordinateSystem cs = CoordinateSystem.Epsg4326;
-
-            Assert.DoesNotThrow(() =>
-            {
-                int z = GeoCoordinate.ZoomForPixelSize(1, Tile.DefaultSize, cs, 0, 10);
-            });
-        }
+            int z = GeoCoordinate.ZoomForPixelSize(1, Tile.DefaultSize, Cs4326, 0, 10);
+        });
 
         [Test]
-        public void ZoomForPixelSizeBadPixelSize()
-        {
-            const CoordinateSystem cs = CoordinateSystem.Epsg4326;
-
-            Assert.Throws<ArgumentOutOfRangeException>(() => GeoCoordinate.ZoomForPixelSize(0, Tile.DefaultSize, cs, 0, 10));
-        }
+        public void ZoomForPixelSizeBadPixelSize() => Assert.Throws<ArgumentOutOfRangeException>(() => GeoCoordinate.ZoomForPixelSize(0, Tile.DefaultSize, Cs4326, 0, 10));
 
         [Test]
-        public void ZoomForPixelSizeBadMinZ()
-        {
-            const CoordinateSystem cs = CoordinateSystem.Epsg4326;
-
-            Assert.Throws<ArgumentOutOfRangeException>(() => GeoCoordinate.ZoomForPixelSize(1, Tile.DefaultSize, cs, -1, 10));
-        }
+        public void ZoomForPixelSizeBadMinZ() => Assert.Throws<ArgumentOutOfRangeException>(() => GeoCoordinate.ZoomForPixelSize(1, Tile.DefaultSize, Cs4326, -1, 10));
 
         [Test]
-        public void ZoomForPixelSizeBadMaxZ()
-        {
-            const CoordinateSystem cs = CoordinateSystem.Epsg4326;
-
-            Assert.Throws<ArgumentOutOfRangeException>(() => GeoCoordinate.ZoomForPixelSize(1, Tile.DefaultSize, cs, 10, 0));
-        }
+        public void ZoomForPixelSizeBadMaxZ() => Assert.Throws<ArgumentOutOfRangeException>(() => GeoCoordinate.ZoomForPixelSize(1, Tile.DefaultSize, Cs4326, 10, 0));
 
         #endregion
     }
