@@ -356,5 +356,5 @@ MigrationBackup/
 /Secrets.txt
 *.config
 /Examples/Output
-/Docs/api
-/Docs/_pdf/GTiff2Tiles.json
+/_docs/api
+/docs/pdf/GTiff2Tiles.json
