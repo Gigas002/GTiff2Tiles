@@ -90,10 +90,11 @@ namespace GTiff2Tiles.Tests.Tests.Coordinates
             Coordinate geodeticCoordinate = null;
             Coordinate mercatorCoordinate = null;
 
-            Assert.DoesNotThrow(() => geodeticCoordinate = (Coordinate)Locations.TokyoGeodeticPixelCoordinate
-                                         .ToGeoCoordinate(Cs4326, Cs4326, 10, Tile.DefaultSize).Round(6));
-            Assert.DoesNotThrow(() => mercatorCoordinate = (Coordinate)Locations.TokyoGeodeticPixelCoordinate
-                                         .ToGeoCoordinate(Cs4326, Cs3857, 10, Tile.DefaultSize).Round(2));
+            Assert.DoesNotThrow(() => geodeticCoordinate = Locations.TokyoGeodeticPixelCoordinate
+                   .ToGeoCoordinate(Cs4326, Cs4326, 10, Tile.DefaultSize).Round<GeodeticCoordinate>(6));
+            Assert.DoesNotThrow(() => mercatorCoordinate = Locations.TokyoGeodeticPixelCoordinate
+                   .ToGeoCoordinate(Cs4326, Cs3857, 10, Tile.DefaultSize).Round<MercatorCoordinate>(2));
+
 
             Assert.True(geodeticCoordinate == Locations.TokyoGeodeticCoordinate);
             Assert.True(mercatorCoordinate == Locations.TokyoMercatorCoordinate);
@@ -108,10 +109,10 @@ namespace GTiff2Tiles.Tests.Tests.Coordinates
             Coordinate geodeticCoordinate = null;
             Coordinate mercatorCoordinate = null;
 
-            Assert.DoesNotThrow(() => geodeticCoordinate = (Coordinate)Locations.TokyoMercatorPixelCoordinate
-                                         .ToGeoCoordinate(Cs3857, Cs4326, 10, Tile.DefaultSize).Round(6));
-            Assert.DoesNotThrow(() => mercatorCoordinate = (Coordinate)Locations.TokyoMercatorPixelCoordinate
-                                         .ToGeoCoordinate(Cs3857, Cs3857, 10, Tile.DefaultSize).Round(2));
+            Assert.DoesNotThrow(() => geodeticCoordinate = Coordinate.Round((GeodeticCoordinate)Locations.TokyoMercatorPixelCoordinate
+                                         .ToGeoCoordinate(Cs3857, Cs4326, 10, Tile.DefaultSize), 6));
+            Assert.DoesNotThrow(() => mercatorCoordinate = Coordinate.Round((MercatorCoordinate)Locations.TokyoMercatorPixelCoordinate
+                                         .ToGeoCoordinate(Cs3857, Cs3857, 10, Tile.DefaultSize), 2));
 
             Assert.True(geodeticCoordinate == Locations.TokyoGeodeticCoordinate);
             Assert.True(mercatorCoordinate == Locations.TokyoMercatorCoordinate);
@@ -129,8 +130,8 @@ namespace GTiff2Tiles.Tests.Tests.Coordinates
         {
             Coordinate res = null;
 
-            Assert.DoesNotThrow(() => res = (Coordinate)Locations.TokyoGeodeticPixelCoordinate
-                                                                 .ToGeodeticCoordinate(Cs4326, 10, Tile.DefaultSize).Round(6));
+            Assert.DoesNotThrow(() => res = Coordinate.Round(Locations.TokyoGeodeticPixelCoordinate
+                    .ToGeodeticCoordinate(Cs4326, 10, Tile.DefaultSize), 6));
             Assert.True(res == Locations.TokyoGeodeticCoordinate);
         }
 
@@ -151,8 +152,8 @@ namespace GTiff2Tiles.Tests.Tests.Coordinates
         {
             Coordinate res = null;
 
-            Assert.DoesNotThrow(() => res = (Coordinate)Locations.TokyoMercatorPixelCoordinate
-                                                                 .ToMercatorCoordinate(Cs3857, 10, Tile.DefaultSize).Round(2));
+            Assert.DoesNotThrow(() => res = Coordinate.Round(Locations.TokyoMercatorPixelCoordinate
+                  .ToMercatorCoordinate(Cs3857, 10, Tile.DefaultSize), 2));
             Assert.True(res == Locations.TokyoMercatorCoordinate);
         }
 

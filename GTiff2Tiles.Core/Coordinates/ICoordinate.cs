@@ -37,15 +37,14 @@ namespace GTiff2Tiles.Core.Coordinates
         /// <returns><see cref="Number"/> in which this <see cref="ICoordinate"/> belongs</returns>
         public Number ToNumber(int z, Size tileSize, bool tmsCompatible);
 
-        // TODO: remove from interface?
-
         /// <summary>
         /// Round coordinate's <see cref="X"/> and <see cref="Y"/>
         /// </summary>
+        /// <typeparam name="T">Child of <see cref="ICoordinate"/></typeparam>
         /// <param name="digits">Number of digits after zero in return falue
         /// <remarks><para/>Must be bigger or equal, than 0</remarks></param>
-        /// <returns>New <see cref="ICoordinate"/></returns>
-        public ICoordinate Round(int digits);
+        /// <returns>Rounded coordinate</returns>
+        public T Round<T>(int digits) where T : ICoordinate;
 
         #endregion
     }

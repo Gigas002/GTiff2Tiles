@@ -53,23 +53,32 @@ namespace GTiff2Tiles.Core.Coordinates
         public static double RadiansToDegrees(double radians) => radians * 180.0 / Math.PI;
 
         /// <inheritdoc/>
-        public ICoordinate Round(int digits) => Round(this, digits);
-
-        /// <inheritdoc cref="Round(int)"/>
-        /// <param name="coordinate"><see cref="ICoordinate"/> to round</param>
-        /// <param name="digits"></param>
-        /// <exception cref="ArgumentNullException"/>
-        /// <exception cref="ArgumentOutOfRangeException"/>
-        public static ICoordinate Round(ICoordinate coordinate, int digits)
+        public T Round<T>(int digits) where T : ICoordinate
         {
             #region Preconditions checks
 
-            if (coordinate == null) throw new ArgumentNullException(nameof(coordinate));
             if (digits < 0) throw new ArgumentOutOfRangeException(nameof(digits));
 
             #endregion
 
-            return new Coordinate(Math.Round(coordinate.X, digits), Math.Round(coordinate.Y, digits));
+            return (T)Activator.CreateInstance(typeof(T), Math.Round(X, digits),
+                                               Math.Round(Y, digits));
+        }
+
+        /// <inheritdoc cref="Round{T}(int)"/>
+        /// <param name="coordinate"><see cref="ICoordinate"/> to round</param>
+        /// <param name="digits"></param>
+        /// <exception cref="ArgumentNullException"/>
+        /// <exception cref="ArgumentOutOfRangeException"/>
+        public static T Round<T>(T coordinate, int digits) where T : ICoordinate
+        {
+            #region Preconditions checks
+
+            if (coordinate is null) throw new ArgumentNullException(nameof(coordinate));
+
+            #endregion
+
+            return coordinate.Round<T>(digits);
         }
 
         #region Bool compare overrides

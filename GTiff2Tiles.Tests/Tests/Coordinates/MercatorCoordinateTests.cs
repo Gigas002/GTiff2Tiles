@@ -83,8 +83,8 @@ namespace GTiff2Tiles.Tests.Tests.Coordinates
         {
             Coordinate gCoord = null;
 
-            Assert.DoesNotThrow(() => gCoord = (Coordinate)Locations.TokyoMercatorCoordinate
-                                                                    .ToGeodeticCoordinate().Round(6));
+            Assert.DoesNotThrow(() => gCoord = Coordinate.Round(Locations.TokyoMercatorCoordinate
+                                                                    .ToGeodeticCoordinate(), 6));
             Assert.True(gCoord == Locations.TokyoGeodeticCoordinate);
         }
 

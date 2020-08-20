@@ -103,14 +103,14 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
         [Test]
         public void ToGeodeticCoordinatesNormal()
         {
-            Coordinate minCoordinate = null;
-            Coordinate maxCoordinate = null;
+            GeodeticCoordinate minCoordinate = null;
+            GeodeticCoordinate maxCoordinate = null;
 
             Assert.DoesNotThrow(() => (minCoordinate, maxCoordinate) = Locations.TokyoGeodeticNtmsNumber
                                          .ToGeodeticCoordinates(Tile.DefaultSize, false));
 
-            Coordinate min = (Coordinate)minCoordinate.Round(6);
-            Coordinate max = (Coordinate)maxCoordinate.Round(6);
+            GeodeticCoordinate min = Coordinate.Round(minCoordinate, 6);
+            GeodeticCoordinate max = Coordinate.Round(maxCoordinate, 6);
 
             Assert.True(min == Locations.TokyoGeodeticMin && max == Locations.TokyoGeodeticMax);
         }
@@ -130,14 +130,14 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
         [Test]
         public void ToMercatorCoordinatesNormal()
         {
-            Coordinate minCoordinate = null;
-            Coordinate maxCoordinate = null;
+            MercatorCoordinate minCoordinate = null;
+            MercatorCoordinate maxCoordinate = null;
 
             Assert.DoesNotThrow(() => (minCoordinate, maxCoordinate) = Locations.TokyoMercatorNtmsNumber
                                          .ToMercatorCoordinates(Tile.DefaultSize, false));
 
-            Coordinate min = (Coordinate)minCoordinate.Round(2);
-            Coordinate max = (Coordinate)maxCoordinate.Round(2);
+            MercatorCoordinate min = Coordinate.Round(minCoordinate, 2);
+            MercatorCoordinate max = Coordinate.Round(maxCoordinate, 2);
 
             Assert.True(min == Locations.TokyoMercatorMin && max == Locations.TokyoMercatorMax);
         }
@@ -157,14 +157,14 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
         [Test]
         public void ToGeoCoordinatesGeodetic()
         {
-            Coordinate minCoordinate = null;
-            Coordinate maxCoordinate = null;
+            GeoCoordinate minCoordinate = null;
+            GeoCoordinate maxCoordinate = null;
 
             Assert.DoesNotThrow(() => (minCoordinate, maxCoordinate) = Locations.TokyoGeodeticNtmsNumber
                                          .ToGeoCoordinates(Cs4326, Tile.DefaultSize, false));
 
-            Coordinate min = (Coordinate)minCoordinate.Round(6);
-            Coordinate max = (Coordinate)maxCoordinate.Round(6);
+            GeodeticCoordinate min = Coordinate.Round((GeodeticCoordinate)minCoordinate, 6);
+            GeodeticCoordinate max = Coordinate.Round((GeodeticCoordinate)maxCoordinate, 6);
 
             Assert.True(min == Locations.TokyoGeodeticMin && max == Locations.TokyoGeodeticMax);
         }
@@ -172,14 +172,14 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
         [Test]
         public void ToGeoCoordinatesMercator()
         {
-            Coordinate minCoordinate = null;
-            Coordinate maxCoordinate = null;
+            GeoCoordinate minCoordinate = null;
+            GeoCoordinate maxCoordinate = null;
 
             Assert.DoesNotThrow(() => (minCoordinate, maxCoordinate) = Locations.TokyoMercatorNtmsNumber
                                          .ToGeoCoordinates(Cs3857, Tile.DefaultSize, false));
 
-            Coordinate min = (Coordinate)minCoordinate.Round(2);
-            Coordinate max = (Coordinate)maxCoordinate.Round(2);
+            MercatorCoordinate min = Coordinate.Round((MercatorCoordinate)minCoordinate, 2);
+            MercatorCoordinate max = Coordinate.Round((MercatorCoordinate)maxCoordinate, 2);
 
             Assert.True(min == Locations.TokyoMercatorMin && max == Locations.TokyoMercatorMax);
         }
