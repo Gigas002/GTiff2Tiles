@@ -13,32 +13,48 @@ namespace GTiff2Tiles.Tests.Tests.Coordinates
     [TestFixture]
     public sealed class PixelCoordinateTests
     {
+        #region Consts
+
         private const double GeodeticPixelLongitude = 465800.00067128887;
 
         private const double GeodeticPixelLatitude = 182995.19995448887;
 
-        private const double MercatorPixelLongitude = 232899.99305018864;
+        private const double MercatorPixelLongitude = 232900.00031106747;
 
         private const double MercatorPixelLatitude = 158891.99925568007;
+
+        private readonly Number _tokyoGeodeticNumber = new Number(1819, 309, 10);
+
+        private readonly MercatorCoordinate _tokyoGeodeticCoordinate = new MercatorCoordinate(139.839478, 35.652832);
+
+        private readonly MercatorCoordinate _tokyoMercatorCoordinate = new MercatorCoordinate(15566859.48, 4252956.14);
+
+        private const CoordinateSystem Cs4326 = CoordinateSystem.Epsg4326;
+
+        private const CoordinateSystem Cs3857 = CoordinateSystem.Epsg3857;
+
+        private const CoordinateSystem CsOther = CoordinateSystem.Other;
+
+        #endregion
 
         #region Constructors
 
         [Test]
         public void CreatePixelCoordinateNormal() => Assert.DoesNotThrow(() =>
         {
-            PixelCoordinate coord = new PixelCoordinate(0.0, 0.0);
+            PixelCoordinate coord = new PixelCoordinate(MercatorPixelLongitude, MercatorPixelLatitude);
         });
 
         [Test]
         public void CreatePixelCoordinateSmallLon() => Assert.Throws<ArgumentOutOfRangeException>(() =>
         {
-            PixelCoordinate coord = new PixelCoordinate(-1.0, 0.0);
+            PixelCoordinate coord = new PixelCoordinate(-1.0, MercatorPixelLatitude);
         });
 
         [Test]
         public void CreatePixelCoordinateSmallLat() => Assert.Throws<ArgumentOutOfRangeException>(() =>
         {
-            PixelCoordinate coord = new PixelCoordinate(0.0, -1.0);
+            PixelCoordinate coord = new PixelCoordinate(MercatorPixelLongitude, -1.0);
         });
 
         #endregion
@@ -51,18 +67,16 @@ namespace GTiff2Tiles.Tests.Tests.Coordinates
         public void ToNumberNormal()
         {
             PixelCoordinate coord = new PixelCoordinate(GeodeticPixelLongitude, GeodeticPixelLatitude);
-
-            Number expected = new Number(1819, 309, 10);
             Number res = null;
 
             Assert.DoesNotThrow(() => res = coord.ToNumber(10, Tile.DefaultSize, false));
-            Assert.True(res == expected);
+            Assert.True(res == _tokyoGeodeticNumber);
         }
 
         [Test]
         public void ToNumberSmallZ()
         {
-            PixelCoordinate coord = new PixelCoordinate(0.0, 0.0);
+            PixelCoordinate coord = new PixelCoordinate(GeodeticPixelLongitude, GeodeticPixelLatitude);
 
             Assert.Throws<ArgumentOutOfRangeException>(() => coord.ToNumber(-1, Tile.DefaultSize, false));
         }
@@ -70,7 +84,7 @@ namespace GTiff2Tiles.Tests.Tests.Coordinates
         [Test]
         public void ToNumberNullTileSize()
         {
-            PixelCoordinate coord = new PixelCoordinate(0.0, 0.0);
+            PixelCoordinate coord = new PixelCoordinate(GeodeticPixelLongitude, GeodeticPixelLatitude);
 
             Assert.Throws<ArgumentNullException>(() => coord.ToNumber(10, null, false));
         }
@@ -78,7 +92,7 @@ namespace GTiff2Tiles.Tests.Tests.Coordinates
         [Test]
         public void ToNumberNotSqureTileSize()
         {
-            PixelCoordinate coord = new PixelCoordinate(0.0, 0.0);
+            PixelCoordinate coord = new PixelCoordinate(GeodeticPixelLongitude, GeodeticPixelLatitude);
             Size size = new Size(10, 20);
 
             Assert.Throws<ArgumentException>(() => coord.ToNumber(10, size, false));
@@ -92,46 +106,36 @@ namespace GTiff2Tiles.Tests.Tests.Coordinates
         public void ToGeoCoordinateFromGeodeticPixels()
         {
             PixelCoordinate coord = new PixelCoordinate(GeodeticPixelLongitude, GeodeticPixelLatitude);
-
-            GeodeticCoordinate realGCoordinate = new GeodeticCoordinate(139.839478, 35.652832);
-            MercatorCoordinate realMCoordinate = new MercatorCoordinate(15566859.48, 4252956.14);
-
             Coordinate geodeticCoordinate = null;
             Coordinate mercatorCoordinate = null;
 
-            Assert.DoesNotThrow(() => geodeticCoordinate = (Coordinate)coord.ToGeoCoordinate(CoordinateSystem.Epsg4326,
-                                                                  CoordinateSystem.Epsg4326, 10, Tile.DefaultSize).Round(6));
-            Assert.DoesNotThrow(() => mercatorCoordinate = (Coordinate)coord.ToGeoCoordinate(CoordinateSystem.Epsg4326,
-                                                                  CoordinateSystem.Epsg3857, 10, Tile.DefaultSize).Round(2));
+            Assert.DoesNotThrow(() => geodeticCoordinate = (Coordinate)coord.ToGeoCoordinate(Cs4326,
+                                                                  Cs4326, 10, Tile.DefaultSize).Round(6));
+            Assert.DoesNotThrow(() => mercatorCoordinate = (Coordinate)coord.ToGeoCoordinate(Cs4326,
+                                                                  Cs3857, 10, Tile.DefaultSize).Round(2));
 
-            Assert.True(geodeticCoordinate == realGCoordinate);
-            Assert.True(mercatorCoordinate == realMCoordinate);
+            Assert.True(geodeticCoordinate == _tokyoGeodeticCoordinate);
+            Assert.True(mercatorCoordinate == _tokyoMercatorCoordinate);
 
-            Assert.Throws<NotSupportedException>(() => coord.ToGeoCoordinate(CoordinateSystem.Epsg4326,
-                                                                             CoordinateSystem.Other, 10, Tile.DefaultSize));
+            Assert.Throws<NotSupportedException>(() => coord.ToGeoCoordinate(Cs4326, CsOther, 10, Tile.DefaultSize));
         }
 
         [Test]
         public void ToGeoCoordinateFromMercatorPixels()
         {
             PixelCoordinate coord = new PixelCoordinate(MercatorPixelLongitude, MercatorPixelLatitude);
-
-            GeodeticCoordinate realGCoordinate = new GeodeticCoordinate(139.839468, 35.652832);
-            MercatorCoordinate realMCoordinate = new MercatorCoordinate(15566858.37, 4252956.14);
-
             Coordinate geodeticCoordinate = null;
             Coordinate mercatorCoordinate = null;
 
-            Assert.DoesNotThrow(() => geodeticCoordinate = (Coordinate)coord.ToGeoCoordinate(CoordinateSystem.Epsg3857,
-                                                                                 CoordinateSystem.Epsg4326, 10, Tile.DefaultSize).Round(6));
-            Assert.DoesNotThrow(() => mercatorCoordinate = (Coordinate)coord.ToGeoCoordinate(CoordinateSystem.Epsg3857,
-                                                                                 CoordinateSystem.Epsg3857, 10, Tile.DefaultSize).Round(2));
+            Assert.DoesNotThrow(() => geodeticCoordinate = (Coordinate)coord.ToGeoCoordinate(Cs3857,
+                                                                                 Cs4326, 10, Tile.DefaultSize).Round(6));
+            Assert.DoesNotThrow(() => mercatorCoordinate = (Coordinate)coord.ToGeoCoordinate(Cs3857,
+                                                                                 Cs3857, 10, Tile.DefaultSize).Round(2));
 
-            Assert.True(geodeticCoordinate == realGCoordinate);
-            Assert.True(mercatorCoordinate == realMCoordinate);
+            Assert.True(geodeticCoordinate == _tokyoGeodeticCoordinate);
+            Assert.True(mercatorCoordinate == _tokyoMercatorCoordinate);
 
-            Assert.Throws<NotSupportedException>(() => coord.ToGeoCoordinate(CoordinateSystem.Epsg3857,
-                                                                             CoordinateSystem.Other, 10, Tile.DefaultSize));
+            Assert.Throws<NotSupportedException>(() => coord.ToGeoCoordinate(Cs3857, CsOther, 10, Tile.DefaultSize));
         }
 
         #endregion
@@ -142,12 +146,10 @@ namespace GTiff2Tiles.Tests.Tests.Coordinates
         public void ToGeodeticCoordinateNormal()
         {
             PixelCoordinate coord = new PixelCoordinate(GeodeticPixelLongitude, GeodeticPixelLatitude);
-
-            GeodeticCoordinate realGCoordinate = new GeodeticCoordinate(139.839478, 35.652832);
             Coordinate res = null;
 
-            Assert.DoesNotThrow(() => res = (Coordinate)coord.ToGeodeticCoordinate(CoordinateSystem.Epsg4326, 10, Tile.DefaultSize).Round(6));
-            Assert.True(res == realGCoordinate);
+            Assert.DoesNotThrow(() => res = (Coordinate)coord.ToGeodeticCoordinate(Cs4326, 10, Tile.DefaultSize).Round(6));
+            Assert.True(res == _tokyoGeodeticCoordinate);
         }
 
         [Test]
@@ -155,8 +157,7 @@ namespace GTiff2Tiles.Tests.Tests.Coordinates
         {
             PixelCoordinate coord = new PixelCoordinate(GeodeticPixelLongitude, GeodeticPixelLatitude);
 
-            Assert.Throws<NotSupportedException>(() => coord.ToGeodeticCoordinate(CoordinateSystem.Other, 10,
-                                                                                  Tile.DefaultSize));
+            Assert.Throws<NotSupportedException>(() => coord.ToGeodeticCoordinate(CsOther, 10, Tile.DefaultSize));
         }
 
         [Test]
@@ -164,8 +165,7 @@ namespace GTiff2Tiles.Tests.Tests.Coordinates
         {
             PixelCoordinate coord = new PixelCoordinate(GeodeticPixelLongitude, GeodeticPixelLatitude);
 
-            Assert.Throws<ArgumentOutOfRangeException>(() => coord.ToGeodeticCoordinate(CoordinateSystem.Epsg4326,
-                                                                                        -1, Tile.DefaultSize));
+            Assert.Throws<ArgumentOutOfRangeException>(() => coord.ToGeodeticCoordinate(Cs4326, -1, Tile.DefaultSize));
         }
 
         #endregion
@@ -176,11 +176,10 @@ namespace GTiff2Tiles.Tests.Tests.Coordinates
         public void ToMercatorCoordinateNormal()
         {
             PixelCoordinate coord = new PixelCoordinate(MercatorPixelLongitude, MercatorPixelLatitude);
-            MercatorCoordinate realMCoordinate = new MercatorCoordinate(15566858.37, 4252956.14);
-
             Coordinate res = null;
-            Assert.DoesNotThrow(() => res = (Coordinate)coord.ToMercatorCoordinate(CoordinateSystem.Epsg3857, 10, Tile.DefaultSize).Round(2));
-            Assert.True(res == realMCoordinate);
+
+            Assert.DoesNotThrow(() => res = (Coordinate)coord.ToMercatorCoordinate(Cs3857, 10, Tile.DefaultSize).Round(2));
+            Assert.True(res == _tokyoMercatorCoordinate);
         }
 
         [Test]
@@ -188,8 +187,7 @@ namespace GTiff2Tiles.Tests.Tests.Coordinates
         {
             PixelCoordinate coord = new PixelCoordinate(MercatorPixelLongitude, MercatorPixelLatitude);
 
-            Assert.Throws<NotSupportedException>(() => coord.ToMercatorCoordinate(CoordinateSystem.Other, 10,
-                                                                                  Tile.DefaultSize));
+            Assert.Throws<NotSupportedException>(() => coord.ToMercatorCoordinate(CsOther, 10, Tile.DefaultSize));
         }
 
         [Test]
@@ -197,8 +195,7 @@ namespace GTiff2Tiles.Tests.Tests.Coordinates
         {
             PixelCoordinate coord = new PixelCoordinate(MercatorPixelLongitude, MercatorPixelLatitude);
 
-            Assert.Throws<ArgumentOutOfRangeException>(() => coord.ToMercatorCoordinate(CoordinateSystem.Epsg3857,
-                                                                                        -1, Tile.DefaultSize));
+            Assert.Throws<ArgumentOutOfRangeException>(() => coord.ToMercatorCoordinate(Cs3857, -1, Tile.DefaultSize));
         }
 
         #endregion

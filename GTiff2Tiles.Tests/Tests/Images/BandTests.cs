@@ -21,10 +21,7 @@ namespace GTiff2Tiles.Tests.Tests.Images
         private readonly string _in4326 = FileSystemEntries.Input4326FilePath;
 
         [SetUp]
-        public void SetUp()
-        {
-            NetVipsHelper.DisableLog();
-        }
+        public void SetUp() => NetVipsHelper.DisableLog();
 
         #endregion
 
@@ -43,15 +40,10 @@ namespace GTiff2Tiles.Tests.Tests.Images
         });
 
         [Test]
-        public void CreateBandSmall() => Assert.Throws<ArgumentOutOfRangeException>(() =>
+        [Combinatorial]
+        public void CreateBandBad([Values(-1, 256)] int value) => Assert.Throws<ArgumentOutOfRangeException>(() =>
         {
-            Band band = new Band(-1);
-        });
-
-        [Test]
-        public void CreateBandBig() => Assert.Throws<ArgumentOutOfRangeException>(() =>
-        {
-            Band band = new Band(256);
+            Band band = new Band(value);
         });
 
         #endregion

@@ -13,40 +13,50 @@ namespace GTiff2Tiles.Tests.Tests.Coordinates
     [TestFixture]
     public sealed class MercatorCoordinateTests
     {
-        private const double TokyoLongitude = 15566858.37;
+        #region Consts
+
+        private const double TokyoLongitude = 15566859.48;
 
         private const double TokyoLatitude = 4252956.14;
+
+        private readonly Number _tokyoMercatorNumber = new Number(909, 403, 10);
+
+        private readonly MercatorCoordinate _tokyoGeodeticCoordinate = new MercatorCoordinate(139.839478, 35.652832);
+
+        private readonly PixelCoordinate _tokyoMercatorPixelCoordinate = new PixelCoordinate(232900.00031106747, 158891.99925568007);
+
+        #endregion
 
         #region Constructors
 
         [Test]
         public void CreateMercatorCoordinateNormal() => Assert.DoesNotThrow(() =>
         {
-            MercatorCoordinate coord = new MercatorCoordinate(0.0, 0.0);
+            MercatorCoordinate coord = new MercatorCoordinate(TokyoLongitude, TokyoLatitude);
         });
 
         [Test]
         public void CreateMercatorCoordinateSmallLon() => Assert.Throws<ArgumentOutOfRangeException>(() =>
         {
-            MercatorCoordinate coord = new MercatorCoordinate(-20046377.0, 0.0);
+            MercatorCoordinate coord = new MercatorCoordinate(-20046377.0, TokyoLatitude);
         });
 
         [Test]
         public void CreateMercatorCoordinateBigLon() => Assert.Throws<ArgumentOutOfRangeException>(() =>
         {
-            MercatorCoordinate coord = new MercatorCoordinate(20046377.0, 0.0);
+            MercatorCoordinate coord = new MercatorCoordinate(20046377.0, TokyoLatitude);
         });
 
         [Test]
         public void CreateMercatorCoordinateSmallLat() => Assert.Throws<ArgumentOutOfRangeException>(() =>
         {
-            MercatorCoordinate coord = new MercatorCoordinate(0.0, -20048967.0);
+            MercatorCoordinate coord = new MercatorCoordinate(TokyoLongitude, -20048967.0);
         });
 
         [Test]
         public void CreateMercatorCoordinateBigLat() => Assert.Throws<ArgumentOutOfRangeException>(() =>
         {
-            MercatorCoordinate coord = new MercatorCoordinate(0.0, 20048967.0);
+            MercatorCoordinate coord = new MercatorCoordinate(TokyoLongitude, 20048967.0);
         });
 
         #endregion
@@ -56,7 +66,7 @@ namespace GTiff2Tiles.Tests.Tests.Coordinates
         [Test]
         public void GetProperties() => Assert.DoesNotThrow(() =>
         {
-            MercatorCoordinate coord = new MercatorCoordinate(0.0, 0.0);
+            MercatorCoordinate coord = new MercatorCoordinate(TokyoLongitude, TokyoLatitude);
             double val = MercatorCoordinate.MinPossibleLonValue;
             val = MercatorCoordinate.MaxPossibleLonValue;
             val = MercatorCoordinate.MinPossibleLatValue;
@@ -73,36 +83,30 @@ namespace GTiff2Tiles.Tests.Tests.Coordinates
         public void ToPixelCoordinateTest()
         {
             MercatorCoordinate coord = new MercatorCoordinate(TokyoLongitude, TokyoLatitude);
-
-            PixelCoordinate realCoord = new PixelCoordinate(232899.99305018864, 158891.99925568007);
             PixelCoordinate pCoord = null;
 
             Assert.DoesNotThrow(() => pCoord = coord.ToPixelCoordinate(10, Tile.DefaultSize));
-            Assert.True(pCoord == realCoord);
+            Assert.True(pCoord == _tokyoMercatorPixelCoordinate);
         }
 
         [Test]
         public void ToGeodeticCoordinateTest()
         {
             MercatorCoordinate coord = new MercatorCoordinate(TokyoLongitude, TokyoLatitude);
-
-            GeodeticCoordinate realCoord = new GeodeticCoordinate(139.839468, 35.652832);
             Coordinate gCoord = null;
 
             Assert.DoesNotThrow(() => gCoord = (Coordinate)coord.ToGeodeticCoordinate().Round(6));
-            Assert.True(gCoord == realCoord);
+            Assert.True(gCoord == _tokyoGeodeticCoordinate);
         }
 
         [Test]
         public void ToNumber()
         {
             MercatorCoordinate coord = new MercatorCoordinate(TokyoLongitude, TokyoLatitude);
-
-            Number realNumber = new Number(909, 403, 10);
             Number number = null;
 
             Assert.DoesNotThrow(() => number = coord.ToNumber(10, Tile.DefaultSize, false));
-            Assert.True(number == realNumber);
+            Assert.True(number == _tokyoMercatorNumber);
         }
 
         #region Resolution

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using GTiff2Tiles.Core.Enums;
 using GTiff2Tiles.Core.Exceptions;
 using GTiff2Tiles.Core.Helpers;
+using GTiff2Tiles.Tests.Constants;
 using NUnit.Framework;
 
 namespace GTiff2Tiles.Tests.Tests.Helpers
@@ -13,6 +14,33 @@ namespace GTiff2Tiles.Tests.Tests.Helpers
     [TestFixture]
     public sealed class CheckHelperTests
     {
+        #region SetUp and consts
+
+        private string _timestamp;
+
+        private string _outPath;
+
+        private readonly string _in4326 = FileSystemEntries.Input4326FilePath;
+
+        private const string ShouldFail = "ShouldFail";
+
+        private const CoordinateSystem Cs4326 = CoordinateSystem.Epsg4326;
+
+        private const CoordinateSystem Cs3857 = CoordinateSystem.Epsg3857;
+
+        [SetUp]
+        public void SetUp()
+        {
+            _timestamp = DateTime.Now.ToString(Core.Constants.DateTimePatterns.LongWithMs,
+                                               CultureInfo.InvariantCulture);
+            _outPath = Path.Combine(FileSystemEntries.OutputDirectoryPath,
+                                    $"{_timestamp}");
+
+            FileSystemEntries.OutputDirectoryInfo.Create();
+        }
+
+        #endregion
+
         #region CheckFile
 
         [Test]
@@ -21,46 +49,35 @@ namespace GTiff2Tiles.Tests.Tests.Helpers
         [Test]
         public void CheckFileTrueExist()
         {
-            string filePath = Constants.FileSystemEntries.Input4326FilePath;
-            string ext = Path.GetExtension(filePath);
+            string ext = Path.GetExtension(_in4326);
 
-            Assert.DoesNotThrow(() => CheckHelper.CheckFile(filePath, true, ext));
-            Assert.Throws<FileException>(() => CheckHelper.CheckFile(filePath, false, ext));
+            Assert.DoesNotThrow(() => CheckHelper.CheckFile(_in4326, true, ext));
+            Assert.Throws<FileException>(() => CheckHelper.CheckFile(_in4326, false, ext));
         }
 
         [Test]
         public void CheckFileFalseExist()
         {
-            const string filePath = "Shouldn't exist";
-
-            Assert.DoesNotThrow(() => CheckHelper.CheckFile(filePath, false));
-            Assert.Throws<FileNotFoundException>(() => CheckHelper.CheckFile(filePath));
+            Assert.DoesNotThrow(() => CheckHelper.CheckFile(ShouldFail, false));
+            Assert.Throws<FileNotFoundException>(() => CheckHelper.CheckFile(ShouldFail));
         }
 
         [Test]
-        public void CheckFileNullExist()
-        {
-            const string filePath = "Shouldn't exist";
-
-            Assert.DoesNotThrow(() => CheckHelper.CheckFile(filePath, null));
-        }
+        public void CheckFileNullExist() => Assert.DoesNotThrow(() => CheckHelper.CheckFile(ShouldFail, null));
 
         [Test]
         public void CheckFileNullExtension()
         {
-            string filePath = Constants.FileSystemEntries.Input4326FilePath;
-
-            Assert.DoesNotThrow(() => CheckHelper.CheckFile(filePath));
-            Assert.Throws<FileException>(() => CheckHelper.CheckFile(filePath, false));
+            Assert.DoesNotThrow(() => CheckHelper.CheckFile(_in4326));
+            Assert.Throws<FileException>(() => CheckHelper.CheckFile(_in4326, false));
         }
 
         [Test]
         public void CheckFileWrongExtension()
         {
-            string filePath = Constants.FileSystemEntries.Input4326FilePath;
             const string ext = ".notexistentextension";
 
-            Assert.Throws<ArgumentException>(() => CheckHelper.CheckFile(filePath, null, ext));
+            Assert.Throws<ArgumentException>(() => CheckHelper.CheckFile(_in4326, null, ext));
         }
 
         #endregion
@@ -73,26 +90,18 @@ namespace GTiff2Tiles.Tests.Tests.Helpers
         [Test]
         public void CheckDirectoryNormal()
         {
-            string timestamp = DateTime.Now.ToString(Core.Constants.DateTimePatterns.LongWithMs,
-                                                     CultureInfo.InvariantCulture);
-            string path = Path.Combine(Constants.FileSystemEntries.OutputDirectoryPath, $"{timestamp}");
+            Assert.DoesNotThrow(() => CheckHelper.CheckDirectory(_outPath));
 
-            Assert.DoesNotThrow(() => CheckHelper.CheckDirectory(path));
-
-            Directory.Delete(path);
+            Directory.Delete(_outPath);
         }
 
         [Test]
         public void CheckDirectoryTrueEmpty()
         {
-            string timestamp = DateTime.Now.ToString(Core.Constants.DateTimePatterns.LongWithMs,
-                                                     CultureInfo.InvariantCulture);
-            string path = Path.Combine(Constants.FileSystemEntries.OutputDirectoryPath, $"{timestamp}");
+            Assert.DoesNotThrow(() => CheckHelper.CheckDirectory(_outPath, true));
+            Assert.Throws<DirectoryException>(() => CheckHelper.CheckDirectory(_outPath, false));
 
-            Assert.DoesNotThrow(() => CheckHelper.CheckDirectory(path, true));
-            Assert.Throws<DirectoryException>(() => CheckHelper.CheckDirectory(path, false));
-
-            Directory.Delete(path);
+            Directory.Delete(_outPath);
         }
 
         [Test]
@@ -109,22 +118,10 @@ namespace GTiff2Tiles.Tests.Tests.Helpers
         #region CheckInputFileAsync
 
         [Test]
-        public async Task CheckInputFileAsyncTrue()
-        {
-            string path = Constants.FileSystemEntries.Input4326FilePath;
-            const CoordinateSystem cs = CoordinateSystem.Epsg4326;
-
-            Assert.True(await CheckHelper.CheckInputFileAsync(path, cs));
-        }
+        public async Task CheckInputFileAsyncTrue() => Assert.True(await CheckHelper.CheckInputFileAsync(_in4326, Cs4326));
 
         [Test]
-        public async Task CheckInputFileAsyncFalse()
-        {
-            string path = Constants.FileSystemEntries.Input4326FilePath;
-            const CoordinateSystem cs = CoordinateSystem.Epsg3857;
-
-            Assert.False(await CheckHelper.CheckInputFileAsync(path, cs));
-        }
+        public async Task CheckInputFileAsyncFalse() => Assert.False(await CheckHelper.CheckInputFileAsync(_in4326, Cs3857));
 
         #endregion
     }

@@ -226,8 +226,8 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
         {
             Number number = new Number(GeodeticX, GeodeticY, 10);
 
-            Number minExpected = new Number(3638, 618, 11);
-            Number maxExpected = new Number(3639, 619, 11);
+            Number minExpected = new Number(GeodeticX * 2, GeodeticY * 2, 11);
+            Number maxExpected = new Number(minExpected.X + 1, minExpected.Y + 1, 11);
 
             (Number minNumber, Number maxNumber) = number.GetLowerNumbers(11);
 

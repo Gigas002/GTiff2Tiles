@@ -7,6 +7,7 @@ using GTiff2Tiles.Core.Enums;
 using GTiff2Tiles.Core.GeoTiffs;
 using GTiff2Tiles.Core.Images;
 using GTiff2Tiles.Core.Tiles;
+using GTiff2Tiles.Tests.Constants;
 using NUnit.Framework;
 
 // ReSharper disable UnusedVariable
@@ -16,6 +17,16 @@ namespace GTiff2Tiles.Tests.Tests.Images
     [TestFixture]
     public sealed class AreaTests
     {
+        #region SetUp and consts
+
+        private readonly string _in4326 = FileSystemEntries.Input4326FilePath;
+
+        private const CoordinateSystem Cs4326 = CoordinateSystem.Epsg4326;
+
+        private readonly Size _in4326Size = new Size(6569, 3073);
+
+        #endregion
+
         #region Constructors
 
         [Test]
@@ -75,22 +86,20 @@ namespace GTiff2Tiles.Tests.Tests.Images
         {
             GeodeticCoordinate minImgCoord = new GeodeticCoordinate(13.367990255355835, 52.501827478408813);
             GeodeticCoordinate maxImgCoord = new GeodeticCoordinate(13.438467979431152, 52.534797191619873);
-            Size imgSize = new Size(6569, 3073);
 
             GeodeticCoordinate minTileCoord = new GeodeticCoordinate(13.359375, 52.3828125);
             GeodeticCoordinate maxTileCoord = new GeodeticCoordinate(13.53515625, 52.55859375);
             Size tileSize = Tile.DefaultSize;
 
             PixelCoordinate expectedReadCoord = new PixelCoordinate(0.0, 0.0);
-            Size expectedReadSize = new Size(6569, 3073);
             PixelCoordinate expectedWriteCoord = new PixelCoordinate(12.546875, 34.65625);
             Size expectedWriteSize = new Size(103, 48);
 
             Area calcReadArea = null;
             Area calcWriteArea = null;
-            Assert.DoesNotThrow(() => (calcReadArea, calcWriteArea) = Area.GetAreas(minImgCoord, maxImgCoord, imgSize, minTileCoord, maxTileCoord, tileSize));
+            Assert.DoesNotThrow(() => (calcReadArea, calcWriteArea) = Area.GetAreas(minImgCoord, maxImgCoord, _in4326Size, minTileCoord, maxTileCoord, tileSize));
 
-            Assert.True(calcReadArea.OriginCoordinate == expectedReadCoord && calcReadArea.Size == expectedReadSize);
+            Assert.True(calcReadArea.OriginCoordinate == expectedReadCoord && calcReadArea.Size == _in4326Size);
             Assert.True(calcWriteArea.OriginCoordinate == expectedWriteCoord && calcWriteArea.Size == expectedWriteSize);
         }
 
@@ -239,15 +248,12 @@ namespace GTiff2Tiles.Tests.Tests.Images
         [Test]
         public void GetAreasGeoTiffNormal()
         {
-            string inputPath = Constants.FileSystemEntries.Input4326FilePath;
-            const CoordinateSystem cs = CoordinateSystem.Epsg4326;
-            IGeoTiff image = new Raster(inputPath, cs);
+            IGeoTiff image = new Raster(_in4326, Cs4326);
 
             Number number = new Number(1100, 810, 10);
-            ITile tile = new RasterTile(number, cs, tmsCompatible: true);
+            ITile tile = new RasterTile(number, image.GeoCoordinateSystem, tmsCompatible: true);
 
             PixelCoordinate expectedReadCoord = new PixelCoordinate(0.0, 0.0);
-            Size expectedReadSize = new Size(6569, 3073);
             PixelCoordinate expectedWriteCoord = new PixelCoordinate(12.546875, 34.65625);
             Size expectedWriteSize = new Size(103, 48);
 
@@ -255,16 +261,15 @@ namespace GTiff2Tiles.Tests.Tests.Images
             Area calcWriteArea = null;
             Assert.DoesNotThrow(() => (calcReadArea, calcWriteArea) = Area.GetAreas(image, tile));
 
-            Assert.True(calcReadArea.OriginCoordinate == expectedReadCoord && calcReadArea.Size == expectedReadSize);
+            Assert.True(calcReadArea.OriginCoordinate == expectedReadCoord && calcReadArea.Size == _in4326Size);
             Assert.True(calcWriteArea.OriginCoordinate == expectedWriteCoord && calcWriteArea.Size == expectedWriteSize);
         }
 
         [Test]
         public void GetAreasGeoTiffNullImage()
         {
-            const CoordinateSystem cs = CoordinateSystem.Epsg4326;
-            Number number = new Number(1100, 810, 10);
-            ITile tile = new RasterTile(number, cs, tmsCompatible: true);
+            Number number = new Number(0, 0, 0);
+            ITile tile = new RasterTile(number, Cs4326, tmsCompatible: true);
 
             Assert.Throws<ArgumentNullException>(() => Area.GetAreas(null, tile));
         }
@@ -272,9 +277,7 @@ namespace GTiff2Tiles.Tests.Tests.Images
         [Test]
         public void GetAreasGeoTiffNullTile()
         {
-            string inputPath = Constants.FileSystemEntries.Input4326FilePath;
-            const CoordinateSystem cs = CoordinateSystem.Epsg4326;
-            IGeoTiff image = new Raster(inputPath, cs);
+            IGeoTiff image = new Raster(_in4326, Cs4326);
 
             Assert.Throws<ArgumentNullException>(() => Area.GetAreas(image, null));
         }
