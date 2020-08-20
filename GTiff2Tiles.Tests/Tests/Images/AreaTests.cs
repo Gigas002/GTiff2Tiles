@@ -23,7 +23,7 @@ namespace GTiff2Tiles.Tests.Tests.Images
 
         private const CoordinateSystem Cs4326 = CoordinateSystem.Epsg4326;
 
-        private readonly Size _in4326Size = new Size(6569, 3073);
+        private readonly Size _in4326Size = new Size(4473, 3511);
 
         #endregion
 
@@ -84,22 +84,23 @@ namespace GTiff2Tiles.Tests.Tests.Images
         [Test]
         public void GetAreasCoordsNormal()
         {
-            GeodeticCoordinate minImgCoord = new GeodeticCoordinate(13.367990255355835, 52.501827478408813);
-            GeodeticCoordinate maxImgCoord = new GeodeticCoordinate(13.438467979431152, 52.534797191619873);
+            GeodeticCoordinate minImgCoord = new GeodeticCoordinate(139.74999904632568, 35.61293363571167);
+            GeodeticCoordinate maxImgCoord = new GeodeticCoordinate(139.8459792137146, 35.688271522521973);
 
-            GeodeticCoordinate minTileCoord = new GeodeticCoordinate(13.359375, 52.3828125);
-            GeodeticCoordinate maxTileCoord = new GeodeticCoordinate(13.53515625, 52.55859375);
+            GeodeticCoordinate minTileCoord = new GeodeticCoordinate(139.74609375, 35.68359375);
+            GeodeticCoordinate maxTileCoord = new GeodeticCoordinate(139.921875, 35.859375);
             Size tileSize = Tile.DefaultSize;
 
             PixelCoordinate expectedReadCoord = new PixelCoordinate(0.0, 0.0);
-            PixelCoordinate expectedWriteCoord = new PixelCoordinate(12.546875, 34.65625);
-            Size expectedWriteSize = new Size(103, 48);
+            PixelCoordinate expectedWriteCoord = new PixelCoordinate(5.6875, 249.1875);
+            Size expectedReadSize = new Size(4473, 218);
+            Size expectedWriteSize = new Size(140, 7);
 
             Area calcReadArea = null;
             Area calcWriteArea = null;
-            Assert.DoesNotThrow(() => (calcReadArea, calcWriteArea) = Area.GetAreas(minImgCoord, maxImgCoord, _in4326Size, minTileCoord, maxTileCoord, tileSize));
 
-            Assert.True(calcReadArea.OriginCoordinate == expectedReadCoord && calcReadArea.Size == _in4326Size);
+            Assert.DoesNotThrow(() => (calcReadArea, calcWriteArea) = Area.GetAreas(minImgCoord, maxImgCoord, _in4326Size, minTileCoord, maxTileCoord, tileSize));
+            Assert.True(calcReadArea.OriginCoordinate == expectedReadCoord && calcReadArea.Size == expectedReadSize);
             Assert.True(calcWriteArea.OriginCoordinate == expectedWriteCoord && calcWriteArea.Size == expectedWriteSize);
         }
 
@@ -250,18 +251,19 @@ namespace GTiff2Tiles.Tests.Tests.Images
         {
             IGeoTiff image = new Raster(_in4326, Cs4326);
 
-            Number number = new Number(1100, 810, 10);
-            ITile tile = new RasterTile(number, image.GeoCoordinateSystem, tmsCompatible: true);
+            ITile tile = new RasterTile(Locations.TokyoGeodeticTmsNumber,
+                                        image.GeoCoordinateSystem, tmsCompatible: true);
 
-            PixelCoordinate expectedReadCoord = new PixelCoordinate(0.0, 0.0);
-            PixelCoordinate expectedWriteCoord = new PixelCoordinate(12.546875, 34.65625);
-            Size expectedWriteSize = new Size(103, 48);
+            PixelCoordinate expectedReadCoord = new PixelCoordinate(0.0, 218.0);
+            PixelCoordinate expectedWriteCoord = new PixelCoordinate(5.6875, 0.0);
+            Size expectedReadSize = new Size(4473, 3293);
+            Size expectedWriteSize = new Size(140, 102);
 
             Area calcReadArea = null;
             Area calcWriteArea = null;
-            Assert.DoesNotThrow(() => (calcReadArea, calcWriteArea) = Area.GetAreas(image, tile));
 
-            Assert.True(calcReadArea.OriginCoordinate == expectedReadCoord && calcReadArea.Size == _in4326Size);
+            Assert.DoesNotThrow(() => (calcReadArea, calcWriteArea) = Area.GetAreas(image, tile));
+            Assert.True(calcReadArea.OriginCoordinate == expectedReadCoord && calcReadArea.Size == expectedReadSize);
             Assert.True(calcWriteArea.OriginCoordinate == expectedWriteCoord && calcWriteArea.Size == expectedWriteSize);
         }
 

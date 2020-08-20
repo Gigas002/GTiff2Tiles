@@ -196,9 +196,7 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
         public void CreateTileImageNormal()
         {
             using Raster raster = new Raster(_in4326, Cs4326);
-
-            Number number = new Number(1100, 213, 10);
-            using RasterTile tile = new RasterTile(number, raster.GeoCoordinateSystem);
+            using RasterTile tile = new RasterTile(Locations.TokyoGeodeticNtmsNumber, raster.GeoCoordinateSystem);
 
             Assert.DoesNotThrow(() =>
             {
@@ -210,9 +208,7 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
         public void CreateTileImageNullImage()
         {
             using Raster raster = new Raster(_in4326, Cs4326);
-
-            Number number = new Number(1100, 213, 10);
-            using RasterTile tile = new RasterTile(number, raster.GeoCoordinateSystem);
+            using RasterTile tile = new RasterTile(Locations.TokyoGeodeticNtmsNumber, raster.GeoCoordinateSystem);
 
             Assert.Throws<ArgumentNullException>(() =>
             {
@@ -235,8 +231,8 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
         public void CreateTileImageDifferentInterpolations()
         {
             using Raster raster = new Raster(_in4326, Cs4326);
+            Number number = Locations.TokyoGeodeticNtmsNumber;
 
-            Number number = new Number(1100, 213, 10);
             using RasterTile t1 = new RasterTile(number, raster.GeoCoordinateSystem, interpolation: Interpolation.Nearest);
             using RasterTile t2 = new RasterTile(number, raster.GeoCoordinateSystem, interpolation: Interpolation.Linear);
             using RasterTile t3 = new RasterTile(number, raster.GeoCoordinateSystem, interpolation: Interpolation.Cubic);
@@ -264,9 +260,7 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
             string outPath = Path.Combine(_outPath, $"{_timestamp}_tile.png");
 
             Raster raster = new Raster(_in4326, Cs4326);
-
-            Number number = new Number(1100, 213, 10);
-            RasterTile tile = new RasterTile(number, Cs4326) { Path = outPath };
+            RasterTile tile = new RasterTile(Locations.TokyoGeodeticNtmsNumber, Cs4326) { Path = outPath };
 
             Assert.DoesNotThrowAsync(async () => await raster.WriteTileToFileAsync(raster.Data, tile));
 
@@ -287,9 +281,7 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
         public void WriteTileToEnumberable()
         {
             using Raster raster = new Raster(_in4326, Cs4326);
-
-            Number number = new Number(1100, 213, 10);
-            using RasterTile tile = new RasterTile(number, Cs4326);
+            using RasterTile tile = new RasterTile(Locations.TokyoGeodeticNtmsNumber, Cs4326);
 
             IEnumerable<byte> tileBytes = null;
 
@@ -303,9 +295,7 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
         public void WriteToChannelNormal()
         {
             using Raster raster = new Raster(_in4326, Cs4326);
-
-            Number number = new Number(1100, 213, 10);
-            using RasterTile tile = new RasterTile(number, Cs4326);
+            using RasterTile tile = new RasterTile(Locations.TokyoGeodeticNtmsNumber, Cs4326);
 
             Channel<ITile> channel = Channel.CreateUnbounded<ITile>();
 
@@ -326,9 +316,7 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
         public void WriteToChannelNullWriter()
         {
             using Raster raster = new Raster(_in4326, Cs4326);
-
-            Number number = new Number(1100, 213, 10);
-            using RasterTile tile = new RasterTile(number, Cs4326);
+            using RasterTile tile = new RasterTile(Locations.TokyoGeodeticNtmsNumber, Cs4326);
 
             Assert.Throws<ArgumentNullException>(() => raster.WriteTileToChannel(raster.Data, tile, null));
         }
@@ -337,9 +325,7 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
         public void WriteToChannelAsyncNormal()
         {
             Raster raster = new Raster(_in4326, Cs4326);
-
-            Number number = new Number(1100, 213, 10);
-            RasterTile tile = new RasterTile(number, raster.GeoCoordinateSystem);
+            RasterTile tile = new RasterTile(Locations.TokyoGeodeticNtmsNumber, raster.GeoCoordinateSystem);
 
             Channel<ITile> channel = Channel.CreateUnbounded<ITile>();
 
@@ -360,9 +346,7 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
         public void WriteToChannelAsyncNullWriter()
         {
             Raster raster = new Raster(_in4326, Cs4326);
-
-            Number number = new Number(1100, 213, 10);
-            RasterTile tile = new RasterTile(number, raster.GeoCoordinateSystem);
+            RasterTile tile = new RasterTile(Locations.TokyoGeodeticNtmsNumber, raster.GeoCoordinateSystem);
 
             Assert.ThrowsAsync<ArgumentNullException>(async () => await raster.WriteTileToChannelAsync(raster.Data, tile, null));
         }
@@ -678,8 +662,8 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
         {
             FileStream fs = File.OpenRead(_in4326);
 
-            GeodeticCoordinate expectedMin = new GeodeticCoordinate(13.367990255355835, 52.501827478408813);
-            GeodeticCoordinate expectedMax = new GeodeticCoordinate(13.438467979431152, 52.534797191619873);
+            GeodeticCoordinate expectedMin = new GeodeticCoordinate(139.74999904632568, 35.61293363571167);
+            GeodeticCoordinate expectedMax = new GeodeticCoordinate(139.8459792137146, 35.688271522521973);
 
             Coordinate min = null;
             Coordinate max = null;
@@ -732,8 +716,8 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
         [Test]
         public void GetBordersFilePathNormal()
         {
-            GeodeticCoordinate expectedMin = new GeodeticCoordinate(13.367990255355835, 52.501827478408813);
-            GeodeticCoordinate expectedMax = new GeodeticCoordinate(13.438467979431152, 52.534797191619873);
+            GeodeticCoordinate expectedMin = new GeodeticCoordinate(139.74999904632568, 35.61293363571167);
+            GeodeticCoordinate expectedMax = new GeodeticCoordinate(139.8459792137146, 35.688271522521973);
 
             Coordinate min = null;
             Coordinate max = null;

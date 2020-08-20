@@ -24,10 +24,6 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
 
         private string _timestamp;
 
-        private readonly GeodeticCoordinate _tokyoGeodeticCoordinate = new GeodeticCoordinate(139.839478, 35.652832);
-
-        private readonly Number _tokyoGeodeticNumber = new Number(1819, 309, 10);
-
         private const CoordinateSystem Cs4326 = CoordinateSystem.Epsg4326;
 
         [SetUp]
@@ -47,7 +43,7 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
         [Test]
         public void FromNumberDefaultArgs() => Assert.DoesNotThrowAsync(async () =>
         {
-            await using ITile tile = new RasterTile(_tokyoGeodeticNumber, Cs4326);
+            await using ITile tile = new RasterTile(Locations.TokyoGeodeticNtmsNumber, Cs4326);
         });
 
         [Test]
@@ -62,7 +58,7 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
 
             Assert.DoesNotThrowAsync(async () =>
             {
-                await using ITile tile = new RasterTile(_tokyoGeodeticNumber, Cs4326, size, bytes, extension, tmsCompatible,
+                await using ITile tile = new RasterTile(Locations.TokyoGeodeticTmsNumber, Cs4326, size, bytes, extension, tmsCompatible,
                                                         bandsCount, interpolation);
             });
         }
@@ -70,19 +66,19 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
         [Test]
         public void FromNumberSmallBands() => Assert.ThrowsAsync<ArgumentOutOfRangeException>(async () =>
         {
-            await using ITile tile = new RasterTile(_tokyoGeodeticNumber, Cs4326, bandsCount: -1);
+            await using ITile tile = new RasterTile(Locations.TokyoGeodeticNtmsNumber, Cs4326, bandsCount: -1);
         });
 
         [Test]
         public void FromNumberMuchBands() => Assert.ThrowsAsync<ArgumentOutOfRangeException>(async () =>
         {
-            await using ITile tile = new RasterTile(_tokyoGeodeticNumber, Cs4326, bandsCount: 5);
+            await using ITile tile = new RasterTile(Locations.TokyoGeodeticNtmsNumber, Cs4326, bandsCount: 5);
         });
 
         [Test]
         public void FromNumberNotSquare() => Assert.ThrowsAsync<ArgumentException>(async () =>
         {
-            await using ITile tile = new RasterTile(_tokyoGeodeticNumber, Cs4326, new Size(1, 256));
+            await using ITile tile = new RasterTile(Locations.TokyoGeodeticNtmsNumber, Cs4326, new Size(1, 256));
         });
 
         #endregion
@@ -92,7 +88,8 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
         [Test]
         public void FromCoordinatesDefaultArgs() => Assert.DoesNotThrowAsync(async () =>
         {
-            await using ITile tile = new RasterTile(_tokyoGeodeticCoordinate, _tokyoGeodeticCoordinate, 10);
+            await using ITile tile = new RasterTile(Locations.TokyoGeodeticCoordinate,
+                                                    Locations.TokyoGeodeticCoordinate, 10);
         });
 
         [Test]
@@ -107,7 +104,8 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
 
             Assert.DoesNotThrowAsync(async () =>
             {
-                await using ITile tile = new RasterTile(_tokyoGeodeticCoordinate, _tokyoGeodeticCoordinate,
+                await using ITile tile = new RasterTile(Locations.TokyoGeodeticCoordinate,
+                                                        Locations.TokyoGeodeticCoordinate,
                                                         10, size, bytes, extension, tmsCompatible,
                                                         bandsCount, interpolation);
             });
@@ -116,21 +114,24 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
         [Test]
         public void FromCoordinatesSmallBands() => Assert.ThrowsAsync<ArgumentOutOfRangeException>(async () =>
         {
-            await using ITile tile = new RasterTile(_tokyoGeodeticCoordinate, _tokyoGeodeticCoordinate,
+            await using ITile tile = new RasterTile(Locations.TokyoGeodeticCoordinate,
+                                                    Locations.TokyoGeodeticCoordinate,
                                                     10, bandsCount: -1);
         });
 
         [Test]
         public void FromCoordinatesMuchBands() => Assert.ThrowsAsync<ArgumentOutOfRangeException>(async () =>
         {
-            await using ITile tile = new RasterTile(_tokyoGeodeticCoordinate, _tokyoGeodeticCoordinate,
+            await using ITile tile = new RasterTile(Locations.TokyoGeodeticCoordinate,
+                                                    Locations.TokyoGeodeticCoordinate,
                                                     10, bandsCount: 5);
         });
 
         [Test]
         public void FromCoordinatesNotSquare() => Assert.ThrowsAsync<ArgumentException>(async () =>
         {
-            await using ITile tile = new RasterTile(_tokyoGeodeticCoordinate, _tokyoGeodeticCoordinate,
+            await using ITile tile = new RasterTile(Locations.TokyoGeodeticCoordinate,
+                                                    Locations.TokyoGeodeticCoordinate,
                                                     10, new Size(1, 256));
         });
 
@@ -156,7 +157,7 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
         [Test]
         public void DisposeTest()
         {
-            ITile tile = new RasterTile(_tokyoGeodeticNumber, Cs4326);
+            ITile tile = new RasterTile(Locations.TokyoGeodeticNtmsNumber, Cs4326);
 
             Assert.DoesNotThrow(() => tile.Dispose());
             Assert.True(tile.IsDisposed);
@@ -165,7 +166,7 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
         [Test]
         public void DisposeAsyncTest()
         {
-            ITile tile = new RasterTile(_tokyoGeodeticNumber, Cs4326);
+            ITile tile = new RasterTile(Locations.TokyoGeodeticNtmsNumber, Cs4326);
 
             Assert.DoesNotThrowAsync(async () => await tile.DisposeAsync().ConfigureAwait(false));
             Assert.True(tile.IsDisposed);
@@ -188,7 +189,7 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
             ITile tile = null;
             Assert.DoesNotThrow(() =>
             {
-                tile = new RasterTile(_tokyoGeodeticNumber, Cs4326);
+                tile = new RasterTile(Locations.TokyoGeodeticNtmsNumber, Cs4326);
 
                 bool isDisposed = tile.IsDisposed;
                 GeoCoordinate minC = tile.MinCoordinate;
@@ -212,7 +213,7 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
         [Test]
         public void SetProperties() => Assert.DoesNotThrowAsync(async () =>
         {
-            await using ITile tile = new RasterTile(_tokyoGeodeticNumber, Cs4326)
+            await using ITile tile = new RasterTile(Locations.TokyoGeodeticNtmsNumber, Cs4326)
             {
                 Bytes = null, Path = string.Empty, MinimalBytesCount = int.MinValue
             };
@@ -227,7 +228,7 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
         [Test]
         public void ValidateWoPath()
         {
-            using ITile tile = new RasterTile(_tokyoGeodeticNumber, Cs4326);
+            using ITile tile = new RasterTile(Locations.TokyoGeodeticNtmsNumber, Cs4326);
 
             tile.Bytes = new byte[tile.MinimalBytesCount + 1];
 
@@ -239,7 +240,7 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
         {
             string tilePath = Path.Combine(FileSystemEntries.OutputDirectoryPath, $"{_timestamp}_validate.png");
 
-            using ITile tile = new RasterTile(_tokyoGeodeticNumber, Cs4326);
+            using ITile tile = new RasterTile(Locations.TokyoGeodeticNtmsNumber, Cs4326);
 
             FileStream fs = File.Create(tilePath);
             fs.Dispose();
@@ -258,7 +259,7 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
         [Test]
         public void ValidateNullBytes()
         {
-            using ITile tile = new RasterTile(_tokyoGeodeticNumber, Cs4326);
+            using ITile tile = new RasterTile(Locations.TokyoGeodeticNtmsNumber, Cs4326);
 
             Assert.False(tile.Validate(false));
         }
@@ -266,7 +267,7 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
         [Test]
         public void ValidateSmallBytes()
         {
-            using ITile tile = new RasterTile(_tokyoGeodeticNumber, Cs4326);
+            using ITile tile = new RasterTile(Locations.TokyoGeodeticNtmsNumber, Cs4326);
 
             tile.Bytes = new byte[tile.MinimalBytesCount - 1];
 
@@ -276,7 +277,7 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
         [Test]
         public void ValidateNullPath()
         {
-            using ITile tile = new RasterTile(_tokyoGeodeticNumber, Cs4326);
+            using ITile tile = new RasterTile(Locations.TokyoGeodeticNtmsNumber, Cs4326);
 
             tile.Bytes = new byte[tile.MinimalBytesCount + 1];
 
@@ -290,7 +291,7 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
         [Test]
         public void CalculatePosition()
         {
-            Number number = _tokyoGeodeticNumber;
+            Number number = Locations.TokyoGeodeticNtmsNumber;
 
             ITile tile = new RasterTile(number, Cs4326);
             int pos3 = tile.CalculatePosition();
@@ -320,7 +321,7 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
         [Test]
         public void GetExtensionString()
         {
-            using ITile tile = new RasterTile(_tokyoGeodeticNumber, Cs4326);
+            using ITile tile = new RasterTile(Locations.TokyoGeodeticNtmsNumber, Cs4326);
 
             tile.GetExtensionString();
 

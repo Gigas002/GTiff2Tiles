@@ -148,6 +148,9 @@ namespace GTiff2Tiles.Core.GeoTiffs
             (MinCoordinate, MaxCoordinate) = GetBorders(inputStream, coordinateSystem);
             Data = Image.NewFromStream(inputStream, access: NetVips.Enums.Access.Random);
 
+            // Reset stream reading position
+            inputStream.Seek(0, SeekOrigin.Begin);
+
             // Get border coordinates и raster sizes
             Size = new Size(Data.Width, Data.Height);
 
@@ -767,6 +770,9 @@ namespace GTiff2Tiles.Core.GeoTiffs
             double maxY = BitConverter.ToDouble(tiePoints, 32);
             double maxX = minX + width * pixelScale;
             double minY = maxY - height * pixelScale;
+
+            // Reset stream reading position
+            inputStream.Seek(0, SeekOrigin.Begin);
 
             switch (coordinateSystem)
             {
