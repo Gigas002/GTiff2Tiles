@@ -31,4 +31,4 @@ When building from source, there are more packages needed:
 
 ## Offline documentation
 
-Offline docs are available as [pdf](https://github.com/Gigas002/GTiff2Tiles/blob/master/Docs/_pdf/GTiff2Tiles.pdf). The website and pdf docs both are created by [create-docs.ps1](https://github.com/Gigas002/GTiff2Tiles/blob/master/create-docs.ps1) script.
+Offline docs are available as [pdf](https://github.com/Gigas002/GTiff2Tiles/blob/master/docs/pdf/GTiff2Tiles.pdf). The website and pdf docs both are created by [create-docs.ps1](https://github.com/Gigas002/GTiff2Tiles/blob/master/create-docs.ps1) script.
