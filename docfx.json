@@ -1,0 +1,141 @@
+{
+  "metadata": [
+    {
+      "src": [
+        {
+          "files": [
+            "GTiff2Tiles.Core/**.csproj"
+          ],
+          "exclude": [
+            "**/bin/**",
+            "**/obj/**",
+            "**/_site/**"
+          ]
+        }
+      ],
+      "dest": "Docs/api",
+      "disableGitFeatures": false,
+      "disableDefaultFilter": false,
+      "properties":{
+        "Platform": "x64"
+      }
+    }
+  ],
+  "build": {
+    "content": [
+      {
+        "files": [
+          "**"
+        ],
+        "src": "Docs/api",
+        "dest": "api"
+      },
+      {
+        "files": [
+          "CHANGELOG.md",
+          "CONTRIBUTING.md",
+          "LICENSE.md"
+        ]
+      },
+      {
+        "files": [
+          "index.md",
+          "toc.yml"
+        ],
+        "src": "Docs"
+      },
+      {
+        "files": [
+          "*.md"
+        ],
+        "src": "GTiff2Tiles.Benchmarks"
+      },
+      {
+        "files": [
+          "*.md"
+        ],
+        "src": "GTiff2Tiles.Console"
+      },
+      {
+        "files": [
+          "*.md"
+        ],
+        "src": "GTiff2Tiles.Core",
+        "dest": "api"
+      },
+      {
+        "files": [
+          "*.md"
+        ],
+        "src": "GTiff2Tiles.GUI"
+      },
+      {
+        "files": [
+          "*.md"
+        ],
+        "src": "GTiff2Tiles.Tests"
+      }
+    ],
+    "resource": [
+      {
+        "files": [
+          "**"
+        ],
+        "src": "GTiff2Tiles.GUI/Resources",
+        "dest": "images"
+      },
+      {
+        "files": [
+          "**"
+        ],
+        "src": "GTiff2Tiles.GUI/Screenshots",
+        "dest": "images"
+      }
+    ],
+    "globalMetadata": {
+      "_appFaviconPath": "images/Icon.ico",
+      "_appLogoPath": "images/Icon.png"
+    },
+    "overwrite": [],
+    "dest": "Docs/_site",
+    "globalMetadataFiles": [],
+    "fileMetadataFiles": [],
+    "template": [
+      "default"
+    ],
+    "postProcessors": [],
+    "markdownEngineName": "markdig",
+    "noLangKeyword": false,
+    "keepFileLink": false,
+    "cleanupCacheHistory": false,
+    "disableGitFeatures": false
+  },
+  "pdf": {
+    "content": [
+      {
+        "files": [
+          "*.yml"
+        ],
+        "exclude": [
+          "toc.yml"
+        ],
+        "src": "Docs/api"
+      },
+      {
+        "files": [
+          "*.md"
+        ],
+        "src": "GTiff2Tiles.Console"
+      },
+      {
+        "files": [
+          "toc.yml"
+        ],
+        "src": "Docs/pdf"
+      }
+    ],
+    "resource": [],
+    "overwrite": [],
+    "dest": "Docs/_pdf"
+  }
+}

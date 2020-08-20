@@ -356,3 +356,4 @@ MigrationBackup/
 /Secrets.txt
 *.config
 /Examples/Output
+/Docs/api

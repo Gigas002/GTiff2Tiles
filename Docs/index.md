@@ -1,28 +1,18 @@
 # GTiff2Tiles
 
-![Icon](Icon/Icon.png)
-
 **GTiff2Tiles** is an analogue of [gdal2tiles.py](https://github.com/OSGeo/gdal/blob/master/gdal/swig/python/scripts/gdal2tiles.py) and [MapTiler](https://www.maptiler.com/) on **C#** for creating tiles.
 
 [![Build status](https://ci.appveyor.com/api/projects/status/wp5bbi08sgd4i9bh/branch/master?svg=true)](https://ci.appveyor.com/project/Gigas002/gtiff2tiles/branch/master)
 [![Actions Status](https://github.com/Gigas002/GTiff2Tiles/workflows/.NET%20Core%20CI/badge.svg)](https://github.com/Gigas002/GTiff2Tiles/actions)
 [![codecov](https://codecov.io/gh/Gigas002/GTiff2Tiles/branch/master/graph/badge.svg)](https://codecov.io/gh/Gigas002/GTiff2Tiles)
 
-## Table of contents
-
-TODO: re-generate
-
-Table of contents generated with [markdown-toc](http://ecotrust-canada.github.io/markdown-toc/).
-
 ## Current version
-
-**Release 1.4.1 is the last release to support .NET Standard 2.0. Starting from version 2.0.0 solution targets .NET Core only!**
 
 Current stable version can be found on GitHub Releases page: [![Release](https://img.shields.io/github/release/Gigas002/GTiff2Tiles.svg)](https://github.com/Gigas002/GTiff2Tiles/releases/latest), on NuGet (*GTiff2Tiles.Core only*): [![NuGet](https://img.shields.io/nuget/v/GTiff2Tiles.svg)](https://www.nuget.org/packages/GTiff2Tiles/) and [GitHub Packages Feed](https://github.com/Gigas002/GTiff2Tiles/packages).
 
 Pre-release versions by CI are also available on [Releases](https://github.com/Gigas002/GTiff2Tiles/releases) page, [nuget](https://www.nuget.org/packages/GTiff2Tiles/) and [docker hub](https://hub.docker.com/r/gigas002/gtiff2tiles-console).
 
-Information about changes since previous releases can be found in [changelog](CHANGELOG.md). This project supports [SemVer 2.0.0](https://semver.org/) (template is `{MAJOR}.{MINOR}.{PATCH}.{BUILD}`).
+Information about changes since previous releases can be found in [changelog](CHANGELOG.html). This project supports [SemVer 2.0.0](https://semver.org/) (template is `{MAJOR}.{MINOR}.{PATCH}.{BUILD}`).
 
 Previous versions can also be found on [releases](https://github.com/Gigas002/GTiff2Tiles/releases), [tags](https://github.com/Gigas002/GTiff2Tiles/tags) and [branches (source code)](https://github.com/Gigas002/GTiff2Tiles/branches) pages.
 
@@ -45,12 +35,6 @@ Note, that running these scripts requires installed **PowerShell** or **[PowerSh
 
 You'll also find full list for dependencies for all projects on the corresponding pages.
 
-## Documentation
-
-Docs are available to browse on [GitHub Pages](). The offline alternative for core is [pdf](https://github.com/Gigas002/GTiff2Tiles/blob/master/Docs/_pdf/GTiff2Tiles.pdf) or generating docs by yourself, using **docfx** and [create-docs.ps1](https://github.com/Gigas002/GTiff2Tiles/blob/master/create-docs.ps1) script. For offline users, you can also read `.md` files in corresponding directory if each project (info is the same, as on **GitHub Pages**).
-
-Outdated docs for release 1.4.x Core's API are available on [GitHub Wiki](https://github.com/Gigas002/GTiff2Tiles/wiki).
-
 ## Examples
 
 In [Examples](https://github.com/Gigas002/GTiff2Tiles/tree/master/Examples) directory you can find **GeoTIFFs** for some tests. Run [codecov-local.ps1](https://github.com/Gigas002/GTiff2Tiles/blob/master/codecov-local.ps1) script, and you'll see the new **Output** folder, in which test results are thrown.
@@ -61,12 +45,14 @@ You can track, what’s planned to do in future releases on [projects](https://g
 
 ## Contributing
 
-Feel free to [contribute](CONTRIBUTING.md), make forks, change some code, add [issues](https://github.com/Gigas002/GTiff2Tiles/issues), etc.
+Feel free to [contribute](CONTRIBUTING.html), make forks, change some code, add [issues](https://github.com/Gigas002/GTiff2Tiles/issues), etc.
 
 ## License
 
-Project is licensed under [DBAD](LICENSE.md) license.
+Project is licensed under [DBAD](LICENSE.html) license.
 
 ## 3rd party resources
+
+![Icon](images/Icon.png)
 
 Icon is provided by [Google’s material design](https://material.io/tools/icons/?icon=image&style=baseline) and is used in all of **GTiff2Tiles** projects.
