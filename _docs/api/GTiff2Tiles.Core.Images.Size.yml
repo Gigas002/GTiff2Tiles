@@ -1,0 +1,1395 @@
+### YamlMime:ManagedReference
+items:
+- uid: GTiff2Tiles.Core.Images.Size
+  commentId: T:GTiff2Tiles.Core.Images.Size
+  id: Size
+  parent: GTiff2Tiles.Core.Images
+  children:
+  - GTiff2Tiles.Core.Images.Size.#ctor(System.Int32,System.Int32)
+  - GTiff2Tiles.Core.Images.Size.Add(GTiff2Tiles.Core.Images.Size)
+  - GTiff2Tiles.Core.Images.Size.Divide(GTiff2Tiles.Core.Images.Size)
+  - GTiff2Tiles.Core.Images.Size.Equals(GTiff2Tiles.Core.Images.Size)
+  - GTiff2Tiles.Core.Images.Size.Equals(System.Object)
+  - GTiff2Tiles.Core.Images.Size.GetHashCode
+  - GTiff2Tiles.Core.Images.Size.Height
+  - GTiff2Tiles.Core.Images.Size.IsSquare
+  - GTiff2Tiles.Core.Images.Size.Multiply(GTiff2Tiles.Core.Images.Size)
+  - GTiff2Tiles.Core.Images.Size.op_Addition(GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Images.Size)
+  - GTiff2Tiles.Core.Images.Size.op_Division(GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Images.Size)
+  - GTiff2Tiles.Core.Images.Size.op_Equality(GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Images.Size)
+  - GTiff2Tiles.Core.Images.Size.op_Inequality(GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Images.Size)
+  - GTiff2Tiles.Core.Images.Size.op_Multiply(GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Images.Size)
+  - GTiff2Tiles.Core.Images.Size.op_Subtraction(GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Images.Size)
+  - GTiff2Tiles.Core.Images.Size.Resolution
+  - GTiff2Tiles.Core.Images.Size.Subtract(GTiff2Tiles.Core.Images.Size)
+  - GTiff2Tiles.Core.Images.Size.Width
+  langs:
+  - csharp
+  - vb
+  name: Size
+  nameWithType: Size
+  fullName: GTiff2Tiles.Core.Images.Size
+  type: Class
+  source:
+    remote:
+      path: GTiff2Tiles.Core/Images/Size.cs
+      branch: master
+      repo: https://github.com/Gigas002/GTiff2Tiles.git
+    id: Size
+    path: GTiff2Tiles.Core/Images/Size.cs
+    startLine: 9
+  assemblies:
+  - GTiff2Tiles.Core
+  namespace: GTiff2Tiles.Core.Images
+  summary: "\n<xref href=\"GTiff2Tiles.Core.Images.Size\" data-throw-if-not-resolved=\"false\"></xref> of any image\n"
+  example: []
+  syntax:
+    content: 'public sealed class Size : IEquatable<Size>'
+    content.vb: >-
+      Public NotInheritable Class Size
+
+          Implements IEquatable(Of Size)
+  inheritance:
+  - System.Object
+  implements:
+  - System.IEquatable{GTiff2Tiles.Core.Images.Size}
+  inheritedMembers:
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  modifiers.csharp:
+  - public
+  - sealed
+  - class
+  modifiers.vb:
+  - Public
+  - NotInheritable
+  - Class
+- uid: GTiff2Tiles.Core.Images.Size.Width
+  commentId: P:GTiff2Tiles.Core.Images.Size.Width
+  id: Width
+  parent: GTiff2Tiles.Core.Images.Size
+  langs:
+  - csharp
+  - vb
+  name: Width
+  nameWithType: Size.Width
+  fullName: GTiff2Tiles.Core.Images.Size.Width
+  type: Property
+  source:
+    remote:
+      path: GTiff2Tiles.Core/Images/Size.cs
+      branch: master
+      repo: https://github.com/Gigas002/GTiff2Tiles.git
+    id: Width
+    path: GTiff2Tiles.Core/Images/Size.cs
+    startLine: 16
+  assemblies:
+  - GTiff2Tiles.Core
+  namespace: GTiff2Tiles.Core.Images
+  summary: "\nImage&apos;s width\n"
+  example: []
+  syntax:
+    content: public int Width { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property Width As Integer
+  overload: GTiff2Tiles.Core.Images.Size.Width*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: GTiff2Tiles.Core.Images.Size.Height
+  commentId: P:GTiff2Tiles.Core.Images.Size.Height
+  id: Height
+  parent: GTiff2Tiles.Core.Images.Size
+  langs:
+  - csharp
+  - vb
+  name: Height
+  nameWithType: Size.Height
+  fullName: GTiff2Tiles.Core.Images.Size.Height
+  type: Property
+  source:
+    remote:
+      path: GTiff2Tiles.Core/Images/Size.cs
+      branch: master
+      repo: https://github.com/Gigas002/GTiff2Tiles.git
+    id: Height
+    path: GTiff2Tiles.Core/Images/Size.cs
+    startLine: 21
+  assemblies:
+  - GTiff2Tiles.Core
+  namespace: GTiff2Tiles.Core.Images
+  summary: "\nImage&apos;s height\n"
+  example: []
+  syntax:
+    content: public int Height { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property Height As Integer
+  overload: GTiff2Tiles.Core.Images.Size.Height*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: GTiff2Tiles.Core.Images.Size.Resolution
+  commentId: P:GTiff2Tiles.Core.Images.Size.Resolution
+  id: Resolution
+  parent: GTiff2Tiles.Core.Images.Size
+  langs:
+  - csharp
+  - vb
+  name: Resolution
+  nameWithType: Size.Resolution
+  fullName: GTiff2Tiles.Core.Images.Size.Resolution
+  type: Property
+  source:
+    remote:
+      path: GTiff2Tiles.Core/Images/Size.cs
+      branch: master
+      repo: https://github.com/Gigas002/GTiff2Tiles.git
+    id: Resolution
+    path: GTiff2Tiles.Core/Images/Size.cs
+    startLine: 26
+  assemblies:
+  - GTiff2Tiles.Core
+  namespace: GTiff2Tiles.Core.Images
+  summary: "\nImage&apos;s resolution\n"
+  example: []
+  syntax:
+    content: public int Resolution { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property Resolution As Integer
+  overload: GTiff2Tiles.Core.Images.Size.Resolution*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: GTiff2Tiles.Core.Images.Size.IsSquare
+  commentId: P:GTiff2Tiles.Core.Images.Size.IsSquare
+  id: IsSquare
+  parent: GTiff2Tiles.Core.Images.Size
+  langs:
+  - csharp
+  - vb
+  name: IsSquare
+  nameWithType: Size.IsSquare
+  fullName: GTiff2Tiles.Core.Images.Size.IsSquare
+  type: Property
+  source:
+    remote:
+      path: GTiff2Tiles.Core/Images/Size.cs
+      branch: master
+      repo: https://github.com/Gigas002/GTiff2Tiles.git
+    id: IsSquare
+    path: GTiff2Tiles.Core/Images/Size.cs
+    startLine: 31
+  assemblies:
+  - GTiff2Tiles.Core
+  namespace: GTiff2Tiles.Core.Images
+  summary: "\nShows if this tile is square (width == height)\n"
+  example: []
+  syntax:
+    content: public bool IsSquare { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property IsSquare As Boolean
+  overload: GTiff2Tiles.Core.Images.Size.IsSquare*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: GTiff2Tiles.Core.Images.Size.#ctor(System.Int32,System.Int32)
+  commentId: M:GTiff2Tiles.Core.Images.Size.#ctor(System.Int32,System.Int32)
+  id: '#ctor(System.Int32,System.Int32)'
+  parent: GTiff2Tiles.Core.Images.Size
+  langs:
+  - csharp
+  - vb
+  name: Size(Int32, Int32)
+  nameWithType: Size.Size(Int32, Int32)
+  fullName: GTiff2Tiles.Core.Images.Size.Size(System.Int32, System.Int32)
+  type: Constructor
+  source:
+    remote:
+      path: GTiff2Tiles.Core/Images/Size.cs
+      branch: master
+      repo: https://github.com/Gigas002/GTiff2Tiles.git
+    id: .ctor
+    path: GTiff2Tiles.Core/Images/Size.cs
+    startLine: 45
+  assemblies:
+  - GTiff2Tiles.Core
+  namespace: GTiff2Tiles.Core.Images
+  summary: "\nCreates new <xref href=\"GTiff2Tiles.Core.Images.Size\" data-throw-if-not-resolved=\"false\"></xref>\n"
+  example: []
+  syntax:
+    content: public Size(int width, int height)
+    parameters:
+    - id: width
+      type: System.Int32
+      description: >-
+        <xref href="GTiff2Tiles.Core.Images.Size.Width" data-throw-if-not-resolved="false"></xref>
+
+        <remarks><p></p>Shoukd be > 0</remarks>
+    - id: height
+      type: System.Int32
+      description: >-
+        <xref href="GTiff2Tiles.Core.Images.Size.Height" data-throw-if-not-resolved="false"></xref>
+
+        <remarks><p></p>Shoukd be > 0</remarks>
+    content.vb: Public Sub New(width As Integer, height As Integer)
+  overload: GTiff2Tiles.Core.Images.Size.#ctor*
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    commentId: T:System.ArgumentOutOfRangeException
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: GTiff2Tiles.Core.Images.Size.Equals(System.Object)
+  commentId: M:GTiff2Tiles.Core.Images.Size.Equals(System.Object)
+  id: Equals(System.Object)
+  parent: GTiff2Tiles.Core.Images.Size
+  langs:
+  - csharp
+  - vb
+  name: Equals(Object)
+  nameWithType: Size.Equals(Object)
+  fullName: GTiff2Tiles.Core.Images.Size.Equals(System.Object)
+  type: Method
+  source:
+    remote:
+      path: GTiff2Tiles.Core/Images/Size.cs
+      branch: master
+      repo: https://github.com/Gigas002/GTiff2Tiles.git
+    id: Equals
+    path: GTiff2Tiles.Core/Images/Size.cs
+    startLine: 64
+  assemblies:
+  - GTiff2Tiles.Core
+  namespace: GTiff2Tiles.Core.Images
+  example: []
+  syntax:
+    content: public override bool Equals(object size)
+    parameters:
+    - id: size
+      type: System.Object
+    return:
+      type: System.Boolean
+    content.vb: Public Overrides Function Equals(size As Object) As Boolean
+  overridden: System.Object.Equals(System.Object)
+  overload: GTiff2Tiles.Core.Images.Size.Equals*
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
+- uid: GTiff2Tiles.Core.Images.Size.GetHashCode
+  commentId: M:GTiff2Tiles.Core.Images.Size.GetHashCode
+  id: GetHashCode
+  parent: GTiff2Tiles.Core.Images.Size
+  langs:
+  - csharp
+  - vb
+  name: GetHashCode()
+  nameWithType: Size.GetHashCode()
+  fullName: GTiff2Tiles.Core.Images.Size.GetHashCode()
+  type: Method
+  source:
+    remote:
+      path: GTiff2Tiles.Core/Images/Size.cs
+      branch: master
+      repo: https://github.com/Gigas002/GTiff2Tiles.git
+    id: GetHashCode
+    path: GTiff2Tiles.Core/Images/Size.cs
+    startLine: 67
+  assemblies:
+  - GTiff2Tiles.Core
+  namespace: GTiff2Tiles.Core.Images
+  example: []
+  syntax:
+    content: public override int GetHashCode()
+    return:
+      type: System.Int32
+    content.vb: Public Overrides Function GetHashCode As Integer
+  overridden: System.Object.GetHashCode
+  overload: GTiff2Tiles.Core.Images.Size.GetHashCode*
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
+- uid: GTiff2Tiles.Core.Images.Size.Equals(GTiff2Tiles.Core.Images.Size)
+  commentId: M:GTiff2Tiles.Core.Images.Size.Equals(GTiff2Tiles.Core.Images.Size)
+  id: Equals(GTiff2Tiles.Core.Images.Size)
+  parent: GTiff2Tiles.Core.Images.Size
+  langs:
+  - csharp
+  - vb
+  name: Equals(Size)
+  nameWithType: Size.Equals(Size)
+  fullName: GTiff2Tiles.Core.Images.Size.Equals(GTiff2Tiles.Core.Images.Size)
+  type: Method
+  source:
+    remote:
+      path: GTiff2Tiles.Core/Images/Size.cs
+      branch: master
+      repo: https://github.com/Gigas002/GTiff2Tiles.git
+    id: Equals
+    path: GTiff2Tiles.Core/Images/Size.cs
+    startLine: 70
+  assemblies:
+  - GTiff2Tiles.Core
+  namespace: GTiff2Tiles.Core.Images
+  example: []
+  syntax:
+    content: public bool Equals(Size other)
+    parameters:
+    - id: other
+      type: GTiff2Tiles.Core.Images.Size
+    return:
+      type: System.Boolean
+    content.vb: Public Function Equals(other As Size) As Boolean
+  overload: GTiff2Tiles.Core.Images.Size.Equals*
+  implements:
+  - System.IEquatable{GTiff2Tiles.Core.Images.Size}.Equals(GTiff2Tiles.Core.Images.Size)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: GTiff2Tiles.Core.Images.Size.op_Equality(GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Images.Size)
+  commentId: M:GTiff2Tiles.Core.Images.Size.op_Equality(GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Images.Size)
+  id: op_Equality(GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Images.Size)
+  parent: GTiff2Tiles.Core.Images.Size
+  langs:
+  - csharp
+  - vb
+  name: Equality(Size, Size)
+  nameWithType: Size.Equality(Size, Size)
+  fullName: GTiff2Tiles.Core.Images.Size.Equality(GTiff2Tiles.Core.Images.Size, GTiff2Tiles.Core.Images.Size)
+  type: Operator
+  source:
+    remote:
+      path: GTiff2Tiles.Core/Images/Size.cs
+      branch: master
+      repo: https://github.com/Gigas002/GTiff2Tiles.git
+    id: op_Equality
+    path: GTiff2Tiles.Core/Images/Size.cs
+    startLine: 85
+  assemblies:
+  - GTiff2Tiles.Core
+  namespace: GTiff2Tiles.Core.Images
+  summary: "\nCheck two <xref href=\"GTiff2Tiles.Core.Images.Size\" data-throw-if-not-resolved=\"false\"></xref>s for equality\n"
+  example: []
+  syntax:
+    content: public static bool operator ==(Size size1, Size size2)
+    parameters:
+    - id: size1
+      type: GTiff2Tiles.Core.Images.Size
+      description: <xref href="GTiff2Tiles.Core.Images.Size" data-throw-if-not-resolved="false"></xref> 1
+    - id: size2
+      type: GTiff2Tiles.Core.Images.Size
+      description: <xref href="GTiff2Tiles.Core.Images.Size" data-throw-if-not-resolved="false"></xref> 2
+    return:
+      type: System.Boolean
+      description: >-
+        <xref uid="langword_csharp_true" name="true" href=""></xref> if <xref href="GTiff2Tiles.Core.Images.Size" data-throw-if-not-resolved="false"></xref>s are equal;
+
+        <xref uid="langword_csharp_false" name="false" href=""></xref> otherwise
+    content.vb: Public Shared Operator =(size1 As Size, size2 As Size) As Boolean
+  overload: GTiff2Tiles.Core.Images.Size.op_Equality*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: GTiff2Tiles.Core.Images.Size.op_Inequality(GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Images.Size)
+  commentId: M:GTiff2Tiles.Core.Images.Size.op_Inequality(GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Images.Size)
+  id: op_Inequality(GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Images.Size)
+  parent: GTiff2Tiles.Core.Images.Size
+  langs:
+  - csharp
+  - vb
+  name: Inequality(Size, Size)
+  nameWithType: Size.Inequality(Size, Size)
+  fullName: GTiff2Tiles.Core.Images.Size.Inequality(GTiff2Tiles.Core.Images.Size, GTiff2Tiles.Core.Images.Size)
+  type: Operator
+  source:
+    remote:
+      path: GTiff2Tiles.Core/Images/Size.cs
+      branch: master
+      repo: https://github.com/Gigas002/GTiff2Tiles.git
+    id: op_Inequality
+    path: GTiff2Tiles.Core/Images/Size.cs
+    startLine: 94
+  assemblies:
+  - GTiff2Tiles.Core
+  namespace: GTiff2Tiles.Core.Images
+  summary: "\nCheck two <xref href=\"GTiff2Tiles.Core.Images.Size\" data-throw-if-not-resolved=\"false\"></xref>s for non-equality\n"
+  example: []
+  syntax:
+    content: public static bool operator !=(Size size1, Size size2)
+    parameters:
+    - id: size1
+      type: GTiff2Tiles.Core.Images.Size
+      description: <xref href="GTiff2Tiles.Core.Images.Size" data-throw-if-not-resolved="false"></xref> 1
+    - id: size2
+      type: GTiff2Tiles.Core.Images.Size
+      description: <xref href="GTiff2Tiles.Core.Images.Size" data-throw-if-not-resolved="false"></xref> 2
+    return:
+      type: System.Boolean
+      description: >-
+        <xref uid="langword_csharp_true" name="true" href=""></xref> if <xref href="GTiff2Tiles.Core.Images.Size" data-throw-if-not-resolved="false"></xref>s are not equal;
+
+        <xref uid="langword_csharp_false" name="false" href=""></xref> otherwise
+    content.vb: Public Shared Operator <>(size1 As Size, size2 As Size) As Boolean
+  overload: GTiff2Tiles.Core.Images.Size.op_Inequality*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: GTiff2Tiles.Core.Images.Size.op_Addition(GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Images.Size)
+  commentId: M:GTiff2Tiles.Core.Images.Size.op_Addition(GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Images.Size)
+  id: op_Addition(GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Images.Size)
+  parent: GTiff2Tiles.Core.Images.Size
+  langs:
+  - csharp
+  - vb
+  name: Addition(Size, Size)
+  nameWithType: Size.Addition(Size, Size)
+  fullName: GTiff2Tiles.Core.Images.Size.Addition(GTiff2Tiles.Core.Images.Size, GTiff2Tiles.Core.Images.Size)
+  type: Operator
+  source:
+    remote:
+      path: GTiff2Tiles.Core/Images/Size.cs
+      branch: master
+      repo: https://github.com/Gigas002/GTiff2Tiles.git
+    id: op_Addition
+    path: GTiff2Tiles.Core/Images/Size.cs
+    startLine: 107
+  assemblies:
+  - GTiff2Tiles.Core
+  namespace: GTiff2Tiles.Core.Images
+  summary: "\nSum <xref href=\"GTiff2Tiles.Core.Images.Size\" data-throw-if-not-resolved=\"false\"></xref>s\n"
+  example: []
+  syntax:
+    content: public static Size operator +(Size size1, Size size2)
+    parameters:
+    - id: size1
+      type: GTiff2Tiles.Core.Images.Size
+      description: <xref href="GTiff2Tiles.Core.Images.Size" data-throw-if-not-resolved="false"></xref> 1
+    - id: size2
+      type: GTiff2Tiles.Core.Images.Size
+      description: <xref href="GTiff2Tiles.Core.Images.Size" data-throw-if-not-resolved="false"></xref> 2
+    return:
+      type: GTiff2Tiles.Core.Images.Size
+      description: New <xref href="GTiff2Tiles.Core.Images.Size" data-throw-if-not-resolved="false"></xref>
+    content.vb: Public Shared Operator +(size1 As Size, size2 As Size) As Size
+  overload: GTiff2Tiles.Core.Images.Size.op_Addition*
+  exceptions:
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: GTiff2Tiles.Core.Images.Size.Add(GTiff2Tiles.Core.Images.Size)
+  commentId: M:GTiff2Tiles.Core.Images.Size.Add(GTiff2Tiles.Core.Images.Size)
+  id: Add(GTiff2Tiles.Core.Images.Size)
+  parent: GTiff2Tiles.Core.Images.Size
+  langs:
+  - csharp
+  - vb
+  name: Add(Size)
+  nameWithType: Size.Add(Size)
+  fullName: GTiff2Tiles.Core.Images.Size.Add(GTiff2Tiles.Core.Images.Size)
+  type: Method
+  source:
+    remote:
+      path: GTiff2Tiles.Core/Images/Size.cs
+      branch: master
+      repo: https://github.com/Gigas002/GTiff2Tiles.git
+    id: Add
+    path: GTiff2Tiles.Core/Images/Size.cs
+    startLine: 121
+  assemblies:
+  - GTiff2Tiles.Core
+  namespace: GTiff2Tiles.Core.Images
+  example: []
+  syntax:
+    content: public Size Add(Size other)
+    parameters:
+    - id: other
+      type: GTiff2Tiles.Core.Images.Size
+      description: <xref href="GTiff2Tiles.Core.Images.Size" data-throw-if-not-resolved="false"></xref> to add
+    return:
+      type: GTiff2Tiles.Core.Images.Size
+    content.vb: Public Function Add(other As Size) As Size
+  overload: GTiff2Tiles.Core.Images.Size.Add*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: GTiff2Tiles.Core.Images.Size.op_Subtraction(GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Images.Size)
+  commentId: M:GTiff2Tiles.Core.Images.Size.op_Subtraction(GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Images.Size)
+  id: op_Subtraction(GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Images.Size)
+  parent: GTiff2Tiles.Core.Images.Size
+  langs:
+  - csharp
+  - vb
+  name: Subtraction(Size, Size)
+  nameWithType: Size.Subtraction(Size, Size)
+  fullName: GTiff2Tiles.Core.Images.Size.Subtraction(GTiff2Tiles.Core.Images.Size, GTiff2Tiles.Core.Images.Size)
+  type: Operator
+  source:
+    remote:
+      path: GTiff2Tiles.Core/Images/Size.cs
+      branch: master
+      repo: https://github.com/Gigas002/GTiff2Tiles.git
+    id: op_Subtraction
+    path: GTiff2Tiles.Core/Images/Size.cs
+    startLine: 130
+  assemblies:
+  - GTiff2Tiles.Core
+  namespace: GTiff2Tiles.Core.Images
+  summary: "\nSubtruct <xref href=\"GTiff2Tiles.Core.Images.Size\" data-throw-if-not-resolved=\"false\"></xref>s\n"
+  example: []
+  syntax:
+    content: public static Size operator -(Size size1, Size size2)
+    parameters:
+    - id: size1
+      type: GTiff2Tiles.Core.Images.Size
+      description: <xref href="GTiff2Tiles.Core.Images.Size" data-throw-if-not-resolved="false"></xref> 1
+    - id: size2
+      type: GTiff2Tiles.Core.Images.Size
+      description: <xref href="GTiff2Tiles.Core.Images.Size" data-throw-if-not-resolved="false"></xref> 2
+    return:
+      type: GTiff2Tiles.Core.Images.Size
+      description: New <xref href="GTiff2Tiles.Core.Images.Size" data-throw-if-not-resolved="false"></xref>
+    content.vb: Public Shared Operator -(size1 As Size, size2 As Size) As Size
+  overload: GTiff2Tiles.Core.Images.Size.op_Subtraction*
+  exceptions:
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: GTiff2Tiles.Core.Images.Size.Subtract(GTiff2Tiles.Core.Images.Size)
+  commentId: M:GTiff2Tiles.Core.Images.Size.Subtract(GTiff2Tiles.Core.Images.Size)
+  id: Subtract(GTiff2Tiles.Core.Images.Size)
+  parent: GTiff2Tiles.Core.Images.Size
+  langs:
+  - csharp
+  - vb
+  name: Subtract(Size)
+  nameWithType: Size.Subtract(Size)
+  fullName: GTiff2Tiles.Core.Images.Size.Subtract(GTiff2Tiles.Core.Images.Size)
+  type: Method
+  source:
+    remote:
+      path: GTiff2Tiles.Core/Images/Size.cs
+      branch: master
+      repo: https://github.com/Gigas002/GTiff2Tiles.git
+    id: Subtract
+    path: GTiff2Tiles.Core/Images/Size.cs
+    startLine: 144
+  assemblies:
+  - GTiff2Tiles.Core
+  namespace: GTiff2Tiles.Core.Images
+  example: []
+  syntax:
+    content: public Size Subtract(Size other)
+    parameters:
+    - id: other
+      type: GTiff2Tiles.Core.Images.Size
+      description: <xref href="GTiff2Tiles.Core.Images.Size" data-throw-if-not-resolved="false"></xref> to subtract
+    return:
+      type: GTiff2Tiles.Core.Images.Size
+    content.vb: Public Function Subtract(other As Size) As Size
+  overload: GTiff2Tiles.Core.Images.Size.Subtract*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: GTiff2Tiles.Core.Images.Size.op_Multiply(GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Images.Size)
+  commentId: M:GTiff2Tiles.Core.Images.Size.op_Multiply(GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Images.Size)
+  id: op_Multiply(GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Images.Size)
+  parent: GTiff2Tiles.Core.Images.Size
+  langs:
+  - csharp
+  - vb
+  name: Multiply(Size, Size)
+  nameWithType: Size.Multiply(Size, Size)
+  fullName: GTiff2Tiles.Core.Images.Size.Multiply(GTiff2Tiles.Core.Images.Size, GTiff2Tiles.Core.Images.Size)
+  type: Operator
+  source:
+    remote:
+      path: GTiff2Tiles.Core/Images/Size.cs
+      branch: master
+      repo: https://github.com/Gigas002/GTiff2Tiles.git
+    id: op_Multiply
+    path: GTiff2Tiles.Core/Images/Size.cs
+    startLine: 153
+  assemblies:
+  - GTiff2Tiles.Core
+  namespace: GTiff2Tiles.Core.Images
+  summary: "\nMultiply <xref href=\"GTiff2Tiles.Core.Images.Size\" data-throw-if-not-resolved=\"false\"></xref>s\n"
+  example: []
+  syntax:
+    content: public static Size operator *(Size size1, Size size2)
+    parameters:
+    - id: size1
+      type: GTiff2Tiles.Core.Images.Size
+      description: <xref href="GTiff2Tiles.Core.Images.Size" data-throw-if-not-resolved="false"></xref> 1
+    - id: size2
+      type: GTiff2Tiles.Core.Images.Size
+      description: <xref href="GTiff2Tiles.Core.Images.Size" data-throw-if-not-resolved="false"></xref> 2
+    return:
+      type: GTiff2Tiles.Core.Images.Size
+      description: New <xref href="GTiff2Tiles.Core.Images.Size" data-throw-if-not-resolved="false"></xref>
+    content.vb: Public Shared Operator *(size1 As Size, size2 As Size) As Size
+  overload: GTiff2Tiles.Core.Images.Size.op_Multiply*
+  exceptions:
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: GTiff2Tiles.Core.Images.Size.Multiply(GTiff2Tiles.Core.Images.Size)
+  commentId: M:GTiff2Tiles.Core.Images.Size.Multiply(GTiff2Tiles.Core.Images.Size)
+  id: Multiply(GTiff2Tiles.Core.Images.Size)
+  parent: GTiff2Tiles.Core.Images.Size
+  langs:
+  - csharp
+  - vb
+  name: Multiply(Size)
+  nameWithType: Size.Multiply(Size)
+  fullName: GTiff2Tiles.Core.Images.Size.Multiply(GTiff2Tiles.Core.Images.Size)
+  type: Method
+  source:
+    remote:
+      path: GTiff2Tiles.Core/Images/Size.cs
+      branch: master
+      repo: https://github.com/Gigas002/GTiff2Tiles.git
+    id: Multiply
+    path: GTiff2Tiles.Core/Images/Size.cs
+    startLine: 167
+  assemblies:
+  - GTiff2Tiles.Core
+  namespace: GTiff2Tiles.Core.Images
+  example: []
+  syntax:
+    content: public Size Multiply(Size other)
+    parameters:
+    - id: other
+      type: GTiff2Tiles.Core.Images.Size
+      description: <xref href="GTiff2Tiles.Core.Images.Size" data-throw-if-not-resolved="false"></xref> to multiply
+    return:
+      type: GTiff2Tiles.Core.Images.Size
+    content.vb: Public Function Multiply(other As Size) As Size
+  overload: GTiff2Tiles.Core.Images.Size.Multiply*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: GTiff2Tiles.Core.Images.Size.op_Division(GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Images.Size)
+  commentId: M:GTiff2Tiles.Core.Images.Size.op_Division(GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Images.Size)
+  id: op_Division(GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Images.Size)
+  parent: GTiff2Tiles.Core.Images.Size
+  langs:
+  - csharp
+  - vb
+  name: Division(Size, Size)
+  nameWithType: Size.Division(Size, Size)
+  fullName: GTiff2Tiles.Core.Images.Size.Division(GTiff2Tiles.Core.Images.Size, GTiff2Tiles.Core.Images.Size)
+  type: Operator
+  source:
+    remote:
+      path: GTiff2Tiles.Core/Images/Size.cs
+      branch: master
+      repo: https://github.com/Gigas002/GTiff2Tiles.git
+    id: op_Division
+    path: GTiff2Tiles.Core/Images/Size.cs
+    startLine: 176
+  assemblies:
+  - GTiff2Tiles.Core
+  namespace: GTiff2Tiles.Core.Images
+  summary: "\nDivide <xref href=\"GTiff2Tiles.Core.Images.Size\" data-throw-if-not-resolved=\"false\"></xref>s\n"
+  example: []
+  syntax:
+    content: public static Size operator /(Size size1, Size size2)
+    parameters:
+    - id: size1
+      type: GTiff2Tiles.Core.Images.Size
+      description: <xref href="GTiff2Tiles.Core.Images.Size" data-throw-if-not-resolved="false"></xref> 1
+    - id: size2
+      type: GTiff2Tiles.Core.Images.Size
+      description: <xref href="GTiff2Tiles.Core.Images.Size" data-throw-if-not-resolved="false"></xref> 2
+    return:
+      type: GTiff2Tiles.Core.Images.Size
+      description: New <xref href="GTiff2Tiles.Core.Images.Size" data-throw-if-not-resolved="false"></xref>
+    content.vb: Public Shared Operator /(size1 As Size, size2 As Size) As Size
+  overload: GTiff2Tiles.Core.Images.Size.op_Division*
+  exceptions:
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: GTiff2Tiles.Core.Images.Size.Divide(GTiff2Tiles.Core.Images.Size)
+  commentId: M:GTiff2Tiles.Core.Images.Size.Divide(GTiff2Tiles.Core.Images.Size)
+  id: Divide(GTiff2Tiles.Core.Images.Size)
+  parent: GTiff2Tiles.Core.Images.Size
+  langs:
+  - csharp
+  - vb
+  name: Divide(Size)
+  nameWithType: Size.Divide(Size)
+  fullName: GTiff2Tiles.Core.Images.Size.Divide(GTiff2Tiles.Core.Images.Size)
+  type: Method
+  source:
+    remote:
+      path: GTiff2Tiles.Core/Images/Size.cs
+      branch: master
+      repo: https://github.com/Gigas002/GTiff2Tiles.git
+    id: Divide
+    path: GTiff2Tiles.Core/Images/Size.cs
+    startLine: 190
+  assemblies:
+  - GTiff2Tiles.Core
+  namespace: GTiff2Tiles.Core.Images
+  example: []
+  syntax:
+    content: public Size Divide(Size other)
+    parameters:
+    - id: other
+      type: GTiff2Tiles.Core.Images.Size
+      description: <xref href="GTiff2Tiles.Core.Images.Size" data-throw-if-not-resolved="false"></xref> to divide on
+    return:
+      type: GTiff2Tiles.Core.Images.Size
+    content.vb: Public Function Divide(other As Size) As Size
+  overload: GTiff2Tiles.Core.Images.Size.Divide*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: GTiff2Tiles.Core.Images.Size
+  commentId: T:GTiff2Tiles.Core.Images.Size
+  parent: GTiff2Tiles.Core.Images
+  name: Size
+  nameWithType: Size
+  fullName: GTiff2Tiles.Core.Images.Size
+- uid: GTiff2Tiles.Core.Images
+  commentId: N:GTiff2Tiles.Core.Images
+  name: GTiff2Tiles.Core.Images
+  nameWithType: GTiff2Tiles.Core.Images
+  fullName: GTiff2Tiles.Core.Images
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.IEquatable{GTiff2Tiles.Core.Images.Size}
+  commentId: T:System.IEquatable{GTiff2Tiles.Core.Images.Size}
+  parent: System
+  definition: System.IEquatable`1
+  name: IEquatable<Size>
+  nameWithType: IEquatable<Size>
+  fullName: System.IEquatable<GTiff2Tiles.Core.Images.Size>
+  nameWithType.vb: IEquatable(Of Size)
+  fullName.vb: System.IEquatable(Of GTiff2Tiles.Core.Images.Size)
+  name.vb: IEquatable(Of Size)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    nameWithType: IEquatable
+    fullName: System.IEquatable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: GTiff2Tiles.Core.Images.Size
+    name: Size
+    nameWithType: Size
+    fullName: GTiff2Tiles.Core.Images.Size
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    nameWithType: IEquatable
+    fullName: System.IEquatable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: GTiff2Tiles.Core.Images.Size
+    name: Size
+    nameWithType: Size
+    fullName: GTiff2Tiles.Core.Images.Size
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.IEquatable`1
+  commentId: T:System.IEquatable`1
+  isExternal: true
+  name: IEquatable<T>
+  nameWithType: IEquatable<T>
+  fullName: System.IEquatable<T>
+  nameWithType.vb: IEquatable(Of T)
+  fullName.vb: System.IEquatable(Of T)
+  name.vb: IEquatable(Of T)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    nameWithType: IEquatable
+    fullName: System.IEquatable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    nameWithType: IEquatable
+    fullName: System.IEquatable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GTiff2Tiles.Core.Images.Size.Width*
+  commentId: Overload:GTiff2Tiles.Core.Images.Size.Width
+  name: Width
+  nameWithType: Size.Width
+  fullName: GTiff2Tiles.Core.Images.Size.Width
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: GTiff2Tiles.Core.Images.Size.Height*
+  commentId: Overload:GTiff2Tiles.Core.Images.Size.Height
+  name: Height
+  nameWithType: Size.Height
+  fullName: GTiff2Tiles.Core.Images.Size.Height
+- uid: GTiff2Tiles.Core.Images.Size.Resolution*
+  commentId: Overload:GTiff2Tiles.Core.Images.Size.Resolution
+  name: Resolution
+  nameWithType: Size.Resolution
+  fullName: GTiff2Tiles.Core.Images.Size.Resolution
+- uid: GTiff2Tiles.Core.Images.Size.IsSquare*
+  commentId: Overload:GTiff2Tiles.Core.Images.Size.IsSquare
+  name: IsSquare
+  nameWithType: Size.IsSquare
+  fullName: GTiff2Tiles.Core.Images.Size.IsSquare
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: GTiff2Tiles.Core.Images.Size.Width
+  commentId: P:GTiff2Tiles.Core.Images.Size.Width
+  isExternal: true
+- uid: GTiff2Tiles.Core.Images.Size.Height
+  commentId: P:GTiff2Tiles.Core.Images.Size.Height
+  isExternal: true
+- uid: System.ArgumentOutOfRangeException
+  commentId: T:System.ArgumentOutOfRangeException
+  isExternal: true
+- uid: GTiff2Tiles.Core.Images.Size.#ctor*
+  commentId: Overload:GTiff2Tiles.Core.Images.Size.#ctor
+  name: Size
+  nameWithType: Size.Size
+  fullName: GTiff2Tiles.Core.Images.Size.Size
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GTiff2Tiles.Core.Images.Size.Equals*
+  commentId: Overload:GTiff2Tiles.Core.Images.Size.Equals
+  name: Equals
+  nameWithType: Size.Equals
+  fullName: GTiff2Tiles.Core.Images.Size.Equals
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GTiff2Tiles.Core.Images.Size.GetHashCode*
+  commentId: Overload:GTiff2Tiles.Core.Images.Size.GetHashCode
+  name: GetHashCode
+  nameWithType: Size.GetHashCode
+  fullName: GTiff2Tiles.Core.Images.Size.GetHashCode
+- uid: System.IEquatable{GTiff2Tiles.Core.Images.Size}.Equals(GTiff2Tiles.Core.Images.Size)
+  commentId: M:System.IEquatable{GTiff2Tiles.Core.Images.Size}.Equals(GTiff2Tiles.Core.Images.Size)
+  parent: System.IEquatable{GTiff2Tiles.Core.Images.Size}
+  definition: System.IEquatable`1.Equals(`0)
+  name: Equals(Size)
+  nameWithType: IEquatable<Size>.Equals(Size)
+  fullName: System.IEquatable<GTiff2Tiles.Core.Images.Size>.Equals(GTiff2Tiles.Core.Images.Size)
+  nameWithType.vb: IEquatable(Of Size).Equals(Size)
+  fullName.vb: System.IEquatable(Of GTiff2Tiles.Core.Images.Size).Equals(GTiff2Tiles.Core.Images.Size)
+  spec.csharp:
+  - uid: System.IEquatable`1.Equals(`0)
+    name: Equals
+    nameWithType: IEquatable<Size>.Equals
+    fullName: System.IEquatable<GTiff2Tiles.Core.Images.Size>.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: GTiff2Tiles.Core.Images.Size
+    name: Size
+    nameWithType: Size
+    fullName: GTiff2Tiles.Core.Images.Size
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.IEquatable`1.Equals(`0)
+    name: Equals
+    nameWithType: IEquatable(Of Size).Equals
+    fullName: System.IEquatable(Of GTiff2Tiles.Core.Images.Size).Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: GTiff2Tiles.Core.Images.Size
+    name: Size
+    nameWithType: Size
+    fullName: GTiff2Tiles.Core.Images.Size
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.IEquatable`1.Equals(`0)
+  commentId: M:System.IEquatable`1.Equals(`0)
+  isExternal: true
+  name: Equals(T)
+  nameWithType: IEquatable<T>.Equals(T)
+  fullName: System.IEquatable<T>.Equals(T)
+  nameWithType.vb: IEquatable(Of T).Equals(T)
+  fullName.vb: System.IEquatable(Of T).Equals(T)
+  spec.csharp:
+  - uid: System.IEquatable`1.Equals(`0)
+    name: Equals
+    nameWithType: IEquatable<T>.Equals
+    fullName: System.IEquatable<T>.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.IEquatable`1.Equals(`0)
+    name: Equals
+    nameWithType: IEquatable(Of T).Equals
+    fullName: System.IEquatable(Of T).Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GTiff2Tiles.Core.Images.Size.op_Equality*
+  commentId: Overload:GTiff2Tiles.Core.Images.Size.op_Equality
+  name: Equality
+  nameWithType: Size.Equality
+  fullName: GTiff2Tiles.Core.Images.Size.Equality
+- uid: GTiff2Tiles.Core.Images.Size.op_Inequality*
+  commentId: Overload:GTiff2Tiles.Core.Images.Size.op_Inequality
+  name: Inequality
+  nameWithType: Size.Inequality
+  fullName: GTiff2Tiles.Core.Images.Size.Inequality
+- uid: System.ArgumentNullException
+  commentId: T:System.ArgumentNullException
+  isExternal: true
+- uid: GTiff2Tiles.Core.Images.Size.op_Addition*
+  commentId: Overload:GTiff2Tiles.Core.Images.Size.op_Addition
+  name: Addition
+  nameWithType: Size.Addition
+  fullName: GTiff2Tiles.Core.Images.Size.Addition
+- uid: GTiff2Tiles.Core.Images.Size.op_Addition(GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Images.Size)
+  commentId: M:GTiff2Tiles.Core.Images.Size.op_Addition(GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Images.Size)
+  isExternal: true
+- uid: GTiff2Tiles.Core.Images.Size.Add*
+  commentId: Overload:GTiff2Tiles.Core.Images.Size.Add
+  name: Add
+  nameWithType: Size.Add
+  fullName: GTiff2Tiles.Core.Images.Size.Add
+- uid: GTiff2Tiles.Core.Images.Size.op_Subtraction*
+  commentId: Overload:GTiff2Tiles.Core.Images.Size.op_Subtraction
+  name: Subtraction
+  nameWithType: Size.Subtraction
+  fullName: GTiff2Tiles.Core.Images.Size.Subtraction
+- uid: GTiff2Tiles.Core.Images.Size.op_Subtraction(GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Images.Size)
+  commentId: M:GTiff2Tiles.Core.Images.Size.op_Subtraction(GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Images.Size)
+  isExternal: true
+- uid: GTiff2Tiles.Core.Images.Size.Subtract*
+  commentId: Overload:GTiff2Tiles.Core.Images.Size.Subtract
+  name: Subtract
+  nameWithType: Size.Subtract
+  fullName: GTiff2Tiles.Core.Images.Size.Subtract
+- uid: GTiff2Tiles.Core.Images.Size.op_Multiply*
+  commentId: Overload:GTiff2Tiles.Core.Images.Size.op_Multiply
+  name: Multiply
+  nameWithType: Size.Multiply
+  fullName: GTiff2Tiles.Core.Images.Size.Multiply
+- uid: GTiff2Tiles.Core.Images.Size.op_Multiply(GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Images.Size)
+  commentId: M:GTiff2Tiles.Core.Images.Size.op_Multiply(GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Images.Size)
+  isExternal: true
+- uid: GTiff2Tiles.Core.Images.Size.Multiply*
+  commentId: Overload:GTiff2Tiles.Core.Images.Size.Multiply
+  name: Multiply
+  nameWithType: Size.Multiply
+  fullName: GTiff2Tiles.Core.Images.Size.Multiply
+- uid: GTiff2Tiles.Core.Images.Size.op_Division*
+  commentId: Overload:GTiff2Tiles.Core.Images.Size.op_Division
+  name: Division
+  nameWithType: Size.Division
+  fullName: GTiff2Tiles.Core.Images.Size.Division
+- uid: GTiff2Tiles.Core.Images.Size.op_Division(GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Images.Size)
+  commentId: M:GTiff2Tiles.Core.Images.Size.op_Division(GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Images.Size)
+  isExternal: true
+- uid: GTiff2Tiles.Core.Images.Size.Divide*
+  commentId: Overload:GTiff2Tiles.Core.Images.Size.Divide
+  name: Divide
+  nameWithType: Size.Divide
+  fullName: GTiff2Tiles.Core.Images.Size.Divide

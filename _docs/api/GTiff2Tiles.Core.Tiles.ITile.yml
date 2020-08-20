@@ -1,0 +1,878 @@
+### YamlMime:ManagedReference
+items:
+- uid: GTiff2Tiles.Core.Tiles.ITile
+  commentId: T:GTiff2Tiles.Core.Tiles.ITile
+  id: ITile
+  parent: GTiff2Tiles.Core.Tiles
+  children:
+  - GTiff2Tiles.Core.Tiles.ITile.Bytes
+  - GTiff2Tiles.Core.Tiles.ITile.CalculatePosition
+  - GTiff2Tiles.Core.Tiles.ITile.Extension
+  - GTiff2Tiles.Core.Tiles.ITile.GetExtensionString
+  - GTiff2Tiles.Core.Tiles.ITile.IsDisposed
+  - GTiff2Tiles.Core.Tiles.ITile.MaxCoordinate
+  - GTiff2Tiles.Core.Tiles.ITile.MinCoordinate
+  - GTiff2Tiles.Core.Tiles.ITile.MinimalBytesCount
+  - GTiff2Tiles.Core.Tiles.ITile.Number
+  - GTiff2Tiles.Core.Tiles.ITile.Path
+  - GTiff2Tiles.Core.Tiles.ITile.Size
+  - GTiff2Tiles.Core.Tiles.ITile.TmsCompatible
+  - GTiff2Tiles.Core.Tiles.ITile.Validate(System.Boolean)
+  langs:
+  - csharp
+  - vb
+  name: ITile
+  nameWithType: ITile
+  fullName: GTiff2Tiles.Core.Tiles.ITile
+  type: Interface
+  source:
+    remote:
+      path: GTiff2Tiles.Core/Tiles/ITile.cs
+      branch: master
+      repo: https://github.com/Gigas002/GTiff2Tiles.git
+    id: ITile
+    path: GTiff2Tiles.Core/Tiles/ITile.cs
+    startLine: 14
+  assemblies:
+  - GTiff2Tiles.Core
+  namespace: GTiff2Tiles.Core.Tiles
+  summary: "\nInterface for all tiles\n"
+  example: []
+  syntax:
+    content: 'public interface ITile : IDisposable, IAsyncDisposable'
+    content.vb: >-
+      Public Interface ITile
+
+          Inherits IDisposable, IAsyncDisposable
+  inheritedMembers:
+  - System.IDisposable.Dispose
+  - System.IAsyncDisposable.DisposeAsync
+  modifiers.csharp:
+  - public
+  - interface
+  modifiers.vb:
+  - Public
+  - Interface
+- uid: GTiff2Tiles.Core.Tiles.ITile.IsDisposed
+  commentId: P:GTiff2Tiles.Core.Tiles.ITile.IsDisposed
+  id: IsDisposed
+  parent: GTiff2Tiles.Core.Tiles.ITile
+  langs:
+  - csharp
+  - vb
+  name: IsDisposed
+  nameWithType: ITile.IsDisposed
+  fullName: GTiff2Tiles.Core.Tiles.ITile.IsDisposed
+  type: Property
+  source:
+    remote:
+      path: GTiff2Tiles.Core/Tiles/ITile.cs
+      branch: master
+      repo: https://github.com/Gigas002/GTiff2Tiles.git
+    id: IsDisposed
+    path: GTiff2Tiles.Core/Tiles/ITile.cs
+    startLine: 21
+  assemblies:
+  - GTiff2Tiles.Core
+  namespace: GTiff2Tiles.Core.Tiles
+  summary: "\nShows if this <xref href=\"GTiff2Tiles.Core.Tiles.ITile\" data-throw-if-not-resolved=\"false\"></xref>&apos;s already disposed\n"
+  example: []
+  syntax:
+    content: bool IsDisposed { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: ReadOnly Property IsDisposed As Boolean
+  overload: GTiff2Tiles.Core.Tiles.ITile.IsDisposed*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: GTiff2Tiles.Core.Tiles.ITile.MinCoordinate
+  commentId: P:GTiff2Tiles.Core.Tiles.ITile.MinCoordinate
+  id: MinCoordinate
+  parent: GTiff2Tiles.Core.Tiles.ITile
+  langs:
+  - csharp
+  - vb
+  name: MinCoordinate
+  nameWithType: ITile.MinCoordinate
+  fullName: GTiff2Tiles.Core.Tiles.ITile.MinCoordinate
+  type: Property
+  source:
+    remote:
+      path: GTiff2Tiles.Core/Tiles/ITile.cs
+      branch: master
+      repo: https://github.com/Gigas002/GTiff2Tiles.git
+    id: MinCoordinate
+    path: GTiff2Tiles.Core/Tiles/ITile.cs
+    startLine: 26
+  assemblies:
+  - GTiff2Tiles.Core
+  namespace: GTiff2Tiles.Core.Tiles
+  summary: "\nMinimal <xref href=\"GTiff2Tiles.Core.Coordinates.GeoCoordinate\" data-throw-if-not-resolved=\"false\"></xref> of this <xref href=\"GTiff2Tiles.Core.Tiles.ITile\" data-throw-if-not-resolved=\"false\"></xref>\n"
+  example: []
+  syntax:
+    content: GeoCoordinate MinCoordinate { get; }
+    parameters: []
+    return:
+      type: GTiff2Tiles.Core.Coordinates.GeoCoordinate
+    content.vb: ReadOnly Property MinCoordinate As GeoCoordinate
+  overload: GTiff2Tiles.Core.Tiles.ITile.MinCoordinate*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: GTiff2Tiles.Core.Tiles.ITile.MaxCoordinate
+  commentId: P:GTiff2Tiles.Core.Tiles.ITile.MaxCoordinate
+  id: MaxCoordinate
+  parent: GTiff2Tiles.Core.Tiles.ITile
+  langs:
+  - csharp
+  - vb
+  name: MaxCoordinate
+  nameWithType: ITile.MaxCoordinate
+  fullName: GTiff2Tiles.Core.Tiles.ITile.MaxCoordinate
+  type: Property
+  source:
+    remote:
+      path: GTiff2Tiles.Core/Tiles/ITile.cs
+      branch: master
+      repo: https://github.com/Gigas002/GTiff2Tiles.git
+    id: MaxCoordinate
+    path: GTiff2Tiles.Core/Tiles/ITile.cs
+    startLine: 31
+  assemblies:
+  - GTiff2Tiles.Core
+  namespace: GTiff2Tiles.Core.Tiles
+  summary: "\nMaximal <xref href=\"GTiff2Tiles.Core.Coordinates.GeoCoordinate\" data-throw-if-not-resolved=\"false\"></xref> of this <xref href=\"GTiff2Tiles.Core.Tiles.ITile\" data-throw-if-not-resolved=\"false\"></xref>\n"
+  example: []
+  syntax:
+    content: GeoCoordinate MaxCoordinate { get; }
+    parameters: []
+    return:
+      type: GTiff2Tiles.Core.Coordinates.GeoCoordinate
+    content.vb: ReadOnly Property MaxCoordinate As GeoCoordinate
+  overload: GTiff2Tiles.Core.Tiles.ITile.MaxCoordinate*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: GTiff2Tiles.Core.Tiles.ITile.Number
+  commentId: P:GTiff2Tiles.Core.Tiles.ITile.Number
+  id: Number
+  parent: GTiff2Tiles.Core.Tiles.ITile
+  langs:
+  - csharp
+  - vb
+  name: Number
+  nameWithType: ITile.Number
+  fullName: GTiff2Tiles.Core.Tiles.ITile.Number
+  type: Property
+  source:
+    remote:
+      path: GTiff2Tiles.Core/Tiles/ITile.cs
+      branch: master
+      repo: https://github.com/Gigas002/GTiff2Tiles.git
+    id: Number
+    path: GTiff2Tiles.Core/Tiles/ITile.cs
+    startLine: 36
+  assemblies:
+  - GTiff2Tiles.Core
+  namespace: GTiff2Tiles.Core.Tiles
+  summary: "\n<xref href=\"GTiff2Tiles.Core.Tiles.Number\" data-throw-if-not-resolved=\"false\"></xref> of this <xref href=\"GTiff2Tiles.Core.Tiles.ITile\" data-throw-if-not-resolved=\"false\"></xref>\n"
+  example: []
+  syntax:
+    content: Number Number { get; }
+    parameters: []
+    return:
+      type: GTiff2Tiles.Core.Tiles.Number
+    content.vb: ReadOnly Property Number As Number
+  overload: GTiff2Tiles.Core.Tiles.ITile.Number*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: GTiff2Tiles.Core.Tiles.ITile.Bytes
+  commentId: P:GTiff2Tiles.Core.Tiles.ITile.Bytes
+  id: Bytes
+  parent: GTiff2Tiles.Core.Tiles.ITile
+  langs:
+  - csharp
+  - vb
+  name: Bytes
+  nameWithType: ITile.Bytes
+  fullName: GTiff2Tiles.Core.Tiles.ITile.Bytes
+  type: Property
+  source:
+    remote:
+      path: GTiff2Tiles.Core/Tiles/ITile.cs
+      branch: master
+      repo: https://github.com/Gigas002/GTiff2Tiles.git
+    id: Bytes
+    path: GTiff2Tiles.Core/Tiles/ITile.cs
+    startLine: 41
+  assemblies:
+  - GTiff2Tiles.Core
+  namespace: GTiff2Tiles.Core.Tiles
+  summary: "\nCollection of <xref href=\"GTiff2Tiles.Core.Tiles.ITile\" data-throw-if-not-resolved=\"false\"></xref>&apos;s bytes\n"
+  example: []
+  syntax:
+    content: IEnumerable<byte> Bytes { get; set; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.IEnumerable{System.Byte}
+    content.vb: Property Bytes As IEnumerable(Of Byte)
+  overload: GTiff2Tiles.Core.Tiles.ITile.Bytes*
+  modifiers.csharp:
+  - get
+  - set
+- uid: GTiff2Tiles.Core.Tiles.ITile.Size
+  commentId: P:GTiff2Tiles.Core.Tiles.ITile.Size
+  id: Size
+  parent: GTiff2Tiles.Core.Tiles.ITile
+  langs:
+  - csharp
+  - vb
+  name: Size
+  nameWithType: ITile.Size
+  fullName: GTiff2Tiles.Core.Tiles.ITile.Size
+  type: Property
+  source:
+    remote:
+      path: GTiff2Tiles.Core/Tiles/ITile.cs
+      branch: master
+      repo: https://github.com/Gigas002/GTiff2Tiles.git
+    id: Size
+    path: GTiff2Tiles.Core/Tiles/ITile.cs
+    startLine: 46
+  assemblies:
+  - GTiff2Tiles.Core
+  namespace: GTiff2Tiles.Core.Tiles
+  summary: "\n<xref href=\"GTiff2Tiles.Core.Images.Size\" data-throw-if-not-resolved=\"false\"></xref> (width and height) of this <xref href=\"GTiff2Tiles.Core.Tiles.ITile\" data-throw-if-not-resolved=\"false\"></xref>\n"
+  example: []
+  syntax:
+    content: Size Size { get; }
+    parameters: []
+    return:
+      type: GTiff2Tiles.Core.Images.Size
+    content.vb: ReadOnly Property Size As Size
+  overload: GTiff2Tiles.Core.Tiles.ITile.Size*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: GTiff2Tiles.Core.Tiles.ITile.Path
+  commentId: P:GTiff2Tiles.Core.Tiles.ITile.Path
+  id: Path
+  parent: GTiff2Tiles.Core.Tiles.ITile
+  langs:
+  - csharp
+  - vb
+  name: Path
+  nameWithType: ITile.Path
+  fullName: GTiff2Tiles.Core.Tiles.ITile.Path
+  type: Property
+  source:
+    remote:
+      path: GTiff2Tiles.Core/Tiles/ITile.cs
+      branch: master
+      repo: https://github.com/Gigas002/GTiff2Tiles.git
+    id: Path
+    path: GTiff2Tiles.Core/Tiles/ITile.cs
+    startLine: 51
+  assemblies:
+  - GTiff2Tiles.Core
+  namespace: GTiff2Tiles.Core.Tiles
+  summary: "\nPath on disk of this <xref href=\"GTiff2Tiles.Core.Tiles.ITile\" data-throw-if-not-resolved=\"false\"></xref>\n"
+  example: []
+  syntax:
+    content: string Path { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Property Path As String
+  overload: GTiff2Tiles.Core.Tiles.ITile.Path*
+  modifiers.csharp:
+  - get
+  - set
+- uid: GTiff2Tiles.Core.Tiles.ITile.Extension
+  commentId: P:GTiff2Tiles.Core.Tiles.ITile.Extension
+  id: Extension
+  parent: GTiff2Tiles.Core.Tiles.ITile
+  langs:
+  - csharp
+  - vb
+  name: Extension
+  nameWithType: ITile.Extension
+  fullName: GTiff2Tiles.Core.Tiles.ITile.Extension
+  type: Property
+  source:
+    remote:
+      path: GTiff2Tiles.Core/Tiles/ITile.cs
+      branch: master
+      repo: https://github.com/Gigas002/GTiff2Tiles.git
+    id: Extension
+    path: GTiff2Tiles.Core/Tiles/ITile.cs
+    startLine: 56
+  assemblies:
+  - GTiff2Tiles.Core
+  namespace: GTiff2Tiles.Core.Tiles
+  summary: "\nExtension of <xref href=\"GTiff2Tiles.Core.Tiles.ITile\" data-throw-if-not-resolved=\"false\"></xref>\n"
+  example: []
+  syntax:
+    content: TileExtension Extension { get; }
+    parameters: []
+    return:
+      type: GTiff2Tiles.Core.Enums.TileExtension
+    content.vb: ReadOnly Property Extension As TileExtension
+  overload: GTiff2Tiles.Core.Tiles.ITile.Extension*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: GTiff2Tiles.Core.Tiles.ITile.TmsCompatible
+  commentId: P:GTiff2Tiles.Core.Tiles.ITile.TmsCompatible
+  id: TmsCompatible
+  parent: GTiff2Tiles.Core.Tiles.ITile
+  langs:
+  - csharp
+  - vb
+  name: TmsCompatible
+  nameWithType: ITile.TmsCompatible
+  fullName: GTiff2Tiles.Core.Tiles.ITile.TmsCompatible
+  type: Property
+  source:
+    remote:
+      path: GTiff2Tiles.Core/Tiles/ITile.cs
+      branch: master
+      repo: https://github.com/Gigas002/GTiff2Tiles.git
+    id: TmsCompatible
+    path: GTiff2Tiles.Core/Tiles/ITile.cs
+    startLine: 61
+  assemblies:
+  - GTiff2Tiles.Core
+  namespace: GTiff2Tiles.Core.Tiles
+  summary: "\nIs <xref href=\"GTiff2Tiles.Core.Tiles.ITile\" data-throw-if-not-resolved=\"false\"></xref> tms compatible?\n"
+  example: []
+  syntax:
+    content: bool TmsCompatible { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: ReadOnly Property TmsCompatible As Boolean
+  overload: GTiff2Tiles.Core.Tiles.ITile.TmsCompatible*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: GTiff2Tiles.Core.Tiles.ITile.MinimalBytesCount
+  commentId: P:GTiff2Tiles.Core.Tiles.ITile.MinimalBytesCount
+  id: MinimalBytesCount
+  parent: GTiff2Tiles.Core.Tiles.ITile
+  langs:
+  - csharp
+  - vb
+  name: MinimalBytesCount
+  nameWithType: ITile.MinimalBytesCount
+  fullName: GTiff2Tiles.Core.Tiles.ITile.MinimalBytesCount
+  type: Property
+  source:
+    remote:
+      path: GTiff2Tiles.Core/Tiles/ITile.cs
+      branch: master
+      repo: https://github.com/Gigas002/GTiff2Tiles.git
+    id: MinimalBytesCount
+    path: GTiff2Tiles.Core/Tiles/ITile.cs
+    startLine: 67
+  assemblies:
+  - GTiff2Tiles.Core
+  namespace: GTiff2Tiles.Core.Tiles
+  summary: "\n<xref href=\"GTiff2Tiles.Core.Tiles.ITile\" data-throw-if-not-resolved=\"false\"></xref>s with <xref href=\"GTiff2Tiles.Core.Tiles.ITile.Bytes\" data-throw-if-not-resolved=\"false\"></xref> count lesser\nthan this value won&apos;t pass <xref href=\"GTiff2Tiles.Core.Tiles.ITile.Validate(System.Boolean)\" data-throw-if-not-resolved=\"false\"></xref> check\n"
+  example: []
+  syntax:
+    content: int MinimalBytesCount { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Property MinimalBytesCount As Integer
+  overload: GTiff2Tiles.Core.Tiles.ITile.MinimalBytesCount*
+  modifiers.csharp:
+  - get
+  - set
+- uid: GTiff2Tiles.Core.Tiles.ITile.Validate(System.Boolean)
+  commentId: M:GTiff2Tiles.Core.Tiles.ITile.Validate(System.Boolean)
+  id: Validate(System.Boolean)
+  parent: GTiff2Tiles.Core.Tiles.ITile
+  langs:
+  - csharp
+  - vb
+  name: Validate(Boolean)
+  nameWithType: ITile.Validate(Boolean)
+  fullName: GTiff2Tiles.Core.Tiles.ITile.Validate(System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: GTiff2Tiles.Core/Tiles/ITile.cs
+      branch: master
+      repo: https://github.com/Gigas002/GTiff2Tiles.git
+    id: Validate
+    path: GTiff2Tiles.Core/Tiles/ITile.cs
+    startLine: 80
+  assemblies:
+  - GTiff2Tiles.Core
+  namespace: GTiff2Tiles.Core.Tiles
+  summary: "\nChecks if this <xref href=\"GTiff2Tiles.Core.Tiles.ITile\" data-throw-if-not-resolved=\"false\"></xref> is not empty or too small\n<remarks><p></p>See <xref href=\"GTiff2Tiles.Core.Tiles.ITile.MinimalBytesCount\" data-throw-if-not-resolved=\"false\"></xref> property for more info</remarks>\n"
+  example: []
+  syntax:
+    content: bool Validate(bool isCheckPath)
+    parameters:
+    - id: isCheckPath
+      type: System.Boolean
+      description: Do you want to check <xref href="GTiff2Tiles.Core.Tiles.ITile.Path" data-throw-if-not-resolved="false"></xref>?
+    return:
+      type: System.Boolean
+      description: >-
+        <xref uid="langword_csharp_true" name="true" href=""></xref> if <xref href="GTiff2Tiles.Core.Tiles.ITile" data-throw-if-not-resolved="false"></xref>&apos;s valid;
+
+        <p></p><xref uid="langword_csharp_false" name="false" href=""></xref> otherwise
+    content.vb: Function Validate(isCheckPath As Boolean) As Boolean
+  overload: GTiff2Tiles.Core.Tiles.ITile.Validate*
+- uid: GTiff2Tiles.Core.Tiles.ITile.CalculatePosition
+  commentId: M:GTiff2Tiles.Core.Tiles.ITile.CalculatePosition
+  id: CalculatePosition
+  parent: GTiff2Tiles.Core.Tiles.ITile
+  langs:
+  - csharp
+  - vb
+  name: CalculatePosition()
+  nameWithType: ITile.CalculatePosition()
+  fullName: GTiff2Tiles.Core.Tiles.ITile.CalculatePosition()
+  type: Method
+  source:
+    remote:
+      path: GTiff2Tiles.Core/Tiles/ITile.cs
+      branch: master
+      repo: https://github.com/Gigas002/GTiff2Tiles.git
+    id: CalculatePosition
+    path: GTiff2Tiles.Core/Tiles/ITile.cs
+    startLine: 88
+  assemblies:
+  - GTiff2Tiles.Core
+  namespace: GTiff2Tiles.Core.Tiles
+  summary: "\nCalculates this <xref href=\"GTiff2Tiles.Core.Tiles.ITile\" data-throw-if-not-resolved=\"false\"></xref>&apos;s position in upper <xref href=\"GTiff2Tiles.Core.Tiles.ITile\" data-throw-if-not-resolved=\"false\"></xref>\n"
+  example: []
+  syntax:
+    content: int CalculatePosition()
+    return:
+      type: System.Int32
+      description: >-
+        Value in range from 0 to 3
+
+        <remarks><p></p>Starts always from upper-left corner and goes to
+
+        lower-right, but maths depends on <xref href="GTiff2Tiles.Core.Tiles.ITile.TmsCompatible" data-throw-if-not-resolved="false"></xref> value</remarks>
+    content.vb: Function CalculatePosition As Integer
+  overload: GTiff2Tiles.Core.Tiles.ITile.CalculatePosition*
+- uid: GTiff2Tiles.Core.Tiles.ITile.GetExtensionString
+  commentId: M:GTiff2Tiles.Core.Tiles.ITile.GetExtensionString
+  id: GetExtensionString
+  parent: GTiff2Tiles.Core.Tiles.ITile
+  langs:
+  - csharp
+  - vb
+  name: GetExtensionString()
+  nameWithType: ITile.GetExtensionString()
+  fullName: GTiff2Tiles.Core.Tiles.ITile.GetExtensionString()
+  type: Method
+  source:
+    remote:
+      path: GTiff2Tiles.Core/Tiles/ITile.cs
+      branch: master
+      repo: https://github.com/Gigas002/GTiff2Tiles.git
+    id: GetExtensionString
+    path: GTiff2Tiles.Core/Tiles/ITile.cs
+    startLine: 94
+  assemblies:
+  - GTiff2Tiles.Core
+  namespace: GTiff2Tiles.Core.Tiles
+  summary: "\nGet <xref href=\"System.String\" data-throw-if-not-resolved=\"false\"></xref> from <xref href=\"GTiff2Tiles.Core.Enums.TileExtension\" data-throw-if-not-resolved=\"false\"></xref>\n"
+  example: []
+  syntax:
+    content: string GetExtensionString()
+    return:
+      type: System.String
+      description: Converted <xref href="System.String" data-throw-if-not-resolved="false"></xref>
+    content.vb: Function GetExtensionString As String
+  overload: GTiff2Tiles.Core.Tiles.ITile.GetExtensionString*
+references:
+- uid: GTiff2Tiles.Core.Tiles
+  commentId: N:GTiff2Tiles.Core.Tiles
+  name: GTiff2Tiles.Core.Tiles
+  nameWithType: GTiff2Tiles.Core.Tiles
+  fullName: GTiff2Tiles.Core.Tiles
+- uid: System.IDisposable.Dispose
+  commentId: M:System.IDisposable.Dispose
+  parent: System.IDisposable
+  isExternal: true
+  name: Dispose()
+  nameWithType: IDisposable.Dispose()
+  fullName: System.IDisposable.Dispose()
+  spec.csharp:
+  - uid: System.IDisposable.Dispose
+    name: Dispose
+    nameWithType: IDisposable.Dispose
+    fullName: System.IDisposable.Dispose
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.IDisposable.Dispose
+    name: Dispose
+    nameWithType: IDisposable.Dispose
+    fullName: System.IDisposable.Dispose
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.IAsyncDisposable.DisposeAsync
+  commentId: M:System.IAsyncDisposable.DisposeAsync
+  parent: System.IAsyncDisposable
+  isExternal: true
+  name: DisposeAsync()
+  nameWithType: IAsyncDisposable.DisposeAsync()
+  fullName: System.IAsyncDisposable.DisposeAsync()
+  spec.csharp:
+  - uid: System.IAsyncDisposable.DisposeAsync
+    name: DisposeAsync
+    nameWithType: IAsyncDisposable.DisposeAsync
+    fullName: System.IAsyncDisposable.DisposeAsync
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.IAsyncDisposable.DisposeAsync
+    name: DisposeAsync
+    nameWithType: IAsyncDisposable.DisposeAsync
+    fullName: System.IAsyncDisposable.DisposeAsync
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.IDisposable
+  commentId: T:System.IDisposable
+  parent: System
+  isExternal: true
+  name: IDisposable
+  nameWithType: IDisposable
+  fullName: System.IDisposable
+- uid: System.IAsyncDisposable
+  commentId: T:System.IAsyncDisposable
+  parent: System
+  isExternal: true
+  name: IAsyncDisposable
+  nameWithType: IAsyncDisposable
+  fullName: System.IAsyncDisposable
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: GTiff2Tiles.Core.Tiles.ITile
+  commentId: T:GTiff2Tiles.Core.Tiles.ITile
+  parent: GTiff2Tiles.Core.Tiles
+  name: ITile
+  nameWithType: ITile
+  fullName: GTiff2Tiles.Core.Tiles.ITile
+- uid: GTiff2Tiles.Core.Tiles.ITile.IsDisposed*
+  commentId: Overload:GTiff2Tiles.Core.Tiles.ITile.IsDisposed
+  name: IsDisposed
+  nameWithType: ITile.IsDisposed
+  fullName: GTiff2Tiles.Core.Tiles.ITile.IsDisposed
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: GTiff2Tiles.Core.Coordinates.GeoCoordinate
+  commentId: T:GTiff2Tiles.Core.Coordinates.GeoCoordinate
+  parent: GTiff2Tiles.Core.Coordinates
+  name: GeoCoordinate
+  nameWithType: GeoCoordinate
+  fullName: GTiff2Tiles.Core.Coordinates.GeoCoordinate
+- uid: GTiff2Tiles.Core.Tiles.ITile.MinCoordinate*
+  commentId: Overload:GTiff2Tiles.Core.Tiles.ITile.MinCoordinate
+  name: MinCoordinate
+  nameWithType: ITile.MinCoordinate
+  fullName: GTiff2Tiles.Core.Tiles.ITile.MinCoordinate
+- uid: GTiff2Tiles.Core.Coordinates
+  commentId: N:GTiff2Tiles.Core.Coordinates
+  name: GTiff2Tiles.Core.Coordinates
+  nameWithType: GTiff2Tiles.Core.Coordinates
+  fullName: GTiff2Tiles.Core.Coordinates
+- uid: GTiff2Tiles.Core.Tiles.ITile.MaxCoordinate*
+  commentId: Overload:GTiff2Tiles.Core.Tiles.ITile.MaxCoordinate
+  name: MaxCoordinate
+  nameWithType: ITile.MaxCoordinate
+  fullName: GTiff2Tiles.Core.Tiles.ITile.MaxCoordinate
+- uid: GTiff2Tiles.Core.Tiles.Number
+  commentId: T:GTiff2Tiles.Core.Tiles.Number
+  parent: GTiff2Tiles.Core.Tiles
+  name: Number
+  nameWithType: Number
+  fullName: GTiff2Tiles.Core.Tiles.Number
+- uid: GTiff2Tiles.Core.Tiles.ITile.Number*
+  commentId: Overload:GTiff2Tiles.Core.Tiles.ITile.Number
+  name: Number
+  nameWithType: ITile.Number
+  fullName: GTiff2Tiles.Core.Tiles.ITile.Number
+- uid: GTiff2Tiles.Core.Tiles.ITile.Bytes*
+  commentId: Overload:GTiff2Tiles.Core.Tiles.ITile.Bytes
+  name: Bytes
+  nameWithType: ITile.Bytes
+  fullName: GTiff2Tiles.Core.Tiles.ITile.Bytes
+- uid: System.Collections.Generic.IEnumerable{System.Byte}
+  commentId: T:System.Collections.Generic.IEnumerable{System.Byte}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  name: IEnumerable<Byte>
+  nameWithType: IEnumerable<Byte>
+  fullName: System.Collections.Generic.IEnumerable<System.Byte>
+  nameWithType.vb: IEnumerable(Of Byte)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of System.Byte)
+  name.vb: IEnumerable(Of Byte)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Byte
+    name: Byte
+    nameWithType: Byte
+    fullName: System.Byte
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Byte
+    name: Byte
+    nameWithType: Byte
+    fullName: System.Byte
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.IEnumerable`1
+  commentId: T:System.Collections.Generic.IEnumerable`1
+  isExternal: true
+  name: IEnumerable<T>
+  nameWithType: IEnumerable<T>
+  fullName: System.Collections.Generic.IEnumerable<T>
+  nameWithType.vb: IEnumerable(Of T)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
+  name.vb: IEnumerable(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+- uid: GTiff2Tiles.Core.Images.Size
+  commentId: T:GTiff2Tiles.Core.Images.Size
+  parent: GTiff2Tiles.Core.Images
+  name: Size
+  nameWithType: Size
+  fullName: GTiff2Tiles.Core.Images.Size
+- uid: GTiff2Tiles.Core.Tiles.ITile.Size*
+  commentId: Overload:GTiff2Tiles.Core.Tiles.ITile.Size
+  name: Size
+  nameWithType: ITile.Size
+  fullName: GTiff2Tiles.Core.Tiles.ITile.Size
+- uid: GTiff2Tiles.Core.Images
+  commentId: N:GTiff2Tiles.Core.Images
+  name: GTiff2Tiles.Core.Images
+  nameWithType: GTiff2Tiles.Core.Images
+  fullName: GTiff2Tiles.Core.Images
+- uid: GTiff2Tiles.Core.Tiles.ITile.Path*
+  commentId: Overload:GTiff2Tiles.Core.Tiles.ITile.Path
+  name: Path
+  nameWithType: ITile.Path
+  fullName: GTiff2Tiles.Core.Tiles.ITile.Path
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: GTiff2Tiles.Core.Tiles.ITile.Extension*
+  commentId: Overload:GTiff2Tiles.Core.Tiles.ITile.Extension
+  name: Extension
+  nameWithType: ITile.Extension
+  fullName: GTiff2Tiles.Core.Tiles.ITile.Extension
+- uid: GTiff2Tiles.Core.Enums.TileExtension
+  commentId: T:GTiff2Tiles.Core.Enums.TileExtension
+  parent: GTiff2Tiles.Core.Enums
+  name: TileExtension
+  nameWithType: TileExtension
+  fullName: GTiff2Tiles.Core.Enums.TileExtension
+- uid: GTiff2Tiles.Core.Enums
+  commentId: N:GTiff2Tiles.Core.Enums
+  name: GTiff2Tiles.Core.Enums
+  nameWithType: GTiff2Tiles.Core.Enums
+  fullName: GTiff2Tiles.Core.Enums
+- uid: GTiff2Tiles.Core.Tiles.ITile.TmsCompatible*
+  commentId: Overload:GTiff2Tiles.Core.Tiles.ITile.TmsCompatible
+  name: TmsCompatible
+  nameWithType: ITile.TmsCompatible
+  fullName: GTiff2Tiles.Core.Tiles.ITile.TmsCompatible
+- uid: GTiff2Tiles.Core.Tiles.ITile.Bytes
+  commentId: P:GTiff2Tiles.Core.Tiles.ITile.Bytes
+  parent: GTiff2Tiles.Core.Tiles.ITile
+  name: Bytes
+  nameWithType: ITile.Bytes
+  fullName: GTiff2Tiles.Core.Tiles.ITile.Bytes
+- uid: GTiff2Tiles.Core.Tiles.ITile.Validate(System.Boolean)
+  commentId: M:GTiff2Tiles.Core.Tiles.ITile.Validate(System.Boolean)
+  parent: GTiff2Tiles.Core.Tiles.ITile
+  isExternal: true
+  name: Validate(Boolean)
+  nameWithType: ITile.Validate(Boolean)
+  fullName: GTiff2Tiles.Core.Tiles.ITile.Validate(System.Boolean)
+  spec.csharp:
+  - uid: GTiff2Tiles.Core.Tiles.ITile.Validate(System.Boolean)
+    name: Validate
+    nameWithType: ITile.Validate
+    fullName: GTiff2Tiles.Core.Tiles.ITile.Validate
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GTiff2Tiles.Core.Tiles.ITile.Validate(System.Boolean)
+    name: Validate
+    nameWithType: ITile.Validate
+    fullName: GTiff2Tiles.Core.Tiles.ITile.Validate
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GTiff2Tiles.Core.Tiles.ITile.MinimalBytesCount*
+  commentId: Overload:GTiff2Tiles.Core.Tiles.ITile.MinimalBytesCount
+  name: MinimalBytesCount
+  nameWithType: ITile.MinimalBytesCount
+  fullName: GTiff2Tiles.Core.Tiles.ITile.MinimalBytesCount
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: GTiff2Tiles.Core.Tiles.ITile.MinimalBytesCount
+  commentId: P:GTiff2Tiles.Core.Tiles.ITile.MinimalBytesCount
+  parent: GTiff2Tiles.Core.Tiles.ITile
+  name: MinimalBytesCount
+  nameWithType: ITile.MinimalBytesCount
+  fullName: GTiff2Tiles.Core.Tiles.ITile.MinimalBytesCount
+- uid: GTiff2Tiles.Core.Tiles.ITile.Path
+  commentId: P:GTiff2Tiles.Core.Tiles.ITile.Path
+  parent: GTiff2Tiles.Core.Tiles.ITile
+  name: Path
+  nameWithType: ITile.Path
+  fullName: GTiff2Tiles.Core.Tiles.ITile.Path
+- uid: GTiff2Tiles.Core.Tiles.ITile.Validate*
+  commentId: Overload:GTiff2Tiles.Core.Tiles.ITile.Validate
+  name: Validate
+  nameWithType: ITile.Validate
+  fullName: GTiff2Tiles.Core.Tiles.ITile.Validate
+- uid: GTiff2Tiles.Core.Tiles.ITile.TmsCompatible
+  commentId: P:GTiff2Tiles.Core.Tiles.ITile.TmsCompatible
+  parent: GTiff2Tiles.Core.Tiles.ITile
+  name: TmsCompatible
+  nameWithType: ITile.TmsCompatible
+  fullName: GTiff2Tiles.Core.Tiles.ITile.TmsCompatible
+- uid: GTiff2Tiles.Core.Tiles.ITile.CalculatePosition*
+  commentId: Overload:GTiff2Tiles.Core.Tiles.ITile.CalculatePosition
+  name: CalculatePosition
+  nameWithType: ITile.CalculatePosition
+  fullName: GTiff2Tiles.Core.Tiles.ITile.CalculatePosition
+- uid: GTiff2Tiles.Core.Tiles.ITile.GetExtensionString*
+  commentId: Overload:GTiff2Tiles.Core.Tiles.ITile.GetExtensionString
+  name: GetExtensionString
+  nameWithType: ITile.GetExtensionString
+  fullName: GTiff2Tiles.Core.Tiles.ITile.GetExtensionString

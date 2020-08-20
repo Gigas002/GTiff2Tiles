@@ -1,0 +1,1740 @@
+### YamlMime:ManagedReference
+items:
+- uid: GTiff2Tiles.Core.Coordinates.GeodeticCoordinate
+  commentId: T:GTiff2Tiles.Core.Coordinates.GeodeticCoordinate
+  id: GeodeticCoordinate
+  parent: GTiff2Tiles.Core.Coordinates
+  children:
+  - GTiff2Tiles.Core.Coordinates.GeodeticCoordinate.#ctor(System.Double,System.Double)
+  - GTiff2Tiles.Core.Coordinates.GeodeticCoordinate.Latitude
+  - GTiff2Tiles.Core.Coordinates.GeodeticCoordinate.Longitude
+  - GTiff2Tiles.Core.Coordinates.GeodeticCoordinate.MaxPossibleLatValue
+  - GTiff2Tiles.Core.Coordinates.GeodeticCoordinate.MaxPossibleLonValue
+  - GTiff2Tiles.Core.Coordinates.GeodeticCoordinate.MinPossibleLatValue
+  - GTiff2Tiles.Core.Coordinates.GeodeticCoordinate.MinPossibleLonValue
+  - GTiff2Tiles.Core.Coordinates.GeodeticCoordinate.Resolution(System.Int32,GTiff2Tiles.Core.Images.Size)
+  - GTiff2Tiles.Core.Coordinates.GeodeticCoordinate.ToMercatorCoordinate
+  - GTiff2Tiles.Core.Coordinates.GeodeticCoordinate.ToPixelCoordinate(System.Int32,GTiff2Tiles.Core.Images.Size)
+  langs:
+  - csharp
+  - vb
+  name: GeodeticCoordinate
+  nameWithType: GeodeticCoordinate
+  fullName: GTiff2Tiles.Core.Coordinates.GeodeticCoordinate
+  type: Class
+  source:
+    remote:
+      path: GTiff2Tiles.Core/Coordinates/GeodeticCoordinate.cs
+      branch: master
+      repo: https://github.com/Gigas002/GTiff2Tiles.git
+    id: GeodeticCoordinate
+    path: GTiff2Tiles.Core/Coordinates/GeodeticCoordinate.cs
+    startLine: 12
+  assemblies:
+  - GTiff2Tiles.Core
+  namespace: GTiff2Tiles.Core.Coordinates
+  summary: "\nClass for EPSG:4326 coordinates\n"
+  example: []
+  syntax:
+    content: 'public class GeodeticCoordinate : GeoCoordinate, ICoordinate, IEquatable<ICoordinate>'
+    content.vb: >-
+      Public Class GeodeticCoordinate
+
+          Inherits GeoCoordinate
+
+          Implements ICoordinate, IEquatable(Of ICoordinate)
+  inheritance:
+  - System.Object
+  - GTiff2Tiles.Core.Coordinates.Coordinate
+  - GTiff2Tiles.Core.Coordinates.GeoCoordinate
+  implements:
+  - GTiff2Tiles.Core.Coordinates.ICoordinate
+  - System.IEquatable{GTiff2Tiles.Core.Coordinates.ICoordinate}
+  inheritedMembers:
+  - GTiff2Tiles.Core.Coordinates.GeoCoordinate.ToNumber(System.Int32,GTiff2Tiles.Core.Images.Size,System.Boolean)
+  - GTiff2Tiles.Core.Coordinates.GeoCoordinate.GetNumbers(GTiff2Tiles.Core.Coordinates.GeoCoordinate,GTiff2Tiles.Core.Coordinates.GeoCoordinate,System.Int32,GTiff2Tiles.Core.Images.Size,System.Boolean)
+  - GTiff2Tiles.Core.Coordinates.GeoCoordinate.Resolution(System.Int32,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.CoordinateSystem)
+  - GTiff2Tiles.Core.Coordinates.GeoCoordinate.ZoomForPixelSize(System.Int32,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.CoordinateSystem,System.Int32,System.Int32)
+  - GTiff2Tiles.Core.Coordinates.Coordinate.X
+  - GTiff2Tiles.Core.Coordinates.Coordinate.Y
+  - GTiff2Tiles.Core.Coordinates.Coordinate.DegreesToRadians(System.Double)
+  - GTiff2Tiles.Core.Coordinates.Coordinate.RadiansToDegrees(System.Double)
+  - GTiff2Tiles.Core.Coordinates.Coordinate.Round``1(System.Int32)
+  - GTiff2Tiles.Core.Coordinates.Coordinate.Round``1({T},System.Int32)
+  - GTiff2Tiles.Core.Coordinates.Coordinate.Equals(System.Object)
+  - GTiff2Tiles.Core.Coordinates.Coordinate.GetHashCode
+  - GTiff2Tiles.Core.Coordinates.Coordinate.Equals(GTiff2Tiles.Core.Coordinates.ICoordinate)
+  - GTiff2Tiles.Core.Coordinates.Coordinate.Add(GTiff2Tiles.Core.Coordinates.Coordinate)
+  - GTiff2Tiles.Core.Coordinates.Coordinate.Subtract(GTiff2Tiles.Core.Coordinates.Coordinate)
+  - GTiff2Tiles.Core.Coordinates.Coordinate.Multiply(GTiff2Tiles.Core.Coordinates.Coordinate)
+  - GTiff2Tiles.Core.Coordinates.Coordinate.Divide(GTiff2Tiles.Core.Coordinates.Coordinate)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: GTiff2Tiles.Core.Coordinates.GeodeticCoordinate.MaxPossibleLonValue
+  commentId: F:GTiff2Tiles.Core.Coordinates.GeodeticCoordinate.MaxPossibleLonValue
+  id: MaxPossibleLonValue
+  parent: GTiff2Tiles.Core.Coordinates.GeodeticCoordinate
+  langs:
+  - csharp
+  - vb
+  name: MaxPossibleLonValue
+  nameWithType: GeodeticCoordinate.MaxPossibleLonValue
+  fullName: GTiff2Tiles.Core.Coordinates.GeodeticCoordinate.MaxPossibleLonValue
+  type: Field
+  source:
+    remote:
+      path: GTiff2Tiles.Core/Coordinates/GeodeticCoordinate.cs
+      branch: master
+      repo: https://github.com/Gigas002/GTiff2Tiles.git
+    id: MaxPossibleLonValue
+    path: GTiff2Tiles.Core/Coordinates/GeodeticCoordinate.cs
+    startLine: 19
+  assemblies:
+  - GTiff2Tiles.Core
+  namespace: GTiff2Tiles.Core.Coordinates
+  summary: "\nMaximal possible value of longitude for EPSG:4326\n"
+  example: []
+  syntax:
+    content: public const double MaxPossibleLonValue = 180
+    return:
+      type: System.Double
+    content.vb: Public Const MaxPossibleLonValue As Double = 180
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: GTiff2Tiles.Core.Coordinates.GeodeticCoordinate.MaxPossibleLatValue
+  commentId: F:GTiff2Tiles.Core.Coordinates.GeodeticCoordinate.MaxPossibleLatValue
+  id: MaxPossibleLatValue
+  parent: GTiff2Tiles.Core.Coordinates.GeodeticCoordinate
+  langs:
+  - csharp
+  - vb
+  name: MaxPossibleLatValue
+  nameWithType: GeodeticCoordinate.MaxPossibleLatValue
+  fullName: GTiff2Tiles.Core.Coordinates.GeodeticCoordinate.MaxPossibleLatValue
+  type: Field
+  source:
+    remote:
+      path: GTiff2Tiles.Core/Coordinates/GeodeticCoordinate.cs
+      branch: master
+      repo: https://github.com/Gigas002/GTiff2Tiles.git
+    id: MaxPossibleLatValue
+    path: GTiff2Tiles.Core/Coordinates/GeodeticCoordinate.cs
+    startLine: 24
+  assemblies:
+  - GTiff2Tiles.Core
+  namespace: GTiff2Tiles.Core.Coordinates
+  summary: "\nMaximal possible value of latitude for EPSG:4326\n"
+  example: []
+  syntax:
+    content: public const double MaxPossibleLatValue = 90
+    return:
+      type: System.Double
+    content.vb: Public Const MaxPossibleLatValue As Double = 90
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: GTiff2Tiles.Core.Coordinates.GeodeticCoordinate.MinPossibleLonValue
+  commentId: F:GTiff2Tiles.Core.Coordinates.GeodeticCoordinate.MinPossibleLonValue
+  id: MinPossibleLonValue
+  parent: GTiff2Tiles.Core.Coordinates.GeodeticCoordinate
+  langs:
+  - csharp
+  - vb
+  name: MinPossibleLonValue
+  nameWithType: GeodeticCoordinate.MinPossibleLonValue
+  fullName: GTiff2Tiles.Core.Coordinates.GeodeticCoordinate.MinPossibleLonValue
+  type: Field
+  source:
+    remote:
+      path: GTiff2Tiles.Core/Coordinates/GeodeticCoordinate.cs
+      branch: master
+      repo: https://github.com/Gigas002/GTiff2Tiles.git
+    id: MinPossibleLonValue
+    path: GTiff2Tiles.Core/Coordinates/GeodeticCoordinate.cs
+    startLine: 29
+  assemblies:
+  - GTiff2Tiles.Core
+  namespace: GTiff2Tiles.Core.Coordinates
+  summary: "\nMinimal possible value of longitude for EPSG:4326\n"
+  example: []
+  syntax:
+    content: public const double MinPossibleLonValue = -180
+    return:
+      type: System.Double
+    content.vb: Public Const MinPossibleLonValue As Double = -180
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: GTiff2Tiles.Core.Coordinates.GeodeticCoordinate.MinPossibleLatValue
+  commentId: F:GTiff2Tiles.Core.Coordinates.GeodeticCoordinate.MinPossibleLatValue
+  id: MinPossibleLatValue
+  parent: GTiff2Tiles.Core.Coordinates.GeodeticCoordinate
+  langs:
+  - csharp
+  - vb
+  name: MinPossibleLatValue
+  nameWithType: GeodeticCoordinate.MinPossibleLatValue
+  fullName: GTiff2Tiles.Core.Coordinates.GeodeticCoordinate.MinPossibleLatValue
+  type: Field
+  source:
+    remote:
+      path: GTiff2Tiles.Core/Coordinates/GeodeticCoordinate.cs
+      branch: master
+      repo: https://github.com/Gigas002/GTiff2Tiles.git
+    id: MinPossibleLatValue
+    path: GTiff2Tiles.Core/Coordinates/GeodeticCoordinate.cs
+    startLine: 34
+  assemblies:
+  - GTiff2Tiles.Core
+  namespace: GTiff2Tiles.Core.Coordinates
+  summary: "\nMinimal possible value of latitude for EPSG:4326\n"
+  example: []
+  syntax:
+    content: public const double MinPossibleLatValue = -90
+    return:
+      type: System.Double
+    content.vb: Public Const MinPossibleLatValue As Double = -90
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: GTiff2Tiles.Core.Coordinates.GeodeticCoordinate.Longitude
+  commentId: P:GTiff2Tiles.Core.Coordinates.GeodeticCoordinate.Longitude
+  id: Longitude
+  parent: GTiff2Tiles.Core.Coordinates.GeodeticCoordinate
+  langs:
+  - csharp
+  - vb
+  name: Longitude
+  nameWithType: GeodeticCoordinate.Longitude
+  fullName: GTiff2Tiles.Core.Coordinates.GeodeticCoordinate.Longitude
+  type: Property
+  source:
+    remote:
+      path: GTiff2Tiles.Core/Coordinates/GeodeticCoordinate.cs
+      branch: master
+      repo: https://github.com/Gigas002/GTiff2Tiles.git
+    id: Longitude
+    path: GTiff2Tiles.Core/Coordinates/GeodeticCoordinate.cs
+    startLine: 39
+  assemblies:
+  - GTiff2Tiles.Core
+  namespace: GTiff2Tiles.Core.Coordinates
+  summary: "\nAnalogue of <xref href=\"GTiff2Tiles.Core.Coordinates.Coordinate.X\" data-throw-if-not-resolved=\"false\"></xref>\n"
+  example: []
+  syntax:
+    content: public double Longitude { get; }
+    parameters: []
+    return:
+      type: System.Double
+    content.vb: Public ReadOnly Property Longitude As Double
+  overload: GTiff2Tiles.Core.Coordinates.GeodeticCoordinate.Longitude*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: GTiff2Tiles.Core.Coordinates.GeodeticCoordinate.Latitude
+  commentId: P:GTiff2Tiles.Core.Coordinates.GeodeticCoordinate.Latitude
+  id: Latitude
+  parent: GTiff2Tiles.Core.Coordinates.GeodeticCoordinate
+  langs:
+  - csharp
+  - vb
+  name: Latitude
+  nameWithType: GeodeticCoordinate.Latitude
+  fullName: GTiff2Tiles.Core.Coordinates.GeodeticCoordinate.Latitude
+  type: Property
+  source:
+    remote:
+      path: GTiff2Tiles.Core/Coordinates/GeodeticCoordinate.cs
+      branch: master
+      repo: https://github.com/Gigas002/GTiff2Tiles.git
+    id: Latitude
+    path: GTiff2Tiles.Core/Coordinates/GeodeticCoordinate.cs
+    startLine: 44
+  assemblies:
+  - GTiff2Tiles.Core
+  namespace: GTiff2Tiles.Core.Coordinates
+  summary: "\nAnalogue of <xref href=\"GTiff2Tiles.Core.Coordinates.Coordinate.Y\" data-throw-if-not-resolved=\"false\"></xref>\n"
+  example: []
+  syntax:
+    content: public double Latitude { get; }
+    parameters: []
+    return:
+      type: System.Double
+    content.vb: Public ReadOnly Property Latitude As Double
+  overload: GTiff2Tiles.Core.Coordinates.GeodeticCoordinate.Latitude*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: GTiff2Tiles.Core.Coordinates.GeodeticCoordinate.#ctor(System.Double,System.Double)
+  commentId: M:GTiff2Tiles.Core.Coordinates.GeodeticCoordinate.#ctor(System.Double,System.Double)
+  id: '#ctor(System.Double,System.Double)'
+  parent: GTiff2Tiles.Core.Coordinates.GeodeticCoordinate
+  langs:
+  - csharp
+  - vb
+  name: GeodeticCoordinate(Double, Double)
+  nameWithType: GeodeticCoordinate.GeodeticCoordinate(Double, Double)
+  fullName: GTiff2Tiles.Core.Coordinates.GeodeticCoordinate.GeodeticCoordinate(System.Double, System.Double)
+  type: Constructor
+  source:
+    remote:
+      path: GTiff2Tiles.Core/Coordinates/GeodeticCoordinate.cs
+      branch: master
+      repo: https://github.com/Gigas002/GTiff2Tiles.git
+    id: .ctor
+    path: GTiff2Tiles.Core/Coordinates/GeodeticCoordinate.cs
+    startLine: 56
+  assemblies:
+  - GTiff2Tiles.Core
+  namespace: GTiff2Tiles.Core.Coordinates
+  example: []
+  syntax:
+    content: public GeodeticCoordinate(double longitude, double latitude)
+    parameters:
+    - id: longitude
+      type: System.Double
+      description: >-
+        <xref href="GTiff2Tiles.Core.Coordinates.Coordinate.X" data-throw-if-not-resolved="false"></xref> or Longitude
+
+        <remarks><p></p>Must be in range [-180.0, 180.0]</remarks>
+    - id: latitude
+      type: System.Double
+      description: >-
+        <xref href="GTiff2Tiles.Core.Coordinates.Coordinate.Y" data-throw-if-not-resolved="false"></xref> or Latitude
+
+        <remarks><p></p>Must be in range [-90.0, 90.0]</remarks>
+    content.vb: Public Sub New(longitude As Double, latitude As Double)
+  overload: GTiff2Tiles.Core.Coordinates.GeodeticCoordinate.#ctor*
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    commentId: T:System.ArgumentOutOfRangeException
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: GTiff2Tiles.Core.Coordinates.GeodeticCoordinate.ToPixelCoordinate(System.Int32,GTiff2Tiles.Core.Images.Size)
+  commentId: M:GTiff2Tiles.Core.Coordinates.GeodeticCoordinate.ToPixelCoordinate(System.Int32,GTiff2Tiles.Core.Images.Size)
+  id: ToPixelCoordinate(System.Int32,GTiff2Tiles.Core.Images.Size)
+  parent: GTiff2Tiles.Core.Coordinates.GeodeticCoordinate
+  langs:
+  - csharp
+  - vb
+  name: ToPixelCoordinate(Int32, Size)
+  nameWithType: GeodeticCoordinate.ToPixelCoordinate(Int32, Size)
+  fullName: GTiff2Tiles.Core.Coordinates.GeodeticCoordinate.ToPixelCoordinate(System.Int32, GTiff2Tiles.Core.Images.Size)
+  type: Method
+  source:
+    remote:
+      path: GTiff2Tiles.Core/Coordinates/GeodeticCoordinate.cs
+      branch: master
+      repo: https://github.com/Gigas002/GTiff2Tiles.git
+    id: ToPixelCoordinate
+    path: GTiff2Tiles.Core/Coordinates/GeodeticCoordinate.cs
+    startLine: 70
+  assemblies:
+  - GTiff2Tiles.Core
+  namespace: GTiff2Tiles.Core.Coordinates
+  example: []
+  syntax:
+    content: public override PixelCoordinate ToPixelCoordinate(int z, Size tileSize)
+    parameters:
+    - id: z
+      type: System.Int32
+    - id: tileSize
+      type: GTiff2Tiles.Core.Images.Size
+    return:
+      type: GTiff2Tiles.Core.Coordinates.PixelCoordinate
+    content.vb: Public Overrides Function ToPixelCoordinate(z As Integer, tileSize As Size) As PixelCoordinate
+  overridden: GTiff2Tiles.Core.Coordinates.GeoCoordinate.ToPixelCoordinate(System.Int32,GTiff2Tiles.Core.Images.Size)
+  overload: GTiff2Tiles.Core.Coordinates.GeodeticCoordinate.ToPixelCoordinate*
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    commentId: T:System.ArgumentOutOfRangeException
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
+- uid: GTiff2Tiles.Core.Coordinates.GeodeticCoordinate.ToMercatorCoordinate
+  commentId: M:GTiff2Tiles.Core.Coordinates.GeodeticCoordinate.ToMercatorCoordinate
+  id: ToMercatorCoordinate
+  parent: GTiff2Tiles.Core.Coordinates.GeodeticCoordinate
+  langs:
+  - csharp
+  - vb
+  name: ToMercatorCoordinate()
+  nameWithType: GeodeticCoordinate.ToMercatorCoordinate()
+  fullName: GTiff2Tiles.Core.Coordinates.GeodeticCoordinate.ToMercatorCoordinate()
+  type: Method
+  source:
+    remote:
+      path: GTiff2Tiles.Core/Coordinates/GeodeticCoordinate.cs
+      branch: master
+      repo: https://github.com/Gigas002/GTiff2Tiles.git
+    id: ToMercatorCoordinate
+    path: GTiff2Tiles.Core/Coordinates/GeodeticCoordinate.cs
+    startLine: 84
+  assemblies:
+  - GTiff2Tiles.Core
+  namespace: GTiff2Tiles.Core.Coordinates
+  summary: "\nConvert current coordinate to <xref href=\"GTiff2Tiles.Core.Coordinates.MercatorCoordinate\" data-throw-if-not-resolved=\"false\"></xref>\n"
+  example: []
+  syntax:
+    content: public MercatorCoordinate ToMercatorCoordinate()
+    return:
+      type: GTiff2Tiles.Core.Coordinates.MercatorCoordinate
+      description: Converted <xref href="GTiff2Tiles.Core.Coordinates.MercatorCoordinate" data-throw-if-not-resolved="false"></xref>
+    content.vb: Public Function ToMercatorCoordinate As MercatorCoordinate
+  overload: GTiff2Tiles.Core.Coordinates.GeodeticCoordinate.ToMercatorCoordinate*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: GTiff2Tiles.Core.Coordinates.GeodeticCoordinate.Resolution(System.Int32,GTiff2Tiles.Core.Images.Size)
+  commentId: M:GTiff2Tiles.Core.Coordinates.GeodeticCoordinate.Resolution(System.Int32,GTiff2Tiles.Core.Images.Size)
+  id: Resolution(System.Int32,GTiff2Tiles.Core.Images.Size)
+  parent: GTiff2Tiles.Core.Coordinates.GeodeticCoordinate
+  langs:
+  - csharp
+  - vb
+  name: Resolution(Int32, Size)
+  nameWithType: GeodeticCoordinate.Resolution(Int32, Size)
+  fullName: GTiff2Tiles.Core.Coordinates.GeodeticCoordinate.Resolution(System.Int32, GTiff2Tiles.Core.Images.Size)
+  type: Method
+  source:
+    remote:
+      path: GTiff2Tiles.Core/Coordinates/GeodeticCoordinate.cs
+      branch: master
+      repo: https://github.com/Gigas002/GTiff2Tiles.git
+    id: Resolution
+    path: GTiff2Tiles.Core/Coordinates/GeodeticCoordinate.cs
+    startLine: 97
+  assemblies:
+  - GTiff2Tiles.Core
+  namespace: GTiff2Tiles.Core.Coordinates
+  example: []
+  syntax:
+    content: public static double Resolution(int z, Size tileSize)
+    parameters:
+    - id: z
+      type: System.Int32
+    - id: tileSize
+      type: GTiff2Tiles.Core.Images.Size
+    return:
+      type: System.Double
+    content.vb: Public Shared Function Resolution(z As Integer, tileSize As Size) As Double
+  overload: GTiff2Tiles.Core.Coordinates.GeodeticCoordinate.Resolution*
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    commentId: T:System.ArgumentOutOfRangeException
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+references:
+- uid: GTiff2Tiles.Core.Coordinates
+  commentId: N:GTiff2Tiles.Core.Coordinates
+  name: GTiff2Tiles.Core.Coordinates
+  nameWithType: GTiff2Tiles.Core.Coordinates
+  fullName: GTiff2Tiles.Core.Coordinates
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: GTiff2Tiles.Core.Coordinates.Coordinate
+  commentId: T:GTiff2Tiles.Core.Coordinates.Coordinate
+  parent: GTiff2Tiles.Core.Coordinates
+  name: Coordinate
+  nameWithType: Coordinate
+  fullName: GTiff2Tiles.Core.Coordinates.Coordinate
+- uid: GTiff2Tiles.Core.Coordinates.GeoCoordinate
+  commentId: T:GTiff2Tiles.Core.Coordinates.GeoCoordinate
+  parent: GTiff2Tiles.Core.Coordinates
+  name: GeoCoordinate
+  nameWithType: GeoCoordinate
+  fullName: GTiff2Tiles.Core.Coordinates.GeoCoordinate
+- uid: GTiff2Tiles.Core.Coordinates.ICoordinate
+  commentId: T:GTiff2Tiles.Core.Coordinates.ICoordinate
+  parent: GTiff2Tiles.Core.Coordinates
+  name: ICoordinate
+  nameWithType: ICoordinate
+  fullName: GTiff2Tiles.Core.Coordinates.ICoordinate
+- uid: System.IEquatable{GTiff2Tiles.Core.Coordinates.ICoordinate}
+  commentId: T:System.IEquatable{GTiff2Tiles.Core.Coordinates.ICoordinate}
+  parent: System
+  definition: System.IEquatable`1
+  name: IEquatable<ICoordinate>
+  nameWithType: IEquatable<ICoordinate>
+  fullName: System.IEquatable<GTiff2Tiles.Core.Coordinates.ICoordinate>
+  nameWithType.vb: IEquatable(Of ICoordinate)
+  fullName.vb: System.IEquatable(Of GTiff2Tiles.Core.Coordinates.ICoordinate)
+  name.vb: IEquatable(Of ICoordinate)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    nameWithType: IEquatable
+    fullName: System.IEquatable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: GTiff2Tiles.Core.Coordinates.ICoordinate
+    name: ICoordinate
+    nameWithType: ICoordinate
+    fullName: GTiff2Tiles.Core.Coordinates.ICoordinate
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    nameWithType: IEquatable
+    fullName: System.IEquatable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: GTiff2Tiles.Core.Coordinates.ICoordinate
+    name: ICoordinate
+    nameWithType: ICoordinate
+    fullName: GTiff2Tiles.Core.Coordinates.ICoordinate
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GTiff2Tiles.Core.Coordinates.GeoCoordinate.ToNumber(System.Int32,GTiff2Tiles.Core.Images.Size,System.Boolean)
+  commentId: M:GTiff2Tiles.Core.Coordinates.GeoCoordinate.ToNumber(System.Int32,GTiff2Tiles.Core.Images.Size,System.Boolean)
+  parent: GTiff2Tiles.Core.Coordinates.GeoCoordinate
+  isExternal: true
+  name: ToNumber(Int32, Size, Boolean)
+  nameWithType: GeoCoordinate.ToNumber(Int32, Size, Boolean)
+  fullName: GTiff2Tiles.Core.Coordinates.GeoCoordinate.ToNumber(System.Int32, GTiff2Tiles.Core.Images.Size, System.Boolean)
+  spec.csharp:
+  - uid: GTiff2Tiles.Core.Coordinates.GeoCoordinate.ToNumber(System.Int32,GTiff2Tiles.Core.Images.Size,System.Boolean)
+    name: ToNumber
+    nameWithType: GeoCoordinate.ToNumber
+    fullName: GTiff2Tiles.Core.Coordinates.GeoCoordinate.ToNumber
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: GTiff2Tiles.Core.Images.Size
+    name: Size
+    nameWithType: Size
+    fullName: GTiff2Tiles.Core.Images.Size
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GTiff2Tiles.Core.Coordinates.GeoCoordinate.ToNumber(System.Int32,GTiff2Tiles.Core.Images.Size,System.Boolean)
+    name: ToNumber
+    nameWithType: GeoCoordinate.ToNumber
+    fullName: GTiff2Tiles.Core.Coordinates.GeoCoordinate.ToNumber
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: GTiff2Tiles.Core.Images.Size
+    name: Size
+    nameWithType: Size
+    fullName: GTiff2Tiles.Core.Images.Size
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GTiff2Tiles.Core.Coordinates.GeoCoordinate.GetNumbers(GTiff2Tiles.Core.Coordinates.GeoCoordinate,GTiff2Tiles.Core.Coordinates.GeoCoordinate,System.Int32,GTiff2Tiles.Core.Images.Size,System.Boolean)
+  commentId: M:GTiff2Tiles.Core.Coordinates.GeoCoordinate.GetNumbers(GTiff2Tiles.Core.Coordinates.GeoCoordinate,GTiff2Tiles.Core.Coordinates.GeoCoordinate,System.Int32,GTiff2Tiles.Core.Images.Size,System.Boolean)
+  parent: GTiff2Tiles.Core.Coordinates.GeoCoordinate
+  isExternal: true
+  name: GetNumbers(GeoCoordinate, GeoCoordinate, Int32, Size, Boolean)
+  nameWithType: GeoCoordinate.GetNumbers(GeoCoordinate, GeoCoordinate, Int32, Size, Boolean)
+  fullName: GTiff2Tiles.Core.Coordinates.GeoCoordinate.GetNumbers(GTiff2Tiles.Core.Coordinates.GeoCoordinate, GTiff2Tiles.Core.Coordinates.GeoCoordinate, System.Int32, GTiff2Tiles.Core.Images.Size, System.Boolean)
+  spec.csharp:
+  - uid: GTiff2Tiles.Core.Coordinates.GeoCoordinate.GetNumbers(GTiff2Tiles.Core.Coordinates.GeoCoordinate,GTiff2Tiles.Core.Coordinates.GeoCoordinate,System.Int32,GTiff2Tiles.Core.Images.Size,System.Boolean)
+    name: GetNumbers
+    nameWithType: GeoCoordinate.GetNumbers
+    fullName: GTiff2Tiles.Core.Coordinates.GeoCoordinate.GetNumbers
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: GTiff2Tiles.Core.Coordinates.GeoCoordinate
+    name: GeoCoordinate
+    nameWithType: GeoCoordinate
+    fullName: GTiff2Tiles.Core.Coordinates.GeoCoordinate
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: GTiff2Tiles.Core.Coordinates.GeoCoordinate
+    name: GeoCoordinate
+    nameWithType: GeoCoordinate
+    fullName: GTiff2Tiles.Core.Coordinates.GeoCoordinate
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: GTiff2Tiles.Core.Images.Size
+    name: Size
+    nameWithType: Size
+    fullName: GTiff2Tiles.Core.Images.Size
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GTiff2Tiles.Core.Coordinates.GeoCoordinate.GetNumbers(GTiff2Tiles.Core.Coordinates.GeoCoordinate,GTiff2Tiles.Core.Coordinates.GeoCoordinate,System.Int32,GTiff2Tiles.Core.Images.Size,System.Boolean)
+    name: GetNumbers
+    nameWithType: GeoCoordinate.GetNumbers
+    fullName: GTiff2Tiles.Core.Coordinates.GeoCoordinate.GetNumbers
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: GTiff2Tiles.Core.Coordinates.GeoCoordinate
+    name: GeoCoordinate
+    nameWithType: GeoCoordinate
+    fullName: GTiff2Tiles.Core.Coordinates.GeoCoordinate
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: GTiff2Tiles.Core.Coordinates.GeoCoordinate
+    name: GeoCoordinate
+    nameWithType: GeoCoordinate
+    fullName: GTiff2Tiles.Core.Coordinates.GeoCoordinate
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: GTiff2Tiles.Core.Images.Size
+    name: Size
+    nameWithType: Size
+    fullName: GTiff2Tiles.Core.Images.Size
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GTiff2Tiles.Core.Coordinates.GeoCoordinate.Resolution(System.Int32,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.CoordinateSystem)
+  commentId: M:GTiff2Tiles.Core.Coordinates.GeoCoordinate.Resolution(System.Int32,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.CoordinateSystem)
+  parent: GTiff2Tiles.Core.Coordinates.GeoCoordinate
+  isExternal: true
+  name: Resolution(Int32, Size, CoordinateSystem)
+  nameWithType: GeoCoordinate.Resolution(Int32, Size, CoordinateSystem)
+  fullName: GTiff2Tiles.Core.Coordinates.GeoCoordinate.Resolution(System.Int32, GTiff2Tiles.Core.Images.Size, GTiff2Tiles.Core.Enums.CoordinateSystem)
+  spec.csharp:
+  - uid: GTiff2Tiles.Core.Coordinates.GeoCoordinate.Resolution(System.Int32,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.CoordinateSystem)
+    name: Resolution
+    nameWithType: GeoCoordinate.Resolution
+    fullName: GTiff2Tiles.Core.Coordinates.GeoCoordinate.Resolution
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: GTiff2Tiles.Core.Images.Size
+    name: Size
+    nameWithType: Size
+    fullName: GTiff2Tiles.Core.Images.Size
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: GTiff2Tiles.Core.Enums.CoordinateSystem
+    name: CoordinateSystem
+    nameWithType: CoordinateSystem
+    fullName: GTiff2Tiles.Core.Enums.CoordinateSystem
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GTiff2Tiles.Core.Coordinates.GeoCoordinate.Resolution(System.Int32,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.CoordinateSystem)
+    name: Resolution
+    nameWithType: GeoCoordinate.Resolution
+    fullName: GTiff2Tiles.Core.Coordinates.GeoCoordinate.Resolution
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: GTiff2Tiles.Core.Images.Size
+    name: Size
+    nameWithType: Size
+    fullName: GTiff2Tiles.Core.Images.Size
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: GTiff2Tiles.Core.Enums.CoordinateSystem
+    name: CoordinateSystem
+    nameWithType: CoordinateSystem
+    fullName: GTiff2Tiles.Core.Enums.CoordinateSystem
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GTiff2Tiles.Core.Coordinates.GeoCoordinate.ZoomForPixelSize(System.Int32,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.CoordinateSystem,System.Int32,System.Int32)
+  commentId: M:GTiff2Tiles.Core.Coordinates.GeoCoordinate.ZoomForPixelSize(System.Int32,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.CoordinateSystem,System.Int32,System.Int32)
+  parent: GTiff2Tiles.Core.Coordinates.GeoCoordinate
+  isExternal: true
+  name: ZoomForPixelSize(Int32, Size, CoordinateSystem, Int32, Int32)
+  nameWithType: GeoCoordinate.ZoomForPixelSize(Int32, Size, CoordinateSystem, Int32, Int32)
+  fullName: GTiff2Tiles.Core.Coordinates.GeoCoordinate.ZoomForPixelSize(System.Int32, GTiff2Tiles.Core.Images.Size, GTiff2Tiles.Core.Enums.CoordinateSystem, System.Int32, System.Int32)
+  spec.csharp:
+  - uid: GTiff2Tiles.Core.Coordinates.GeoCoordinate.ZoomForPixelSize(System.Int32,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.CoordinateSystem,System.Int32,System.Int32)
+    name: ZoomForPixelSize
+    nameWithType: GeoCoordinate.ZoomForPixelSize
+    fullName: GTiff2Tiles.Core.Coordinates.GeoCoordinate.ZoomForPixelSize
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: GTiff2Tiles.Core.Images.Size
+    name: Size
+    nameWithType: Size
+    fullName: GTiff2Tiles.Core.Images.Size
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: GTiff2Tiles.Core.Enums.CoordinateSystem
+    name: CoordinateSystem
+    nameWithType: CoordinateSystem
+    fullName: GTiff2Tiles.Core.Enums.CoordinateSystem
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GTiff2Tiles.Core.Coordinates.GeoCoordinate.ZoomForPixelSize(System.Int32,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.CoordinateSystem,System.Int32,System.Int32)
+    name: ZoomForPixelSize
+    nameWithType: GeoCoordinate.ZoomForPixelSize
+    fullName: GTiff2Tiles.Core.Coordinates.GeoCoordinate.ZoomForPixelSize
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: GTiff2Tiles.Core.Images.Size
+    name: Size
+    nameWithType: Size
+    fullName: GTiff2Tiles.Core.Images.Size
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: GTiff2Tiles.Core.Enums.CoordinateSystem
+    name: CoordinateSystem
+    nameWithType: CoordinateSystem
+    fullName: GTiff2Tiles.Core.Enums.CoordinateSystem
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GTiff2Tiles.Core.Coordinates.Coordinate.X
+  commentId: P:GTiff2Tiles.Core.Coordinates.Coordinate.X
+  parent: GTiff2Tiles.Core.Coordinates.Coordinate
+  name: X
+  nameWithType: Coordinate.X
+  fullName: GTiff2Tiles.Core.Coordinates.Coordinate.X
+- uid: GTiff2Tiles.Core.Coordinates.Coordinate.Y
+  commentId: P:GTiff2Tiles.Core.Coordinates.Coordinate.Y
+  parent: GTiff2Tiles.Core.Coordinates.Coordinate
+  name: Y
+  nameWithType: Coordinate.Y
+  fullName: GTiff2Tiles.Core.Coordinates.Coordinate.Y
+- uid: GTiff2Tiles.Core.Coordinates.Coordinate.DegreesToRadians(System.Double)
+  commentId: M:GTiff2Tiles.Core.Coordinates.Coordinate.DegreesToRadians(System.Double)
+  parent: GTiff2Tiles.Core.Coordinates.Coordinate
+  isExternal: true
+  name: DegreesToRadians(Double)
+  nameWithType: Coordinate.DegreesToRadians(Double)
+  fullName: GTiff2Tiles.Core.Coordinates.Coordinate.DegreesToRadians(System.Double)
+  spec.csharp:
+  - uid: GTiff2Tiles.Core.Coordinates.Coordinate.DegreesToRadians(System.Double)
+    name: DegreesToRadians
+    nameWithType: Coordinate.DegreesToRadians
+    fullName: GTiff2Tiles.Core.Coordinates.Coordinate.DegreesToRadians
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Double
+    name: Double
+    nameWithType: Double
+    fullName: System.Double
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GTiff2Tiles.Core.Coordinates.Coordinate.DegreesToRadians(System.Double)
+    name: DegreesToRadians
+    nameWithType: Coordinate.DegreesToRadians
+    fullName: GTiff2Tiles.Core.Coordinates.Coordinate.DegreesToRadians
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Double
+    name: Double
+    nameWithType: Double
+    fullName: System.Double
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GTiff2Tiles.Core.Coordinates.Coordinate.RadiansToDegrees(System.Double)
+  commentId: M:GTiff2Tiles.Core.Coordinates.Coordinate.RadiansToDegrees(System.Double)
+  parent: GTiff2Tiles.Core.Coordinates.Coordinate
+  isExternal: true
+  name: RadiansToDegrees(Double)
+  nameWithType: Coordinate.RadiansToDegrees(Double)
+  fullName: GTiff2Tiles.Core.Coordinates.Coordinate.RadiansToDegrees(System.Double)
+  spec.csharp:
+  - uid: GTiff2Tiles.Core.Coordinates.Coordinate.RadiansToDegrees(System.Double)
+    name: RadiansToDegrees
+    nameWithType: Coordinate.RadiansToDegrees
+    fullName: GTiff2Tiles.Core.Coordinates.Coordinate.RadiansToDegrees
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Double
+    name: Double
+    nameWithType: Double
+    fullName: System.Double
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GTiff2Tiles.Core.Coordinates.Coordinate.RadiansToDegrees(System.Double)
+    name: RadiansToDegrees
+    nameWithType: Coordinate.RadiansToDegrees
+    fullName: GTiff2Tiles.Core.Coordinates.Coordinate.RadiansToDegrees
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Double
+    name: Double
+    nameWithType: Double
+    fullName: System.Double
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GTiff2Tiles.Core.Coordinates.Coordinate.Round``1(System.Int32)
+  commentId: M:GTiff2Tiles.Core.Coordinates.Coordinate.Round``1(System.Int32)
+  parent: GTiff2Tiles.Core.Coordinates.Coordinate
+  isExternal: true
+  name: Round<T>(Int32)
+  nameWithType: Coordinate.Round<T>(Int32)
+  fullName: GTiff2Tiles.Core.Coordinates.Coordinate.Round<T>(System.Int32)
+  nameWithType.vb: Coordinate.Round(Of T)(Int32)
+  fullName.vb: GTiff2Tiles.Core.Coordinates.Coordinate.Round(Of T)(System.Int32)
+  name.vb: Round(Of T)(Int32)
+  spec.csharp:
+  - uid: GTiff2Tiles.Core.Coordinates.Coordinate.Round``1(System.Int32)
+    name: Round<T>
+    nameWithType: Coordinate.Round<T>
+    fullName: GTiff2Tiles.Core.Coordinates.Coordinate.Round<T>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GTiff2Tiles.Core.Coordinates.Coordinate.Round``1(System.Int32)
+    name: Round(Of T)
+    nameWithType: Coordinate.Round(Of T)
+    fullName: GTiff2Tiles.Core.Coordinates.Coordinate.Round(Of T)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GTiff2Tiles.Core.Coordinates.Coordinate.Round``1({T},System.Int32)
+  commentId: M:GTiff2Tiles.Core.Coordinates.Coordinate.Round``1(``0,System.Int32)
+  parent: GTiff2Tiles.Core.Coordinates.Coordinate
+  definition: GTiff2Tiles.Core.Coordinates.Coordinate.Round``1(``0,System.Int32)
+  name: Round<T>(T, Int32)
+  nameWithType: Coordinate.Round<T>(T, Int32)
+  fullName: GTiff2Tiles.Core.Coordinates.Coordinate.Round<T>(T, System.Int32)
+  nameWithType.vb: Coordinate.Round(Of T)(T, Int32)
+  fullName.vb: GTiff2Tiles.Core.Coordinates.Coordinate.Round(Of T)(T, System.Int32)
+  name.vb: Round(Of T)(T, Int32)
+  spec.csharp:
+  - uid: GTiff2Tiles.Core.Coordinates.Coordinate.Round``1(``0,System.Int32)
+    name: Round<T>
+    nameWithType: Coordinate.Round<T>
+    fullName: GTiff2Tiles.Core.Coordinates.Coordinate.Round<T>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GTiff2Tiles.Core.Coordinates.Coordinate.Round``1(``0,System.Int32)
+    name: Round(Of T)
+    nameWithType: Coordinate.Round(Of T)
+    fullName: GTiff2Tiles.Core.Coordinates.Coordinate.Round(Of T)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GTiff2Tiles.Core.Coordinates.Coordinate.Equals(System.Object)
+  commentId: M:GTiff2Tiles.Core.Coordinates.Coordinate.Equals(System.Object)
+  parent: GTiff2Tiles.Core.Coordinates.Coordinate
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Coordinate.Equals(Object)
+  fullName: GTiff2Tiles.Core.Coordinates.Coordinate.Equals(System.Object)
+  spec.csharp:
+  - uid: GTiff2Tiles.Core.Coordinates.Coordinate.Equals(System.Object)
+    name: Equals
+    nameWithType: Coordinate.Equals
+    fullName: GTiff2Tiles.Core.Coordinates.Coordinate.Equals
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GTiff2Tiles.Core.Coordinates.Coordinate.Equals(System.Object)
+    name: Equals
+    nameWithType: Coordinate.Equals
+    fullName: GTiff2Tiles.Core.Coordinates.Coordinate.Equals
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GTiff2Tiles.Core.Coordinates.Coordinate.GetHashCode
+  commentId: M:GTiff2Tiles.Core.Coordinates.Coordinate.GetHashCode
+  parent: GTiff2Tiles.Core.Coordinates.Coordinate
+  name: GetHashCode()
+  nameWithType: Coordinate.GetHashCode()
+  fullName: GTiff2Tiles.Core.Coordinates.Coordinate.GetHashCode()
+  spec.csharp:
+  - uid: GTiff2Tiles.Core.Coordinates.Coordinate.GetHashCode
+    name: GetHashCode
+    nameWithType: Coordinate.GetHashCode
+    fullName: GTiff2Tiles.Core.Coordinates.Coordinate.GetHashCode
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GTiff2Tiles.Core.Coordinates.Coordinate.GetHashCode
+    name: GetHashCode
+    nameWithType: Coordinate.GetHashCode
+    fullName: GTiff2Tiles.Core.Coordinates.Coordinate.GetHashCode
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GTiff2Tiles.Core.Coordinates.Coordinate.Equals(GTiff2Tiles.Core.Coordinates.ICoordinate)
+  commentId: M:GTiff2Tiles.Core.Coordinates.Coordinate.Equals(GTiff2Tiles.Core.Coordinates.ICoordinate)
+  parent: GTiff2Tiles.Core.Coordinates.Coordinate
+  name: Equals(ICoordinate)
+  nameWithType: Coordinate.Equals(ICoordinate)
+  fullName: GTiff2Tiles.Core.Coordinates.Coordinate.Equals(GTiff2Tiles.Core.Coordinates.ICoordinate)
+  spec.csharp:
+  - uid: GTiff2Tiles.Core.Coordinates.Coordinate.Equals(GTiff2Tiles.Core.Coordinates.ICoordinate)
+    name: Equals
+    nameWithType: Coordinate.Equals
+    fullName: GTiff2Tiles.Core.Coordinates.Coordinate.Equals
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: GTiff2Tiles.Core.Coordinates.ICoordinate
+    name: ICoordinate
+    nameWithType: ICoordinate
+    fullName: GTiff2Tiles.Core.Coordinates.ICoordinate
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GTiff2Tiles.Core.Coordinates.Coordinate.Equals(GTiff2Tiles.Core.Coordinates.ICoordinate)
+    name: Equals
+    nameWithType: Coordinate.Equals
+    fullName: GTiff2Tiles.Core.Coordinates.Coordinate.Equals
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: GTiff2Tiles.Core.Coordinates.ICoordinate
+    name: ICoordinate
+    nameWithType: ICoordinate
+    fullName: GTiff2Tiles.Core.Coordinates.ICoordinate
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GTiff2Tiles.Core.Coordinates.Coordinate.Add(GTiff2Tiles.Core.Coordinates.Coordinate)
+  commentId: M:GTiff2Tiles.Core.Coordinates.Coordinate.Add(GTiff2Tiles.Core.Coordinates.Coordinate)
+  parent: GTiff2Tiles.Core.Coordinates.Coordinate
+  name: Add(Coordinate)
+  nameWithType: Coordinate.Add(Coordinate)
+  fullName: GTiff2Tiles.Core.Coordinates.Coordinate.Add(GTiff2Tiles.Core.Coordinates.Coordinate)
+  spec.csharp:
+  - uid: GTiff2Tiles.Core.Coordinates.Coordinate.Add(GTiff2Tiles.Core.Coordinates.Coordinate)
+    name: Add
+    nameWithType: Coordinate.Add
+    fullName: GTiff2Tiles.Core.Coordinates.Coordinate.Add
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: GTiff2Tiles.Core.Coordinates.Coordinate
+    name: Coordinate
+    nameWithType: Coordinate
+    fullName: GTiff2Tiles.Core.Coordinates.Coordinate
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GTiff2Tiles.Core.Coordinates.Coordinate.Add(GTiff2Tiles.Core.Coordinates.Coordinate)
+    name: Add
+    nameWithType: Coordinate.Add
+    fullName: GTiff2Tiles.Core.Coordinates.Coordinate.Add
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: GTiff2Tiles.Core.Coordinates.Coordinate
+    name: Coordinate
+    nameWithType: Coordinate
+    fullName: GTiff2Tiles.Core.Coordinates.Coordinate
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GTiff2Tiles.Core.Coordinates.Coordinate.Subtract(GTiff2Tiles.Core.Coordinates.Coordinate)
+  commentId: M:GTiff2Tiles.Core.Coordinates.Coordinate.Subtract(GTiff2Tiles.Core.Coordinates.Coordinate)
+  parent: GTiff2Tiles.Core.Coordinates.Coordinate
+  name: Subtract(Coordinate)
+  nameWithType: Coordinate.Subtract(Coordinate)
+  fullName: GTiff2Tiles.Core.Coordinates.Coordinate.Subtract(GTiff2Tiles.Core.Coordinates.Coordinate)
+  spec.csharp:
+  - uid: GTiff2Tiles.Core.Coordinates.Coordinate.Subtract(GTiff2Tiles.Core.Coordinates.Coordinate)
+    name: Subtract
+    nameWithType: Coordinate.Subtract
+    fullName: GTiff2Tiles.Core.Coordinates.Coordinate.Subtract
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: GTiff2Tiles.Core.Coordinates.Coordinate
+    name: Coordinate
+    nameWithType: Coordinate
+    fullName: GTiff2Tiles.Core.Coordinates.Coordinate
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GTiff2Tiles.Core.Coordinates.Coordinate.Subtract(GTiff2Tiles.Core.Coordinates.Coordinate)
+    name: Subtract
+    nameWithType: Coordinate.Subtract
+    fullName: GTiff2Tiles.Core.Coordinates.Coordinate.Subtract
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: GTiff2Tiles.Core.Coordinates.Coordinate
+    name: Coordinate
+    nameWithType: Coordinate
+    fullName: GTiff2Tiles.Core.Coordinates.Coordinate
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GTiff2Tiles.Core.Coordinates.Coordinate.Multiply(GTiff2Tiles.Core.Coordinates.Coordinate)
+  commentId: M:GTiff2Tiles.Core.Coordinates.Coordinate.Multiply(GTiff2Tiles.Core.Coordinates.Coordinate)
+  parent: GTiff2Tiles.Core.Coordinates.Coordinate
+  name: Multiply(Coordinate)
+  nameWithType: Coordinate.Multiply(Coordinate)
+  fullName: GTiff2Tiles.Core.Coordinates.Coordinate.Multiply(GTiff2Tiles.Core.Coordinates.Coordinate)
+  spec.csharp:
+  - uid: GTiff2Tiles.Core.Coordinates.Coordinate.Multiply(GTiff2Tiles.Core.Coordinates.Coordinate)
+    name: Multiply
+    nameWithType: Coordinate.Multiply
+    fullName: GTiff2Tiles.Core.Coordinates.Coordinate.Multiply
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: GTiff2Tiles.Core.Coordinates.Coordinate
+    name: Coordinate
+    nameWithType: Coordinate
+    fullName: GTiff2Tiles.Core.Coordinates.Coordinate
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GTiff2Tiles.Core.Coordinates.Coordinate.Multiply(GTiff2Tiles.Core.Coordinates.Coordinate)
+    name: Multiply
+    nameWithType: Coordinate.Multiply
+    fullName: GTiff2Tiles.Core.Coordinates.Coordinate.Multiply
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: GTiff2Tiles.Core.Coordinates.Coordinate
+    name: Coordinate
+    nameWithType: Coordinate
+    fullName: GTiff2Tiles.Core.Coordinates.Coordinate
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GTiff2Tiles.Core.Coordinates.Coordinate.Divide(GTiff2Tiles.Core.Coordinates.Coordinate)
+  commentId: M:GTiff2Tiles.Core.Coordinates.Coordinate.Divide(GTiff2Tiles.Core.Coordinates.Coordinate)
+  parent: GTiff2Tiles.Core.Coordinates.Coordinate
+  name: Divide(Coordinate)
+  nameWithType: Coordinate.Divide(Coordinate)
+  fullName: GTiff2Tiles.Core.Coordinates.Coordinate.Divide(GTiff2Tiles.Core.Coordinates.Coordinate)
+  spec.csharp:
+  - uid: GTiff2Tiles.Core.Coordinates.Coordinate.Divide(GTiff2Tiles.Core.Coordinates.Coordinate)
+    name: Divide
+    nameWithType: Coordinate.Divide
+    fullName: GTiff2Tiles.Core.Coordinates.Coordinate.Divide
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: GTiff2Tiles.Core.Coordinates.Coordinate
+    name: Coordinate
+    nameWithType: Coordinate
+    fullName: GTiff2Tiles.Core.Coordinates.Coordinate
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GTiff2Tiles.Core.Coordinates.Coordinate.Divide(GTiff2Tiles.Core.Coordinates.Coordinate)
+    name: Divide
+    nameWithType: Coordinate.Divide
+    fullName: GTiff2Tiles.Core.Coordinates.Coordinate.Divide
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: GTiff2Tiles.Core.Coordinates.Coordinate
+    name: Coordinate
+    nameWithType: Coordinate
+    fullName: GTiff2Tiles.Core.Coordinates.Coordinate
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.IEquatable`1
+  commentId: T:System.IEquatable`1
+  isExternal: true
+  name: IEquatable<T>
+  nameWithType: IEquatable<T>
+  fullName: System.IEquatable<T>
+  nameWithType.vb: IEquatable(Of T)
+  fullName.vb: System.IEquatable(Of T)
+  name.vb: IEquatable(Of T)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    nameWithType: IEquatable
+    fullName: System.IEquatable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    nameWithType: IEquatable
+    fullName: System.IEquatable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GTiff2Tiles.Core.Coordinates.Coordinate.Round``1(``0,System.Int32)
+  commentId: M:GTiff2Tiles.Core.Coordinates.Coordinate.Round``1(``0,System.Int32)
+  isExternal: true
+  name: Round<T>(T, Int32)
+  nameWithType: Coordinate.Round<T>(T, Int32)
+  fullName: GTiff2Tiles.Core.Coordinates.Coordinate.Round<T>(T, System.Int32)
+  nameWithType.vb: Coordinate.Round(Of T)(T, Int32)
+  fullName.vb: GTiff2Tiles.Core.Coordinates.Coordinate.Round(Of T)(T, System.Int32)
+  name.vb: Round(Of T)(T, Int32)
+  spec.csharp:
+  - uid: GTiff2Tiles.Core.Coordinates.Coordinate.Round``1(``0,System.Int32)
+    name: Round<T>
+    nameWithType: Coordinate.Round<T>
+    fullName: GTiff2Tiles.Core.Coordinates.Coordinate.Round<T>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GTiff2Tiles.Core.Coordinates.Coordinate.Round``1(``0,System.Int32)
+    name: Round(Of T)
+    nameWithType: Coordinate.Round(Of T)
+    fullName: GTiff2Tiles.Core.Coordinates.Coordinate.Round(Of T)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Double
+  commentId: T:System.Double
+  parent: System
+  isExternal: true
+  name: Double
+  nameWithType: Double
+  fullName: System.Double
+- uid: GTiff2Tiles.Core.Coordinates.GeodeticCoordinate.Longitude*
+  commentId: Overload:GTiff2Tiles.Core.Coordinates.GeodeticCoordinate.Longitude
+  name: Longitude
+  nameWithType: GeodeticCoordinate.Longitude
+  fullName: GTiff2Tiles.Core.Coordinates.GeodeticCoordinate.Longitude
+- uid: GTiff2Tiles.Core.Coordinates.GeodeticCoordinate.Latitude*
+  commentId: Overload:GTiff2Tiles.Core.Coordinates.GeodeticCoordinate.Latitude
+  name: Latitude
+  nameWithType: GeodeticCoordinate.Latitude
+  fullName: GTiff2Tiles.Core.Coordinates.GeodeticCoordinate.Latitude
+- uid: System.ArgumentOutOfRangeException
+  commentId: T:System.ArgumentOutOfRangeException
+  isExternal: true
+- uid: GTiff2Tiles.Core.Coordinates.GeodeticCoordinate.#ctor*
+  commentId: Overload:GTiff2Tiles.Core.Coordinates.GeodeticCoordinate.#ctor
+  name: GeodeticCoordinate
+  nameWithType: GeodeticCoordinate.GeodeticCoordinate
+  fullName: GTiff2Tiles.Core.Coordinates.GeodeticCoordinate.GeodeticCoordinate
+- uid: GTiff2Tiles.Core.Coordinates.GeoCoordinate.ToPixelCoordinate(System.Int32,GTiff2Tiles.Core.Images.Size)
+  commentId: M:GTiff2Tiles.Core.Coordinates.GeoCoordinate.ToPixelCoordinate(System.Int32,GTiff2Tiles.Core.Images.Size)
+  parent: GTiff2Tiles.Core.Coordinates.GeoCoordinate
+  isExternal: true
+  name: ToPixelCoordinate(Int32, Size)
+  nameWithType: GeoCoordinate.ToPixelCoordinate(Int32, Size)
+  fullName: GTiff2Tiles.Core.Coordinates.GeoCoordinate.ToPixelCoordinate(System.Int32, GTiff2Tiles.Core.Images.Size)
+  spec.csharp:
+  - uid: GTiff2Tiles.Core.Coordinates.GeoCoordinate.ToPixelCoordinate(System.Int32,GTiff2Tiles.Core.Images.Size)
+    name: ToPixelCoordinate
+    nameWithType: GeoCoordinate.ToPixelCoordinate
+    fullName: GTiff2Tiles.Core.Coordinates.GeoCoordinate.ToPixelCoordinate
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: GTiff2Tiles.Core.Images.Size
+    name: Size
+    nameWithType: Size
+    fullName: GTiff2Tiles.Core.Images.Size
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GTiff2Tiles.Core.Coordinates.GeoCoordinate.ToPixelCoordinate(System.Int32,GTiff2Tiles.Core.Images.Size)
+    name: ToPixelCoordinate
+    nameWithType: GeoCoordinate.ToPixelCoordinate
+    fullName: GTiff2Tiles.Core.Coordinates.GeoCoordinate.ToPixelCoordinate
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: GTiff2Tiles.Core.Images.Size
+    name: Size
+    nameWithType: Size
+    fullName: GTiff2Tiles.Core.Images.Size
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GTiff2Tiles.Core.Coordinates.GeodeticCoordinate.ToPixelCoordinate*
+  commentId: Overload:GTiff2Tiles.Core.Coordinates.GeodeticCoordinate.ToPixelCoordinate
+  name: ToPixelCoordinate
+  nameWithType: GeodeticCoordinate.ToPixelCoordinate
+  fullName: GTiff2Tiles.Core.Coordinates.GeodeticCoordinate.ToPixelCoordinate
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: GTiff2Tiles.Core.Images.Size
+  commentId: T:GTiff2Tiles.Core.Images.Size
+  parent: GTiff2Tiles.Core.Images
+  name: Size
+  nameWithType: Size
+  fullName: GTiff2Tiles.Core.Images.Size
+- uid: GTiff2Tiles.Core.Coordinates.PixelCoordinate
+  commentId: T:GTiff2Tiles.Core.Coordinates.PixelCoordinate
+  parent: GTiff2Tiles.Core.Coordinates
+  name: PixelCoordinate
+  nameWithType: PixelCoordinate
+  fullName: GTiff2Tiles.Core.Coordinates.PixelCoordinate
+- uid: GTiff2Tiles.Core.Images
+  commentId: N:GTiff2Tiles.Core.Images
+  name: GTiff2Tiles.Core.Images
+  nameWithType: GTiff2Tiles.Core.Images
+  fullName: GTiff2Tiles.Core.Images
+- uid: GTiff2Tiles.Core.Coordinates.MercatorCoordinate
+  commentId: T:GTiff2Tiles.Core.Coordinates.MercatorCoordinate
+  parent: GTiff2Tiles.Core.Coordinates
+  name: MercatorCoordinate
+  nameWithType: MercatorCoordinate
+  fullName: GTiff2Tiles.Core.Coordinates.MercatorCoordinate
+- uid: GTiff2Tiles.Core.Coordinates.GeodeticCoordinate.ToMercatorCoordinate*
+  commentId: Overload:GTiff2Tiles.Core.Coordinates.GeodeticCoordinate.ToMercatorCoordinate
+  name: ToMercatorCoordinate
+  nameWithType: GeodeticCoordinate.ToMercatorCoordinate
+  fullName: GTiff2Tiles.Core.Coordinates.GeodeticCoordinate.ToMercatorCoordinate
+- uid: System.ArgumentNullException
+  commentId: T:System.ArgumentNullException
+  isExternal: true
+- uid: System.ArgumentException
+  commentId: T:System.ArgumentException
+  isExternal: true
+- uid: GTiff2Tiles.Core.Coordinates.GeodeticCoordinate.Resolution*
+  commentId: Overload:GTiff2Tiles.Core.Coordinates.GeodeticCoordinate.Resolution
+  name: Resolution
+  nameWithType: GeodeticCoordinate.Resolution
+  fullName: GTiff2Tiles.Core.Coordinates.GeodeticCoordinate.Resolution

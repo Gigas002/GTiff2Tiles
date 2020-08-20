@@ -9,11 +9,11 @@
           "exclude": [
             "**/bin/**",
             "**/obj/**",
-            "**/_site/**"
+            "**/docs/**"
           ]
         }
       ],
-      "dest": "Docs/api",
+      "dest": "_docs/api",
       "disableGitFeatures": false,
       "disableDefaultFilter": false,
       "properties":{
@@ -27,7 +27,7 @@
         "files": [
           "**"
         ],
-        "src": "Docs/api",
+        "src": "_docs/api",
         "dest": "api"
       },
       {
@@ -42,7 +42,7 @@
           "index.md",
           "toc.yml"
         ],
-        "src": "Docs"
+        "src": "_docs"
       },
       {
         "files": [
@@ -97,7 +97,7 @@
       "_appLogoPath": "images/Icon.png"
     },
     "overwrite": [],
-    "dest": "Docs/_site",
+    "dest": "docs",
     "globalMetadataFiles": [],
     "fileMetadataFiles": [],
     "template": [
@@ -119,7 +119,7 @@
         "exclude": [
           "toc.yml"
         ],
-        "src": "Docs/api"
+        "src": "_docs/api"
       },
       {
         "files": [
@@ -131,11 +131,11 @@
         "files": [
           "toc.yml"
         ],
-        "src": "Docs/pdf"
+        "src": "_docs/pdf"
       }
     ],
     "resource": [],
     "overwrite": [],
-    "dest": "Docs/_pdf"
+    "dest": "_docs/_pdf"
   }
 }

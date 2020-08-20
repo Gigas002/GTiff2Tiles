@@ -1,0 +1,34 @@
+### YamlMime:ManagedReference
+items:
+- uid: GTiff2Tiles.Core.Helpers
+  commentId: N:GTiff2Tiles.Core.Helpers
+  id: GTiff2Tiles.Core.Helpers
+  children:
+  - GTiff2Tiles.Core.Helpers.CheckHelper
+  - GTiff2Tiles.Core.Helpers.NetVipsHelper
+  - GTiff2Tiles.Core.Helpers.ProgressHelper
+  langs:
+  - csharp
+  - vb
+  name: GTiff2Tiles.Core.Helpers
+  nameWithType: GTiff2Tiles.Core.Helpers
+  fullName: GTiff2Tiles.Core.Helpers
+  type: Namespace
+  assemblies:
+  - GTiff2Tiles.Core
+references:
+- uid: GTiff2Tiles.Core.Helpers.CheckHelper
+  commentId: T:GTiff2Tiles.Core.Helpers.CheckHelper
+  name: CheckHelper
+  nameWithType: CheckHelper
+  fullName: GTiff2Tiles.Core.Helpers.CheckHelper
+- uid: GTiff2Tiles.Core.Helpers.NetVipsHelper
+  commentId: T:GTiff2Tiles.Core.Helpers.NetVipsHelper
+  name: NetVipsHelper
+  nameWithType: NetVipsHelper
+  fullName: GTiff2Tiles.Core.Helpers.NetVipsHelper
+- uid: GTiff2Tiles.Core.Helpers.ProgressHelper
+  commentId: T:GTiff2Tiles.Core.Helpers.ProgressHelper
+  name: ProgressHelper
+  nameWithType: ProgressHelper
+  fullName: GTiff2Tiles.Core.Helpers.ProgressHelper

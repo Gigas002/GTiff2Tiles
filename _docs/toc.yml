@@ -1,0 +1,13 @@
+﻿- name: Home
+  href: index.md
+- name: Core API Documentation
+  href: api/
+  homepage: ../GTiff2Tiles.Core/index.md
+- name: Console Documentation
+  href: ../GTiff2Tiles.Console/console-index.md
+- name: GUI Documentation
+  href: ../GTiff2Tiles.GUI/gui-index.md
+- name: Tests
+  href: ../GTiff2Tiles.Tests/tests-index.md
+- name: Benchmarks
+  href: ../GTiff2Tiles.Benchmarks/benchmarks-index.md

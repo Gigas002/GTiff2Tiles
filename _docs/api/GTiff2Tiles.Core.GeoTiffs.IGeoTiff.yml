@@ -1,0 +1,392 @@
+### YamlMime:ManagedReference
+items:
+- uid: GTiff2Tiles.Core.GeoTiffs.IGeoTiff
+  commentId: T:GTiff2Tiles.Core.GeoTiffs.IGeoTiff
+  id: IGeoTiff
+  parent: GTiff2Tiles.Core.GeoTiffs
+  children:
+  - GTiff2Tiles.Core.GeoTiffs.IGeoTiff.GeoCoordinateSystem
+  - GTiff2Tiles.Core.GeoTiffs.IGeoTiff.IsDisposed
+  - GTiff2Tiles.Core.GeoTiffs.IGeoTiff.MaxCoordinate
+  - GTiff2Tiles.Core.GeoTiffs.IGeoTiff.MinCoordinate
+  - GTiff2Tiles.Core.GeoTiffs.IGeoTiff.Size
+  langs:
+  - csharp
+  - vb
+  name: IGeoTiff
+  nameWithType: IGeoTiff
+  fullName: GTiff2Tiles.Core.GeoTiffs.IGeoTiff
+  type: Interface
+  source:
+    remote:
+      path: GTiff2Tiles.Core/GeoTiffs/IGeoTiff.cs
+      branch: master
+      repo: https://github.com/Gigas002/GTiff2Tiles.git
+    id: IGeoTiff
+    path: GTiff2Tiles.Core/GeoTiffs/IGeoTiff.cs
+    startLine: 14
+  assemblies:
+  - GTiff2Tiles.Core
+  namespace: GTiff2Tiles.Core.GeoTiffs
+  summary: "\nMain interface for different type of GeoTiffs and <xref href=\"GTiff2Tiles.Core.Tiles.ITile\" data-throw-if-not-resolved=\"false\"></xref>\n"
+  example: []
+  syntax:
+    content: 'public interface IGeoTiff : IAsyncDisposable, IDisposable'
+    content.vb: >-
+      Public Interface IGeoTiff
+
+          Inherits IAsyncDisposable, IDisposable
+  inheritedMembers:
+  - System.IAsyncDisposable.DisposeAsync
+  - System.IDisposable.Dispose
+  modifiers.csharp:
+  - public
+  - interface
+  modifiers.vb:
+  - Public
+  - Interface
+- uid: GTiff2Tiles.Core.GeoTiffs.IGeoTiff.IsDisposed
+  commentId: P:GTiff2Tiles.Core.GeoTiffs.IGeoTiff.IsDisposed
+  id: IsDisposed
+  parent: GTiff2Tiles.Core.GeoTiffs.IGeoTiff
+  langs:
+  - csharp
+  - vb
+  name: IsDisposed
+  nameWithType: IGeoTiff.IsDisposed
+  fullName: GTiff2Tiles.Core.GeoTiffs.IGeoTiff.IsDisposed
+  type: Property
+  source:
+    remote:
+      path: GTiff2Tiles.Core/GeoTiffs/IGeoTiff.cs
+      branch: master
+      repo: https://github.com/Gigas002/GTiff2Tiles.git
+    id: IsDisposed
+    path: GTiff2Tiles.Core/GeoTiffs/IGeoTiff.cs
+    startLine: 21
+  assemblies:
+  - GTiff2Tiles.Core
+  namespace: GTiff2Tiles.Core.GeoTiffs
+  summary: "\nShows if resources have already been disposed\n"
+  example: []
+  syntax:
+    content: bool IsDisposed { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: ReadOnly Property IsDisposed As Boolean
+  overload: GTiff2Tiles.Core.GeoTiffs.IGeoTiff.IsDisposed*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: GTiff2Tiles.Core.GeoTiffs.IGeoTiff.Size
+  commentId: P:GTiff2Tiles.Core.GeoTiffs.IGeoTiff.Size
+  id: Size
+  parent: GTiff2Tiles.Core.GeoTiffs.IGeoTiff
+  langs:
+  - csharp
+  - vb
+  name: Size
+  nameWithType: IGeoTiff.Size
+  fullName: GTiff2Tiles.Core.GeoTiffs.IGeoTiff.Size
+  type: Property
+  source:
+    remote:
+      path: GTiff2Tiles.Core/GeoTiffs/IGeoTiff.cs
+      branch: master
+      repo: https://github.com/Gigas002/GTiff2Tiles.git
+    id: Size
+    path: GTiff2Tiles.Core/GeoTiffs/IGeoTiff.cs
+    startLine: 26
+  assemblies:
+  - GTiff2Tiles.Core
+  namespace: GTiff2Tiles.Core.GeoTiffs
+  summary: "\nImage&apos;s <xref href=\"GTiff2Tiles.Core.Images.Size\" data-throw-if-not-resolved=\"false\"></xref> (width and height)\n"
+  example: []
+  syntax:
+    content: Size Size { get; }
+    parameters: []
+    return:
+      type: GTiff2Tiles.Core.Images.Size
+    content.vb: ReadOnly Property Size As Size
+  overload: GTiff2Tiles.Core.GeoTiffs.IGeoTiff.Size*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: GTiff2Tiles.Core.GeoTiffs.IGeoTiff.MinCoordinate
+  commentId: P:GTiff2Tiles.Core.GeoTiffs.IGeoTiff.MinCoordinate
+  id: MinCoordinate
+  parent: GTiff2Tiles.Core.GeoTiffs.IGeoTiff
+  langs:
+  - csharp
+  - vb
+  name: MinCoordinate
+  nameWithType: IGeoTiff.MinCoordinate
+  fullName: GTiff2Tiles.Core.GeoTiffs.IGeoTiff.MinCoordinate
+  type: Property
+  source:
+    remote:
+      path: GTiff2Tiles.Core/GeoTiffs/IGeoTiff.cs
+      branch: master
+      repo: https://github.com/Gigas002/GTiff2Tiles.git
+    id: MinCoordinate
+    path: GTiff2Tiles.Core/GeoTiffs/IGeoTiff.cs
+    startLine: 31
+  assemblies:
+  - GTiff2Tiles.Core
+  namespace: GTiff2Tiles.Core.GeoTiffs
+  summary: "\nMinimal <xref href=\"GTiff2Tiles.Core.Coordinates.GeoCoordinate\" data-throw-if-not-resolved=\"false\"></xref> of this <xref href=\"GTiff2Tiles.Core.GeoTiffs.IGeoTiff\" data-throw-if-not-resolved=\"false\"></xref>\n"
+  example: []
+  syntax:
+    content: GeoCoordinate MinCoordinate { get; }
+    parameters: []
+    return:
+      type: GTiff2Tiles.Core.Coordinates.GeoCoordinate
+    content.vb: ReadOnly Property MinCoordinate As GeoCoordinate
+  overload: GTiff2Tiles.Core.GeoTiffs.IGeoTiff.MinCoordinate*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: GTiff2Tiles.Core.GeoTiffs.IGeoTiff.MaxCoordinate
+  commentId: P:GTiff2Tiles.Core.GeoTiffs.IGeoTiff.MaxCoordinate
+  id: MaxCoordinate
+  parent: GTiff2Tiles.Core.GeoTiffs.IGeoTiff
+  langs:
+  - csharp
+  - vb
+  name: MaxCoordinate
+  nameWithType: IGeoTiff.MaxCoordinate
+  fullName: GTiff2Tiles.Core.GeoTiffs.IGeoTiff.MaxCoordinate
+  type: Property
+  source:
+    remote:
+      path: GTiff2Tiles.Core/GeoTiffs/IGeoTiff.cs
+      branch: master
+      repo: https://github.com/Gigas002/GTiff2Tiles.git
+    id: MaxCoordinate
+    path: GTiff2Tiles.Core/GeoTiffs/IGeoTiff.cs
+    startLine: 36
+  assemblies:
+  - GTiff2Tiles.Core
+  namespace: GTiff2Tiles.Core.GeoTiffs
+  summary: "\nMaximal <xref href=\"GTiff2Tiles.Core.Coordinates.GeoCoordinate\" data-throw-if-not-resolved=\"false\"></xref> of this <xref href=\"GTiff2Tiles.Core.GeoTiffs.IGeoTiff\" data-throw-if-not-resolved=\"false\"></xref>\n"
+  example: []
+  syntax:
+    content: GeoCoordinate MaxCoordinate { get; }
+    parameters: []
+    return:
+      type: GTiff2Tiles.Core.Coordinates.GeoCoordinate
+    content.vb: ReadOnly Property MaxCoordinate As GeoCoordinate
+  overload: GTiff2Tiles.Core.GeoTiffs.IGeoTiff.MaxCoordinate*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: GTiff2Tiles.Core.GeoTiffs.IGeoTiff.GeoCoordinateSystem
+  commentId: P:GTiff2Tiles.Core.GeoTiffs.IGeoTiff.GeoCoordinateSystem
+  id: GeoCoordinateSystem
+  parent: GTiff2Tiles.Core.GeoTiffs.IGeoTiff
+  langs:
+  - csharp
+  - vb
+  name: GeoCoordinateSystem
+  nameWithType: IGeoTiff.GeoCoordinateSystem
+  fullName: GTiff2Tiles.Core.GeoTiffs.IGeoTiff.GeoCoordinateSystem
+  type: Property
+  source:
+    remote:
+      path: GTiff2Tiles.Core/GeoTiffs/IGeoTiff.cs
+      branch: master
+      repo: https://github.com/Gigas002/GTiff2Tiles.git
+    id: GeoCoordinateSystem
+    path: GTiff2Tiles.Core/GeoTiffs/IGeoTiff.cs
+    startLine: 41
+  assemblies:
+  - GTiff2Tiles.Core
+  namespace: GTiff2Tiles.Core.GeoTiffs
+  summary: "\nType of desired <xref href=\"GTiff2Tiles.Core.Enums.CoordinateSystem\" data-throw-if-not-resolved=\"false\"></xref>\n"
+  example: []
+  syntax:
+    content: CoordinateSystem GeoCoordinateSystem { get; }
+    parameters: []
+    return:
+      type: GTiff2Tiles.Core.Enums.CoordinateSystem
+    content.vb: ReadOnly Property GeoCoordinateSystem As CoordinateSystem
+  overload: GTiff2Tiles.Core.GeoTiffs.IGeoTiff.GeoCoordinateSystem*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+references:
+- uid: GTiff2Tiles.Core.Tiles.ITile
+  commentId: T:GTiff2Tiles.Core.Tiles.ITile
+  parent: GTiff2Tiles.Core.Tiles
+  name: ITile
+  nameWithType: ITile
+  fullName: GTiff2Tiles.Core.Tiles.ITile
+- uid: GTiff2Tiles.Core.GeoTiffs
+  commentId: N:GTiff2Tiles.Core.GeoTiffs
+  name: GTiff2Tiles.Core.GeoTiffs
+  nameWithType: GTiff2Tiles.Core.GeoTiffs
+  fullName: GTiff2Tiles.Core.GeoTiffs
+- uid: System.IAsyncDisposable.DisposeAsync
+  commentId: M:System.IAsyncDisposable.DisposeAsync
+  parent: System.IAsyncDisposable
+  isExternal: true
+  name: DisposeAsync()
+  nameWithType: IAsyncDisposable.DisposeAsync()
+  fullName: System.IAsyncDisposable.DisposeAsync()
+  spec.csharp:
+  - uid: System.IAsyncDisposable.DisposeAsync
+    name: DisposeAsync
+    nameWithType: IAsyncDisposable.DisposeAsync
+    fullName: System.IAsyncDisposable.DisposeAsync
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.IAsyncDisposable.DisposeAsync
+    name: DisposeAsync
+    nameWithType: IAsyncDisposable.DisposeAsync
+    fullName: System.IAsyncDisposable.DisposeAsync
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.IDisposable.Dispose
+  commentId: M:System.IDisposable.Dispose
+  parent: System.IDisposable
+  isExternal: true
+  name: Dispose()
+  nameWithType: IDisposable.Dispose()
+  fullName: System.IDisposable.Dispose()
+  spec.csharp:
+  - uid: System.IDisposable.Dispose
+    name: Dispose
+    nameWithType: IDisposable.Dispose
+    fullName: System.IDisposable.Dispose
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.IDisposable.Dispose
+    name: Dispose
+    nameWithType: IDisposable.Dispose
+    fullName: System.IDisposable.Dispose
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GTiff2Tiles.Core.Tiles
+  commentId: N:GTiff2Tiles.Core.Tiles
+  name: GTiff2Tiles.Core.Tiles
+  nameWithType: GTiff2Tiles.Core.Tiles
+  fullName: GTiff2Tiles.Core.Tiles
+- uid: System.IAsyncDisposable
+  commentId: T:System.IAsyncDisposable
+  parent: System
+  isExternal: true
+  name: IAsyncDisposable
+  nameWithType: IAsyncDisposable
+  fullName: System.IAsyncDisposable
+- uid: System.IDisposable
+  commentId: T:System.IDisposable
+  parent: System
+  isExternal: true
+  name: IDisposable
+  nameWithType: IDisposable
+  fullName: System.IDisposable
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: GTiff2Tiles.Core.GeoTiffs.IGeoTiff.IsDisposed*
+  commentId: Overload:GTiff2Tiles.Core.GeoTiffs.IGeoTiff.IsDisposed
+  name: IsDisposed
+  nameWithType: IGeoTiff.IsDisposed
+  fullName: GTiff2Tiles.Core.GeoTiffs.IGeoTiff.IsDisposed
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: GTiff2Tiles.Core.Images.Size
+  commentId: T:GTiff2Tiles.Core.Images.Size
+  parent: GTiff2Tiles.Core.Images
+  name: Size
+  nameWithType: Size
+  fullName: GTiff2Tiles.Core.Images.Size
+- uid: GTiff2Tiles.Core.GeoTiffs.IGeoTiff.Size*
+  commentId: Overload:GTiff2Tiles.Core.GeoTiffs.IGeoTiff.Size
+  name: Size
+  nameWithType: IGeoTiff.Size
+  fullName: GTiff2Tiles.Core.GeoTiffs.IGeoTiff.Size
+- uid: GTiff2Tiles.Core.Images
+  commentId: N:GTiff2Tiles.Core.Images
+  name: GTiff2Tiles.Core.Images
+  nameWithType: GTiff2Tiles.Core.Images
+  fullName: GTiff2Tiles.Core.Images
+- uid: GTiff2Tiles.Core.Coordinates.GeoCoordinate
+  commentId: T:GTiff2Tiles.Core.Coordinates.GeoCoordinate
+  parent: GTiff2Tiles.Core.Coordinates
+  name: GeoCoordinate
+  nameWithType: GeoCoordinate
+  fullName: GTiff2Tiles.Core.Coordinates.GeoCoordinate
+- uid: GTiff2Tiles.Core.GeoTiffs.IGeoTiff
+  commentId: T:GTiff2Tiles.Core.GeoTiffs.IGeoTiff
+  parent: GTiff2Tiles.Core.GeoTiffs
+  name: IGeoTiff
+  nameWithType: IGeoTiff
+  fullName: GTiff2Tiles.Core.GeoTiffs.IGeoTiff
+- uid: GTiff2Tiles.Core.GeoTiffs.IGeoTiff.MinCoordinate*
+  commentId: Overload:GTiff2Tiles.Core.GeoTiffs.IGeoTiff.MinCoordinate
+  name: MinCoordinate
+  nameWithType: IGeoTiff.MinCoordinate
+  fullName: GTiff2Tiles.Core.GeoTiffs.IGeoTiff.MinCoordinate
+- uid: GTiff2Tiles.Core.Coordinates
+  commentId: N:GTiff2Tiles.Core.Coordinates
+  name: GTiff2Tiles.Core.Coordinates
+  nameWithType: GTiff2Tiles.Core.Coordinates
+  fullName: GTiff2Tiles.Core.Coordinates
+- uid: GTiff2Tiles.Core.GeoTiffs.IGeoTiff.MaxCoordinate*
+  commentId: Overload:GTiff2Tiles.Core.GeoTiffs.IGeoTiff.MaxCoordinate
+  name: MaxCoordinate
+  nameWithType: IGeoTiff.MaxCoordinate
+  fullName: GTiff2Tiles.Core.GeoTiffs.IGeoTiff.MaxCoordinate
+- uid: GTiff2Tiles.Core.Enums.CoordinateSystem
+  commentId: T:GTiff2Tiles.Core.Enums.CoordinateSystem
+  parent: GTiff2Tiles.Core.Enums
+  name: CoordinateSystem
+  nameWithType: CoordinateSystem
+  fullName: GTiff2Tiles.Core.Enums.CoordinateSystem
+- uid: GTiff2Tiles.Core.GeoTiffs.IGeoTiff.GeoCoordinateSystem*
+  commentId: Overload:GTiff2Tiles.Core.GeoTiffs.IGeoTiff.GeoCoordinateSystem
+  name: GeoCoordinateSystem
+  nameWithType: IGeoTiff.GeoCoordinateSystem
+  fullName: GTiff2Tiles.Core.GeoTiffs.IGeoTiff.GeoCoordinateSystem
+- uid: GTiff2Tiles.Core.Enums
+  commentId: N:GTiff2Tiles.Core.Enums
+  name: GTiff2Tiles.Core.Enums
+  nameWithType: GTiff2Tiles.Core.Enums
+  fullName: GTiff2Tiles.Core.Enums

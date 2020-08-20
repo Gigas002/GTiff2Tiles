@@ -1,0 +1,2666 @@
+### YamlMime:ManagedReference
+items:
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster
+  commentId: T:GTiff2Tiles.Core.GeoTiffs.Raster
+  id: Raster
+  parent: GTiff2Tiles.Core.GeoTiffs
+  children:
+  - GTiff2Tiles.Core.GeoTiffs.Raster.#ctor(System.IO.Stream,GTiff2Tiles.Core.Enums.CoordinateSystem)
+  - GTiff2Tiles.Core.GeoTiffs.Raster.#ctor(System.String,GTiff2Tiles.Core.Enums.CoordinateSystem,System.Int64)
+  - GTiff2Tiles.Core.GeoTiffs.Raster.#ctor(System.String,System.Int64)
+  - GTiff2Tiles.Core.GeoTiffs.Raster.CreateTileImage(NetVips.Image,GTiff2Tiles.Core.Tiles.RasterTile)
+  - GTiff2Tiles.Core.GeoTiffs.Raster.Data
+  - GTiff2Tiles.Core.GeoTiffs.Raster.Dispose
+  - GTiff2Tiles.Core.GeoTiffs.Raster.Dispose(System.Boolean)
+  - GTiff2Tiles.Core.GeoTiffs.Raster.DisposeAsync
+  - GTiff2Tiles.Core.GeoTiffs.Raster.Finalize
+  - GTiff2Tiles.Core.GeoTiffs.Raster.GeoCoordinateSystem
+  - GTiff2Tiles.Core.GeoTiffs.Raster.GetBorders(System.IO.Stream,GTiff2Tiles.Core.Enums.CoordinateSystem)
+  - GTiff2Tiles.Core.GeoTiffs.Raster.GetBorders(System.String,GTiff2Tiles.Core.Enums.CoordinateSystem)
+  - GTiff2Tiles.Core.GeoTiffs.Raster.IsDisposed
+  - GTiff2Tiles.Core.GeoTiffs.Raster.MaxCoordinate
+  - GTiff2Tiles.Core.GeoTiffs.Raster.MinCoordinate
+  - GTiff2Tiles.Core.GeoTiffs.Raster.Size
+  - GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToAsyncEnumerable(System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.Interpolation,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Action{System.String})
+  - GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToChannel(System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.ITile},System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.Interpolation,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Action{System.String})
+  - GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToChannelAsync(System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.ITile},System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.Interpolation,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Action{System.String})
+  - GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToDirectory(System.String,System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.TileExtension,GTiff2Tiles.Core.Enums.Interpolation,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Action{System.String})
+  - GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToDirectoryAsync(System.String,System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.TileExtension,GTiff2Tiles.Core.Enums.Interpolation,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Action{System.String})
+  - GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToEnumerable(System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.Interpolation,System.Int32,System.Int32,System.IProgress{System.Double},System.Action{System.String})
+  - GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToChannel(NetVips.Image,GTiff2Tiles.Core.Tiles.RasterTile,System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.ITile})
+  - GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToChannelAsync(NetVips.Image,GTiff2Tiles.Core.Tiles.RasterTile,System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.ITile})
+  - GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToEnumerable(NetVips.Image,GTiff2Tiles.Core.Tiles.RasterTile)
+  - GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToFile(NetVips.Image,GTiff2Tiles.Core.Tiles.RasterTile)
+  - GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToFileAsync(NetVips.Image,GTiff2Tiles.Core.Tiles.RasterTile)
+  langs:
+  - csharp
+  - vb
+  name: Raster
+  nameWithType: Raster
+  fullName: GTiff2Tiles.Core.GeoTiffs.Raster
+  type: Class
+  source:
+    remote:
+      path: GTiff2Tiles.Core/GeoTiffs/Raster.cs
+      branch: master
+      repo: https://github.com/Gigas002/GTiff2Tiles.git
+    id: Raster
+    path: GTiff2Tiles.Core/GeoTiffs/Raster.cs
+    startLine: 26
+  assemblies:
+  - GTiff2Tiles.Core
+  namespace: GTiff2Tiles.Core.GeoTiffs
+  summary: "\nClass, representing <xref href=\"GTiff2Tiles.Core.GeoTiffs.Raster\" data-throw-if-not-resolved=\"false\"></xref> GeoTiff.\nUsed for creating <xref href=\"GTiff2Tiles.Core.Tiles.RasterTile\" data-throw-if-not-resolved=\"false\"></xref>s\n"
+  example: []
+  syntax:
+    content: 'public class Raster : IGeoTiff, IAsyncDisposable, IDisposable'
+    content.vb: >-
+      Public Class Raster
+
+          Implements IGeoTiff, IAsyncDisposable, IDisposable
+  inheritance:
+  - System.Object
+  implements:
+  - GTiff2Tiles.Core.GeoTiffs.IGeoTiff
+  - System.IAsyncDisposable
+  - System.IDisposable
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster.Size
+  commentId: P:GTiff2Tiles.Core.GeoTiffs.Raster.Size
+  id: Size
+  parent: GTiff2Tiles.Core.GeoTiffs.Raster
+  langs:
+  - csharp
+  - vb
+  name: Size
+  nameWithType: Raster.Size
+  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.Size
+  type: Property
+  source:
+    remote:
+      path: GTiff2Tiles.Core/GeoTiffs/Raster.cs
+      branch: master
+      repo: https://github.com/Gigas002/GTiff2Tiles.git
+    id: Size
+    path: GTiff2Tiles.Core/GeoTiffs/Raster.cs
+    startLine: 33
+  assemblies:
+  - GTiff2Tiles.Core
+  namespace: GTiff2Tiles.Core.GeoTiffs
+  example: []
+  syntax:
+    content: public Size Size { get; }
+    parameters: []
+    return:
+      type: GTiff2Tiles.Core.Images.Size
+    content.vb: Public ReadOnly Property Size As Size
+  overload: GTiff2Tiles.Core.GeoTiffs.Raster.Size*
+  implements:
+  - GTiff2Tiles.Core.GeoTiffs.IGeoTiff.Size
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster.MinCoordinate
+  commentId: P:GTiff2Tiles.Core.GeoTiffs.Raster.MinCoordinate
+  id: MinCoordinate
+  parent: GTiff2Tiles.Core.GeoTiffs.Raster
+  langs:
+  - csharp
+  - vb
+  name: MinCoordinate
+  nameWithType: Raster.MinCoordinate
+  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.MinCoordinate
+  type: Property
+  source:
+    remote:
+      path: GTiff2Tiles.Core/GeoTiffs/Raster.cs
+      branch: master
+      repo: https://github.com/Gigas002/GTiff2Tiles.git
+    id: MinCoordinate
+    path: GTiff2Tiles.Core/GeoTiffs/Raster.cs
+    startLine: 36
+  assemblies:
+  - GTiff2Tiles.Core
+  namespace: GTiff2Tiles.Core.GeoTiffs
+  example: []
+  syntax:
+    content: public GeoCoordinate MinCoordinate { get; }
+    parameters: []
+    return:
+      type: GTiff2Tiles.Core.Coordinates.GeoCoordinate
+    content.vb: Public ReadOnly Property MinCoordinate As GeoCoordinate
+  overload: GTiff2Tiles.Core.GeoTiffs.Raster.MinCoordinate*
+  implements:
+  - GTiff2Tiles.Core.GeoTiffs.IGeoTiff.MinCoordinate
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster.MaxCoordinate
+  commentId: P:GTiff2Tiles.Core.GeoTiffs.Raster.MaxCoordinate
+  id: MaxCoordinate
+  parent: GTiff2Tiles.Core.GeoTiffs.Raster
+  langs:
+  - csharp
+  - vb
+  name: MaxCoordinate
+  nameWithType: Raster.MaxCoordinate
+  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.MaxCoordinate
+  type: Property
+  source:
+    remote:
+      path: GTiff2Tiles.Core/GeoTiffs/Raster.cs
+      branch: master
+      repo: https://github.com/Gigas002/GTiff2Tiles.git
+    id: MaxCoordinate
+    path: GTiff2Tiles.Core/GeoTiffs/Raster.cs
+    startLine: 39
+  assemblies:
+  - GTiff2Tiles.Core
+  namespace: GTiff2Tiles.Core.GeoTiffs
+  example: []
+  syntax:
+    content: public GeoCoordinate MaxCoordinate { get; }
+    parameters: []
+    return:
+      type: GTiff2Tiles.Core.Coordinates.GeoCoordinate
+    content.vb: Public ReadOnly Property MaxCoordinate As GeoCoordinate
+  overload: GTiff2Tiles.Core.GeoTiffs.Raster.MaxCoordinate*
+  implements:
+  - GTiff2Tiles.Core.GeoTiffs.IGeoTiff.MaxCoordinate
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster.GeoCoordinateSystem
+  commentId: P:GTiff2Tiles.Core.GeoTiffs.Raster.GeoCoordinateSystem
+  id: GeoCoordinateSystem
+  parent: GTiff2Tiles.Core.GeoTiffs.Raster
+  langs:
+  - csharp
+  - vb
+  name: GeoCoordinateSystem
+  nameWithType: Raster.GeoCoordinateSystem
+  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.GeoCoordinateSystem
+  type: Property
+  source:
+    remote:
+      path: GTiff2Tiles.Core/GeoTiffs/Raster.cs
+      branch: master
+      repo: https://github.com/Gigas002/GTiff2Tiles.git
+    id: GeoCoordinateSystem
+    path: GTiff2Tiles.Core/GeoTiffs/Raster.cs
+    startLine: 42
+  assemblies:
+  - GTiff2Tiles.Core
+  namespace: GTiff2Tiles.Core.GeoTiffs
+  example: []
+  syntax:
+    content: public CoordinateSystem GeoCoordinateSystem { get; }
+    parameters: []
+    return:
+      type: GTiff2Tiles.Core.Enums.CoordinateSystem
+    content.vb: Public ReadOnly Property GeoCoordinateSystem As CoordinateSystem
+  overload: GTiff2Tiles.Core.GeoTiffs.Raster.GeoCoordinateSystem*
+  implements:
+  - GTiff2Tiles.Core.GeoTiffs.IGeoTiff.GeoCoordinateSystem
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster.IsDisposed
+  commentId: P:GTiff2Tiles.Core.GeoTiffs.Raster.IsDisposed
+  id: IsDisposed
+  parent: GTiff2Tiles.Core.GeoTiffs.Raster
+  langs:
+  - csharp
+  - vb
+  name: IsDisposed
+  nameWithType: Raster.IsDisposed
+  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.IsDisposed
+  type: Property
+  source:
+    remote:
+      path: GTiff2Tiles.Core/GeoTiffs/Raster.cs
+      branch: master
+      repo: https://github.com/Gigas002/GTiff2Tiles.git
+    id: IsDisposed
+    path: GTiff2Tiles.Core/GeoTiffs/Raster.cs
+    startLine: 45
+  assemblies:
+  - GTiff2Tiles.Core
+  namespace: GTiff2Tiles.Core.GeoTiffs
+  example: []
+  syntax:
+    content: public bool IsDisposed { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property IsDisposed As Boolean
+  overload: GTiff2Tiles.Core.GeoTiffs.Raster.IsDisposed*
+  implements:
+  - GTiff2Tiles.Core.GeoTiffs.IGeoTiff.IsDisposed
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster.Data
+  commentId: P:GTiff2Tiles.Core.GeoTiffs.Raster.Data
+  id: Data
+  parent: GTiff2Tiles.Core.GeoTiffs.Raster
+  langs:
+  - csharp
+  - vb
+  name: Data
+  nameWithType: Raster.Data
+  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.Data
+  type: Property
+  source:
+    remote:
+      path: GTiff2Tiles.Core/GeoTiffs/Raster.cs
+      branch: master
+      repo: https://github.com/Gigas002/GTiff2Tiles.git
+    id: Data
+    path: GTiff2Tiles.Core/GeoTiffs/Raster.cs
+    startLine: 50
+  assemblies:
+  - GTiff2Tiles.Core
+  namespace: GTiff2Tiles.Core.GeoTiffs
+  summary: "\nThis <xref href=\"GTiff2Tiles.Core.GeoTiffs.Raster\" data-throw-if-not-resolved=\"false\"></xref>&apos;s data\n"
+  example: []
+  syntax:
+    content: public Image Data { get; }
+    parameters: []
+    return:
+      type: NetVips.Image
+    content.vb: Public ReadOnly Property Data As Image
+  overload: GTiff2Tiles.Core.GeoTiffs.Raster.Data*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster.#ctor(System.String,System.Int64)
+  commentId: M:GTiff2Tiles.Core.GeoTiffs.Raster.#ctor(System.String,System.Int64)
+  id: '#ctor(System.String,System.Int64)'
+  parent: GTiff2Tiles.Core.GeoTiffs.Raster
+  langs:
+  - csharp
+  - vb
+  name: Raster(String, Int64)
+  nameWithType: Raster.Raster(String, Int64)
+  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.Raster(System.String, System.Int64)
+  type: Constructor
+  source:
+    remote:
+      path: GTiff2Tiles.Core/GeoTiffs/Raster.cs
+      branch: master
+      repo: https://github.com/Gigas002/GTiff2Tiles.git
+    id: .ctor
+    path: GTiff2Tiles.Core/GeoTiffs/Raster.cs
+    startLine: 66
+  assemblies:
+  - GTiff2Tiles.Core
+  namespace: GTiff2Tiles.Core.GeoTiffs
+  summary: "\nCreates new <xref href=\"GTiff2Tiles.Core.GeoTiffs.Raster\" data-throw-if-not-resolved=\"false\"></xref> object\n<remarks><p></p>Use this version ONLY if you don&apos;t know the <xref href=\"GTiff2Tiles.Core.Enums.CoordinateSystem\" data-throw-if-not-resolved=\"false\"></xref>\nof this <xref href=\"GTiff2Tiles.Core.GeoTiffs.Raster\" data-throw-if-not-resolved=\"false\"></xref>. In other cases, prefer using other constructors!</remarks>\n"
+  example: []
+  syntax:
+    content: public Raster(string inputFilePath, long maxMemoryCache = 2147483648L)
+    parameters:
+    - id: inputFilePath
+      type: System.String
+      description: ''
+    - id: maxMemoryCache
+      type: System.Int64
+      description: ''
+    content.vb: Public Sub New(inputFilePath As String, maxMemoryCache As Long = 2147483648L)
+  overload: GTiff2Tiles.Core.GeoTiffs.Raster.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster.#ctor(System.String,GTiff2Tiles.Core.Enums.CoordinateSystem,System.Int64)
+  commentId: M:GTiff2Tiles.Core.GeoTiffs.Raster.#ctor(System.String,GTiff2Tiles.Core.Enums.CoordinateSystem,System.Int64)
+  id: '#ctor(System.String,GTiff2Tiles.Core.Enums.CoordinateSystem,System.Int64)'
+  parent: GTiff2Tiles.Core.GeoTiffs.Raster
+  langs:
+  - csharp
+  - vb
+  name: Raster(String, CoordinateSystem, Int64)
+  nameWithType: Raster.Raster(String, CoordinateSystem, Int64)
+  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.Raster(System.String, GTiff2Tiles.Core.Enums.CoordinateSystem, System.Int64)
+  type: Constructor
+  source:
+    remote:
+      path: GTiff2Tiles.Core/GeoTiffs/Raster.cs
+      branch: master
+      repo: https://github.com/Gigas002/GTiff2Tiles.git
+    id: .ctor
+    path: GTiff2Tiles.Core/GeoTiffs/Raster.cs
+    startLine: 108
+  assemblies:
+  - GTiff2Tiles.Core
+  namespace: GTiff2Tiles.Core.GeoTiffs
+  summary: "\nCreates new <xref href=\"GTiff2Tiles.Core.GeoTiffs.Raster\" data-throw-if-not-resolved=\"false\"></xref> object\n"
+  example: []
+  syntax:
+    content: public Raster(string inputFilePath, CoordinateSystem coordinateSystem, long maxMemoryCache = 2147483648L)
+    parameters:
+    - id: inputFilePath
+      type: System.String
+      description: >-
+        Input GeoTiff&apos;s path
+
+        <remarks><p></p>Must have .tif extension</remarks>
+    - id: coordinateSystem
+      type: GTiff2Tiles.Core.Enums.CoordinateSystem
+      description: >-
+        GeoTiff&apos;s coordinate system
+
+        <remarks><p></p>If set to <xref href="GTiff2Tiles.Core.Enums.CoordinateSystem.Other" data-throw-if-not-resolved="false"></xref>
+
+        throws <xref href="System.ArgumentOutOfRangeException" data-throw-if-not-resolved="false"></xref></remarks>
+    - id: maxMemoryCache
+      type: System.Int64
+      description: >-
+        Max size of input image to store in RAM
+
+        <remarks><p></p>Must be > 0. 2GB by default</remarks>
+    content.vb: Public Sub New(inputFilePath As String, coordinateSystem As CoordinateSystem, maxMemoryCache As Long = 2147483648L)
+  overload: GTiff2Tiles.Core.GeoTiffs.Raster.#ctor*
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    commentId: T:System.ArgumentOutOfRangeException
+  - type: System.NotSupportedException
+    commentId: T:System.NotSupportedException
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster.#ctor(System.IO.Stream,GTiff2Tiles.Core.Enums.CoordinateSystem)
+  commentId: M:GTiff2Tiles.Core.GeoTiffs.Raster.#ctor(System.IO.Stream,GTiff2Tiles.Core.Enums.CoordinateSystem)
+  id: '#ctor(System.IO.Stream,GTiff2Tiles.Core.Enums.CoordinateSystem)'
+  parent: GTiff2Tiles.Core.GeoTiffs.Raster
+  langs:
+  - csharp
+  - vb
+  name: Raster(Stream, CoordinateSystem)
+  nameWithType: Raster.Raster(Stream, CoordinateSystem)
+  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.Raster(System.IO.Stream, GTiff2Tiles.Core.Enums.CoordinateSystem)
+  type: Constructor
+  source:
+    remote:
+      path: GTiff2Tiles.Core/GeoTiffs/Raster.cs
+      branch: master
+      repo: https://github.com/Gigas002/GTiff2Tiles.git
+    id: .ctor
+    path: GTiff2Tiles.Core/GeoTiffs/Raster.cs
+    startLine: 135
+  assemblies:
+  - GTiff2Tiles.Core
+  namespace: GTiff2Tiles.Core.GeoTiffs
+  example: []
+  syntax:
+    content: public Raster(Stream inputStream, CoordinateSystem coordinateSystem)
+    parameters:
+    - id: inputStream
+      type: System.IO.Stream
+      description: <xref href="System.IO.Stream" data-throw-if-not-resolved="false"></xref> with GeoTiff
+    - id: coordinateSystem
+      type: GTiff2Tiles.Core.Enums.CoordinateSystem
+      description: ''
+    content.vb: Public Sub New(inputStream As Stream, coordinateSystem As CoordinateSystem)
+  overload: GTiff2Tiles.Core.GeoTiffs.Raster.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster.Finalize
+  commentId: M:GTiff2Tiles.Core.GeoTiffs.Raster.Finalize
+  id: Finalize
+  parent: GTiff2Tiles.Core.GeoTiffs.Raster
+  langs:
+  - csharp
+  - vb
+  name: Finalize()
+  nameWithType: Raster.Finalize()
+  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.Finalize()
+  type: Method
+  source:
+    remote:
+      path: GTiff2Tiles.Core/GeoTiffs/Raster.cs
+      branch: master
+      repo: https://github.com/Gigas002/GTiff2Tiles.git
+    id: Finalize
+    path: GTiff2Tiles.Core/GeoTiffs/Raster.cs
+    startLine: 162
+  assemblies:
+  - GTiff2Tiles.Core
+  namespace: GTiff2Tiles.Core.GeoTiffs
+  summary: "\nCalls <xref href=\"GTiff2Tiles.Core.GeoTiffs.Raster.Dispose(System.Boolean)\" data-throw-if-not-resolved=\"false\"></xref> on this <xref href=\"GTiff2Tiles.Core.GeoTiffs.Raster\" data-throw-if-not-resolved=\"false\"></xref>\n"
+  example: []
+  syntax:
+    content: protected void Finalize()
+    content.vb: Protected Sub Finalize
+  overload: GTiff2Tiles.Core.GeoTiffs.Raster.Finalize*
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster.Dispose
+  commentId: M:GTiff2Tiles.Core.GeoTiffs.Raster.Dispose
+  id: Dispose
+  parent: GTiff2Tiles.Core.GeoTiffs.Raster
+  langs:
+  - csharp
+  - vb
+  name: Dispose()
+  nameWithType: Raster.Dispose()
+  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.Dispose()
+  type: Method
+  source:
+    remote:
+      path: GTiff2Tiles.Core/GeoTiffs/Raster.cs
+      branch: master
+      repo: https://github.com/Gigas002/GTiff2Tiles.git
+    id: Dispose
+    path: GTiff2Tiles.Core/GeoTiffs/Raster.cs
+    startLine: 171
+  assemblies:
+  - GTiff2Tiles.Core
+  namespace: GTiff2Tiles.Core.GeoTiffs
+  example: []
+  syntax:
+    content: public void Dispose()
+    content.vb: Public Sub Dispose
+  overload: GTiff2Tiles.Core.GeoTiffs.Raster.Dispose*
+  implements:
+  - System.IDisposable.Dispose
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster.Dispose(System.Boolean)
+  commentId: M:GTiff2Tiles.Core.GeoTiffs.Raster.Dispose(System.Boolean)
+  id: Dispose(System.Boolean)
+  parent: GTiff2Tiles.Core.GeoTiffs.Raster
+  langs:
+  - csharp
+  - vb
+  name: Dispose(Boolean)
+  nameWithType: Raster.Dispose(Boolean)
+  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.Dispose(System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: GTiff2Tiles.Core/GeoTiffs/Raster.cs
+      branch: master
+      repo: https://github.com/Gigas002/GTiff2Tiles.git
+    id: Dispose
+    path: GTiff2Tiles.Core/GeoTiffs/Raster.cs
+    startLine: 179
+  assemblies:
+  - GTiff2Tiles.Core
+  namespace: GTiff2Tiles.Core.GeoTiffs
+  example: []
+  syntax:
+    content: protected virtual void Dispose(bool disposing)
+    parameters:
+    - id: disposing
+      type: System.Boolean
+      description: Dispose static fields?
+    content.vb: Protected Overridable Sub Dispose(disposing As Boolean)
+  overload: GTiff2Tiles.Core.GeoTiffs.Raster.Dispose*
+  modifiers.csharp:
+  - protected
+  - virtual
+  modifiers.vb:
+  - Protected
+  - Overridable
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster.DisposeAsync
+  commentId: M:GTiff2Tiles.Core.GeoTiffs.Raster.DisposeAsync
+  id: DisposeAsync
+  parent: GTiff2Tiles.Core.GeoTiffs.Raster
+  langs:
+  - csharp
+  - vb
+  name: DisposeAsync()
+  nameWithType: Raster.DisposeAsync()
+  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.DisposeAsync()
+  type: Method
+  source:
+    remote:
+      path: GTiff2Tiles.Core/GeoTiffs/Raster.cs
+      branch: master
+      repo: https://github.com/Gigas002/GTiff2Tiles.git
+    id: DisposeAsync
+    path: GTiff2Tiles.Core/GeoTiffs/Raster.cs
+    startLine: 194
+  assemblies:
+  - GTiff2Tiles.Core
+  namespace: GTiff2Tiles.Core.GeoTiffs
+  example: []
+  syntax:
+    content: public ValueTask DisposeAsync()
+    return:
+      type: System.Threading.Tasks.ValueTask
+    content.vb: Public Function DisposeAsync As ValueTask
+  overload: GTiff2Tiles.Core.GeoTiffs.Raster.DisposeAsync*
+  implements:
+  - System.IAsyncDisposable.DisposeAsync
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster.CreateTileImage(NetVips.Image,GTiff2Tiles.Core.Tiles.RasterTile)
+  commentId: M:GTiff2Tiles.Core.GeoTiffs.Raster.CreateTileImage(NetVips.Image,GTiff2Tiles.Core.Tiles.RasterTile)
+  id: CreateTileImage(NetVips.Image,GTiff2Tiles.Core.Tiles.RasterTile)
+  parent: GTiff2Tiles.Core.GeoTiffs.Raster
+  langs:
+  - csharp
+  - vb
+  name: CreateTileImage(Image, RasterTile)
+  nameWithType: Raster.CreateTileImage(Image, RasterTile)
+  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.CreateTileImage(NetVips.Image, GTiff2Tiles.Core.Tiles.RasterTile)
+  type: Method
+  source:
+    remote:
+      path: GTiff2Tiles.Core/GeoTiffs/Raster.cs
+      branch: master
+      repo: https://github.com/Gigas002/GTiff2Tiles.git
+    id: CreateTileImage
+    path: GTiff2Tiles.Core/GeoTiffs/Raster.cs
+    startLine: 228
+  assemblies:
+  - GTiff2Tiles.Core
+  namespace: GTiff2Tiles.Core.GeoTiffs
+  summary: "\nCreate <xref href=\"NetVips.Image\" data-throw-if-not-resolved=\"false\"></xref> for one <xref href=\"GTiff2Tiles.Core.Tiles.RasterTile\" data-throw-if-not-resolved=\"false\"></xref>\nfrom input <xref href=\"NetVips.Image\" data-throw-if-not-resolved=\"false\"></xref> or tile cache\n"
+  example: []
+  syntax:
+    content: public Image CreateTileImage(Image tileCache, RasterTile tile)
+    parameters:
+    - id: tileCache
+      type: NetVips.Image
+      description: >-
+        Source <xref href="NetVips.Image" data-throw-if-not-resolved="false"></xref>
+
+        or tile cache
+    - id: tile
+      type: GTiff2Tiles.Core.Tiles.RasterTile
+      description: Target <xref href="GTiff2Tiles.Core.Tiles.RasterTile" data-throw-if-not-resolved="false"></xref>
+    return:
+      type: NetVips.Image
+      description: Ready <xref href="NetVips.Image" data-throw-if-not-resolved="false"></xref> for <xref href="GTiff2Tiles.Core.Tiles.RasterTile" data-throw-if-not-resolved="false"></xref>
+    content.vb: Public Function CreateTileImage(tileCache As Image, tile As RasterTile) As Image
+  overload: GTiff2Tiles.Core.GeoTiffs.Raster.CreateTileImage*
+  exceptions:
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToFile(NetVips.Image,GTiff2Tiles.Core.Tiles.RasterTile)
+  commentId: M:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToFile(NetVips.Image,GTiff2Tiles.Core.Tiles.RasterTile)
+  id: WriteTileToFile(NetVips.Image,GTiff2Tiles.Core.Tiles.RasterTile)
+  parent: GTiff2Tiles.Core.GeoTiffs.Raster
+  langs:
+  - csharp
+  - vb
+  name: WriteTileToFile(Image, RasterTile)
+  nameWithType: Raster.WriteTileToFile(Image, RasterTile)
+  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToFile(NetVips.Image, GTiff2Tiles.Core.Tiles.RasterTile)
+  type: Method
+  source:
+    remote:
+      path: GTiff2Tiles.Core/GeoTiffs/Raster.cs
+      branch: master
+      repo: https://github.com/Gigas002/GTiff2Tiles.git
+    id: WriteTileToFile
+    path: GTiff2Tiles.Core/GeoTiffs/Raster.cs
+    startLine: 285
+  assemblies:
+  - GTiff2Tiles.Core
+  namespace: GTiff2Tiles.Core.GeoTiffs
+  summary: "\nGets data from source <xref href=\"NetVips.Image\" data-throw-if-not-resolved=\"false\"></xref>\nor tile cache for specified <xref href=\"GTiff2Tiles.Core.Tiles.RasterTile\" data-throw-if-not-resolved=\"false\"></xref>\nand writes it to ready file\n"
+  example: []
+  syntax:
+    content: public void WriteTileToFile(Image tileCache, RasterTile tile)
+    parameters:
+    - id: tileCache
+      type: NetVips.Image
+      description: >-
+        Source <xref href="NetVips.Image" data-throw-if-not-resolved="false"></xref>
+
+        or tile cache
+    - id: tile
+      type: GTiff2Tiles.Core.Tiles.RasterTile
+      description: >-
+        Target <xref href="GTiff2Tiles.Core.Tiles.RasterTile" data-throw-if-not-resolved="false"></xref>
+
+        <remarks><p></p><xref href="GTiff2Tiles.Core.Tiles.Tile.Path" data-throw-if-not-resolved="false"></xref> should not be null or whitespace</remarks>
+    content.vb: Public Sub WriteTileToFile(tileCache As Image, tile As RasterTile)
+  overload: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToFile*
+  exceptions:
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToFileAsync(NetVips.Image,GTiff2Tiles.Core.Tiles.RasterTile)
+  commentId: M:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToFileAsync(NetVips.Image,GTiff2Tiles.Core.Tiles.RasterTile)
+  id: WriteTileToFileAsync(NetVips.Image,GTiff2Tiles.Core.Tiles.RasterTile)
+  parent: GTiff2Tiles.Core.GeoTiffs.Raster
+  langs:
+  - csharp
+  - vb
+  name: WriteTileToFileAsync(Image, RasterTile)
+  nameWithType: Raster.WriteTileToFileAsync(Image, RasterTile)
+  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToFileAsync(NetVips.Image, GTiff2Tiles.Core.Tiles.RasterTile)
+  type: Method
+  source:
+    remote:
+      path: GTiff2Tiles.Core/GeoTiffs/Raster.cs
+      branch: master
+      repo: https://github.com/Gigas002/GTiff2Tiles.git
+    id: WriteTileToFileAsync
+    path: GTiff2Tiles.Core/GeoTiffs/Raster.cs
+    startLine: 304
+  assemblies:
+  - GTiff2Tiles.Core
+  namespace: GTiff2Tiles.Core.GeoTiffs
+  example: []
+  syntax:
+    content: public Task WriteTileToFileAsync(Image tileCache, RasterTile tile)
+    parameters:
+    - id: tileCache
+      type: NetVips.Image
+    - id: tile
+      type: GTiff2Tiles.Core.Tiles.RasterTile
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: Public Function WriteTileToFileAsync(tileCache As Image, tile As RasterTile) As Task
+  overload: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToFileAsync*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToEnumerable(NetVips.Image,GTiff2Tiles.Core.Tiles.RasterTile)
+  commentId: M:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToEnumerable(NetVips.Image,GTiff2Tiles.Core.Tiles.RasterTile)
+  id: WriteTileToEnumerable(NetVips.Image,GTiff2Tiles.Core.Tiles.RasterTile)
+  parent: GTiff2Tiles.Core.GeoTiffs.Raster
+  langs:
+  - csharp
+  - vb
+  name: WriteTileToEnumerable(Image, RasterTile)
+  nameWithType: Raster.WriteTileToEnumerable(Image, RasterTile)
+  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToEnumerable(NetVips.Image, GTiff2Tiles.Core.Tiles.RasterTile)
+  type: Method
+  source:
+    remote:
+      path: GTiff2Tiles.Core/GeoTiffs/Raster.cs
+      branch: master
+      repo: https://github.com/Gigas002/GTiff2Tiles.git
+    id: WriteTileToEnumerable
+    path: GTiff2Tiles.Core/GeoTiffs/Raster.cs
+    startLine: 316
+  assemblies:
+  - GTiff2Tiles.Core
+  namespace: GTiff2Tiles.Core.GeoTiffs
+  summary: "\nGets data from source <xref href=\"NetVips.Image\" data-throw-if-not-resolved=\"false\"></xref>\nor tile cache for specified <xref href=\"GTiff2Tiles.Core.Tiles.RasterTile\" data-throw-if-not-resolved=\"false\"></xref>\nand writes it to <xref href=\"System.Collections.Generic.IEnumerable%601\" data-throw-if-not-resolved=\"false\"></xref>\n"
+  example: []
+  syntax:
+    content: public IEnumerable<byte> WriteTileToEnumerable(Image tileCache, RasterTile tile)
+    parameters:
+    - id: tileCache
+      type: NetVips.Image
+      description: >-
+        Source <xref href="NetVips.Image" data-throw-if-not-resolved="false"></xref>
+
+        or tile cache
+    - id: tile
+      type: GTiff2Tiles.Core.Tiles.RasterTile
+      description: Target <xref href="GTiff2Tiles.Core.Tiles.RasterTile" data-throw-if-not-resolved="false"></xref>
+    return:
+      type: System.Collections.Generic.IEnumerable{System.Byte}
+      description: <xref href="GTiff2Tiles.Core.Tiles.RasterTile" data-throw-if-not-resolved="false"></xref>&apos;s <xref href="System.Byte" data-throw-if-not-resolved="false"></xref>s
+    content.vb: Public Function WriteTileToEnumerable(tileCache As Image, tile As RasterTile) As IEnumerable(Of Byte)
+  overload: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToEnumerable*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToChannel(NetVips.Image,GTiff2Tiles.Core.Tiles.RasterTile,System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.ITile})
+  commentId: M:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToChannel(NetVips.Image,GTiff2Tiles.Core.Tiles.RasterTile,System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.ITile})
+  id: WriteTileToChannel(NetVips.Image,GTiff2Tiles.Core.Tiles.RasterTile,System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.ITile})
+  parent: GTiff2Tiles.Core.GeoTiffs.Raster
+  langs:
+  - csharp
+  - vb
+  name: WriteTileToChannel(Image, RasterTile, ChannelWriter<ITile>)
+  nameWithType: Raster.WriteTileToChannel(Image, RasterTile, ChannelWriter<ITile>)
+  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToChannel(NetVips.Image, GTiff2Tiles.Core.Tiles.RasterTile, System.Threading.Channels.ChannelWriter<GTiff2Tiles.Core.Tiles.ITile>)
+  type: Method
+  source:
+    remote:
+      path: GTiff2Tiles.Core/GeoTiffs/Raster.cs
+      branch: master
+      repo: https://github.com/Gigas002/GTiff2Tiles.git
+    id: WriteTileToChannel
+    path: GTiff2Tiles.Core/GeoTiffs/Raster.cs
+    startLine: 338
+  assemblies:
+  - GTiff2Tiles.Core
+  namespace: GTiff2Tiles.Core.GeoTiffs
+  summary: "\nGets data from source <xref href=\"NetVips.Image\" data-throw-if-not-resolved=\"false\"></xref>\nor tile cache for specified <xref href=\"GTiff2Tiles.Core.Tiles.RasterTile\" data-throw-if-not-resolved=\"false\"></xref>\nand writes it to <xref href=\"System.Threading.Channels.ChannelWriter%601\" data-throw-if-not-resolved=\"false\"></xref>\n"
+  example: []
+  syntax:
+    content: public bool WriteTileToChannel(Image tileCache, RasterTile tile, ChannelWriter<ITile> channelWriter)
+    parameters:
+    - id: tileCache
+      type: NetVips.Image
+      description: >-
+        Source <xref href="NetVips.Image" data-throw-if-not-resolved="false"></xref>
+
+        or tile cache
+    - id: tile
+      type: GTiff2Tiles.Core.Tiles.RasterTile
+      description: Target <xref href="GTiff2Tiles.Core.Tiles.RasterTile" data-throw-if-not-resolved="false"></xref>
+    - id: channelWriter
+      type: System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.ITile}
+      description: Target <xref href="System.Threading.Channels.ChannelWriter%601" data-throw-if-not-resolved="false"></xref>
+    return:
+      type: System.Boolean
+      description: >-
+        <xref uid="langword_csharp_true" name="true" href=""></xref> if <xref href="GTiff2Tiles.Core.Tiles.ITile" data-throw-if-not-resolved="false"></xref> was written;
+
+        <xref uid="langword_csharp_false" name="false" href=""></xref> otherwise
+    content.vb: Public Function WriteTileToChannel(tileCache As Image, tile As RasterTile, channelWriter As ChannelWriter(Of ITile)) As Boolean
+  overload: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToChannel*
+  exceptions:
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+  nameWithType.vb: Raster.WriteTileToChannel(Image, RasterTile, ChannelWriter(Of ITile))
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToChannel(NetVips.Image, GTiff2Tiles.Core.Tiles.RasterTile, System.Threading.Channels.ChannelWriter(Of GTiff2Tiles.Core.Tiles.ITile))
+  name.vb: WriteTileToChannel(Image, RasterTile, ChannelWriter(Of ITile))
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToChannelAsync(NetVips.Image,GTiff2Tiles.Core.Tiles.RasterTile,System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.ITile})
+  commentId: M:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToChannelAsync(NetVips.Image,GTiff2Tiles.Core.Tiles.RasterTile,System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.ITile})
+  id: WriteTileToChannelAsync(NetVips.Image,GTiff2Tiles.Core.Tiles.RasterTile,System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.ITile})
+  parent: GTiff2Tiles.Core.GeoTiffs.Raster
+  langs:
+  - csharp
+  - vb
+  name: WriteTileToChannelAsync(Image, RasterTile, ChannelWriter<ITile>)
+  nameWithType: Raster.WriteTileToChannelAsync(Image, RasterTile, ChannelWriter<ITile>)
+  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToChannelAsync(NetVips.Image, GTiff2Tiles.Core.Tiles.RasterTile, System.Threading.Channels.ChannelWriter<GTiff2Tiles.Core.Tiles.ITile>)
+  type: Method
+  source:
+    remote:
+      path: GTiff2Tiles.Core/GeoTiffs/Raster.cs
+      branch: master
+      repo: https://github.com/Gigas002/GTiff2Tiles.git
+    id: WriteTileToChannelAsync
+    path: GTiff2Tiles.Core/GeoTiffs/Raster.cs
+    startLine: 356
+  assemblies:
+  - GTiff2Tiles.Core
+  namespace: GTiff2Tiles.Core.GeoTiffs
+  example: []
+  syntax:
+    content: public ValueTask WriteTileToChannelAsync(Image tileCache, RasterTile tile, ChannelWriter<ITile> channelWriter)
+    parameters:
+    - id: tileCache
+      type: NetVips.Image
+    - id: tile
+      type: GTiff2Tiles.Core.Tiles.RasterTile
+    - id: channelWriter
+      type: System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.ITile}
+    return:
+      type: System.Threading.Tasks.ValueTask
+      description: ''
+    content.vb: Public Function WriteTileToChannelAsync(tileCache As Image, tile As RasterTile, channelWriter As ChannelWriter(Of ITile)) As ValueTask
+  overload: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToChannelAsync*
+  nameWithType.vb: Raster.WriteTileToChannelAsync(Image, RasterTile, ChannelWriter(Of ITile))
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToChannelAsync(NetVips.Image, GTiff2Tiles.Core.Tiles.RasterTile, System.Threading.Channels.ChannelWriter(Of GTiff2Tiles.Core.Tiles.ITile))
+  name.vb: WriteTileToChannelAsync(Image, RasterTile, ChannelWriter(Of ITile))
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToDirectory(System.String,System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.TileExtension,GTiff2Tiles.Core.Enums.Interpolation,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Action{System.String})
+  commentId: M:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToDirectory(System.String,System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.TileExtension,GTiff2Tiles.Core.Enums.Interpolation,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Action{System.String})
+  id: WriteTilesToDirectory(System.String,System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.TileExtension,GTiff2Tiles.Core.Enums.Interpolation,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Action{System.String})
+  parent: GTiff2Tiles.Core.GeoTiffs.Raster
+  langs:
+  - csharp
+  - vb
+  name: WriteTilesToDirectory(String, Int32, Int32, Boolean, Size, TileExtension, Interpolation, Int32, Int32, Int32, IProgress<Double>, Action<String>)
+  nameWithType: Raster.WriteTilesToDirectory(String, Int32, Int32, Boolean, Size, TileExtension, Interpolation, Int32, Int32, Int32, IProgress<Double>, Action<String>)
+  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToDirectory(System.String, System.Int32, System.Int32, System.Boolean, GTiff2Tiles.Core.Images.Size, GTiff2Tiles.Core.Enums.TileExtension, GTiff2Tiles.Core.Enums.Interpolation, System.Int32, System.Int32, System.Int32, System.IProgress<System.Double>, System.Action<System.String>)
+  type: Method
+  source:
+    remote:
+      path: GTiff2Tiles.Core/GeoTiffs/Raster.cs
+      branch: master
+      repo: https://github.com/Gigas002/GTiff2Tiles.git
+    id: WriteTilesToDirectory
+    path: GTiff2Tiles.Core/GeoTiffs/Raster.cs
+    startLine: 398
+  assemblies:
+  - GTiff2Tiles.Core
+  namespace: GTiff2Tiles.Core.GeoTiffs
+  summary: "\nCrops current <xref href=\"GTiff2Tiles.Core.Tiles.RasterTile\" data-throw-if-not-resolved=\"false\"></xref> on <xref href=\"GTiff2Tiles.Core.Tiles.RasterTile\" data-throw-if-not-resolved=\"false\"></xref>s\nand writes them to <code data-dev-comment-type=\"paramref\" class=\"paramref\">outputDirectoryPath</code>\n"
+  example: []
+  syntax:
+    content: public void WriteTilesToDirectory(string outputDirectoryPath, int minZ, int maxZ, bool tmsCompatible = false, Size tileSize = null, TileExtension tileExtension = TileExtension.Png, Interpolation interpolation = Interpolation.Lanczos3, int bandsCount = 4, int tileCacheCount = 1000, int threadsCount = 0, IProgress<double> progress = null, Action<string> printTimeAction = null)
+    parameters:
+    - id: outputDirectoryPath
+      type: System.String
+      description: Directory for output <xref href="GTiff2Tiles.Core.Tiles.RasterTile" data-throw-if-not-resolved="false"></xref>s
+    - id: minZ
+      type: System.Int32
+      description: ''
+    - id: maxZ
+      type: System.Int32
+      description: ''
+    - id: tmsCompatible
+      type: System.Boolean
+      description: ''
+    - id: tileSize
+      type: GTiff2Tiles.Core.Images.Size
+      description: ''
+    - id: tileExtension
+      type: GTiff2Tiles.Core.Enums.TileExtension
+      description: >-
+        Extension of ready <xref href="GTiff2Tiles.Core.Tiles.RasterTile" data-throw-if-not-resolved="false"></xref>s
+
+        <remarks><p></p>.png by default</remarks>
+    - id: interpolation
+      type: GTiff2Tiles.Core.Enums.Interpolation
+      description: ''
+    - id: bandsCount
+      type: System.Int32
+      description: ''
+    - id: tileCacheCount
+      type: System.Int32
+      description: ''
+    - id: threadsCount
+      type: System.Int32
+      description: T
+    - id: progress
+      type: System.IProgress{System.Double}
+      description: ''
+    - id: printTimeAction
+      type: System.Action{System.String}
+      description: ''
+    content.vb: Public Sub WriteTilesToDirectory(outputDirectoryPath As String, minZ As Integer, maxZ As Integer, tmsCompatible As Boolean = False, tileSize As Size = Nothing, tileExtension As TileExtension = TileExtension.Png, interpolation As Interpolation = Interpolation.Lanczos3, bandsCount As Integer = 4, tileCacheCount As Integer = 1000, threadsCount As Integer = 0, progress As IProgress(Of Double) = Nothing, printTimeAction As Action(Of String) = Nothing)
+  overload: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToDirectory*
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    commentId: T:System.ArgumentOutOfRangeException
+  - type: GTiff2Tiles.Core.Exceptions.RasterException
+    commentId: T:GTiff2Tiles.Core.Exceptions.RasterException
+  nameWithType.vb: Raster.WriteTilesToDirectory(String, Int32, Int32, Boolean, Size, TileExtension, Interpolation, Int32, Int32, Int32, IProgress(Of Double), Action(Of String))
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToDirectory(System.String, System.Int32, System.Int32, System.Boolean, GTiff2Tiles.Core.Images.Size, GTiff2Tiles.Core.Enums.TileExtension, GTiff2Tiles.Core.Enums.Interpolation, System.Int32, System.Int32, System.Int32, System.IProgress(Of System.Double), System.Action(Of System.String))
+  name.vb: WriteTilesToDirectory(String, Int32, Int32, Boolean, Size, TileExtension, Interpolation, Int32, Int32, Int32, IProgress(Of Double), Action(Of String))
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToDirectoryAsync(System.String,System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.TileExtension,GTiff2Tiles.Core.Enums.Interpolation,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Action{System.String})
+  commentId: M:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToDirectoryAsync(System.String,System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.TileExtension,GTiff2Tiles.Core.Enums.Interpolation,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Action{System.String})
+  id: WriteTilesToDirectoryAsync(System.String,System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.TileExtension,GTiff2Tiles.Core.Enums.Interpolation,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Action{System.String})
+  parent: GTiff2Tiles.Core.GeoTiffs.Raster
+  langs:
+  - csharp
+  - vb
+  name: WriteTilesToDirectoryAsync(String, Int32, Int32, Boolean, Size, TileExtension, Interpolation, Int32, Int32, Int32, IProgress<Double>, Action<String>)
+  nameWithType: Raster.WriteTilesToDirectoryAsync(String, Int32, Int32, Boolean, Size, TileExtension, Interpolation, Int32, Int32, Int32, IProgress<Double>, Action<String>)
+  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToDirectoryAsync(System.String, System.Int32, System.Int32, System.Boolean, GTiff2Tiles.Core.Images.Size, GTiff2Tiles.Core.Enums.TileExtension, GTiff2Tiles.Core.Enums.Interpolation, System.Int32, System.Int32, System.Int32, System.IProgress<System.Double>, System.Action<System.String>)
+  type: Method
+  source:
+    remote:
+      path: GTiff2Tiles.Core/GeoTiffs/Raster.cs
+      branch: master
+      repo: https://github.com/Gigas002/GTiff2Tiles.git
+    id: WriteTilesToDirectoryAsync
+    path: GTiff2Tiles.Core/GeoTiffs/Raster.cs
+    startLine: 482
+  assemblies:
+  - GTiff2Tiles.Core
+  namespace: GTiff2Tiles.Core.GeoTiffs
+  example: []
+  syntax:
+    content: public Task WriteTilesToDirectoryAsync(string outputDirectoryPath, int minZ, int maxZ, bool tmsCompatible = false, Size tileSize = null, TileExtension tileExtension = TileExtension.Png, Interpolation interpolation = Interpolation.Lanczos3, int bandsCount = 4, int tileCacheCount = 1000, int threadsCount = 0, IProgress<double> progress = null, Action<string> printTimeAction = null)
+    parameters:
+    - id: outputDirectoryPath
+      type: System.String
+    - id: minZ
+      type: System.Int32
+    - id: maxZ
+      type: System.Int32
+    - id: tmsCompatible
+      type: System.Boolean
+    - id: tileSize
+      type: GTiff2Tiles.Core.Images.Size
+    - id: tileExtension
+      type: GTiff2Tiles.Core.Enums.TileExtension
+    - id: interpolation
+      type: GTiff2Tiles.Core.Enums.Interpolation
+    - id: bandsCount
+      type: System.Int32
+    - id: tileCacheCount
+      type: System.Int32
+    - id: threadsCount
+      type: System.Int32
+    - id: progress
+      type: System.IProgress{System.Double}
+    - id: printTimeAction
+      type: System.Action{System.String}
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: Public Function WriteTilesToDirectoryAsync(outputDirectoryPath As String, minZ As Integer, maxZ As Integer, tmsCompatible As Boolean = False, tileSize As Size = Nothing, tileExtension As TileExtension = TileExtension.Png, interpolation As Interpolation = Interpolation.Lanczos3, bandsCount As Integer = 4, tileCacheCount As Integer = 1000, threadsCount As Integer = 0, progress As IProgress(Of Double) = Nothing, printTimeAction As Action(Of String) = Nothing) As Task
+  overload: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToDirectoryAsync*
+  nameWithType.vb: Raster.WriteTilesToDirectoryAsync(String, Int32, Int32, Boolean, Size, TileExtension, Interpolation, Int32, Int32, Int32, IProgress(Of Double), Action(Of String))
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToDirectoryAsync(System.String, System.Int32, System.Int32, System.Boolean, GTiff2Tiles.Core.Images.Size, GTiff2Tiles.Core.Enums.TileExtension, GTiff2Tiles.Core.Enums.Interpolation, System.Int32, System.Int32, System.Int32, System.IProgress(Of System.Double), System.Action(Of System.String))
+  name.vb: WriteTilesToDirectoryAsync(String, Int32, Int32, Boolean, Size, TileExtension, Interpolation, Int32, Int32, Int32, IProgress(Of Double), Action(Of String))
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToChannel(System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.ITile},System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.Interpolation,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Action{System.String})
+  commentId: M:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToChannel(System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.ITile},System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.Interpolation,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Action{System.String})
+  id: WriteTilesToChannel(System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.ITile},System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.Interpolation,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Action{System.String})
+  parent: GTiff2Tiles.Core.GeoTiffs.Raster
+  langs:
+  - csharp
+  - vb
+  name: WriteTilesToChannel(ChannelWriter<ITile>, Int32, Int32, Boolean, Size, Interpolation, Int32, Int32, Int32, IProgress<Double>, Action<String>)
+  nameWithType: Raster.WriteTilesToChannel(ChannelWriter<ITile>, Int32, Int32, Boolean, Size, Interpolation, Int32, Int32, Int32, IProgress<Double>, Action<String>)
+  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToChannel(System.Threading.Channels.ChannelWriter<GTiff2Tiles.Core.Tiles.ITile>, System.Int32, System.Int32, System.Boolean, GTiff2Tiles.Core.Images.Size, GTiff2Tiles.Core.Enums.Interpolation, System.Int32, System.Int32, System.Int32, System.IProgress<System.Double>, System.Action<System.String>)
+  type: Method
+  source:
+    remote:
+      path: GTiff2Tiles.Core/GeoTiffs/Raster.cs
+      branch: master
+      repo: https://github.com/Gigas002/GTiff2Tiles.git
+    id: WriteTilesToChannel
+    path: GTiff2Tiles.Core/GeoTiffs/Raster.cs
+    startLine: 512
+  assemblies:
+  - GTiff2Tiles.Core
+  namespace: GTiff2Tiles.Core.GeoTiffs
+  summary: "\nCrops current <xref href=\"GTiff2Tiles.Core.GeoTiffs.Raster\" data-throw-if-not-resolved=\"false\"></xref> on <xref href=\"GTiff2Tiles.Core.Tiles.ITile\" data-throw-if-not-resolved=\"false\"></xref>s\nand writes them to <code data-dev-comment-type=\"paramref\" class=\"paramref\">channelWriter</code>\n"
+  example: []
+  syntax:
+    content: public void WriteTilesToChannel(ChannelWriter<ITile> channelWriter, int minZ, int maxZ, bool tmsCompatible = false, Size tileSize = null, Interpolation interpolation = Interpolation.Lanczos3, int bandsCount = 4, int tileCacheCount = 1000, int threadsCount = 0, IProgress<double> progress = null, Action<string> printTimeAction = null)
+    parameters:
+    - id: channelWriter
+      type: System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.ITile}
+      description: <xref href="System.Threading.Channels.Channel" data-throw-if-not-resolved="false"></xref> to write <xref href="GTiff2Tiles.Core.Tiles.ITile" data-throw-if-not-resolved="false"></xref> to
+    - id: minZ
+      type: System.Int32
+      description: ''
+    - id: maxZ
+      type: System.Int32
+      description: ''
+    - id: tmsCompatible
+      type: System.Boolean
+      description: ''
+    - id: tileSize
+      type: GTiff2Tiles.Core.Images.Size
+      description: ''
+    - id: interpolation
+      type: GTiff2Tiles.Core.Enums.Interpolation
+      description: ''
+    - id: bandsCount
+      type: System.Int32
+      description: ''
+    - id: tileCacheCount
+      type: System.Int32
+      description: ''
+    - id: threadsCount
+      type: System.Int32
+      description: ''
+    - id: progress
+      type: System.IProgress{System.Double}
+      description: ''
+    - id: printTimeAction
+      type: System.Action{System.String}
+      description: ''
+    content.vb: Public Sub WriteTilesToChannel(channelWriter As ChannelWriter(Of ITile), minZ As Integer, maxZ As Integer, tmsCompatible As Boolean = False, tileSize As Size = Nothing, interpolation As Interpolation = Interpolation.Lanczos3, bandsCount As Integer = 4, tileCacheCount As Integer = 1000, threadsCount As Integer = 0, progress As IProgress(Of Double) = Nothing, printTimeAction As Action(Of String) = Nothing)
+  overload: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToChannel*
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    commentId: T:System.ArgumentOutOfRangeException
+  - type: GTiff2Tiles.Core.Exceptions.RasterException
+    commentId: T:GTiff2Tiles.Core.Exceptions.RasterException
+  nameWithType.vb: Raster.WriteTilesToChannel(ChannelWriter(Of ITile), Int32, Int32, Boolean, Size, Interpolation, Int32, Int32, Int32, IProgress(Of Double), Action(Of String))
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToChannel(System.Threading.Channels.ChannelWriter(Of GTiff2Tiles.Core.Tiles.ITile), System.Int32, System.Int32, System.Boolean, GTiff2Tiles.Core.Images.Size, GTiff2Tiles.Core.Enums.Interpolation, System.Int32, System.Int32, System.Int32, System.IProgress(Of System.Double), System.Action(Of System.String))
+  name.vb: WriteTilesToChannel(ChannelWriter(Of ITile), Int32, Int32, Boolean, Size, Interpolation, Int32, Int32, Int32, IProgress(Of Double), Action(Of String))
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToChannelAsync(System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.ITile},System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.Interpolation,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Action{System.String})
+  commentId: M:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToChannelAsync(System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.ITile},System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.Interpolation,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Action{System.String})
+  id: WriteTilesToChannelAsync(System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.ITile},System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.Interpolation,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Action{System.String})
+  parent: GTiff2Tiles.Core.GeoTiffs.Raster
+  langs:
+  - csharp
+  - vb
+  name: WriteTilesToChannelAsync(ChannelWriter<ITile>, Int32, Int32, Boolean, Size, Interpolation, Int32, Int32, Int32, IProgress<Double>, Action<String>)
+  nameWithType: Raster.WriteTilesToChannelAsync(ChannelWriter<ITile>, Int32, Int32, Boolean, Size, Interpolation, Int32, Int32, Int32, IProgress<Double>, Action<String>)
+  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToChannelAsync(System.Threading.Channels.ChannelWriter<GTiff2Tiles.Core.Tiles.ITile>, System.Int32, System.Int32, System.Boolean, GTiff2Tiles.Core.Images.Size, GTiff2Tiles.Core.Enums.Interpolation, System.Int32, System.Int32, System.Int32, System.IProgress<System.Double>, System.Action<System.String>)
+  type: Method
+  source:
+    remote:
+      path: GTiff2Tiles.Core/GeoTiffs/Raster.cs
+      branch: master
+      repo: https://github.com/Gigas002/GTiff2Tiles.git
+    id: WriteTilesToChannelAsync
+    path: GTiff2Tiles.Core/GeoTiffs/Raster.cs
+    startLine: 586
+  assemblies:
+  - GTiff2Tiles.Core
+  namespace: GTiff2Tiles.Core.GeoTiffs
+  example: []
+  syntax:
+    content: public Task WriteTilesToChannelAsync(ChannelWriter<ITile> channelWriter, int minZ, int maxZ, bool tmsCompatible = false, Size tileSize = null, Interpolation interpolation = Interpolation.Lanczos3, int bandsCount = 4, int tileCacheCount = 1000, int threadsCount = 0, IProgress<double> progress = null, Action<string> printTimeAction = null)
+    parameters:
+    - id: channelWriter
+      type: System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.ITile}
+    - id: minZ
+      type: System.Int32
+    - id: maxZ
+      type: System.Int32
+    - id: tmsCompatible
+      type: System.Boolean
+    - id: tileSize
+      type: GTiff2Tiles.Core.Images.Size
+    - id: interpolation
+      type: GTiff2Tiles.Core.Enums.Interpolation
+    - id: bandsCount
+      type: System.Int32
+    - id: tileCacheCount
+      type: System.Int32
+    - id: threadsCount
+      type: System.Int32
+    - id: progress
+      type: System.IProgress{System.Double}
+    - id: printTimeAction
+      type: System.Action{System.String}
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: Public Function WriteTilesToChannelAsync(channelWriter As ChannelWriter(Of ITile), minZ As Integer, maxZ As Integer, tmsCompatible As Boolean = False, tileSize As Size = Nothing, interpolation As Interpolation = Interpolation.Lanczos3, bandsCount As Integer = 4, tileCacheCount As Integer = 1000, threadsCount As Integer = 0, progress As IProgress(Of Double) = Nothing, printTimeAction As Action(Of String) = Nothing) As Task
+  overload: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToChannelAsync*
+  nameWithType.vb: Raster.WriteTilesToChannelAsync(ChannelWriter(Of ITile), Int32, Int32, Boolean, Size, Interpolation, Int32, Int32, Int32, IProgress(Of Double), Action(Of String))
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToChannelAsync(System.Threading.Channels.ChannelWriter(Of GTiff2Tiles.Core.Tiles.ITile), System.Int32, System.Int32, System.Boolean, GTiff2Tiles.Core.Images.Size, GTiff2Tiles.Core.Enums.Interpolation, System.Int32, System.Int32, System.Int32, System.IProgress(Of System.Double), System.Action(Of System.String))
+  name.vb: WriteTilesToChannelAsync(ChannelWriter(Of ITile), Int32, Int32, Boolean, Size, Interpolation, Int32, Int32, Int32, IProgress(Of Double), Action(Of String))
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToEnumerable(System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.Interpolation,System.Int32,System.Int32,System.IProgress{System.Double},System.Action{System.String})
+  commentId: M:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToEnumerable(System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.Interpolation,System.Int32,System.Int32,System.IProgress{System.Double},System.Action{System.String})
+  id: WriteTilesToEnumerable(System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.Interpolation,System.Int32,System.Int32,System.IProgress{System.Double},System.Action{System.String})
+  parent: GTiff2Tiles.Core.GeoTiffs.Raster
+  langs:
+  - csharp
+  - vb
+  name: WriteTilesToEnumerable(Int32, Int32, Boolean, Size, Interpolation, Int32, Int32, IProgress<Double>, Action<String>)
+  nameWithType: Raster.WriteTilesToEnumerable(Int32, Int32, Boolean, Size, Interpolation, Int32, Int32, IProgress<Double>, Action<String>)
+  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToEnumerable(System.Int32, System.Int32, System.Boolean, GTiff2Tiles.Core.Images.Size, GTiff2Tiles.Core.Enums.Interpolation, System.Int32, System.Int32, System.IProgress<System.Double>, System.Action<System.String>)
+  type: Method
+  source:
+    remote:
+      path: GTiff2Tiles.Core/GeoTiffs/Raster.cs
+      branch: master
+      repo: https://github.com/Gigas002/GTiff2Tiles.git
+    id: WriteTilesToEnumerable
+    path: GTiff2Tiles.Core/GeoTiffs/Raster.cs
+    startLine: 603
+  assemblies:
+  - GTiff2Tiles.Core
+  namespace: GTiff2Tiles.Core.GeoTiffs
+  summary: "\nCrops current <xref href=\"GTiff2Tiles.Core.GeoTiffs.Raster\" data-throw-if-not-resolved=\"false\"></xref> on <xref href=\"GTiff2Tiles.Core.Tiles.ITile\" data-throw-if-not-resolved=\"false\"></xref>s\nand writes them to <xref href=\"System.Collections.Generic.IEnumerable%601\" data-throw-if-not-resolved=\"false\"></xref>\n"
+  example: []
+  syntax:
+    content: public IEnumerable<ITile> WriteTilesToEnumerable(int minZ, int maxZ, bool tmsCompatible = false, Size tileSize = null, Interpolation interpolation = Interpolation.Lanczos3, int bandsCount = 4, int tileCacheCount = 1000, IProgress<double> progress = null, Action<string> printTimeAction = null)
+    parameters:
+    - id: minZ
+      type: System.Int32
+    - id: maxZ
+      type: System.Int32
+    - id: tmsCompatible
+      type: System.Boolean
+    - id: tileSize
+      type: GTiff2Tiles.Core.Images.Size
+    - id: interpolation
+      type: GTiff2Tiles.Core.Enums.Interpolation
+    - id: bandsCount
+      type: System.Int32
+    - id: tileCacheCount
+      type: System.Int32
+    - id: progress
+      type: System.IProgress{System.Double}
+    - id: printTimeAction
+      type: System.Action{System.String}
+    return:
+      type: System.Collections.Generic.IEnumerable{GTiff2Tiles.Core.Tiles.ITile}
+      description: <xref href="System.Collections.Generic.IEnumerable%601" data-throw-if-not-resolved="false"></xref> of <xref href="GTiff2Tiles.Core.Tiles.ITile" data-throw-if-not-resolved="false"></xref>s
+    content.vb: Public Function WriteTilesToEnumerable(minZ As Integer, maxZ As Integer, tmsCompatible As Boolean = False, tileSize As Size = Nothing, interpolation As Interpolation = Interpolation.Lanczos3, bandsCount As Integer = 4, tileCacheCount As Integer = 1000, progress As IProgress(Of Double) = Nothing, printTimeAction As Action(Of String) = Nothing) As IEnumerable(Of ITile)
+  overload: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToEnumerable*
+  nameWithType.vb: Raster.WriteTilesToEnumerable(Int32, Int32, Boolean, Size, Interpolation, Int32, Int32, IProgress(Of Double), Action(Of String))
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToEnumerable(System.Int32, System.Int32, System.Boolean, GTiff2Tiles.Core.Images.Size, GTiff2Tiles.Core.Enums.Interpolation, System.Int32, System.Int32, System.IProgress(Of System.Double), System.Action(Of System.String))
+  name.vb: WriteTilesToEnumerable(Int32, Int32, Boolean, Size, Interpolation, Int32, Int32, IProgress(Of Double), Action(Of String))
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToAsyncEnumerable(System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.Interpolation,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Action{System.String})
+  commentId: M:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToAsyncEnumerable(System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.Interpolation,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Action{System.String})
+  id: WriteTilesToAsyncEnumerable(System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.Interpolation,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Action{System.String})
+  parent: GTiff2Tiles.Core.GeoTiffs.Raster
+  langs:
+  - csharp
+  - vb
+  name: WriteTilesToAsyncEnumerable(Int32, Int32, Boolean, Size, Interpolation, Int32, Int32, Int32, IProgress<Double>, Action<String>)
+  nameWithType: Raster.WriteTilesToAsyncEnumerable(Int32, Int32, Boolean, Size, Interpolation, Int32, Int32, Int32, IProgress<Double>, Action<String>)
+  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToAsyncEnumerable(System.Int32, System.Int32, System.Boolean, GTiff2Tiles.Core.Images.Size, GTiff2Tiles.Core.Enums.Interpolation, System.Int32, System.Int32, System.Int32, System.IProgress<System.Double>, System.Action<System.String>)
+  type: Method
+  source:
+    remote:
+      path: GTiff2Tiles.Core/GeoTiffs/Raster.cs
+      branch: master
+      repo: https://github.com/Gigas002/GTiff2Tiles.git
+    id: WriteTilesToAsyncEnumerable
+    path: GTiff2Tiles.Core/GeoTiffs/Raster.cs
+    startLine: 700
+  assemblies:
+  - GTiff2Tiles.Core
+  namespace: GTiff2Tiles.Core.GeoTiffs
+  summary: "\nCrops current <xref href=\"GTiff2Tiles.Core.GeoTiffs.Raster\" data-throw-if-not-resolved=\"false\"></xref> on <xref href=\"GTiff2Tiles.Core.Tiles.ITile\" data-throw-if-not-resolved=\"false\"></xref>s\nand writes them to <xref href=\"System.Collections.Generic.IAsyncEnumerable%601\" data-throw-if-not-resolved=\"false\"></xref>\n"
+  example: []
+  syntax:
+    content: public IAsyncEnumerable<ITile> WriteTilesToAsyncEnumerable(int minZ, int maxZ, bool tmsCompatible = false, Size tileSize = null, Interpolation interpolation = Interpolation.Lanczos3, int bandsCount = 4, int tileCacheCount = 1000, int threadsCount = 0, IProgress<double> progress = null, Action<string> printTimeAction = null)
+    parameters:
+    - id: minZ
+      type: System.Int32
+      description: >-
+        Minimum cropped zoom
+
+        <remarks><p></p>Should be >= 0 and lesser or equal, than <code data-dev-comment-type="paramref" class="paramref">maxZ</code>
+
+        </remarks>
+    - id: maxZ
+      type: System.Int32
+      description: >-
+        Maximum cropped zoom
+
+        <remarks><p></p>Should be >= 0 and bigger or equal, than <code data-dev-comment-type="paramref" class="paramref">minZ</code>
+
+        </remarks>
+    - id: tmsCompatible
+      type: System.Boolean
+      description: >-
+        Do you want to create tms-compatible <xref href="GTiff2Tiles.Core.Tiles.ITile" data-throw-if-not-resolved="false"></xref>s?
+
+        <remarks><p></p><xref uid="langword_csharp_false" name="false" href=""></xref> by default</remarks>
+    - id: tileSize
+      type: GTiff2Tiles.Core.Images.Size
+      description: >-
+        <xref href="GTiff2Tiles.Core.Images.Size" data-throw-if-not-resolved="false"></xref> of <xref href="GTiff2Tiles.Core.Tiles.ITile" data-throw-if-not-resolved="false"></xref>s
+
+        <remarks><p></p>256x256 by default</remarks>
+    - id: interpolation
+      type: GTiff2Tiles.Core.Enums.Interpolation
+      description: >-
+        Interpolation of ready tiles
+
+        <remarks><p></p><xref href="GTiff2Tiles.Core.Enums.Interpolation.Lanczos3" data-throw-if-not-resolved="false"></xref> by default</remarks>
+    - id: bandsCount
+      type: System.Int32
+      description: >-
+        Count of <xref href="GTiff2Tiles.Core.Images.Band" data-throw-if-not-resolved="false"></xref>s in ready <xref href="GTiff2Tiles.Core.Tiles.ITile" data-throw-if-not-resolved="false"></xref>s
+
+        <remarks><p></p>4 by default</remarks>
+    - id: tileCacheCount
+      type: System.Int32
+      description: >-
+        Count of <xref href="GTiff2Tiles.Core.Tiles.ITile" data-throw-if-not-resolved="false"></xref> to be in cache
+
+        <remarks><p></p>1000 by default</remarks>
+    - id: threadsCount
+      type: System.Int32
+      description: >-
+        Threads count
+
+        <remarks><p></p>Calculates automatically by default</remarks>
+    - id: progress
+      type: System.IProgress{System.Double}
+      description: >-
+        Progress-reporter
+
+        <remarks><p></p><xref uid="langword_csharp_null" name="null" href=""></xref> by default</remarks>
+    - id: printTimeAction
+      type: System.Action{System.String}
+      description: >-
+        <xref href="System.Action%601" data-throw-if-not-resolved="false"></xref> to print estimated time
+
+        <remarks><p></p><xref uid="langword_csharp_null" name="null" href=""></xref> by default;
+
+        set to <xref uid="langword_csharp_null" name="null" href=""></xref> if you don&apos;t want output</remarks>
+    return:
+      type: System.Collections.Generic.IAsyncEnumerable{GTiff2Tiles.Core.Tiles.ITile}
+      description: <xref href="System.Collections.Generic.IAsyncEnumerable%601" data-throw-if-not-resolved="false"></xref> of <xref href="GTiff2Tiles.Core.Tiles.ITile" data-throw-if-not-resolved="false"></xref>s
+    content.vb: Public Function WriteTilesToAsyncEnumerable(minZ As Integer, maxZ As Integer, tmsCompatible As Boolean = False, tileSize As Size = Nothing, interpolation As Interpolation = Interpolation.Lanczos3, bandsCount As Integer = 4, tileCacheCount As Integer = 1000, threadsCount As Integer = 0, progress As IProgress(Of Double) = Nothing, printTimeAction As Action(Of String) = Nothing) As IAsyncEnumerable(Of ITile)
+  overload: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToAsyncEnumerable*
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    commentId: T:System.ArgumentOutOfRangeException
+  - type: GTiff2Tiles.Core.Exceptions.RasterException
+    commentId: T:GTiff2Tiles.Core.Exceptions.RasterException
+  nameWithType.vb: Raster.WriteTilesToAsyncEnumerable(Int32, Int32, Boolean, Size, Interpolation, Int32, Int32, Int32, IProgress(Of Double), Action(Of String))
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToAsyncEnumerable(System.Int32, System.Int32, System.Boolean, GTiff2Tiles.Core.Images.Size, GTiff2Tiles.Core.Enums.Interpolation, System.Int32, System.Int32, System.Int32, System.IProgress(Of System.Double), System.Action(Of System.String))
+  name.vb: WriteTilesToAsyncEnumerable(Int32, Int32, Boolean, Size, Interpolation, Int32, Int32, Int32, IProgress(Of Double), Action(Of String))
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster.GetBorders(System.IO.Stream,GTiff2Tiles.Core.Enums.CoordinateSystem)
+  commentId: M:GTiff2Tiles.Core.GeoTiffs.Raster.GetBorders(System.IO.Stream,GTiff2Tiles.Core.Enums.CoordinateSystem)
+  id: GetBorders(System.IO.Stream,GTiff2Tiles.Core.Enums.CoordinateSystem)
+  parent: GTiff2Tiles.Core.GeoTiffs.Raster
+  langs:
+  - csharp
+  - vb
+  name: GetBorders(Stream, CoordinateSystem)
+  nameWithType: Raster.GetBorders(Stream, CoordinateSystem)
+  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.GetBorders(System.IO.Stream, GTiff2Tiles.Core.Enums.CoordinateSystem)
+  type: Method
+  source:
+    remote:
+      path: GTiff2Tiles.Core/GeoTiffs/Raster.cs
+      branch: master
+      repo: https://github.com/Gigas002/GTiff2Tiles.git
+    id: GetBorders
+    path: GTiff2Tiles.Core/GeoTiffs/Raster.cs
+    startLine: 736
+  assemblies:
+  - GTiff2Tiles.Core
+  namespace: GTiff2Tiles.Core.GeoTiffs
+  summary: "\nGets minimal and maximal coordinates from input GeoTiff\n"
+  example: []
+  syntax:
+    content: public static (GeoCoordinate minCoordinate, GeoCoordinate maxCoordinate) GetBorders(Stream inputStream, CoordinateSystem coordinateSystem)
+    parameters:
+    - id: inputStream
+      type: System.IO.Stream
+      description: Any kind of stream with GeoTiff&apos;s data
+    - id: coordinateSystem
+      type: GTiff2Tiles.Core.Enums.CoordinateSystem
+      description: >-
+        GeoTiff&apos;s <xref href="GTiff2Tiles.Core.Enums.CoordinateSystem" data-throw-if-not-resolved="false"></xref>
+
+        <remarks><p></p>If set to <xref href="GTiff2Tiles.Core.Enums.CoordinateSystem.Other" data-throw-if-not-resolved="false"></xref> throws
+
+        <xref href="System.NotSupportedException" data-throw-if-not-resolved="false"></xref></remarks>
+    return:
+      type: System.ValueTuple{GTiff2Tiles.Core.Coordinates.GeoCoordinate,GTiff2Tiles.Core.Coordinates.GeoCoordinate}
+      description: >-
+        <xref href="System.ValueTuple%602" data-throw-if-not-resolved="false"></xref> of
+
+        <xref href="GTiff2Tiles.Core.Coordinates.GeoCoordinate" data-throw-if-not-resolved="false"></xref>s of image&apos;s borders
+    content.vb: Public Shared Function GetBorders(inputStream As Stream, coordinateSystem As CoordinateSystem) As(minCoordinate As GeoCoordinate, maxCoordinate As GeoCoordinate)
+  overload: GTiff2Tiles.Core.GeoTiffs.Raster.GetBorders*
+  exceptions:
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+  - type: System.NotSupportedException
+    commentId: T:System.NotSupportedException
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster.GetBorders(System.String,GTiff2Tiles.Core.Enums.CoordinateSystem)
+  commentId: M:GTiff2Tiles.Core.GeoTiffs.Raster.GetBorders(System.String,GTiff2Tiles.Core.Enums.CoordinateSystem)
+  id: GetBorders(System.String,GTiff2Tiles.Core.Enums.CoordinateSystem)
+  parent: GTiff2Tiles.Core.GeoTiffs.Raster
+  langs:
+  - csharp
+  - vb
+  name: GetBorders(String, CoordinateSystem)
+  nameWithType: Raster.GetBorders(String, CoordinateSystem)
+  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.GetBorders(System.String, GTiff2Tiles.Core.Enums.CoordinateSystem)
+  type: Method
+  source:
+    remote:
+      path: GTiff2Tiles.Core/GeoTiffs/Raster.cs
+      branch: master
+      repo: https://github.com/Gigas002/GTiff2Tiles.git
+    id: GetBorders
+    path: GTiff2Tiles.Core/GeoTiffs/Raster.cs
+    startLine: 799
+  assemblies:
+  - GTiff2Tiles.Core
+  namespace: GTiff2Tiles.Core.GeoTiffs
+  example: []
+  syntax:
+    content: public static (GeoCoordinate minCoordinate, GeoCoordinate maxCoordinate) GetBorders(string filePath, CoordinateSystem coordinateSystem)
+    parameters:
+    - id: filePath
+      type: System.String
+      description: Full path to GeoTiff file
+    - id: coordinateSystem
+      type: GTiff2Tiles.Core.Enums.CoordinateSystem
+      description: ''
+    return:
+      type: System.ValueTuple{GTiff2Tiles.Core.Coordinates.GeoCoordinate,GTiff2Tiles.Core.Coordinates.GeoCoordinate}
+    content.vb: Public Shared Function GetBorders(filePath As String, coordinateSystem As CoordinateSystem) As(minCoordinate As GeoCoordinate, maxCoordinate As GeoCoordinate)
+  overload: GTiff2Tiles.Core.GeoTiffs.Raster.GetBorders*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+references:
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster
+  commentId: T:GTiff2Tiles.Core.GeoTiffs.Raster
+  name: Raster
+  nameWithType: Raster
+  fullName: GTiff2Tiles.Core.GeoTiffs.Raster
+- uid: GTiff2Tiles.Core.Tiles.RasterTile
+  commentId: T:GTiff2Tiles.Core.Tiles.RasterTile
+  parent: GTiff2Tiles.Core.Tiles
+  name: RasterTile
+  nameWithType: RasterTile
+  fullName: GTiff2Tiles.Core.Tiles.RasterTile
+- uid: GTiff2Tiles.Core.GeoTiffs
+  commentId: N:GTiff2Tiles.Core.GeoTiffs
+  name: GTiff2Tiles.Core.GeoTiffs
+  nameWithType: GTiff2Tiles.Core.GeoTiffs
+  fullName: GTiff2Tiles.Core.GeoTiffs
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: GTiff2Tiles.Core.GeoTiffs.IGeoTiff
+  commentId: T:GTiff2Tiles.Core.GeoTiffs.IGeoTiff
+  parent: GTiff2Tiles.Core.GeoTiffs
+  name: IGeoTiff
+  nameWithType: IGeoTiff
+  fullName: GTiff2Tiles.Core.GeoTiffs.IGeoTiff
+- uid: System.IAsyncDisposable
+  commentId: T:System.IAsyncDisposable
+  parent: System
+  isExternal: true
+  name: IAsyncDisposable
+  nameWithType: IAsyncDisposable
+  fullName: System.IAsyncDisposable
+- uid: System.IDisposable
+  commentId: T:System.IDisposable
+  parent: System
+  isExternal: true
+  name: IDisposable
+  nameWithType: IDisposable
+  fullName: System.IDisposable
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GTiff2Tiles.Core.Tiles
+  commentId: N:GTiff2Tiles.Core.Tiles
+  name: GTiff2Tiles.Core.Tiles
+  nameWithType: GTiff2Tiles.Core.Tiles
+  fullName: GTiff2Tiles.Core.Tiles
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster.Size*
+  commentId: Overload:GTiff2Tiles.Core.GeoTiffs.Raster.Size
+  name: Size
+  nameWithType: Raster.Size
+  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.Size
+- uid: GTiff2Tiles.Core.GeoTiffs.IGeoTiff.Size
+  commentId: P:GTiff2Tiles.Core.GeoTiffs.IGeoTiff.Size
+  parent: GTiff2Tiles.Core.GeoTiffs.IGeoTiff
+  name: Size
+  nameWithType: IGeoTiff.Size
+  fullName: GTiff2Tiles.Core.GeoTiffs.IGeoTiff.Size
+- uid: GTiff2Tiles.Core.Images.Size
+  commentId: T:GTiff2Tiles.Core.Images.Size
+  parent: GTiff2Tiles.Core.Images
+  name: Size
+  nameWithType: Size
+  fullName: GTiff2Tiles.Core.Images.Size
+- uid: GTiff2Tiles.Core.Images
+  commentId: N:GTiff2Tiles.Core.Images
+  name: GTiff2Tiles.Core.Images
+  nameWithType: GTiff2Tiles.Core.Images
+  fullName: GTiff2Tiles.Core.Images
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster.MinCoordinate*
+  commentId: Overload:GTiff2Tiles.Core.GeoTiffs.Raster.MinCoordinate
+  name: MinCoordinate
+  nameWithType: Raster.MinCoordinate
+  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.MinCoordinate
+- uid: GTiff2Tiles.Core.GeoTiffs.IGeoTiff.MinCoordinate
+  commentId: P:GTiff2Tiles.Core.GeoTiffs.IGeoTiff.MinCoordinate
+  parent: GTiff2Tiles.Core.GeoTiffs.IGeoTiff
+  name: MinCoordinate
+  nameWithType: IGeoTiff.MinCoordinate
+  fullName: GTiff2Tiles.Core.GeoTiffs.IGeoTiff.MinCoordinate
+- uid: GTiff2Tiles.Core.Coordinates.GeoCoordinate
+  commentId: T:GTiff2Tiles.Core.Coordinates.GeoCoordinate
+  parent: GTiff2Tiles.Core.Coordinates
+  name: GeoCoordinate
+  nameWithType: GeoCoordinate
+  fullName: GTiff2Tiles.Core.Coordinates.GeoCoordinate
+- uid: GTiff2Tiles.Core.Coordinates
+  commentId: N:GTiff2Tiles.Core.Coordinates
+  name: GTiff2Tiles.Core.Coordinates
+  nameWithType: GTiff2Tiles.Core.Coordinates
+  fullName: GTiff2Tiles.Core.Coordinates
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster.MaxCoordinate*
+  commentId: Overload:GTiff2Tiles.Core.GeoTiffs.Raster.MaxCoordinate
+  name: MaxCoordinate
+  nameWithType: Raster.MaxCoordinate
+  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.MaxCoordinate
+- uid: GTiff2Tiles.Core.GeoTiffs.IGeoTiff.MaxCoordinate
+  commentId: P:GTiff2Tiles.Core.GeoTiffs.IGeoTiff.MaxCoordinate
+  parent: GTiff2Tiles.Core.GeoTiffs.IGeoTiff
+  name: MaxCoordinate
+  nameWithType: IGeoTiff.MaxCoordinate
+  fullName: GTiff2Tiles.Core.GeoTiffs.IGeoTiff.MaxCoordinate
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster.GeoCoordinateSystem*
+  commentId: Overload:GTiff2Tiles.Core.GeoTiffs.Raster.GeoCoordinateSystem
+  name: GeoCoordinateSystem
+  nameWithType: Raster.GeoCoordinateSystem
+  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.GeoCoordinateSystem
+- uid: GTiff2Tiles.Core.GeoTiffs.IGeoTiff.GeoCoordinateSystem
+  commentId: P:GTiff2Tiles.Core.GeoTiffs.IGeoTiff.GeoCoordinateSystem
+  parent: GTiff2Tiles.Core.GeoTiffs.IGeoTiff
+  name: GeoCoordinateSystem
+  nameWithType: IGeoTiff.GeoCoordinateSystem
+  fullName: GTiff2Tiles.Core.GeoTiffs.IGeoTiff.GeoCoordinateSystem
+- uid: GTiff2Tiles.Core.Enums.CoordinateSystem
+  commentId: T:GTiff2Tiles.Core.Enums.CoordinateSystem
+  parent: GTiff2Tiles.Core.Enums
+  name: CoordinateSystem
+  nameWithType: CoordinateSystem
+  fullName: GTiff2Tiles.Core.Enums.CoordinateSystem
+- uid: GTiff2Tiles.Core.Enums
+  commentId: N:GTiff2Tiles.Core.Enums
+  name: GTiff2Tiles.Core.Enums
+  nameWithType: GTiff2Tiles.Core.Enums
+  fullName: GTiff2Tiles.Core.Enums
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster.IsDisposed*
+  commentId: Overload:GTiff2Tiles.Core.GeoTiffs.Raster.IsDisposed
+  name: IsDisposed
+  nameWithType: Raster.IsDisposed
+  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.IsDisposed
+- uid: GTiff2Tiles.Core.GeoTiffs.IGeoTiff.IsDisposed
+  commentId: P:GTiff2Tiles.Core.GeoTiffs.IGeoTiff.IsDisposed
+  parent: GTiff2Tiles.Core.GeoTiffs.IGeoTiff
+  name: IsDisposed
+  nameWithType: IGeoTiff.IsDisposed
+  fullName: GTiff2Tiles.Core.GeoTiffs.IGeoTiff.IsDisposed
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster.Data*
+  commentId: Overload:GTiff2Tiles.Core.GeoTiffs.Raster.Data
+  name: Data
+  nameWithType: Raster.Data
+  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.Data
+- uid: NetVips.Image
+  commentId: T:NetVips.Image
+  parent: NetVips
+  isExternal: true
+  name: Image
+  nameWithType: Image
+  fullName: NetVips.Image
+- uid: NetVips
+  commentId: N:NetVips
+  isExternal: true
+  name: NetVips
+  nameWithType: NetVips
+  fullName: NetVips
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster.#ctor(System.String,GTiff2Tiles.Core.Enums.CoordinateSystem,System.Int64)
+  commentId: M:GTiff2Tiles.Core.GeoTiffs.Raster.#ctor(System.String,GTiff2Tiles.Core.Enums.CoordinateSystem,System.Int64)
+  isExternal: true
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster.#ctor*
+  commentId: Overload:GTiff2Tiles.Core.GeoTiffs.Raster.#ctor
+  name: Raster
+  nameWithType: Raster.Raster
+  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.Raster
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: System.Int64
+  commentId: T:System.Int64
+  parent: System
+  isExternal: true
+  name: Int64
+  nameWithType: Int64
+  fullName: System.Int64
+- uid: GTiff2Tiles.Core.Enums.CoordinateSystem.Other
+  commentId: F:GTiff2Tiles.Core.Enums.CoordinateSystem.Other
+  isExternal: true
+- uid: System.ArgumentOutOfRangeException
+  commentId: T:System.ArgumentOutOfRangeException
+  isExternal: true
+- uid: System.NotSupportedException
+  commentId: T:System.NotSupportedException
+  isExternal: true
+- uid: System.IO.Stream
+  commentId: T:System.IO.Stream
+  parent: System.IO
+  isExternal: true
+  name: Stream
+  nameWithType: Stream
+  fullName: System.IO.Stream
+- uid: System.IO
+  commentId: N:System.IO
+  isExternal: true
+  name: System.IO
+  nameWithType: System.IO
+  fullName: System.IO
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster.Dispose(System.Boolean)
+  commentId: M:GTiff2Tiles.Core.GeoTiffs.Raster.Dispose(System.Boolean)
+  isExternal: true
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster.Finalize*
+  commentId: Overload:GTiff2Tiles.Core.GeoTiffs.Raster.Finalize
+  name: Finalize
+  nameWithType: Raster.Finalize
+  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.Finalize
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster.Dispose*
+  commentId: Overload:GTiff2Tiles.Core.GeoTiffs.Raster.Dispose
+  name: Dispose
+  nameWithType: Raster.Dispose
+  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.Dispose
+- uid: System.IDisposable.Dispose
+  commentId: M:System.IDisposable.Dispose
+  parent: System.IDisposable
+  isExternal: true
+  name: Dispose()
+  nameWithType: IDisposable.Dispose()
+  fullName: System.IDisposable.Dispose()
+  spec.csharp:
+  - uid: System.IDisposable.Dispose
+    name: Dispose
+    nameWithType: IDisposable.Dispose
+    fullName: System.IDisposable.Dispose
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.IDisposable.Dispose
+    name: Dispose
+    nameWithType: IDisposable.Dispose
+    fullName: System.IDisposable.Dispose
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster.Dispose
+  commentId: M:GTiff2Tiles.Core.GeoTiffs.Raster.Dispose
+  isExternal: true
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster.DisposeAsync*
+  commentId: Overload:GTiff2Tiles.Core.GeoTiffs.Raster.DisposeAsync
+  name: DisposeAsync
+  nameWithType: Raster.DisposeAsync
+  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.DisposeAsync
+- uid: System.IAsyncDisposable.DisposeAsync
+  commentId: M:System.IAsyncDisposable.DisposeAsync
+  parent: System.IAsyncDisposable
+  isExternal: true
+  name: DisposeAsync()
+  nameWithType: IAsyncDisposable.DisposeAsync()
+  fullName: System.IAsyncDisposable.DisposeAsync()
+  spec.csharp:
+  - uid: System.IAsyncDisposable.DisposeAsync
+    name: DisposeAsync
+    nameWithType: IAsyncDisposable.DisposeAsync
+    fullName: System.IAsyncDisposable.DisposeAsync
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.IAsyncDisposable.DisposeAsync
+    name: DisposeAsync
+    nameWithType: IAsyncDisposable.DisposeAsync
+    fullName: System.IAsyncDisposable.DisposeAsync
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Threading.Tasks.ValueTask
+  commentId: T:System.Threading.Tasks.ValueTask
+  parent: System.Threading.Tasks
+  isExternal: true
+  name: ValueTask
+  nameWithType: ValueTask
+  fullName: System.Threading.Tasks.ValueTask
+- uid: System.Threading.Tasks
+  commentId: N:System.Threading.Tasks
+  isExternal: true
+  name: System.Threading.Tasks
+  nameWithType: System.Threading.Tasks
+  fullName: System.Threading.Tasks
+- uid: System.ArgumentNullException
+  commentId: T:System.ArgumentNullException
+  isExternal: true
+- uid: System.ArgumentException
+  commentId: T:System.ArgumentException
+  isExternal: true
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster.CreateTileImage*
+  commentId: Overload:GTiff2Tiles.Core.GeoTiffs.Raster.CreateTileImage
+  name: CreateTileImage
+  nameWithType: Raster.CreateTileImage
+  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.CreateTileImage
+- uid: GTiff2Tiles.Core.Tiles.Tile.Path
+  commentId: P:GTiff2Tiles.Core.Tiles.Tile.Path
+  parent: GTiff2Tiles.Core.Tiles.Tile
+  name: Path
+  nameWithType: Tile.Path
+  fullName: GTiff2Tiles.Core.Tiles.Tile.Path
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToFile*
+  commentId: Overload:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToFile
+  name: WriteTileToFile
+  nameWithType: Raster.WriteTileToFile
+  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToFile
+- uid: GTiff2Tiles.Core.Tiles.Tile
+  commentId: T:GTiff2Tiles.Core.Tiles.Tile
+  parent: GTiff2Tiles.Core.Tiles
+  name: Tile
+  nameWithType: Tile
+  fullName: GTiff2Tiles.Core.Tiles.Tile
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToFile(NetVips.Image,GTiff2Tiles.Core.Tiles.RasterTile)
+  commentId: M:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToFile(NetVips.Image,GTiff2Tiles.Core.Tiles.RasterTile)
+  isExternal: true
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToFileAsync*
+  commentId: Overload:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToFileAsync
+  name: WriteTileToFileAsync
+  nameWithType: Raster.WriteTileToFileAsync
+  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToFileAsync
+- uid: System.Threading.Tasks.Task
+  commentId: T:System.Threading.Tasks.Task
+  parent: System.Threading.Tasks
+  isExternal: true
+  name: Task
+  nameWithType: Task
+  fullName: System.Threading.Tasks.Task
+- uid: System.Collections.Generic.IEnumerable`1
+  commentId: T:System.Collections.Generic.IEnumerable`1
+  isExternal: true
+  name: IEnumerable<T>
+  nameWithType: IEnumerable<T>
+  fullName: System.Collections.Generic.IEnumerable<T>
+  nameWithType.vb: IEnumerable(Of T)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
+  name.vb: IEnumerable(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Byte
+  commentId: T:System.Byte
+  isExternal: true
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToEnumerable*
+  commentId: Overload:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToEnumerable
+  name: WriteTileToEnumerable
+  nameWithType: Raster.WriteTileToEnumerable
+  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToEnumerable
+- uid: System.Collections.Generic.IEnumerable{System.Byte}
+  commentId: T:System.Collections.Generic.IEnumerable{System.Byte}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  name: IEnumerable<Byte>
+  nameWithType: IEnumerable<Byte>
+  fullName: System.Collections.Generic.IEnumerable<System.Byte>
+  nameWithType.vb: IEnumerable(Of Byte)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of System.Byte)
+  name.vb: IEnumerable(Of Byte)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Byte
+    name: Byte
+    nameWithType: Byte
+    fullName: System.Byte
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Byte
+    name: Byte
+    nameWithType: Byte
+    fullName: System.Byte
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+- uid: System.Threading.Channels.ChannelWriter`1
+  commentId: T:System.Threading.Channels.ChannelWriter`1
+  isExternal: true
+  name: ChannelWriter<T>
+  nameWithType: ChannelWriter<T>
+  fullName: System.Threading.Channels.ChannelWriter<T>
+  nameWithType.vb: ChannelWriter(Of T)
+  fullName.vb: System.Threading.Channels.ChannelWriter(Of T)
+  name.vb: ChannelWriter(Of T)
+  spec.csharp:
+  - uid: System.Threading.Channels.ChannelWriter`1
+    name: ChannelWriter
+    nameWithType: ChannelWriter
+    fullName: System.Threading.Channels.ChannelWriter
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Threading.Channels.ChannelWriter`1
+    name: ChannelWriter
+    nameWithType: ChannelWriter
+    fullName: System.Threading.Channels.ChannelWriter
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GTiff2Tiles.Core.Tiles.ITile
+  commentId: T:GTiff2Tiles.Core.Tiles.ITile
+  parent: GTiff2Tiles.Core.Tiles
+  name: ITile
+  nameWithType: ITile
+  fullName: GTiff2Tiles.Core.Tiles.ITile
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToChannel*
+  commentId: Overload:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToChannel
+  name: WriteTileToChannel
+  nameWithType: Raster.WriteTileToChannel
+  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToChannel
+- uid: System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.ITile}
+  commentId: T:System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.ITile}
+  parent: System.Threading.Channels
+  definition: System.Threading.Channels.ChannelWriter`1
+  name: ChannelWriter<ITile>
+  nameWithType: ChannelWriter<ITile>
+  fullName: System.Threading.Channels.ChannelWriter<GTiff2Tiles.Core.Tiles.ITile>
+  nameWithType.vb: ChannelWriter(Of ITile)
+  fullName.vb: System.Threading.Channels.ChannelWriter(Of GTiff2Tiles.Core.Tiles.ITile)
+  name.vb: ChannelWriter(Of ITile)
+  spec.csharp:
+  - uid: System.Threading.Channels.ChannelWriter`1
+    name: ChannelWriter
+    nameWithType: ChannelWriter
+    fullName: System.Threading.Channels.ChannelWriter
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: GTiff2Tiles.Core.Tiles.ITile
+    name: ITile
+    nameWithType: ITile
+    fullName: GTiff2Tiles.Core.Tiles.ITile
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Threading.Channels.ChannelWriter`1
+    name: ChannelWriter
+    nameWithType: ChannelWriter
+    fullName: System.Threading.Channels.ChannelWriter
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: GTiff2Tiles.Core.Tiles.ITile
+    name: ITile
+    nameWithType: ITile
+    fullName: GTiff2Tiles.Core.Tiles.ITile
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Threading.Channels
+  commentId: N:System.Threading.Channels
+  isExternal: true
+  name: System.Threading.Channels
+  nameWithType: System.Threading.Channels
+  fullName: System.Threading.Channels
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToChannel(NetVips.Image,GTiff2Tiles.Core.Tiles.RasterTile,System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.ITile})
+  commentId: M:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToChannel(NetVips.Image,GTiff2Tiles.Core.Tiles.RasterTile,System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.ITile})
+  isExternal: true
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToChannelAsync*
+  commentId: Overload:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToChannelAsync
+  name: WriteTileToChannelAsync
+  nameWithType: Raster.WriteTileToChannelAsync
+  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToChannelAsync
+- uid: GTiff2Tiles.Core.Exceptions.RasterException
+  commentId: T:GTiff2Tiles.Core.Exceptions.RasterException
+  name: RasterException
+  nameWithType: RasterException
+  fullName: GTiff2Tiles.Core.Exceptions.RasterException
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToAsyncEnumerable(System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.Interpolation,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Action{System.String})
+  commentId: M:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToAsyncEnumerable(System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.Interpolation,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Action{System.String})
+  isExternal: true
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToDirectory*
+  commentId: Overload:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToDirectory
+  name: WriteTilesToDirectory
+  nameWithType: Raster.WriteTilesToDirectory
+  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToDirectory
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: GTiff2Tiles.Core.Enums.TileExtension
+  commentId: T:GTiff2Tiles.Core.Enums.TileExtension
+  parent: GTiff2Tiles.Core.Enums
+  name: TileExtension
+  nameWithType: TileExtension
+  fullName: GTiff2Tiles.Core.Enums.TileExtension
+- uid: GTiff2Tiles.Core.Enums.Interpolation
+  commentId: T:GTiff2Tiles.Core.Enums.Interpolation
+  parent: GTiff2Tiles.Core.Enums
+  name: Interpolation
+  nameWithType: Interpolation
+  fullName: GTiff2Tiles.Core.Enums.Interpolation
+- uid: System.IProgress{System.Double}
+  commentId: T:System.IProgress{System.Double}
+  parent: System
+  definition: System.IProgress`1
+  name: IProgress<Double>
+  nameWithType: IProgress<Double>
+  fullName: System.IProgress<System.Double>
+  nameWithType.vb: IProgress(Of Double)
+  fullName.vb: System.IProgress(Of System.Double)
+  name.vb: IProgress(Of Double)
+  spec.csharp:
+  - uid: System.IProgress`1
+    name: IProgress
+    nameWithType: IProgress
+    fullName: System.IProgress
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Double
+    name: Double
+    nameWithType: Double
+    fullName: System.Double
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.IProgress`1
+    name: IProgress
+    nameWithType: IProgress
+    fullName: System.IProgress
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Double
+    name: Double
+    nameWithType: Double
+    fullName: System.Double
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Action{System.String}
+  commentId: T:System.Action{System.String}
+  parent: System
+  definition: System.Action`1
+  name: Action<String>
+  nameWithType: Action<String>
+  fullName: System.Action<System.String>
+  nameWithType.vb: Action(Of String)
+  fullName.vb: System.Action(Of System.String)
+  name.vb: Action(Of String)
+  spec.csharp:
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.IProgress`1
+  commentId: T:System.IProgress`1
+  isExternal: true
+  name: IProgress<T>
+  nameWithType: IProgress<T>
+  fullName: System.IProgress<T>
+  nameWithType.vb: IProgress(Of T)
+  fullName.vb: System.IProgress(Of T)
+  name.vb: IProgress(Of T)
+  spec.csharp:
+  - uid: System.IProgress`1
+    name: IProgress
+    nameWithType: IProgress
+    fullName: System.IProgress
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.IProgress`1
+    name: IProgress
+    nameWithType: IProgress
+    fullName: System.IProgress
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Action`1
+  commentId: T:System.Action`1
+  isExternal: true
+  name: Action<T>
+  nameWithType: Action<T>
+  fullName: System.Action<T>
+  nameWithType.vb: Action(Of T)
+  fullName.vb: System.Action(Of T)
+  name.vb: Action(Of T)
+  spec.csharp:
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToDirectory(System.String,System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.TileExtension,GTiff2Tiles.Core.Enums.Interpolation,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Action{System.String})
+  commentId: M:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToDirectory(System.String,System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.TileExtension,GTiff2Tiles.Core.Enums.Interpolation,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Action{System.String})
+  isExternal: true
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToDirectoryAsync*
+  commentId: Overload:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToDirectoryAsync
+  name: WriteTilesToDirectoryAsync
+  nameWithType: Raster.WriteTilesToDirectoryAsync
+  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToDirectoryAsync
+- uid: System.Threading.Channels.Channel
+  commentId: T:System.Threading.Channels.Channel
+  isExternal: true
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToChannel*
+  commentId: Overload:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToChannel
+  name: WriteTilesToChannel
+  nameWithType: Raster.WriteTilesToChannel
+  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToChannel
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToChannel(System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.ITile},System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.Interpolation,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Action{System.String})
+  commentId: M:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToChannel(System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.ITile},System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.Interpolation,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Action{System.String})
+  isExternal: true
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToChannelAsync*
+  commentId: Overload:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToChannelAsync
+  name: WriteTilesToChannelAsync
+  nameWithType: Raster.WriteTilesToChannelAsync
+  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToChannelAsync
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToEnumerable*
+  commentId: Overload:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToEnumerable
+  name: WriteTilesToEnumerable
+  nameWithType: Raster.WriteTilesToEnumerable
+  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToEnumerable
+- uid: System.Collections.Generic.IEnumerable{GTiff2Tiles.Core.Tiles.ITile}
+  commentId: T:System.Collections.Generic.IEnumerable{GTiff2Tiles.Core.Tiles.ITile}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  name: IEnumerable<ITile>
+  nameWithType: IEnumerable<ITile>
+  fullName: System.Collections.Generic.IEnumerable<GTiff2Tiles.Core.Tiles.ITile>
+  nameWithType.vb: IEnumerable(Of ITile)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of GTiff2Tiles.Core.Tiles.ITile)
+  name.vb: IEnumerable(Of ITile)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: GTiff2Tiles.Core.Tiles.ITile
+    name: ITile
+    nameWithType: ITile
+    fullName: GTiff2Tiles.Core.Tiles.ITile
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: GTiff2Tiles.Core.Tiles.ITile
+    name: ITile
+    nameWithType: ITile
+    fullName: GTiff2Tiles.Core.Tiles.ITile
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.IAsyncEnumerable`1
+  commentId: T:System.Collections.Generic.IAsyncEnumerable`1
+  isExternal: true
+  name: IAsyncEnumerable<T>
+  nameWithType: IAsyncEnumerable<T>
+  fullName: System.Collections.Generic.IAsyncEnumerable<T>
+  nameWithType.vb: IAsyncEnumerable(Of T)
+  fullName.vb: System.Collections.Generic.IAsyncEnumerable(Of T)
+  name.vb: IAsyncEnumerable(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IAsyncEnumerable`1
+    name: IAsyncEnumerable
+    nameWithType: IAsyncEnumerable
+    fullName: System.Collections.Generic.IAsyncEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IAsyncEnumerable`1
+    name: IAsyncEnumerable
+    nameWithType: IAsyncEnumerable
+    fullName: System.Collections.Generic.IAsyncEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GTiff2Tiles.Core.Enums.Interpolation.Lanczos3
+  commentId: F:GTiff2Tiles.Core.Enums.Interpolation.Lanczos3
+  isExternal: true
+- uid: GTiff2Tiles.Core.Images.Band
+  commentId: T:GTiff2Tiles.Core.Images.Band
+  name: Band
+  nameWithType: Band
+  fullName: GTiff2Tiles.Core.Images.Band
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToAsyncEnumerable*
+  commentId: Overload:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToAsyncEnumerable
+  name: WriteTilesToAsyncEnumerable
+  nameWithType: Raster.WriteTilesToAsyncEnumerable
+  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToAsyncEnumerable
+- uid: System.Collections.Generic.IAsyncEnumerable{GTiff2Tiles.Core.Tiles.ITile}
+  commentId: T:System.Collections.Generic.IAsyncEnumerable{GTiff2Tiles.Core.Tiles.ITile}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IAsyncEnumerable`1
+  name: IAsyncEnumerable<ITile>
+  nameWithType: IAsyncEnumerable<ITile>
+  fullName: System.Collections.Generic.IAsyncEnumerable<GTiff2Tiles.Core.Tiles.ITile>
+  nameWithType.vb: IAsyncEnumerable(Of ITile)
+  fullName.vb: System.Collections.Generic.IAsyncEnumerable(Of GTiff2Tiles.Core.Tiles.ITile)
+  name.vb: IAsyncEnumerable(Of ITile)
+  spec.csharp:
+  - uid: System.Collections.Generic.IAsyncEnumerable`1
+    name: IAsyncEnumerable
+    nameWithType: IAsyncEnumerable
+    fullName: System.Collections.Generic.IAsyncEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: GTiff2Tiles.Core.Tiles.ITile
+    name: ITile
+    nameWithType: ITile
+    fullName: GTiff2Tiles.Core.Tiles.ITile
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IAsyncEnumerable`1
+    name: IAsyncEnumerable
+    nameWithType: IAsyncEnumerable
+    fullName: System.Collections.Generic.IAsyncEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: GTiff2Tiles.Core.Tiles.ITile
+    name: ITile
+    nameWithType: ITile
+    fullName: GTiff2Tiles.Core.Tiles.ITile
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.ValueTuple`2
+  commentId: T:System.ValueTuple`2
+  isExternal: true
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster.GetBorders*
+  commentId: Overload:GTiff2Tiles.Core.GeoTiffs.Raster.GetBorders
+  name: GetBorders
+  nameWithType: Raster.GetBorders
+  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.GetBorders
+- uid: System.ValueTuple{GTiff2Tiles.Core.Coordinates.GeoCoordinate,GTiff2Tiles.Core.Coordinates.GeoCoordinate}
+  commentId: T:System.ValueTuple{GTiff2Tiles.Core.Coordinates.GeoCoordinate,GTiff2Tiles.Core.Coordinates.GeoCoordinate}
+  parent: System
+  isExternal: true
+  name: ValueTuple<GeoCoordinate, GeoCoordinate>
+  nameWithType: ValueTuple<GeoCoordinate, GeoCoordinate>
+  fullName: System.ValueTuple<GTiff2Tiles.Core.Coordinates.GeoCoordinate, GTiff2Tiles.Core.Coordinates.GeoCoordinate>
+  nameWithType.vb: ValueTuple(Of GeoCoordinate, GeoCoordinate)
+  fullName.vb: System.ValueTuple(Of GTiff2Tiles.Core.Coordinates.GeoCoordinate, GTiff2Tiles.Core.Coordinates.GeoCoordinate)
+  name.vb: ValueTuple(Of GeoCoordinate, GeoCoordinate)
+  spec.csharp:
+  - uid: System.ValueTuple`2
+    name: ValueTuple
+    nameWithType: ValueTuple
+    fullName: System.ValueTuple
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: GTiff2Tiles.Core.Coordinates.GeoCoordinate
+    name: GeoCoordinate
+    nameWithType: GeoCoordinate
+    fullName: GTiff2Tiles.Core.Coordinates.GeoCoordinate
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: GTiff2Tiles.Core.Coordinates.GeoCoordinate
+    name: GeoCoordinate
+    nameWithType: GeoCoordinate
+    fullName: GTiff2Tiles.Core.Coordinates.GeoCoordinate
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.ValueTuple`2
+    name: ValueTuple
+    nameWithType: ValueTuple
+    fullName: System.ValueTuple
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: GTiff2Tiles.Core.Coordinates.GeoCoordinate
+    name: GeoCoordinate
+    nameWithType: GeoCoordinate
+    fullName: GTiff2Tiles.Core.Coordinates.GeoCoordinate
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: GTiff2Tiles.Core.Coordinates.GeoCoordinate
+    name: GeoCoordinate
+    nameWithType: GeoCoordinate
+    fullName: GTiff2Tiles.Core.Coordinates.GeoCoordinate
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster.GetBorders(System.IO.Stream,GTiff2Tiles.Core.Enums.CoordinateSystem)
+  commentId: M:GTiff2Tiles.Core.GeoTiffs.Raster.GetBorders(System.IO.Stream,GTiff2Tiles.Core.Enums.CoordinateSystem)
+  isExternal: true
