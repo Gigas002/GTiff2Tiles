@@ -5,8 +5,8 @@
     <TargetFramework>netcoreapp5.0</TargetFramework>
     <VersionPrefix>2.0.0</VersionPrefix>
     <VersionSuffix>ci439</VersionSuffix>
-    <AssemblyVersion>2.0.0.572</AssemblyVersion>
-    <FileVersion>2.0.0.572</FileVersion>
+    <AssemblyVersion>2.0.0.574</AssemblyVersion>
+    <FileVersion>2.0.0.574</FileVersion>
     <Platforms>AnyCPU;x64</Platforms>
     <Configurations>Debug;Release;Appveyor</Configurations>
     <PackageIcon>Icon.png</PackageIcon>

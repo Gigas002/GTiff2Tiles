@@ -7,6 +7,7 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/wp5bbi08sgd4i9bh/branch/master?svg=true)](https://ci.appveyor.com/project/Gigas002/gtiff2tiles/branch/master)
 [![Actions Status](https://github.com/Gigas002/GTiff2Tiles/workflows/.NET%20Core%20CI/badge.svg)](https://github.com/Gigas002/GTiff2Tiles/actions)
 [![codecov](https://codecov.io/gh/Gigas002/GTiff2Tiles/branch/master/graph/badge.svg)](https://codecov.io/gh/Gigas002/GTiff2Tiles)
+[![Maintainability](https://api.codeclimate.com/v1/badges/f01b570988c070e70cc9/maintainability)](https://codeclimate.com/github/Gigas002/GTiff2Tiles/maintainability)
 
 ## Table of contents
 

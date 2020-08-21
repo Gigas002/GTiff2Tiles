@@ -117,70 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AlreadyExist" xml:space="preserve">
-    <value>{0} уже существует. Путь:{1}</value>
-  </data>
-  <data name="DirectoryIsEmpty" xml:space="preserve">
-    <value>Директория пустая. Пожалуйста, выберите другую директорию. Путь:{0}</value>
-  </data>
-  <data name="DirectoryIsntEmpty" xml:space="preserve">
-    <value>Директория не пустая. Пожалуйста, выберите другую директорию. Путь:{0}</value>
-  </data>
-  <data name="DoesntExist" xml:space="preserve">
-    <value>{0} не существует. Путь:{1}</value>
-  </data>
-  <data name="DoesntSupportPlatform" xml:space="preserve">
-    <value>{0} не поддерживается текущей платформой</value>
-  </data>
   <data name="EstimatedTime" xml:space="preserve">
     <value>Осталось времени:{0}Дней:{1}, часов:{2}, минут:{3}, секунд:{4}, миллисекунд:{5}</value>
-  </data>
-  <data name="IsNull" xml:space="preserve">
-    <value>{0} равен null</value>
-  </data>
-  <data name="LesserOrEqual" xml:space="preserve">
-    <value>Параметр {0} меньше, или равен {1}</value>
-  </data>
-  <data name="LesserThan" xml:space="preserve">
-    <value>Параметр {0} меньше, чем {1}</value>
-  </data>
-  <data name="StringIsEmpty" xml:space="preserve">
-    <value>Строка {0} пустая</value>
-  </data>
-  <data name="TooMuchBands" xml:space="preserve">
-    <value>В готовом тайле больше 5 каналов</value>
-  </data>
-  <data name="UnableToAddToCollection" xml:space="preserve">
-    <value>Невозможно добавить значение в коллекцию {0}</value>
-  </data>
-  <data name="UnableToCalculateCoordinates" xml:space="preserve">
-    <value>Невозможно вычислить границы координат тайла</value>
-  </data>
-  <data name="UnableToConfigure" xml:space="preserve">
-    <value>Невозможно настроить {0}</value>
-  </data>
-  <data name="UnableToConvertCoordinatesToTiles" xml:space="preserve">
-    <value>Невозможно конвертировать координаты в номера тайлов</value>
-  </data>
-  <data name="UnableToCreate" xml:space="preserve">
-    <value>Невозможно создать {0}. Путь:{1}</value>
-  </data>
-  <data name="UnableToCreateTile" xml:space="preserve">
-    <value>Невозможно создать тайл. X:{0}, Y:{1}</value>
-  </data>
-  <data name="UnableToGetCoordinates" xml:space="preserve">
-    <value>Невозможно получить координаты или размеры объекта {0}</value>
-  </data>
-  <data name="UnableToJoin" xml:space="preserve">
-    <value>Невозможно склеить {0}. X:{1}, Y:{2}</value>
-  </data>
-  <data name="UnableToOpen" xml:space="preserve">
-    <value>Невозможно открыть {0}. Путь:{1}</value>
-  </data>
-  <data name="UnableToPrintDriver" xml:space="preserve">
-    <value>Невозможно вывести драйвера {0}</value>
-  </data>
-  <data name="WrongExtension" xml:space="preserve">
-    <value>Расширение файла {0} не {1}. Путь:{2}</value>
   </data>
 </root>
