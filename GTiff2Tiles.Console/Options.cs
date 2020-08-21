@@ -13,13 +13,13 @@ namespace GTiff2Tiles.Console
         #region Required
 
         /// <summary>
-        /// Full path to input file
+        /// Path to input file
         /// </summary>
         [Option('i', "input", Required = true, HelpText = "Path to input file")]
         public string InputFilePath { get; set; }
 
         /// <summary>
-        /// Full path to output directory
+        /// Path to output directory
         /// </summary>
         [Option('o', "output", Required = true, HelpText = "Path to output directory")]
         public string OutputDirectoryPath { get; set; }
@@ -55,7 +55,7 @@ namespace GTiff2Tiles.Console
         public string TileExtension { get; set; } = FileExtensions.Png;
 
         /// <summary>
-        /// Full path to temp directory
+        /// Path to temp directory
         /// <remarks><para/>Current directory by default</remarks>
         /// </summary>
         [Option('t', "temp", Required = false, HelpText = "Path to temp directory; current directory by default")]

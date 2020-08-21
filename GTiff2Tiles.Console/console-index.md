@@ -13,24 +13,30 @@ If you’re using **Windows 7 SP1**, you can experience weird error with **GDAL*
 
 ## Usage
 
-*TODO: needs update for 2.0.0 release. Current version is written for old dev pre-releases.*
+| Short |      Long       |                         Description                          | Required? |
+| :---: | :-------------: | :----------------------------------------------------------: | :-------: |
+|  -i   |     --input     |                      Path to input file                      |    Yes    |
+|  -o   |    --output     |                   Path to output directory                   |    Yes    |
+|       |     --minz      |                     Minimum cropped zoom                     |    Yes    |
+|       |     --maxz      |                     Maximum cropped zoom                     |    Yes    |
+|       |    --threads    |          Threads count, calculates auto by default           |    No     |
+|       |   --extension   |         Extension of ready tiles, `.png` by default          |    No     |
+|  -t   |     --temp      |     Path to temp directory, current directory by default     |    No     |
+|       |      --tms      | Do you want to create tms-compatible tiles? `true` by default |    No     |
+|  -c   |  --coordinates  |    Target tiles coordinate system, `geodetic` by default     |    No     |
+|       | --interpolation |     Interpolation of ready tiles, `lanczos3` by default      |    No     |
+|  -b   |     --bands     |         Count of bands in ready tiles, 4 by default          |    No     |
+|       |   --tilecache   | How much tiles would you like to store in memory cache? 100 by default |    No     |
+|  -m   |   --memcache    | Maximum size of input files to store in RAM, `2147483648` by default |    No     |
+|       |   --progress    |      Do you want to see the progress? `true` by default      |    No     |
+|       |   --timeleft    |  Do you want to see estimated time left? `false` by default  |    No     |
+|       |   --tilesize    |              Ready tile's size, 256 by default               |    No     |
+|       |    --version    |                       Current version                        |           |
+|       |     --help      |              Message about command line options              |           |
 
-| Short |    Long     |                 Description                 | Required? |
-| :---: | :---------: | :-----------------------------------------: | :-------: |
-|  -i   |   --input   |           Full path to input file           |    Yes    |
-|  -o   |  --output   |        Full path to output directory        |    Yes    |
-|  -t   |   --temp    |         Full path to temp directory         |    No     |
-|       |   --minz    |            Minimum cropped zoom             |    Yes    |
-|       |   --maxz    |            Maximum cropped zoom             |    Yes    |
-|       |    --tms    | Do you want to create tms-compatible tiles? |    No     |
-|       | --extension |            Ready tiles extension            |    No     |
-|       |  --threads  |                Threads count                |    No     |
-|       |  --version  |               Current version               |           |
-|       |   --help    |        Message about console options        |           |
+Minimal example looks like this: `./GTiff2Tiles.Console -i "D:/Examples/Input.tif" -o "D:/Examples/Output" --minz 0 --maxz 12`
 
-Simple example looks like this: `./GTiff2Tiles.Console -i "D:/Examples/Input.tif" -o "D:/Examples/Output" -t "D:/Examples/Temp" --minz 8 –maxz 11 -a crop --tms true --extension .webp --threads 3`
-
-Also take a look at [Start.ps1](https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Console/Start.ps1) **PowerShell** script for automating and simplifying the work. Note, that running this script requires installed **PowerShell** or **[PowerShell Core](https://github.com/PowerShell/PowerShell)** (also available on **Linux**/**OSX** systems!).
+Take a look at [Start.ps1](https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Console/Start.ps1) **PowerShell** script for automating and more examples of the work. Note, that running this script requires installed **PowerShell** or **[PowerShell Core](https://github.com/PowerShell/PowerShell)** (also available on **Linux**/**OSX** systems!).
 
 ### Detailed options description
 
@@ -38,17 +44,33 @@ Also take a look at [Start.ps1](https://github.com/Gigas002/GTiff2Tiles/blob/mas
 
 **-o/--output** is `string`, representing full path to directory, where tiles in will be created. Please, specify the path in double quotes (`“like this”`) if it contains spaces. **Directory should be empty.**
 
-**-t/--temp** is `string`, representing full path to temporary directory. Please, specify the path in double quotes (`“like this”`) if it contains spaces. Inside will be created directory, which name is a **timestamp** in format `yyyyMMddHHmmssfff`. By default – the same directory, where application is located.
-
 **--minz** is `int` parameter, representing minimum zoom, which you want to crop.
 
 **--maxz** is `int` parameter, representing maximum zoom, which you want to crop.
 
-**--tms** is `string`, which shows if you want to create tms-compatible or non-tms-compatible tiles on output. Can have values `true` or `false`. By default is `true`.
+**--threads** is `int` parameter, representing threads count. By default (if not set) uses calculates automatically, based on your PC.
 
 **--extension** is a `string`, representing ready tiles extension. By default is set to `.png`. Currently supported extensions are: `.webp`, `.jpg`, `.png`.
 
-**--threads** is `int` parameter, representing threads count. By default (if not set) uses **5 threads**.
+**-t/--temp** is `string`, representing full path to temporary directory. Please, specify the path in double quotes (`“like this”`) if it contains spaces. Inside will be created directory, which name is a **timestamp** in format `yyyyMMddHHmmssfff`. By default – the same directory, where application is located.
+
+**--tms** is `string`, which shows if you want to create tms-compatible or non-tms-compatible tiles on output. Can have values `true` or `false`. By default is `true`.
+
+**-c/--coordinates** is a `string`, representing ready tile’s coordinate system. By default is `geodetic` (*EPSG:4326*). Supported values: `geodetic`, `mercator`.
+
+**--interpolation** is a `string`, representing ready tile’s interpolation. By default is `lanczos3`. Supported values: `nearest`, `linear`, `cubic`, `mitchell`, `lanczos2`, `lanczos3`.
+
+**-b/--bands** is `int` parameter, representing count of bands in ready tiles. By default is `4`.
+
+**--tilecache** is `int` parameter, representing count of tiles to store in RAM to crop them faster (*that’s vips stuff*). `1000` by default.
+
+**--memcache** is `long` parameter, representing maximal size (*in bytes*) of input file to store in RAM to crop it faster. By default is `2147483648` (*which equals to 2Gb*).
+
+**--progress** is `bool` parameter. If it’s set to `true` – you’ll see cropping progress in your command line. `true` by default.
+
+**--timeleft** is a `bool` parameter. If it’s set to `true` – you’ll see estimated time left before end of cropping after each tile is cropped. `false` (*beware, too much output can slow app down*) by default.
+
+**--tilesize** is `int` parameter, representing the size of one side (**tiles should be a square, so specifying 2 side’s sizes is redundant*) of ready tiles. `256` by default.
 
 ### Offline docs
 

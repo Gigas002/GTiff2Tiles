@@ -69,7 +69,6 @@ Any <strong>GeoTIFF</strong> (with less, than <strong>5 bands</strong>) on input
 <p>Application runs on <strong>Linux x64</strong> (<em>tested on Ubuntu 18.04+</em>) and <strong>Windows x64</strong> (<em>tested on Win 7 SP1+</em>) operating systems.</p>
 <p>If you’re using <strong>Windows 7 SP1</strong>, you can experience weird error with <strong>GDAL</strong> packages. It’s recommended to install <a href="https://www.microsoft.com/en-us/download/details.aspx?id=26764">KB2533623</a> to fix it. You can read about this Windows update on <a href="https://support.microsoft.com/en-us/help/2533623/microsoft-security-advisory-insecure-library-loading-could-allow-remot">MSDN</a>.</p>
 <h2 id="usage">Usage</h2>
-<p><em>TODO: needs update for 2.0.0 release. Current version is written for old dev pre-releases.</em></p>
 <table>
 <thead>
 <tr>
@@ -83,20 +82,14 @@ Any <strong>GeoTIFF</strong> (with less, than <strong>5 bands</strong>) on input
 <tr>
 <td style="text-align: center;">-i</td>
 <td style="text-align: center;">--input</td>
-<td style="text-align: center;">Full path to input file</td>
+<td style="text-align: center;">Path to input file</td>
 <td style="text-align: center;">Yes</td>
 </tr>
 <tr>
 <td style="text-align: center;">-o</td>
 <td style="text-align: center;">--output</td>
-<td style="text-align: center;">Full path to output directory</td>
+<td style="text-align: center;">Path to output directory</td>
 <td style="text-align: center;">Yes</td>
-</tr>
-<tr>
-<td style="text-align: center;">-t</td>
-<td style="text-align: center;">--temp</td>
-<td style="text-align: center;">Full path to temp directory</td>
-<td style="text-align: center;">No</td>
 </tr>
 <tr>
 <td style="text-align: center;"></td>
@@ -112,20 +105,74 @@ Any <strong>GeoTIFF</strong> (with less, than <strong>5 bands</strong>) on input
 </tr>
 <tr>
 <td style="text-align: center;"></td>
-<td style="text-align: center;">--tms</td>
-<td style="text-align: center;">Do you want to create tms-compatible tiles?</td>
+<td style="text-align: center;">--threads</td>
+<td style="text-align: center;">Threads count, calculates auto by default</td>
 <td style="text-align: center;">No</td>
 </tr>
 <tr>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">--extension</td>
-<td style="text-align: center;">Ready tiles extension</td>
+<td style="text-align: center;">Extension of ready tiles, <code>.png</code> by default</td>
+<td style="text-align: center;">No</td>
+</tr>
+<tr>
+<td style="text-align: center;">-t</td>
+<td style="text-align: center;">--temp</td>
+<td style="text-align: center;">Path to temp directory, current directory by default</td>
 <td style="text-align: center;">No</td>
 </tr>
 <tr>
 <td style="text-align: center;"></td>
-<td style="text-align: center;">--threads</td>
-<td style="text-align: center;">Threads count</td>
+<td style="text-align: center;">--tms</td>
+<td style="text-align: center;">Do you want to create tms-compatible tiles? <code>true</code> by default</td>
+<td style="text-align: center;">No</td>
+</tr>
+<tr>
+<td style="text-align: center;">-c</td>
+<td style="text-align: center;">--coordinates</td>
+<td style="text-align: center;">Target tiles coordinate system, <code>geodetic</code> by default</td>
+<td style="text-align: center;">No</td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">--interpolation</td>
+<td style="text-align: center;">Interpolation of ready tiles, <code>lanczos3</code> by default</td>
+<td style="text-align: center;">No</td>
+</tr>
+<tr>
+<td style="text-align: center;">-b</td>
+<td style="text-align: center;">--bands</td>
+<td style="text-align: center;">Count of bands in ready tiles, 4 by default</td>
+<td style="text-align: center;">No</td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">--tilecache</td>
+<td style="text-align: center;">How much tiles would you like to store in memory cache? 100 by default</td>
+<td style="text-align: center;">No</td>
+</tr>
+<tr>
+<td style="text-align: center;">-m</td>
+<td style="text-align: center;">--memcache</td>
+<td style="text-align: center;">Maximum size of input files to store in RAM, <code>2147483648</code> by default</td>
+<td style="text-align: center;">No</td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">--progress</td>
+<td style="text-align: center;">Do you want to see the progress? <code>true</code> by default</td>
+<td style="text-align: center;">No</td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">--timeleft</td>
+<td style="text-align: center;">Do you want to see estimated time left? <code>false</code> by default</td>
+<td style="text-align: center;">No</td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">--tilesize</td>
+<td style="text-align: center;">Ready tile's size, 256 by default</td>
 <td style="text-align: center;">No</td>
 </tr>
 <tr>
@@ -137,22 +184,30 @@ Any <strong>GeoTIFF</strong> (with less, than <strong>5 bands</strong>) on input
 <tr>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">--help</td>
-<td style="text-align: center;">Message about console options</td>
+<td style="text-align: center;">Message about command line options</td>
 <td style="text-align: center;"></td>
 </tr>
 </tbody>
 </table>
-<p>Simple example looks like this: <code>./GTiff2Tiles.Console -i &quot;D:/Examples/Input.tif&quot; -o &quot;D:/Examples/Output&quot; -t &quot;D:/Examples/Temp&quot; --minz 8 –maxz 11 -a crop --tms true --extension .webp --threads 3</code></p>
-<p>Also take a look at <a href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Console/Start.ps1">Start.ps1</a> <strong>PowerShell</strong> script for automating and simplifying the work. Note, that running this script requires installed <strong>PowerShell</strong> or <strong><a href="https://github.com/PowerShell/PowerShell">PowerShell Core</a></strong> (also available on <strong>Linux</strong>/<strong>OSX</strong> systems!).</p>
+<p>Minimal example looks like this: <code>./GTiff2Tiles.Console -i &quot;D:/Examples/Input.tif&quot; -o &quot;D:/Examples/Output&quot; --minz 0 --maxz 12</code></p>
+<p>Take a look at <a href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Console/Start.ps1">Start.ps1</a> <strong>PowerShell</strong> script for automating and more examples of the work. Note, that running this script requires installed <strong>PowerShell</strong> or <strong><a href="https://github.com/PowerShell/PowerShell">PowerShell Core</a></strong> (also available on <strong>Linux</strong>/<strong>OSX</strong> systems!).</p>
 <h3 id="detailed-options-description">Detailed options description</h3>
 <p><strong>-i/--input</strong> is <code>string</code>, representing full path to input <strong>GeoTIFF</strong> file. Please, specify the path in double quotes (<code>“like this”</code>) if it contains spaces.</p>
 <p><strong>-o/--output</strong> is <code>string</code>, representing full path to directory, where tiles in will be created. Please, specify the path in double quotes (<code>“like this”</code>) if it contains spaces. <strong>Directory should be empty.</strong></p>
-<p><strong>-t/--temp</strong> is <code>string</code>, representing full path to temporary directory. Please, specify the path in double quotes (<code>“like this”</code>) if it contains spaces. Inside will be created directory, which name is a <strong>timestamp</strong> in format <code>yyyyMMddHHmmssfff</code>. By default – the same directory, where application is located.</p>
 <p><strong>--minz</strong> is <code>int</code> parameter, representing minimum zoom, which you want to crop.</p>
 <p><strong>--maxz</strong> is <code>int</code> parameter, representing maximum zoom, which you want to crop.</p>
-<p><strong>--tms</strong> is <code>string</code>, which shows if you want to create tms-compatible or non-tms-compatible tiles on output. Can have values <code>true</code> or <code>false</code>. By default is <code>true</code>.</p>
+<p><strong>--threads</strong> is <code>int</code> parameter, representing threads count. By default (if not set) uses calculates automatically, based on your PC.</p>
 <p><strong>--extension</strong> is a <code>string</code>, representing ready tiles extension. By default is set to <code>.png</code>. Currently supported extensions are: <code>.webp</code>, <code>.jpg</code>, <code>.png</code>.</p>
-<p><strong>--threads</strong> is <code>int</code> parameter, representing threads count. By default (if not set) uses <strong>5 threads</strong>.</p>
+<p><strong>-t/--temp</strong> is <code>string</code>, representing full path to temporary directory. Please, specify the path in double quotes (<code>“like this”</code>) if it contains spaces. Inside will be created directory, which name is a <strong>timestamp</strong> in format <code>yyyyMMddHHmmssfff</code>. By default – the same directory, where application is located.</p>
+<p><strong>--tms</strong> is <code>string</code>, which shows if you want to create tms-compatible or non-tms-compatible tiles on output. Can have values <code>true</code> or <code>false</code>. By default is <code>true</code>.</p>
+<p><strong>-c/--coordinates</strong> is a <code>string</code>, representing ready tile’s coordinate system. By default is <code>geodetic</code> (<em>EPSG:4326</em>). Supported values: <code>geodetic</code>, <code>mercator</code>.</p>
+<p><strong>--interpolation</strong> is a <code>string</code>, representing ready tile’s interpolation. By default is <code>lanczos3</code>. Supported values: <code>nearest</code>, <code>linear</code>, <code>cubic</code>, <code>mitchell</code>, <code>lanczos2</code>, <code>lanczos3</code>.</p>
+<p><strong>-b/--bands</strong> is <code>int</code> parameter, representing count of bands in ready tiles. By default is <code>4</code>.</p>
+<p><strong>--tilecache</strong> is <code>int</code> parameter, representing count of tiles to store in RAM to crop them faster (<em>that’s vips stuff</em>). <code>1000</code> by default.</p>
+<p><strong>--memcache</strong> is <code>long</code> parameter, representing maximal size (<em>in bytes</em>) of input file to store in RAM to crop it faster. By default is <code>2147483648</code> (<em>which equals to 2Gb</em>).</p>
+<p><strong>--progress</strong> is <code>bool</code> parameter. If it’s set to <code>true</code> – you’ll see cropping progress in your command line. <code>true</code> by default.</p>
+<p><strong>--timeleft</strong> is a <code>bool</code> parameter. If it’s set to <code>true</code> – you’ll see estimated time left before end of cropping after each tile is cropped. <code>false</code> (<em>beware, too much output can slow app down</em>) by default.</p>
+<p><strong>--tilesize</strong> is <code>int</code> parameter, representing the size of one side (*<em>tiles should be a square, so specifying 2 side’s sizes is redundant</em>) of ready tiles. <code>256</code> by default.</p>
 <h3 id="offline-docs">Offline docs</h3>
 <p>Offline docs are also available as <a href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Console/console-index.pdf">pdf</a> and distributed alongside the application.</p>
 <h2 id="build-dependencies">Build dependencies</h2>

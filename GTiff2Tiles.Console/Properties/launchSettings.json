@@ -2,7 +2,7 @@
   "profiles": {
     "GTiff2Tiles.Console": {
       "commandName": "Project",
-      "commandLineArgs": "-i ../../../../../Examples/Input/Input3785.tif -o ../../../../../Examples/Output --minz 0 --maxz 12 --threads 5 --extension .webp -t ../../../../../Examples/tmp --tms true -c mercator --interpolation cubic -b 3 --tilecache 1001 -m 2147483649 --progress true --timeleft true --tilesize 128"
+      "commandLineArgs": "-i ../../../../../Examples/Input/Input3785.tif -o ../../../../../Examples/Output --minz 0 --maxz 12 --threads 5 --extension .webp -t ../../../../../Examples/tmp --tms false -c mercator --interpolation cubic -b 3 --tilecache 1001 -m 2147483649 --progress true --timeleft true --tilesize 128"
     }
   }
 }
