@@ -1,6 +1,7 @@
 ﻿using System;
 using GTiff2Tiles.Core.Enums;
 using GTiff2Tiles.Core.Images;
+using GTiff2Tiles.Core.Localization;
 
 // ReSharper disable MemberCanBePrivate.Global
 
@@ -90,7 +91,7 @@ namespace GTiff2Tiles.Core.Coordinates
 
             if (z < 0) throw new ArgumentOutOfRangeException(nameof(z));
             if (tileSize == null) throw new ArgumentNullException(nameof(tileSize));
-            if (!tileSize.IsSquare) throw new ArgumentException($"{nameof(tileSize)} is not square", nameof(tileSize));
+            if (!tileSize.IsSquare) throw new ArgumentException(Strings.NotSqare);
 
             #endregion
 

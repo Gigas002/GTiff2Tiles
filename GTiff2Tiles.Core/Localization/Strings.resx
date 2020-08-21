@@ -117,7 +117,40 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="CoordinatesDoesntFit" xml:space="preserve">
+    <value>Coordinates doesn't fit in one tile</value>
+  </data>
+  <data name="DoesntExist" xml:space="preserve">
+    <value>{0} doesn't exist</value>
+  </data>
+  <data name="EmptyStatus" xml:space="preserve">
+    <value>{0} should be: {1}, actual status: {2}</value>
+  </data>
+  <data name="Equal" xml:space="preserve">
+    <value>{0} equal to {1}</value>
+  </data>
   <data name="EstimatedTime" xml:space="preserve">
     <value>Estimated time:{0}Days:{1}, hours:{2}, minutes:{3}, seconds:{4}, ms:{5}</value>
+  </data>
+  <data name="Exist" xml:space="preserve">
+    <value>{0} already exist</value>
+  </data>
+  <data name="ExpectedWas" xml:space="preserve">
+    <value>Expected: {0}, was {1}</value>
+  </data>
+  <data name="IsBroken" xml:space="preserve">
+    <value>{0} is broken</value>
+  </data>
+  <data name="NotEqual" xml:space="preserve">
+    <value>{0} not equal to {1}</value>
+  </data>
+  <data name="NoTilesToCrop" xml:space="preserve">
+    <value>No tiles to crop in this raster</value>
+  </data>
+  <data name="NotSqare" xml:space="preserve">
+    <value>Size is not a square</value>
+  </data>
+  <data name="NotSupported" xml:space="preserve">
+    <value>{0} is not supported</value>
   </data>
 </root>

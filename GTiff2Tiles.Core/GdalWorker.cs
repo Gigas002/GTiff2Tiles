@@ -9,6 +9,7 @@ using GTiff2Tiles.Core.Coordinates;
 using GTiff2Tiles.Core.Enums;
 using GTiff2Tiles.Core.Helpers;
 using GTiff2Tiles.Core.Images;
+using GTiff2Tiles.Core.Localization;
 using MaxRev.Gdal.Core;
 using OSGeo.GDAL;
 using OSGeo.OSR;
@@ -264,7 +265,9 @@ namespace GTiff2Tiles.Core
                 }
                 default:
                 {
-                    throw new NotSupportedException($"{targetSystem} is not supported");
+                    string err = string.Format(Strings.Culture, Strings.NotSupported, targetSystem);
+
+                    throw new NotSupportedException(err);
                 }
             }
 
@@ -353,21 +356,25 @@ namespace GTiff2Tiles.Core
             switch (coordinateSystem)
             {
                 case CoordinateSystem.Epsg4326:
-                    {
-                        GeodeticCoordinate minCoordinate = new GeodeticCoordinate(minX, minY);
-                        GeodeticCoordinate maxCoordinate = new GeodeticCoordinate(maxX, maxY);
+                {
+                    GeodeticCoordinate minCoordinate = new GeodeticCoordinate(minX, minY);
+                    GeodeticCoordinate maxCoordinate = new GeodeticCoordinate(maxX, maxY);
 
-                        return (minCoordinate, maxCoordinate);
-                    }
+                    return (minCoordinate, maxCoordinate);
+                }
                 case CoordinateSystem.Epsg3857:
-                    {
-                        MercatorCoordinate minCoordinate = new MercatorCoordinate(minX, minY);
-                        MercatorCoordinate maxCoordinate = new MercatorCoordinate(maxX, maxY);
+                {
+                    MercatorCoordinate minCoordinate = new MercatorCoordinate(minX, minY);
+                    MercatorCoordinate maxCoordinate = new MercatorCoordinate(maxX, maxY);
 
-                        return (minCoordinate, maxCoordinate);
-                    }
+                    return (minCoordinate, maxCoordinate);
+                }
                 default:
-                    throw new NotSupportedException($"{coordinateSystem} is not supported");
+                {
+                    string err = string.Format(Strings.Culture, Strings.NotSupported, coordinateSystem);
+
+                    throw new NotSupportedException(err);
+                }
             }
         }
 

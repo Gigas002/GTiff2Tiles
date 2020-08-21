@@ -3,6 +3,7 @@ using System.Linq;
 using GTiff2Tiles.Core.Coordinates;
 using GTiff2Tiles.Core.Enums;
 using GTiff2Tiles.Core.Images;
+using GTiff2Tiles.Core.Localization;
 
 // ReSharper disable UnusedMember.Global
 // ReSharper disable MemberCanBePrivate.Global
@@ -200,20 +201,25 @@ namespace GTiff2Tiles.Core.Tiles
             switch (coordinateSystem)
             {
                 case CoordinateSystem.Epsg4326:
-                    {
-                        (GeodeticCoordinate minCoordinate, GeodeticCoordinate maxCoordinate) =
-                            number.ToGeodeticCoordinates(tileSize, tmsCompatible);
+                {
+                    (GeodeticCoordinate minCoordinate, GeodeticCoordinate maxCoordinate) =
+                        number.ToGeodeticCoordinates(tileSize, tmsCompatible);
 
-                        return (minCoordinate, maxCoordinate);
-                    }
+                    return (minCoordinate, maxCoordinate);
+                }
                 case CoordinateSystem.Epsg3857:
-                    {
-                        (MercatorCoordinate minCoordinate, MercatorCoordinate maxCoordinate) =
-                            number.ToMercatorCoordinates(tileSize, tmsCompatible);
+                {
+                    (MercatorCoordinate minCoordinate, MercatorCoordinate maxCoordinate) =
+                        number.ToMercatorCoordinates(tileSize, tmsCompatible);
 
-                        return (minCoordinate, maxCoordinate);
-                    }
-                default: throw new NotSupportedException($"{coordinateSystem} is not supported");
+                    return (minCoordinate, maxCoordinate);
+                }
+                default:
+                {
+                    string err = string.Format(Strings.Culture, Strings.NotSupported, coordinateSystem);
+
+                    throw new NotSupportedException(err);
+                }
             }
         }
 
@@ -358,7 +364,10 @@ namespace GTiff2Tiles.Core.Tiles
 
             if (number1 == null) throw new ArgumentNullException(nameof(number1));
             if (number2 == null) throw new ArgumentNullException(nameof(number2));
-            if (number1.Z != number2.Z) throw new ArgumentException("Zoom of number1 isn't equal to zoom of number2");
+
+            string err = string.Format(Strings.Culture, Strings.NotEqual, nameof(number1.Z), nameof(number2.Z));
+
+            if (number1.Z != number2.Z) throw new ArgumentException(err);
 
             #endregion
 
@@ -386,7 +395,10 @@ namespace GTiff2Tiles.Core.Tiles
 
             if (number1 == null) throw new ArgumentNullException(nameof(number1));
             if (number2 == null) throw new ArgumentNullException(nameof(number2));
-            if (number1.Z != number2.Z) throw new ArgumentException("Zoom of number1 isn't equal to zoom of number2");
+
+            string err = string.Format(Strings.Culture, Strings.NotEqual, nameof(number1.Z), nameof(number2.Z));
+
+            if (number1.Z != number2.Z) throw new ArgumentException(err);
 
             #endregion
 
@@ -414,7 +426,10 @@ namespace GTiff2Tiles.Core.Tiles
 
             if (number1 == null) throw new ArgumentNullException(nameof(number1));
             if (number2 == null) throw new ArgumentNullException(nameof(number2));
-            if (number1.Z != number2.Z) throw new ArgumentException("Zoom of number1 isn't equal to zoom of number2");
+
+            string err = string.Format(Strings.Culture, Strings.NotEqual, nameof(number1.Z), nameof(number2.Z));
+
+            if (number1.Z != number2.Z) throw new ArgumentException(err);
 
             #endregion
 
@@ -442,7 +457,10 @@ namespace GTiff2Tiles.Core.Tiles
 
             if (number1 == null) throw new ArgumentNullException(nameof(number1));
             if (number2 == null) throw new ArgumentNullException(nameof(number2));
-            if (number1.Z != number2.Z) throw new ArgumentException("Zoom of number1 isn't equal to zoom of number2");
+
+            string err = string.Format(Strings.Culture, Strings.NotEqual, nameof(number1.Z), nameof(number2.Z));
+
+            if (number1.Z != number2.Z) throw new ArgumentException(err);
 
             #endregion
 

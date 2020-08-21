@@ -1353,9 +1353,64 @@
               resource lookups using this strongly typed resource class.
             </summary>
         </member>
+        <member name="P:GTiff2Tiles.Core.Localization.Strings.CoordinatesDoesntFit">
+            <summary>
+              Looks up a localized string similar to Coordinates doesn&apos;t fit in one tile.
+            </summary>
+        </member>
+        <member name="P:GTiff2Tiles.Core.Localization.Strings.DoesntExist">
+            <summary>
+              Looks up a localized string similar to {0} doesn&apos;t exist.
+            </summary>
+        </member>
+        <member name="P:GTiff2Tiles.Core.Localization.Strings.EmptyStatus">
+            <summary>
+              Looks up a localized string similar to {0} should be: {1}, actual status: {2}.
+            </summary>
+        </member>
+        <member name="P:GTiff2Tiles.Core.Localization.Strings.Equal">
+            <summary>
+              Looks up a localized string similar to {0} equal to {1}.
+            </summary>
+        </member>
         <member name="P:GTiff2Tiles.Core.Localization.Strings.EstimatedTime">
             <summary>
               Looks up a localized string similar to Estimated time:{0}Days:{1}, hours:{2}, minutes:{3}, seconds:{4}, ms:{5}.
+            </summary>
+        </member>
+        <member name="P:GTiff2Tiles.Core.Localization.Strings.Exist">
+            <summary>
+              Looks up a localized string similar to {0} already exist.
+            </summary>
+        </member>
+        <member name="P:GTiff2Tiles.Core.Localization.Strings.ExpectedWas">
+            <summary>
+              Looks up a localized string similar to Expected: {0}, was {1}.
+            </summary>
+        </member>
+        <member name="P:GTiff2Tiles.Core.Localization.Strings.IsBroken">
+            <summary>
+              Looks up a localized string similar to {0} is broken.
+            </summary>
+        </member>
+        <member name="P:GTiff2Tiles.Core.Localization.Strings.NotEqual">
+            <summary>
+              Looks up a localized string similar to {0} not equal to {1}.
+            </summary>
+        </member>
+        <member name="P:GTiff2Tiles.Core.Localization.Strings.NoTilesToCrop">
+            <summary>
+              Looks up a localized string similar to No tiles to crop in this raster.
+            </summary>
+        </member>
+        <member name="P:GTiff2Tiles.Core.Localization.Strings.NotSqare">
+            <summary>
+              Looks up a localized string similar to Size is not a square.
+            </summary>
+        </member>
+        <member name="P:GTiff2Tiles.Core.Localization.Strings.NotSupported">
+            <summary>
+              Looks up a localized string similar to {0} is not supported.
             </summary>
         </member>
         <member name="T:GTiff2Tiles.Core.Tiles.ITile">

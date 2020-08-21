@@ -117,7 +117,40 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="CoordinatesDoesntFit" xml:space="preserve">
+    <value>Координаты не вмещаются в тайл</value>
+  </data>
+  <data name="DoesntExist" xml:space="preserve">
+    <value>{0} не существует</value>
+  </data>
+  <data name="EmptyStatus" xml:space="preserve">
+    <value>{0} должно быть: {1}, на самом деле: {2}</value>
+  </data>
+  <data name="Equal" xml:space="preserve">
+    <value>{0} равно {1}</value>
+  </data>
   <data name="EstimatedTime" xml:space="preserve">
     <value>Осталось времени:{0}Дней:{1}, часов:{2}, минут:{3}, секунд:{4}, миллисекунд:{5}</value>
+  </data>
+  <data name="Exist" xml:space="preserve">
+    <value>{0} уже существует</value>
+  </data>
+  <data name="ExpectedWas" xml:space="preserve">
+    <value>Ожидалось: {0}, было {1}</value>
+  </data>
+  <data name="IsBroken" xml:space="preserve">
+    <value>{0} сломан</value>
+  </data>
+  <data name="NotEqual" xml:space="preserve">
+    <value>{0} не равно {1}</value>
+  </data>
+  <data name="NoTilesToCrop" xml:space="preserve">
+    <value>В растре нет тайлов для нарезки</value>
+  </data>
+  <data name="NotSqare" xml:space="preserve">
+    <value>Size не является квадратом</value>
+  </data>
+  <data name="NotSupported" xml:space="preserve">
+    <value>{0} не поддерживается</value>
   </data>
 </root>

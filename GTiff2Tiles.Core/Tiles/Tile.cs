@@ -8,6 +8,7 @@ using GTiff2Tiles.Core.Coordinates;
 using GTiff2Tiles.Core.Enums;
 using GTiff2Tiles.Core.Helpers;
 using GTiff2Tiles.Core.Images;
+using GTiff2Tiles.Core.Localization;
 
 // ReSharper disable VirtualMemberNeverOverridden.Global
 // ReSharper disable UnusedMember.Global
@@ -90,7 +91,7 @@ namespace GTiff2Tiles.Core.Tiles
         {
             (Number, Bytes, Extension, TmsCompatible, Size) = (number, bytes, extension, tmsCompatible, size ?? DefaultSize);
 
-            if (!Size.IsSquare) throw new ArgumentException("This tile is not square", nameof(size));
+            if (!Size.IsSquare) throw new ArgumentException(Strings.NotSqare, nameof(size));
 
             (MinCoordinate, MaxCoordinate) = Number.ToGeoCoordinates(coordinateSystem, Size, tmsCompatible);
         }
@@ -115,12 +116,12 @@ namespace GTiff2Tiles.Core.Tiles
         {
             Size = size ?? DefaultSize;
 
-            if (!Size.IsSquare) throw new ArgumentException("This tile is not square", nameof(size));
+            if (!Size.IsSquare) throw new ArgumentException(Strings.NotSqare, nameof(size));
 
             (Number minNumber, Number maxNumber) = GeoCoordinate.GetNumbers(minCoordinate, maxCoordinate, zoom, Size, tmsCompatible);
 
             if (!minNumber.Equals(maxNumber))
-                throw new ArgumentException("Passed coordinates doesn't fit in one tile");
+                throw new ArgumentException(Strings.CoordinatesDoesntFit);
 
             (Number, Bytes, Extension, TmsCompatible) = (minNumber, bytes, extension, tmsCompatible);
             (MinCoordinate, MaxCoordinate) = (minCoordinate, maxCoordinate);
@@ -196,6 +197,7 @@ namespace GTiff2Tiles.Core.Tiles
             if (tile?.Bytes == null || tile.Bytes.Count() <= tile.MinimalBytesCount) return false;
 
             // ReSharper disable once InvertIf
+            // ReSharper disable once RemoveRedundantBraces
             if (isCheckPath)
             {
                 try

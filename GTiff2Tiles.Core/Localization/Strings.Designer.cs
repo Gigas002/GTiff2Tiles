@@ -61,11 +61,110 @@ namespace GTiff2Tiles.Core.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Coordinates doesn&apos;t fit in one tile.
+        /// </summary>
+        internal static string CoordinatesDoesntFit {
+            get {
+                return ResourceManager.GetString("CoordinatesDoesntFit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} doesn&apos;t exist.
+        /// </summary>
+        internal static string DoesntExist {
+            get {
+                return ResourceManager.GetString("DoesntExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} should be: {1}, actual status: {2}.
+        /// </summary>
+        internal static string EmptyStatus {
+            get {
+                return ResourceManager.GetString("EmptyStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} equal to {1}.
+        /// </summary>
+        internal static string Equal {
+            get {
+                return ResourceManager.GetString("Equal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Estimated time:{0}Days:{1}, hours:{2}, minutes:{3}, seconds:{4}, ms:{5}.
         /// </summary>
         internal static string EstimatedTime {
             get {
                 return ResourceManager.GetString("EstimatedTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} already exist.
+        /// </summary>
+        internal static string Exist {
+            get {
+                return ResourceManager.GetString("Exist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Expected: {0}, was {1}.
+        /// </summary>
+        internal static string ExpectedWas {
+            get {
+                return ResourceManager.GetString("ExpectedWas", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} is broken.
+        /// </summary>
+        internal static string IsBroken {
+            get {
+                return ResourceManager.GetString("IsBroken", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} not equal to {1}.
+        /// </summary>
+        internal static string NotEqual {
+            get {
+                return ResourceManager.GetString("NotEqual", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No tiles to crop in this raster.
+        /// </summary>
+        internal static string NoTilesToCrop {
+            get {
+                return ResourceManager.GetString("NoTilesToCrop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Size is not a square.
+        /// </summary>
+        internal static string NotSqare {
+            get {
+                return ResourceManager.GetString("NotSqare", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} is not supported.
+        /// </summary>
+        internal static string NotSupported {
+            get {
+                return ResourceManager.GetString("NotSupported", resourceCulture);
             }
         }
     }

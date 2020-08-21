@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using GTiff2Tiles.Core.Enums;
 using GTiff2Tiles.Core.Exceptions;
+using GTiff2Tiles.Core.Localization;
 
 namespace GTiff2Tiles.Core.Helpers
 {
@@ -36,12 +37,19 @@ namespace GTiff2Tiles.Core.Helpers
             // Check file path
             if (string.IsNullOrWhiteSpace(filePath)) throw new ArgumentNullException(nameof(filePath));
 
+            string err;
+
             // Check file extension
             if (!string.IsNullOrWhiteSpace(fileExtension))
             {
-                string? actualExtension = Path.GetExtension(filePath);
+                string actualExtension = Path.GetExtension(filePath);
 
-                if (actualExtension != fileExtension) throw new ArgumentException($"Expected {fileExtension}, was {actualExtension}", nameof(fileExtension));
+                if (actualExtension != fileExtension)
+                {
+                    err = string.Format(Strings.Culture, Strings.ExpectedWas, fileExtension, actualExtension);
+
+                    throw new ArgumentException(err);
+                }
             }
 
             // Check file's existance
@@ -50,9 +58,17 @@ namespace GTiff2Tiles.Core.Helpers
             switch (shouldExist)
             {
                 case true when !existance:
-                    throw new FileNotFoundException("File doesn't exist", filePath);
+                {
+                    err = string.Format(Strings.Culture, Strings.DoesntExist, filePath);
+
+                    throw new FileNotFoundException(err);
+                }
                 case false when existance:
-                    throw new FileException("File already exists");
+                {
+                    err = string.Format(Strings.Culture, Strings.Exist, filePath);
+
+                    throw new FileException(err);
+                }
             }
         }
 
@@ -76,12 +92,13 @@ namespace GTiff2Tiles.Core.Helpers
             // Check directory's emptyness
             bool containsAny = directoryInfo.EnumerateFileSystemInfos().Any();
 
+            string err = string.Format(Strings.Culture, Strings.EmptyStatus, directoryPath, shouldBeEmpty,
+                                       containsAny);
+
             switch (shouldBeEmpty)
             {
-                case true when containsAny:
-                    throw new DirectoryException($"Directory should be empty: {shouldBeEmpty}, actual status: {containsAny}");
-                case false when !containsAny:
-                    throw new DirectoryException($"Directory should be empty: {shouldBeEmpty}, actual status: {containsAny}");
+                case true when containsAny: throw new DirectoryException(err);
+                case false when !containsAny: throw new DirectoryException(err);
             }
         }
 

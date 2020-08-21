@@ -1,6 +1,7 @@
 ﻿using System;
 using GTiff2Tiles.Core.Enums;
 using GTiff2Tiles.Core.Images;
+using GTiff2Tiles.Core.Localization;
 using GTiff2Tiles.Core.Tiles;
 
 // ReSharper disable UnusedMember.Global
@@ -45,7 +46,7 @@ namespace GTiff2Tiles.Core.Coordinates
 
             if (z < 0) throw new ArgumentOutOfRangeException(nameof(z));
             if (tileSize == null) throw new ArgumentNullException(nameof(tileSize));
-            if (!tileSize.IsSquare) throw new ArgumentException($"{nameof(tileSize)} is not square", nameof(tileSize));
+            if (!tileSize.IsSquare) throw new ArgumentException(Strings.NotSqare);
 
             #endregion
 
@@ -76,7 +77,7 @@ namespace GTiff2Tiles.Core.Coordinates
             {
                 CoordinateSystem.Epsg4326 => ToGeodeticCoordinate(inputCoordinateSystem, z, tileSize),
                 CoordinateSystem.Epsg3857 => ToMercatorCoordinate(inputCoordinateSystem, z, tileSize),
-                _ => throw new NotSupportedException($"{targetCoordinateSystem} is not supported")
+                _ => throw new NotSupportedException(string.Format(Strings.Culture, Strings.NotSupported, targetCoordinateSystem))
             };
 
         /// <summary>
@@ -101,24 +102,25 @@ namespace GTiff2Tiles.Core.Coordinates
             switch (inputCoordinateSystem)
             {
                 case CoordinateSystem.Epsg4326:
-                    {
-                        double resolution = GeodeticCoordinate.Resolution(z, tileSize);
+                {
+                    double resolution = GeodeticCoordinate.Resolution(z, tileSize);
 
-                        double x = X * resolution - GeodeticCoordinate.MaxPossibleLonValue;
-                        double y = Y * resolution - GeodeticCoordinate.MaxPossibleLatValue;
+                    double x = X * resolution - GeodeticCoordinate.MaxPossibleLonValue;
+                    double y = Y * resolution - GeodeticCoordinate.MaxPossibleLatValue;
 
-                        return new GeodeticCoordinate(x, y);
-                    }
+                    return new GeodeticCoordinate(x, y);
+                }
                 case CoordinateSystem.Epsg3857:
-                    {
-                        MercatorCoordinate mercatorCoordinate = ToMercatorCoordinate(inputCoordinateSystem, z, tileSize);
+                {
+                    MercatorCoordinate mercatorCoordinate = ToMercatorCoordinate(inputCoordinateSystem, z, tileSize);
 
-                        return mercatorCoordinate.ToGeodeticCoordinate();
-                    }
+                    return mercatorCoordinate.ToGeodeticCoordinate();
+                }
                 default:
-                    {
-                        throw new NotSupportedException();
-                    }
+                {
+                    throw new NotSupportedException(string.Format(Strings.Culture, Strings.NotSupported,
+                                                                  inputCoordinateSystem));
+                }
             }
         }
 
@@ -144,23 +146,24 @@ namespace GTiff2Tiles.Core.Coordinates
             switch (inputCoordinateSystem)
             {
                 case CoordinateSystem.Epsg3857:
-                    {
-                        double resolution = MercatorCoordinate.Resolution(z, tileSize);
-                        double mx = X * resolution - Constants.Geodesic.OriginShift;
-                        double my = Y * resolution - Constants.Geodesic.OriginShift;
+                {
+                    double resolution = MercatorCoordinate.Resolution(z, tileSize);
+                    double mx = X * resolution - Constants.Geodesic.OriginShift;
+                    double my = Y * resolution - Constants.Geodesic.OriginShift;
 
-                        return new MercatorCoordinate(mx, my);
-                    }
+                    return new MercatorCoordinate(mx, my);
+                }
                 case CoordinateSystem.Epsg4326:
-                    {
-                        GeodeticCoordinate geodeticCoordinate = ToGeodeticCoordinate(inputCoordinateSystem, z, tileSize);
+                {
+                    GeodeticCoordinate geodeticCoordinate = ToGeodeticCoordinate(inputCoordinateSystem, z, tileSize);
 
-                        return geodeticCoordinate.ToMercatorCoordinate();
-                    }
+                    return geodeticCoordinate.ToMercatorCoordinate();
+                }
                 default:
-                    {
-                        throw new NotSupportedException($"{inputCoordinateSystem} is not supported");
-                    }
+                {
+                    throw new NotSupportedException(string.Format(Strings.Culture, Strings.NotSupported,
+                                                                  inputCoordinateSystem));
+                }
             }
         }
 
@@ -181,7 +184,7 @@ namespace GTiff2Tiles.Core.Coordinates
 
             if (z < 0) throw new ArgumentOutOfRangeException(nameof(z));
             if (tileSize == null) throw new ArgumentNullException(nameof(tileSize));
-            if (!tileSize.IsSquare) throw new ArgumentException($"{nameof(tileSize)} is not square", nameof(tileSize));
+            if (!tileSize.IsSquare) throw new ArgumentException(Strings.NotSqare);
 
             #endregion
 

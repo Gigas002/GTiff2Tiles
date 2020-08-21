@@ -11,6 +11,7 @@ using GTiff2Tiles.Core.Enums;
 using GTiff2Tiles.Core.Exceptions;
 using GTiff2Tiles.Core.Helpers;
 using GTiff2Tiles.Core.Images;
+using GTiff2Tiles.Core.Localization;
 using GTiff2Tiles.Core.Tiles;
 using NetVips;
 
@@ -82,7 +83,11 @@ namespace GTiff2Tiles.Core.GeoTiffs
             CoordinateSystem coordinateSystem = GdalWorker.GetCoordinateSystem(proj4String);
 
             if (coordinateSystem == CoordinateSystem.Other)
-                throw new NotSupportedException($"{coordinateSystem} is not supported");
+            {
+                string err = string.Format(Strings.Culture, Strings.NotSupported, coordinateSystem);
+
+                throw new NotSupportedException(err);
+            }
 
             bool memory = new FileInfo(inputFilePath).Length <= maxMemoryCache;
             Data = Image.NewFromFile(inputFilePath, memory, NetVips.Enums.Access.Random);
@@ -112,7 +117,13 @@ namespace GTiff2Tiles.Core.GeoTiffs
 
             CheckHelper.CheckFile(inputFilePath, true, FileExtensions.Tif);
 
-            if (coordinateSystem == CoordinateSystem.Other) throw new NotSupportedException($"{coordinateSystem} is not supported");
+            if (coordinateSystem == CoordinateSystem.Other)
+            {
+                string err = string.Format(Strings.Culture, Strings.NotSupported, coordinateSystem);
+
+                throw new NotSupportedException(err);
+            }
+
             if (maxMemoryCache <= 0) throw new ArgumentOutOfRangeException(nameof(maxMemoryCache));
 
             #endregion
@@ -138,7 +149,13 @@ namespace GTiff2Tiles.Core.GeoTiffs
             #region Preconditions checks
 
             if (inputStream == null) throw new ArgumentNullException(nameof(inputStream));
-            if (coordinateSystem == CoordinateSystem.Other) throw new NotSupportedException($"{coordinateSystem} is not supported");
+
+            if (coordinateSystem == CoordinateSystem.Other)
+            {
+                string err = string.Format(Strings.Culture, Strings.NotSupported, coordinateSystem);
+
+                throw new NotSupportedException(err);
+            }
 
             #endregion
 
@@ -242,7 +259,7 @@ namespace GTiff2Tiles.Core.GeoTiffs
                 Interpolation.Mitchell => nameof(Interpolation.Mitchell).ToLowerInvariant(),
                 Interpolation.Lanczos2 => nameof(Interpolation.Lanczos2).ToLowerInvariant(),
                 Interpolation.Lanczos3 => nameof(Interpolation.Lanczos3).ToLowerInvariant(),
-                _ => throw new ArgumentException("Tile has wrong interpolation", nameof(tile))
+                _ => throw new NotSupportedException(string.Format(Strings.Culture, Strings.NotSupported, tile.Interpolation))
 #pragma warning restore CA1308 // Normalize strings to uppercase
             };
 
@@ -425,7 +442,7 @@ namespace GTiff2Tiles.Core.GeoTiffs
             int tilesCount = Number.GetCount(MinCoordinate, MaxCoordinate, minZ, maxZ, tmsCompatible, tileSize);
 
             // if there's no tiles to crop
-            if (tilesCount <= 0) throw new RasterException("No tiles to crop in this raster");
+            if (tilesCount <= 0) throw new RasterException(Strings.NoTilesToCrop);
 
             double counter = 0.0;
 
@@ -538,7 +555,7 @@ namespace GTiff2Tiles.Core.GeoTiffs
             int tilesCount = Number.GetCount(MinCoordinate, MaxCoordinate, minZ, maxZ, tmsCompatible, tileSize);
 
             // if there's no tiles to crop
-            if (tilesCount <= 0) throw new RasterException("No tiles to crop in this raster");
+            if (tilesCount <= 0) throw new RasterException(Strings.NoTilesToCrop);
 
             double counter = 0.0;
 
@@ -625,7 +642,7 @@ namespace GTiff2Tiles.Core.GeoTiffs
             int tilesCount = Number.GetCount(MinCoordinate, MaxCoordinate, minZ, maxZ, tmsCompatible, tileSize);
 
             // if there's no tiles to crop
-            if (tilesCount <= 0) throw new RasterException("No tiles to crop in this raster");
+            if (tilesCount <= 0) throw new RasterException(Strings.NoTilesToCrop);
 
             double counter = 0.0;
 
@@ -740,7 +757,10 @@ namespace GTiff2Tiles.Core.GeoTiffs
             #region Preconditions checks
 
             if (inputStream == null) throw new ArgumentNullException(nameof(inputStream));
-            if (!inputStream.CanRead) throw new ArgumentException($"{nameof(inputStream)} is broken");
+
+            string err = string.Format(Strings.Culture, Strings.IsBroken, nameof(inputStream));
+
+            if (!inputStream.CanRead) throw new ArgumentException(err);
             // CoordinateSystem checked lower
 
             #endregion
@@ -751,7 +771,7 @@ namespace GTiff2Tiles.Core.GeoTiffs
             // Don't dispose -- it disposes the inputStream as well
             Tiff tiff = Tiff.ClientOpen(string.Empty, "r", inputStream, new TiffStream());
 
-            if (tiff == null) throw new ArgumentException($"{nameof(inputStream)} is broken");
+            if (tiff == null) throw new ArgumentException(err);
 
             // Get origin coordinates
             FieldValue[] tiePointTag = tiff.GetField(TiffTag.GEOTIFF_MODELTIEPOINTTAG);
@@ -774,6 +794,8 @@ namespace GTiff2Tiles.Core.GeoTiffs
             // Reset stream reading position
             inputStream.Seek(0, SeekOrigin.Begin);
 
+            err = string.Format(Strings.Culture, Strings.NotSupported, coordinateSystem);
+
             switch (coordinateSystem)
             {
                 case CoordinateSystem.Epsg4326:
@@ -790,7 +812,7 @@ namespace GTiff2Tiles.Core.GeoTiffs
 
                     return (minCoordinate, maxCoordinate);
                 }
-                default: throw new NotSupportedException($"{coordinateSystem} is not supported");
+                default: throw new NotSupportedException(err);
             }
         }
 
@@ -812,7 +834,9 @@ namespace GTiff2Tiles.Core.GeoTiffs
 
             using Tiff tiff = Tiff.Open(filePath, "r");
 
-            if (tiff == null) throw new ArgumentException($"{nameof(filePath)} is broken");
+            string err = string.Format(Strings.Culture, Strings.IsBroken, filePath);
+
+            if (tiff == null) throw new ArgumentException(err);
 
             // Get origin coordinates
             FieldValue[] tiePointTag = tiff.GetField(TiffTag.GEOTIFF_MODELTIEPOINTTAG);
@@ -832,6 +856,8 @@ namespace GTiff2Tiles.Core.GeoTiffs
             double maxX = minX + width * pixelScale;
             double minY = maxY - height * pixelScale;
 
+            err = string.Format(Strings.Culture, Strings.NotSupported, coordinateSystem);
+
             switch (coordinateSystem)
             {
                 case CoordinateSystem.Epsg4326:
@@ -848,7 +874,7 @@ namespace GTiff2Tiles.Core.GeoTiffs
 
                     return (minCoordinate, maxCoordinate);
                 }
-                default: throw new NotSupportedException($"{coordinateSystem} is not supported");
+                default: throw new NotSupportedException(err);
             }
         }
 

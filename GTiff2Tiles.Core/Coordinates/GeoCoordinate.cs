@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using GTiff2Tiles.Core.Enums;
 using GTiff2Tiles.Core.Images;
+using GTiff2Tiles.Core.Localization;
 using GTiff2Tiles.Core.Tiles;
 
 // ReSharper disable MemberCanBePrivate.Global
@@ -99,7 +100,7 @@ namespace GTiff2Tiles.Core.Coordinates
             {
                 CoordinateSystem.Epsg4326 => GeodeticCoordinate.Resolution(z, tileSize),
                 CoordinateSystem.Epsg3857 => MercatorCoordinate.Resolution(z, tileSize),
-                _ => throw new NotSupportedException($"{coordinateSystem} is not supported")
+                _ => throw new NotSupportedException(string.Format(Strings.Culture, Strings.NotSupported, coordinateSystem))
             };
 
         /// <summary>
