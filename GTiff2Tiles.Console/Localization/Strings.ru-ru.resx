@@ -121,26 +121,7 @@
     <value>Готово! Прошло времени:{0}Дней:{1} часов:{2} минут:{3} секунд:{4} миллисекунд:{5}</value>
     <comment>Выводится после завершения работы</comment>
   </data>
-  <data name="ExtensionNotSupported" xml:space="preserve">
-    <value>Указанное расширение тайлов не поддерживается</value>
-    <comment>Сообщение об ошибке</comment>
-  </data>
-  <data name="LesserOrEqual" xml:space="preserve">
-    <value>{0} меньше или равно {1}</value>
-    <comment>Необходимо для проверки потоков</comment>
-  </data>
-  <data name="LesserThan" xml:space="preserve">
-    <value>Параметр {0} меньше, чем {1}</value>
-    <comment>Необходимо для проверки уровней</comment>
-  </data>
-  <data name="OptionIsEmpty" xml:space="preserve">
-    <value>Параметр {0} пуст</value>
-    <comment>Выводится, когда консольный параметр пуст</comment>
-  </data>
   <data name="ParsingError" xml:space="preserve">
     <value>Невозможно распарсить указанные параметры</value>
-  </data>
-  <data name="PressAnyKey" xml:space="preserve">
-    <value>Нажмите любую клавишу для выхода</value>
   </data>
 </root>

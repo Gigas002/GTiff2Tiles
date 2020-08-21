@@ -1253,9 +1253,9 @@
             Creates new <see cref="T:GTiff2Tiles.Core.Images.Size"/>
             </summary>
             <param name="width"><see cref="P:GTiff2Tiles.Core.Images.Size.Width"/>
-            <remarks><para/>Shoukd be > 0</remarks></param>
+            <remarks><para/>Should be > 0</remarks></param>
             <param name="height"><see cref="P:GTiff2Tiles.Core.Images.Size.Height"/>
-            <remarks><para/>Shoukd be > 0</remarks></param>
+            <remarks><para/>Should be > 0</remarks></param>
             <exception cref="T:System.ArgumentOutOfRangeException"></exception>
         </member>
         <member name="M:GTiff2Tiles.Core.Images.Size.Equals(System.Object)">

@@ -39,9 +39,9 @@ namespace GTiff2Tiles.Core.Images
         /// Creates new <see cref="Size"/>
         /// </summary>
         /// <param name="width"><see cref="Width"/>
-        /// <remarks><para/>Shoukd be > 0</remarks></param>
+        /// <remarks><para/>Should be > 0</remarks></param>
         /// <param name="height"><see cref="Height"/>
-        /// <remarks><para/>Shoukd be > 0</remarks></param>
+        /// <remarks><para/>Should be > 0</remarks></param>
         /// <exception cref="ArgumentOutOfRangeException"></exception>
         public Size(int width, int height)
         {

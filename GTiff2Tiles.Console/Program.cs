@@ -2,6 +2,7 @@
 
 using System;
 using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using System.Reflection;
 using System.Threading.Tasks;
@@ -12,6 +13,8 @@ using GTiff2Tiles.Core.Constants;
 using GTiff2Tiles.Core.Enums;
 using GTiff2Tiles.Core.GeoTiffs;
 using GTiff2Tiles.Core.Helpers;
+using GTiff2Tiles.Core.Images;
+using GTiff2Tiles.Core.Tiles;
 
 namespace GTiff2Tiles.Console
 {
@@ -20,37 +23,37 @@ namespace GTiff2Tiles.Console
         #region Properties
 
         /// <summary>
-        /// Input file.
+        /// Input file path
         /// </summary>
-        private static FileInfo InputFileInfo { get; set; }
+        private static string InputFilePath { get; set; }
 
         /// <summary>
-        /// Output directory.
+        /// Output directory path
         /// </summary>
-        private static DirectoryInfo OutputDirectoryInfo { get; set; }
+        private static string OutputDirectoryPath { get; set; }
 
         /// <summary>
-        /// Temp directory.
+        /// Temp directory path
         /// </summary>
-        private static DirectoryInfo TempDirectoryInfo { get; set; }
+        private static string TempDirectoryPath { get; set; }
 
         /// <summary>
-        /// Minimum cropped zoom.
+        /// Minimum cropped zoom
         /// </summary>
         private static int MinZ { get; set; }
 
         /// <summary>
-        /// Maximum cropped zoom.
+        /// Maximum cropped zoom
         /// </summary>
         private static int MaxZ { get; set; }
 
         /// <summary>
-        /// Shows if there were console line parsing errors.
+        /// Shows if there were command line parsing errors
         /// </summary>
         private static bool IsParsingErrors { get; set; }
 
         /// <summary>
-        /// Threads count.
+        /// Threads count
         /// </summary>
         private static int ThreadsCount { get; set; }
 
@@ -60,17 +63,54 @@ namespace GTiff2Tiles.Console
         private static bool TmsCompatible { get; set; }
 
         /// <summary>
-        /// Ready tiles extension.
+        /// Ready tiles extension
         /// </summary>
         private static TileExtension TileExtension { get; set; } = TileExtension.Png;
+
+        /// <summary>
+        /// Coordinate system of ready tiles
+        /// </summary>
+        private static CoordinateSystem TargetCoordinateSystem { get; set; } = CoordinateSystem.Epsg4326;
+
+        /// <summary>
+        /// Interpolation of ready tiles
+        /// </summary>
+        private static Interpolation TargetInterpolation { get; set; } = Interpolation.Lanczos3;
+
+        /// <summary>
+        /// Count of bands in ready tiles
+        /// </summary>
+        private static int BandsCount { get; set; } = 4;
+
+        /// <summary>
+        /// How much tiles would you like to store in memory cache?
+        /// </summary>
+        private static int TileCacheCount { get; set; } = 1000;
+
+        /// <summary>
+        /// Maximum size of input files to store in RAM
+        /// </summary>
+        private static long MemCache { get; set; } = 2147483648;
+
+        /// <summary>
+        /// Do you want to see the progress?
+        /// </summary>
+        private static bool IsProgress { get; set; } = true;
+
+        /// <summary>
+        /// Do you want to see estimated time left?
+        /// </summary>
+        private static bool IsTime { get; set; }
+
+        /// <summary>
+        /// Size of ready tiles
+        /// </summary>
+        private static Size TileSize { get; set; } = Tile.DefaultSize;
 
         #endregion
 
         private static async Task Main(string[] args)
         {
-            // TODO: coordinate system option
-            var targetCoordinateSystem = CoordinateSystem.Epsg4326;
-
             Stopwatch stopwatch = Stopwatch.StartNew();
 
             try
@@ -80,7 +120,7 @@ namespace GTiff2Tiles.Console
             }
             catch (Exception exception)
             {
-                //Catch some uncaught parsing errors.
+                // Catch some uncaught parsing errors
                 Helpers.ErrorHelper.PrintException(exception);
 
                 return;
@@ -93,40 +133,34 @@ namespace GTiff2Tiles.Console
                 return;
             }
 
-            //Create progress-reporter.
-            Progress<double> consoleProgress = new Progress<double>(System.Console.WriteLine);
+            // Create progress-reporter
+            Progress<double> consoleProgress = IsProgress ? new Progress<double>(System.Console.WriteLine) : null;
+            Action<string> printTimeAction = IsTime ? new Action<string>(System.Console.WriteLine) : null;
 
-            //Create temp directory object.
-            string tempDirectoryPath = Path.Combine(TempDirectoryInfo.FullName,
-                                                    DateTime.Now.ToString(DateTimePatterns.LongWithMs));
-            TempDirectoryInfo = new DirectoryInfo(tempDirectoryPath);
+            // Create temp directory object
+            TempDirectoryPath = Path.Combine(TempDirectoryPath,
+                                             DateTime.Now.ToString(DateTimePatterns.LongWithMs, CultureInfo.InvariantCulture));
 
-            //Run tiling asynchroniously.
+            // Run tiling asynchroniously
             try
             {
-                //Check for errors.
-                CheckHelper.CheckDirectory(OutputDirectoryInfo.FullName, true);
-
-                if (!await CheckHelper.CheckInputFileAsync(InputFileInfo.FullName, targetCoordinateSystem).ConfigureAwait(false))
+                // Check for errors
+                if (!await CheckHelper.CheckInputFileAsync(InputFilePath, TargetCoordinateSystem).ConfigureAwait(false))
                 {
-                    string tempFilePath = Path.Combine(TempDirectoryInfo.FullName,
-                                                       $"{GdalWorker.TempFileName}");
-                    FileInfo tempFileInfo = new FileInfo(tempFilePath);
+                    string tempFilePath = Path.Combine(TempDirectoryPath, GdalWorker.TempFileName);
 
-                    await GdalWorker.ConvertGeoTiffToTargetSystemAsync(InputFileInfo.FullName, tempFileInfo.FullName, targetCoordinateSystem,
+                    await GdalWorker.ConvertGeoTiffToTargetSystemAsync(InputFilePath, tempFilePath, TargetCoordinateSystem,
                                                                        consoleProgress).ConfigureAwait(false);
-                    InputFileInfo = tempFileInfo;
+                    InputFilePath = tempFilePath;
                 }
 
-                await using Raster image = new Raster(InputFileInfo?.FullName, targetCoordinateSystem);
+                await using Raster image = new Raster(InputFilePath, TargetCoordinateSystem, MemCache);
 
                 // Generate tiles
-                await image.WriteTilesToDirectoryAsync(OutputDirectoryInfo?.FullName, MinZ, MaxZ, TmsCompatible,
-                                                       tileExtension: TileExtension,
-                                                       bandsCount: 4, progress: consoleProgress,
-                                                       threadsCount: ThreadsCount)
+                await image.WriteTilesToDirectoryAsync(OutputDirectoryPath, MinZ, MaxZ, TmsCompatible,
+                                                       TileSize, TileExtension, TargetInterpolation, BandsCount,
+                                                       TileCacheCount, ThreadsCount, consoleProgress, printTimeAction)
                            .ConfigureAwait(false);
-
             }
             catch (Exception exception)
             {
@@ -135,102 +169,66 @@ namespace GTiff2Tiles.Console
                 return;
             }
 
-            stopwatch.Stop();
             System.Console.WriteLine(Strings.Done, Environment.NewLine, stopwatch.Elapsed.Days, stopwatch.Elapsed.Hours,
                                      stopwatch.Elapsed.Minutes, stopwatch.Elapsed.Seconds,
                                      stopwatch.Elapsed.Milliseconds);
-#if DEBUG
-            System.Console.WriteLine(Strings.PressAnyKey);
-            System.Console.ReadKey();
-#endif
         }
 
         #region Methods
 
         /// <summary>
-        /// Set properties values from console options.
+        /// Set properties values from command line options
         /// </summary>
-        /// <param name="options">Console options.</param>
+        /// <param name="options">Command line options</param>
         private static void ParseConsoleOptions(Options options)
         {
-            //Check if string options are empty strings.
-            if (string.IsNullOrWhiteSpace(options.InputFilePath))
-            {
-                Helpers.ErrorHelper.PrintError(string.Format(Strings.OptionIsEmpty, "-i/--input"));
-                IsParsingErrors = true;
+            // Check options and set properties
 
-                return;
-            }
+            #region Required
 
-            if (string.IsNullOrWhiteSpace(options.OutputDirectoryPath))
-            {
-                Helpers.ErrorHelper.PrintError(string.Format(Strings.OptionIsEmpty, "-o/--output"));
-                IsParsingErrors = true;
+            InputFilePath = options.InputFilePath;
+            OutputDirectoryPath = options.OutputDirectoryPath;
+            MinZ = options.MinZ;
+            MaxZ = options.MaxZ;
 
-                return;
-            }
+            #endregion
 
-            //Check zooms.
-            if (options.MinZ < 0)
-            {
-                Helpers.ErrorHelper.PrintError(string.Format(Strings.LesserThan, "--minz", 0));
-                IsParsingErrors = true;
+            ThreadsCount = options.ThreadsCount;
 
-                return;
-            }
-
-            if (options.MaxZ < 0)
-            {
-                Helpers.ErrorHelper.PrintError(string.Format(Strings.LesserThan, "--maxz", 0));
-                IsParsingErrors = true;
-
-                return;
-            }
-
-            if (options.MinZ > options.MaxZ)
-            {
-                Helpers.ErrorHelper.PrintError(string.Format(Strings.LesserThan, "--maxz", "--minz"));
-                IsParsingErrors = true;
-
-                return;
-            }
-
-            //Threads check.
-            if (options.ThreadsCount <= 0)
-            {
-                Helpers.ErrorHelper.PrintError(string.Format(Strings.LesserOrEqual, "--threads", 0));
-                IsParsingErrors = true;
-
-                return;
-            }
-
-            //Set tile extension. Png by default or unknown input
-            TileExtension = options.TileExtension switch
+            TileExtension = options.TileExtension.ToLowerInvariant() switch
             {
                 FileExtensions.Jpg => TileExtension.Jpg,
                 FileExtensions.Webp => TileExtension.Webp,
                 _ => TileExtension.Png
             };
 
-            //Set properties values.
-            InputFileInfo = new FileInfo(options.InputFilePath);
-            OutputDirectoryInfo = new DirectoryInfo(options.OutputDirectoryPath);
-            TempDirectoryInfo = string.IsNullOrWhiteSpace(options.TempDirectoryPath)
-                                    ? new FileInfo(Assembly.GetExecutingAssembly().Location).Directory
-                                    : new DirectoryInfo(options.TempDirectoryPath);
-            MinZ = options.MinZ;
-            MaxZ = options.MaxZ;
-            ThreadsCount = options.ThreadsCount;
+            TempDirectoryPath = string.IsNullOrWhiteSpace(options.TempDirectoryPath)
+                                    ? Assembly.GetExecutingAssembly().Location
+                                    : options.TempDirectoryPath;
+            TmsCompatible = bool.Parse(options.TmsCompatible);
 
-            if (!bool.TryParse(options.TmsCompatible, out bool tmsComptaible))
+            TargetCoordinateSystem = options.CoordinateSystem.ToLowerInvariant() switch
             {
-                Helpers.ErrorHelper.PrintError(string.Format(Strings.OptionIsEmpty, "--tms"));
-                IsParsingErrors = true;
+                "mercator" => CoordinateSystem.Epsg3857,
+                _ => CoordinateSystem.Epsg4326
+            };
 
-                return;
-            }
+            TargetInterpolation = options.Interpolation.ToLowerInvariant() switch
+            {
+                "nearest" => Interpolation.Nearest,
+                "linear" => Interpolation.Linear,
+                "cubic" => Interpolation.Cubic,
+                "mitchell" => Interpolation.Mitchell,
+                "lanczos2" => Interpolation.Lanczos2,
+                _ => Interpolation.Lanczos3
+            };
 
-            TmsCompatible = tmsComptaible;
+            BandsCount = options.BandsCount;
+            TileCacheCount = options.TileCacheCount;
+            MemCache = options.MemCache;
+            IsProgress = bool.Parse(options.IsProgress);
+            IsTime = bool.Parse(options.IsTime);
+            TileSize = new Size(options.TileSize, options.TileSize);
         }
 
         #endregion

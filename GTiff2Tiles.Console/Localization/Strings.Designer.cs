@@ -70,56 +70,11 @@ namespace GTiff2Tiles.Console.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This tile extension is not supported.
-        /// </summary>
-        internal static string ExtensionNotSupported {
-            get {
-                return ResourceManager.GetString("ExtensionNotSupported", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to {0} is lesser or equal {1}.
-        /// </summary>
-        internal static string LesserOrEqual {
-            get {
-                return ResourceManager.GetString("LesserOrEqual", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to {0} is lesser, than {1}.
-        /// </summary>
-        internal static string LesserThan {
-            get {
-                return ResourceManager.GetString("LesserThan", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to {0} option is empty.
-        /// </summary>
-        internal static string OptionIsEmpty {
-            get {
-                return ResourceManager.GetString("OptionIsEmpty", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Unable to parse console options.
         /// </summary>
         internal static string ParsingError {
             get {
                 return ResourceManager.GetString("ParsingError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Press any key to exit.
-        /// </summary>
-        internal static string PressAnyKey {
-            get {
-                return ResourceManager.GetString("PressAnyKey", resourceCulture);
             }
         }
     }

@@ -1,5 +1,4 @@
 ﻿using System;
-using GTiff2Tiles.Console.Localization;
 
 namespace GTiff2Tiles.Console.Helpers
 {
@@ -18,8 +17,6 @@ namespace GTiff2Tiles.Console.Helpers
 
             #if DEBUG
             if (exception.InnerException != null) System.Console.WriteLine(exception.InnerException.Message);
-            System.Console.WriteLine(Strings.PressAnyKey);
-            System.Console.ReadKey();
             #endif
         }
 
@@ -27,14 +24,6 @@ namespace GTiff2Tiles.Console.Helpers
         /// Prints current error and waits for input (in DEBUG mode).
         /// </summary>
         /// <param name="errorMessage">Your error's message.</param>
-        internal static void PrintError(string errorMessage)
-        {
-            System.Console.WriteLine(errorMessage);
-
-            #if DEBUG
-            System.Console.WriteLine(Strings.PressAnyKey);
-            System.Console.ReadKey();
-            #endif
-        }
+        internal static void PrintError(string errorMessage) => System.Console.WriteLine(errorMessage);
     }
 }
