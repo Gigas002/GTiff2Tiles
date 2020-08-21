@@ -2,7 +2,7 @@
   "profiles": {
     "GTiff2Tiles.Console": {
       "commandName": "Project",
-      "commandLineArgs": "-i ../../../../../Examples/Input/Input3785.tif -o ../../../../../Examples/Output -t ../../../../../Examples/tmp --minz 10 --maxz 17 --tms true"
+      "commandLineArgs": "-i ../../../../../Examples/Input/Input3785.tif -o ../../../../../Examples/Output -t ../../../../../Examples/tmp --minz 0 --maxz 12 --tms true"
     }
   }
 }

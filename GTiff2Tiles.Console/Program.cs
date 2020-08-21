@@ -94,7 +94,7 @@ namespace GTiff2Tiles.Console
             }
 
             //Create progress-reporter.
-            ConsoleProgress<double> consoleProgress = new ConsoleProgress<double>(System.Console.WriteLine);
+            Progress<double> consoleProgress = new Progress<double>(System.Console.WriteLine);
 
             //Create temp directory object.
             string tempDirectoryPath = Path.Combine(TempDirectoryInfo.FullName,
