@@ -5,51 +5,17 @@
 namespace GTiff2Tiles.Benchmarks
 {
     /// <summary>
-    /// Class for parsing console arguments.
+    /// Class for parsing command line arguments
     /// </summary>
     public class Options
     {
-        #region Required
-
-        /// <summary>
-        /// Full path to input file.
-        /// </summary>
-        [Option('i', "input", Required = true, HelpText = "Full path to input file.")]
-        public string InputFilePath { get; set; }
-
-        /// <summary>
-        /// Full path to output directory.
-        /// </summary>
-        [Option('o', "output", Required = true, HelpText = "Full path to output directory.")]
-        public string OutputDirectoryPath { get; set; }
-
-        /// <summary>
-        /// Minimum cropped zoom.
-        /// </summary>
-        [Option("minz", Required = true, HelpText = "Minimum cropped zoom.")]
-        public int MinZ { get; set; }
-
-        /// <summary>
-        /// Maximum cropped zoom.
-        /// </summary>
-        [Option("maxz", Required = true, HelpText = "Maximum cropped zoom.")]
-        public int MaxZ { get; set; }
-
-        #endregion
-
         #region Optional
 
         /// <summary>
-        /// Threads count.
+        /// Path to input file
         /// </summary>
-        [Option("threads", Required = false, HelpText = "Threads count.")]
-        public int ThreadsCount { get; set; } = 1;
-
-        /// <summary>
-        /// Full path to temp directory.
-        /// </summary>
-        [Option('t', "temp", Required = false, HelpText = "Full path to temp directory.")]
-        public string TempDirectoryPath { get; set; } = string.Empty;
+        [Option('i', "input", Required = false, HelpText = "Path to input file")]
+        public string InputFilePath { get; set; }
 
         #endregion
     }

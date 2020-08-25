@@ -62,27 +62,22 @@
             <article class="content wrap" id="_content" data-uid="">
 <h1 id="gtiff2tilesbenchmarks">GTiff2Tiles.Benchmarks</h1>
 
-<p><strong>GTiff2Tiles.Tests</strong> is a benchmarking project for <strong>GTiff2Tiles.Core</strong>.</p>
-<p>The following benchmarks were made at <strong>06.07.2019</strong>.</p>
-<p><strong>MapTiler Pro</strong> was running as process <em>maptiler.exe</em>, <strong>GTiff2Tiles</strong> tiling was called from library and <strong>gdal2tiles.py</strong> was converted by <strong>PyInstaller</strong> into <em>Gdal2Tiles.exe</em> and was running as process.</p>
-<p>Unfortunately, I couldn’t create <em>Gdal2Tiles.exe</em> with <strong>multiprocessing</strong>, so it’s only in <strong>single-threaded</strong> tests for it at the moment. I’ll try to fix that moment in the future and update benchmarks as well.</p>
-<p>Time format in tables: <code>{minutes}:{seconds}:{milliseconds}</code>.</p>
-<p>Benchmarks were made on PC with <strong>Windows 10 x64 (18362.239)</strong> equipped with <strong>Intel Core i7 6700K 4.0 GHz</strong>.</p>
-<h2 id="versions">Versions</h2>
-<p>Used <strong>MapTiler Pro</strong> version is <strong>0.5.3</strong>. Used <strong>gdal2tiles.py</strong> version from <strong><a href="https://github.com/OSGeo/gdal/blob/master/gdal/swig/python/scripts/gdal2tiles.py">GDAL repo</a></strong> (GDAL’s version <strong>3.0.0</strong>, <strong>06.07.2019</strong>). Used <strong>GTiff2Tiles.Core</strong> version is <strong>1.2.0.139</strong>.</p>
+<p><strong>GTiff2Tiles.Benchmarks</strong> is a benchmarking project for <strong>GTiff2Tiles.Core</strong>.</p>
+<p>The following benchmarks were run at <strong>25.08.2020</strong>.</p>
 <h2 id="requirements">Requirements</h2>
 <ul>
-<li>MapTiler Pro 0.5.3 or newer;</li>
-<li>gdal2tiles.py, converted to <code>.exe</code> and placed in directory <code>Gdal2Tiles</code> near benchmarks binaries;</li>
+<li>Docker</li>
+<li>Linux x64/Win 10+ x64</li>
 </ul>
-<p>If you’re using Windows 7 SP1, you can experience weird error with <strong>GDAL</strong> package. It’s recommended to install <a href="https://www.microsoft.com/en-us/download/details.aspx?id=26764">KB2533623</a> to fix it. You can read about this Windows update on <a href="https://support.microsoft.com/en-us/help/2533623/microsoft-security-advisory-insecure-library-loading-could-allow-remot">MSDN</a>.</p>
 <h2 id="build-dependencies">Build dependencies</h2>
 <ul>
 <li>GTiff2Tiles.Core;</li>
+<li><a href="https://www.nuget.org/packages/BenchmarkDotNet/">BenchmarkDotNet</a> – 0.12.1;</li>
 <li><a href="https://www.nuget.org/packages/CommandLineParser/">CommandLineParser</a> – 2.8.0;</li>
 </ul>
-<h2 id="usage">Usage</h2>
-<p><em>TODO: needs update for 2.0.0 release. Current version is written for old dev pre-releases.</em></p>
+<h2 id="running-by-yourself">Running by yourself</h2>
+<p>To run the benchmarks by yourself you should build the app <strong>in Release x64 configuration</strong> first. See <a href="https://gigas002.github.io/GTiff2Tiles/">main</a> and <a href="https://gigas002.github.io/GTiff2Tiles/api/index.html">core</a> pages to learn how to build the soultion.</p>
+<p>Benchmarks uses the installed docker to pull the <strong>latest</strong> images of <strong>maptiler/engine</strong> and <strong>osgeo/gdal</strong> and then runs the <strong>GTiff2Tiles.Core</strong> benchmarks agains them.</p>
 <table>
 <thead>
 <tr>
@@ -96,37 +91,7 @@
 <tr>
 <td style="text-align: center;">-i</td>
 <td style="text-align: center;">--input</td>
-<td style="text-align: center;">Full path to input file</td>
-<td style="text-align: center;">Yes</td>
-</tr>
-<tr>
-<td style="text-align: center;">-o</td>
-<td style="text-align: center;">--output</td>
-<td style="text-align: center;">Full path to output directory</td>
-<td style="text-align: center;">Yes</td>
-</tr>
-<tr>
-<td style="text-align: center;">-t</td>
-<td style="text-align: center;">--temp</td>
-<td style="text-align: center;">Full path to temp directory</td>
-<td style="text-align: center;">No</td>
-</tr>
-<tr>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">--minz</td>
-<td style="text-align: center;">Minimum cropped zoom</td>
-<td style="text-align: center;">Yes</td>
-</tr>
-<tr>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">--maxz</td>
-<td style="text-align: center;">Maximum cropped zoom</td>
-<td style="text-align: center;">Yes</td>
-</tr>
-<tr>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">--threads</td>
-<td style="text-align: center;">Threads count</td>
+<td style="text-align: center;">Path to input file</td>
 <td style="text-align: center;">No</td>
 </tr>
 <tr>
@@ -143,99 +108,57 @@
 </tr>
 </tbody>
 </table>
-<p>Simple example looks like this: <code>./GTiff2Tiles.Benchmarks -i &quot;D:/Examples/Input.tif&quot; -o &quot;D:/Examples/Output&quot; -t &quot;D:/Examples/Temp&quot; --minz 8 –maxz 11 --threads 3</code></p>
+<p><strong>-i/--input</strong> is <code>string</code>, representing path to input <strong>GeoTIFF</strong> file. Please, specify the path in double quotes (<code>“like this”</code>) if it contains spaces. The path is <strong>optional</strong>, by default app uses the <code>(repo_home)/Examples/Input/Benchmarks.tif</code>. <strong>USE ONLY EPSG:4326 GEOTIFF AS INPUT</strong>!</p>
+<p>Simple example (for <strong>pwsh with admin rights</strong>) looks like this: <code>./GTiff2Tiles.Benchmarks</code></p>
 <p>Also take a look at <a href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Benchmarks/Start.ps1">Start.ps1</a> <strong>PowerShell</strong> script for automating and simplifying the work. Note, that running this script requires installed <strong>PowerShell</strong> or <strong><a href="https://github.com/PowerShell/PowerShell">PowerShell Core</a></strong> (also available on <strong>Linux</strong>/<strong>OSX</strong> systems!).</p>
-<h3 id="detailed-options-description">Detailed options description</h3>
-<p><strong>-i/--input</strong> is <code>string</code>, representing full path to input <strong>GeoTIFF</strong> file. Please, specify the path in double quotes (<code>“like this”</code>) if it contains spaces.</p>
-<p><strong>-o/--output</strong> is <code>string</code>, representing full path to directory, where tiles in will be created. Please, specify the path in double quotes (<code>“like this”</code>) if it contains spaces. <strong>Directory should be empty.</strong></p>
-<p><strong>-t/--temp</strong> is <code>string</code>, representing full path to temporary directory. Please, specify the path in double quotes (<code>“like this”</code>) if it contains spaces. Inside will be created directory, which name is a <strong>timestamp</strong> in format <code>yyyyMMddHHmmssfff</code>. By default – the same directory, where application is located.</p>
-<p><strong>--minz</strong> is <code>int</code> parameter, representing minimum zoom, which you want to crop.</p>
-<p><strong>--maxz</strong> is <code>int</code> parameter, representing maximum zoom, which you want to crop.</p>
-<p><strong>--threads</strong> is <code>int</code> parameter, representing threads count. By default (if not set) uses <strong>5 threads</strong>.</p>
-<h3 id="offline-docs">Offline docs</h3>
+<p>And last but not the least: if you're changing the <code>SimpleJob</code> arguments, not overdo it. <strong>BenchmarkDotNet</strong> can create <strong>VERY BIG</strong> log file in process (<em>I had a 130Gb file on my system drive while running it and I had to stop</em>). I also don't recommend to add memory/threading attributes, since they don't analyze inner docker processes and it's kind of useless for this app.</p>
+<h2 id="offline-docs">Offline docs</h2>
 <p>Offline docs are also available as <a href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Benchmarks/benchmarks-index.pdf">pdf</a> and distributed alongside the application.</p>
-<h2 id="input-data">Input data</h2>
-<p>As input data was used <strong>4326</strong> GeoTIFF, located in repo’s directory: <code>Examples/Input/Benchmark.tif</code>.</p>
-<h2 id="benchmarks-metadata">Benchmarks metadata</h2>
-<p>The differences between benchmarks are only in <strong>maximum zoom</strong> and <strong>threads count</strong> values.</p>
-<p><strong>GTiff2Tiles</strong> was running with the following arguments: <code>-i {inputFilePath} -o {outputDirectoryPath} -t {tempDirectoryPath} --tms true --minz 0 --maxz {maxZ} --threads {threadsCount}</code>.</p>
-<p><strong>MapTiler Pro</strong> was running with the following arguments: <code>-geodetic -tms -resampling cubic -f png32 -P {threadsCount} -o {outputDirectoryPath} -work_dir {tempDirectoryPath} -srs EPSG:4326 -zoom 0 {maxZ} {inputFilePath}</code>.</p>
-<p><strong>gdal2tiles</strong> was running with the following arguments: <code>-s EPSG:4326 -p geodetic -r cubic --tmscompatible -z 0-{maxZ} {inputFilePath} {outputDirectoryPath}</code>.</p>
 <h2 id="results">Results</h2>
-<p>Avarage from 10 runs:</p>
-<ul>
-<li>Threads count = 1;</li>
-<li>Maximum zoom = 16;</li>
-</ul>
+<p><strong>Docker Desktop</strong> version is an <strong>edge release 2.3.5.0</strong>; uses <strong>WSL2</strong> features.</p>
+<p>Used <strong>MapTiler Engine</strong> version is <strong>10.3</strong>, used <strong>gdal2tiles.py</strong> version is <strong>GDAL 3.2.0dev-38e9587ed7fc34d8e145b03a86ca0a2ec655fcce, released 2020/08/25</strong>, used <strong>GTiff2Tiles.Core</strong> version is <strong>2.0.0.589</strong>.</p>
+<p>Benchmarks create the <strong>geodetic</strong> <strong>png</strong> <strong>256x256</strong> <strong>non-tmscompatible</strong> tiles from <strong>EPSG:4326</strong> input GEOTIFF, resampling is <strong>cubic</strong>, zooms <strong>0-15</strong>, process counter <strong>8</strong>.</p>
+<p><strong>maptiler</strong> was running with the following arguments: <code>-srs EPSG:4326 -preset geodetic -resampling cubic -zoom 0 15 -P 8 -f png32 -o outDir in.tif</code>.</p>
+<p><strong>gdal2tiles.py</strong> was running with the following arguments: <code>-s EPSG:4326 -p geodetic -r cubic -z 0-15 --processes 8 in.tif outDir</code>.</p>
+<pre><code class="lang-ini">BenchmarkDotNet=v0.12.1, OS=Windows 10.0.19041.450 (2004/?/20H1)
+Intel Core i7-6700K CPU 4.00GHz (Skylake), 1 CPU, 8 logical and 4 physical cores
+.NET Core SDK=5.0.100-preview.7.20366.6
+  [Host]     : .NET Core 5.0.0 (CoreCLR 5.0.20.36411, CoreFX 5.0.20.36411), X64 RyuJIT
+  Job-GYLFGH : .NET Core 5.0.0 (CoreCLR 5.0.20.36411, CoreFX 5.0.20.36411), X64 RyuJIT
+
+IterationCount=10  LaunchCount=10  WarmupCount=10  
+</code></pre>
 <table>
 <thead>
 <tr>
-<th style="text-align: center;">GTiff2Tiles</th>
-<th style="text-align: center;">MapTiler Pro</th>
-<th style="text-align: center;">Gdal2Tiles</th>
+<th>Method</th>
+<th style="text-align: right;">Mean</th>
+<th style="text-align: right;">Error</th>
+<th style="text-align: right;">StdDev</th>
+<th style="text-align: right;">Median</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: center;">00:27:061</td>
-<td style="text-align: center;">00:33:901</td>
-<td style="text-align: center;">01:45:901</td>
+<td>RunGTiff2Tiles</td>
+<td style="text-align: right;">2.255 s</td>
+<td style="text-align: right;">0.0233 s</td>
+<td style="text-align: right;">0.0672 s</td>
+<td style="text-align: right;">2.250 s</td>
 </tr>
-</tbody>
-</table>
-<ul>
-<li>Threads count = 5;</li>
-<li>Maximum zoom = 16;</li>
-</ul>
-<table>
-<thead>
 <tr>
-<th style="text-align: center;">GTiff2Tiles</th>
-<th style="text-align: center;">MapTiler Pro</th>
+<td>RunGdal2Tiles</td>
+<td style="text-align: right;">12.989 s</td>
+<td style="text-align: right;">0.1660 s</td>
+<td style="text-align: right;">0.4711 s</td>
+<td style="text-align: right;">12.885 s</td>
 </tr>
-</thead>
-<tbody>
 <tr>
-<td style="text-align: center;">00:07:723</td>
-<td style="text-align: center;">00:15:057</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li>Threads count = 1;</li>
-<li>Maximum zoom = 17;</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th style="text-align: center;">GTiff2Tiles</th>
-<th style="text-align: center;">MapTiler Pro</th>
-<th style="text-align: center;">Gdal2Tiles</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: center;">01:41:500</td>
-<td style="text-align: center;">02:13:183</td>
-<td style="text-align: center;">06:43:683</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li>Threads count = 5;</li>
-<li>Maximum zoom = 17;</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th style="text-align: center;">GTiff2Tiles</th>
-<th style="text-align: center;">MapTiler Pro</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: center;">00:30:915</td>
-<td style="text-align: center;">00:53:502</td>
+<td>RunMaptiler</td>
+<td style="text-align: right;">4.948 s</td>
+<td style="text-align: right;">0.0958 s</td>
+<td style="text-align: right;">0.2716 s</td>
+<td style="text-align: right;">4.840 s</td>
 </tr>
 </tbody>
 </table>

@@ -39,7 +39,8 @@ Changes since 1.4.1:
 ### Benchmarks
 
 - Update **CommandLineParser** package to **2.8.0**;
-- Made `-t/--tmp` optional;
+- Add **BenchmarkDotNet** package dependency;
+- Use latest images from **docker hub** to run benchs;
 
 ### Console
 
