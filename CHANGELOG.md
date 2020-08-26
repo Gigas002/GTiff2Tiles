@@ -34,7 +34,7 @@ Changes since 1.4.1:
 - Update **MaxRev.Gdal.WindowsRuntime.Minimal** package to **3.1.0.100**;
 - Update **MaxRev.Gdal.LinuxRuntime.Minimal** package to **3.1.0.100**;
 - Update **NetVips** package to **1.2.4**;
-- Update **NetVips.Native** package to **8.10.0-rc1**;
+- Update **NetVips.Native** package to **8.10.0**;
 
 ### Benchmarks
 
@@ -54,12 +54,12 @@ Changes since 1.4.1:
 - Update **MaterialDesignColors** package to **1.2.6**;
 - Update **MaterialDesignThemes** package to **3.1.3**;
 - Update **MaterialDesignExtensions** package to **3.2.0**;
-- Moved from **Caliburn.Micro** to **Prism.DryIoc** ver. **8.0.0.1740-pre**;
+- Moved from **Caliburn.Micro** to **Prism.DryIoc** ver. **8.0.0.1850-pre**;
 - Added **Tile extension** option to choose output tiles’s extension;
 
 ### Tests
 
-- Update **Microsoft.NET.Test.Sdk** package to **16.7.0**;
+- Update **Microsoft.NET.Test.Sdk** package to **16.7.1**;
 - Update **NUnit3TestAdapter** package to **3.17.0**;
 - Add coverlet.collector and coverlet.msbuild dependencies for code coverage;
 
