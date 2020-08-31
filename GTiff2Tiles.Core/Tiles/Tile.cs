@@ -174,7 +174,7 @@ namespace GTiff2Tiles.Core.Tiles
             }
             catch (Exception exception)
             {
-                // Weird bug -- Doesn't work in CI
+                // Bug -- should be fixed in stable .net 5
                 //return ValueTask.FromException(exception);
                 return new ValueTask(Task.FromException(exception));
             }

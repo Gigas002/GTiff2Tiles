@@ -221,7 +221,7 @@ namespace GTiff2Tiles.Core.GeoTiffs
             }
             catch (Exception exception)
             {
-                // Weird bug -- Doesn't work in CI
+                // Bug -- should be fixed in stable .net 5
                 //return ValueTask.FromException(exception);
                 return new ValueTask(Task.FromException(exception));
             }
@@ -314,7 +314,6 @@ namespace GTiff2Tiles.Core.GeoTiffs
 
             using Image tileImage = CreateTileImage(tileCache, tile);
 
-            //TODO: validate size before writing
             tileImage.WriteToFile(tile.Path);
         }
 
@@ -337,8 +336,7 @@ namespace GTiff2Tiles.Core.GeoTiffs
 
             using Image tileImage = CreateTileImage(tileCache, tile);
 
-            //TODO: validate size before writing
-            return tileImage.WriteToMemory();
+            return tileImage.WriteToBuffer(tile.GetExtensionString());
         }
 
         /// <summary>
@@ -350,10 +348,10 @@ namespace GTiff2Tiles.Core.GeoTiffs
         /// or tile cache</param>
         /// <param name="tile">Target <see cref="RasterTile"/></param>
         /// <param name="channelWriter">Target <see cref="ChannelWriter{T}"/></param>
-        /// <returns><see langword="true"/> if <see cref="ITile"/> was written;
+        /// <returns><see langword="true"/> if <see cref="RasterTile"/> was written;
         /// <see langword="false"/> otherwise</returns>
         /// <exception cref="ArgumentNullException"/>
-        public bool WriteTileToChannel(Image tileCache, RasterTile tile, ChannelWriter<ITile> channelWriter)
+        public bool WriteTileToChannel(Image tileCache, RasterTile tile, ChannelWriter<RasterTile> channelWriter)
         {
             #region Preconditions checks
 
@@ -371,7 +369,7 @@ namespace GTiff2Tiles.Core.GeoTiffs
 
         /// <returns></returns>
         /// <inheritdoc cref="WriteTileToChannel"/>
-        public ValueTask WriteTileToChannelAsync(Image tileCache, RasterTile tile, ChannelWriter<ITile> channelWriter)
+        public ValueTask WriteTileToChannelAsync(Image tileCache, RasterTile tile, ChannelWriter<RasterTile> channelWriter)
         {
             #region Preconditions checks
 
@@ -384,7 +382,7 @@ namespace GTiff2Tiles.Core.GeoTiffs
 
             tile.Bytes = WriteTileToEnumerable(tileCache, tile);
 
-            // Weird bug -- Doesn't work in CI
+            // Bug -- should be fixed in stable .net 5
             //ValueTask.CompletedTask;
             return tile.Validate(false) ? channelWriter.WriteAsync(tile) : new ValueTask(Task.CompletedTask);
         }
@@ -510,10 +508,10 @@ namespace GTiff2Tiles.Core.GeoTiffs
                                              threadsCount, progress, printTimeAction));
 
         /// <summary>
-        /// Crops current <see cref="Raster"/> on <see cref="ITile"/>s
+        /// Crops current <see cref="Raster"/> on <see cref="RasterTile"/>s
         /// and writes them to <paramref name="channelWriter"/>
         /// </summary>
-        /// <param name="channelWriter"><see cref="Channel"/> to write <see cref="ITile"/> to</param>
+        /// <param name="channelWriter"><see cref="Channel"/> to write <see cref="RasterTile"/> to</param>
         /// <inheritdoc cref="WriteTilesToAsyncEnumerable"/>
         /// <param name="minZ"></param>
         /// <param name="maxZ"></param>
@@ -527,7 +525,7 @@ namespace GTiff2Tiles.Core.GeoTiffs
         /// <param name="printTimeAction"></param>
         /// <exception cref="ArgumentOutOfRangeException"/>
         /// <exception cref="RasterException"/>
-        public void WriteTilesToChannel(ChannelWriter<ITile> channelWriter, int minZ, int maxZ,
+        public void WriteTilesToChannel(ChannelWriter<RasterTile> channelWriter, int minZ, int maxZ,
                                         bool tmsCompatible = false, Size tileSize = null,
                                         Interpolation interpolation = Interpolation.Lanczos3,
                                         int bandsCount = RasterTile.DefaultBandsCount,
@@ -601,7 +599,7 @@ namespace GTiff2Tiles.Core.GeoTiffs
         }
 
         /// <inheritdoc cref="WriteTilesToChannel"/>
-        public Task WriteTilesToChannelAsync(ChannelWriter<ITile> channelWriter, int minZ, int maxZ,
+        public Task WriteTilesToChannelAsync(ChannelWriter<RasterTile> channelWriter, int minZ, int maxZ,
                                              bool tmsCompatible = false, Size tileSize = null,
                                              Interpolation interpolation = Interpolation.Lanczos3,
                                              int bandsCount = RasterTile.DefaultBandsCount,
@@ -613,12 +611,12 @@ namespace GTiff2Tiles.Core.GeoTiffs
                                            progress, printTimeAction));
 
         /// <summary>
-        /// Crops current <see cref="Raster"/> on <see cref="ITile"/>s
+        /// Crops current <see cref="Raster"/> on <see cref="RasterTile"/>s
         /// and writes them to <see cref="IEnumerable{T}"/>
         /// </summary>
-        /// <returns><see cref="IEnumerable{T}"/> of <see cref="ITile"/>s</returns>
+        /// <returns><see cref="IEnumerable{T}"/> of <see cref="RasterTile"/>s</returns>
         /// <inheritdoc cref="WriteTilesToAsyncEnumerable"/>
-        public IEnumerable<ITile> WriteTilesToEnumerable(int minZ, int maxZ,
+        public IEnumerable<RasterTile> WriteTilesToEnumerable(int minZ, int maxZ,
                                                          bool tmsCompatible = false, Size tileSize = null,
                                                          Interpolation interpolation = Interpolation.Lanczos3,
                                                          int bandsCount = RasterTile.DefaultBandsCount,
@@ -651,7 +649,7 @@ namespace GTiff2Tiles.Core.GeoTiffs
             // Create tile cache to read data from it
             using Image tileCache = Data.Tilecache(tileSize.Width, tileSize.Height, tileCacheCount, threaded: true);
 
-            ITile MakeTile(int x, int y, int z)
+            RasterTile MakeTile(int x, int y, int z)
             {
                 Number tileNumber = new Number(x, y, z);
                 RasterTile tile = new RasterTile(tileNumber, GeoCoordinateSystem, tmsCompatible: tmsCompatible,
@@ -686,7 +684,7 @@ namespace GTiff2Tiles.Core.GeoTiffs
         }
 
         /// <summary>
-        /// Crops current <see cref="Raster"/> on <see cref="ITile"/>s
+        /// Crops current <see cref="Raster"/> on <see cref="RasterTile"/>s
         /// and writes them to <see cref="IAsyncEnumerable{T}"/>
         /// </summary>
         /// <param name="minZ">Minimum cropped zoom
@@ -712,20 +710,20 @@ namespace GTiff2Tiles.Core.GeoTiffs
         /// <param name="printTimeAction"><see cref="Action{T}"/> to print estimated time
         /// <remarks><para/><see langword="null"/> by default;
         /// set to <see langword="null"/> if you don't want output</remarks></param>
-        /// <returns><see cref="IAsyncEnumerable{T}"/> of <see cref="ITile"/>s</returns>
+        /// <returns><see cref="IAsyncEnumerable{T}"/> of <see cref="RasterTile"/>s</returns>
         /// <exception cref="ArgumentOutOfRangeException"/>
         /// <exception cref="RasterException"/>
-        public IAsyncEnumerable<ITile> WriteTilesToAsyncEnumerable(int minZ, int maxZ,
-                                                                   bool tmsCompatible = false, Size tileSize = null,
-                                                                   Interpolation interpolation = Interpolation.Lanczos3,
-                                                                   int bandsCount = RasterTile.DefaultBandsCount,
-                                                                   int tileCacheCount = 1000, int threadsCount = 0,
-                                                                   IProgress<double> progress = null,
-                                                                   Action<string> printTimeAction = null)
+        public IAsyncEnumerable<RasterTile> WriteTilesToAsyncEnumerable(int minZ, int maxZ,
+                                                                        bool tmsCompatible = false, Size tileSize = null,
+                                                                        Interpolation interpolation = Interpolation.Lanczos3,
+                                                                        int bandsCount = RasterTile.DefaultBandsCount,
+                                                                        int tileCacheCount = 1000, int threadsCount = 0,
+                                                                        IProgress<double> progress = null,
+                                                                        Action<string> printTimeAction = null)
         {
             // All preconditions checks are done in WriteTilesToChannelAsync method
 
-            Channel<ITile> channel = Channel.CreateUnbounded<ITile>();
+            Channel<RasterTile> channel = Channel.CreateUnbounded<RasterTile>();
 
             WriteTilesToChannelAsync(channel.Writer, minZ, maxZ, tmsCompatible, tileSize,
                                      interpolation, bandsCount, tileCacheCount,

@@ -917,7 +917,7 @@
             <param name="tile">Target <see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/></param>
             <returns><see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/>'s <see cref="T:System.Byte"/>s</returns>
         </member>
-        <member name="M:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToChannel(NetVips.Image,GTiff2Tiles.Core.Tiles.RasterTile,System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.ITile})">
+        <member name="M:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToChannel(NetVips.Image,GTiff2Tiles.Core.Tiles.RasterTile,System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.RasterTile})">
             <summary>
             Gets data from source <see cref="T:NetVips.Image"/>
             or tile cache for specified <see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/>
@@ -927,13 +927,13 @@
             or tile cache</param>
             <param name="tile">Target <see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/></param>
             <param name="channelWriter">Target <see cref="T:System.Threading.Channels.ChannelWriter`1"/></param>
-            <returns><see langword="true"/> if <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/> was written;
+            <returns><see langword="true"/> if <see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/> was written;
             <see langword="false"/> otherwise</returns>
             <exception cref="T:System.ArgumentNullException"/>
         </member>
-        <member name="M:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToChannelAsync(NetVips.Image,GTiff2Tiles.Core.Tiles.RasterTile,System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.ITile})">
+        <member name="M:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToChannelAsync(NetVips.Image,GTiff2Tiles.Core.Tiles.RasterTile,System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.RasterTile})">
             <returns></returns>
-            <inheritdoc cref="M:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToChannel(NetVips.Image,GTiff2Tiles.Core.Tiles.RasterTile,System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.ITile})"/>
+            <inheritdoc cref="M:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToChannel(NetVips.Image,GTiff2Tiles.Core.Tiles.RasterTile,System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.RasterTile})"/>
         </member>
         <member name="M:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToDirectory(System.String,System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.TileExtension,GTiff2Tiles.Core.Enums.Interpolation,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Action{System.String})">
             <summary>
@@ -960,12 +960,12 @@
         <member name="M:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToDirectoryAsync(System.String,System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.TileExtension,GTiff2Tiles.Core.Enums.Interpolation,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Action{System.String})">
             <inheritdoc cref="M:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToDirectory(System.String,System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.TileExtension,GTiff2Tiles.Core.Enums.Interpolation,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Action{System.String})"/>
         </member>
-        <member name="M:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToChannel(System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.ITile},System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.Interpolation,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Action{System.String})">
+        <member name="M:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToChannel(System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.RasterTile},System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.Interpolation,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Action{System.String})">
             <summary>
-            Crops current <see cref="T:GTiff2Tiles.Core.GeoTiffs.Raster"/> on <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>s
+            Crops current <see cref="T:GTiff2Tiles.Core.GeoTiffs.Raster"/> on <see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/>s
             and writes them to <paramref name="channelWriter"/>
             </summary>
-            <param name="channelWriter"><see cref="T:System.Threading.Channels.Channel"/> to write <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/> to</param>
+            <param name="channelWriter"><see cref="T:System.Threading.Channels.Channel"/> to write <see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/> to</param>
             <inheritdoc cref="M:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToAsyncEnumerable(System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.Interpolation,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Action{System.String})"/>
             <param name="minZ"></param>
             <param name="maxZ"></param>
@@ -980,20 +980,20 @@
             <exception cref="T:System.ArgumentOutOfRangeException"/>
             <exception cref="T:GTiff2Tiles.Core.Exceptions.RasterException"/>
         </member>
-        <member name="M:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToChannelAsync(System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.ITile},System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.Interpolation,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Action{System.String})">
-            <inheritdoc cref="M:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToChannel(System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.ITile},System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.Interpolation,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Action{System.String})"/>
+        <member name="M:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToChannelAsync(System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.RasterTile},System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.Interpolation,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Action{System.String})">
+            <inheritdoc cref="M:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToChannel(System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.RasterTile},System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.Interpolation,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Action{System.String})"/>
         </member>
         <member name="M:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToEnumerable(System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.Interpolation,System.Int32,System.Int32,System.IProgress{System.Double},System.Action{System.String})">
             <summary>
-            Crops current <see cref="T:GTiff2Tiles.Core.GeoTiffs.Raster"/> on <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>s
+            Crops current <see cref="T:GTiff2Tiles.Core.GeoTiffs.Raster"/> on <see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/>s
             and writes them to <see cref="T:System.Collections.Generic.IEnumerable`1"/>
             </summary>
-            <returns><see cref="T:System.Collections.Generic.IEnumerable`1"/> of <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>s</returns>
+            <returns><see cref="T:System.Collections.Generic.IEnumerable`1"/> of <see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/>s</returns>
             <inheritdoc cref="M:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToAsyncEnumerable(System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.Interpolation,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Action{System.String})"/>
         </member>
         <member name="M:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToAsyncEnumerable(System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.Interpolation,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Action{System.String})">
             <summary>
-            Crops current <see cref="T:GTiff2Tiles.Core.GeoTiffs.Raster"/> on <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>s
+            Crops current <see cref="T:GTiff2Tiles.Core.GeoTiffs.Raster"/> on <see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/>s
             and writes them to <see cref="T:System.Collections.Generic.IAsyncEnumerable`1"/>
             </summary>
             <param name="minZ">Minimum cropped zoom
@@ -1019,7 +1019,7 @@
             <param name="printTimeAction"><see cref="T:System.Action`1"/> to print estimated time
             <remarks><para/><see langword="null"/> by default;
             set to <see langword="null"/> if you don't want output</remarks></param>
-            <returns><see cref="T:System.Collections.Generic.IAsyncEnumerable`1"/> of <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>s</returns>
+            <returns><see cref="T:System.Collections.Generic.IAsyncEnumerable`1"/> of <see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/>s</returns>
             <exception cref="T:System.ArgumentOutOfRangeException"/>
             <exception cref="T:GTiff2Tiles.Core.Exceptions.RasterException"/>
         </member>
