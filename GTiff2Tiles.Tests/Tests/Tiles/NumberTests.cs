@@ -213,8 +213,30 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
         public void GetLowerNumbersBadZoom() => Assert.Throws<ArgumentOutOfRangeException>(() => Locations.TokyoGeodeticNtmsNumber.GetLowerNumbers(9));
 
         [Test]
-        public void GetLowerNumbersNullNumberm() => Assert.Throws<ArgumentNullException>(() =>
-               Number.GetLowerNumbers(null, 10));
+        public void GetLowerNumbersNullNumber() => Assert.Throws<ArgumentNullException>(() =>
+            Number.GetLowerNumbers(null, 10));
+
+        [Test]
+        public void Get1ZoomLowerNumbersNormal()
+        {
+            Number[] numbers = Locations.TokyoGeodeticNtmsNumber.GetLowerNumbers();
+            Number num0 = new Number(3638, 618, 11);
+            Assert.True(numbers[0] == num0);
+
+            Number num1 = new Number(3639, 618, 11);
+            Assert.True(numbers[1] == num1);
+
+            Number num2 = new Number(3638, 619, 11);
+            Assert.True(numbers[2] == num2);
+
+            Number num3 = new Number(3639, 619, 11);
+            Assert.True(numbers[3] == num3);
+
+            Assert.Pass();
+        }
+
+        [Test]
+        public void Get1ZoomLowerNumbersNullNumber() => Assert.Throws<ArgumentNullException>(() => Number.GetLowerNumbers(null));
 
         #endregion
 

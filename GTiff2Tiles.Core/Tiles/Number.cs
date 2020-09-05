@@ -261,6 +261,33 @@ namespace GTiff2Tiles.Core.Tiles
             return (minNumber, maxNumber);
         }
 
+        /// <inheritdoc cref="GetLowerNumbers(Number)"/>
+        public Number[] GetLowerNumbers() => GetLowerNumbers(this);
+
+        /// <summary>
+        /// Gets 4 one zoom lower <see cref="Number"/>s
+        /// </summary>
+        /// <param name="number">Input <see cref="Number"/></param>
+        /// <returns>4 lower <see cref="Number"/>s</returns>
+        /// <exception cref="ArgumentNullException"/>
+        public static Number[] GetLowerNumbers(Number number)
+        {
+            #region Preconditions checks
+
+            if (number == null) throw new ArgumentNullException(nameof(number));
+
+            #endregion
+
+            Number[] numbers = new Number[4];
+
+            numbers[0] = new Number(number.X * 2, number.Y * 2, number.Z + 1);
+            numbers[1] = new Number(numbers[0].X + 1, numbers[0].Y, numbers[0].Z);
+            numbers[2] = new Number(numbers[0].X, numbers[0].Y + 1, numbers[0].Z);
+            numbers[3] = new Number(numbers[0].X + 1, numbers[0].Y + 1, numbers[0].Z);
+
+            return numbers;
+        }
+
         #endregion
 
         #region GetCount

@@ -1613,6 +1613,17 @@
             <param name="number">Base <see cref="T:GTiff2Tiles.Core.Tiles.Number"/></param>
             <param name="z"></param>
         </member>
+        <member name="M:GTiff2Tiles.Core.Tiles.Number.GetLowerNumbers">
+            <inheritdoc cref="M:GTiff2Tiles.Core.Tiles.Number.GetLowerNumbers(GTiff2Tiles.Core.Tiles.Number)"/>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Tiles.Number.GetLowerNumbers(GTiff2Tiles.Core.Tiles.Number)">
+            <summary>
+            Gets 4 one zoom lower <see cref="T:GTiff2Tiles.Core.Tiles.Number"/>s
+            </summary>
+            <param name="number">Input <see cref="T:GTiff2Tiles.Core.Tiles.Number"/></param>
+            <returns>4 lower <see cref="T:GTiff2Tiles.Core.Tiles.Number"/>s</returns>
+            <exception cref="T:System.ArgumentNullException"/>
+        </member>
         <member name="M:GTiff2Tiles.Core.Tiles.Number.GetCount(GTiff2Tiles.Core.Coordinates.GeoCoordinate,GTiff2Tiles.Core.Coordinates.GeoCoordinate,System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size)">
             <summary>
             Get count of <see cref="T:GTiff2Tiles.Core.Tiles.Tile"/>s in specified region
