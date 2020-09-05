@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
+using System.Linq;
 using BitMiracle.LibTiff.Classic;
 using System.Threading.Channels;
 using System.Threading.Tasks;
@@ -875,6 +877,372 @@ namespace GTiff2Tiles.Core.GeoTiffs
                 default: throw new NotSupportedException(err);
             }
         }
+
+        #endregion
+
+        #region Join tiles
+
+        #region Create overview tiles
+
+        /// <summary>
+        /// Create overview <see cref="RasterTile"/>s for specified
+        /// <see cref="GeoCoordinate"/>s using finding lower tiles inside
+        /// <see cref="HashSet{T}"/> of <see cref="RasterTile"/>s
+        /// </summary>
+        /// <inheritdoc cref="JoinTilesIntoBytes"/>
+        /// <param name="channelWriter"><see cref="Channel{T}"/> to write
+        /// <see cref="RasterTile"/>s</param>
+        /// <param name="minZ">Minimal overview zoom</param>
+        /// <param name="maxZ">Maximal overview zoom</param>
+        /// <param name="tiles">Input <see cref="RasterTile"/>s from which
+        /// overview will be created</param>
+        /// <param name="coordinateSystem">Target <see cref="RasterTile"/>s coordinate system</param>
+        /// <param name="isBuffered">Is input <see cref="RasterTile"/>s contains
+        /// data inside <see cref="ITile.Bytes"/> property?
+        /// <remarks><para/>If set to <see langword="false"/>, will use
+        /// <see cref="ITile.Path"/> to get input tiles's data</remarks></param>
+        /// <param name="tileSize"></param>
+        /// <param name="extension"></param>
+        /// <param name="tmsCompatible">Are ready <see cref="RasterTile"/>s tms-compatible?
+        /// <remarks><para/><see langword="false"/> by default</remarks></param>
+        /// <param name="bandsCount"></param>
+        /// <exception cref="ArgumentNullException"/>
+        /// <exception cref="ArgumentOutOfRangeException"/>
+        public void CreateOverviewTiles(ChannelWriter<RasterTile> channelWriter, int minZ, int maxZ,
+                                        HashSet<RasterTile> tiles, bool isBuffered, CoordinateSystem coordinateSystem,
+                                        Size tileSize = null, TileExtension extension = TileExtension.Png,
+                                        bool tmsCompatible = false, int bandsCount = 4)
+        {
+            #region Preconditions checks
+
+            if (channelWriter == null) throw new ArgumentNullException(nameof(channelWriter));
+            if (minZ < 0) throw new ArgumentOutOfRangeException(nameof(minZ));
+            if (maxZ < minZ) throw new ArgumentOutOfRangeException(nameof(maxZ));
+
+            #endregion
+
+            for (int z = minZ; z <= maxZ; z++)
+            {
+                (Number minNumber, Number maxNumber) =
+                    GeoCoordinate.GetNumbers(MinCoordinate, MaxCoordinate, z, Tile.DefaultSize, false);
+
+                for (int x = minNumber.X; x <= maxNumber.X; x++)
+                {
+                    int x1 = x;
+                    int z1 = z;
+                    Parallel.For(minNumber.Y, maxNumber.Y + 1, y =>
+                    {
+                        Number number = new Number(x1, y, z1);
+
+                        RasterTile tile = new RasterTile(number, coordinateSystem, tileSize, null, extension,
+                                                         tmsCompatible, bandsCount);
+                        CreateOverviewTile(ref tile, tiles, isBuffered);
+
+                        channelWriter.TryWrite(tile);
+                    });
+                }
+            }
+        }
+
+        /// <inheritdoc cref="CreateOverviewTiles"/>
+        public Task CreateOverviewTilesAsync(ChannelWriter<RasterTile> channelWriter, int minZ, int maxZ,
+                                        HashSet<RasterTile> tiles, bool isBuffered, CoordinateSystem coordinateSystem,
+                                        Size tileSize = null, TileExtension extension = TileExtension.Png,
+                                        bool tmsCompatible = false, int bandsCount = 4) => Task.Run(() => CreateOverviewTiles(channelWriter, minZ, maxZ, tiles, isBuffered, coordinateSystem,
+            tileSize, extension, tmsCompatible, bandsCount));
+
+        #endregion
+
+        #region Create overview tile
+
+        /// <summary>
+        /// Creates specified overview <see cref="RasterTile"/>
+        /// from array of lower <see cref="RasterTile"/>s
+        /// </summary>
+        /// <param name="targetTile">Target <see cref="RasterTile"/></param>
+        /// <param name="baseTiles">Collection of lower <see cref="RasterTile"/>s</param>
+        /// <param name="isBuffered">Is input <see cref="RasterTile"/>s contains
+        /// data inside <see cref="ITile.Bytes"/> property?
+        /// <remarks><para/>If set to <see langword="false"/>, will use
+        /// <see cref="ITile.Path"/> to get input tiles's data</remarks></param>
+        /// <exception cref="ArgumentNullException"/>
+        public static void CreateOverviewTile(ref RasterTile targetTile, HashSet<RasterTile> baseTiles,
+                                              bool isBuffered)
+        {
+            #region Preconditions checks
+
+            if (targetTile == null) throw new ArgumentNullException(nameof(targetTile));
+            if (baseTiles == null) throw new ArgumentNullException(nameof(baseTiles));
+
+            #endregion
+
+            Number[] numbers = targetTile.Number.GetLowerNumbers();
+
+            using RasterTile lower0 = baseTiles.FirstOrDefault(t => t.Number == numbers[0]);
+            using RasterTile lower1 = baseTiles.FirstOrDefault(t => t.Number == numbers[1]);
+            using RasterTile lower2 = baseTiles.FirstOrDefault(t => t.Number == numbers[2]);
+            using RasterTile lower3 = baseTiles.FirstOrDefault(t => t.Number == numbers[3]);
+
+            CreateOverviewTile(ref targetTile, lower0, lower1, lower2, lower3, isBuffered);
+        }
+
+        /// <summary>
+        /// Creates specified overview <see cref="RasterTile"/>
+        /// from 4 lower <see cref="RasterTile"/>s
+        /// </summary>
+        /// <inheritdoc cref="JoinTilesIntoImage(RasterTile,RasterTile,RasterTile,RasterTile,bool,Images.Size,int)"/>
+        /// <param name="targetTile">Target <see cref="RasterTile"/></param>
+        /// <param name="tile0"></param>
+        /// <param name="tile1"></param>
+        /// <param name="tile2"></param>
+        /// <param name="tile3"></param>
+        /// <param name="isBuffered"></param>
+        /// <exception cref="ArgumentNullException"/>
+        public static void CreateOverviewTile(ref RasterTile targetTile, RasterTile tile0, RasterTile tile1,
+                                              RasterTile tile2, RasterTile tile3, bool isBuffered)
+        {
+            #region Preconditions checks
+
+            if (targetTile == null) throw new ArgumentNullException(nameof(targetTile));
+
+            #endregion
+
+            targetTile.Bytes = JoinTilesIntoBytes(tile0, tile1, tile2, tile3, isBuffered, targetTile.Size,
+                                                  targetTile.BandsCount, targetTile.Extension);
+        }
+
+        #endregion
+
+        #region Join tiles into bytes
+
+        /// <summary>
+        /// Join 4 <see cref="RasterTile"/>s into
+        /// collection of <see cref="byte"/>s
+        /// <para/>if all <see cref="RasterTile"/>s are
+        /// <see langword="null"/> -- returns <see langword="null"/>
+        /// </summary>
+        /// <returns>Collection of ready image's <see cref="byte"/>s</returns>
+        /// <inheritdoc cref="JoinTilesIntoImage(RasterTile,RasterTile,RasterTile,RasterTile,bool,Images.Size,int)"/>
+        /// <param name="tile0"></param>
+        /// <param name="tile1"></param>
+        /// <param name="tile2"></param>
+        /// <param name="tile3"></param>
+        /// <param name="isBuffered"></param>
+        /// <param name="tileSize"></param>
+        /// <param name="bandsCount"></param>
+        /// <param name="extension"><see cref="TileExtension"/> of ready <see cref="RasterTile"/></param>
+        public static IEnumerable<byte> JoinTilesIntoBytes(RasterTile tile0, RasterTile tile1, RasterTile tile2,
+                                                           RasterTile tile3, bool isBuffered, Size tileSize,
+                                                           int bandsCount, TileExtension extension)
+        {
+            Image image = JoinTilesIntoImage(tile0, tile1, tile2, tile3, isBuffered, tileSize, bandsCount);
+
+            byte[] result = image?.WriteToBuffer(Tile.GetExtensionString(extension));
+            image?.Dispose();
+
+            return result;
+        }
+
+        #endregion
+
+        #region Join tiles into image
+
+        /// <summary>
+        /// Join 4 <see cref="RasterTile"/>s into
+        /// one <see cref="Image"/>;
+        /// <para/>if all <see cref="RasterTile"/>s are
+        /// <see langword="null"/> -- returns <see langword="null"/>
+        /// </summary>
+        /// <returns>Ready <see cref="Image"/></returns>
+        /// <param name="tile0">Upper-left <see cref="RasterTile"/>
+        /// <remarks><para/>if set to <see langword="null"/>,
+        /// empty tile will be created</remarks></param>
+        /// <param name="tile1">Upper-right <see cref="RasterTile"/>
+        /// <remarks><para/>if set to <see langword="null"/>,
+        /// empty tile will be created</remarks></param>
+        /// <param name="tile2">Lower-left <see cref="RasterTile"/>
+        /// <remarks><para/>if set to <see langword="null"/>,
+        /// empty tile will be created</remarks></param>
+        /// <param name="tile3">Lower-right <see cref="RasterTile"/>
+        /// <remarks><para/>if set to <see langword="null"/>,
+        /// empty tile will be created</remarks></param>
+        /// <param name="isBuffered">Is input <see cref="RasterTile"/>s contains
+        /// data inside <see cref="ITile.Bytes"/> property?
+        /// <remarks><para/>If set to <see langword="false"/>, will use
+        /// <see cref="ITile.Path"/> to get input tiles's data</remarks></param>
+        /// <param name="tileSize"><see cref="Images.Size"/> of input
+        /// and target <see cref="RasterTile"/></param>
+        /// <param name="bandsCount">Count of bands in target <see cref="RasterTile"/>
+        /// <remarks><para/>must be in range (0-5)</remarks></param>
+        /// <returns>Ready <see cref="Image"/></returns>
+        public static Image JoinTilesIntoImage(RasterTile tile0, RasterTile tile1,
+                                               RasterTile tile2, RasterTile tile3,
+                                               bool isBuffered, Size tileSize,
+                                               int bandsCount)
+        {
+            // ReSharper disable once RemoveRedundantBraces
+            if (isBuffered)
+            {
+                return JoinTilesIntoImage(tile0?.Bytes, tile1?.Bytes,
+                                          tile2?.Bytes, tile3?.Bytes,
+                                          tileSize, bandsCount);
+            }
+
+            return JoinTilesIntoImage(tile0?.Path, tile1?.Path, tile2?.Path, tile3?.Path,
+                                      tileSize, bandsCount);
+        }
+
+        /// <inheritdoc cref="JoinTilesIntoImage(RasterTile,RasterTile,RasterTile,RasterTile,bool,Images.Size,int)"/>
+        public static Task<Image> JoinTilesIntoImageAsync(RasterTile tile0, RasterTile tile1, RasterTile tile2,
+                                                          RasterTile tile3, bool isBuffered, Size tileSize,
+                                                          int bandsCount) => Task.Run(() => JoinTilesIntoImage(tile0, tile1, tile2, tile3, isBuffered, tileSize, bandsCount));
+
+        /// <summary>
+        /// Join arrays of <see cref="byte"/> of
+        /// 4 <see cref="RasterTile"/>s into
+        /// one <see cref="Image"/>
+        /// <remarks><para/>if all arrays are <see langword="null"/>
+        /// or empty -- returns <see langword="null"/></remarks>
+        /// </summary>
+        /// <param name="tile0Bytes">Bytes of upper-left <see cref="RasterTile"/>
+        /// <remarks><para/>if set to <see langword="null"/>,
+        /// empty tile will be created</remarks></param>
+        /// <param name="tile1Bytes">Bytes of upper-right <see cref="RasterTile"/>
+        /// <remarks><para/>if set to <see langword="null"/>,
+        /// empty tile will be created</remarks></param>
+        /// <param name="tile2Bytes">Bytes of lower-left <see cref="RasterTile"/>
+        /// <remarks><para/>if set to <see langword="null"/>,
+        /// empty tile will be created</remarks></param>
+        /// <param name="tile3Bytes">Bytes of lower-right <see cref="RasterTile"/>
+        /// <remarks><para/>if set to <see langword="null"/>,
+        /// empty tile will be created</remarks></param>
+        /// <param name="tileSize"><see cref="Images.Size"/> of input
+        /// and target <see cref="RasterTile"/></param>
+        /// <param name="bandsCount">Count of bands in target <see cref="RasterTile"/>
+        /// <remarks><para/>must be in range (0-5)</remarks></param>
+        /// <returns>Ready <see cref="Image"/></returns>
+        /// <exception cref="ArgumentNullException"/>
+        /// <exception cref="ArgumentOutOfRangeException"/>
+        [SuppressMessage("ReSharper", "RemoveRedundantBraces")]
+        public static Image JoinTilesIntoImage(IEnumerable<byte> tile0Bytes, IEnumerable<byte> tile1Bytes,
+                                               IEnumerable<byte> tile2Bytes, IEnumerable<byte> tile3Bytes,
+                                               Size tileSize, int bandsCount)
+        {
+            #region Preconditions checks
+
+            if (tileSize == null) throw new ArgumentNullException(nameof(tileSize));
+            if (bandsCount < 1 || bandsCount > 4) throw new ArgumentOutOfRangeException(nameof(bandsCount));
+
+            #endregion
+
+            byte[][] bytes = new byte[4][];
+            bytes[0] = tile0Bytes?.ToArray() ?? Array.Empty<byte>();
+            bytes[1] = tile1Bytes?.ToArray() ?? Array.Empty<byte>();
+            bytes[2] = tile2Bytes?.ToArray() ?? Array.Empty<byte>();
+            bytes[3] = tile3Bytes?.ToArray() ?? Array.Empty<byte>();
+
+            Image[] images = new Image[4];
+
+            Size size = new Size(tileSize.Width / 2, tileSize.Height / 2);
+            bool empty = true;
+
+            for (int i = 0; i < 4; i++)
+            {
+                if (bytes[i].Any())
+                {
+                    empty = false;
+                    images[i] = Image.NewFromBuffer(bytes[i]).ThumbnailImage(size.Width, size.Height);
+                }
+                else
+                {
+                    images[i] = Image.Black(size.Width, size.Height, bandsCount);
+                }
+            }
+
+            return empty ? null : Image.Arrayjoin(images, 2);
+        }
+
+        /// <inheritdoc cref="JoinTilesIntoImage(IEnumerable{byte},IEnumerable{byte},IEnumerable{byte},IEnumerable{byte},Images.Size,int)"/>
+        public static Task<Image> JoinTilesIntoImageAsync(IEnumerable<byte> tile0Bytes, IEnumerable<byte> tile1Bytes,
+                                                          IEnumerable<byte> tile2Bytes, IEnumerable<byte> tile3Bytes,
+                                                          Size tileSize, int bandsCount) => Task.Run(() => JoinTilesIntoImage(tile0Bytes, tile1Bytes, tile2Bytes, tile3Bytes, tileSize, bandsCount));
+
+        /// <summary>
+        /// Join 4 <see cref="RasterTile"/>s into
+        /// one <see cref="Image"/>
+        /// <remarks><para/>if all 4 paths are <see langword="null"/>
+        /// or empty <see cref="string"/>s -- returns <see langword="null"/></remarks>
+        /// </summary>
+        /// <param name="tile0Path">Path of upper-left <see cref="RasterTile"/>
+        /// <remarks><para/>if set to <see langword="null"/>,
+        /// empty tile will be created</remarks></param>
+        /// <param name="tile1Path">Path of upper-right <see cref="RasterTile"/>
+        /// <remarks><para/>if set to <see langword="null"/>,
+        /// empty tile will be created</remarks></param>
+        /// <param name="tile2Path">Path of lower-left <see cref="RasterTile"/>
+        /// <remarks><para/>if set to <see langword="null"/>,
+        /// empty tile will be created</remarks></param>
+        /// <param name="tile3Path">Path of lower-right <see cref="RasterTile"/>
+        /// <remarks><para/>if set to <see langword="null"/>,
+        /// empty tile will be created</remarks></param>
+        /// <param name="tileSize"><see cref="Images.Size"/> of input
+        /// and target <see cref="RasterTile"/></param>
+        /// <param name="bandsCount">Count of bands in target <see cref="RasterTile"/>
+        /// <remarks><para/>must be in range (0-5)</remarks></param>
+        /// <returns>Ready <see cref="Image"/></returns>
+        /// <exception cref="ArgumentNullException"/>
+        /// <exception cref="ArgumentOutOfRangeException"/>
+        [SuppressMessage("ReSharper", "RemoveRedundantBraces")]
+        public static Image JoinTilesIntoImage(string tile0Path, string tile1Path,
+                                               string tile2Path, string tile3Path,
+                                               Size tileSize, int bandsCount)
+        {
+            #region Preconditions checks
+
+            if (tileSize == null) throw new ArgumentNullException(nameof(tileSize));
+            if (bandsCount < 1 || bandsCount > 4) throw new ArgumentOutOfRangeException(nameof(bandsCount));
+
+            #endregion
+
+            string[] paths = new string[4];
+            paths[0] = string.IsNullOrWhiteSpace(tile0Path) ? string.Empty : tile0Path;
+            paths[1] = string.IsNullOrWhiteSpace(tile1Path) ? string.Empty : tile1Path;
+            paths[2] = string.IsNullOrWhiteSpace(tile2Path) ? string.Empty : tile2Path;
+            paths[3] = string.IsNullOrWhiteSpace(tile3Path) ? string.Empty : tile3Path;
+
+            Image[] images = new Image[4];
+
+            Size size = new Size(tileSize.Width / 2, tileSize.Height / 2);
+            bool empty = true;
+
+            for (int i = 0; i < 4; i++)
+            {
+                if (File.Exists(paths[i]))
+                {
+                    empty = false;
+
+                    // TODO: image not closing
+                    // See https://github.com/kleisauke/net-vips/issues/84
+                    //images[i] = Image.NewFromFile(paths[i], true).ThumbnailImage(size.Width, size.Height);
+
+                    byte[] bytes = File.ReadAllBytes(paths[i]);
+                    images[i] = Image.NewFromBuffer(bytes).ThumbnailImage(size.Width, size.Height);
+                }
+                else
+                {
+                    images[i] = Image.Black(size.Width, size.Height, bandsCount);
+                }
+            }
+
+            return empty ? null : Image.Arrayjoin(images, 2);
+        }
+
+        /// <inheritdoc cref="JoinTilesIntoImage(string,string,string,string,Images.Size,int)"/>
+        public static Task<Image> JoinTilesIntoImageAsync(string tile0Path, string tile1Path, string tile2Path, string tile3Path,
+                                                          Size tileSize, int bandsCount) => Task.Run(() => JoinTilesIntoImage(tile0Path, tile1Path, tile2Path, tile3Path, tileSize,
+            bandsCount));
+
+        #endregion
 
         #endregion
 

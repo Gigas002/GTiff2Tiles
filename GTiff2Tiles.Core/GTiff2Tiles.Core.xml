@@ -1042,6 +1042,174 @@
             <param name="filePath">Full path to GeoTiff file</param>
             <param name="coordinateSystem"></param>
         </member>
+        <member name="M:GTiff2Tiles.Core.GeoTiffs.Raster.CreateOverviewTiles(System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.RasterTile},System.Int32,System.Int32,System.Collections.Generic.HashSet{GTiff2Tiles.Core.Tiles.RasterTile},System.Boolean,GTiff2Tiles.Core.Enums.CoordinateSystem,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.TileExtension,System.Boolean,System.Int32)">
+            <summary>
+            Create overview <see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/>s for specified
+            <see cref="T:GTiff2Tiles.Core.Coordinates.GeoCoordinate"/>s using finding lower tiles inside
+            <see cref="T:System.Collections.Generic.HashSet`1"/> of <see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/>s
+            </summary>
+            <inheritdoc cref="M:GTiff2Tiles.Core.GeoTiffs.Raster.JoinTilesIntoBytes(GTiff2Tiles.Core.Tiles.RasterTile,GTiff2Tiles.Core.Tiles.RasterTile,GTiff2Tiles.Core.Tiles.RasterTile,GTiff2Tiles.Core.Tiles.RasterTile,System.Boolean,GTiff2Tiles.Core.Images.Size,System.Int32,GTiff2Tiles.Core.Enums.TileExtension)"/>
+            <param name="channelWriter"><see cref="T:System.Threading.Channels.Channel`1"/> to write
+            <see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/>s</param>
+            <param name="minZ">Minimal overview zoom</param>
+            <param name="maxZ">Maximal overview zoom</param>
+            <param name="tiles">Input <see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/>s from which
+            overview will be created</param>
+            <param name="coordinateSystem">Target <see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/>s coordinate system</param>
+            <param name="isBuffered">Is input <see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/>s contains
+            data inside <see cref="P:GTiff2Tiles.Core.Tiles.ITile.Bytes"/> property?
+            <remarks><para/>If set to <see langword="false"/>, will use
+            <see cref="P:GTiff2Tiles.Core.Tiles.ITile.Path"/> to get input tiles's data</remarks></param>
+            <param name="tileSize"></param>
+            <param name="extension"></param>
+            <param name="tmsCompatible">Are ready <see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/>s tms-compatible?
+            <remarks><para/><see langword="false"/> by default</remarks></param>
+            <param name="bandsCount"></param>
+            <exception cref="T:System.ArgumentNullException"/>
+            <exception cref="T:System.ArgumentOutOfRangeException"/>
+        </member>
+        <member name="M:GTiff2Tiles.Core.GeoTiffs.Raster.CreateOverviewTilesAsync(System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.RasterTile},System.Int32,System.Int32,System.Collections.Generic.HashSet{GTiff2Tiles.Core.Tiles.RasterTile},System.Boolean,GTiff2Tiles.Core.Enums.CoordinateSystem,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.TileExtension,System.Boolean,System.Int32)">
+            <inheritdoc cref="M:GTiff2Tiles.Core.GeoTiffs.Raster.CreateOverviewTiles(System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.RasterTile},System.Int32,System.Int32,System.Collections.Generic.HashSet{GTiff2Tiles.Core.Tiles.RasterTile},System.Boolean,GTiff2Tiles.Core.Enums.CoordinateSystem,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.TileExtension,System.Boolean,System.Int32)"/>
+        </member>
+        <member name="M:GTiff2Tiles.Core.GeoTiffs.Raster.CreateOverviewTile(GTiff2Tiles.Core.Tiles.RasterTile@,System.Collections.Generic.HashSet{GTiff2Tiles.Core.Tiles.RasterTile},System.Boolean)">
+            <summary>
+            Creates specified overview <see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/>
+            from array of lower <see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/>s
+            </summary>
+            <param name="targetTile">Target <see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/></param>
+            <param name="baseTiles">Collection of lower <see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/>s</param>
+            <param name="isBuffered">Is input <see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/>s contains
+            data inside <see cref="P:GTiff2Tiles.Core.Tiles.ITile.Bytes"/> property?
+            <remarks><para/>If set to <see langword="false"/>, will use
+            <see cref="P:GTiff2Tiles.Core.Tiles.ITile.Path"/> to get input tiles's data</remarks></param>
+            <exception cref="T:System.ArgumentNullException"/>
+        </member>
+        <member name="M:GTiff2Tiles.Core.GeoTiffs.Raster.CreateOverviewTile(GTiff2Tiles.Core.Tiles.RasterTile@,GTiff2Tiles.Core.Tiles.RasterTile,GTiff2Tiles.Core.Tiles.RasterTile,GTiff2Tiles.Core.Tiles.RasterTile,GTiff2Tiles.Core.Tiles.RasterTile,System.Boolean)">
+            <summary>
+            Creates specified overview <see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/>
+            from 4 lower <see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/>s
+            </summary>
+            <inheritdoc cref="M:GTiff2Tiles.Core.GeoTiffs.Raster.JoinTilesIntoImage(GTiff2Tiles.Core.Tiles.RasterTile,GTiff2Tiles.Core.Tiles.RasterTile,GTiff2Tiles.Core.Tiles.RasterTile,GTiff2Tiles.Core.Tiles.RasterTile,System.Boolean,GTiff2Tiles.Core.Images.Size,System.Int32)"/>
+            <param name="targetTile">Target <see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/></param>
+            <param name="tile0"></param>
+            <param name="tile1"></param>
+            <param name="tile2"></param>
+            <param name="tile3"></param>
+            <param name="isBuffered"></param>
+            <exception cref="T:System.ArgumentNullException"/>
+        </member>
+        <member name="M:GTiff2Tiles.Core.GeoTiffs.Raster.JoinTilesIntoBytes(GTiff2Tiles.Core.Tiles.RasterTile,GTiff2Tiles.Core.Tiles.RasterTile,GTiff2Tiles.Core.Tiles.RasterTile,GTiff2Tiles.Core.Tiles.RasterTile,System.Boolean,GTiff2Tiles.Core.Images.Size,System.Int32,GTiff2Tiles.Core.Enums.TileExtension)">
+            <summary>
+            Join 4 <see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/>s into
+            collection of <see cref="T:System.Byte"/>s
+            <para/>if all <see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/>s are
+            <see langword="null"/> -- returns <see langword="null"/>
+            </summary>
+            <returns>Collection of ready image's <see cref="T:System.Byte"/>s</returns>
+            <inheritdoc cref="M:GTiff2Tiles.Core.GeoTiffs.Raster.JoinTilesIntoImage(GTiff2Tiles.Core.Tiles.RasterTile,GTiff2Tiles.Core.Tiles.RasterTile,GTiff2Tiles.Core.Tiles.RasterTile,GTiff2Tiles.Core.Tiles.RasterTile,System.Boolean,GTiff2Tiles.Core.Images.Size,System.Int32)"/>
+            <param name="tile0"></param>
+            <param name="tile1"></param>
+            <param name="tile2"></param>
+            <param name="tile3"></param>
+            <param name="isBuffered"></param>
+            <param name="tileSize"></param>
+            <param name="bandsCount"></param>
+            <param name="extension"><see cref="T:GTiff2Tiles.Core.Enums.TileExtension"/> of ready <see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/></param>
+        </member>
+        <member name="M:GTiff2Tiles.Core.GeoTiffs.Raster.JoinTilesIntoImage(GTiff2Tiles.Core.Tiles.RasterTile,GTiff2Tiles.Core.Tiles.RasterTile,GTiff2Tiles.Core.Tiles.RasterTile,GTiff2Tiles.Core.Tiles.RasterTile,System.Boolean,GTiff2Tiles.Core.Images.Size,System.Int32)">
+            <summary>
+            Join 4 <see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/>s into
+            one <see cref="T:NetVips.Image"/>;
+            <para/>if all <see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/>s are
+            <see langword="null"/> -- returns <see langword="null"/>
+            </summary>
+            <returns>Ready <see cref="T:NetVips.Image"/></returns>
+            <param name="tile0">Upper-left <see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/>
+            <remarks><para/>if set to <see langword="null"/>,
+            empty tile will be created</remarks></param>
+            <param name="tile1">Upper-right <see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/>
+            <remarks><para/>if set to <see langword="null"/>,
+            empty tile will be created</remarks></param>
+            <param name="tile2">Lower-left <see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/>
+            <remarks><para/>if set to <see langword="null"/>,
+            empty tile will be created</remarks></param>
+            <param name="tile3">Lower-right <see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/>
+            <remarks><para/>if set to <see langword="null"/>,
+            empty tile will be created</remarks></param>
+            <param name="isBuffered">Is input <see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/>s contains
+            data inside <see cref="P:GTiff2Tiles.Core.Tiles.ITile.Bytes"/> property?
+            <remarks><para/>If set to <see langword="false"/>, will use
+            <see cref="P:GTiff2Tiles.Core.Tiles.ITile.Path"/> to get input tiles's data</remarks></param>
+            <param name="tileSize"><see cref="T:GTiff2Tiles.Core.Images.Size"/> of input
+            and target <see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/></param>
+            <param name="bandsCount">Count of bands in target <see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/>
+            <remarks><para/>must be in range (0-5)</remarks></param>
+            <returns>Ready <see cref="T:NetVips.Image"/></returns>
+        </member>
+        <member name="M:GTiff2Tiles.Core.GeoTiffs.Raster.JoinTilesIntoImageAsync(GTiff2Tiles.Core.Tiles.RasterTile,GTiff2Tiles.Core.Tiles.RasterTile,GTiff2Tiles.Core.Tiles.RasterTile,GTiff2Tiles.Core.Tiles.RasterTile,System.Boolean,GTiff2Tiles.Core.Images.Size,System.Int32)">
+            <inheritdoc cref="M:GTiff2Tiles.Core.GeoTiffs.Raster.JoinTilesIntoImage(GTiff2Tiles.Core.Tiles.RasterTile,GTiff2Tiles.Core.Tiles.RasterTile,GTiff2Tiles.Core.Tiles.RasterTile,GTiff2Tiles.Core.Tiles.RasterTile,System.Boolean,GTiff2Tiles.Core.Images.Size,System.Int32)"/>
+        </member>
+        <member name="M:GTiff2Tiles.Core.GeoTiffs.Raster.JoinTilesIntoImage(System.Collections.Generic.IEnumerable{System.Byte},System.Collections.Generic.IEnumerable{System.Byte},System.Collections.Generic.IEnumerable{System.Byte},System.Collections.Generic.IEnumerable{System.Byte},GTiff2Tiles.Core.Images.Size,System.Int32)">
+            <summary>
+            Join arrays of <see cref="T:System.Byte"/> of
+            4 <see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/>s into
+            one <see cref="T:NetVips.Image"/>
+            <remarks><para/>if all arrays are <see langword="null"/>
+            or empty -- returns <see langword="null"/></remarks>
+            </summary>
+            <param name="tile0Bytes">Bytes of upper-left <see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/>
+            <remarks><para/>if set to <see langword="null"/>,
+            empty tile will be created</remarks></param>
+            <param name="tile1Bytes">Bytes of upper-right <see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/>
+            <remarks><para/>if set to <see langword="null"/>,
+            empty tile will be created</remarks></param>
+            <param name="tile2Bytes">Bytes of lower-left <see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/>
+            <remarks><para/>if set to <see langword="null"/>,
+            empty tile will be created</remarks></param>
+            <param name="tile3Bytes">Bytes of lower-right <see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/>
+            <remarks><para/>if set to <see langword="null"/>,
+            empty tile will be created</remarks></param>
+            <param name="tileSize"><see cref="T:GTiff2Tiles.Core.Images.Size"/> of input
+            and target <see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/></param>
+            <param name="bandsCount">Count of bands in target <see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/>
+            <remarks><para/>must be in range (0-5)</remarks></param>
+            <returns>Ready <see cref="T:NetVips.Image"/></returns>
+            <exception cref="T:System.ArgumentNullException"/>
+            <exception cref="T:System.ArgumentOutOfRangeException"/>
+        </member>
+        <member name="M:GTiff2Tiles.Core.GeoTiffs.Raster.JoinTilesIntoImageAsync(System.Collections.Generic.IEnumerable{System.Byte},System.Collections.Generic.IEnumerable{System.Byte},System.Collections.Generic.IEnumerable{System.Byte},System.Collections.Generic.IEnumerable{System.Byte},GTiff2Tiles.Core.Images.Size,System.Int32)">
+            <inheritdoc cref="M:GTiff2Tiles.Core.GeoTiffs.Raster.JoinTilesIntoImage(System.Collections.Generic.IEnumerable{System.Byte},System.Collections.Generic.IEnumerable{System.Byte},System.Collections.Generic.IEnumerable{System.Byte},System.Collections.Generic.IEnumerable{System.Byte},GTiff2Tiles.Core.Images.Size,System.Int32)"/>
+        </member>
+        <member name="M:GTiff2Tiles.Core.GeoTiffs.Raster.JoinTilesIntoImage(System.String,System.String,System.String,System.String,GTiff2Tiles.Core.Images.Size,System.Int32)">
+            <summary>
+            Join 4 <see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/>s into
+            one <see cref="T:NetVips.Image"/>
+            <remarks><para/>if all 4 paths are <see langword="null"/>
+            or empty <see cref="T:System.String"/>s -- returns <see langword="null"/></remarks>
+            </summary>
+            <param name="tile0Path">Path of upper-left <see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/>
+            <remarks><para/>if set to <see langword="null"/>,
+            empty tile will be created</remarks></param>
+            <param name="tile1Path">Path of upper-right <see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/>
+            <remarks><para/>if set to <see langword="null"/>,
+            empty tile will be created</remarks></param>
+            <param name="tile2Path">Path of lower-left <see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/>
+            <remarks><para/>if set to <see langword="null"/>,
+            empty tile will be created</remarks></param>
+            <param name="tile3Path">Path of lower-right <see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/>
+            <remarks><para/>if set to <see langword="null"/>,
+            empty tile will be created</remarks></param>
+            <param name="tileSize"><see cref="T:GTiff2Tiles.Core.Images.Size"/> of input
+            and target <see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/></param>
+            <param name="bandsCount">Count of bands in target <see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/>
+            <remarks><para/>must be in range (0-5)</remarks></param>
+            <returns>Ready <see cref="T:NetVips.Image"/></returns>
+            <exception cref="T:System.ArgumentNullException"/>
+            <exception cref="T:System.ArgumentOutOfRangeException"/>
+        </member>
+        <member name="M:GTiff2Tiles.Core.GeoTiffs.Raster.JoinTilesIntoImageAsync(System.String,System.String,System.String,System.String,GTiff2Tiles.Core.Images.Size,System.Int32)">
+            <inheritdoc cref="M:GTiff2Tiles.Core.GeoTiffs.Raster.JoinTilesIntoImage(System.String,System.String,System.String,System.String,GTiff2Tiles.Core.Images.Size,System.Int32)"/>
+        </member>
         <member name="T:GTiff2Tiles.Core.Helpers.CheckHelper">
             <summary>
             Class with static methods to check for errors

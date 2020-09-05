@@ -262,7 +262,7 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
             Raster raster = new Raster(_in4326, Cs4326);
             RasterTile tile = new RasterTile(Locations.TokyoGeodeticNtmsNumber, Cs4326) { Path = outPath };
 
-            Assert.DoesNotThrowAsync(async () => await raster.WriteTileToFileAsync(raster.Data, tile));
+            Assert.DoesNotThrowAsync(() => raster.WriteTileToFileAsync(raster.Data, tile));
 
             File.Delete(outPath);
         }
@@ -272,7 +272,7 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
         {
             Raster raster = new Raster(_in4326, Cs4326);
 
-            Assert.ThrowsAsync<ArgumentNullException>(async () => await raster.WriteTileToFileAsync(raster.Data, null));
+            Assert.ThrowsAsync<ArgumentNullException>(() => raster.WriteTileToFileAsync(raster.Data, null));
         }
 
         #endregion
@@ -368,7 +368,7 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
 
             Raster raster = new Raster(_in4326, Cs4326);
 
-            Assert.DoesNotThrowAsync(async () => await raster.WriteTilesToDirectoryAsync(outPath, 0, 11));
+            Assert.DoesNotThrowAsync(() => raster.WriteTilesToDirectoryAsync(outPath, 0, 11));
 
             Directory.Delete(outPath, true);
         }
@@ -384,7 +384,7 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
 
             Raster raster = new Raster(_in4326, Cs4326);
 
-            Assert.DoesNotThrowAsync(async () => await raster.WriteTilesToDirectoryAsync(outPath, 0, 11,
+            Assert.DoesNotThrowAsync(() => raster.WriteTilesToDirectoryAsync(outPath, 0, 11,
               true, new Size(64, 64), TileExtension.Jpg, Interpolation.Cubic, 3, 999, 10,
               new Progress<double>(), Reporter));
 
@@ -398,7 +398,7 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
 
             Raster raster = new Raster(_in4326, Cs4326);
 
-            Assert.ThrowsAsync<ArgumentOutOfRangeException>(async () => await raster.WriteTilesToDirectoryAsync(
+            Assert.ThrowsAsync<ArgumentOutOfRangeException>(() => raster.WriteTilesToDirectoryAsync(
                 outPath, 0, 11, tileCacheCount: 0));
 
             Directory.Delete(outPath, true);
@@ -415,7 +415,7 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
 
             Raster raster = new Raster(_in4326, Cs4326);
 
-            Assert.DoesNotThrowAsync(async () => await raster.WriteTilesToDirectoryAsync(outPath, 0, 11));
+            Assert.DoesNotThrowAsync(() => raster.WriteTilesToDirectoryAsync(outPath, 0, 11));
         }
 
         [Test]
@@ -425,7 +425,7 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
 
             Raster raster = new Raster(_in4326, Cs4326);
 
-            Assert.DoesNotThrowAsync(async () => await raster.WriteTilesToDirectoryAsync(outPath, 0, 11,
+            Assert.DoesNotThrowAsync(() => raster.WriteTilesToDirectoryAsync(outPath, 0, 11,
                    true));
         }
 
@@ -436,7 +436,7 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
 
             Raster raster = new Raster(_in4326, Cs4326);
 
-            Assert.DoesNotThrowAsync(async () => await raster.WriteTilesToDirectoryAsync(outPath, 0, 11,
+            Assert.DoesNotThrowAsync(() => raster.WriteTilesToDirectoryAsync(outPath, 0, 11,
                    tileSize: new Size(128, 128)));
         }
 
@@ -447,7 +447,7 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
 
             Raster raster = new Raster(_in4326, Cs4326);
 
-            Assert.DoesNotThrowAsync(async () => await raster.WriteTilesToDirectoryAsync(outPath, 0, 11,
+            Assert.DoesNotThrowAsync(() => raster.WriteTilesToDirectoryAsync(outPath, 0, 11,
                    tileExtension: TileExtension.Webp));
         }
 
@@ -458,7 +458,7 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
 
             Raster raster = new Raster(_in4326, Cs4326);
 
-            Assert.DoesNotThrowAsync(async () => await raster.WriteTilesToDirectoryAsync(outPath, 0, 11,
+            Assert.DoesNotThrowAsync(() => raster.WriteTilesToDirectoryAsync(outPath, 0, 11,
                    tileExtension: TileExtension.Jpg, bandsCount: 3));
         }
 
@@ -469,7 +469,7 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
 
             Raster raster = new Raster(_in4326, Cs4326);
 
-            Assert.DoesNotThrowAsync(async () => await raster.WriteTilesToDirectoryAsync(outPath, 0, 11,
+            Assert.DoesNotThrowAsync(() => raster.WriteTilesToDirectoryAsync(outPath, 0, 11,
                    interpolation: Interpolation.Cubic));
         }
 
@@ -480,7 +480,7 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
 
             Raster raster = new Raster(_in3785, Cs3857);
 
-            Assert.DoesNotThrowAsync(async () => await raster.WriteTilesToDirectoryAsync(outPath, 0, 11));
+            Assert.DoesNotThrowAsync(() => raster.WriteTilesToDirectoryAsync(outPath, 0, 11));
         }
 
         [Test]
@@ -493,7 +493,7 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
 
             Raster raster = new Raster(tmp, Cs3857);
 
-            Assert.DoesNotThrowAsync(async () => await raster.WriteTilesToDirectoryAsync(outPath, 0, 11));
+            Assert.DoesNotThrowAsync(() => raster.WriteTilesToDirectoryAsync(outPath, 0, 11));
         }
 
         [Test]
@@ -506,7 +506,7 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
 
             Raster raster = new Raster(tmp, Cs4326);
 
-            Assert.DoesNotThrowAsync(async () => await raster.WriteTilesToDirectoryAsync(outPath, 0, 11));
+            Assert.DoesNotThrowAsync(() => raster.WriteTilesToDirectoryAsync(outPath, 0, 11));
         }
 
         [Test]
@@ -519,7 +519,7 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
 
             Raster raster = new Raster(tmp, Cs4326);
 
-            Assert.DoesNotThrowAsync(async () => await raster.WriteTilesToDirectoryAsync(outPath, 0, 11));
+            Assert.DoesNotThrowAsync(() => raster.WriteTilesToDirectoryAsync(outPath, 0, 11));
         }
 
         #endregion
@@ -745,6 +745,335 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
         public void GetBordersFilePathOtherCs() => Assert.Throws<NotSupportedException>(() => Raster.GetBorders(_in4326, CsOther));
 
         #endregion
+
+        #endregion
+
+        #region JoinTilesIntoImage
+
+        #region Paths
+
+        [Test]
+        public void JoinTilesIntoImagePathsNormal()
+        {
+            // We need to create some tiles first:
+            string path = Path.Combine(_outPath, _timestamp);
+            using Raster raster = new Raster(_in4326, Cs4326);
+            const int sourceZ = 12;
+            Size tileSize = Tile.DefaultSize;
+            const int bandsCount = 4;
+            raster.WriteTilesToDirectory(path, sourceZ, sourceZ);
+
+            // Now start the test
+            string[] imgs = Directory.EnumerateFiles(path, "*", SearchOption.AllDirectories).ToArray();
+            Assert.DoesNotThrowAsync(() => Raster.JoinTilesIntoImageAsync(imgs[0], imgs[1], imgs[2], imgs[3], tileSize, bandsCount));
+
+            // If you want to view the result on disk
+            //string outPath = Path.Combine(path, "tile.png");
+            //tileImage.WriteToFile(outPath);
+
+            Directory.Delete(path, true);
+        }
+
+        [Test]
+        public void JoinTilesIntoImagePathsNullPaths() => Assert.True(Raster.JoinTilesIntoImage(tile0Path: null, null, null, null, Tile.DefaultSize, 4) == null);
+
+        [Test]
+        public void JoinTilesIntoImagePathsNullSize() => Assert.Throws<ArgumentNullException>(() => Raster.JoinTilesIntoImage(tile0Path: null, null, null, null, null, 4));
+
+        [Test]
+        [Combinatorial]
+        public void JoinTilesIntoImagePathsBadBands([Values(0, 5)] int b) => Assert.Throws<ArgumentOutOfRangeException>(() => Raster.JoinTilesIntoImage(tile0Path: null, null, null, null, Tile.DefaultSize, b));
+
+        #endregion
+
+        #region Bytes
+
+        [Test]
+        public void JoinTilesIntoImageBytesNormal()
+        {
+            // We need to create some tiles first:
+            //string path = Path.Combine(_outPath, _timestamp);
+            using Raster raster = new Raster(_in4326, Cs4326);
+            const int sourceZ = 12;
+            Size tileSize = Tile.DefaultSize;
+            const int bandsCount = 4;
+            RasterTile[] baseTiles = raster.WriteTilesToEnumerable(sourceZ, sourceZ).ToArray();
+
+            // Now start the test
+            Assert.DoesNotThrowAsync(() => Raster.JoinTilesIntoImageAsync(baseTiles[0].Bytes, baseTiles[1].Bytes,
+                                                                baseTiles[2].Bytes, baseTiles[3].Bytes,
+                                                                tileSize, bandsCount));
+
+            // If you want to view the result on disk
+            //Directory.CreateDirectory(path);
+            //string outPath = Path.Combine(path, "tile.png");
+            //tileImage.WriteToFile(outPath);
+        }
+
+        [Test]
+        public void JoinTilesIntoImageBytesNullArrays() => Assert.True(Raster.JoinTilesIntoImage(tile0Bytes: null, null, null, null, Tile.DefaultSize, 4) == null);
+
+        [Test]
+        public void JoinTilesIntoImageBytesNullSize() => Assert.Throws<ArgumentNullException>(() => Raster.JoinTilesIntoImage(tile0Bytes: null, null, null, null, null, 4));
+
+        [Test]
+        [Combinatorial]
+        public void JoinTilesIntoImageBytesBadBands([Values(0, 5)] int b) => Assert.Throws<ArgumentOutOfRangeException>(() => Raster.JoinTilesIntoImage(tile0Bytes: null, null, null, null, Tile.DefaultSize, b));
+
+        #endregion
+
+        #region RasterTiles
+
+        [Test]
+        public void JoinTilesIntoImageBuffered()
+        {
+            // We need to create some tiles first:
+            //string path = Path.Combine(_outPath, _timestamp);
+            using Raster raster = new Raster(_in4326, Cs4326);
+            const int sourceZ = 12;
+            const bool isBuffered = true;
+            Size tileSize = Tile.DefaultSize;
+            const int bandsCount = 4;
+            RasterTile[] baseTiles = raster.WriteTilesToEnumerable(sourceZ, sourceZ).ToArray();
+
+            // Now start the test
+            Assert.DoesNotThrowAsync(() => Raster.JoinTilesIntoImageAsync(baseTiles[0], baseTiles[1], baseTiles[2],
+                                                                          baseTiles[3], isBuffered, tileSize,
+                                                                          bandsCount));
+
+            // If you want to view the result on disk
+            //Directory.CreateDirectory(path);
+            //string outPath = Path.Combine(path, "tile.png");
+            //tileImage.WriteToFile(outPath);
+        }
+
+        [Test]
+        public void JoinTilesIntoImagePaths()
+        {
+            // We need to create some tiles first:
+            string path = Path.Combine(_outPath, _timestamp);
+            using Raster raster = new Raster(_in4326, Cs4326);
+            const bool tmsCompatible = false;
+            const int sourceZ = 12;
+            const bool isBuffered = true;
+            Size tileSize = Tile.DefaultSize;
+            const int bandsCount = 4;
+            const string tileExtension = ".png";
+            raster.WriteTilesToDirectory(path, sourceZ, sourceZ);
+
+            // Now start the test
+            (Number minNumber, Number maxNumber) =
+                GeoCoordinate.GetNumbers(raster.MinCoordinate, raster.MaxCoordinate, sourceZ, tileSize, tmsCompatible);
+
+            Number n0 = minNumber;
+            Number n1 = new Number(n0.X + 1, n0.Y, n0.Z);
+            Number n2 = new Number(n0.X, n0.Y + 1, n0.Z);
+            Number n3 = maxNumber;
+
+            using RasterTile t0 = new RasterTile(n0, Cs4326) { Path = Path.Combine(path, $"{sourceZ}", $"{n0.X}", $"{n0.Y}{tileExtension}") };
+            using RasterTile t1 = new RasterTile(n1, Cs4326) { Path = Path.Combine(path, $"{sourceZ}", $"{n1.X}", $"{n1.Y}{tileExtension}") };
+            using RasterTile t2 = new RasterTile(n2, Cs4326) { Path = Path.Combine(path, $"{sourceZ}", $"{n2.X}", $"{n2.Y}{tileExtension}") };
+            using RasterTile t3 = new RasterTile(n3, Cs4326) { Path = Path.Combine(path, $"{sourceZ}", $"{n3.X}", $"{n3.Y}{tileExtension}") };
+
+            Assert.DoesNotThrow(() => Raster.JoinTilesIntoImage(t0, t1, t2, t3, isBuffered, tileSize, bandsCount));
+
+            // If you want to view the result on disk
+            //string outPath = Path.Combine(path, "tile.png");
+            //tileImage.WriteToFile(outPath);
+
+            Directory.Delete(path, true);
+        }
+
+        #endregion
+
+        #endregion
+
+        #region JoinTilesIntoBytes
+
+        [Test]
+        public void JoinTilesIntoBytesNormal()
+        {
+            // We need to create some tiles first:
+            //string path = Path.Combine(_outPath, _timestamp);
+            using Raster raster = new Raster(_in4326, Cs4326);
+            const int sourceZ = 12;
+            const bool isBuffered = true;
+            Size tileSize = Tile.DefaultSize;
+            const int bandsCount = 4;
+            const TileExtension tileExtension = TileExtension.Png;
+            RasterTile[] baseTiles = raster.WriteTilesToEnumerable(sourceZ, sourceZ).ToArray();
+
+            // Now start the test
+            IEnumerable<byte> bytes = null;
+            Assert.DoesNotThrow(() => bytes = Raster.JoinTilesIntoBytes(baseTiles[0], baseTiles[1], baseTiles[2],
+                                                                        baseTiles[3], isBuffered, tileSize, bandsCount,
+                                                                        tileExtension));
+
+            // If you want to view the result on disk
+            //Directory.CreateDirectory(path);
+            //string outPath = Path.Combine(path, "tile.png");
+            //File.WriteAllBytes(outPath, bytes.ToArray());
+
+            Assert.True(bytes?.Any() == true);
+        }
+
+        [Test]
+        public void JoinTilesIntoBytesNullTiles()
+        {
+            const bool isBuffered = true;
+            Size tileSize = Tile.DefaultSize;
+            const int bandsCount = 4;
+            const TileExtension tileExtension = TileExtension.Png;
+
+            // Now start the test
+            IEnumerable<byte> bytes = null;
+            Assert.DoesNotThrow(() => bytes = Raster.JoinTilesIntoBytes(null, null, null, null,
+                                                                        isBuffered, tileSize, bandsCount,
+                                                                        tileExtension));
+
+            Assert.True(bytes == null);
+        }
+
+        #endregion
+
+        #region CreateOverviewTile
+
+        [Test]
+        public void CreateOverviewTileNormal()
+        {
+            // We need to create some tiles first:
+            //string path = Path.Combine(_outPath, _timestamp);
+            using Raster raster = new Raster(_in4326, Cs4326);
+            const int sourceZ = 12;
+            const bool isBuffered = true;
+            RasterTile[] baseTiles = raster.WriteTilesToEnumerable(sourceZ, sourceZ).ToArray();
+
+            // Now start the test
+
+            // Any number passes, no calculations inside
+            Number num = new Number(1, 1, 1);
+            RasterTile target = new RasterTile(num, Cs4326);
+            Assert.DoesNotThrow(() => Raster.CreateOverviewTile(ref target, baseTiles[0], baseTiles[1], baseTiles[2],
+                                                                baseTiles[3], isBuffered));
+
+            // If you want to view the result on disk
+            //Directory.CreateDirectory(path);
+            //string outPath = Path.Combine(path, "tile.png");
+            //File.WriteAllBytes(outPath, target.Bytes.ToArray());
+
+            Assert.True(target.Bytes?.Any() == true);
+        }
+
+        [Test]
+        public void CreateOverviewTileNullTarget()
+        {
+            const bool isBuffered = true;
+            RasterTile target = null;
+
+            Assert.Throws<ArgumentNullException>(() => Raster.CreateOverviewTile(ref target, null, null,
+                                                     null, null, isBuffered));
+        }
+
+        [Test]
+        public void CreateOverviewTileFromArrayNormal()
+        {
+            // We need to create some tiles first:
+            //string path = Path.Combine(_outPath, _timestamp);
+            using Raster raster = new Raster(_in4326, Cs4326);
+            const int sourceZ = 12;
+            const bool isBuffered = true;
+            HashSet<RasterTile> baseTiles = raster.WriteTilesToEnumerable(sourceZ, sourceZ).ToHashSet();
+
+            // Now start the test
+            Number num = new Number(3638, 617, 11);
+            RasterTile target = new RasterTile(num, Cs4326);
+            Assert.DoesNotThrow(() => Raster.CreateOverviewTile(ref target, baseTiles, isBuffered));
+
+            // If you want to view the result on disk
+            //Directory.CreateDirectory(path);
+            //string outPath = Path.Combine(path, "tile.png");
+            //File.WriteAllBytes(outPath, target.Bytes.ToArray());
+
+            Assert.True(target.Bytes?.Any() == true);
+        }
+
+        [Test]
+        public void CreateOverviewTileFromArrayNullTarget()
+        {
+            const bool isBuffered = true;
+            RasterTile target = null;
+
+            Assert.Throws<ArgumentNullException>(() => Raster.CreateOverviewTile(ref target, null, isBuffered));
+        }
+
+        [Test]
+        public void CreateOverviewTileFromArrayNullArray()
+        {
+            const bool isBuffered = true;
+            RasterTile target = new RasterTile(new Number(1, 1, 1), Cs4326);
+
+            Assert.Throws<ArgumentNullException>(() => Raster.CreateOverviewTile(ref target, null, isBuffered));
+        }
+
+        #endregion
+
+        #region CreateOverviewTiles
+
+        [Test]
+        public async Task CreateOverviewTilesNormal()
+        {
+            //string outPath = Path.Combine(_outPath, _timestamp);
+
+            Raster raster = new Raster(_in4326, Cs4326);
+
+            const int sourceZ = 12;
+
+            HashSet<RasterTile> tiles = raster.WriteTilesToEnumerable(sourceZ, sourceZ).ToHashSet();
+
+            Channel<RasterTile> channel = Channel.CreateUnbounded<RasterTile>();
+            Assert.DoesNotThrowAsync(() => raster.CreateOverviewTilesAsync(channel.Writer, 11, 11, tiles, true, Cs4326)
+                                                             .ContinueWith(_ => channel.Writer.Complete()));
+
+            //int ctr = 0;
+            //await foreach (RasterTile tile in channel.Reader.ReadAllAsync())
+            //{
+            //    CheckHelper.CheckDirectory(outPath);
+            //    await File.WriteAllBytesAsync(Path.Combine(outPath, $"{ctr}.png"), tile.Bytes.ToArray());
+            //    ctr++;
+            //}
+
+            await raster.DisposeAsync();
+        }
+
+        [Test]
+        public async Task CreateOverviewTilesNullChannel()
+        {
+            Raster raster = new Raster(_in4326, Cs4326);
+
+            Assert.ThrowsAsync<ArgumentNullException>(() => raster.CreateOverviewTilesAsync(null, 11, 11, null, true, Cs4326));
+
+            await raster.DisposeAsync();
+        }
+
+        [Test]
+        public async Task CreateOverviewTilesSmallMinZ()
+        {
+            Raster raster = new Raster(_in4326, Cs4326);
+
+            Channel<RasterTile> channel = Channel.CreateUnbounded<RasterTile>();
+            Assert.ThrowsAsync<ArgumentOutOfRangeException>(() => raster.CreateOverviewTilesAsync(channel.Writer, -1, 11, null, true, Cs4326));
+            await raster.DisposeAsync();
+        }
+
+        [Test]
+        public async Task CreateOverviewTilesSmallMaxZ()
+        {
+            Raster raster = new Raster(_in4326, Cs4326);
+
+            Channel<RasterTile> channel = Channel.CreateUnbounded<RasterTile>();
+            Assert.ThrowsAsync<ArgumentOutOfRangeException>(() => raster.CreateOverviewTilesAsync(channel.Writer, 11, -1, null, true, Cs4326));
+            await raster.DisposeAsync();
+        }
 
         #endregion
 
