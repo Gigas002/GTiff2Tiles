@@ -6,8 +6,11 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using GTiff2Tiles.Core.Coordinates;
 using GTiff2Tiles.Core.Enums;
+using GTiff2Tiles.Core.GeoTiffs;
+using GTiff2Tiles.Core.Helpers;
 using GTiff2Tiles.Core.Images;
 using GTiff2Tiles.Core.Tiles;
 using GTiff2Tiles.Tests.Constants;
@@ -24,6 +27,10 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
 
         private string _timestamp;
 
+        private string _outPath;
+
+        private readonly string _in4326 = FileSystemEntries.Input4326FilePath;
+
         private const CoordinateSystem Cs4326 = CoordinateSystem.Epsg4326;
 
         [SetUp]
@@ -31,7 +38,11 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
         {
             _timestamp = DateTime.Now.ToString(Core.Constants.DateTimePatterns.LongWithMs,
                                                CultureInfo.InvariantCulture);
+
+            _outPath = Path.Combine(FileSystemEntries.OutputDirectoryPath);
+
             FileSystemEntries.OutputDirectoryInfo.Create();
+            NetVipsHelper.DisableLog();
         }
 
         #endregion
@@ -328,6 +339,55 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
             Assert.True(Tile.GetExtensionString(TileExtension.Png) == Core.Constants.FileExtensions.Png);
             Assert.True(Tile.GetExtensionString(TileExtension.Jpg) == Core.Constants.FileExtensions.Jpg);
             Assert.True(Tile.GetExtensionString(TileExtension.Webp) == Core.Constants.FileExtensions.Webp);
+        }
+
+        #endregion
+
+        #region WriteToFile
+
+        [Test]
+        public void WriteTileToFileNormal()
+        {
+            // We need to create some tiles first:
+            string path = Path.Combine(_outPath, _timestamp);
+            using Raster raster = new Raster(_in4326, Cs4326);
+            const int sourceZ = 12;
+            Size tileSize = Tile.DefaultSize;
+            RasterTile[] baseTiles = raster.WriteTilesToEnumerable(sourceZ, sourceZ).ToArray();
+
+            CheckHelper.CheckDirectory(path);
+            string filePath = Path.Combine(path, "tile.png");
+            Assert.DoesNotThrow(() => baseTiles[0].WriteToFile(filePath));
+
+            Directory.Delete(path, true);
+        }
+
+        [Test]
+        public void WriteTileToFileNullTile() => Assert.Throws<ArgumentNullException>(() => Tile.WriteToFile(null));
+
+        [Test]
+        public void WriteTileToFileNullTileBytes()
+        {
+            RasterTile tile = new RasterTile(new Number(1, 1, 1), Cs4326);
+            Assert.Throws<ArgumentNullException>(() => Tile.WriteToFile(tile));
+        }
+
+        [Test]
+        public void WriteTileToFilePathProp()
+        {
+            // We need to create some tiles first:
+            string path = Path.Combine(_outPath, _timestamp);
+            using Raster raster = new Raster(_in4326, Cs4326);
+            const int sourceZ = 12;
+            Size tileSize = Tile.DefaultSize;
+            RasterTile[] baseTiles = raster.WriteTilesToEnumerable(sourceZ, sourceZ).ToArray();
+
+            RasterTile tile = baseTiles[0];
+            CheckHelper.CheckDirectory(path);
+            tile.Path = Path.Combine(path, "tile.png");
+            Assert.DoesNotThrow(() => tile.WriteToFile());
+
+            Directory.Delete(path, true);
         }
 
         #endregion

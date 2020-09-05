@@ -94,6 +94,13 @@ namespace GTiff2Tiles.Core.Tiles
         /// <returns>Converted <see cref="string"/></returns>
         public string GetExtensionString();
 
+        /// <summary>
+        /// Writes <see cref="ITile"/>'s <see cref="Bytes"/> to file
+        /// </summary>
+        /// <param name="path">Full path to write <see cref="ITile"/>
+        /// <remarks><para/>if not set, <see cref="Path"/> property will be used instead</remarks></param>
+        public void WriteToFile(string path = null);
+
         #endregion
     }
 }

@@ -1492,6 +1492,13 @@
             </summary>
             <returns>Converted <see cref="T:System.String"/></returns>
         </member>
+        <member name="M:GTiff2Tiles.Core.Tiles.ITile.WriteToFile(System.String)">
+            <summary>
+            Writes <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>'s <see cref="P:GTiff2Tiles.Core.Tiles.ITile.Bytes"/> to file
+            </summary>
+            <param name="path">Full path to write <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>
+            <remarks><para/>if not set, <see cref="P:GTiff2Tiles.Core.Tiles.ITile.Path"/> property will be used instead</remarks></param>
+        </member>
         <member name="T:GTiff2Tiles.Core.Tiles.Number">
             <summary>
             <see cref="T:GTiff2Tiles.Core.Tiles.Number"/> of <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>
@@ -1886,6 +1893,16 @@
             <param name="extension"><see cref="T:GTiff2Tiles.Core.Enums.TileExtension"/> to convert</param>
             <inheritdoc cref="M:GTiff2Tiles.Core.Tiles.Tile.GetExtensionString"/>
             <exception cref="T:System.ArgumentOutOfRangeException"/>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Tiles.Tile.WriteToFile(System.String)">
+            <exception cref="T:System.ArgumentNullException"/>
+            <inheritdoc />
+        </member>
+        <member name="M:GTiff2Tiles.Core.Tiles.Tile.WriteToFile(GTiff2Tiles.Core.Tiles.ITile,System.String)">
+            <inheritdoc cref="M:GTiff2Tiles.Core.Tiles.Tile.WriteToFile(System.String)"/>
+            <summary></summary>
+            <param name="tile"><see cref="T:GTiff2Tiles.Core.Tiles.ITile"/> to write</param>
+            <param name="path"></param>
         </member>
     </members>
 </doc>

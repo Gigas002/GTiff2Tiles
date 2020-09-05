@@ -273,6 +273,32 @@ namespace GTiff2Tiles.Core.Tiles
 
         #endregion
 
+        #region WriteToFile
+
+        /// <exception cref="ArgumentNullException"/>
+        /// <inheritdoc />
+        public void WriteToFile(string path = null) => WriteToFile(this, path);
+
+        /// <inheritdoc cref="WriteToFile(string)"/>
+        /// <summary></summary>
+        /// <param name="tile"><see cref="ITile"/> to write</param>
+        /// <param name="path"></param>
+        public static void WriteToFile(ITile tile, string path = null)
+        {
+            #region Preconditions checks
+
+            if (tile == null) throw new ArgumentNullException(nameof(tile));
+            if (tile.Bytes == null) throw new ArgumentNullException(nameof(tile));
+
+            if (string.IsNullOrWhiteSpace(path)) path = tile.Path;
+
+            #endregion
+
+            File.WriteAllBytes(path, tile.Bytes.ToArray());
+        }
+
+        #endregion
+
         #endregion
     }
 }
