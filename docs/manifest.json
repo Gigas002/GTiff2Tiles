@@ -9,7 +9,7 @@
       "output": {
         ".html": {
           "relative_path": "CHANGELOG.html",
-          "hash": "Br5q1VLHuFcQcPFzaxdclg=="
+          "hash": "iMbT364OqxDgjM1Am+rVCg=="
         }
       },
       "is_incremental": false,
@@ -405,7 +405,7 @@
       "output": {
         ".html": {
           "relative_path": "api/GTiff2Tiles.Core.GeoTiffs.Raster.html",
-          "hash": "QVcnCniFB2L7IZfFskuZFA=="
+          "hash": "bgjgH6MYHGljpQQ+Bp7Tkw=="
         }
       },
       "is_incremental": false,
@@ -525,7 +525,7 @@
       "output": {
         ".html": {
           "relative_path": "api/GTiff2Tiles.Core.Tiles.ITile.html",
-          "hash": "JpuW5D0NhZ+eaynrlp2O1w=="
+          "hash": "jWRwVygLdt4Qb3ONKPEKFQ=="
         }
       },
       "is_incremental": false,
@@ -537,7 +537,7 @@
       "output": {
         ".html": {
           "relative_path": "api/GTiff2Tiles.Core.Tiles.Number.html",
-          "hash": "SVNUcQLGD/ezYd+Yl7aDqA=="
+          "hash": "7cHvdo0DXng+/wZOsxCzLw=="
         }
       },
       "is_incremental": false,
@@ -549,7 +549,7 @@
       "output": {
         ".html": {
           "relative_path": "api/GTiff2Tiles.Core.Tiles.RasterTile.html",
-          "hash": "N0d3dT/bAo93A9z6tUBIgg=="
+          "hash": "hghKleVapdQ99raVfxgk8A=="
         }
       },
       "is_incremental": false,
@@ -561,7 +561,7 @@
       "output": {
         ".html": {
           "relative_path": "api/GTiff2Tiles.Core.Tiles.Tile.html",
-          "hash": "VQsRaVSZuGvORy/sEfMQ3Q=="
+          "hash": "BN7nj0VfMK42RYubYl6cxQ=="
         }
       },
       "is_incremental": false,
@@ -635,11 +635,11 @@
     {
       "status": {
         "can_incremental": false,
-        "details": "Cannot build incrementally because config changed.",
+        "details": "Cannot build incrementally because last build info is missing.",
         "incrementalPhase": "build",
         "total_file_count": 0,
         "skipped_file_count": 0,
-        "full_build_reason_code": "ConfigChanged"
+        "full_build_reason_code": "NoAvailableBuildCache"
       },
       "processors": {
         "ConceptualDocumentProcessor": {
@@ -672,8 +672,8 @@
     },
     {
       "status": {
-        "can_incremental": true,
-        "details": "Can support incremental post processing.",
+        "can_incremental": false,
+        "details": "Cannot support incremental post processing, the reason is: last post processor info is null.",
         "incrementalPhase": "postProcessing",
         "total_file_count": 0,
         "skipped_file_count": 0

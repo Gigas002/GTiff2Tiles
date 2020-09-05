@@ -23,7 +23,6 @@ Changes since 1.4.1:
 
 **Breaking changes:**
 
-- Removed **Join** algorithm from all apps and lib (that includes `GenerateTilesByJoiningAsync` method, localization strings about algorithm in Console and GUI projects and `Enums.Algorithms` class);
 - Renamed `GenerateTilesByCroppingAsync` to `GenerateTilesAsync`;
 - `GenerateTilesAsync` now takes lesser params (*WIP*);
 - Added `Enums.Image.TileExtension` enum to choose the extension of output tiles (docs WIP);
@@ -61,7 +60,7 @@ Changes since 1.4.1:
 
 - Update **Microsoft.NET.Test.Sdk** package to **16.7.1**;
 - Update **NUnit3TestAdapter** package to **3.17.0**;
-- Add coverlet.collector and coverlet.msbuild dependencies for code coverage;
+- Add **coverlet.collector** and **coverlet.msbuild** dependencies for code coverage;
 
 ## 21.10.2019 – Released 1.4.1
 

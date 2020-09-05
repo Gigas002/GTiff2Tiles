@@ -1045,6 +1045,109 @@ lower-right, but maths depends on <a class="xref" href="GTiff2Tiles.Core.Tiles.I
       </tr>
     </tbody>
   </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Gigas002/GTiff2Tiles/new/master/apiSpec/new?filename=GTiff2Tiles_Core_Tiles_Tile_WriteToFile_GTiff2Tiles_Core_Tiles_ITile_System_String_.md&amp;value=---%0Auid%3A%20GTiff2Tiles.Core.Tiles.Tile.WriteToFile(GTiff2Tiles.Core.Tiles.ITile%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Tiles/Tile.cs/#L286">View Source</a>
+  </span>
+  <a id="GTiff2Tiles_Core_Tiles_Tile_WriteToFile_" data-uid="GTiff2Tiles.Core.Tiles.Tile.WriteToFile*"></a>
+  <h4 id="GTiff2Tiles_Core_Tiles_Tile_WriteToFile_GTiff2Tiles_Core_Tiles_ITile_System_String_" data-uid="GTiff2Tiles.Core.Tiles.Tile.WriteToFile(GTiff2Tiles.Core.Tiles.ITile,System.String)">WriteToFile(ITile, String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void WriteToFile(ITile tile, string path = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="GTiff2Tiles.Core.Tiles.ITile.html">ITile</a></td>
+        <td><span class="parametername">tile</span></td>
+        <td><p><a class="xref" href="GTiff2Tiles.Core.Tiles.ITile.html">ITile</a> to write</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">path</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Gigas002/GTiff2Tiles/new/master/apiSpec/new?filename=GTiff2Tiles_Core_Tiles_Tile_WriteToFile_System_String_.md&amp;value=---%0Auid%3A%20GTiff2Tiles.Core.Tiles.Tile.WriteToFile(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Tiles/Tile.cs/#L280">View Source</a>
+  </span>
+  <a id="GTiff2Tiles_Core_Tiles_Tile_WriteToFile_" data-uid="GTiff2Tiles.Core.Tiles.Tile.WriteToFile*"></a>
+  <h4 id="GTiff2Tiles_Core_Tiles_Tile_WriteToFile_System_String_" data-uid="GTiff2Tiles.Core.Tiles.Tile.WriteToFile(System.String)">WriteToFile(String)</h4>
+  <div class="markdown level1 summary"><p>Writes <a class="xref" href="GTiff2Tiles.Core.Tiles.ITile.html">ITile</a>'s <a class="xref" href="GTiff2Tiles.Core.Tiles.ITile.html#GTiff2Tiles_Core_Tiles_ITile_Bytes">Bytes</a> to file</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void WriteToFile(string path = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">path</span></td>
+        <td><p>Full path to write <a class="xref" href="GTiff2Tiles.Core.Tiles.ITile.html">ITile</a>
+<remarks><p>if not set, <a class="xref" href="GTiff2Tiles.Core.Tiles.ITile.html#GTiff2Tiles_Core_Tiles_ITile_Path">Path</a> property will be used instead</remarks></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <h3 id="implements">Implements</h3>
   <div>
       <a class="xref" href="GTiff2Tiles.Core.Tiles.ITile.html">ITile</a>
