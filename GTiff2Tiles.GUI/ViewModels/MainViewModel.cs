@@ -736,7 +736,7 @@ namespace GTiff2Tiles.GUI.ViewModels
                 // Required params
                 if (MinZ < 0) throw new ArgumentOutOfRangeException(nameof(MinZ));
                 if (MaxZ < MinZ) throw new ArgumentOutOfRangeException(nameof(MaxZ));
-                if (BandsCount <= 0 || BandsCount > 5) throw new ArgumentOutOfRangeException(nameof(BandsCount));
+                if (BandsCount < 1 || BandsCount > 4) throw new ArgumentOutOfRangeException(nameof(BandsCount));
 
                 // Optional params
                 if (TileSideSize <= 0) TileSideSize = Tile.DefaultSize.Width;

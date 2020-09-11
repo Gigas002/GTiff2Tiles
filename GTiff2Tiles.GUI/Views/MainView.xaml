@@ -245,7 +245,7 @@
                          Text="{Binding BandsCount}">
                         <materialDesignThemes:HintAssist.Hint>
                             <StackPanel Orientation="Horizontal">
-                                <materialDesignThemes:PackIcon Kind="ZoomIn"/>
+                                <materialDesignThemes:PackIcon Kind="Satellite"/>
                                 <TextBlock Text="{Binding BandsHint}"/>
                             </StackPanel>
                         </materialDesignThemes:HintAssist.Hint>
@@ -311,7 +311,7 @@
                                  Text="{Binding TileSideSize}">
                             <materialDesignThemes:HintAssist.Hint>
                                 <StackPanel Orientation="Horizontal">
-                                    <materialDesignThemes:PackIcon Kind="ZoomIn"/>
+                                    <materialDesignThemes:PackIcon Kind="Satellite"/>
                                     <TextBlock Text="{Binding TileSizeHint}"/>
                                 </StackPanel>
                             </materialDesignThemes:HintAssist.Hint>
