@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:materialDesignThemes="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
-             xmlns:prism="http://prismlibrary.com/"
+             xmlns:viewModels="clr-namespace:GTiff2Tiles.GUI.ViewModels"
              mc:Ignorable="d"
 
              Background="{DynamicResource MaterialDesignPaper}"
@@ -13,6 +13,9 @@
              TextElement.FontSize="18"
              Height="{Binding Height}"
              Width="{Binding Width}">
+    <UserControl.DataContext>
+        <viewModels:MessageBoxDialogViewModel/>
+    </UserControl.DataContext>
     <Grid>
         <!-- Message box's borders -->
         <Grid.RowDefinitions>

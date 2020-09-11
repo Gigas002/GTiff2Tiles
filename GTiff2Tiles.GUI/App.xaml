@@ -1,7 +1,6 @@
 ﻿<prism:PrismApplication x:Class="GTiff2Tiles.GUI.App"
                         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                        xmlns:gui="clr-namespace:GTiff2Tiles.GUI"
                         xmlns:prism="http://prismlibrary.com/">
     <Application.Resources>
         <ResourceDictionary>

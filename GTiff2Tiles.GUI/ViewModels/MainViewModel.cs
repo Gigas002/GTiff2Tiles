@@ -41,7 +41,17 @@ namespace GTiff2Tiles.GUI.ViewModels
         /// <summary>
         /// Shows if dark theme selected.
         /// </summary>
-        public bool IsDarkTheme { get; } = Settings.Default.IsDarkTheme;
+        public bool IsDarkTheme
+        {
+            get
+            {
+#if DEBUG
+                return false;
+#endif
+
+                return Settings.Default.IsDarkTheme;
+            }
+        }
 
         #endregion
 

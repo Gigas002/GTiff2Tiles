@@ -79,6 +79,17 @@ namespace GTiff2Tiles.GUI.ViewModels
 
         #region Constructors
 
+        public MessageBoxDialogViewModel()
+        {
+            Message = string.Empty;
+
+            CancelButtonVisibility = Visibility.Collapsed;
+
+            //Bind delegates with methods
+            CopyToClipboardButtonCommand = new DelegateCommand(CopyToClipboardButton);
+            AcceptButtonCommand = new DelegateCommand(AcceptButton);
+        }
+
         /// <summary>
         /// Create message box.
         /// </summary>

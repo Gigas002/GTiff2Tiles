@@ -24,6 +24,9 @@
     Width="675"
     WindowStartupLocation="CenterScreen"
     Icon="/GTiff2Tiles.GUI;component/Resources/Icon.ico">
+    <materialDesignExtensions:MaterialWindow.DataContext>
+        <viewModels:MainViewModel/>
+    </materialDesignExtensions:MaterialWindow.DataContext>
     <materialDesignExtensions:MaterialWindow.Resources>
         <ResourceDictionary>
             <DataTemplate DataType="{x:Type viewModels:MessageBoxDialogViewModel}">
@@ -229,7 +232,7 @@
                            HorizontalAlignment="Left"
                            VerticalAlignment="Bottom"
                            Text="{Binding Copyright}"/>
-                <TextBlock Grid.Row="24" Grid.Column="0"
+                <TextBlock Grid.Row="22" Grid.Column="0"
                            Grid.ColumnSpan="3"
                            HorizontalAlignment="Right"
                            VerticalAlignment="Bottom"
