@@ -4,6 +4,7 @@ using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
+using System.Reflection;
 using System.Threading.Tasks;
 using GTiff2Tiles.Core;
 using Prism.Mvvm;
@@ -27,25 +28,45 @@ using MaterialDesignThemes.Wpf;
 
 namespace GTiff2Tiles.GUI.ViewModels
 {
-    /// <inheritdoc />
     /// <summary>
-    /// ViewModel for <see cref="MainView"/>.
+    /// ViewModel for <see cref="MainView"/>
     /// </summary>
     // ReSharper disable once MemberCanBeInternal
     public class MainViewModel : BindableBase
     {
         #region Properties
 
+        #region Constants
+
+        /// <summary>
+        /// Copyright string
+        /// </summary>
+        public static string Copyright { get; } = "© Gigas002 2020";
+
+        /// <summary>
+        /// Info about current version
+        /// <remarks><para/>Pattern: {MAJOR}.{MINOR}.{PATCH}.{BUILD}</remarks>
+        /// </summary>
+        public static string Version { get; } = Assembly.GetExecutingAssembly().GetName().Version?.ToString();
+
+        /// <summary>
+        /// Identifier of DialogHost on <see cref="MainView"/>
+        /// </summary>
+        public static string DialogHostId { get; } = "DialogHost";
+
+        #endregion
+
         #region Settings
 
         /// <summary>
-        /// Shows if dark theme selected.
+        /// Shows if dark theme selected
         /// </summary>
         public bool IsDarkTheme
         {
             get
             {
 #if DEBUG
+                // That's for designer
                 return false;
 #endif
 
@@ -58,27 +79,27 @@ namespace GTiff2Tiles.GUI.ViewModels
         #region UI
 
         /// <summary>
-        /// Hint for InputFile TextBox.
+        /// Hint for InputFile TextBox
         /// </summary>
         public string InputFileHint { get; } = Strings.InputFileHint;
 
         /// <summary>
-        /// Hint for OutputDirectory TextBox.
+        /// Hint for OutputDirectory TextBox
         /// </summary>
         public string OutputDirectoryHint { get; } = Strings.OutputDirectoryHint;
 
         /// <summary>
-        /// Hint for TempDirectory TextBox.
+        /// Hint for TempDirectory TextBox
         /// </summary>
         public string TempDirectoryHint { get; } = Strings.TempDirectoryHint;
 
         /// <summary>
-        /// Hint for MinZ TextBox.
+        /// Hint for MinZ TextBox
         /// </summary>
         public string MinZHint { get; } = Strings.MinZHint;
 
         /// <summary>
-        /// Hint for MaxZ TextBox.
+        /// Hint for MaxZ TextBox
         /// </summary>
         public string MaxZHint { get; } = Strings.MaxZHint;
 
@@ -88,39 +109,28 @@ namespace GTiff2Tiles.GUI.ViewModels
         public string TileExtensionsHint { get; } = Strings.TileExtensionsHint;
 
         /// <summary>
-        /// Hint for ThreadsCount TextBox.
+        /// Hint for ThreadsCount TextBox
         /// </summary>
         public string ThreadsCountHint { get; } = Strings.ThreadsCountHint;
 
         /// <summary>
-        /// Text in progress's TextBlock (e.g. "Progress:").
+        /// Text in progress's TextBlock (e.g. "Progress:")
         /// </summary>
         public string ProgressTextBlock { get; } = Strings.ProgressTextBlock;
 
         /// <summary>
-        /// Text inside Start button.
+        /// Text inside Start button
         /// </summary>
         public string StartButtonContent { get; } = Strings.StartButtonContent;
 
         /// <summary>
-        /// Hey, it's me!
-        /// </summary>
-        public string Copyright { get; } = Constants.MainViewModel.Copyright;
-
-        /// <summary>
-        /// Assembly version.
-        /// </summary>
-        public string Version { get; } = Constants.MainViewModel.Version;
-
-        /// <summary>
-        /// Text near tms check box.
+        /// Text near tms check box
         /// </summary>
         public string TmsCheckBoxContent { get; } = Strings.TmsCheckBoxContent;
 
         /// <summary>
-        /// Theme string for DialogHosts.
+        /// Theme string for DialogHosts
         /// </summary>
-        // ReSharper disable once UnusedAutoPropertyAccessor.Global
         public string Theme { get; }
 
         #endregion
@@ -144,7 +154,7 @@ namespace GTiff2Tiles.GUI.ViewModels
         #endregion
 
         /// <summary>
-        /// Threads count.
+        /// Threads count
         /// </summary>
         public int ThreadsCount
         {
@@ -153,7 +163,7 @@ namespace GTiff2Tiles.GUI.ViewModels
         }
 
         /// <summary>
-        /// Maximum zoom.
+        /// Maximum zoom
         /// </summary>
         public int MaxZ
         {
@@ -162,7 +172,7 @@ namespace GTiff2Tiles.GUI.ViewModels
         }
 
         /// <summary>
-        /// Minimum zoom.
+        /// Minimum zoom
         /// </summary>
         public int MinZ
         {
@@ -171,7 +181,7 @@ namespace GTiff2Tiles.GUI.ViewModels
         }
 
         /// <summary>
-        /// Input file path.
+        /// Input file path
         /// </summary>
         public string InputFilePath
         {
@@ -180,7 +190,7 @@ namespace GTiff2Tiles.GUI.ViewModels
         }
 
         /// <summary>
-        /// Output directory path.
+        /// Output directory path
         /// </summary>
         public string OutputDirectoryPath
         {
@@ -189,7 +199,7 @@ namespace GTiff2Tiles.GUI.ViewModels
         }
 
         /// <summary>
-        /// Temp directory path.
+        /// Temp directory path
         /// </summary>
         public string TempDirectoryPath
         {
@@ -208,7 +218,7 @@ namespace GTiff2Tiles.GUI.ViewModels
         #endregion
 
         /// <summary>
-        /// Shows if you want to create tms-compatible tiles.
+        /// Shows if you want to create tms-compatible tiles
         /// </summary>
         public bool TmsCompatible
         {
@@ -223,7 +233,7 @@ namespace GTiff2Tiles.GUI.ViewModels
         private string _tileExtension;
 
         /// <summary>
-        /// Currently chosen tile extension.
+        /// Currently chosen tile extension
         /// </summary>
         public string TileExtension
         {
@@ -232,12 +242,12 @@ namespace GTiff2Tiles.GUI.ViewModels
         }
 
         /// <summary>
-        /// Enum for tile extension.
+        /// Enum for tile extension
         /// </summary>
         private TileExtension RealTileExtension { get; set; } = Core.Enums.TileExtension.Png;
 
         /// <summary>
-        /// Collection of supported tile extensions.
+        /// Collection of supported tile extensions
         /// </summary>
         // ReSharper disable once CollectionNeverQueried.Global
         public ObservableCollection<string> TileExtensions { get; } = new ObservableCollection<string>();
@@ -249,7 +259,7 @@ namespace GTiff2Tiles.GUI.ViewModels
         private double _progressBarValue;
 
         /// <summary>
-        /// Progress bar value.
+        /// Progress bar value
         /// </summary>
         public double ProgressBarValue
         {
@@ -262,7 +272,7 @@ namespace GTiff2Tiles.GUI.ViewModels
         private bool _isEnabled;
 
         /// <summary>
-        /// Sets grid's state.
+        /// Sets grid's state
         /// </summary>
         public bool IsEnabled
         {
@@ -270,22 +280,17 @@ namespace GTiff2Tiles.GUI.ViewModels
             set => SetProperty(ref _isEnabled, value);
         }
 
-        /// <summary>
-        /// Identifier of DialogHost on <see cref="MainView"/>.
-        /// </summary>
-        public string DialogHostId { get; } = Constants.MainViewModel.DialogHostId;
-
         #endregion
 
         #region Constructor
 
         /// <inheritdoc />
         /// <summary>
-        /// Initialize all needed properties.
+        /// Initialize all needed properties
         /// </summary>
         public MainViewModel()
         {
-            //Setting the theme.
+            // Setting the theme
             SetThemeModel.SetTheme(IsDarkTheme);
             Theme = IsDarkTheme ? Themes.Dark : Themes.Light;
 
@@ -301,11 +306,11 @@ namespace GTiff2Tiles.GUI.ViewModels
             TileExtensions.Add(FileExtensions.Jpg);
             TileExtensions.Add(FileExtensions.Webp);
 
-            //Bind delegates with methods
-            InputFileButtonCommand = new DelegateCommand(InputFileButtonAsync);
-            OutputDirectoryButtonCommand = new DelegateCommand(OutputDirectoryButtonAsync);
-            TempDirectoryButtonCommand = new DelegateCommand(TempDirectoryButtonAsync);
-            StartButtonCommand = new DelegateCommand(StartButtonAsync);
+            // Bind delegates with methods
+            InputFileButtonCommand = new DelegateCommand(async () => await InputFileButtonAsync().ConfigureAwait(true));
+            OutputDirectoryButtonCommand = new DelegateCommand(async () => await OutputDirectoryButtonAsync().ConfigureAwait(true));
+            TempDirectoryButtonCommand = new DelegateCommand(async () => await TempDirectoryButtonAsync().ConfigureAwait(true));
+            StartButtonCommand = new DelegateCommand(async () => await StartButtonAsync().ConfigureAwait(true));
         }
 
         #endregion
@@ -342,87 +347,93 @@ namespace GTiff2Tiles.GUI.ViewModels
         /// Input directory button
         /// </summary>
         /// <returns></returns>
-        public async void InputFileButtonAsync()
+        public async ValueTask InputFileButtonAsync()
         {
             try
             {
-                OpenFileDialogResult dialogResult = await OpenFileDialog
-                                                         .ShowDialogAsync(Constants.MainViewModel.DialogHostId,
-                                                                          new OpenFileDialogArguments())
-                                                         .ConfigureAwait(true);
+                OpenFileDialogResult dialogResult =
+                    await OpenFileDialog.ShowDialogAsync(DialogHostId, new OpenFileDialogArguments())
+                                        .ConfigureAwait(true);
+
                 InputFilePath = dialogResult.Canceled ? InputFilePath : dialogResult.FileInfo.FullName;
             }
-            catch (Exception exception) { await Helpers.ErrorHelper.ShowExceptionAsync(exception).ConfigureAwait(true); }
+            catch (Exception exception)
+            {
+                await Helpers.ErrorHelper.ShowExceptionAsync(exception).ConfigureAwait(true);
+            }
         }
 
         /// <summary>
-        /// Output directory button.
+        /// Output directory button
         /// </summary>
         /// <returns></returns>
-        public async void OutputDirectoryButtonAsync()
+        public async ValueTask OutputDirectoryButtonAsync()
         {
             try
             {
+                OpenDirectoryDialogArguments args = new OpenDirectoryDialogArguments { CreateNewDirectoryEnabled = true };
                 OpenDirectoryDialogResult dialogResult =
-                    await OpenDirectoryDialog.ShowDialogAsync(Constants.MainViewModel.DialogHostId,
-                                                              new OpenDirectoryDialogArguments
-                                                              {
-                                                                  CreateNewDirectoryEnabled = true
-                                                              }).ConfigureAwait(true);
+                    await OpenDirectoryDialog.ShowDialogAsync(DialogHostId, args).ConfigureAwait(true);
+
                 OutputDirectoryPath = dialogResult.Canceled ? OutputDirectoryPath : dialogResult.Directory;
             }
-            catch (Exception exception) { await Helpers.ErrorHelper.ShowExceptionAsync(exception).ConfigureAwait(true); }
+            catch (Exception exception)
+            {
+                await Helpers.ErrorHelper.ShowExceptionAsync(exception).ConfigureAwait(true);
+            }
         }
 
         /// <summary>
-        /// Temp directory button.
+        /// Temp directory button
         /// </summary>
         /// <returns></returns>
-        public async void TempDirectoryButtonAsync()
+        public async ValueTask TempDirectoryButtonAsync()
         {
             try
             {
+                OpenDirectoryDialogArguments args =
+                    new OpenDirectoryDialogArguments { CreateNewDirectoryEnabled = true };
                 OpenDirectoryDialogResult dialogResult =
-                    await OpenDirectoryDialog.ShowDialogAsync(Constants.MainViewModel.DialogHostId,
-                                                              new OpenDirectoryDialogArguments
-                                                              {
-                                                                  CreateNewDirectoryEnabled = true
-                                                              }).ConfigureAwait(true);
+                    await OpenDirectoryDialog.ShowDialogAsync(DialogHostId, args).ConfigureAwait(true);
+
                 TempDirectoryPath = dialogResult.Canceled ? TempDirectoryPath : dialogResult.Directory;
             }
-            catch (Exception exception) { await Helpers.ErrorHelper.ShowExceptionAsync(exception).ConfigureAwait(true); }
+            catch (Exception exception)
+            {
+                await Helpers.ErrorHelper.ShowExceptionAsync(exception).ConfigureAwait(true);
+            }
         }
 
         /// <summary>
-        /// Start button.
+        /// Start button
         /// </summary>
         /// <returns></returns>
-        public async void StartButtonAsync()
+        public async ValueTask StartButtonAsync()
         {
             // TODO: coordinate system
             var coordinateSystem = CoordinateSystem.Epsg4326;
 
             Stopwatch stopwatch = Stopwatch.StartNew();
 
-            //Check properties for errors.
+            // Check properties for errors
             if (!await CheckPropertiesAsync().ConfigureAwait(true)) return;
 
-            //Initialize FileSystemEntries from properties.
+            // Initialize FileSystemEntries from properties
             FileInfo inputFileInfo = new FileInfo(InputFilePath);
             DirectoryInfo outputDirectoryInfo = new DirectoryInfo(OutputDirectoryPath);
 
-            //Create temp directory object.
+            // Create temp directory object
             string tempDirectoryPath =
                 Path.Combine(TempDirectoryPath, DateTime.Now.ToString(DateTimePatterns.LongWithMs));
             DirectoryInfo tempDirectoryInfo = new DirectoryInfo(tempDirectoryPath);
 
-            //Create progress reporter.
+            // Create progress reporter
             IProgress<double> progress = new Progress<double>(value => ProgressBarValue = value);
 
-            //Run tiling asynchroniously.
+            // Run tiling asynchroniously
             try
             {
-                //Check for errors.
+                // Check for errors
                 CheckHelper.CheckDirectory(outputDirectoryInfo.FullName, true);
 
                 if (!await CheckHelper.CheckInputFileAsync(inputFileInfo.FullName, coordinateSystem).ConfigureAwait(true))
@@ -444,7 +455,6 @@ namespace GTiff2Tiles.GUI.ViewModels
                                                        bandsCount: 4, progress: progress,
                                                        threadsCount: ThreadsCount)
                            .ConfigureAwait(false);
-
             }
             catch (Exception exception)
             {
@@ -454,7 +464,7 @@ namespace GTiff2Tiles.GUI.ViewModels
                 return;
             }
 
-            //Enable controls.
+            // Enable controls
             IsEnabled = true;
 
             stopwatch.Stop();
@@ -471,47 +481,35 @@ namespace GTiff2Tiles.GUI.ViewModels
         #region Other
 
         /// <summary>
-        /// Checks properties for errors and set some before starting.
+        /// Checks properties for errors and set some before starting
         /// </summary>
-        /// <returns><see langword="true"/> if no errors occured, <see langword="false"/> otherwise.</returns>
-        private async ValueTask<bool> CheckPropertiesAsync()
+        /// <returns><see langword="true"/> if no errors occured;
+        /// <see langword="false"/> otherwise</returns>
+        private ValueTask<bool> CheckPropertiesAsync()
         {
             if (string.IsNullOrWhiteSpace(InputFilePath))
-                return await Helpers.ErrorHelper.ShowErrorAsync(string.Format(Strings.PathIsEmpty, nameof(InputFilePath)))
-                                    .ConfigureAwait(true);
+                return Helpers.ErrorHelper.ShowErrorAsync(string.Format(Strings.PathIsEmpty, nameof(InputFilePath)));
 
             if (string.IsNullOrWhiteSpace(OutputDirectoryPath))
-                return await Helpers
-                            .ErrorHelper.ShowErrorAsync(string.Format(Strings.PathIsEmpty, nameof(OutputDirectoryPath)))
-                            .ConfigureAwait(true);
+                return Helpers.ErrorHelper.ShowErrorAsync(string.Format(Strings.PathIsEmpty, nameof(OutputDirectoryPath)));
 
             if (string.IsNullOrWhiteSpace(TempDirectoryPath))
-                return await Helpers
-                            .ErrorHelper.ShowErrorAsync(string.Format(Strings.PathIsEmpty, nameof(TempDirectoryPath)))
-                            .ConfigureAwait(true);
+                return Helpers.ErrorHelper.ShowErrorAsync(string.Format(Strings.PathIsEmpty, nameof(TempDirectoryPath)));
 
-            if (MinZ < 0)
-                return await Helpers.ErrorHelper.ShowErrorAsync(string.Format(Strings.LesserThan, nameof(MinZ), 0))
-                                    .ConfigureAwait(true);
+            if (MinZ < 0) return Helpers.ErrorHelper.ShowErrorAsync(string.Format(Strings.LesserThan, nameof(MinZ), 0));
 
-            if (MaxZ < 0)
-                return await Helpers.ErrorHelper.ShowErrorAsync(string.Format(Strings.LesserThan, nameof(MaxZ), 0))
-                                    .ConfigureAwait(true);
+            if (MaxZ < 0) return Helpers.ErrorHelper.ShowErrorAsync(string.Format(Strings.LesserThan, nameof(MaxZ), 0));
 
             if (MaxZ < MinZ)
-                return await Helpers
-                            .ErrorHelper.ShowErrorAsync(string.Format(Strings.LesserThan, nameof(MaxZ), nameof(MinZ)))
-                            .ConfigureAwait(true);
+                return Helpers.ErrorHelper.ShowErrorAsync(string.Format(Strings.LesserThan, nameof(MaxZ), nameof(MinZ)));
 
             if (ThreadsCount <= 0)
-                return await Helpers
-                            .ErrorHelper.ShowErrorAsync(string.Format(Strings.LesserOrEqual, nameof(ThreadsCount), 0))
-                            .ConfigureAwait(true);
+                return Helpers.ErrorHelper.ShowErrorAsync(string.Format(Strings.LesserOrEqual, nameof(ThreadsCount), 0));
 
             if (string.IsNullOrWhiteSpace(TileExtension))
-                return await Helpers.ErrorHelper.ShowErrorAsync(Strings.SelectExtension).ConfigureAwait(true);
+                return Helpers.ErrorHelper.ShowErrorAsync(Strings.SelectExtension);
 
-            //Set tile extension. Png by default or unknown input
+            // Set tile extension; .png by default or unknown input
             RealTileExtension = TileExtension switch
             {
                 FileExtensions.Jpg => Core.Enums.TileExtension.Jpg,
@@ -519,13 +517,13 @@ namespace GTiff2Tiles.GUI.ViewModels
                 _ => Core.Enums.TileExtension.Png
             };
 
-            //Disable controls.
+            // Disable controls
             IsEnabled = false;
 
-            //Set default progress bar value for each run.
+            // Set default progress bar value for each run
             ProgressBarValue = 0.0;
 
-            return true;
+            return ValueTask.FromResult(true);
         }
 
         #endregion

@@ -1,7 +1,7 @@
 ﻿namespace GTiff2Tiles.GUI.Constants
 {
     /// <summary>
-    /// Themes strings for DialogHosts.
+    /// Themes strings for DialogHosts
     /// </summary>
     internal static class Themes
     {

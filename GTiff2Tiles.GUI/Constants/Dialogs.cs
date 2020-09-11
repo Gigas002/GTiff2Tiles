@@ -1,17 +1,17 @@
 ﻿namespace GTiff2Tiles.GUI.Constants
 {
     /// <summary>
-    /// Defines consts for every dialog in app.
+    /// Defines consts for every dialog in app
     /// </summary>
     internal static class Dialogs
     {
         /// <summary>
-        /// Dialog's width.
+        /// Dialog's width
         /// </summary>
         internal const int Width = 400;
 
         /// <summary>
-        /// Dialog's height.
+        /// Dialog's height
         /// </summary>
         internal const int Height = 250;
     }

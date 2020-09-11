@@ -6,42 +6,39 @@ using MaterialDesignThemes.Wpf;
 namespace GTiff2Tiles.GUI.Helpers
 {
     /// <summary>
-    /// That class helps to print exceptions and custom errors.
+    /// That class helps to print exceptions and custom errors
     /// </summary>
     internal static class ErrorHelper
     {
         /// <summary>
-        /// Shows current exception.
+        /// Shows current exception
         /// </summary>
-        /// <param name="exception">Exception.</param>
+        /// <param name="exception">Exception</param>
         /// <returns></returns>
-        internal static async ValueTask ShowExceptionAsync(Exception exception)
+        internal static Task<object> ShowExceptionAsync(Exception exception)
         {
-            await DialogHost.Show(new MessageBoxDialogViewModel(exception.Message)).ConfigureAwait(true);
-
             #if DEBUG
-            if (exception.InnerException != null)
-                await DialogHost.Show(new MessageBoxDialogViewModel(exception.InnerException.Message))
-                                .ConfigureAwait(true);
+            if (exception.InnerException != null) DialogHost.Show(new MessageBoxDialogViewModel(exception.InnerException.Message));
             #endif
+
+            return DialogHost.Show(new MessageBoxDialogViewModel(exception.Message));
         }
 
         /// <summary>
-        /// Shows current error and exception, if it was thrown.
+        /// Shows current error and exception, if it was thrown
         /// </summary>
-        /// <param name="errorMessage">Error message.</param>
-        /// <param name="exception">Exception.</param>
-        /// <returns><see langword="false"/>.</returns>
-        internal static async ValueTask<bool> ShowErrorAsync(string errorMessage, Exception exception = null)
+        /// <param name="errorMessage">Error message</param>
+        /// <param name="exception">Exception</param>
+        /// <returns><see langword="false"/></returns>
+        internal static ValueTask<bool> ShowErrorAsync(string errorMessage, Exception exception = null)
         {
-            await DialogHost.Show(new MessageBoxDialogViewModel(errorMessage)).ConfigureAwait(true);
-
             #if DEBUG
-            if (exception != null)
-                await DialogHost.Show(new MessageBoxDialogViewModel(exception.Message)).ConfigureAwait(true);
+            if (exception != null) DialogHost.Show(new MessageBoxDialogViewModel(exception.Message)).ConfigureAwait(true);
             #endif
 
-            return false;
+            DialogHost.Show(new MessageBoxDialogViewModel(errorMessage));
+
+            return ValueTask.FromResult(false);
         }
     }
 }

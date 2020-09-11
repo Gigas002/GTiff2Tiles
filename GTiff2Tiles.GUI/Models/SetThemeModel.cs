@@ -4,12 +4,12 @@ using MaterialDesignThemes.Wpf;
 namespace GTiff2Tiles.GUI.Models
 {
     /// <summary>
-    /// Static class for changing material design themes in app.
+    /// Static class for changing material design themes in app
     /// </summary>
     internal static class SetThemeModel
     {
         /// <summary>
-        /// Sets current theme.
+        /// Sets current theme
         /// </summary>
         /// <param name="isDarkTheme">Do you want dark or light theme?</param>
         internal static void SetTheme(bool isDarkTheme)

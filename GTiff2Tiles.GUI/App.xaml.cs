@@ -11,9 +11,6 @@ namespace GTiff2Tiles.GUI
     {
         protected override Window CreateShell() => Container.Resolve<MainView>();
 
-        protected override void RegisterTypes(IContainerRegistry containerRegistry)
-        {
-
-        }
+        protected override void RegisterTypes(IContainerRegistry containerRegistry) { }
     }
 }

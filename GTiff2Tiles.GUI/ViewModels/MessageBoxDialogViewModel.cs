@@ -13,37 +13,37 @@ namespace GTiff2Tiles.GUI.ViewModels
 {
     /// <inheritdoc />
     /// <summary>
-    /// Custom message box dialog. <see cref="T:GTiff2Tiles.GUI.Views.MessageBoxDialogView" />.
+    /// Custom message box dialog for <see cref="Views.MessageBoxDialogView" />
     /// </summary>
     // ReSharper disable once MemberCanBeInternal
-    public sealed class MessageBoxDialogViewModel : BindableBase//: PropertyChangedBase
+    public sealed class MessageBoxDialogViewModel : BindableBase
     {
         #region Properties and fields
 
         #region UI
 
         /// <summary>
-        /// Copy to clipboard's button's hint's text.
+        /// Copy to clipboard's button hint text
         /// </summary>
         public string CopyToClipboardToolTip { get; } = Strings.CopyToClipboardToolTip;
 
         /// <summary>
-        /// Accept button's text.
+        /// Accept button's text
         /// </summary>
         public string AcceptButtonContent { get; } = Strings.AcceptButtonContent;
 
         /// <summary>
-        /// Cancel button's text.
+        /// Cancel button's text
         /// </summary>
         public string CancelButtonContent { get; } = Strings.CancelButtonContent;
 
         /// <summary>
-        /// Dialog's width.
+        /// Dialog's width
         /// </summary>
         public int Width { get; } = Dialogs.Width;
 
         /// <summary>
-        /// Dialog's height.
+        /// Dialog's height
         /// </summary>
         public int Height { get; } = Dialogs.Height;
 
@@ -58,7 +58,7 @@ namespace GTiff2Tiles.GUI.ViewModels
         #endregion
 
         /// <summary>
-        /// Text inside MessageBox.
+        /// Text inside MessageBox
         /// </summary>
         public string Message
         {
@@ -67,7 +67,7 @@ namespace GTiff2Tiles.GUI.ViewModels
         }
 
         /// <summary>
-        /// Controls visibility of Cancel button on MessageBox.
+        /// Controls visibility of Cancel button on MessageBox
         /// </summary>
         public Visibility CancelButtonVisibility
         {
@@ -79,31 +79,26 @@ namespace GTiff2Tiles.GUI.ViewModels
 
         #region Constructors
 
+        /// <summary>
+        /// Create a message box without any messages
+        /// </summary>
         public MessageBoxDialogViewModel()
         {
-            Message = string.Empty;
-
-            CancelButtonVisibility = Visibility.Collapsed;
-
-            //Bind delegates with methods
-            CopyToClipboardButtonCommand = new DelegateCommand(CopyToClipboardButton);
-            AcceptButtonCommand = new DelegateCommand(AcceptButton);
-        }
-
-        /// <summary>
-        /// Create message box.
-        /// </summary>
-        /// <param name="message">Text, that you want to see on message box.</param>
-        /// <param name="isCancelButtonVisible">Set to <see langword="true"/>, if you want to see Cancel button.</param>
-        public MessageBoxDialogViewModel(string message, bool isCancelButtonVisible = false)
-        {
-            Message = message;
-            CancelButtonVisibility = isCancelButtonVisible ? Visibility.Visible : Visibility.Collapsed;
-
-            //Bind delegates with methods
+            // Bind delegates with methods
             CopyToClipboardButtonCommand = new DelegateCommand(CopyToClipboardButton);
             AcceptButtonCommand = new DelegateCommand(AcceptButton);
             CancelButtonCommand = new DelegateCommand(CancelButton);
+        }
+
+        /// <summary>
+        /// Create message box
+        /// </summary>
+        /// <param name="message">Text, that you want to see on message box</param>
+        /// <param name="isCancelButtonVisible">Set to <see langword="true"/>, if you want to see Cancel button</param>
+        public MessageBoxDialogViewModel(string message, bool isCancelButtonVisible = false) : this()
+        {
+            Message = message;
+            CancelButtonVisibility = isCancelButtonVisible ? Visibility.Visible : Visibility.Collapsed;
         }
 
         #endregion
@@ -130,20 +125,24 @@ namespace GTiff2Tiles.GUI.ViewModels
         #region Buttons methods
 
         /// <summary>
-        /// Method for Cancel button on <see cref="Views.MessageBoxDialogView"/>.
-        /// <para>Closes the UserControl and returns <see langword="false"/> to the message box's caller.</para>
+        /// Method for Cancel button on <see cref="Views.MessageBoxDialogView"/>
+        /// <remarks><para/>Closes the UserControl
+        /// and returns <see langword="false"/>
+        /// to the message box's caller</remarks>
         /// </summary>
         public static void CancelButton() => DialogHost.CloseDialogCommand.Execute(false, null);
 
         /// <summary>
         /// Method for Accept button on <see cref="Views.MessageBoxDialogView"/>.
-        /// <para>Closes the UserControl and returns <see langword="true"/> to the message box's caller.</para>
+        /// <remarks><para/>Closes the UserControl
+        /// and returns <see langword="true"/>
+        /// to the message box's caller</remarks>
         /// </summary>
         public static void AcceptButton() => DialogHost.CloseDialogCommand.Execute(true, null);
 
         /// <summary>
         /// Method for CopyToClipboard button on <see cref="Views.MessageBoxDialogView"/>.
-        /// <para>Copies the message to clipboard.</para>
+        /// <remarks><para/>Copies the message to clipboard</remarks>
         /// </summary>
         public void CopyToClipboardButton() => Clipboard.SetText(Message);
 
