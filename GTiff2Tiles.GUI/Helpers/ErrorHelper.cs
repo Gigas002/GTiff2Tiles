@@ -14,31 +14,16 @@ namespace GTiff2Tiles.GUI.Helpers
         /// Shows current exception
         /// </summary>
         /// <param name="exception">Exception</param>
-        /// <returns></returns>
-        internal static Task<object> ShowExceptionAsync(Exception exception)
+        /// <returns>Always <see langword="false"/></returns>
+        internal static async ValueTask<bool> ShowExceptionAsync(Exception exception)
         {
             #if DEBUG
-            if (exception.InnerException != null) DialogHost.Show(new MessageBoxDialogViewModel(exception.InnerException.Message));
+            if (exception.InnerException != null) await DialogHost.Show(new MessageBoxDialogViewModel(exception.InnerException.Message)).ConfigureAwait(true);
             #endif
 
-            return DialogHost.Show(new MessageBoxDialogViewModel(exception.Message));
-        }
+            await DialogHost.Show(new MessageBoxDialogViewModel(exception.Message)).ConfigureAwait(true);
 
-        /// <summary>
-        /// Shows current error and exception, if it was thrown
-        /// </summary>
-        /// <param name="errorMessage">Error message</param>
-        /// <param name="exception">Exception</param>
-        /// <returns><see langword="false"/></returns>
-        internal static ValueTask<bool> ShowErrorAsync(string errorMessage, Exception exception = null)
-        {
-            #if DEBUG
-            if (exception != null) DialogHost.Show(new MessageBoxDialogViewModel(exception.Message)).ConfigureAwait(true);
-            #endif
-
-            DialogHost.Show(new MessageBoxDialogViewModel(errorMessage));
-
-            return ValueTask.FromResult(false);
+            return false;
         }
     }
 }

@@ -5,8 +5,8 @@
     <TargetFramework>netcoreapp5.0</TargetFramework>
     <VersionPrefix>2.0.0</VersionPrefix>
     <VersionSuffix>ci439</VersionSuffix>
-    <AssemblyVersion>2.0.0.596</AssemblyVersion>
-    <FileVersion>2.0.0.596</FileVersion>
+    <AssemblyVersion>2.0.0.600</AssemblyVersion>
+    <FileVersion>2.0.0.600</FileVersion>
     <Platforms>AnyCPU;x64</Platforms>
     <Configurations>Debug;Release;Appveyor</Configurations>
     <PackageIcon>Icon.png</PackageIcon>
@@ -43,10 +43,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Update="Properties\Settings.settings">
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-      <Generator>SettingsSingleFileGenerator</Generator>
-    </None>
     <None Include="..\LICENSE.md" Pack="true" PackagePath="$(PackageLicenseFile)" />
     <None Include="Resources\Icon.png" Pack="true" Visible="true" PackagePath="$(PackageIcon)" />
     <None Remove="Resources\Icon.ico" />
@@ -73,11 +69,6 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
-    <Compile Update="Properties\Settings.Designer.cs">
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-      <DependentUpon>Settings.settings</DependentUpon>
-      <AutoGen>True</AutoGen>
-    </Compile>
     <Compile Update="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
@@ -91,6 +82,12 @@
       <LastGenOutput>Strings.Designer.cs</LastGenOutput>
       <Generator>ResXFileCodeGenerator</Generator>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="settings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
   <ItemGroup>

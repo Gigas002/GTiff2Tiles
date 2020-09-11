@@ -1,0 +1,8 @@
+{
+  "Theme": "Dark",
+  "TileSideSize": 256,
+  "IsAutoThreads": true,
+  "ThreadsCount": 8,
+  "TileCache": 1000,
+  "Memory": 2147483649
+}

@@ -3,19 +3,18 @@ using GTiff2Tiles.GUI.Constants;
 using Prism.Mvvm;
 using Prism.Commands;
 using GTiff2Tiles.GUI.Localization;
+using GTiff2Tiles.GUI.Views;
 using MaterialDesignThemes.Wpf;
 
-// ReSharper disable UnusedAutoPropertyAccessor.Global
-// ReSharper disable MemberCanBePrivate.Global
 // ReSharper disable UnusedMember.Global
+// ReSharper disable MemberCanBePrivate.Global
+// ReSharper disable UnusedAutoPropertyAccessor.Global
 
 namespace GTiff2Tiles.GUI.ViewModels
 {
-    /// <inheritdoc />
     /// <summary>
-    /// Custom message box dialog for <see cref="Views.MessageBoxDialogView" />
+    /// Custom message box dialog for <see cref="MessageBoxDialogView" />
     /// </summary>
-    // ReSharper disable once MemberCanBeInternal
     public sealed class MessageBoxDialogViewModel : BindableBase
     {
         #region Properties and fields
@@ -94,7 +93,8 @@ namespace GTiff2Tiles.GUI.ViewModels
         /// Create message box
         /// </summary>
         /// <param name="message">Text, that you want to see on message box</param>
-        /// <param name="isCancelButtonVisible">Set to <see langword="true"/>, if you want to see Cancel button</param>
+        /// <param name="isCancelButtonVisible">Set to <see langword="true"/>,
+        /// if you want to see Cancel button</param>
         public MessageBoxDialogViewModel(string message, bool isCancelButtonVisible = false) : this()
         {
             Message = message;
