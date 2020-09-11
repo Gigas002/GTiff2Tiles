@@ -120,60 +120,79 @@
   <data name="AcceptButtonContent" xml:space="preserve">
     <value>Принять</value>
   </data>
+  <data name="BandsHint" xml:space="preserve">
+    <value>Количество диапазонов</value>
+  </data>
   <data name="CancelButtonContent" xml:space="preserve">
     <value>Отмена</value>
   </data>
+  <data name="CoordinateSystemsHint" xml:space="preserve">
+    <value>Система координат тайлов</value>
+  </data>
   <data name="CopyToClipboardToolTip" xml:space="preserve">
     <value>Скопировать в буфер</value>
-    <comment>В Message box'е</comment>
+  </data>
+  <data name="Done" xml:space="preserve">
+    <value>Готово!</value>
+  </data>
+  <data name="ExpanderHeader" xml:space="preserve">
+    <value>Дополнительные настройки</value>
   </data>
   <data name="InputFileHint" xml:space="preserve">
     <value>Путь к исходному файлу</value>
   </data>
+  <data name="InterpolationsHint" xml:space="preserve">
+    <value>Интерполяция тайлов</value>
+  </data>
+  <data name="IsAutoThreadsContent" xml:space="preserve">
+    <value>Автоматический выбор потоков</value>
+  </data>
   <data name="MaxZHint" xml:space="preserve">
-    <value>Выберите максимальный уровень</value>
+    <value>Максимальный уровень</value>
+  </data>
+  <data name="MemoryHint" xml:space="preserve">
+    <value>Оперативная память</value>
   </data>
   <data name="MinZHint" xml:space="preserve">
-    <value>Выберите минимальный уровень</value>
+    <value>Минимальный уровень</value>
   </data>
   <data name="OutputDirectoryHint" xml:space="preserve">
-    <value>Путь к директории с готовыми данными</value>
+    <value>Путь к директории для готовых данных</value>
   </data>
   <data name="ProgressTextBlock" xml:space="preserve">
     <value>Прогресс:</value>
+  </data>
+  <data name="SaveSettingsButtonContent" xml:space="preserve">
+    <value>Сохранить настройки</value>
   </data>
   <data name="StartButtonContent" xml:space="preserve">
     <value>Старт</value>
   </data>
   <data name="TempDirectoryHint" xml:space="preserve">
-    <value>Путь к временной директории</value>
+    <value>Путь к директории для временных данных</value>
+  </data>
+  <data name="ThemesHint" xml:space="preserve">
+    <value>Тема</value>
   </data>
   <data name="ThreadsCountHint" xml:space="preserve">
-    <value>Выберите количество потоков</value>
+    <value>Количество потоков</value>
   </data>
-  <data name="Done" xml:space="preserve">
-    <value>Готово! Прошло времени:{0}Дней:{1} часов:{2} минут:{3} секунд:{4} миллисекунд:{5}</value>
-    <comment>Выводится, когда задача завершается</comment>
-  </data>
-  <data name="LesserOrEqual" xml:space="preserve">
-    <value>{0} меньше или равно {1}</value>
-    <comment>Ошибка</comment>
-  </data>
-  <data name="LesserThan" xml:space="preserve">
-    <value>{0} меньше, чем {1}</value>
-    <comment>Ошибка</comment>
-  </data>
-  <data name="PathIsEmpty" xml:space="preserve">
-    <value>Строка пути {0} пустая</value>
-    <comment>Ошибка</comment>
-  </data>
-  <data name="TmsCheckBoxContent" xml:space="preserve">
-    <value>Совместимо с tms</value>
-  </data>
-  <data name="SelectExtension" xml:space="preserve">
-    <value>Выберите расширение готовых тайлов</value>
+  <data name="TileCacheHint" xml:space="preserve">
+    <value>Количество тайлов в кэше</value>
   </data>
   <data name="TileExtensionsHint" xml:space="preserve">
-    <value>Выберите расширение готовых тайлов</value>
+    <value>Расширение тайлов</value>
+  </data>
+  <data name="TileSizeHint" xml:space="preserve">
+    <value>Размер стороны тайла</value>
+  </data>
+  <data name="TimePassedTextBlock" xml:space="preserve">
+    <value>Прошло времени:</value>
+  </data>
+  <data name="TimePassedValue" xml:space="preserve">
+    <value>{0} {1}:{2}:{3}</value>
+  </data>
+  <data name="TmsCheckBoxContent" xml:space="preserve">
+    <value>Совместимо с TMS</value>
   </data>
 </root>

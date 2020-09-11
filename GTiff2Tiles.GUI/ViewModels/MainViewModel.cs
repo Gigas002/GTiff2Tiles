@@ -202,9 +202,8 @@ namespace GTiff2Tiles.GUI.ViewModels
 
         /// <summary>
         /// Hint for CoordinateSystems ComboBox
-        /// TODO: strings
         /// </summary>
-        public static string CoordinateSystemsHint => "Target coordinate system";
+        public static string CoordinateSystemsHint => Strings.CoordinateSystemsHint;
 
         /// <summary>
         /// Collection of supprted <see cref="CoordinateSystem"/>s
@@ -228,9 +227,8 @@ namespace GTiff2Tiles.GUI.ViewModels
 
         /// <summary>
         /// Hint for Interpolation TextBox
-        /// TODO: strings
         /// </summary>
-        public static string InterpolationsHint => "Tile interpolation";
+        public static string InterpolationsHint => Strings.InterpolationsHint;
 
         /// <summary>
         /// Collection of supprted <see cref="Interpolation"/>s
@@ -250,9 +248,8 @@ namespace GTiff2Tiles.GUI.ViewModels
 
         /// <summary>
         /// Hint for Bands TextBox
-        /// TODO: strings
         /// </summary>
-        public static string BandsHint => "Bands count";
+        public static string BandsHint => Strings.BandsHint;
 
         #endregion
 
@@ -279,9 +276,9 @@ namespace GTiff2Tiles.GUI.ViewModels
         #region Expander with additional settings / Grid.Row=14
 
         /// <summary>
-        /// Expander's name
+        /// Expander's header content
         /// </summary>
-        public static string ExpanderName => "Additional settings";
+        public static string ExpanderHeader => Strings.ExpanderHeader;
 
         #region Theme
 
@@ -321,9 +318,8 @@ namespace GTiff2Tiles.GUI.ViewModels
 
         /// <summary>
         /// Hint for Themes combobox
-        /// TODO: strings
         /// </summary>
-        public static string ThemesHint => "Theme";
+        public static string ThemesHint => Strings.ThemesHint;
 
         #endregion
 
@@ -342,9 +338,8 @@ namespace GTiff2Tiles.GUI.ViewModels
 
         /// <summary>
         /// Hint for TileSideSize TextBox
-        /// TODO: strings
         /// </summary>
-        public static string TileSizeHint => "Tile side size";
+        public static string TileSizeHint => Strings.TileSizeHint;
 
         /// <summary>
         /// Ready tiles's size
@@ -372,9 +367,8 @@ namespace GTiff2Tiles.GUI.ViewModels
 
         /// <summary>
         /// Hint for AutoThreads CheckBox
-        /// TODO: strings
         /// </summary>
-        public static string IsAutoThreadsContent => "Auto threads";
+        public static string IsAutoThreadsContent => Strings.IsAutoThreadsContent;
 
         private int _threadsCount;
 
@@ -422,9 +416,8 @@ namespace GTiff2Tiles.GUI.ViewModels
 
         /// <summary>
         /// Hint for TileCache TextBox
-        /// TODO: strings
         /// </summary>
-        public static string TileCacheHint => "Tile cache";
+        public static string TileCacheHint => Strings.TileCacheHint;
 
         #endregion
 
@@ -443,9 +436,8 @@ namespace GTiff2Tiles.GUI.ViewModels
 
         /// <summary>
         /// Hint for Memory TextBox
-        /// TODO: strings
         /// </summary>
-        public static string MemoryHint => "Memory";
+        public static string MemoryHint => Strings.MemoryHint;
 
         #endregion
 
@@ -464,9 +456,8 @@ namespace GTiff2Tiles.GUI.ViewModels
 
         /// <summary>
         /// Content of SaveSettings Button
-        /// TODO: strings
         /// </summary>
-        public static string SaveSettingsButtonContent => "Save settings";
+        public static string SaveSettingsButtonContent => Strings.SaveSettingsButtonContent;
 
         /// <summary>
         /// SaveSettings Button command delegate

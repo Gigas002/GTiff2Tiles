@@ -120,21 +120,41 @@
   <data name="AcceptButtonContent" xml:space="preserve">
     <value>Accept</value>
   </data>
+  <data name="BandsHint" xml:space="preserve">
+    <value>Bands count</value>
+  </data>
   <data name="CancelButtonContent" xml:space="preserve">
     <value>Cancel</value>
   </data>
+  <data name="CoordinateSystemsHint" xml:space="preserve">
+    <value>Tile coordinate system</value>
+  </data>
   <data name="CopyToClipboardToolTip" xml:space="preserve">
     <value>Copy to clipboard</value>
-    <comment>Shown on message box</comment>
+  </data>
+  <data name="Done" xml:space="preserve">
+    <value>Done!</value>
+  </data>
+  <data name="ExpanderHeader" xml:space="preserve">
+    <value>Additional settings</value>
   </data>
   <data name="InputFileHint" xml:space="preserve">
     <value>Input file's path</value>
   </data>
+  <data name="InterpolationsHint" xml:space="preserve">
+    <value>Tile interpolation</value>
+  </data>
+  <data name="IsAutoThreadsContent" xml:space="preserve">
+    <value>Auto threads</value>
+  </data>
   <data name="MaxZHint" xml:space="preserve">
-    <value>Select maximum zoom</value>
+    <value>Maximal zoom</value>
+  </data>
+  <data name="MemoryHint" xml:space="preserve">
+    <value>Memory</value>
   </data>
   <data name="MinZHint" xml:space="preserve">
-    <value>Select minimum zoom</value>
+    <value>Minimal zoom</value>
   </data>
   <data name="OutputDirectoryHint" xml:space="preserve">
     <value>Output directory's path</value>
@@ -142,38 +162,37 @@
   <data name="ProgressTextBlock" xml:space="preserve">
     <value>Progress:</value>
   </data>
+  <data name="SaveSettingsButtonContent" xml:space="preserve">
+    <value>Save settings</value>
+  </data>
   <data name="StartButtonContent" xml:space="preserve">
     <value>Start</value>
   </data>
   <data name="TempDirectoryHint" xml:space="preserve">
     <value>Temp directory's path</value>
   </data>
+  <data name="ThemesHint" xml:space="preserve">
+    <value>Theme</value>
+  </data>
   <data name="ThreadsCountHint" xml:space="preserve">
-    <value>Select number of threads</value>
+    <value>Threads count</value>
   </data>
-  <data name="Done" xml:space="preserve">
-    <value>Done! Time passed:{0}Days:{1} hours:{2} minutes:{3} seconds:{4} milliseconds:{5}</value>
-    <comment>Prints when done</comment>
-  </data>
-  <data name="LesserOrEqual" xml:space="preserve">
-    <value>{0} is lesser or equal {1}</value>
-    <comment>Error</comment>
-  </data>
-  <data name="LesserThan" xml:space="preserve">
-    <value>{0} is lesser, than {1}</value>
-    <comment>Error</comment>
-  </data>
-  <data name="PathIsEmpty" xml:space="preserve">
-    <value>{0} path if empty</value>
-    <comment>Error</comment>
-  </data>
-  <data name="TmsCheckBoxContent" xml:space="preserve">
-    <value>Tms compatible</value>
-  </data>
-  <data name="SelectExtension" xml:space="preserve">
-    <value>Please, select the tile extension</value>
+  <data name="TileCacheHint" xml:space="preserve">
+    <value>Tile cache count</value>
   </data>
   <data name="TileExtensionsHint" xml:space="preserve">
-    <value>Select extension of ready tiles</value>
+    <value>Tile extension</value>
+  </data>
+  <data name="TileSizeHint" xml:space="preserve">
+    <value>Tile side size</value>
+  </data>
+  <data name="TimePassedTextBlock" xml:space="preserve">
+    <value>Time passed:</value>
+  </data>
+  <data name="TimePassedValue" xml:space="preserve">
+    <value>{0} {1}:{2}:{3}</value>
+  </data>
+  <data name="TmsCheckBoxContent" xml:space="preserve">
+    <value>TMS compatible</value>
   </data>
 </root>

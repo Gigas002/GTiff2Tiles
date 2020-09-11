@@ -70,11 +70,29 @@ namespace GTiff2Tiles.GUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bands count.
+        /// </summary>
+        internal static string BandsHint {
+            get {
+                return ResourceManager.GetString("BandsHint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
         internal static string CancelButtonContent {
             get {
                 return ResourceManager.GetString("CancelButtonContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tile coordinate system.
+        /// </summary>
+        internal static string CoordinateSystemsHint {
+            get {
+                return ResourceManager.GetString("CoordinateSystemsHint", resourceCulture);
             }
         }
         
@@ -88,11 +106,20 @@ namespace GTiff2Tiles.GUI.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Done! Time passed:{0}Days:{1} hours:{2} minutes:{3} seconds:{4} milliseconds:{5}.
+        ///   Looks up a localized string similar to Done!.
         /// </summary>
         internal static string Done {
             get {
                 return ResourceManager.GetString("Done", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Additional settings.
+        /// </summary>
+        internal static string ExpanderHeader {
+            get {
+                return ResourceManager.GetString("ExpanderHeader", resourceCulture);
             }
         }
         
@@ -106,25 +133,25 @@ namespace GTiff2Tiles.GUI.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} is lesser or equal {1}.
+        ///   Looks up a localized string similar to Tile interpolation.
         /// </summary>
-        internal static string LesserOrEqual {
+        internal static string InterpolationsHint {
             get {
-                return ResourceManager.GetString("LesserOrEqual", resourceCulture);
+                return ResourceManager.GetString("InterpolationsHint", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} is lesser, than {1}.
+        ///   Looks up a localized string similar to Auto threads.
         /// </summary>
-        internal static string LesserThan {
+        internal static string IsAutoThreadsContent {
             get {
-                return ResourceManager.GetString("LesserThan", resourceCulture);
+                return ResourceManager.GetString("IsAutoThreadsContent", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select maximum zoom.
+        ///   Looks up a localized string similar to Maximal zoom.
         /// </summary>
         internal static string MaxZHint {
             get {
@@ -133,7 +160,16 @@ namespace GTiff2Tiles.GUI.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select minimum zoom.
+        ///   Looks up a localized string similar to Memory.
+        /// </summary>
+        internal static string MemoryHint {
+            get {
+                return ResourceManager.GetString("MemoryHint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Minimal zoom.
         /// </summary>
         internal static string MinZHint {
             get {
@@ -151,15 +187,6 @@ namespace GTiff2Tiles.GUI.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} path if empty.
-        /// </summary>
-        internal static string PathIsEmpty {
-            get {
-                return ResourceManager.GetString("PathIsEmpty", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Progress:.
         /// </summary>
         internal static string ProgressTextBlock {
@@ -169,11 +196,11 @@ namespace GTiff2Tiles.GUI.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please, select the tile extension.
+        ///   Looks up a localized string similar to Save settings.
         /// </summary>
-        internal static string SelectExtension {
+        internal static string SaveSettingsButtonContent {
             get {
-                return ResourceManager.GetString("SelectExtension", resourceCulture);
+                return ResourceManager.GetString("SaveSettingsButtonContent", resourceCulture);
             }
         }
         
@@ -196,7 +223,16 @@ namespace GTiff2Tiles.GUI.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select number of threads.
+        ///   Looks up a localized string similar to Theme.
+        /// </summary>
+        internal static string ThemesHint {
+            get {
+                return ResourceManager.GetString("ThemesHint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Threads count.
         /// </summary>
         internal static string ThreadsCountHint {
             get {
@@ -205,7 +241,16 @@ namespace GTiff2Tiles.GUI.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select extension of ready tiles.
+        ///   Looks up a localized string similar to Tile cache count.
+        /// </summary>
+        internal static string TileCacheHint {
+            get {
+                return ResourceManager.GetString("TileCacheHint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tile extension.
         /// </summary>
         internal static string TileExtensionsHint {
             get {
@@ -214,7 +259,34 @@ namespace GTiff2Tiles.GUI.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tms compatible.
+        ///   Looks up a localized string similar to Tile side size.
+        /// </summary>
+        internal static string TileSizeHint {
+            get {
+                return ResourceManager.GetString("TileSizeHint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Time passed:.
+        /// </summary>
+        internal static string TimePassedTextBlock {
+            get {
+                return ResourceManager.GetString("TimePassedTextBlock", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} {1}:{2}:{3}.
+        /// </summary>
+        internal static string TimePassedValue {
+            get {
+                return ResourceManager.GetString("TimePassedValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TMS compatible.
         /// </summary>
         internal static string TmsCheckBoxContent {
             get {

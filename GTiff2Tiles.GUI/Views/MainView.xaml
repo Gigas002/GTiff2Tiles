@@ -266,7 +266,7 @@
                           VerticalContentAlignment="Stretch"
                           FontSize="18"
                           Style="{StaticResource MaterialDesignExpander}"
-                          Header="{Binding ExpanderName}">
+                          Header="{Binding ExpanderHeader}">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
