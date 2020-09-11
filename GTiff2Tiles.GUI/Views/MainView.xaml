@@ -20,7 +20,7 @@
     Title="GTiff2Tiles"
     Height="700"
     Width="675"
-    SizeToContent="WidthAndHeight"
+    SizeToContent="Height"
     WindowStartupLocation="CenterScreen"
     Icon="/GTiff2Tiles.GUI;component/Resources/Icon.ico">
     <materialDesignExtensions:MaterialWindow.DataContext>
@@ -380,21 +380,32 @@
                              Height="25"
                              Value="{Binding ProgressBarValue}"/>
 
-                <!-- Progress bar text / Grid.Row="20" -->
-                <Grid Grid.Row="20" Grid.Column="0">
+                <!-- Progress bar text / Time passed / Grid.Row="20" -->
+                <Grid Grid.Row="20" Grid.Column="0"
+                      Grid.ColumnSpan="3">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="{StaticResource InnerMargin}"/>
+                        <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="{StaticResource InnerMargin}"/>
+                        <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
 
                     <TextBlock Grid.Row="0" Grid.Column="0"
                                Text="{Binding ProgressTextBlock}"/>
                     <TextBlock Grid.Row="0" Grid.Column="2"
                                Text="{Binding ProgressBarValue}"/>
+                    <TextBlock Grid.Row="0" Grid.Column="4"
+                               HorizontalAlignment="Right"
+                               Text="{Binding TimePassedTextBlock}"/>
+                    <TextBlock Grid.Row="0" Grid.Column="6"
+                               HorizontalAlignment="Right"
+                               Text="{Binding TimePassedValue}"/>
                 </Grid>
 
                 <!-- Meta info / Grid.Row="22" -->

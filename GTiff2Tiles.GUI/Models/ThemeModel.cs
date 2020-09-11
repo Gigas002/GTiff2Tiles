@@ -45,9 +45,9 @@ namespace GTiff2Tiles.GUI.Models
         /// </summary>
         /// <param name="theme">Theme string to parse</param>
         /// <returns>Parsed <see cref="Theme"/></returns>
-        internal static Theme GetTheme(string theme) => theme switch
+        internal static Theme GetTheme(string theme) => theme.ToLowerInvariant() switch
         {
-            nameof(Theme.Dark) => Theme.Dark,
+            "dark" => Theme.Dark,
             _ => Theme.Light
         };
 
@@ -61,8 +61,8 @@ namespace GTiff2Tiles.GUI.Models
         /// <returns>Parsed <see cref="string"/></returns>
         internal static string GetTheme(Theme theme) => theme switch
         {
-            Theme.Dark => nameof(Theme.Dark),
-            _ => nameof(Theme.Light)
+            Theme.Dark => nameof(Theme.Dark).ToLowerInvariant(),
+            _ => nameof(Theme.Light).ToLowerInvariant()
         };
     }
 }

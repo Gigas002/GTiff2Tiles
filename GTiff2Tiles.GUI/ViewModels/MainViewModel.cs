@@ -8,6 +8,7 @@ using System.Reflection;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Threading;
 using GTiff2Tiles.Core;
 using Prism.Mvvm;
 using Prism.Commands;
@@ -492,13 +493,42 @@ namespace GTiff2Tiles.GUI.ViewModels
         public double ProgressBarValue
         {
             get => _progressBarValue;
-            set => SetProperty(ref _progressBarValue, value);
+            set
+            {
+                if (Math.Abs(_progressBarValue - value) < double.Epsilon) return;
+
+                SetProperty(ref _progressBarValue, value);
+            }
         }
 
         /// <summary>
         /// Text in progress's TextBlock (e.g. "Progress:")
         /// </summary>
         public static string ProgressTextBlock => Strings.ProgressTextBlock;
+
+        #endregion
+
+        #region Time passed / Grid.Row=20
+
+        private DispatcherTimer _timer;
+
+        public static string TimePassedTextBlock => Strings.TimePassedTextBlock;
+
+        private string _timePassedValue;
+
+        /// <summary>
+        /// Shows how much time passed since process started
+        /// </summary>
+        public string TimePassedValue
+        {
+            get => _timePassedValue;
+            set
+            {
+                if (_timePassedValue == value) return;
+
+                SetProperty(ref _timePassedValue, value);
+            }
+        }
 
         #endregion
 
@@ -528,25 +558,28 @@ namespace GTiff2Tiles.GUI.ViewModels
         {
             IsMainGridEnabled = true;
 
-            InputFilePath = string.Empty;
+            Settings = JsonSerializer.Deserialize<SettingsModel>(File.ReadAllBytes(SettingsModel.Location))
+                    ?? new SettingsModel();
+
+            InputFilePath = Settings.InputFilePath;
             InputFileButtonCommand = new DelegateCommand(async () => await InputFileButtonAsync().ConfigureAwait(true));
 
-            OutputDirectoryPath = string.Empty;
+            OutputDirectoryPath = Settings.OutputDirectoryPath;
             OutputDirectoryButtonCommand = new DelegateCommand(async () => await OutputDirectoryButtonAsync().ConfigureAwait(true));
 
-            TempDirectoryPath = string.Empty;
+            TempDirectoryPath = Settings.TempDirectoryPath;
             TempDirectoryButtonCommand = new DelegateCommand(async () => await TempDirectoryButtonAsync().ConfigureAwait(true));
 
-            MinZ = 0;
-            MaxZ = 17;
+            MinZ = Settings.MinZ;
+            MaxZ = Settings.MaxZ;
 
             TileExtensions.Add(TileExtension.Png);
             TileExtensions.Add(TileExtension.Jpg);
             TileExtensions.Add(TileExtension.Webp);
-            TargetTileExtension = TileExtension.Png;
+            TargetTileExtension = Settings.TargetTileExtension;
             CoordinateSystems.Add(CoordinateSystem.Epsg3857);
             CoordinateSystems.Add(CoordinateSystem.Epsg4326);
-            TargetCoordinateSystem = CoordinateSystem.Epsg4326;
+            TargetCoordinateSystem = Settings.TargetCoordinateSystem;
 
             Interpolations.Add(Interpolation.Linear);
             Interpolations.Add(Interpolation.Nearest);
@@ -554,18 +587,15 @@ namespace GTiff2Tiles.GUI.ViewModels
             Interpolations.Add(Interpolation.Lanczos2);
             Interpolations.Add(Interpolation.Lanczos3);
             Interpolations.Add(Interpolation.Mitchell);
-            TargetInterpolation = Interpolation.Lanczos3;
+            TargetInterpolation = Settings.TargetInterpolation;
 
-            BandsCount = 4;
+            BandsCount = Settings.BandsCount;
 
-            TmsCompatible = false;
-
-            Settings = JsonSerializer.Deserialize<SettingsModel>(File.ReadAllBytes(SettingsModel.Location))
-                    ?? SettingsModel.Default;
+            TmsCompatible = Settings.TmsCompatible;
 
             Themes.Add(Theme.Dark);
             Themes.Add(Theme.Light);
-            Theme = ThemeModel.GetTheme(Settings.Theme);
+            Theme = Settings.TargetTheme;
             TileSideSize = Settings.TileSideSize;
             IsAutoThreads = Settings.IsAutoThreads;
             ThreadsCount = Settings.ThreadsCount;
@@ -576,6 +606,7 @@ namespace GTiff2Tiles.GUI.ViewModels
             StartButtonCommand = new DelegateCommand(async () => await StartButtonAsync().ConfigureAwait(true));
 
             ProgressBarValue = 0.0;
+            TimePassedValue = "0 00:00:00";
         }
 
         #endregion
@@ -647,17 +678,27 @@ namespace GTiff2Tiles.GUI.ViewModels
         /// <returns></returns>
         public async ValueTask StartButtonAsync()
         {
-            Stopwatch stopwatch = Stopwatch.StartNew();
+            #region Preconditions checks
 
-            // Check properties for errors
             if (!await CheckPropertiesAsync().ConfigureAwait(true)) return;
+
+            #endregion
+
+            // Start timer after checks passed
+            Stopwatch stopwatch = Stopwatch.StartNew();
+            _timer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(1.0) };
+            _timer.Tick += (sender, args) =>
+                TimePassedValue = string.Format(Strings.TimePassedValue, stopwatch.Elapsed.Days,
+                                                stopwatch.Elapsed.Hours, stopwatch.Elapsed.Minutes,
+                                                stopwatch.Elapsed.Seconds);
+            _timer.Start();
 
             // Create temp directory object
             string tempDirectoryPath = Path.Combine(TempDirectoryPath, DateTime.Now.ToString(DateTimePatterns.LongWithMs));
             CheckHelper.CheckDirectory(tempDirectoryPath, true);
 
             // Create progress reporter
-            IProgress<double> progress = new Progress<double>(value => ProgressBarValue = value);
+            IProgress<double> progress = new Progress<double>(value => ProgressBarValue = Math.Round(value, 4));
 
             // Because we need to check input file it's better to use temprorary value
             string inputFilePath = InputFilePath;
@@ -670,47 +711,59 @@ namespace GTiff2Tiles.GUI.ViewModels
             {
                 if (!await CheckHelper.CheckInputFileAsync(inputFilePath, TargetCoordinateSystem).ConfigureAwait(true))
                 {
-                    string tempFilePath = Path.Combine(tempDirectoryPath, $"{GdalWorker.TempFileName}");
+                    string tempFilePath = Path.Combine(tempDirectoryPath, GdalWorker.TempFileName);
 
                     await GdalWorker.ConvertGeoTiffToTargetSystemAsync(inputFilePath, tempFilePath,
-                                                                       TargetCoordinateSystem, progress).ConfigureAwait(false);
+                                                                       TargetCoordinateSystem, progress)
+                                    .ConfigureAwait(true);
                     inputFilePath = tempFilePath;
                 }
 
                 await using Raster image = new Raster(inputFilePath, TargetCoordinateSystem);
 
                 // Generate tiles
-                await image.WriteTilesToDirectoryAsync(OutputDirectoryPath, MinZ, MaxZ, TmsCompatible,
-                                                       TileSize, TargetTileExtension, TargetInterpolation,
-                                                       BandsCount, TileCache, threadsCount, progress)
-                           .ConfigureAwait(true);
+                await image.WriteTilesToDirectoryAsync(OutputDirectoryPath, MinZ, MaxZ, TmsCompatible, TileSize,
+                                                       TargetTileExtension, TargetInterpolation, BandsCount, TileCache,
+                                                       threadsCount, progress).ConfigureAwait(true);
             }
             catch (Exception exception)
             {
                 await Helpers.ErrorHelper.ShowExceptionAsync(exception).ConfigureAwait(true);
-                IsMainGridEnabled = true;
 
                 return;
             }
+            finally
+            {
+                // Enable controls and stop timer
+                IsMainGridEnabled = true;
+                stopwatch.Stop();
+                _timer.Stop();
+            }
 
-            // Enable controls
-            IsMainGridEnabled = true;
-
-            stopwatch.Stop();
-            string timePassed = string.Format(Strings.Done, Environment.NewLine, stopwatch.Elapsed.Days,
-                                              stopwatch.Elapsed.Hours, stopwatch.Elapsed.Minutes,
-                                              stopwatch.Elapsed.Seconds, stopwatch.Elapsed.Milliseconds);
-            await DialogHost.Show(new MessageBoxDialogViewModel(timePassed)).ConfigureAwait(true);
+            await DialogHost.Show(new MessageBoxDialogViewModel(Strings.Done)).ConfigureAwait(true);
         }
 
         /// <summary>
-        /// Update the Settings.json
+        /// Update the settings.json
         /// </summary>
         /// <returns></returns>
         public Task SaveSettingsAsync()
         {
-            Settings = new SettingsModel(ThemeModel.GetTheme(Theme), TileSideSize, IsAutoThreads,
-                                         ThreadsCount, TileCache, Memory);
+            Settings = new SettingsModel
+            {
+                InputFilePath = InputFilePath,
+                OutputDirectoryPath = OutputDirectoryPath,
+                TempDirectoryPath = TempDirectoryPath,
+                MinZ = MinZ, MaxZ = MaxZ,
+                TileExtension = Tile.GetExtensionString(TargetTileExtension),
+                CoordinateSystem = SettingsModel.ParseCoordinateSystem(TargetCoordinateSystem),
+                Interpolation = SettingsModel.ParseInterpolation(TargetInterpolation),
+                BandsCount = BandsCount,
+                TmsCompatible = TmsCompatible, Theme = ThemeModel.GetTheme(Theme),
+                TileSideSize = TileSideSize,
+                IsAutoThreads = IsAutoThreads, ThreadsCount = ThreadsCount,
+                TileCache = TileCache, Memory = Memory
+            };
 
             return SettingsModel.SaveAsync(Settings);
         }

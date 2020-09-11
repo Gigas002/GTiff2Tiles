@@ -5,8 +5,6 @@
 Supports **only GeoTIFF** as input data and creates **geodetic or mercator** tiles on output in **[tms](https://wiki.osgeo.org/wiki/Tile_Map_Service_Specification)** or **non-tms** (*Google maps like*) structure.
 Any **GeoTIFF** (with less, than **5 bands**) on input is supported, if it's not **EPSG:4326** or **EPSG:3857**, it'll be converted to your selected target coordinate system and saved inside **temp** directory before cropping.
 
-![Main page](images/MainPage.png)
-
 ## Requirements
 
 Application runs only on **Windows x64** (*tested on Win 7 SP1+*) operating system.
@@ -20,3 +18,51 @@ If you’re using **Windows 7 SP1**, you can experience weird error with **GDAL*
 - [MaterialDesignColors](https://www.nuget.org/packages/MaterialDesignColors) – 1.2.6;
 - [MaterialDesignThemes](https://www.nuget.org/packages/MaterialDesignThemes) – 3.1.3;
 - [MaterialDesignExtensions](https://www.nuget.org/packages/MaterialDesignExtensions) – 3.2.0;
+
+## Using
+
+![Main page](images/MainPage.png)
+
+Besides writing args each time the program start, you can specify the default values for GUI args in `settings.json` file. Full example (*with hardcoded default values*) is following:
+
+```json
+{
+  "InputFilePath": "",
+  "OutputDirectoryPath": "",
+  "TempDirectoryPath": "",
+  "MinZ": 0,
+  "MaxZ": 17,
+  "TileExtension": "png",
+  "CoordinateSystem": 4326,
+  "Interpolation": "lanczos3",
+  "BandsCount": 4,
+  "TmsCompatible": false,
+  "Theme": "dark",
+  "TileSideSize": 256,
+  "IsAutoThreads": true,
+  "ThreadsCount": 8,
+  "TileCache": 1000,
+  "Memory": 2147483648
+}
+```
+
+All properties in `settings.json` can be `null` or file can even not exist: in this case the default settings will be used instead.
+
+Args explanation:
+
+- **InputFilePath** -- path to input GeoTIFF. Must have `.tif` extension;
+- **OutputDirectoryInfo** -- path to output directory. Must be empty;
+- **TempDirectoryInfo** -- path to temp directory. Timestamp `YYYYMMDDHHmmSSzzz` directory will be created inside;
+- **MinZ** -- minimal zoom;
+- **MaxZ** -- maximal zoom;
+- **TileExtension** -- extension of ready tiles. Can be: `png`, `jpg` or `webp`;
+- **CoordinateSystem** -- coordinate system of ready tiles. Can be `4326` or `3857`;
+- **Interpolation** -- interpolation of ready tiles. Can be: `nearest`, `linear`, `cubic`, `mitchell`, `lanczos2` or `lanczos3`;
+- **BandsCount** -- number of bands in ready tiles. Can be in range `[1, 4]`;
+- **TmsCompatible** -- are tiles tms compatible? Can be `false` or `true`;
+- **Theme** -- app theme. Can be `dark` or `light`;
+- **TileSideSize** -- size of tile's side. `int`;
+- **IsAutoThreads** -- do you want to calculate threads automatically? Can be `true` or `false`;
+- **ThreadsCount** -- number of threads in case you've set `IsAutoThreads` to `false`. `int`;
+- **TileCache** -- number of tiles to store in memory cache. `int`;
+- **Memory** -- how big tiff to store in RAM. `long`;
