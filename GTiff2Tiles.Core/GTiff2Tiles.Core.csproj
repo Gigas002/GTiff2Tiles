@@ -63,7 +63,7 @@
     <PackageReference Include="MaxRev.Gdal.LinuxRuntime.Minimal" Version="3.1.0.100" />
     <PackageReference Include="MaxRev.Gdal.WindowsRuntime.Minimal" Version="3.1.0.100" />
     <PackageReference Include="NetVips" Version="1.2.4" />
-    <PackageReference Include="NetVips.Native" Version="8.10.0" />
+    <PackageReference Include="NetVips.Native" Version="8.10.1" />
   </ItemGroup>
 
   <ItemGroup>
