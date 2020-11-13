@@ -11,11 +11,11 @@ jobs:
     runs-on: windows-latest
     
     steps:
-    - uses: actions/checkout@v2.3.2
+    - uses: actions/checkout@v2.3.4
     - name: Setup .NET Core
-      uses: actions/setup-dotnet@v1.5.0
+      uses: actions/setup-dotnet@v1.7.2
       with:
-        dotnet-version: 5.0.100-preview.7
+        dotnet-version: 5.0.100
     - name: Build with dotnet
       run: |
         echo Build win-x64 start
@@ -74,11 +74,11 @@ jobs:
     runs-on: windows-latest
     
     steps:
-    - uses: actions/checkout@v2.3.2
+    - uses: actions/checkout@v2.3.4
     - name: Setup .NET Core
-      uses: actions/setup-dotnet@v1.5.0
+      uses: actions/setup-dotnet@v1.7.2
       with:
-        dotnet-version: 5.0.100-preview.7
+        dotnet-version: 5.0.100
     - name: Run unit tests
       run: |
         echo Unit tests win-x64 start
@@ -92,11 +92,11 @@ jobs:
     runs-on: ubuntu-latest
       
     steps:
-    - uses: actions/checkout@v2.3.2
+    - uses: actions/checkout@v2.3.4
     - name: Setup .NET Core
-      uses: actions/setup-dotnet@v1.5.0
+      uses: actions/setup-dotnet@v1.7.2
       with:
-        dotnet-version: 5.0.100-preview.7
+        dotnet-version: 5.0.100
     - name: Build with dotnet
       run: |
         echo Build linux-x64 core start
@@ -116,11 +116,11 @@ jobs:
     runs-on: ubuntu-20.04
       
     steps:
-    - uses: actions/checkout@v2.3.2
+    - uses: actions/checkout@v2.3.4
     - name: Setup .NET Core
-      uses: actions/setup-dotnet@v1.5.0
+      uses: actions/setup-dotnet@v1.7.2
       with:
-        dotnet-version: 5.0.100-preview.7
+        dotnet-version: 5.0.100
     - name: Build with dotnet
       run: |
         echo Build linux-x64 core start
@@ -140,11 +140,11 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-    - uses: actions/checkout@v2.3.2
+    - uses: actions/checkout@v2.3.4
     - name: Setup .NET Core
-      uses: actions/setup-dotnet@v1.5.0
+      uses: actions/setup-dotnet@v1.7.2
       with:
-        dotnet-version: 5.0.100-preview.7
+        dotnet-version: 5.0.100
     - name: Run unit tests
       run: |
         echo Unit tests linux-x64 start
