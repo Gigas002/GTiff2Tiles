@@ -2,11 +2,11 @@
 
   <PropertyGroup>
     <OutputType>Library</OutputType>
-    <TargetFramework>netcoreapp5.0</TargetFramework>
+    <TargetFramework>net5.0</TargetFramework>
     <VersionPrefix>2.0.0</VersionPrefix>
     <VersionSuffix>ci439</VersionSuffix>
-    <AssemblyVersion>2.0.0.603</AssemblyVersion>
-    <FileVersion>2.0.0.603</FileVersion>
+    <AssemblyVersion>2.0.0.606</AssemblyVersion>
+    <FileVersion>2.0.0.606</FileVersion>
     <Platforms>x64</Platforms>
     <Configurations>Debug;Release;Appveyor</Configurations>
     <PackageIcon>Icon.png</PackageIcon>
@@ -54,7 +54,7 @@
 
   <ItemGroup>
     <PackageReference Include="BitMiracle.LibTiff.NET" Version="2.4.639" />
-    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.3.0">
+    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.3.1">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
@@ -63,7 +63,7 @@
     <PackageReference Include="MaxRev.Gdal.LinuxRuntime.Minimal" Version="3.1.0.100" />
     <PackageReference Include="MaxRev.Gdal.WindowsRuntime.Minimal" Version="3.1.0.100" />
     <PackageReference Include="NetVips" Version="1.2.4" />
-    <PackageReference Include="NetVips.Native" Version="8.10.0" />
+    <PackageReference Include="NetVips.Native" Version="8.10.1" />
   </ItemGroup>
 
   <ItemGroup>

@@ -14,10 +14,10 @@ If you’re using **Windows 7 SP1**, you can experience weird error with **GDAL*
 ### Build dependencies
 
 - GTiff2Tiles.Core;
-- [Prism.DryIoc](https://www.nuget.org/packages/Prism.DryIoc) – 8.0.0.1850-pre;
-- [MaterialDesignColors](https://www.nuget.org/packages/MaterialDesignColors) – 1.2.6;
-- [MaterialDesignThemes](https://www.nuget.org/packages/MaterialDesignThemes) – 3.1.3;
-- [MaterialDesignExtensions](https://www.nuget.org/packages/MaterialDesignExtensions) – 3.2.0;
+- [Prism.DryIoc](https://www.nuget.org/packages/Prism.DryIoc) – 8.0.0.1909;
+- [MaterialDesignColors](https://www.nuget.org/packages/MaterialDesignColors) – 1.2.7;
+- [MaterialDesignThemes](https://www.nuget.org/packages/MaterialDesignThemes) – 3.2.0;
+- [MaterialDesignExtensions](https://www.nuget.org/packages/MaterialDesignExtensions) – 3.3.0-a01;
 
 ## Using
 

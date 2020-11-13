@@ -210,6 +210,7 @@ namespace GTiff2Tiles.Core.GeoTiffs
             IsDisposed = true;
         }
 
+#pragma warning disable CA1816 // Change Tile.DisposeAsync() to call GC.SuppressFinalize(object). This will prevent unnecessary finalization of the object once it has been disposed and it has fallen out of scope.
         /// <inheritdoc />
         public ValueTask DisposeAsync()
         {
@@ -228,6 +229,7 @@ namespace GTiff2Tiles.Core.GeoTiffs
 
 #pragma warning restore CA1031 // Do not catch general exception types
         }
+#pragma warning restore CA1816 // Change Tile.DisposeAsync() to call GC.SuppressFinalize(object). This will prevent unnecessary finalization of the object once it has been disposed and it has fallen out of scope.
 
         #endregion
 
@@ -1119,7 +1121,6 @@ namespace GTiff2Tiles.Core.GeoTiffs
         /// <returns>Ready <see cref="Image"/></returns>
         /// <exception cref="ArgumentNullException"/>
         /// <exception cref="ArgumentOutOfRangeException"/>
-        [SuppressMessage("ReSharper", "RemoveRedundantBraces")]
         public static Image JoinTilesIntoImage(IEnumerable<byte> tile0Bytes, IEnumerable<byte> tile1Bytes,
                                                IEnumerable<byte> tile2Bytes, IEnumerable<byte> tile3Bytes,
                                                Size tileSize, int bandsCount)
@@ -1188,7 +1189,6 @@ namespace GTiff2Tiles.Core.GeoTiffs
         /// <returns>Ready <see cref="Image"/></returns>
         /// <exception cref="ArgumentNullException"/>
         /// <exception cref="ArgumentOutOfRangeException"/>
-        [SuppressMessage("ReSharper", "RemoveRedundantBraces")]
         public static Image JoinTilesIntoImage(string tile0Path, string tile1Path,
                                                string tile2Path, string tile3Path,
                                                Size tileSize, int bandsCount)

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Reflection;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
@@ -184,8 +183,7 @@ namespace GTiff2Tiles.GUI.Models
         /// <summary>
         /// Get the full path of Settings.json file
         /// </summary>
-        internal static readonly string Location = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)
-                                                             ?? string.Empty, "settings.json");
+        internal static readonly string Location = Path.Combine(AppContext.BaseDirectory, "settings.json");
 
         /// <summary>
         /// Save the <see cref="SettingsModel"/> into file;

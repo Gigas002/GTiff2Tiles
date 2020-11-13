@@ -22,12 +22,12 @@ Main namespaces are the following:
 - [MaxRev.Gdal.LinuxRuntime.Minimal](https://www.nuget.org/packages/MaxRev.Gdal.LinuxRuntime.Minimal/) – 3.1.0.100;
 - [MaxRev.Gdal.WindowsRuntime.Minimal](https://www.nuget.org/packages/MaxRev.Gdal.WindowsRuntime.Minimal/) – 3.1.0.100;
 - [NetVips](https://www.nuget.org/packages/NetVips/) – 1.2.4;
-- [NetVips.Native](https://www.nuget.org/packages/NetVips.Native/) – 8.10.0;
+- [NetVips.Native](https://www.nuget.org/packages/NetVips.Native/) – 8.10.1;
 - [BitMiracle.LibTiff.NET](https://www.nuget.org/packages/BitMiracle.LibTiff.NET) – 2.4.639
 
 When building from source, there are more packages needed:
 
-- [Microsoft.CodeAnalysis.FxCopAnalyzers](https://www.nuget.org/packages/Microsoft.CodeAnalysis.FxCopAnalyzers) – 3.3.0;
+- [Microsoft.CodeAnalysis.FxCopAnalyzers](https://www.nuget.org/packages/Microsoft.CodeAnalysis.FxCopAnalyzers) – 3.3.1;
 
 ## Offline documentation
 

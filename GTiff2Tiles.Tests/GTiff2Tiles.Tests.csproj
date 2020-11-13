@@ -1,11 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp5.0</TargetFramework>
+    <TargetFramework>net5.0</TargetFramework>
     <VersionPrefix>2.0.0</VersionPrefix>
     <VersionSuffix>ci439</VersionSuffix>
-    <AssemblyVersion>2.0.0.653</AssemblyVersion>
-    <FileVersion>2.0.0.653</FileVersion>
+    <AssemblyVersion>2.0.0.656</AssemblyVersion>
+    <FileVersion>2.0.0.656</FileVersion>
     <Platforms>x64</Platforms>
     <Configurations>Debug;Release;Appveyor</Configurations>
     <PackageIcon>Icon.png</PackageIcon>
@@ -48,7 +48,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.7.1" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.8.0" />
   </ItemGroup>
 
   <ItemGroup>
