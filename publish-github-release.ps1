@@ -83,20 +83,20 @@ Write-Output "Copying docs, LICENSE.md, etc to published directories"
 
 if (!$isAppveyor)
 {
-    Copy-Item -Path "GTiff2Tiles.Benchmarks/GTiff2Tiles.Benchmarks.Doc.pdf" -Destination "Publish/GTiff2Tiles.Benchmarks/win-x64/GTiff2Tiles.Benchmarks.Doc.pdf"
+    Copy-Item -Path "GTiff2Tiles.Benchmarks/benchmarks-index.pdf" -Destination "Publish/GTiff2Tiles.Benchmarks/win-x64/benchmarks-index.pdf"
     Copy-Item -Path "LICENSE.md" -Destination "Publish/GTiff2Tiles.Benchmarks/win-x64/LICENSE.md"
     Copy-Item -Path "CHANGELOG.md" -Destination "Publish/GTiff2Tiles.Benchmarks/win-x64/CHANGELOG.md"
 
-    Copy-Item -Path "GTiff2Tiles.Benchmarks/GTiff2Tiles.Benchmarks.Doc.pdf" -Destination "Publish/GTiff2Tiles.Benchmarks/linux-x64/GTiff2Tiles.Benchmarks.Doc.pdf"
+    Copy-Item -Path "GTiff2Tiles.Benchmarks/benchmarks-index.pdf" -Destination "Publish/GTiff2Tiles.Benchmarks/linux-x64/benchmarks-index.pdf"
     Copy-Item -Path "LICENSE.md" -Destination "Publish/GTiff2Tiles.Benchmarks/linux-x64/LICENSE.md"
     Copy-Item -Path "CHANGELOG.md" -Destination "Publish/GTiff2Tiles.Benchmarks/linux-x64/CHANGELOG.md"
 }
 
-Copy-Item -Path "GTiff2Tiles.Console/GTiff2Tiles.Console.Doc.pdf" -Destination "Publish/GTiff2Tiles.Console/win-x64/GTiff2Tiles.Console.Doc.pdf"
+Copy-Item -Path "GTiff2Tiles.Console/console-index.pdf" -Destination "Publish/GTiff2Tiles.Console/win-x64/console-index.pdf"
 Copy-Item -Path "LICENSE.md" -Destination "Publish/GTiff2Tiles.Console/win-x64/LICENSE.md"
 Copy-Item -Path "CHANGELOG.md" -Destination "Publish/GTiff2Tiles.Console/win-x64/CHANGELOG.md"
 
-Copy-Item -Path "GTiff2Tiles.Console/GTiff2Tiles.Console.Doc.pdf" -Destination "Publish/GTiff2Tiles.Console/linux-x64/GTiff2Tiles.Console.Doc.pdf"
+Copy-Item -Path "GTiff2Tiles.Console/console-index.pdf" -Destination "Publish/GTiff2Tiles.Console/linux-x64/console-index.pdf"
 Copy-Item -Path "LICENSE.md" -Destination "Publish/GTiff2Tiles.Console/linux-x64/LICENSE.md"
 Copy-Item -Path "CHANGELOG.md" -Destination "Publish/GTiff2Tiles.Console/linux-x64/CHANGELOG.md"
 
