@@ -1,12 +1,12 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>netcoreapp5.0</TargetFramework>
+    <TargetFramework>net5.0-windows</TargetFramework>
     <VersionPrefix>2.0.0</VersionPrefix>
     <VersionSuffix>ci439</VersionSuffix>
-    <AssemblyVersion>2.0.0.606</AssemblyVersion>
-    <FileVersion>2.0.0.606</FileVersion>
+    <AssemblyVersion>2.0.0.610</AssemblyVersion>
+    <FileVersion>2.0.0.610</FileVersion>
     <Platforms>AnyCPU;x64</Platforms>
     <Configurations>Debug;Release;Appveyor</Configurations>
     <PackageIcon>Icon.png</PackageIcon>
