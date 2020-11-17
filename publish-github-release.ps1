@@ -1,5 +1,7 @@
 $isAppveyor=$args[0]
 
+# TODO: publish profiles needs changes
+
 Write-Output "Started building/publishing"
 
 # GTiff2Tiles.Core -- build and create nuget package
@@ -10,32 +12,32 @@ Write-Output "Ended building GTiff2Tiles.Core"
 
 # GTiff2Tiles.Benhmarks
 
-if (!$isAppveyor)
-{
-    # Win-x64
-    Write-Output "Start Win-x64-Benchmarks publish"
-    if ($IsWindows)
-    {
-        dotnet publish "GTiff2Tiles.Benchmarks/GTiff2Tiles.Benchmarks.csproj" -c Release -r win-x64 -o Publish/GTiff2Tiles.Benchmarks/win-x64 /p:IncludeAllContentInSingleFile=true /p:PublishReadyToRun=true # /p:PublishSingleFile=true /p:PublishTrimmed=true
-    }
-    else
-    {
-        dotnet publish "GTiff2Tiles.Benchmarks/GTiff2Tiles.Benchmarks.csproj" -c Release -r win-x64 -o Publish/GTiff2Tiles.Benchmarks/win-x64 /p:IncludeAllContentInSingleFile=true # /p:PublishSingleFile=true /p:PublishTrimmed=true
-    }
-    Write-Output "Ended Win-x64-Benchmarks publish"
+# if (!$isAppveyor)
+# {
+#     # Win-x64
+#     Write-Output "Start Win-x64-Benchmarks publish"
+#     if ($IsWindows)
+#     {
+#         dotnet publish "GTiff2Tiles.Benchmarks/GTiff2Tiles.Benchmarks.csproj" -c Release -r win-x64 -o Publish/GTiff2Tiles.Benchmarks/win-x64 /p:IncludeAllContentInSingleFile=true /p:PublishReadyToRun=true # /p:PublishSingleFile=true /p:PublishTrimmed=true
+#     }
+#     else
+#     {
+#         dotnet publish "GTiff2Tiles.Benchmarks/GTiff2Tiles.Benchmarks.csproj" -c Release -r win-x64 -o Publish/GTiff2Tiles.Benchmarks/win-x64 /p:IncludeAllContentInSingleFile=true # /p:PublishSingleFile=true /p:PublishTrimmed=true
+#     }
+#     Write-Output "Ended Win-x64-Benchmarks publish"
 
-    # Linux-x64
-    Write-Output "Start Linux-x64-Benchmarks publish"
-    if ($IsWindows)
-    {
-        dotnet publish "GTiff2Tiles.Benchmarks/GTiff2Tiles.Benchmarks.csproj" -c Release -r linux-x64 -o Publish/GTiff2Tiles.Benchmarks/linux-x64 /p:IncludeAllContentInSingleFile=true /p:PublishSingleFile=true /p:PublishTrimmed=true
-    }
-    else
-    {
-        dotnet publish "GTiff2Tiles.Benchmarks/GTiff2Tiles.Benchmarks.csproj" -c Release -r linux-x64 -o Publish/GTiff2Tiles.Benchmarks/linux-x64 /p:IncludeAllContentInSingleFile=true /p:PublishSingleFile=true /p:PublishTrimmed=true /p:PublishReadyToRun=true
-    }
-    Write-Output "Ended Linux-x64-Benchmarks publish"
-}
+#     # Linux-x64
+#     Write-Output "Start Linux-x64-Benchmarks publish"
+#     if ($IsWindows)
+#     {
+#         dotnet publish "GTiff2Tiles.Benchmarks/GTiff2Tiles.Benchmarks.csproj" -c Release -r linux-x64 -o Publish/GTiff2Tiles.Benchmarks/linux-x64 /p:IncludeAllContentInSingleFile=true /p:PublishSingleFile=true /p:PublishTrimmed=true
+#     }
+#     else
+#     {
+#         dotnet publish "GTiff2Tiles.Benchmarks/GTiff2Tiles.Benchmarks.csproj" -c Release -r linux-x64 -o Publish/GTiff2Tiles.Benchmarks/linux-x64 /p:IncludeAllContentInSingleFile=true /p:PublishSingleFile=true /p:PublishTrimmed=true /p:PublishReadyToRun=true
+#     }
+#     Write-Output "Ended Linux-x64-Benchmarks publish"
+# }
 
 # GTiff2Tiles.Console
 
@@ -81,16 +83,16 @@ Get-ChildItem "Publish/" -Include *.pdb -Recurse | Remove-Item
 # Copy docs, etc to published directories before zipping them
 Write-Output "Copying docs, LICENSE.md, etc to published directories"
 
-if (!$isAppveyor)
-{
-    Copy-Item -Path "GTiff2Tiles.Benchmarks/benchmarks-index.pdf" -Destination "Publish/GTiff2Tiles.Benchmarks/win-x64/benchmarks-index.pdf"
-    Copy-Item -Path "LICENSE.md" -Destination "Publish/GTiff2Tiles.Benchmarks/win-x64/LICENSE.md"
-    Copy-Item -Path "CHANGELOG.md" -Destination "Publish/GTiff2Tiles.Benchmarks/win-x64/CHANGELOG.md"
+# if (!$isAppveyor)
+# {
+#     Copy-Item -Path "GTiff2Tiles.Benchmarks/benchmarks-index.pdf" -Destination "Publish/GTiff2Tiles.Benchmarks/win-x64/benchmarks-index.pdf"
+#     Copy-Item -Path "LICENSE.md" -Destination "Publish/GTiff2Tiles.Benchmarks/win-x64/LICENSE.md"
+#     Copy-Item -Path "CHANGELOG.md" -Destination "Publish/GTiff2Tiles.Benchmarks/win-x64/CHANGELOG.md"
 
-    Copy-Item -Path "GTiff2Tiles.Benchmarks/benchmarks-index.pdf" -Destination "Publish/GTiff2Tiles.Benchmarks/linux-x64/benchmarks-index.pdf"
-    Copy-Item -Path "LICENSE.md" -Destination "Publish/GTiff2Tiles.Benchmarks/linux-x64/LICENSE.md"
-    Copy-Item -Path "CHANGELOG.md" -Destination "Publish/GTiff2Tiles.Benchmarks/linux-x64/CHANGELOG.md"
-}
+#     Copy-Item -Path "GTiff2Tiles.Benchmarks/benchmarks-index.pdf" -Destination "Publish/GTiff2Tiles.Benchmarks/linux-x64/benchmarks-index.pdf"
+#     Copy-Item -Path "LICENSE.md" -Destination "Publish/GTiff2Tiles.Benchmarks/linux-x64/LICENSE.md"
+#     Copy-Item -Path "CHANGELOG.md" -Destination "Publish/GTiff2Tiles.Benchmarks/linux-x64/CHANGELOG.md"
+# }
 
 Copy-Item -Path "GTiff2Tiles.Console/console-index.pdf" -Destination "Publish/GTiff2Tiles.Console/win-x64/console-index.pdf"
 Copy-Item -Path "LICENSE.md" -Destination "Publish/GTiff2Tiles.Console/win-x64/LICENSE.md"
