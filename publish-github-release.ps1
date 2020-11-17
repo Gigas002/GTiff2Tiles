@@ -1,6 +1,16 @@
 $isAppveyor=$args[0]
+$appveyorWorker=$args[1]
 
+# TODO: move to vs publishing?
 # TODO: publish profiles needs changes
+
+$appVsProfile="Visual Studio 2019"
+
+if ($appveyorWorker -eq $appVsProfile)
+{
+    Write-Output "Using VS2019, skip publishing github release..."
+    return
+}
 
 Write-Output "Started building/publishing"
 

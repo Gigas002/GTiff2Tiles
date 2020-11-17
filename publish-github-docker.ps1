@@ -1,4 +1,14 @@
 $GH_TOKEN=$args[0]
+$appveyorWorker=$args[1]
+
+$appVsProfile="Visual Studio 2019"
+
+if ($appveyorWorker -eq $appVsProfile)
+{
+    Write-Output "Using VS2019, skip publishing docker image..."
+    return
+}
+
 if($GH_TOKEN)
 {    
     docker login -u Gigas002 -p $GH_TOKEN docker.pkg.github.com

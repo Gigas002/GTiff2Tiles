@@ -4,7 +4,7 @@ pull_requests:
 skip_tags: true
 image:
 - Ubuntu2004
-# - Visual Studio 2019
+- Visual Studio 2019
 configuration: Appveyor
 platform: x64
 environment:
@@ -18,7 +18,7 @@ build:
   parallel: true
   verbosity: minimal
 after_test:
-- pwsh: ./publish-github-release.ps1 true
+- pwsh: ./publish-github-release.ps1 true $env:APPVEYOR_BUILD_WORKER_IMAGE
 artifacts:
 - path: GTiff2Tiles.Core\bin\x64\Release\*.nupkg
   name: nupkg
@@ -54,4 +54,4 @@ deploy:
   on:
     branch: master
 after_deploy:
-- pwsh: ./publish-github-docker.ps1 $env:GH_TOKEN
+- pwsh: ./publish-github-docker.ps1 $env:GH_TOKEN $env:APPVEYOR_BUILD_WORKER_IMAGE
