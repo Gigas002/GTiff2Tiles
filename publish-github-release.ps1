@@ -70,7 +70,7 @@ if ($IsWindows)
 {
     # Win-x64
     Write-Output "Start Win-x64-GUI publish"
-    dotnet publish "GTiff2Tiles.GUI/GTiff2Tiles.GUI.csproj" -c Release -o Publish/GTiff2Tiles.GUI/win-x64 /p:PublishReadyToRun=true /p:PublishSingleFile=true /p:IncludeAllContentInSingleFile=true
+    dotnet publish "GTiff2Tiles.GUI/GTiff2Tiles.GUI.csproj" -c Release -o Publish/GTiff2Tiles.GUI/win-x64
     Write-Output "Ended Win-x64-GUI publish"
 }
 
