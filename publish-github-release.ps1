@@ -16,11 +16,11 @@ if (!$isAppveyor)
     Write-Output "Start Win-x64-Benchmarks publish"
     if ($IsWindows)
     {
-        dotnet publish "GTiff2Tiles.Benchmarks/GTiff2Tiles.Benchmarks.csproj" -c Release -r win-x64 -o Publish/GTiff2Tiles.Benchmarks/win-x64 /p:IncludeAllContentInSingleFile=true /p:PublishSingleFile=true /p:PublishTrimmed=true /p:PublishReadyToRun=true
+        dotnet publish "GTiff2Tiles.Benchmarks/GTiff2Tiles.Benchmarks.csproj" -c Release -r win-x64 -o Publish/GTiff2Tiles.Benchmarks/win-x64 /p:IncludeAllContentInSingleFile=true /p:PublishReadyToRun=true # /p:PublishSingleFile=true /p:PublishTrimmed=true
     }
     else
     {
-        dotnet publish "GTiff2Tiles.Benchmarks/GTiff2Tiles.Benchmarks.csproj" -c Release -r win-x64 -o Publish/GTiff2Tiles.Benchmarks/win-x64 /p:IncludeAllContentInSingleFile=true /p:PublishSingleFile=true /p:PublishTrimmed=true
+        dotnet publish "GTiff2Tiles.Benchmarks/GTiff2Tiles.Benchmarks.csproj" -c Release -r win-x64 -o Publish/GTiff2Tiles.Benchmarks/win-x64 /p:IncludeAllContentInSingleFile=true # /p:PublishSingleFile=true /p:PublishTrimmed=true
     }
     Write-Output "Ended Win-x64-Benchmarks publish"
 
@@ -68,7 +68,7 @@ if ($IsWindows)
 {
     # Win-x64
     Write-Output "Start Win-x64-GUI publish"
-    dotnet publish "GTiff2Tiles.GUI/GTiff2Tiles.GUI.csproj" -c Release -o Publish/GTiff2Tiles.GUI/win-x64
+    dotnet publish "GTiff2Tiles.GUI/GTiff2Tiles.GUI.csproj" -c Release -o Publish/GTiff2Tiles.GUI/win-x64 /p:PublishReadyToRun=true /p:PublishSingleFile=true /p:IncludeAllContentInSingleFile=true
     Write-Output "Ended Win-x64-GUI publish"
 }
 

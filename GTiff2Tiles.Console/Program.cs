@@ -4,7 +4,6 @@ using System;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
-using System.Reflection;
 using System.Threading.Tasks;
 using CommandLine;
 using GTiff2Tiles.Console.Localization;
@@ -203,7 +202,7 @@ namespace GTiff2Tiles.Console
             };
 
             TempDirectoryPath = string.IsNullOrWhiteSpace(options.TempDirectoryPath)
-                                    ? Assembly.GetExecutingAssembly().Location
+                                    ? AppContext.BaseDirectory
                                     : options.TempDirectoryPath;
             TmsCompatible = bool.Parse(options.TmsCompatible);
 

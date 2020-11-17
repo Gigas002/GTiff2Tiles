@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Globalization;
 using System.IO;
-using System.Reflection;
 using BenchmarkDotNet.Attributes;
 using GTiff2Tiles.Core.Enums;
 using GTiff2Tiles.Core.GeoTiffs;
@@ -48,7 +47,7 @@ namespace GTiff2Tiles.Benchmarks
 
         internal const string Itif = "i.tif";
 
-        private static readonly string MountDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+        private static readonly string MountDir = AppContext.BaseDirectory;
 
         private readonly string _runArgs = $"--rm -v \"{MountDir}/data:/data\"";
 
