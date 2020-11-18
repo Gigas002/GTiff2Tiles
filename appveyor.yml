@@ -18,7 +18,7 @@ build:
   parallel: true
   verbosity: minimal
 after_test:
-- pwsh: ./publish-github-release.ps1 true $env:APPVEYOR_BUILD_WORKER_IMAGE
+- pwsh: ./appveyor-github-release.ps1
 artifacts:
 - path: GTiff2Tiles.Core\bin\x64\Release\*.nupkg
   name: nupkg

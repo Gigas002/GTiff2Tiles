@@ -5,8 +5,8 @@
     <TargetFramework>net5.0</TargetFramework>
     <VersionPrefix>2.0.0</VersionPrefix>
     <VersionSuffix>ci439</VersionSuffix>
-    <AssemblyVersion>2.0.0.601</AssemblyVersion>
-    <FileVersion>2.0.0.601</FileVersion>
+    <AssemblyVersion>2.0.0.602</AssemblyVersion>
+    <FileVersion>2.0.0.602</FileVersion>
     <Platforms>x64</Platforms>
     <Configurations>Debug;Release;Appveyor</Configurations>
     <PackageIcon>Icon.png</PackageIcon>
@@ -33,10 +33,10 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)'=='Release'">
-    <!--<PublishSingleFile>true</PublishSingleFile>-->
-    <!--<IncludeAllContentInSingleFile>true</IncludeAllContentInSingleFile>-->
-    <!--<RuntimeIdentifiers>win-x64;linux-x64</RuntimeIdentifiers>-->
-    <!--<PublishTrimmed>true</PublishTrimmed>-->
+    <PublishSingleFile>true</PublishSingleFile>
+    <IncludeAllContentInSingleFile>true</IncludeAllContentInSingleFile>
+    <RuntimeIdentifiers>win-x64;linux-x64</RuntimeIdentifiers>
+    <PublishTrimmed>true</PublishTrimmed>
     <!--<PublishReadyToRun>true</PublishReadyToRun>-->
   </PropertyGroup>
 
