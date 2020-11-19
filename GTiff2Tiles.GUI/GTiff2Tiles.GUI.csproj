@@ -38,8 +38,6 @@
     <PublishSingleFile>true</PublishSingleFile>
     <IncludeAllContentInSingleFile>true</IncludeAllContentInSingleFile>
     <RuntimeIdentifier>win-x64</RuntimeIdentifier>
-    <PublishReadyToRun>true</PublishReadyToRun>
-    <!--<PublishTrimmed>true</PublishTrimmed>-->
   </PropertyGroup>
 
   <ItemGroup>

@@ -32,9 +32,9 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)'=='Release'">
-    <PublishSingleFile>true</PublishSingleFile>
+    <!-- <PublishSingleFile>true</PublishSingleFile>
     <IncludeAllContentInSingleFile>true</IncludeAllContentInSingleFile>
-    <RuntimeIdentifiers>win-x64;linux-x64</RuntimeIdentifiers>
+    <RuntimeIdentifiers>win-x64;linux-x64</RuntimeIdentifiers> -->
     <!--<PublishTrimmed>true</PublishTrimmed>-->
     <!--<PublishReadyToRun>true</PublishReadyToRun>-->
   </PropertyGroup>
