@@ -71,12 +71,12 @@ if ($IsWindows -or $buildAll)
 {
     # GTiff2Tiles.Console
     Write-Output "Start adding win-x64-Console to .zip"
-    Start-Process -NoNewwindow -Wait -FilePath "7z" -ArgumentList "a ../../win-x64-GTiff2Tiles.Console.zip *" -WorkingDirectory "Publish/GTiff2Tiles.Console/win-x64/"
+    Start-Process -NoNewWindow -Wait -FilePath "7z" -ArgumentList "a ../../win-x64-GTiff2Tiles.Console.zip *" -WorkingDirectory "Publish/GTiff2Tiles.Console/win-x64/"
     Write-Output "Ended adding win-x64-Console to .zip"
 
     # GTiff2Tiles.GUI
     Write-Output "Start adding win-x64-GUI to .zip"
-    Start-Process -NoNewwindow -Wait -FilePath "7z" -ArgumentList "a ../../win-x64-GTiff2Tiles.GUI.zip *" -WorkingDirectory "Publish/GTiff2Tiles.GUI/win-x64/"
+    Start-Process -NoNewWindow -Wait -FilePath "7z" -ArgumentList "a ../../win-x64-GTiff2Tiles.GUI.zip *" -WorkingDirectory "Publish/GTiff2Tiles.GUI/win-x64/"
     Write-Output "Ended adding win-x64-GUI to .zip"
 }
 
@@ -84,7 +84,7 @@ if ($IsWindows -or $buildAll)
 if ($IsLinux -or $buildAll)
 {
     Write-Output "Start adding linux-x64-Console to .zip"
-    Start-Process -NoNewwindow -Wait -FilePath "7z" -ArgumentList "a ../../linux-x64-GTiff2Tiles.Console.zip *" -WorkingDirectory "Publish/GTiff2Tiles.Console/linux-x64/"
+    Start-Process -NoNewWindow -Wait -FilePath "7z" -ArgumentList "a ../../linux-x64-GTiff2Tiles.Console.zip *" -WorkingDirectory "Publish/GTiff2Tiles.Console/linux-x64/"
     Write-Output "Ended adding linux-x64-Console to .zip"
 }
 
