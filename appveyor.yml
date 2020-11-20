@@ -30,8 +30,7 @@ deploy:
 - provider: GitHub
   release: Continious build
   description: This is a preview release of GTiff2Tiles ver. 2.0.0. Information about changes since previous release can be found in [changelog](https://github.com/Gigas002/GTiff2Tiles/blob/master/CHANGELOG.md).
-  auth_token:
-    secure: CVNtkV9r681t1pehmnG8nA==
+  auth_token: $(GH_TOKEN)
   artifact: /.*\.zip/
   draft: false
   prerelease: true
@@ -39,15 +38,13 @@ deploy:
   on:
     branch: master
 - provider: NuGet
-  api_key:
-    secure: sLxAQGEch/E2b2VMhHKbkQ==
+  api_key: $(NUGET_API_KEY)
   artifact: /.*(\.|\.s)nupkg/
   on:
     branch: master
 - provider: NuGet
   server: https://nuget.pkg.github.com/gigas002/index.json
-  api_key:
-    secure: CVNtkV9r681t1pehmnG8nA==
+  api_key: $(GH_TOKEN)
   username:
     secure: rZ2WjoUDzL3ZjbEuu/WA5g==
   artifact: /.*(\.)nupkg/
