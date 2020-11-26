@@ -17,7 +17,8 @@ before_build:
 build:
   parallel: true
   verbosity: minimal
-before_deploy:
+# before_deploy:
+after_test: 
 - pwsh: ./publish-github-release.ps1
 artifacts:
 - path: GTiff2Tiles.Core\bin\x64\Release\*.nupkg
