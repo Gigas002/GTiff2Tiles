@@ -558,8 +558,16 @@ namespace GTiff2Tiles.GUI.ViewModels
         {
             IsMainGridEnabled = true;
 
-            Settings = JsonSerializer.Deserialize<SettingsModel>(File.ReadAllBytes(SettingsModel.Location))
-                    ?? new SettingsModel();
+            try
+            {
+                Settings = JsonSerializer.Deserialize<SettingsModel>(File.ReadAllBytes(SettingsModel.Location));
+            }
+            catch (Exception)
+            {
+                // ignored
+            }
+
+            Settings ??= new SettingsModel();
 
             InputFilePath = Settings.InputFilePath;
             InputFileButtonCommand = new DelegateCommand(async () => await InputFileButtonAsync().ConfigureAwait(true));
