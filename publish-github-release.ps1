@@ -14,13 +14,12 @@ if ($IsWindows -or $buildAll)
 {
     # GTiff2Tiles.Console
     Write-Output "Start win-x64-Console publish"
-    dotnet publish "GTiff2Tiles.Console/GTiff2Tiles.Console.csproj" -c Release -r win-x64 /p:PublishDir=../Publish/GTiff2Tiles.Console/win-x64 /p:IncludeAllContentForSelfExtract=true /p:PublishSingleFile=true /p:PublishTrimmed=true
+    dotnet publish "GTiff2Tiles.Console/GTiff2Tiles.Console.csproj" -c Release -r win-x64 /p:PublishDir=../Publish/GTiff2Tiles.Console/win-x64 /p:PublishSingleFile=true /p:IncludeAllContentForSelfExtract=true /p:PublishTrimmed=true
     Write-Output "Ended win-x64-Console publish"
 
     # GTiff2Tiles.GUI
     Write-Output "Start win-x64-GUI publish"
-    # TODO: It's better not to pack settings.json inside app
-    dotnet publish "GTiff2Tiles.GUI/GTiff2Tiles.GUI.csproj" -c Release /p:PublishDir=../Publish/GTiff2Tiles.GUI/win-x64 #/p:IncludeAllContentForSelfExtract=true /p:PublishSingleFile=true
+    dotnet publish "GTiff2Tiles.GUI/GTiff2Tiles.GUI.csproj" -c Release /p:PublishDir=../Publish/GTiff2Tiles.GUI/win-x64
     Write-Output "Ended win-x64-GUI publish"
 }
 
@@ -28,7 +27,7 @@ if ($IsWindows -or $buildAll)
 if ($IsLinux -or $buildAll)
 {
     Write-Output "Start linux-x64-Console publish"
-    dotnet publish "GTiff2Tiles.Console/GTiff2Tiles.Console.csproj" -c Release -r linux-x64 /p:PublishDir=../Publish/GTiff2Tiles.Console/linux-x64 /p:IncludeAllContentForSelfExtract=true /p:PublishSingleFile=true /p:PublishTrimmed=true
+    dotnet publish "GTiff2Tiles.Console/GTiff2Tiles.Console.csproj" -c Release -r linux-x64 /p:PublishDir=../Publish/GTiff2Tiles.Console/linux-x64 /p:PublishSingleFile=true /p:IncludeAllContentForSelfExtract=true /p:PublishTrimmed=true
     Write-Output "Ended linux-x64-Console publish"
 }
 

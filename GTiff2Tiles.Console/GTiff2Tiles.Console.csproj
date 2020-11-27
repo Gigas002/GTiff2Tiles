@@ -33,11 +33,12 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)'=='Release'">
-    <!--<PublishSingleFile>true</PublishSingleFile>
-    <IncludeAllContentInSingleFile>true</IncludeAllContentInSingleFile>
-    <RuntimeIdentifiers>win-x64;linux-x64</RuntimeIdentifiers>
-    <PublishTrimmed>true</PublishTrimmed>-->
-    <!--<PublishReadyToRun>true</PublishReadyToRun>-->
+    <!-- WARNING: don't use for build, useful only for publish -->
+    <!-- <RuntimeIdentifiers>win-x64;linux-x64</RuntimeIdentifiers> -->
+    <!-- <PublishSingleFile>true</PublishSingleFile> -->
+    <!-- <IncludeAllContentForSelfExtract>true</IncludeAllContentForSelfExtract> -->
+    <!-- <PublishTrimmed>true</PublishTrimmed> -->
+    <!-- <PublishReadyToRun>true</PublishReadyToRun> -->
   </PropertyGroup>
 
   <ItemGroup>

@@ -5,8 +5,8 @@
     <TargetFramework>net5.0</TargetFramework>
     <VersionPrefix>2.0.0</VersionPrefix>
     <VersionSuffix>ci439</VersionSuffix>
-    <AssemblyVersion>2.0.0.608</AssemblyVersion>
-    <FileVersion>2.0.0.608</FileVersion>
+    <AssemblyVersion>2.0.0.609</AssemblyVersion>
+    <FileVersion>2.0.0.609</FileVersion>
     <Platforms>x64</Platforms>
     <Configurations>Debug;Release;Appveyor</Configurations>
     <PackageIcon>Icon.png</PackageIcon>
@@ -29,14 +29,6 @@
     <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
     <DebugType>full</DebugType>
     <DebugSymbols>true</DebugSymbols>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)'=='Release'">
-    <!-- <PublishSingleFile>true</PublishSingleFile>
-    <IncludeAllContentInSingleFile>true</IncludeAllContentInSingleFile>
-    <RuntimeIdentifiers>win-x64;linux-x64</RuntimeIdentifiers> -->
-    <!--<PublishTrimmed>true</PublishTrimmed>-->
-    <!--<PublishReadyToRun>true</PublishReadyToRun>-->
   </PropertyGroup>
 
   <ItemGroup>
