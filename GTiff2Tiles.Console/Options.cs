@@ -51,7 +51,7 @@ namespace GTiff2Tiles.Console
         /// Extension of ready tiles
         /// <remarks><para/>.png by default</remarks>
         /// </summary>
-        [Option("extension", Required = false, HelpText = "Extension of ready tiles; default is .png; supported extensions: .webp, .jpg, .png")]
+        [Option('e', "extension", Required = false, HelpText = "Extension of ready tiles; default is .png; supported extensions: .webp, .jpg, .png")]
         public string TileExtension { get; set; } = FileExtensions.Png;
 
         /// <summary>
@@ -107,7 +107,7 @@ namespace GTiff2Tiles.Console
         /// Do you want to see the progress?
         /// <remarks><para/>True by default</remarks>
         /// </summary>
-        [Option("progress", Required = false, HelpText = "Do you want to see the progress? True by default")]
+        [Option('p', "progress", Required = false, HelpText = "Do you want to see the progress? True by default")]
         public string IsProgress { get; set; } = "true";
 
         /// <summary>

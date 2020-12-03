@@ -20,7 +20,7 @@ If you’re using **Windows 7 SP1**, you can experience weird error with **GDAL*
 |       |     --minz      |                     Minimum cropped zoom                     |    Yes    |
 |       |     --maxz      |                     Maximum cropped zoom                     |    Yes    |
 |       |    --threads    |          Threads count, calculates auto by default           |    No     |
-|       |   --extension   |         Extension of ready tiles, `.png` by default          |    No     |
+|  -e   |   --extension   |         Extension of ready tiles, `.png` by default          |    No     |
 |  -t   |     --temp      |     Path to temp directory, current directory by default     |    No     |
 |       |      --tms      | Do you want to create tms-compatible tiles? `true` by default |    No     |
 |  -c   |  --coordinates  |    Target tiles coordinate system, `geodetic` by default     |    No     |
@@ -28,7 +28,7 @@ If you’re using **Windows 7 SP1**, you can experience weird error with **GDAL*
 |  -b   |     --bands     |         Count of bands in ready tiles, 4 by default          |    No     |
 |       |   --tilecache   | How much tiles would you like to store in memory cache? 100 by default |    No     |
 |  -m   |   --memcache    | Maximum size of input files to store in RAM, `2147483648` by default |    No     |
-|       |   --progress    |      Do you want to see the progress? `true` by default      |    No     |
+|  -p   |   --progress    |      Do you want to see the progress? `true` by default      |    No     |
 |       |   --timeleft    |  Do you want to see estimated time left? `false` by default  |    No     |
 |       |   --tilesize    |              Ready tile's size, 256 by default               |    No     |
 |       |    --version    |                       Current version                        |           |
