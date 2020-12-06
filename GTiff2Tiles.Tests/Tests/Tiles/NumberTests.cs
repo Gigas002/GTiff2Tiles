@@ -1,5 +1,4 @@
-﻿#pragma warning disable IDE0059 // Unnecessary assignment of a value
-#pragma warning disable CS0219 // The variable is assigned but it's value is never used
+﻿#pragma warning disable CA1508 // Avoid dead conditional code
 
 using System;
 using GTiff2Tiles.Core.Coordinates;
@@ -567,5 +566,4 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
     }
 }
 
-#pragma warning restore IDE0059 // Unnecessary assignment of a value
-#pragma warning restore CS0219 // The variable is assigned but it's value is never used
+#pragma warning restore CA1508 // Avoid dead conditional code

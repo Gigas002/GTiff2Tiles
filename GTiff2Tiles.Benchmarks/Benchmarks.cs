@@ -9,7 +9,7 @@ using GTiff2Tiles.Core.Tiles;
 namespace GTiff2Tiles.Benchmarks
 {
     [SimpleJob(10, 3, 5)]
-    public class Benchmarks
+    public class Benchmark
     {
         /*
          * We're creating GEODETIC png tiles from EPSG:4326 input file
@@ -63,7 +63,7 @@ namespace GTiff2Tiles.Benchmarks
             Directory.CreateDirectory($"{Data}/{In}");
             File.Copy($"../../../../{Data}/{In}/{Itif}", path, true);
 
-            Raster raster = new Raster(path, CoordinateSystem.Epsg4326);
+            using Raster raster = new Raster(path, CoordinateSystem.Epsg4326);
             raster.WriteTilesToDirectory($"{Data}/{GetOutDirectory(GTiff2TilesOut)}", MinZ, MaxZ,
                                          false, Tile.DefaultSize, TileExtension.Png, Interpolation.Cubic, 4, threadsCount: _tc);
         }

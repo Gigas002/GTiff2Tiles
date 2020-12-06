@@ -1,6 +1,4 @@
-﻿#pragma warning disable IDE0059 // Unnecessary assignment of a value
-#pragma warning disable CS0219 // The variable is assigned but it's value is never used
-#pragma warning disable CA1031 // Do not catch general exception types
+﻿#pragma warning disable CS0219 // The variable is assigned but it's value is never used
 
 using System;
 using System.Collections.Generic;
@@ -168,7 +166,7 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
         [Test]
         public void DisposeTest()
         {
-            ITile tile = new RasterTile(Locations.TokyoGeodeticNtmsNumber, Cs4326);
+            using ITile tile = new RasterTile(Locations.TokyoGeodeticNtmsNumber, Cs4326);
 
             Assert.DoesNotThrow(() => tile.Dispose());
             Assert.True(tile.IsDisposed);
@@ -177,7 +175,7 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
         [Test]
         public void DisposeAsyncTest()
         {
-            ITile tile = new RasterTile(Locations.TokyoGeodeticNtmsNumber, Cs4326);
+            using ITile tile = new RasterTile(Locations.TokyoGeodeticNtmsNumber, Cs4326);
 
             Assert.DoesNotThrowAsync(async () => await tile.DisposeAsync().ConfigureAwait(false));
             Assert.True(tile.IsDisposed);
@@ -304,21 +302,19 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
         {
             Number number = Locations.TokyoGeodeticNtmsNumber;
 
-            ITile tile = new RasterTile(number, Cs4326);
-            int pos3 = tile.CalculatePosition();
+            using ITile tile0 = new RasterTile(number, Cs4326);
+            int pos3 = tile0.CalculatePosition();
 
-            tile = new RasterTile(new Number(number.X + 1, number.Y, number.Z), Cs4326);
-            int pos2 = tile.CalculatePosition();
+            using ITile tile1 = new RasterTile(new Number(number.X + 1, number.Y, number.Z), Cs4326);
+            int pos2 = tile1.CalculatePosition();
 
-            tile = new RasterTile(new Number(number.X, number.Y + 1, number.Z), Cs4326);
-            int pos1 = tile.CalculatePosition();
+            using ITile tile2 = new RasterTile(new Number(number.X, number.Y + 1, number.Z), Cs4326);
+            int pos1 = tile2.CalculatePosition();
 
-            tile = new RasterTile(new Number(number.X + 1, number.Y + 1, number.Z), Cs4326);
-            int pos0 = tile.CalculatePosition();
+            using ITile tile3 = new RasterTile(new Number(number.X + 1, number.Y + 1, number.Z), Cs4326);
+            int pos0 = tile3.CalculatePosition();
 
             Assert.True(pos0 == 0 && pos1 == 1 && pos2 == 2 && pos3 == 3);
-
-            tile.Dispose();
         }
 
         [Test]
@@ -368,7 +364,7 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
         [Test]
         public void WriteTileToFileNullTileBytes()
         {
-            RasterTile tile = new RasterTile(new Number(1, 1, 1), Cs4326);
+            using RasterTile tile = new RasterTile(new Number(1, 1, 1), Cs4326);
             Assert.Throws<ArgumentNullException>(() => Tile.WriteToFile(tile));
         }
 
@@ -396,6 +392,4 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
     }
 }
 
-#pragma warning restore IDE0059 // Unnecessary assignment of a value
 #pragma warning restore CS0219 // The variable is assigned but it's value is never used
-#pragma warning restore CA1031 // Do not catch general exception types

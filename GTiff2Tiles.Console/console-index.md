@@ -80,3 +80,7 @@ Offline docs are also available as [pdf](https://github.com/Gigas002/GTiff2Tiles
 
 - GTiff2Tiles.Core;
 - [CommandLineParser](https://www.nuget.org/packages/CommandLineParser/) – 2.8.0;
+
+When building from source, there are more packages needed:
+
+- [Microsoft.CodeAnalysis.NetAnalyzers](https://www.nuget.org/packages/Microsoft.CodeAnalysis.NetAnalyzers) – 5.0.1;

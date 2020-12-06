@@ -1,4 +1,6 @@
-﻿using System;
+﻿#pragma warning disable CA1508 // Avoid dead conditional code
+
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
@@ -171,7 +173,7 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
         [Test]
         public void DisposeTest()
         {
-            Raster raster = new Raster(_in4326, Cs4326);
+            using Raster raster = new Raster(_in4326, Cs4326);
 
             Assert.DoesNotThrow(() => raster.Dispose());
 
@@ -181,9 +183,9 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
         [Test]
         public void DisposeAsyncTest()
         {
-            Raster raster = new Raster(_in4326, Cs4326);
+            using Raster raster = new Raster(_in4326, Cs4326);
 
-            Assert.DoesNotThrowAsync(async () => await raster.DisposeAsync());
+            Assert.DoesNotThrowAsync(async () => await raster.DisposeAsync().ConfigureAwait(false));
 
             Assert.True(raster.IsDisposed);
         }
@@ -259,8 +261,8 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
         {
             string outPath = Path.Combine(_outPath, $"{_timestamp}_tile.png");
 
-            Raster raster = new Raster(_in4326, Cs4326);
-            RasterTile tile = new RasterTile(Locations.TokyoGeodeticNtmsNumber, Cs4326) { Path = outPath };
+            using Raster raster = new Raster(_in4326, Cs4326);
+            using RasterTile tile = new RasterTile(Locations.TokyoGeodeticNtmsNumber, Cs4326) { Path = outPath };
 
             Assert.DoesNotThrowAsync(() => raster.WriteTileToFileAsync(raster.Data, tile));
 
@@ -270,7 +272,7 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
         [Test]
         public void WriteTileToFileNullTile()
         {
-            Raster raster = new Raster(_in4326, Cs4326);
+            using Raster raster = new Raster(_in4326, Cs4326);
 
             Assert.ThrowsAsync<ArgumentNullException>(() => raster.WriteTileToFileAsync(raster.Data, null));
         }
@@ -324,31 +326,31 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
         [Test]
         public void WriteToChannelAsyncNormal()
         {
-            Raster raster = new Raster(_in4326, Cs4326);
-            RasterTile tile = new RasterTile(Locations.TokyoGeodeticNtmsNumber, raster.GeoCoordinateSystem);
+            using Raster raster = new Raster(_in4326, Cs4326);
+            using RasterTile tile = new RasterTile(Locations.TokyoGeodeticNtmsNumber, raster.GeoCoordinateSystem);
 
             Channel<RasterTile> channel = Channel.CreateUnbounded<RasterTile>();
 
-            Assert.DoesNotThrowAsync(async () => await raster.WriteTileToChannelAsync(raster.Data, tile, channel.Writer));
+            Assert.DoesNotThrowAsync(async () => await raster.WriteTileToChannelAsync(raster.Data, tile, channel.Writer).ConfigureAwait(false));
         }
 
         [Test]
         public void WriteToChannelAsyncNullTile()
         {
-            Raster raster = new Raster(_in4326, Cs4326);
+            using Raster raster = new Raster(_in4326, Cs4326);
 
             Channel<RasterTile> channel = Channel.CreateUnbounded<RasterTile>();
 
-            Assert.ThrowsAsync<ArgumentNullException>(async () => await raster.WriteTileToChannelAsync(raster.Data, null, channel.Writer));
+            Assert.ThrowsAsync<ArgumentNullException>(async () => await raster.WriteTileToChannelAsync(raster.Data, null, channel.Writer).ConfigureAwait(false));
         }
 
         [Test]
         public void WriteToChannelAsyncNullWriter()
         {
-            Raster raster = new Raster(_in4326, Cs4326);
-            RasterTile tile = new RasterTile(Locations.TokyoGeodeticNtmsNumber, raster.GeoCoordinateSystem);
+            using Raster raster = new Raster(_in4326, Cs4326);
+            using RasterTile tile = new RasterTile(Locations.TokyoGeodeticNtmsNumber, raster.GeoCoordinateSystem);
 
-            Assert.ThrowsAsync<ArgumentNullException>(async () => await raster.WriteTileToChannelAsync(raster.Data, tile, null));
+            Assert.ThrowsAsync<ArgumentNullException>(async () => await raster.WriteTileToChannelAsync(raster.Data, tile, null).ConfigureAwait(false));
         }
 
         #endregion
@@ -366,7 +368,7 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
 
             string outPath = Path.Combine(_outPath, _timestamp);
 
-            Raster raster = new Raster(_in4326, Cs4326);
+            using Raster raster = new Raster(_in4326, Cs4326);
 
             Assert.DoesNotThrowAsync(() => raster.WriteTilesToDirectoryAsync(outPath, 0, 11));
 
@@ -382,7 +384,7 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
 
             static void Reporter(string s) { }
 
-            Raster raster = new Raster(_in4326, Cs4326);
+            using Raster raster = new Raster(_in4326, Cs4326);
 
             Assert.DoesNotThrowAsync(() => raster.WriteTilesToDirectoryAsync(outPath, 0, 11,
               true, new Size(64, 64), TileExtension.Jpg, Interpolation.Cubic, 3, 999, 10,
@@ -396,7 +398,7 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
         {
             string outPath = Path.Combine(_outPath, _timestamp);
 
-            Raster raster = new Raster(_in4326, Cs4326);
+            using Raster raster = new Raster(_in4326, Cs4326);
 
             Assert.ThrowsAsync<ArgumentOutOfRangeException>(() => raster.WriteTilesToDirectoryAsync(
                 outPath, 0, 11, tileCacheCount: 0));
@@ -413,7 +415,7 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
         {
             string outPath = Path.Combine(_outPath, $"{_timestamp}_4326_ntms_256_png_lanczos3_4");
 
-            Raster raster = new Raster(_in4326, Cs4326);
+            using Raster raster = new Raster(_in4326, Cs4326);
 
             Assert.DoesNotThrowAsync(() => raster.WriteTilesToDirectoryAsync(outPath, 0, 11));
         }
@@ -423,7 +425,7 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
         {
             string outPath = Path.Combine(_outPath, $"{_timestamp}_4326_tms_256_png_lanczos3_4");
 
-            Raster raster = new Raster(_in4326, Cs4326);
+            using Raster raster = new Raster(_in4326, Cs4326);
 
             Assert.DoesNotThrowAsync(() => raster.WriteTilesToDirectoryAsync(outPath, 0, 11,
                    true));
@@ -434,7 +436,7 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
         {
             string outPath = Path.Combine(_outPath, $"{_timestamp}_4326_ntms_128_png_lanczos3_4");
 
-            Raster raster = new Raster(_in4326, Cs4326);
+            using Raster raster = new Raster(_in4326, Cs4326);
 
             Assert.DoesNotThrowAsync(() => raster.WriteTilesToDirectoryAsync(outPath, 0, 11,
                    tileSize: new Size(128, 128)));
@@ -445,7 +447,7 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
         {
             string outPath = Path.Combine(_outPath, $"{_timestamp}_4326_tms_256_webp_lanczos3_4");
 
-            Raster raster = new Raster(_in4326, Cs4326);
+            using Raster raster = new Raster(_in4326, Cs4326);
 
             Assert.DoesNotThrowAsync(() => raster.WriteTilesToDirectoryAsync(outPath, 0, 11,
                    tileExtension: TileExtension.Webp));
@@ -456,7 +458,7 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
         {
             string outPath = Path.Combine(_outPath, $"{_timestamp}_4326_ntms_256_jpg_lanczos3_3");
 
-            Raster raster = new Raster(_in4326, Cs4326);
+            using Raster raster = new Raster(_in4326, Cs4326);
 
             Assert.DoesNotThrowAsync(() => raster.WriteTilesToDirectoryAsync(outPath, 0, 11,
                    tileExtension: TileExtension.Jpg, bandsCount: 3));
@@ -467,7 +469,7 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
         {
             string outPath = Path.Combine(_outPath, $"{_timestamp}_4326_ntms_256_png_cubic_4");
 
-            Raster raster = new Raster(_in4326, Cs4326);
+            using Raster raster = new Raster(_in4326, Cs4326);
 
             Assert.DoesNotThrowAsync(() => raster.WriteTilesToDirectoryAsync(outPath, 0, 11,
                    interpolation: Interpolation.Cubic));
@@ -478,7 +480,7 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
         {
             string outPath = Path.Combine(_outPath, $"{_timestamp}_3857_ntms_256_png_lanczos3_4");
 
-            Raster raster = new Raster(_in3785, Cs3857);
+            using Raster raster = new Raster(_in3785, Cs3857);
 
             Assert.DoesNotThrowAsync(() => raster.WriteTilesToDirectoryAsync(outPath, 0, 11));
         }
@@ -489,9 +491,9 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
             string outPath = Path.Combine(_outPath, $"{_timestamp}_4326_to_3857_tiles");
             string tmp = Path.Combine(_outPath, $"{_timestamp}_4326_to_3857{GdalWorker.TempFileName}");
 
-            await GdalWorker.ConvertGeoTiffToTargetSystemAsync(_in4326, tmp, Cs3857);
+            await GdalWorker.ConvertGeoTiffToTargetSystemAsync(_in4326, tmp, Cs3857).ConfigureAwait(false);
 
-            Raster raster = new Raster(tmp, Cs3857);
+            await using Raster raster = new Raster(tmp, Cs3857);
 
             Assert.DoesNotThrowAsync(() => raster.WriteTilesToDirectoryAsync(outPath, 0, 11));
         }
@@ -502,9 +504,9 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
             string outPath = Path.Combine(_outPath, $"{_timestamp}_3857_to_4326_tiles");
             string tmp = Path.Combine(_outPath, $"{_timestamp}_3857_to_4326{GdalWorker.TempFileName}");
 
-            await GdalWorker.ConvertGeoTiffToTargetSystemAsync(_in3785, tmp, Cs4326);
+            await GdalWorker.ConvertGeoTiffToTargetSystemAsync(_in3785, tmp, Cs4326).ConfigureAwait(false);
 
-            Raster raster = new Raster(tmp, Cs4326);
+            await using Raster raster = new Raster(tmp, Cs4326);
 
             Assert.DoesNotThrowAsync(() => raster.WriteTilesToDirectoryAsync(outPath, 0, 11));
         }
@@ -515,9 +517,9 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
             string outPath = Path.Combine(_outPath, $"{_timestamp}_3395_to_4326_tiles");
             string tmp = Path.Combine(_outPath, $"{_timestamp}_3395_to_4326{GdalWorker.TempFileName}");
 
-            await GdalWorker.ConvertGeoTiffToTargetSystemAsync(_in3395, tmp, Cs4326);
+            await GdalWorker.ConvertGeoTiffToTargetSystemAsync(_in3395, tmp, Cs4326).ConfigureAwait(false);
 
-            Raster raster = new Raster(tmp, Cs4326);
+            await using Raster raster = new Raster(tmp, Cs4326);
 
             Assert.DoesNotThrowAsync(() => raster.WriteTilesToDirectoryAsync(outPath, 0, 11));
         }
@@ -531,11 +533,11 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
         {
             // With default args
 
-            Raster raster = new Raster(_in4326, Cs4326);
+            using Raster raster = new Raster(_in4326, Cs4326);
 
             Channel<RasterTile> channel = Channel.CreateUnbounded<RasterTile>();
 
-            Assert.DoesNotThrowAsync(async () => await raster.WriteTilesToChannelAsync(channel.Writer, 0, 11));
+            Assert.DoesNotThrowAsync(async () => await raster.WriteTilesToChannelAsync(channel.Writer, 0, 11).ConfigureAwait(false));
         }
 
         [Test]
@@ -545,12 +547,12 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
 
             static void Reporter(string s) { }
 
-            Raster raster = new Raster(_in4326, Cs4326);
+            using Raster raster = new Raster(_in4326, Cs4326);
 
             Channel<RasterTile> channel = Channel.CreateUnbounded<RasterTile>();
 
             Assert.DoesNotThrowAsync(async () => await raster.WriteTilesToChannelAsync(channel.Writer, 0, 11,
-                   true, new Size(128, 128), Interpolation.Cubic, 3, 999, 10, new Progress<double>(), Reporter));
+                   true, new Size(128, 128), Interpolation.Cubic, 3, 999, 10, new Progress<double>(), Reporter).ConfigureAwait(false));
         }
 
         [Test]
@@ -558,12 +560,12 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
         {
             // With default args
 
-            Raster raster = new Raster(_in4326, Cs4326);
+            using Raster raster = new Raster(_in4326, Cs4326);
 
             Channel<RasterTile> channel = Channel.CreateUnbounded<RasterTile>();
 
             Assert.ThrowsAsync<ArgumentOutOfRangeException>(async () => await
-                    raster.WriteTilesToChannelAsync(channel.Writer, 0, 11, tileCacheCount: 0));
+                    raster.WriteTilesToChannelAsync(channel.Writer, 0, 11, tileCacheCount: 0).ConfigureAwait(false));
         }
 
         #endregion
@@ -575,7 +577,7 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
         {
             // With default args
 
-            Raster raster = new Raster(_in4326, Cs4326);
+            using Raster raster = new Raster(_in4326, Cs4326);
 
             IEnumerable<ITile> tiles = null;
             Assert.DoesNotThrow(() => tiles = raster.WriteTilesToEnumerable(0, 11));
@@ -590,7 +592,7 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
 
             static void Reporter(string s) { }
 
-            Raster raster = new Raster(_in4326, Cs4326);
+            using Raster raster = new Raster(_in4326, Cs4326);
 
             IEnumerable<ITile> tiles = null;
             Assert.DoesNotThrow(() => tiles = raster.WriteTilesToEnumerable(0, 11,
@@ -602,7 +604,7 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
         [Test]
         public void WriteTilesToEnumerableLowTileCache()
         {
-            Raster raster = new Raster(_in4326, Cs4326);
+            using Raster raster = new Raster(_in4326, Cs4326);
 
             Assert.Throws<ArgumentOutOfRangeException>(() =>
             {
@@ -619,7 +621,7 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
         {
             // With default args
 
-            Raster raster = new Raster(_in4326, Cs4326);
+            using Raster raster = new Raster(_in4326, Cs4326);
 
             IAsyncEnumerable<ITile> tiles = null;
             Assert.DoesNotThrow(() => tiles = raster.WriteTilesToAsyncEnumerable(0, 11));
@@ -637,7 +639,7 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
 
             static void Reporter(string s) { }
 
-            Raster raster = new Raster(_in4326, Cs4326);
+            using Raster raster = new Raster(_in4326, Cs4326);
 
             IAsyncEnumerable<ITile> tiles = null;
             Assert.DoesNotThrow(() => tiles = raster.WriteTilesToAsyncEnumerable(0, 11,
@@ -660,7 +662,7 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
         [Test]
         public void GetBordersStreamNormal()
         {
-            FileStream fs = File.OpenRead(_in4326);
+            using FileStream fs = File.OpenRead(_in4326);
 
             GeodeticCoordinate expectedMin = new GeodeticCoordinate(139.74999904632568, 35.61293363571167);
             GeodeticCoordinate expectedMax = new GeodeticCoordinate(139.8459792137146, 35.688271522521973);
@@ -676,7 +678,7 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
         [Test]
         public void GetBordersStreamMercator()
         {
-            FileStream fs = File.OpenRead(_in3785);
+            using FileStream fs = File.OpenRead(_in3785);
 
             MercatorCoordinate expectedMin = new MercatorCoordinate(15556898.732197443, 4247491.006264816);
             MercatorCoordinate expectedMax = new MercatorCoordinate(15567583.19555743, 4257812.3937404491);
@@ -704,7 +706,7 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
         [Test]
         public void GetBordersStreamOtherCs()
         {
-            FileStream fs = File.OpenRead(_in4326);
+            using FileStream fs = File.OpenRead(_in4326);
 
             Assert.Throws<NotSupportedException>(() => Raster.GetBorders(fs, CsOther));
         }
@@ -962,6 +964,8 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
             //File.WriteAllBytes(outPath, target.Bytes.ToArray());
 
             Assert.True(target.Bytes?.Any() == true);
+
+            target.Dispose();
         }
 
         [Test]
@@ -995,6 +999,8 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
             //File.WriteAllBytes(outPath, target.Bytes.ToArray());
 
             Assert.True(target.Bytes?.Any() == true);
+
+            target.Dispose();
         }
 
         [Test]
@@ -1013,6 +1019,8 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
             RasterTile target = new RasterTile(new Number(1, 1, 1), Cs4326);
 
             Assert.Throws<ArgumentNullException>(() => Raster.CreateOverviewTile(ref target, null, isBuffered));
+
+            target.Dispose();
         }
 
         #endregion
@@ -1032,7 +1040,7 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
 
             Channel<RasterTile> channel = Channel.CreateUnbounded<RasterTile>();
             Assert.DoesNotThrowAsync(() => raster.CreateOverviewTilesAsync(channel.Writer, 11, 11, tiles, true, Cs4326)
-                                                             .ContinueWith(_ => channel.Writer.Complete()));
+                                                             .ContinueWith(_ => channel.Writer.Complete(), TaskScheduler.Default));
 
             //int ctr = 0;
             //await foreach (RasterTile tile in channel.Reader.ReadAllAsync())
@@ -1042,7 +1050,7 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
             //    ctr++;
             //}
 
-            await raster.DisposeAsync();
+            await raster.DisposeAsync().ConfigureAwait(false);
         }
 
         [Test]
@@ -1052,7 +1060,7 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
 
             Assert.ThrowsAsync<ArgumentNullException>(() => raster.CreateOverviewTilesAsync(null, 11, 11, null, true, Cs4326));
 
-            await raster.DisposeAsync();
+            await raster.DisposeAsync().ConfigureAwait(false);
         }
 
         [Test]
@@ -1062,7 +1070,7 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
 
             Channel<RasterTile> channel = Channel.CreateUnbounded<RasterTile>();
             Assert.ThrowsAsync<ArgumentOutOfRangeException>(() => raster.CreateOverviewTilesAsync(channel.Writer, -1, 11, null, true, Cs4326));
-            await raster.DisposeAsync();
+            await raster.DisposeAsync().ConfigureAwait(false);
         }
 
         [Test]
@@ -1072,7 +1080,7 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
 
             Channel<RasterTile> channel = Channel.CreateUnbounded<RasterTile>();
             Assert.ThrowsAsync<ArgumentOutOfRangeException>(() => raster.CreateOverviewTilesAsync(channel.Writer, 11, -1, null, true, Cs4326));
-            await raster.DisposeAsync();
+            await raster.DisposeAsync().ConfigureAwait(false);
         }
 
         #endregion
@@ -1080,3 +1088,5 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
         #endregion
     }
 }
+
+#pragma warning restore CA1508 // Avoid dead conditional code

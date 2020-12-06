@@ -84,7 +84,7 @@ namespace GTiff2Tiles.Core.Coordinates
         #region Bool compare overrides
 
         /// <inheritdoc />
-        public override bool Equals(object coordinate) => Equals(coordinate as ICoordinate);
+        public override bool Equals(object obj) => Equals(obj as ICoordinate);
 
         /// <inheritdoc />
         public override int GetHashCode() => HashCode.Combine(X, Y);

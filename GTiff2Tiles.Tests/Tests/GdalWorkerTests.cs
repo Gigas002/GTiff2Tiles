@@ -1,4 +1,6 @@
-﻿using System;
+﻿#pragma warning disable CA1508 // Avoid dead conditional code
+
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
@@ -326,7 +328,7 @@ namespace GTiff2Tiles.Tests.Tests
         [Test]
         public void GetCoordinateSystem()
         {
-            string proj = null;
+            string proj;
             CoordinateSystem cs = CoordinateSystem.Other;
 
             Assert.DoesNotThrowAsync(async () =>
@@ -466,3 +468,5 @@ namespace GTiff2Tiles.Tests.Tests
         #endregion
     }
 }
+
+#pragma warning restore CA1508 // Avoid dead conditional code

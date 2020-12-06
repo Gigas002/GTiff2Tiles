@@ -1,7 +1,4 @@
-﻿#pragma warning disable IDE0059 // Unnecessary assignment of a value
-#pragma warning disable CS0219 // The variable is assigned but it's value is never used
-
-using System;
+﻿using System;
 using GTiff2Tiles.Core.Coordinates;
 using GTiff2Tiles.Core.Enums;
 using GTiff2Tiles.Core.GeoTiffs;
@@ -249,9 +246,9 @@ namespace GTiff2Tiles.Tests.Tests.Images
         [Test]
         public void GetAreasGeoTiffNormal()
         {
-            IGeoTiff image = new Raster(_in4326, Cs4326);
+            using IGeoTiff image = new Raster(_in4326, Cs4326);
 
-            ITile tile = new RasterTile(Locations.TokyoGeodeticTmsNumber,
+            using ITile tile = new RasterTile(Locations.TokyoGeodeticTmsNumber,
                                         image.GeoCoordinateSystem, tmsCompatible: true);
 
             PixelCoordinate expectedReadCoord = new PixelCoordinate(0.0, 218.0);
@@ -271,7 +268,7 @@ namespace GTiff2Tiles.Tests.Tests.Images
         public void GetAreasGeoTiffNullImage()
         {
             Number number = new Number(0, 0, 0);
-            ITile tile = new RasterTile(number, Cs4326, tmsCompatible: true);
+            using ITile tile = new RasterTile(number, Cs4326, tmsCompatible: true);
 
             Assert.Throws<ArgumentNullException>(() => Area.GetAreas(null, tile));
         }
@@ -279,7 +276,7 @@ namespace GTiff2Tiles.Tests.Tests.Images
         [Test]
         public void GetAreasGeoTiffNullTile()
         {
-            IGeoTiff image = new Raster(_in4326, Cs4326);
+            using IGeoTiff image = new Raster(_in4326, Cs4326);
 
             Assert.Throws<ArgumentNullException>(() => Area.GetAreas(image, null));
         }
@@ -289,6 +286,3 @@ namespace GTiff2Tiles.Tests.Tests.Images
         #endregion
     }
 }
-
-#pragma warning disable IDE0059 // Unnecessary assignment of a value
-#pragma warning disable CS0219 // The variable is assigned but it's value is never used

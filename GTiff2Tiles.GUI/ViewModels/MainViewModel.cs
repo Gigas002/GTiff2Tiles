@@ -1,6 +1,4 @@
-﻿#pragma warning disable CA1031 // Do not catch general exception types
-
-using System;
+﻿using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
@@ -826,5 +824,3 @@ namespace GTiff2Tiles.GUI.ViewModels
         #endregion
     }
 }
-
-#pragma warning restore CA1031 // Do not catch general exception types

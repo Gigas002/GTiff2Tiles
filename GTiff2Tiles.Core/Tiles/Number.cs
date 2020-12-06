@@ -338,7 +338,7 @@ namespace GTiff2Tiles.Core.Tiles
         #region Bool compare overrides
 
         /// <inheritdoc />
-        public override bool Equals(object number) => Equals(number as Number);
+        public override bool Equals(object obj) => Equals(obj as Number);
 
         /// <inheritdoc />
         public override int GetHashCode() => HashCode.Combine(X, Y, Z);

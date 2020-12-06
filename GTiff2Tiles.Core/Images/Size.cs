@@ -62,7 +62,7 @@ namespace GTiff2Tiles.Core.Images
         #region Bool compare overrides
 
         /// <inheritdoc />
-        public override bool Equals(object size) => Equals(size as Size);
+        public override bool Equals(object obj) => Equals(obj as Size);
 
         /// <inheritdoc />
         public override int GetHashCode() => HashCode.Combine(Width, Height);

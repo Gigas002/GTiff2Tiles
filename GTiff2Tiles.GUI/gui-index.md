@@ -19,6 +19,10 @@ If you’re using **Windows 7 SP1**, you can experience weird error with **GDAL*
 - [MaterialDesignThemes](https://www.nuget.org/packages/MaterialDesignThemes) – 3.2.0;
 - [MaterialDesignExtensions](https://www.nuget.org/packages/MaterialDesignExtensions) – 3.3.0-a01;
 
+When building from source, there are more packages needed:
+
+- [Microsoft.CodeAnalysis.NetAnalyzers](https://www.nuget.org/packages/Microsoft.CodeAnalysis.NetAnalyzers) – 5.0.1;
+
 ## Using
 
 ![Main page](images/MainPage.png)

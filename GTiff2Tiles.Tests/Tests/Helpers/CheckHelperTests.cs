@@ -118,10 +118,10 @@ namespace GTiff2Tiles.Tests.Tests.Helpers
         #region CheckInputFileAsync
 
         [Test]
-        public async Task CheckInputFileAsyncTrue() => Assert.True(await CheckHelper.CheckInputFileAsync(_in4326, Cs4326));
+        public async Task CheckInputFileAsyncTrue() => Assert.True(await CheckHelper.CheckInputFileAsync(_in4326, Cs4326).ConfigureAwait(false));
 
         [Test]
-        public async Task CheckInputFileAsyncFalse() => Assert.False(await CheckHelper.CheckInputFileAsync(_in4326, Cs3857));
+        public async Task CheckInputFileAsyncFalse() => Assert.False(await CheckHelper.CheckInputFileAsync(_in4326, Cs3857).ConfigureAwait(false));
 
         #endregion
     }

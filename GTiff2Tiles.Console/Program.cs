@@ -1,4 +1,5 @@
 ﻿#pragma warning disable CA1031 // Do not catch general exception types
+#pragma warning disable CA1308 // Normalize strings to uppercase
 
 using System;
 using System.Diagnostics;
@@ -233,3 +234,4 @@ namespace GTiff2Tiles.Console
         #endregion
     }
 }
+#pragma warning restore CA1308 // Normalize strings to uppercase

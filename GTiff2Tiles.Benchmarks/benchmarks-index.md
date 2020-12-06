@@ -15,6 +15,10 @@ The following benchmarks were run at **25.08.2020**.
 - [BenchmarkDotNet](https://www.nuget.org/packages/BenchmarkDotNet/) – 0.12.1;
 - [CommandLineParser](https://www.nuget.org/packages/CommandLineParser/) – 2.8.0;
 
+When building from source, there are more packages needed:
+
+- [Microsoft.CodeAnalysis.NetAnalyzers](https://www.nuget.org/packages/Microsoft.CodeAnalysis.NetAnalyzers) – 5.0.1;
+
 ## Running by yourself
 
 To run the benchmarks by yourself you should build the app **in Release x64 configuration** first. See [main](https://gigas002.github.io/GTiff2Tiles/) and [core](https://gigas002.github.io/GTiff2Tiles/api/index.html) pages to learn how to build the soultion.

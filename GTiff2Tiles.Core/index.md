@@ -27,7 +27,7 @@ Main namespaces are the following:
 
 When building from source, there are more packages needed:
 
-- [Microsoft.CodeAnalysis.FxCopAnalyzers](https://www.nuget.org/packages/Microsoft.CodeAnalysis.FxCopAnalyzers) – 3.3.2;
+- [Microsoft.CodeAnalysis.NetAnalyzers](https://www.nuget.org/packages/Microsoft.CodeAnalysis.NetAnalyzers) – 5.0.1;
 
 ## Offline documentation
 
