@@ -11,7 +11,7 @@ You can run tests and analyze code coverage by running the [codecov-local.ps1](h
 ## Build dependencies
 
 - GTiff2Tiles.Core;
-- [Microsoft.NET.Test.Sdk](https://www.nuget.org/packages/Microsoft.NET.Test.Sdk) – 16.8.0;
+- [Microsoft.NET.Test.Sdk](https://www.nuget.org/packages/Microsoft.NET.Test.Sdk) – 16.8.3;
 - [NUnit](https://www.nuget.org/packages/NUnit) – 3.12.0;
 - [NUnit3TestAdapter](https://www.nuget.org/packages/NUnit3TestAdapter/) – 3.17.0;
 - [coverlet.collector](https://www.nuget.org/packages/coverlet.collector) – 1.3.0;

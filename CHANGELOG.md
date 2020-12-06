@@ -114,13 +114,13 @@ Only changes in public API are listed.
 - Removed **System.Threading.Tasks.Extensions** package, since project doesn't target *netstandard2.0* anymore;
 - Add **Microsoft.SourceLink.GitHub** package ver. **1.0.0**;
 - Add **BitMiracle.LibTiff.NET** package ver. **2.4.639**;
-- Add **Microsoft.CodeAnalysis.FxCopAnalyzers** package ver. **3.3.1**;
+- Add **Microsoft.CodeAnalysis.FxCopAnalyzers** package ver. **3.3.2**;
 
 **Updated dependencies:**
 
-- Update **MaxRev.Gdal.Core** to **3.1.0.100**;
-- Update **MaxRev.Gdal.LinuxRuntime.Minimal** to **3.1.0.100**;
-- Update **MaxRev.Gdal.WindowsRuntime.Minimal** to **3.1.0.100**;
+- Update **MaxRev.Gdal.Core** to **3.1.2.110**;
+- Update **MaxRev.Gdal.LinuxRuntime.Minimal** to **3.1.2.110**;
+- Update **MaxRev.Gdal.WindowsRuntime.Minimal** to **3.1.2.110**;
 - Update **NetVips** to **1.2.4**;
 - Update **NetVips.Native** to **8.10.1**;
 
@@ -219,7 +219,7 @@ Added **coverlet** dependency to generate code coverage reports.
 **Updated dependencies:**
 
 - Update **NUnit3TestAdapter** to **3.17.0**;
-- Update **Microsoft.NET.Test.Sdk** to **16.8.0**;
+- Update **Microsoft.NET.Test.Sdk** to **16.8.3**;
 
 ### Documentation
 
