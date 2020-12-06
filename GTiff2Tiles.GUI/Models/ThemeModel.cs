@@ -1,4 +1,7 @@
-﻿using MaterialDesignColors;
+﻿#pragma warning disable IDE0079 // Remove unnecessary suppression
+#pragma warning disable CA1308 // Normalize strings to uppercase
+
+using MaterialDesignColors;
 using MaterialDesignThemes.Wpf;
 using Theme = GTiff2Tiles.GUI.Enums.Theme;
 
@@ -66,3 +69,6 @@ namespace GTiff2Tiles.GUI.Models
         };
     }
 }
+
+#pragma warning restore CA1308 // Normalize strings to uppercase
+#pragma warning restore IDE0079 // Remove unnecessary suppression
