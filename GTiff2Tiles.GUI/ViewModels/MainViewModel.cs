@@ -1,6 +1,11 @@
-﻿using System;
+﻿#pragma warning disable IDE0079 // Remove unnecessary suppression
+#pragma warning disable CA1031 // Do not catch general exception types
+#pragma warning disable CA1308 // Normalize strings to uppercase
+
+using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using System.Reflection;
 using System.Text.Json;
@@ -694,13 +699,13 @@ namespace GTiff2Tiles.GUI.ViewModels
             Stopwatch stopwatch = Stopwatch.StartNew();
             _timer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(1.0) };
             _timer.Tick += (sender, args) =>
-                TimePassedValue = string.Format(Strings.TimePassedValue, stopwatch.Elapsed.Days,
+                TimePassedValue = string.Format(CultureInfo.InvariantCulture, Strings.TimePassedValue, stopwatch.Elapsed.Days,
                                                 stopwatch.Elapsed.Hours, stopwatch.Elapsed.Minutes,
                                                 stopwatch.Elapsed.Seconds);
             _timer.Start();
 
             // Create temp directory object
-            string tempDirectoryPath = Path.Combine(TempDirectoryPath, DateTime.Now.ToString(DateTimePatterns.LongWithMs));
+            string tempDirectoryPath = Path.Combine(TempDirectoryPath, DateTime.Now.ToString(DateTimePatterns.LongWithMs, CultureInfo.InvariantCulture));
             CheckHelper.CheckDirectory(tempDirectoryPath, true);
 
             // Create progress reporter
@@ -824,3 +829,7 @@ namespace GTiff2Tiles.GUI.ViewModels
         #endregion
     }
 }
+
+#pragma warning restore CA1031 // Do not catch general exception types
+#pragma warning restore CA1308 // Normalize strings to uppercase
+#pragma warning restore IDE0079 // Remove unnecessary suppression

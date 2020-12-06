@@ -1,4 +1,7 @@
-﻿using System;
+﻿#pragma warning disable IDE0079 // Remove unnecessary suppression
+#pragma warning disable CA1308 // Normalize strings to uppercase
+
+using System;
 using System.IO;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -202,3 +205,6 @@ namespace GTiff2Tiles.GUI.Models
         }
     }
 }
+
+#pragma warning restore CA1308 // Normalize strings to uppercase
+#pragma warning restore IDE0079 // Remove unnecessary suppression
