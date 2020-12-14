@@ -15,7 +15,7 @@ jobs:
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1.7.2
       with:
-        dotnet-version: 5.0.100
+        dotnet-version: 5.0.101
     - name: Build with dotnet
       run: |
         echo Build win-x64 start
@@ -78,7 +78,7 @@ jobs:
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1.7.2
       with:
-        dotnet-version: 5.0.100
+        dotnet-version: 5.0.101
     - name: Run unit tests
       run: |
         echo Unit tests win-x64 start
@@ -96,7 +96,7 @@ jobs:
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1.7.2
       with:
-        dotnet-version: 5.0.100
+        dotnet-version: 5.0.101
     - name: Build with dotnet
       run: |
         echo Build linux-x64 core start
@@ -120,7 +120,7 @@ jobs:
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1.7.2
       with:
-        dotnet-version: 5.0.100
+        dotnet-version: 5.0.101
     - name: Build with dotnet
       run: |
         echo Build linux-x64 core start
@@ -144,7 +144,7 @@ jobs:
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1.7.2
       with:
-        dotnet-version: 5.0.100
+        dotnet-version: 5.0.101
     - name: Run unit tests
       run: |
         echo Unit tests linux-x64 start
