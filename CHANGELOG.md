@@ -28,7 +28,7 @@ This is a new major release of **GTiff2Tiles**. There are a lot of incompatible 
 ### All solution
 
 - Rewritten and added new publish scripts;
-- Bump **.NET Core**/**.NET** version to **5.0.100**;
+- Bump **.NET Core**/**.NET** version to **5.0.101**;
 - Fixed localization files's names;
 - Moved to **[DBAD](https://dbad-license.org/)** license;
 - Drop support of **.NET Framework** and **.NET Standard**;
