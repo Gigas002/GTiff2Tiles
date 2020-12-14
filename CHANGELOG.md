@@ -118,9 +118,9 @@ Only changes in public API are listed.
 
 **Updated dependencies:**
 
-- Update **MaxRev.Gdal.Core** to **3.2.0.100**;
+- Update **MaxRev.Gdal.Core** to **3.1.2.110**;
 - Update **MaxRev.Gdal.LinuxRuntime.Minimal** to **3.1.2.110**;
-- Update **MaxRev.Gdal.WindowsRuntime.Minimal** to **3.2.0.110**;
+- Update **MaxRev.Gdal.WindowsRuntime.Minimal** to **3.1.2.110**;
 - Update **NetVips** to **1.2.4**;
 - Update **NetVips.Native** to **8.10.1**;
 
