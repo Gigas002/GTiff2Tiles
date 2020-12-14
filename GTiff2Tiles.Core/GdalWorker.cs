@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using GTiff2Tiles.Core.Constants;
 using GTiff2Tiles.Core.Coordinates;
@@ -112,19 +111,8 @@ namespace GTiff2Tiles.Core
             {
                 using Dataset inputDataset = Gdal.Open(inputFilePath, Access.GA_ReadOnly);
 
-                GCHandle gcHandle = GCHandle.Alloc(new[] { Dataset.getCPtr(inputDataset).Handle },
-                                                   GCHandleType.Pinned);
-                SWIGTYPE_p_p_GDALDatasetShadow gdalDatasetShadow =
-                    new SWIGTYPE_p_p_GDALDatasetShadow(gcHandle.AddrOfPinnedObject(), false, null);
-
-                // We need to create variable in order to correctly dispose result dataset,
-                // it's gdal's bindings issue
-                // ReSharper disable once UnusedVariable
-                using Dataset resultDataset =
-                    Gdal.wrapper_GDALWarpDestName(outputFilePath, 1, gdalDatasetShadow,
-                                                  new GDALWarpAppOptions(options), callback, string.Empty);
-
-                gcHandle.Free();
+                using Dataset resultDataset = Gdal.Warp(outputFilePath, new[] { inputDataset },
+                                                        new GDALWarpAppOptions(options), callback, string.Empty);
             });
         }
 
