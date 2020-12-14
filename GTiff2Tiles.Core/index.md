@@ -19,7 +19,7 @@ Main namespaces are the following:
 ## Build dependencies
 
 - [MaxRev.Gdal.Core](https://www.nuget.org/packages/MaxRev.Gdal.Core/) – 3.2.0.100;
-- [MaxRev.Gdal.LinuxRuntime.Minimal](https://www.nuget.org/packages/MaxRev.Gdal.LinuxRuntime.Minimal/) – 3.2.0.100;
+- [MaxRev.Gdal.LinuxRuntime.Minimal](https://www.nuget.org/packages/MaxRev.Gdal.LinuxRuntime.Minimal/) – 3.1.2.110;
 - [MaxRev.Gdal.WindowsRuntime.Minimal](https://www.nuget.org/packages/MaxRev.Gdal.WindowsRuntime.Minimal/) – 3.2.0.110;
 - [NetVips](https://www.nuget.org/packages/NetVips/) – 1.2.4;
 - [NetVips.Native](https://www.nuget.org/packages/NetVips.Native/) – 8.10.1;
