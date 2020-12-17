@@ -20,31 +20,31 @@ namespace GTiff2Tiles.Tests.Tests.Coordinates
         public void CreateGeodeticCoordinateNormal() => Assert.DoesNotThrow(() =>
         {
             GeodeticCoordinate coord =
-                new GeodeticCoordinate(Locations.TokyoGeodeticLongitude, Locations.TokyoGeodeticLatitude);
+                new(Locations.TokyoGeodeticLongitude, Locations.TokyoGeodeticLatitude);
         });
 
         [Test]
         public void CreateGeodeticCoordinateSmallLon() => Assert.Throws<ArgumentOutOfRangeException>(() =>
         {
-            GeodeticCoordinate coord = new GeodeticCoordinate(-181.0, Locations.TokyoGeodeticLatitude);
+            GeodeticCoordinate coord = new(-181.0, Locations.TokyoGeodeticLatitude);
         });
 
         [Test]
         public void CreateGeodeticCoordinateBigLon() => Assert.Throws<ArgumentOutOfRangeException>(() =>
         {
-            GeodeticCoordinate coord = new GeodeticCoordinate(181.0, Locations.TokyoGeodeticLatitude);
+            GeodeticCoordinate coord = new(181.0, Locations.TokyoGeodeticLatitude);
         });
 
         [Test]
         public void CreateGeodeticCoordinateSmallLat() => Assert.Throws<ArgumentOutOfRangeException>(() =>
         {
-            GeodeticCoordinate coord = new GeodeticCoordinate(Locations.TokyoGeodeticLongitude, -91.0);
+            GeodeticCoordinate coord = new(Locations.TokyoGeodeticLongitude, -91.0);
         });
 
         [Test]
         public void CreateGeodeticCoordinateBigLat() => Assert.Throws<ArgumentOutOfRangeException>(() =>
         {
-            GeodeticCoordinate coord = new GeodeticCoordinate(Locations.TokyoGeodeticLongitude, 91.0);
+            GeodeticCoordinate coord = new(Locations.TokyoGeodeticLongitude, 91.0);
         });
 
         #endregion
@@ -55,7 +55,7 @@ namespace GTiff2Tiles.Tests.Tests.Coordinates
         public void GetProperties() => Assert.DoesNotThrow(() =>
         {
             GeodeticCoordinate coord =
-                new GeodeticCoordinate(Locations.TokyoGeodeticLongitude, Locations.TokyoGeodeticLatitude);
+                new(Locations.TokyoGeodeticLongitude, Locations.TokyoGeodeticLatitude);
             double val = GeodeticCoordinate.MinPossibleLonValue;
             val = GeodeticCoordinate.MaxPossibleLonValue;
             val = GeodeticCoordinate.MinPossibleLatValue;
@@ -123,7 +123,7 @@ namespace GTiff2Tiles.Tests.Tests.Coordinates
         [Test]
         public void ResolutionNotSquareTileSize() => Assert.Throws<ArgumentException>(() =>
         {
-            Size size = new Size(10, 20);
+            Size size = new(10, 20);
             double res = GeodeticCoordinate.Resolution(10, size);
         });
 

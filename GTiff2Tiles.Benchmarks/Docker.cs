@@ -28,7 +28,7 @@ namespace GTiff2Tiles.Benchmarks
         /// <param name="imageName">Name of image to pull</param>
         public static void Pull(string imageName)
         {
-            using Process docker = new Process
+            using Process docker = new()
             {
                 StartInfo = new ProcessStartInfo(ProcessName)
                 {
@@ -50,7 +50,7 @@ namespace GTiff2Tiles.Benchmarks
         /// <param name="imageName">Name of image or images to remove</param>
         public static void Rmi(string imageName)
         {
-            using Process docker = new Process
+            using Process docker = new()
             {
                 StartInfo = new ProcessStartInfo(ProcessName)
                 {
@@ -74,7 +74,7 @@ namespace GTiff2Tiles.Benchmarks
         /// <param name="imageArgs">Args of image to run</param>
         public static void Run(string runArgs, string imageName, string imageArgs)
         {
-            using Process docker = new Process
+            using Process docker = new()
             {
                 StartInfo = new ProcessStartInfo(ProcessName)
                 {

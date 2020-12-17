@@ -30,7 +30,7 @@ namespace GTiff2Tiles.GUI.Models
             itheme.SetPrimaryColor(SwatchHelper.Lookup[MaterialDesignColor.Cyan]);
             //itheme.SetSecondaryColor(SwatchHelper.Lookup[MaterialDesignColor.Teal]);
 
-            PaletteHelper paletteHelper = new PaletteHelper();
+            PaletteHelper paletteHelper = new();
             paletteHelper.SetTheme(itheme);
 
             return theme switch

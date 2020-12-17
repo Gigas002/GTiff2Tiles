@@ -29,25 +29,25 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
         [Test]
         public void CreateNumberNormal() => Assert.DoesNotThrow(() =>
         {
-            Number number = new Number(Locations.TokyoGeodeticNumberX, Locations.TokyoGeodeticNumberNtmsY, 10);
+            Number number = new(Locations.TokyoGeodeticNumberX, Locations.TokyoGeodeticNumberNtmsY, 10);
         });
 
         [Test]
         public void CreateNumberBadX() => Assert.Throws<ArgumentOutOfRangeException>(() =>
         {
-            Number number = new Number(-Locations.TokyoGeodeticNumberX, Locations.TokyoGeodeticNumberNtmsY, 10);
+            Number number = new(-Locations.TokyoGeodeticNumberX, Locations.TokyoGeodeticNumberNtmsY, 10);
         });
 
         [Test]
         public void CreateNumberBadY() => Assert.Throws<ArgumentOutOfRangeException>(() =>
         {
-            Number number = new Number(Locations.TokyoGeodeticNumberX, -Locations.TokyoGeodeticNumberNtmsY, 10);
+            Number number = new(Locations.TokyoGeodeticNumberX, -Locations.TokyoGeodeticNumberNtmsY, 10);
         });
 
         [Test]
         public void CreateNumberBadZ() => Assert.Throws<ArgumentOutOfRangeException>(() =>
         {
-            Number number = new Number(Locations.TokyoGeodeticNumberX, Locations.TokyoGeodeticNumberNtmsY, -1);
+            Number number = new(Locations.TokyoGeodeticNumberX, Locations.TokyoGeodeticNumberNtmsY, -1);
         });
 
         #endregion
@@ -57,7 +57,7 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
         [Test]
         public void GetProperties()
         {
-            Number number = new Number(Locations.TokyoGeodeticNumberX, Locations.TokyoGeodeticNumberNtmsY, 10);
+            Number number = new(Locations.TokyoGeodeticNumberX, Locations.TokyoGeodeticNumberNtmsY, 10);
 
             Assert.True(number.X == Locations.TokyoGeodeticNumberX);
             Assert.True(number.Y == Locations.TokyoGeodeticNumberNtmsY);
@@ -73,7 +73,7 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
         [Test]
         public void FlipGeodeticNormal()
         {
-            Number number = new Number(Locations.TokyoGeodeticNumberX, Locations.TokyoGeodeticNumberNtmsY, 10);
+            Number number = new(Locations.TokyoGeodeticNumberX, Locations.TokyoGeodeticNumberNtmsY, 10);
             Number result = null;
 
             Assert.DoesNotThrow(() => result = number.Flip());
@@ -83,7 +83,7 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
         [Test]
         public void FlipMercatorNormal()
         {
-            Number number = new Number(Locations.TokyoMercatorNumberX, Locations.TokyoMercatorNumberNtmsY, 10);
+            Number number = new(Locations.TokyoMercatorNumberX, Locations.TokyoMercatorNumberNtmsY, 10);
             Number result = null;
 
             Assert.DoesNotThrow(() => result = number.Flip());
@@ -199,9 +199,9 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
         [Test]
         public void GetLowerNumbersNormal()
         {
-            Number minExpected = new Number(Locations.TokyoGeodeticNumberX * 2,
-                                            Locations.TokyoGeodeticNumberNtmsY * 2, 11);
-            Number maxExpected = new Number(minExpected.X + 1, minExpected.Y + 1, 11);
+            Number minExpected = new(Locations.TokyoGeodeticNumberX * 2,
+                                     Locations.TokyoGeodeticNumberNtmsY * 2, 11);
+            Number maxExpected = new(minExpected.X + 1, minExpected.Y + 1, 11);
 
             (Number minNumber, Number maxNumber) = Locations.TokyoGeodeticNtmsNumber.GetLowerNumbers(11);
 
@@ -219,16 +219,16 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
         public void Get1ZoomLowerNumbersNormal()
         {
             Number[] numbers = Locations.TokyoGeodeticNtmsNumber.GetLowerNumbers();
-            Number num0 = new Number(3638, 618, 11);
+            Number num0 = new(3638, 618, 11);
             Assert.True(numbers[0] == num0);
 
-            Number num1 = new Number(3639, 618, 11);
+            Number num1 = new(3639, 618, 11);
             Assert.True(numbers[1] == num1);
 
-            Number num2 = new Number(3638, 619, 11);
+            Number num2 = new(3638, 619, 11);
             Assert.True(numbers[2] == num2);
 
-            Number num3 = new Number(3639, 619, 11);
+            Number num3 = new(3639, 619, 11);
             Assert.True(numbers[3] == num3);
 
             Assert.Pass();
@@ -270,7 +270,7 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
         [Test]
         public void GetHashCodeNormal()
         {
-            Number number = new Number(Locations.TokyoGeodeticNumberX, Locations.TokyoGeodeticNumberNtmsY, 10);
+            Number number = new(Locations.TokyoGeodeticNumberX, Locations.TokyoGeodeticNumberNtmsY, 10);
 
             Assert.DoesNotThrow(() =>
             {
@@ -285,8 +285,8 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
         [Test]
         public void EqualsByValueNormal()
         {
-            Number number1 = new Number(Locations.TokyoGeodeticNumberX, Locations.TokyoGeodeticNumberNtmsY, 10);
-            Number number2 = new Number(Locations.TokyoGeodeticNumberX, Locations.TokyoGeodeticNumberNtmsY, 10);
+            Number number1 = new(Locations.TokyoGeodeticNumberX, Locations.TokyoGeodeticNumberNtmsY, 10);
+            Number number2 = new(Locations.TokyoGeodeticNumberX, Locations.TokyoGeodeticNumberNtmsY, 10);
 
             Assert.True(number1.Equals((object)number2));
         }
@@ -294,7 +294,7 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
         [Test]
         public void EqualsByRefNormal()
         {
-            Number number1 = new Number(Locations.TokyoGeodeticNumberX, Locations.TokyoGeodeticNumberNtmsY, 10);
+            Number number1 = new(Locations.TokyoGeodeticNumberX, Locations.TokyoGeodeticNumberNtmsY, 10);
             Number number2 = number1;
 
             Assert.True(number1.Equals((object)number2));
@@ -303,7 +303,7 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
         [Test]
         public void EqualsOtherNull()
         {
-            Number number1 = new Number(Locations.TokyoGeodeticNumberX, Locations.TokyoGeodeticNumberNtmsY, 10);
+            Number number1 = new(Locations.TokyoGeodeticNumberX, Locations.TokyoGeodeticNumberNtmsY, 10);
 
             Assert.False(number1.Equals(null));
         }
@@ -313,8 +313,8 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
         [Test]
         public void EqualsOperatorNormalTrue()
         {
-            Number number1 = new Number(Locations.TokyoGeodeticNumberX, Locations.TokyoGeodeticNumberNtmsY, 10);
-            Number number2 = new Number(Locations.TokyoGeodeticNumberX, Locations.TokyoGeodeticNumberNtmsY, 10);
+            Number number1 = new(Locations.TokyoGeodeticNumberX, Locations.TokyoGeodeticNumberNtmsY, 10);
+            Number number2 = new(Locations.TokyoGeodeticNumberX, Locations.TokyoGeodeticNumberNtmsY, 10);
 
             Assert.True(number1 == number2);
         }
@@ -322,8 +322,8 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
         [Test]
         public void EqualsOperatorNormalFalse()
         {
-            Number number1 = new Number(Locations.TokyoGeodeticNumberX, Locations.TokyoGeodeticNumberNtmsY, 10);
-            Number number2 = new Number(Locations.TokyoGeodeticNumberX + 1, Locations.TokyoGeodeticNumberNtmsY, 10);
+            Number number1 = new(Locations.TokyoGeodeticNumberX, Locations.TokyoGeodeticNumberNtmsY, 10);
+            Number number2 = new(Locations.TokyoGeodeticNumberX + 1, Locations.TokyoGeodeticNumberNtmsY, 10);
 
             Assert.False(number1 == number2);
         }
@@ -331,7 +331,7 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
         [Test]
         public void EqualsOperatorNumber1Null()
         {
-            Number number2 = new Number(Locations.TokyoGeodeticNumberX, Locations.TokyoGeodeticNumberNtmsY, 10);
+            Number number2 = new(Locations.TokyoGeodeticNumberX, Locations.TokyoGeodeticNumberNtmsY, 10);
 
             Assert.False(null == number2);
         }
@@ -339,7 +339,7 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
         [Test]
         public void EqualsOperatorNumber2Null()
         {
-            Number number1 = new Number(Locations.TokyoGeodeticNumberX, Locations.TokyoGeodeticNumberNtmsY, 10);
+            Number number1 = new(Locations.TokyoGeodeticNumberX, Locations.TokyoGeodeticNumberNtmsY, 10);
 
             Assert.False(number1 == null);
         }
@@ -351,8 +351,8 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
         [Test]
         public void NotEqualsOperatorNormalTrue()
         {
-            Number number1 = new Number(Locations.TokyoGeodeticNumberX, Locations.TokyoGeodeticNumberNtmsY, 10);
-            Number number2 = new Number(Locations.TokyoGeodeticNumberX + 1, Locations.TokyoGeodeticNumberNtmsY, 10);
+            Number number1 = new(Locations.TokyoGeodeticNumberX, Locations.TokyoGeodeticNumberNtmsY, 10);
+            Number number2 = new(Locations.TokyoGeodeticNumberX + 1, Locations.TokyoGeodeticNumberNtmsY, 10);
 
             Assert.True(number1 != number2);
         }
@@ -360,8 +360,8 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
         [Test]
         public void NotEqualsOperatorNormalFalse()
         {
-            Number number1 = new Number(Locations.TokyoGeodeticNumberX, Locations.TokyoGeodeticNumberNtmsY, 10);
-            Number number2 = new Number(Locations.TokyoGeodeticNumberX, Locations.TokyoGeodeticNumberNtmsY, 10);
+            Number number1 = new(Locations.TokyoGeodeticNumberX, Locations.TokyoGeodeticNumberNtmsY, 10);
+            Number number2 = new(Locations.TokyoGeodeticNumberX, Locations.TokyoGeodeticNumberNtmsY, 10);
 
             Assert.False(number1 != number2);
         }
@@ -369,7 +369,7 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
         [Test]
         public void NotEqualsOperatorNumber1Null()
         {
-            Number number2 = new Number(Locations.TokyoGeodeticNumberX, Locations.TokyoGeodeticNumberNtmsY, 10);
+            Number number2 = new(Locations.TokyoGeodeticNumberX, Locations.TokyoGeodeticNumberNtmsY, 10);
 
             Assert.True(null != number2);
         }
@@ -377,7 +377,7 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
         [Test]
         public void NotEqualsOperatorNumber2Null()
         {
-            Number number1 = new Number(Locations.TokyoGeodeticNumberX, Locations.TokyoGeodeticNumberNtmsY, 10);
+            Number number1 = new(Locations.TokyoGeodeticNumberX, Locations.TokyoGeodeticNumberNtmsY, 10);
 
             Assert.True(number1 != null);
         }
@@ -395,9 +395,9 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
         [Test]
         public void AddNormal()
         {
-            Number number1 = new Number(0, 0, 0);
-            Number number2 = new Number(1, 1, 0);
-            Number result = new Number(1, 1, 0);
+            Number number1 = new(0, 0, 0);
+            Number number2 = new(1, 1, 0);
+            Number result = new(1, 1, 0);
 
             Number add = number1.Add(number2);
             Assert.True(add == result);
@@ -406,7 +406,7 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
         [Test]
         public void AddNullNumber1()
         {
-            Number number2 = new Number(1, 1, 0);
+            Number number2 = new(1, 1, 0);
 
             Assert.Throws<ArgumentNullException>(() =>
             {
@@ -417,7 +417,7 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
         [Test]
         public void AddNullNumber2()
         {
-            Number number1 = new Number(0, 0, 0);
+            Number number1 = new(0, 0, 0);
 
             Assert.Throws<ArgumentNullException>(() => number1.Add(null));
         }
@@ -425,8 +425,8 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
         [Test]
         public void AddDifferentZ()
         {
-            Number number1 = new Number(0, 0, 0);
-            Number number2 = new Number(1, 1, 1);
+            Number number1 = new(0, 0, 0);
+            Number number2 = new(1, 1, 1);
 
             Assert.Throws<ArgumentException>(() => number1.Add(number2));
         }
@@ -438,9 +438,9 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
         [Test]
         public void SubtractNormal()
         {
-            Number number1 = new Number(1, 1, 0);
-            Number number2 = new Number(0, 0, 0);
-            Number result = new Number(1, 1, 0);
+            Number number1 = new(1, 1, 0);
+            Number number2 = new(0, 0, 0);
+            Number result = new(1, 1, 0);
 
             Number sub = number1.Subtract(number2);
             Assert.True(sub == result);
@@ -449,7 +449,7 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
         [Test]
         public void SubtractNullNumber1()
         {
-            Number number2 = new Number(0, 0, 0);
+            Number number2 = new(0, 0, 0);
 
             Assert.Throws<ArgumentNullException>(() =>
             {
@@ -460,7 +460,7 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
         [Test]
         public void SubtractNullNumber2()
         {
-            Number number1 = new Number(1, 1, 0);
+            Number number1 = new(1, 1, 0);
 
             Assert.Throws<ArgumentNullException>(() => number1.Subtract(null));
         }
@@ -468,8 +468,8 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
         [Test]
         public void SubtractDifferentZ()
         {
-            Number number1 = new Number(1, 1, 1);
-            Number number2 = new Number(0, 0, 0);
+            Number number1 = new(1, 1, 1);
+            Number number2 = new(0, 0, 0);
 
             Assert.Throws<ArgumentException>(() => number1.Subtract(number2));
         }
@@ -481,9 +481,9 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
         [Test]
         public void MultiplyNormal()
         {
-            Number number1 = new Number(0, 0, 0);
-            Number number2 = new Number(1, 1, 0);
-            Number result = new Number(0, 0, 0);
+            Number number1 = new(0, 0, 0);
+            Number number2 = new(1, 1, 0);
+            Number result = new(0, 0, 0);
 
             Number mul = number1.Multiply(number2);
             Assert.True(mul == result);
@@ -492,7 +492,7 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
         [Test]
         public void MultiplyNullNumber1()
         {
-            Number number2 = new Number(1, 1, 0);
+            Number number2 = new(1, 1, 0);
 
             Assert.Throws<ArgumentNullException>(() =>
             {
@@ -503,7 +503,7 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
         [Test]
         public void MultiplyNullNumber2()
         {
-            Number number1 = new Number(0, 0, 0);
+            Number number1 = new(0, 0, 0);
 
             Assert.Throws<ArgumentNullException>(() => number1.Multiply(null));
         }
@@ -511,8 +511,8 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
         [Test]
         public void MultiplyDifferentZ()
         {
-            Number number1 = new Number(0, 0, 0);
-            Number number2 = new Number(1, 1, 1);
+            Number number1 = new(0, 0, 0);
+            Number number2 = new(1, 1, 1);
 
             Assert.Throws<ArgumentException>(() => number1.Multiply(number2));
         }
@@ -524,9 +524,9 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
         [Test]
         public void DivideNormal()
         {
-            Number number1 = new Number(0, 0, 0);
-            Number number2 = new Number(1, 1, 0);
-            Number result = new Number(0, 0, 0);
+            Number number1 = new(0, 0, 0);
+            Number number2 = new(1, 1, 0);
+            Number result = new(0, 0, 0);
 
             Number div = number1.Divide(number2);
             Assert.True(div == result);
@@ -535,7 +535,7 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
         [Test]
         public void DivideNullNumber1()
         {
-            Number number2 = new Number(1, 1, 0);
+            Number number2 = new(1, 1, 0);
 
             Assert.Throws<ArgumentNullException>(() =>
             {
@@ -546,7 +546,7 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
         [Test]
         public void DivideNullNumber2()
         {
-            Number number1 = new Number(0, 0, 0);
+            Number number1 = new(0, 0, 0);
 
             Assert.Throws<ArgumentNullException>(() => number1.Divide(null));
         }
@@ -554,8 +554,8 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
         [Test]
         public void DivideDifferentZ()
         {
-            Number number1 = new Number(0, 0, 0);
-            Number number2 = new Number(1, 1, 1);
+            Number number1 = new(0, 0, 0);
+            Number number2 = new(1, 1, 1);
 
             Assert.Throws<ArgumentException>(() => number1.Divide(number2));
         }

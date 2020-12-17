@@ -12,7 +12,7 @@ namespace GTiff2Tiles.Tests.Tests
         [Test]
         public void RasterExceptionConstructors() => Assert.DoesNotThrow(() =>
         {
-            RasterException e = new RasterException();
+            RasterException e = new();
             e = new RasterException(string.Empty);
             e = new RasterException(string.Empty, null);
         });
@@ -20,7 +20,7 @@ namespace GTiff2Tiles.Tests.Tests
         [Test]
         public void FileExceptionConstructors() => Assert.DoesNotThrow(() =>
         {
-            FileException e = new FileException();
+            FileException e = new();
             e = new FileException(string.Empty);
             e = new FileException(string.Empty, null);
         });
@@ -28,7 +28,7 @@ namespace GTiff2Tiles.Tests.Tests
         [Test]
         public void DirectoryExceptionConstructors() => Assert.DoesNotThrow(() =>
         {
-            DirectoryException e = new DirectoryException();
+            DirectoryException e = new();
             e = new DirectoryException(string.Empty);
             e = new DirectoryException(string.Empty, null);
         });

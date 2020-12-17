@@ -58,7 +58,7 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
         [Test]
         public void FromNumberOverrideDefaultArgs()
         {
-            Size size = new Size(128, 128);
+            Size size = new(128, 128);
             IEnumerable<byte> bytes = new byte[10];
             const TileExtension extension = TileExtension.Webp;
             const bool tmsCompatible = true;
@@ -104,7 +104,7 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
         [Test]
         public void FromCoordinatesOverrideDefaultArgs()
         {
-            Size size = new Size(64, 64);
+            Size size = new(64, 64);
             IEnumerable<byte> bytes = new byte[10];
             const TileExtension extension = TileExtension.Webp;
             const bool tmsCompatible = true;
@@ -346,7 +346,7 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
         {
             // We need to create some tiles first:
             string path = Path.Combine(_outPath, _timestamp);
-            using Raster raster = new Raster(_in4326, Cs4326);
+            using Raster raster = new(_in4326, Cs4326);
             const int sourceZ = 12;
             Size tileSize = Tile.DefaultSize;
             RasterTile[] baseTiles = raster.WriteTilesToEnumerable(sourceZ, sourceZ).ToArray();
@@ -364,7 +364,7 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
         [Test]
         public void WriteTileToFileNullTileBytes()
         {
-            using RasterTile tile = new RasterTile(new Number(1, 1, 1), Cs4326);
+            using RasterTile tile = new(new Number(1, 1, 1), Cs4326);
             Assert.Throws<ArgumentNullException>(() => Tile.WriteToFile(tile));
         }
 
@@ -373,7 +373,7 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
         {
             // We need to create some tiles first:
             string path = Path.Combine(_outPath, _timestamp);
-            using Raster raster = new Raster(_in4326, Cs4326);
+            using Raster raster = new(_in4326, Cs4326);
             const int sourceZ = 12;
             Size tileSize = Tile.DefaultSize;
             RasterTile[] baseTiles = raster.WriteTilesToEnumerable(sourceZ, sourceZ).ToArray();

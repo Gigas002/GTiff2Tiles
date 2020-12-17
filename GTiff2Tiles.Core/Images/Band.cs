@@ -87,7 +87,7 @@ namespace GTiff2Tiles.Core.Images
             #endregion
 
             // Don't use HashSet
-            List<Band> bandsToAdd = new List<Band>();
+            List<Band> bandsToAdd = new();
             for (int i = bandsCount; i > image.Bands; i--) bandsToAdd.Add(new Band());
             AddBands(ref image, bandsToAdd);
         }

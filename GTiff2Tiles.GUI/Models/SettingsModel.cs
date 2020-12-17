@@ -20,37 +20,37 @@ namespace GTiff2Tiles.GUI.Models
         /// Path to input file
         /// </summary>
         [JsonPropertyName(nameof(InputFilePath))]
-        public string InputFilePath { get; set; } = string.Empty;
+        public string InputFilePath { get; init; } = string.Empty;
 
         /// <summary>
         /// Path to output directory
         /// </summary>
         [JsonPropertyName(nameof(OutputDirectoryPath))]
-        public string OutputDirectoryPath { get; set; } = string.Empty;
+        public string OutputDirectoryPath { get; init; } = string.Empty;
 
         /// <summary>
         /// Path to temp directory
         /// </summary>
         [JsonPropertyName(nameof(TempDirectoryPath))]
-        public string TempDirectoryPath { get; set; } = string.Empty;
+        public string TempDirectoryPath { get; init; } = string.Empty;
 
         /// <summary>
         /// Minimal zoom
         /// </summary>
         [JsonPropertyName(nameof(MinZ))]
-        public int MinZ { get; set; }
+        public int MinZ { get; init; }
 
         /// <summary>
         /// Maximal zoom
         /// </summary>
         [JsonPropertyName(nameof(MaxZ))]
-        public int MaxZ { get; set; } = 17;
+        public int MaxZ { get; init; } = 17;
 
         /// <summary>
         /// Tile extension
         /// </summary>
         [JsonPropertyName(nameof(TileExtension))]
-        public string TileExtension { get; set; } = "png";
+        public string TileExtension { get; init; } = "png";
 
         /// <summary>
         /// Tile extension
@@ -66,7 +66,7 @@ namespace GTiff2Tiles.GUI.Models
         /// Tile coordinate system
         /// </summary>
         [JsonPropertyName(nameof(CoordinateSystem))]
-        public int CoordinateSystem { get; set; } = 4326;
+        public int CoordinateSystem { get; init; } = 4326;
 
         /// <summary>
         /// Tile coordinate system
@@ -100,7 +100,7 @@ namespace GTiff2Tiles.GUI.Models
         /// Tile interpolation
         /// </summary>
         [JsonPropertyName(nameof(Interpolation))]
-        public string Interpolation { get; set; } = "lanczos3";
+        public string Interpolation { get; init; } = "lanczos3";
 
         /// <summary>
         /// Tile interpolation
@@ -134,19 +134,19 @@ namespace GTiff2Tiles.GUI.Models
         /// Number of bands in tile
         /// </summary>
         [JsonPropertyName(nameof(BandsCount))]
-        public int BandsCount { get; set; } = 4;
+        public int BandsCount { get; init; } = 4;
 
         /// <summary>
         /// Is tiles tms compatible?
         /// </summary>
         [JsonPropertyName(nameof(TmsCompatible))]
-        public bool TmsCompatible { get; set; }
+        public bool TmsCompatible { get; init; }
 
         /// <summary>
         /// Current theme
         /// </summary>
         [JsonPropertyName(nameof(Theme))]
-        public string Theme { get; set; } = "dark";
+        public string Theme { get; init; } = "dark";
 
         /// <summary>
         /// Current theme
@@ -157,31 +157,31 @@ namespace GTiff2Tiles.GUI.Models
         /// Size of tile's side
         /// </summary>
         [JsonPropertyName(nameof(TileSideSize))]
-        public int TileSideSize { get; set; } = 256;
+        public int TileSideSize { get; init; } = 256;
 
         /// <summary>
         /// Do you want to calculate threads count automatically?
         /// </summary>
         [JsonPropertyName(nameof(IsAutoThreads))]
-        public bool IsAutoThreads { get; set; } = true;
+        public bool IsAutoThreads { get; init; } = true;
 
         /// <summary>
         /// Manual input of number of threads
         /// </summary>
         [JsonPropertyName(nameof(ThreadsCount))]
-        public int ThreadsCount { get; set; } = Environment.ProcessorCount;
+        public int ThreadsCount { get; init; } = Environment.ProcessorCount;
 
         /// <summary>
         /// Number of tiles to store in cache
         /// </summary>
         [JsonPropertyName(nameof(TileCache))]
-        public int TileCache { get; set; } = 1000;
+        public int TileCache { get; init; } = 1000;
 
         /// <summary>
         /// Max size of input tiff to store in memory
         /// </summary>
         [JsonPropertyName(nameof(Memory))]
-        public long Memory { get; set; } = 2147483649;
+        public long Memory { get; init; } = 2147483649;
 
         /// <summary>
         /// Get the full path of Settings.json file

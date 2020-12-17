@@ -201,11 +201,11 @@ namespace GTiff2Tiles.Core
 
             string wkt = dataset.GetProjection();
 
-            using SpatialReference spatialReference = new SpatialReference(wkt);
+            using SpatialReference spatialReference = new(wkt);
 
             spatialReference.ExportToProj4(out string projString);
 
-            // TODO: requires PROJ 6.2+
+            // Alternative way -- needs using System.Text.Json to deserialize
             //spatialReference.ExportToPROJJSON(out string argout, null);
 
             return projString;
@@ -345,15 +345,15 @@ namespace GTiff2Tiles.Core
             {
                 case CoordinateSystem.Epsg4326:
                 {
-                    GeodeticCoordinate minCoordinate = new GeodeticCoordinate(minX, minY);
-                    GeodeticCoordinate maxCoordinate = new GeodeticCoordinate(maxX, maxY);
+                    GeodeticCoordinate minCoordinate = new(minX, minY);
+                    GeodeticCoordinate maxCoordinate = new(maxX, maxY);
 
                     return (minCoordinate, maxCoordinate);
                 }
                 case CoordinateSystem.Epsg3857:
                 {
-                    MercatorCoordinate minCoordinate = new MercatorCoordinate(minX, minY);
-                    MercatorCoordinate maxCoordinate = new MercatorCoordinate(maxX, maxY);
+                    MercatorCoordinate minCoordinate = new(minX, minY);
+                    MercatorCoordinate maxCoordinate = new(maxX, maxY);
 
                     return (minCoordinate, maxCoordinate);
                 }

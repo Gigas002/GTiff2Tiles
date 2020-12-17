@@ -16,19 +16,19 @@ namespace GTiff2Tiles.Tests.Tests.Images
         [Test]
         public void CreateSizeNormal() => Assert.DoesNotThrow(() =>
         {
-            Size size = new Size(1, 1);
+            Size size = new(1, 1);
         });
 
         [Test]
         public void CreateSizeBadWidth() => Assert.Throws<ArgumentOutOfRangeException>(() =>
         {
-            Size size = new Size(0, 1);
+            Size size = new(0, 1);
         });
 
         [Test]
         public void CreateSizeBadHeight() => Assert.Throws<ArgumentOutOfRangeException>(() =>
         {
-            Size size = new Size(1, 0);
+            Size size = new(1, 0);
         });
 
         #endregion
@@ -38,7 +38,7 @@ namespace GTiff2Tiles.Tests.Tests.Images
         [Test]
         public void GetProperties() => Assert.DoesNotThrow(() =>
         {
-            Size size = new Size(1, 2);
+            Size size = new(1, 2);
 
             int h = size.Height;
             int w = size.Width;
@@ -55,7 +55,7 @@ namespace GTiff2Tiles.Tests.Tests.Images
         [Test]
         public void GetHashCodeNormal()
         {
-            Size size = new Size(10, 10);
+            Size size = new(10, 10);
 
             Assert.DoesNotThrow(() =>
             {
@@ -70,8 +70,8 @@ namespace GTiff2Tiles.Tests.Tests.Images
         [Test]
         public void EqualsByValueNormal()
         {
-            Size size1 = new Size(10, 10);
-            Size size2 = new Size(10, 10);
+            Size size1 = new(10, 10);
+            Size size2 = new(10, 10);
 
             Assert.True(size1.Equals((object)size2));
         }
@@ -79,7 +79,7 @@ namespace GTiff2Tiles.Tests.Tests.Images
         [Test]
         public void EqualsByRefNormal()
         {
-            Size size1 = new Size(10, 10);
+            Size size1 = new(10, 10);
             Size size2 = size1;
 
             Assert.True(size1.Equals((object)size2));
@@ -88,7 +88,7 @@ namespace GTiff2Tiles.Tests.Tests.Images
         [Test]
         public void EqualsOtherNull()
         {
-            Size size1 = new Size(10, 10);
+            Size size1 = new(10, 10);
 
             Assert.False(size1.Equals(null));
         }
@@ -98,8 +98,8 @@ namespace GTiff2Tiles.Tests.Tests.Images
         [Test]
         public void EqualsOperatorNormalTrue()
         {
-            Size size1 = new Size(10, 10);
-            Size size2 = new Size(10, 10);
+            Size size1 = new(10, 10);
+            Size size2 = new(10, 10);
 
             Assert.True(size1 == size2);
         }
@@ -107,8 +107,8 @@ namespace GTiff2Tiles.Tests.Tests.Images
         [Test]
         public void EqualsOperatorNormalFalse()
         {
-            Size size1 = new Size(10, 10);
-            Size size2 = new Size(11, 10);
+            Size size1 = new(10, 10);
+            Size size2 = new(11, 10);
 
             Assert.False(size1 == size2);
         }
@@ -116,7 +116,7 @@ namespace GTiff2Tiles.Tests.Tests.Images
         [Test]
         public void EqualsOperatorSize1Null()
         {
-            Size size2 = new Size(10, 10);
+            Size size2 = new(10, 10);
 
             Assert.False(null == size2);
         }
@@ -124,7 +124,7 @@ namespace GTiff2Tiles.Tests.Tests.Images
         [Test]
         public void EqualsOperatorSize2Null()
         {
-            Size size1 = new Size(10, 10);
+            Size size1 = new(10, 10);
 
             Assert.False(size1 == null);
         }
@@ -136,8 +136,8 @@ namespace GTiff2Tiles.Tests.Tests.Images
         [Test]
         public void NotEqualsOperatorNormalTrue()
         {
-            Size size1 = new Size(10, 10);
-            Size size2 = new Size(11, 10);
+            Size size1 = new(10, 10);
+            Size size2 = new(11, 10);
 
             Assert.True(size1 != size2);
         }
@@ -145,8 +145,8 @@ namespace GTiff2Tiles.Tests.Tests.Images
         [Test]
         public void NotEqualsOperatorNormalFalse()
         {
-            Size size1 = new Size(10, 10);
-            Size size2 = new Size(10, 10);
+            Size size1 = new(10, 10);
+            Size size2 = new(10, 10);
 
             Assert.False(size1 != size2);
         }
@@ -154,7 +154,7 @@ namespace GTiff2Tiles.Tests.Tests.Images
         [Test]
         public void NotEqualsOperatorSize1Null()
         {
-            Size size2 = new Size(10, 10);
+            Size size2 = new(10, 10);
 
             Assert.True(null != size2);
         }
@@ -162,7 +162,7 @@ namespace GTiff2Tiles.Tests.Tests.Images
         [Test]
         public void NotEqualsOperatorSize2Null()
         {
-            Size size1 = new Size(10, 10);
+            Size size1 = new(10, 10);
 
             Assert.True(size1 != null);
         }
@@ -180,9 +180,9 @@ namespace GTiff2Tiles.Tests.Tests.Images
         [Test]
         public void AddNormal()
         {
-            Size size1 = new Size(1, 1);
-            Size size2 = new Size(2, 2);
-            Size result = new Size(3, 3);
+            Size size1 = new(1, 1);
+            Size size2 = new(2, 2);
+            Size result = new(3, 3);
 
             Size add = size1.Add(size2);
             Assert.True(add == result);
@@ -191,7 +191,7 @@ namespace GTiff2Tiles.Tests.Tests.Images
         [Test]
         public void AddNullSize1()
         {
-            Size size2 = new Size(1, 1);
+            Size size2 = new(1, 1);
 
             Assert.Throws<ArgumentNullException>(() =>
             {
@@ -202,7 +202,7 @@ namespace GTiff2Tiles.Tests.Tests.Images
         [Test]
         public void AddNullSize2()
         {
-            Size size1 = new Size(1, 1);
+            Size size1 = new(1, 1);
 
             Assert.Throws<ArgumentNullException>(() => size1.Add(null));
         }
@@ -214,9 +214,9 @@ namespace GTiff2Tiles.Tests.Tests.Images
         [Test]
         public void SubtractNormal()
         {
-            Size size1 = new Size(2, 2);
-            Size size2 = new Size(1, 1);
-            Size result = new Size(1, 1);
+            Size size1 = new(2, 2);
+            Size size2 = new(1, 1);
+            Size result = new(1, 1);
 
             Size sub = size1.Subtract(size2);
             Assert.True(sub == result);
@@ -225,7 +225,7 @@ namespace GTiff2Tiles.Tests.Tests.Images
         [Test]
         public void SubtractNullSize1()
         {
-            Size size2 = new Size(1, 1);
+            Size size2 = new(1, 1);
 
             Assert.Throws<ArgumentNullException>(() =>
             {
@@ -236,7 +236,7 @@ namespace GTiff2Tiles.Tests.Tests.Images
         [Test]
         public void SubtractNullSize2()
         {
-            Size size1 = new Size(2, 2);
+            Size size1 = new(2, 2);
 
             Assert.Throws<ArgumentNullException>(() => size1.Subtract(null));
         }
@@ -248,9 +248,9 @@ namespace GTiff2Tiles.Tests.Tests.Images
         [Test]
         public void MultiplyNormal()
         {
-            Size size1 = new Size(1, 1);
-            Size size2 = new Size(2, 2);
-            Size result = new Size(2, 2);
+            Size size1 = new(1, 1);
+            Size size2 = new(2, 2);
+            Size result = new(2, 2);
 
             Size mul = size1.Multiply(size2);
             Assert.True(mul == result);
@@ -259,7 +259,7 @@ namespace GTiff2Tiles.Tests.Tests.Images
         [Test]
         public void MultiplyNullSize1()
         {
-            Size size2 = new Size(2, 2);
+            Size size2 = new(2, 2);
 
             Assert.Throws<ArgumentNullException>(() =>
             {
@@ -270,7 +270,7 @@ namespace GTiff2Tiles.Tests.Tests.Images
         [Test]
         public void MultiplyNullSize2()
         {
-            Size size1 = new Size(1, 1);
+            Size size1 = new(1, 1);
 
             Assert.Throws<ArgumentNullException>(() => size1.Multiply(null));
         }
@@ -282,9 +282,9 @@ namespace GTiff2Tiles.Tests.Tests.Images
         [Test]
         public void DivideNormal()
         {
-            Size size1 = new Size(2, 2);
-            Size size2 = new Size(1, 1);
-            Size result = new Size(2, 2);
+            Size size1 = new(2, 2);
+            Size size2 = new(1, 1);
+            Size result = new(2, 2);
 
             Size div = size1.Divide(size2);
             Assert.True(div == result);
@@ -293,7 +293,7 @@ namespace GTiff2Tiles.Tests.Tests.Images
         [Test]
         public void DivideNullSize1()
         {
-            Size size2 = new Size(1, 1);
+            Size size2 = new(1, 1);
 
             Assert.Throws<ArgumentNullException>(() =>
             {
@@ -304,7 +304,7 @@ namespace GTiff2Tiles.Tests.Tests.Images
         [Test]
         public void DivideNullSize2()
         {
-            Size size1 = new Size(2, 2);
+            Size size1 = new(2, 2);
 
             Assert.Throws<ArgumentNullException>(() => size1.Divide(null));
         }

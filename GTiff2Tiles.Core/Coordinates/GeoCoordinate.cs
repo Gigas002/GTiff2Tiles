@@ -65,12 +65,12 @@ namespace GTiff2Tiles.Core.Coordinates
             Number minCoordNumber = minCoordinate.ToNumber(z, tileSize, tmsCompatible);
             Number maxCoordNumber = maxCoordinate.ToNumber(z, tileSize, tmsCompatible);
 
-            Number minNumber = new Number(Math.Min(minCoordNumber.X, maxCoordNumber.X),
-                                          Math.Min(minCoordNumber.Y, maxCoordNumber.Y),
-                                          minCoordNumber.Z);
-            Number maxNumber = new Number(Math.Max(minCoordNumber.X, maxCoordNumber.X),
-                                          Math.Max(minCoordNumber.Y, maxCoordNumber.Y),
-                                          maxCoordNumber.Z);
+            Number minNumber = new(Math.Min(minCoordNumber.X, maxCoordNumber.X),
+                                   Math.Min(minCoordNumber.Y, maxCoordNumber.Y),
+                                   minCoordNumber.Z);
+            Number maxNumber = new(Math.Max(minCoordNumber.X, maxCoordNumber.X),
+                                   Math.Max(minCoordNumber.Y, maxCoordNumber.Y),
+                                   maxCoordNumber.Z);
 
             return (minNumber, maxNumber);
         }

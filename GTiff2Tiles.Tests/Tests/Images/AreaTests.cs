@@ -20,7 +20,7 @@ namespace GTiff2Tiles.Tests.Tests.Images
 
         private const CoordinateSystem Cs4326 = CoordinateSystem.Epsg4326;
 
-        private readonly Size _in4326Size = new Size(4473, 3511);
+        private readonly Size _in4326Size = new(4473, 3511);
 
         #endregion
 
@@ -29,28 +29,28 @@ namespace GTiff2Tiles.Tests.Tests.Images
         [Test]
         public void CreateAreaNormal()
         {
-            PixelCoordinate coord = new PixelCoordinate(0.0, 0.0);
+            PixelCoordinate coord = new(0.0, 0.0);
 
             Assert.DoesNotThrow(() =>
             {
-                Area area = new Area(coord, Tile.DefaultSize);
+                Area area = new(coord, Tile.DefaultSize);
             });
         }
 
         [Test]
         public void CreateAreaNullCoordinate() => Assert.Throws<ArgumentNullException>(() =>
         {
-            Area area = new Area(null, Tile.DefaultSize);
+            Area area = new(null, Tile.DefaultSize);
         });
 
         [Test]
         public void CreateAreaNullSize()
         {
-            PixelCoordinate coord = new PixelCoordinate(0.0, 0.0);
+            PixelCoordinate coord = new(0.0, 0.0);
 
             Assert.Throws<ArgumentNullException>(() =>
             {
-                Area area = new Area(coord, null);
+                Area area = new(coord, null);
             });
         }
 
@@ -61,9 +61,9 @@ namespace GTiff2Tiles.Tests.Tests.Images
         [Test]
         public void GetProperties()
         {
-            PixelCoordinate coord = new PixelCoordinate(0.0, 0.0);
+            PixelCoordinate coord = new(0.0, 0.0);
 
-            Area area = new Area(coord, Tile.DefaultSize);
+            Area area = new(coord, Tile.DefaultSize);
 
             Assert.DoesNotThrow(() =>
             {
@@ -81,17 +81,17 @@ namespace GTiff2Tiles.Tests.Tests.Images
         [Test]
         public void GetAreasCoordsNormal()
         {
-            GeodeticCoordinate minImgCoord = new GeodeticCoordinate(139.74999904632568, 35.61293363571167);
-            GeodeticCoordinate maxImgCoord = new GeodeticCoordinate(139.8459792137146, 35.688271522521973);
+            GeodeticCoordinate minImgCoord = new(139.74999904632568, 35.61293363571167);
+            GeodeticCoordinate maxImgCoord = new(139.8459792137146, 35.688271522521973);
 
-            GeodeticCoordinate minTileCoord = new GeodeticCoordinate(139.74609375, 35.68359375);
-            GeodeticCoordinate maxTileCoord = new GeodeticCoordinate(139.921875, 35.859375);
+            GeodeticCoordinate minTileCoord = new(139.74609375, 35.68359375);
+            GeodeticCoordinate maxTileCoord = new(139.921875, 35.859375);
             Size tileSize = Tile.DefaultSize;
 
-            PixelCoordinate expectedReadCoord = new PixelCoordinate(0.0, 0.0);
-            PixelCoordinate expectedWriteCoord = new PixelCoordinate(5.6875, 249.1875);
-            Size expectedReadSize = new Size(4473, 218);
-            Size expectedWriteSize = new Size(140, 7);
+            PixelCoordinate expectedReadCoord = new(0.0, 0.0);
+            PixelCoordinate expectedWriteCoord = new(5.6875, 249.1875);
+            Size expectedReadSize = new(4473, 218);
+            Size expectedWriteSize = new(140, 7);
 
             Area calcReadArea = null;
             Area calcWriteArea = null;
@@ -104,11 +104,11 @@ namespace GTiff2Tiles.Tests.Tests.Images
         [Test]
         public void GetAreasCoordsNullMinImgCoord()
         {
-            GeodeticCoordinate maxImgCoord = new GeodeticCoordinate(1.0, 1.0);
-            Size imgSize = new Size(10, 10);
+            GeodeticCoordinate maxImgCoord = new(1.0, 1.0);
+            Size imgSize = new(10, 10);
 
-            GeodeticCoordinate minTileCoord = new GeodeticCoordinate(0.0, 0.0);
-            GeodeticCoordinate maxTileCoord = new GeodeticCoordinate(0.0, 0.0);
+            GeodeticCoordinate minTileCoord = new(0.0, 0.0);
+            GeodeticCoordinate maxTileCoord = new(0.0, 0.0);
             Size tileSize = Tile.DefaultSize;
 
             Assert.Throws<ArgumentNullException>(() =>
@@ -121,11 +121,11 @@ namespace GTiff2Tiles.Tests.Tests.Images
         [Test]
         public void GetAreasCoordsNullMaxImgCoord()
         {
-            GeodeticCoordinate minImgCoord = new GeodeticCoordinate(0.0, 0.0);
-            Size imgSize = new Size(10, 10);
+            GeodeticCoordinate minImgCoord = new(0.0, 0.0);
+            Size imgSize = new(10, 10);
 
-            GeodeticCoordinate minTileCoord = new GeodeticCoordinate(0.0, 0.0);
-            GeodeticCoordinate maxTileCoord = new GeodeticCoordinate(1.0, 1.0);
+            GeodeticCoordinate minTileCoord = new(0.0, 0.0);
+            GeodeticCoordinate maxTileCoord = new(1.0, 1.0);
             Size tileSize = Tile.DefaultSize;
 
             Assert.Throws<ArgumentNullException>(() =>
@@ -138,12 +138,12 @@ namespace GTiff2Tiles.Tests.Tests.Images
         [Test]
         public void GetAreasCoordsImgMinEqualsMax()
         {
-            GeodeticCoordinate minImgCoord = new GeodeticCoordinate(0.0, 0.0);
+            GeodeticCoordinate minImgCoord = new(0.0, 0.0);
             GeodeticCoordinate maxImgCoord = minImgCoord;
-            Size imgSize = new Size(10, 10);
+            Size imgSize = new(10, 10);
 
-            GeodeticCoordinate minTileCoord = new GeodeticCoordinate(0.0, 0.0);
-            GeodeticCoordinate maxTileCoord = new GeodeticCoordinate(1.0, 1.0);
+            GeodeticCoordinate minTileCoord = new(0.0, 0.0);
+            GeodeticCoordinate maxTileCoord = new(1.0, 1.0);
             Size tileSize = Tile.DefaultSize;
 
             Assert.Throws<ArgumentException>(() =>
@@ -156,11 +156,11 @@ namespace GTiff2Tiles.Tests.Tests.Images
         [Test]
         public void GetAreasCoordsNullImgSize()
         {
-            GeodeticCoordinate minImgCoord = new GeodeticCoordinate(0.0, 0.0);
-            GeodeticCoordinate maxImgCoord = new GeodeticCoordinate(1.0, 1.0);
+            GeodeticCoordinate minImgCoord = new(0.0, 0.0);
+            GeodeticCoordinate maxImgCoord = new(1.0, 1.0);
 
-            GeodeticCoordinate minTileCoord = new GeodeticCoordinate(0.0, 0.0);
-            GeodeticCoordinate maxTileCoord = new GeodeticCoordinate(0.0, 0.0);
+            GeodeticCoordinate minTileCoord = new(0.0, 0.0);
+            GeodeticCoordinate maxTileCoord = new(0.0, 0.0);
             Size tileSize = Tile.DefaultSize;
 
             Assert.Throws<ArgumentNullException>(() =>
@@ -173,11 +173,11 @@ namespace GTiff2Tiles.Tests.Tests.Images
         [Test]
         public void GetAreasCoordsNullMinTileCoord()
         {
-            GeodeticCoordinate minImgCoord = new GeodeticCoordinate(0.0, 0.0);
-            GeodeticCoordinate maxImgCoord = new GeodeticCoordinate(1.0, 1.0);
-            Size imgSize = new Size(10, 10);
+            GeodeticCoordinate minImgCoord = new(0.0, 0.0);
+            GeodeticCoordinate maxImgCoord = new(1.0, 1.0);
+            Size imgSize = new(10, 10);
 
-            GeodeticCoordinate maxTileCoord = new GeodeticCoordinate(1.0, 1.0);
+            GeodeticCoordinate maxTileCoord = new(1.0, 1.0);
             Size tileSize = Tile.DefaultSize;
 
             Assert.Throws<ArgumentNullException>(() =>
@@ -190,11 +190,11 @@ namespace GTiff2Tiles.Tests.Tests.Images
         [Test]
         public void GetAreasCoordsNullMaxTileCoord()
         {
-            GeodeticCoordinate minImgCoord = new GeodeticCoordinate(0.0, 0.0);
-            GeodeticCoordinate maxImgCoord = new GeodeticCoordinate(1.0, 1.0);
-            Size imgSize = new Size(10, 10);
+            GeodeticCoordinate minImgCoord = new(0.0, 0.0);
+            GeodeticCoordinate maxImgCoord = new(1.0, 1.0);
+            Size imgSize = new(10, 10);
 
-            GeodeticCoordinate minTileCoord = new GeodeticCoordinate(0.0, 0.0);
+            GeodeticCoordinate minTileCoord = new(0.0, 0.0);
             Size tileSize = Tile.DefaultSize;
 
             Assert.Throws<ArgumentNullException>(() =>
@@ -207,11 +207,11 @@ namespace GTiff2Tiles.Tests.Tests.Images
         [Test]
         public void GetAreasCoordsTileMinEqualsMax()
         {
-            GeodeticCoordinate minImgCoord = new GeodeticCoordinate(0.0, 0.0);
-            GeodeticCoordinate maxImgCoord = new GeodeticCoordinate(1.0, 1.0);
-            Size imgSize = new Size(10, 10);
+            GeodeticCoordinate minImgCoord = new(0.0, 0.0);
+            GeodeticCoordinate maxImgCoord = new(1.0, 1.0);
+            Size imgSize = new(10, 10);
 
-            GeodeticCoordinate minTileCoord = new GeodeticCoordinate(0.0, 0.0);
+            GeodeticCoordinate minTileCoord = new(0.0, 0.0);
             GeodeticCoordinate maxTileCoord = minTileCoord;
             Size tileSize = Tile.DefaultSize;
 
@@ -225,12 +225,12 @@ namespace GTiff2Tiles.Tests.Tests.Images
         [Test]
         public void GetAreasCoordsNullTileSize()
         {
-            GeodeticCoordinate minImgCoord = new GeodeticCoordinate(0.0, 0.0);
-            GeodeticCoordinate maxImgCoord = new GeodeticCoordinate(1.0, 1.0);
-            Size imgSize = new Size(10, 10);
+            GeodeticCoordinate minImgCoord = new(0.0, 0.0);
+            GeodeticCoordinate maxImgCoord = new(1.0, 1.0);
+            Size imgSize = new(10, 10);
 
-            GeodeticCoordinate minTileCoord = new GeodeticCoordinate(0.0, 0.0);
-            GeodeticCoordinate maxTileCoord = new GeodeticCoordinate(1.0, 1.0);
+            GeodeticCoordinate minTileCoord = new(0.0, 0.0);
+            GeodeticCoordinate maxTileCoord = new(1.0, 1.0);
 
             Assert.Throws<ArgumentNullException>(() =>
             {
@@ -251,10 +251,10 @@ namespace GTiff2Tiles.Tests.Tests.Images
             using ITile tile = new RasterTile(Locations.TokyoGeodeticTmsNumber,
                                         image.GeoCoordinateSystem, tmsCompatible: true);
 
-            PixelCoordinate expectedReadCoord = new PixelCoordinate(0.0, 218.0);
-            PixelCoordinate expectedWriteCoord = new PixelCoordinate(5.6875, 0.0);
-            Size expectedReadSize = new Size(4473, 3293);
-            Size expectedWriteSize = new Size(140, 102);
+            PixelCoordinate expectedReadCoord = new(0.0, 218.0);
+            PixelCoordinate expectedWriteCoord = new(5.6875, 0.0);
+            Size expectedReadSize = new(4473, 3293);
+            Size expectedWriteSize = new(140, 102);
 
             Area calcReadArea = null;
             Area calcWriteArea = null;
@@ -267,7 +267,7 @@ namespace GTiff2Tiles.Tests.Tests.Images
         [Test]
         public void GetAreasGeoTiffNullImage()
         {
-            Number number = new Number(0, 0, 0);
+            Number number = new(0, 0, 0);
             using ITile tile = new RasterTile(number, Cs4326, tmsCompatible: true);
 
             Assert.Throws<ArgumentNullException>(() => Area.GetAreas(null, tile));

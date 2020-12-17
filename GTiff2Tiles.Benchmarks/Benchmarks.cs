@@ -63,7 +63,7 @@ namespace GTiff2Tiles.Benchmarks
             Directory.CreateDirectory($"{Data}/{In}");
             File.Copy($"../../../../{Data}/{In}/{Itif}", path, true);
 
-            using Raster raster = new Raster(path, CoordinateSystem.Epsg4326);
+            using Raster raster = new(path, CoordinateSystem.Epsg4326);
             raster.WriteTilesToDirectory($"{Data}/{GetOutDirectory(GTiff2TilesOut)}", MinZ, MaxZ,
                                          false, Tile.DefaultSize, TileExtension.Png, Interpolation.Cubic, 4, threadsCount: _tc);
         }

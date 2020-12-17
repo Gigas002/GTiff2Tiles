@@ -20,31 +20,31 @@ namespace GTiff2Tiles.Tests.Tests.Coordinates
         public void CreateMercatorCoordinateNormal() => Assert.DoesNotThrow(() =>
         {
             MercatorCoordinate coord =
-                new MercatorCoordinate(Locations.TokyoMercatorLongitude, Locations.TokyoMercatorLatitude);
+                new(Locations.TokyoMercatorLongitude, Locations.TokyoMercatorLatitude);
         });
 
         [Test]
         public void CreateMercatorCoordinateSmallLon() => Assert.Throws<ArgumentOutOfRangeException>(() =>
         {
-            MercatorCoordinate coord = new MercatorCoordinate(-20046377.0, Locations.TokyoMercatorLatitude);
+            MercatorCoordinate coord = new(-20046377.0, Locations.TokyoMercatorLatitude);
         });
 
         [Test]
         public void CreateMercatorCoordinateBigLon() => Assert.Throws<ArgumentOutOfRangeException>(() =>
         {
-            MercatorCoordinate coord = new MercatorCoordinate(20046377.0, Locations.TokyoMercatorLatitude);
+            MercatorCoordinate coord = new(20046377.0, Locations.TokyoMercatorLatitude);
         });
 
         [Test]
         public void CreateMercatorCoordinateSmallLat() => Assert.Throws<ArgumentOutOfRangeException>(() =>
         {
-            MercatorCoordinate coord = new MercatorCoordinate(Locations.TokyoMercatorLongitude, -20048967.0);
+            MercatorCoordinate coord = new(Locations.TokyoMercatorLongitude, -20048967.0);
         });
 
         [Test]
         public void CreateMercatorCoordinateBigLat() => Assert.Throws<ArgumentOutOfRangeException>(() =>
         {
-            MercatorCoordinate coord = new MercatorCoordinate(Locations.TokyoMercatorLongitude, 20048967.0);
+            MercatorCoordinate coord = new(Locations.TokyoMercatorLongitude, 20048967.0);
         });
 
         #endregion
@@ -55,7 +55,7 @@ namespace GTiff2Tiles.Tests.Tests.Coordinates
         public void GetProperties() => Assert.DoesNotThrow(() =>
         {
             MercatorCoordinate coord =
-                new MercatorCoordinate(Locations.TokyoMercatorLongitude, Locations.TokyoMercatorLatitude);
+                new(Locations.TokyoMercatorLongitude, Locations.TokyoMercatorLatitude);
             double val = MercatorCoordinate.MinPossibleLonValue;
             val = MercatorCoordinate.MaxPossibleLonValue;
             val = MercatorCoordinate.MinPossibleLatValue;
@@ -121,7 +121,7 @@ namespace GTiff2Tiles.Tests.Tests.Coordinates
         [Test]
         public void ResolutionNotSquareTileSize() => Assert.Throws<ArgumentException>(() =>
         {
-            Size size = new Size(10, 20);
+            Size size = new(10, 20);
             double res = MercatorCoordinate.Resolution(10, size);
         });
 

@@ -116,7 +116,7 @@ namespace GTiff2Tiles.Console
             try
             {
                 Parser.Default.ParseArguments<Options>(args).WithParsed(ParseConsoleOptions)
-                      .WithNotParsed(error => IsParsingErrors = true);
+                      .WithNotParsed(_ => IsParsingErrors = true);
             }
             catch (Exception exception)
             {
@@ -154,7 +154,7 @@ namespace GTiff2Tiles.Console
                     InputFilePath = tempFilePath;
                 }
 
-                await using Raster image = new Raster(InputFilePath, TargetCoordinateSystem, MemCache);
+                await using Raster image = new(InputFilePath, TargetCoordinateSystem, MemCache);
 
                 // Generate tiles
                 await image.WriteTilesToDirectoryAsync(OutputDirectoryPath, MinZ, MaxZ, TmsCompatible,

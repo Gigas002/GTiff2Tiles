@@ -50,9 +50,9 @@ namespace GTiff2Tiles.GUI.ViewModels
 
         #region Backing fields
 
-        private string _message;
+        private readonly string _message;
 
-        private Visibility _cancelButtonVisibility = Visibility.Collapsed;
+        private readonly Visibility _cancelButtonVisibility = Visibility.Collapsed;
 
         #endregion
 
@@ -62,7 +62,7 @@ namespace GTiff2Tiles.GUI.ViewModels
         public string Message
         {
             get => _message;
-            set => SetProperty(ref _message, value);
+            init => SetProperty(ref _message, value);
         }
 
         /// <summary>
@@ -71,7 +71,7 @@ namespace GTiff2Tiles.GUI.ViewModels
         public Visibility CancelButtonVisibility
         {
             get => _cancelButtonVisibility;
-            set => SetProperty(ref _cancelButtonVisibility, value);
+            init => SetProperty(ref _cancelButtonVisibility, value);
         }
 
         #endregion

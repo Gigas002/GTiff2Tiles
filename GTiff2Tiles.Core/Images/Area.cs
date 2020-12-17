@@ -144,13 +144,13 @@ namespace GTiff2Tiles.Core.Images
             writeXSize = writeXSize > 1.0 ? writeXSize : 1.0;
             writeYSize = writeYSize > 1.0 ? writeYSize : 1.0;
 
-            PixelCoordinate readOriginCoordinate = new PixelCoordinate(readPosMinX, readPosMinY);
-            PixelCoordinate writeOriginCoordinate = new PixelCoordinate(writePosMinX, writePosMinY);
-            Size readSize = new Size((int)readXSize, (int)readYSize);
-            Size writeSize = new Size((int)writeXSize, (int)writeYSize);
+            PixelCoordinate readOriginCoordinate = new(readPosMinX, readPosMinY);
+            PixelCoordinate writeOriginCoordinate = new(writePosMinX, writePosMinY);
+            Size readSize = new((int)readXSize, (int)readYSize);
+            Size writeSize = new((int)writeXSize, (int)writeYSize);
 
-            Area readArea = new Area(readOriginCoordinate, readSize);
-            Area writeArea = new Area(writeOriginCoordinate, writeSize);
+            Area readArea = new(readOriginCoordinate, readSize);
+            Area writeArea = new(writeOriginCoordinate, writeSize);
 
             return (readArea, writeArea);
         }

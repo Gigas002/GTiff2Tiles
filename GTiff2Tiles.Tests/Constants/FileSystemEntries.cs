@@ -53,7 +53,7 @@ namespace GTiff2Tiles.Tests.Constants
 
         internal static string OutputDirectoryPath => Path.Combine(ExamplesDirectoryPath, OutputDirectoryName);
 
-        internal static DirectoryInfo OutputDirectoryInfo => new DirectoryInfo(OutputDirectoryPath);
+        internal static DirectoryInfo OutputDirectoryInfo => new(OutputDirectoryPath);
 
         #endregion
     }

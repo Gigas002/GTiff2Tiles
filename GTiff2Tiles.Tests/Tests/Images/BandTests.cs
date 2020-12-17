@@ -29,20 +29,20 @@ namespace GTiff2Tiles.Tests.Tests.Images
         [Test]
         public void CreateBandDefault() => Assert.DoesNotThrow(() =>
         {
-            Band band = new Band();
+            Band band = new();
         });
 
         [Test]
         public void CreateBandWithValue() => Assert.DoesNotThrow(() =>
         {
-            Band band = new Band(128);
+            Band band = new(128);
         });
 
         [Test]
         [Combinatorial]
         public void CreateBandBad([Values(-1, 256)] int value) => Assert.Throws<ArgumentOutOfRangeException>(() =>
         {
-            Band band = new Band(value);
+            Band band = new(value);
         });
 
         #endregion
@@ -52,7 +52,7 @@ namespace GTiff2Tiles.Tests.Tests.Images
         [Test]
         public void GetProperties() => Assert.DoesNotThrow(() =>
         {
-            Band band = new Band();
+            Band band = new();
             int val = band.Value;
             int def = Band.DefaultValue;
         });

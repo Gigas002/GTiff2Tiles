@@ -429,7 +429,7 @@ namespace GTiff2Tiles.Core.GeoTiffs
             // bandsCount checked inside RasterTile ctor
             if (tileCacheCount <= 0) throw new ArgumentOutOfRangeException(nameof(tileCacheCount));
 
-            ParallelOptions parallelOptions = new ParallelOptions();
+            ParallelOptions parallelOptions = new();
             if (threadsCount > 0) parallelOptions.MaxDegreeOfParallelism = threadsCount;
 
             // It's safe to set progress to null
@@ -455,10 +455,10 @@ namespace GTiff2Tiles.Core.GeoTiffs
                 string tileDirectoryPath = Path.Combine(outputDirectoryPath, $"{z}", $"{x}");
                 CheckHelper.CheckDirectory(tileDirectoryPath);
 
-                Number tileNumber = new Number(x, y, z);
-                RasterTile tile = new RasterTile(tileNumber, GeoCoordinateSystem, extension: tileExtension,
-                                                 tmsCompatible: tmsCompatible, size: tileSize,
-                                                 bandsCount: bandsCount, interpolation: interpolation);
+                Number tileNumber = new(x, y, z);
+                RasterTile tile = new(tileNumber, GeoCoordinateSystem, extension: tileExtension,
+                                      tmsCompatible: tmsCompatible, size: tileSize,
+                                      bandsCount: bandsCount, interpolation: interpolation);
 
                 // Important: OpenLayers requires replacement of tileY to tileY+1
                 tile.Path = Path.Combine(tileDirectoryPath, $"{y}{tile.GetExtensionString()}");
@@ -542,7 +542,7 @@ namespace GTiff2Tiles.Core.GeoTiffs
             // bandsCount checked inside RasterTile ctor
             if (tileCacheCount <= 0) throw new ArgumentOutOfRangeException(nameof(tileCacheCount));
 
-            ParallelOptions parallelOptions = new ParallelOptions();
+            ParallelOptions parallelOptions = new();
             if (threadsCount > 0) parallelOptions.MaxDegreeOfParallelism = threadsCount;
 
             // It's safe to set progress to null
@@ -563,9 +563,9 @@ namespace GTiff2Tiles.Core.GeoTiffs
 
             void MakeTile(int x, int y, int z)
             {
-                Number tileNumber = new Number(x, y, z);
-                RasterTile tile = new RasterTile(tileNumber, GeoCoordinateSystem, tmsCompatible: tmsCompatible,
-                    size: tileSize, bandsCount: bandsCount, interpolation: interpolation);
+                Number tileNumber = new(x, y, z);
+                RasterTile tile = new(tileNumber, GeoCoordinateSystem, tmsCompatible: tmsCompatible,
+                                      size: tileSize, bandsCount: bandsCount, interpolation: interpolation);
 
                 // Should not throw exception if tile was skipped
                 // ReSharper disable once AccessToDisposedClosure
@@ -650,9 +650,9 @@ namespace GTiff2Tiles.Core.GeoTiffs
 
             RasterTile MakeTile(int x, int y, int z)
             {
-                Number tileNumber = new Number(x, y, z);
-                RasterTile tile = new RasterTile(tileNumber, GeoCoordinateSystem, tmsCompatible: tmsCompatible,
-                    size: tileSize, bandsCount: bandsCount, interpolation: interpolation);
+                Number tileNumber = new(x, y, z);
+                RasterTile tile = new(tileNumber, GeoCoordinateSystem, tmsCompatible: tmsCompatible,
+                                      size: tileSize, bandsCount: bandsCount, interpolation: interpolation);
 
                 tile.Bytes = WriteTileToEnumerable(tileCache, tile);
 
@@ -797,15 +797,15 @@ namespace GTiff2Tiles.Core.GeoTiffs
             {
                 case CoordinateSystem.Epsg4326:
                 {
-                    GeodeticCoordinate minCoordinate = new GeodeticCoordinate(minX, minY);
-                    GeodeticCoordinate maxCoordinate = new GeodeticCoordinate(maxX, maxY);
+                    GeodeticCoordinate minCoordinate = new(minX, minY);
+                    GeodeticCoordinate maxCoordinate = new(maxX, maxY);
 
                     return (minCoordinate, maxCoordinate);
                 }
                 case CoordinateSystem.Epsg3857:
                 {
-                    MercatorCoordinate minCoordinate = new MercatorCoordinate(minX, minY);
-                    MercatorCoordinate maxCoordinate = new MercatorCoordinate(maxX, maxY);
+                    MercatorCoordinate minCoordinate = new(minX, minY);
+                    MercatorCoordinate maxCoordinate = new(maxX, maxY);
 
                     return (minCoordinate, maxCoordinate);
                 }
@@ -859,15 +859,15 @@ namespace GTiff2Tiles.Core.GeoTiffs
             {
                 case CoordinateSystem.Epsg4326:
                 {
-                    GeodeticCoordinate minCoordinate = new GeodeticCoordinate(minX, minY);
-                    GeodeticCoordinate maxCoordinate = new GeodeticCoordinate(maxX, maxY);
+                    GeodeticCoordinate minCoordinate = new(minX, minY);
+                    GeodeticCoordinate maxCoordinate = new(maxX, maxY);
 
                     return (minCoordinate, maxCoordinate);
                 }
                 case CoordinateSystem.Epsg3857:
                 {
-                    MercatorCoordinate minCoordinate = new MercatorCoordinate(minX, minY);
-                    MercatorCoordinate maxCoordinate = new MercatorCoordinate(maxX, maxY);
+                    MercatorCoordinate minCoordinate = new(minX, minY);
+                    MercatorCoordinate maxCoordinate = new(maxX, maxY);
 
                     return (minCoordinate, maxCoordinate);
                 }
@@ -929,10 +929,10 @@ namespace GTiff2Tiles.Core.GeoTiffs
                     int z1 = z;
                     Parallel.For(minNumber.Y, maxNumber.Y + 1, y =>
                     {
-                        Number number = new Number(x1, y, z1);
+                        Number number = new(x1, y, z1);
 
-                        RasterTile tile = new RasterTile(number, coordinateSystem, tileSize, null, extension,
-                                                         tmsCompatible, bandsCount);
+                        RasterTile tile = new(number, coordinateSystem, tileSize, null, extension,
+                                              tmsCompatible, bandsCount);
                         CreateOverviewTile(ref tile, tiles, isBuffered);
 
                         channelWriter.TryWrite(tile);
@@ -1139,7 +1139,7 @@ namespace GTiff2Tiles.Core.GeoTiffs
 
             Image[] images = new Image[4];
 
-            Size size = new Size(tileSize.Width / 2, tileSize.Height / 2);
+            Size size = new(tileSize.Width / 2, tileSize.Height / 2);
             bool empty = true;
 
             for (int i = 0; i < 4; i++)
@@ -1207,7 +1207,7 @@ namespace GTiff2Tiles.Core.GeoTiffs
 
             Image[] images = new Image[4];
 
-            Size size = new Size(tileSize.Width / 2, tileSize.Height / 2);
+            Size size = new(tileSize.Width / 2, tileSize.Height / 2);
             bool empty = true;
 
             for (int i = 0; i < 4; i++)

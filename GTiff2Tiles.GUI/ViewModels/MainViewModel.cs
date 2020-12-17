@@ -186,7 +186,7 @@ namespace GTiff2Tiles.GUI.ViewModels
         /// <summary>
         /// Collection of supported <see cref="TileExtension"/>s
         /// </summary>
-        public ObservableCollection<TileExtension> TileExtensions { get; } = new ObservableCollection<TileExtension>();
+        public ObservableCollection<TileExtension> TileExtensions { get; } = new();
 
         /// <summary>
         /// Hint for Extensions ComboBox
@@ -212,7 +212,7 @@ namespace GTiff2Tiles.GUI.ViewModels
         /// <summary>
         /// Collection of supprted <see cref="CoordinateSystem"/>s
         /// </summary>
-        public ObservableCollection<CoordinateSystem> CoordinateSystems { get; } = new ObservableCollection<CoordinateSystem>();
+        public ObservableCollection<CoordinateSystem> CoordinateSystems { get; } = new();
 
         #endregion
 
@@ -237,7 +237,7 @@ namespace GTiff2Tiles.GUI.ViewModels
         /// <summary>
         /// Collection of supprted <see cref="Interpolation"/>s
         /// </summary>
-        public ObservableCollection<Interpolation> Interpolations { get; } = new ObservableCollection<Interpolation>();
+        public ObservableCollection<Interpolation> Interpolations { get; } = new();
 
         private int _bandsCount;
 
@@ -307,7 +307,7 @@ namespace GTiff2Tiles.GUI.ViewModels
         /// <summary>
         /// Collection of supported themes
         /// </summary>
-        public ObservableCollection<Theme> Themes { get; } = new ObservableCollection<Theme>();
+        public ObservableCollection<Theme> Themes { get; } = new();
 
         private BaseTheme _baseDialogTheme;
 
@@ -348,7 +348,7 @@ namespace GTiff2Tiles.GUI.ViewModels
         /// <summary>
         /// Ready tiles's size
         /// </summary>
-        public Size TileSize => new Size(TileSideSize, TileSideSize);
+        public Size TileSize => new(TileSideSize, TileSideSize);
 
         #endregion
 
@@ -653,7 +653,7 @@ namespace GTiff2Tiles.GUI.ViewModels
         {
             try
             {
-                OpenDirectoryDialogArguments args = new OpenDirectoryDialogArguments { CreateNewDirectoryEnabled = true };
+                OpenDirectoryDialogArguments args = new() { CreateNewDirectoryEnabled = true };
                 OpenDirectoryDialogResult dialogResult = await OpenDirectoryDialog.ShowDialogAsync(DialogHostId, args).ConfigureAwait(true);
 
                 OutputDirectoryPath = dialogResult.Canceled ? OutputDirectoryPath : dialogResult.Directory;
@@ -672,7 +672,7 @@ namespace GTiff2Tiles.GUI.ViewModels
         {
             try
             {
-                OpenDirectoryDialogArguments args = new OpenDirectoryDialogArguments { CreateNewDirectoryEnabled = true };
+                OpenDirectoryDialogArguments args = new() { CreateNewDirectoryEnabled = true };
                 OpenDirectoryDialogResult dialogResult = await OpenDirectoryDialog.ShowDialogAsync(DialogHostId, args).ConfigureAwait(true);
 
                 TempDirectoryPath = dialogResult.Canceled ? TempDirectoryPath : dialogResult.Directory;
@@ -698,7 +698,7 @@ namespace GTiff2Tiles.GUI.ViewModels
             // Start timer after checks passed
             Stopwatch stopwatch = Stopwatch.StartNew();
             _timer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(1.0) };
-            _timer.Tick += (sender, args) =>
+            _timer.Tick += (_, _) =>
                 TimePassedValue = string.Format(CultureInfo.InvariantCulture, Strings.TimePassedValue, stopwatch.Elapsed.Days,
                                                 stopwatch.Elapsed.Hours, stopwatch.Elapsed.Minutes,
                                                 stopwatch.Elapsed.Seconds);
@@ -730,7 +730,7 @@ namespace GTiff2Tiles.GUI.ViewModels
                     inputFilePath = tempFilePath;
                 }
 
-                await using Raster image = new Raster(inputFilePath, TargetCoordinateSystem);
+                await using Raster image = new(inputFilePath, TargetCoordinateSystem);
 
                 // Generate tiles
                 await image.WriteTilesToDirectoryAsync(OutputDirectoryPath, MinZ, MaxZ, TmsCompatible, TileSize,

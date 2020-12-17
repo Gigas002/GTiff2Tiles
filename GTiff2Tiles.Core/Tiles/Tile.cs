@@ -33,7 +33,7 @@ namespace GTiff2Tiles.Core.Tiles
         /// <remarks><para/>Uses <see cref="DefaultSideSizeValue"/>
         /// as values for width and height</remarks>
         /// </summary>
-        public static readonly Size DefaultSize = new Size(DefaultSideSizeValue, DefaultSideSizeValue);
+        public static readonly Size DefaultSize = new(DefaultSideSizeValue, DefaultSideSizeValue);
 
         /// <inheritdoc />
         public bool IsDisposed { get; private set; }

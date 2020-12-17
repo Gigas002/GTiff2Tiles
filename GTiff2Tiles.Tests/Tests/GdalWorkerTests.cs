@@ -382,7 +382,7 @@ namespace GTiff2Tiles.Tests.Tests
         public void GetImageBordersNormal()
         {
             using Image image = Image.NewFromFile(_in4326);
-            Size size = new Size(image.Width, image.Height);
+            Size size = new(image.Width, image.Height);
             string proj = GdalWorker.GetProjString(_in4326);
             CoordinateSystem cs = GdalWorker.GetCoordinateSystem(proj);
 
@@ -397,7 +397,7 @@ namespace GTiff2Tiles.Tests.Tests
         public void GetImageBordersNullPath()
         {
             using Image image = Image.NewFromFile(_in4326);
-            Size size = new Size(image.Width, image.Height);
+            Size size = new(image.Width, image.Height);
             string proj = GdalWorker.GetProjString(_in4326);
             CoordinateSystem cs = GdalWorker.GetCoordinateSystem(proj);
 
@@ -408,7 +408,7 @@ namespace GTiff2Tiles.Tests.Tests
         public void GetImageBordersNonExistingPath()
         {
             using Image image = Image.NewFromFile(_in4326);
-            Size size = new Size(image.Width, image.Height);
+            Size size = new(image.Width, image.Height);
             string proj = GdalWorker.GetProjString(_in4326);
             CoordinateSystem cs = GdalWorker.GetCoordinateSystem(proj);
 
@@ -428,7 +428,7 @@ namespace GTiff2Tiles.Tests.Tests
         public void GetImageBordersOtherCs()
         {
             using Image image = Image.NewFromFile(_in4326);
-            Size size = new Size(image.Width, image.Height);
+            Size size = new(image.Width, image.Height);
 
             Assert.Throws<NotSupportedException>(() => GdalWorker.GetImageBorders(_in4326, size, CsOther));
         }
@@ -437,7 +437,7 @@ namespace GTiff2Tiles.Tests.Tests
         public void GetImageBordersWrongCs1()
         {
             using Image image = Image.NewFromFile(_in4326);
-            Size size = new Size(image.Width, image.Height);
+            Size size = new(image.Width, image.Height);
 
             Assert.Throws<ArgumentOutOfRangeException>(() =>
             {
@@ -453,7 +453,7 @@ namespace GTiff2Tiles.Tests.Tests
         public void GetImageBordersWrongCs2()
         {
             using Image image = Image.NewFromFile(_in3785);
-            Size size = new Size(image.Width, image.Height);
+            Size size = new(image.Width, image.Height);
 
             Assert.Throws<ArgumentOutOfRangeException>(() =>
             {

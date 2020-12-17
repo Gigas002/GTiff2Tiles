@@ -13,7 +13,7 @@ namespace GTiff2Tiles.Benchmarks
         private static void Main(string[] args)
         {
             Parser.Default.ParseArguments<Options>(args).WithParsed(ParseConsoleOptions)
-                  .WithNotParsed(error => _isParsingErrors = true);
+                  .WithNotParsed(_ => _isParsingErrors = true);
 
             if (_isParsingErrors) return;
 

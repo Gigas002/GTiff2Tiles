@@ -53,7 +53,7 @@ namespace GTiff2Tiles.Core.Coordinates
             int tileX = Convert.ToInt32(Math.Ceiling(X / tileSize.Width) - 1.0);
             int tileY = Convert.ToInt32(Math.Ceiling(Y / tileSize.Height) - 1.0);
 
-            Number result = new Number(tileX, tileY, z);
+            Number result = new(tileX, tileY, z);
             if (!tmsCompatible) result = result.Flip();
 
             return result;

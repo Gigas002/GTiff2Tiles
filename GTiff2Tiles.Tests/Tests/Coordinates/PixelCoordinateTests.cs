@@ -30,19 +30,19 @@ namespace GTiff2Tiles.Tests.Tests.Coordinates
         public void CreatePixelCoordinateNormal() => Assert.DoesNotThrow(() =>
         {
             PixelCoordinate coord =
-                new PixelCoordinate(Locations.TokyoMercatorPixelLongitude, Locations.TokyoMercatorPixelLatitude);
+                new(Locations.TokyoMercatorPixelLongitude, Locations.TokyoMercatorPixelLatitude);
         });
 
         [Test]
         public void CreatePixelCoordinateSmallLon() => Assert.Throws<ArgumentOutOfRangeException>(() =>
         {
-            PixelCoordinate coord = new PixelCoordinate(-1.0, Locations.TokyoMercatorPixelLatitude);
+            PixelCoordinate coord = new(-1.0, Locations.TokyoMercatorPixelLatitude);
         });
 
         [Test]
         public void CreatePixelCoordinateSmallLat() => Assert.Throws<ArgumentOutOfRangeException>(() =>
         {
-            PixelCoordinate coord = new PixelCoordinate(Locations.TokyoMercatorPixelLongitude, -1.0);
+            PixelCoordinate coord = new(Locations.TokyoMercatorPixelLongitude, -1.0);
         });
 
         #endregion
@@ -74,7 +74,7 @@ namespace GTiff2Tiles.Tests.Tests.Coordinates
         [Test]
         public void ToNumberNotSqureTileSize()
         {
-            Size size = new Size(10, 20);
+            Size size = new(10, 20);
 
             Assert.Throws<ArgumentException>(() => Locations.TokyoGeodeticPixelCoordinate
                                                             .ToNumber(10, size, false));
@@ -193,7 +193,7 @@ namespace GTiff2Tiles.Tests.Tests.Coordinates
         [Test]
         public void ToRasterPixelCoordinateNotSquareTileSize()
         {
-            Size size = new Size(10, 20);
+            Size size = new(10, 20);
 
             Assert.Throws<ArgumentException>(() =>
             {
