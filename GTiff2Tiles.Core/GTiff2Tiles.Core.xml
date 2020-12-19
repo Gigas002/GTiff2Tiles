@@ -1581,6 +1581,314 @@
               Looks up a localized string similar to {0} is not supported.
             </summary>
         </member>
+        <member name="T:GTiff2Tiles.Core.TileMapResource.BoundingBox">
+            <summary>
+            TileMap's bounding box
+            </summary>
+        </member>
+        <member name="P:GTiff2Tiles.Core.TileMapResource.BoundingBox.MinX">
+            <summary>
+            Minimal longitude
+            </summary>
+        </member>
+        <member name="P:GTiff2Tiles.Core.TileMapResource.BoundingBox.MinY">
+            <summary>
+            Minimal latitude
+            </summary>
+        </member>
+        <member name="P:GTiff2Tiles.Core.TileMapResource.BoundingBox.MaxX">
+            <summary>
+            Maximal longitude
+            </summary>
+        </member>
+        <member name="P:GTiff2Tiles.Core.TileMapResource.BoundingBox.MaxY">
+            <summary>
+            Maximal latitude
+            </summary>
+        </member>
+        <member name="M:GTiff2Tiles.Core.TileMapResource.BoundingBox.#ctor">
+            <summary>
+            Default constructor
+            </summary>
+        </member>
+        <member name="M:GTiff2Tiles.Core.TileMapResource.BoundingBox.#ctor(System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Initialize new bounding box
+            </summary>
+            <param name="minx">Minimal longitude</param>
+            <param name="miny">Minimal latitude</param>
+            <param name="maxx">Maximal longitude</param>
+            <param name="maxy">Maximal latitude</param>
+        </member>
+        <member name="M:GTiff2Tiles.Core.TileMapResource.BoundingBox.#ctor(GTiff2Tiles.Core.Coordinates.ICoordinate,GTiff2Tiles.Core.Coordinates.ICoordinate)">
+            <summary>
+            Initialize new bounding box
+            </summary>
+            <param name="minCoordinate">Minimal coordinate</param>
+            <param name="maxCoordinate">Maximal coordinate</param>
+            <exception cref="T:System.ArgumentNullException"/>
+        </member>
+        <member name="T:GTiff2Tiles.Core.TileMapResource.Origin">
+            <summary>
+            TileMap's origin
+            </summary>
+        </member>
+        <member name="P:GTiff2Tiles.Core.TileMapResource.Origin.X">
+            <summary>
+            X
+            </summary>
+        </member>
+        <member name="P:GTiff2Tiles.Core.TileMapResource.Origin.Y">
+            <summary>
+            Y
+            </summary>
+        </member>
+        <member name="M:GTiff2Tiles.Core.TileMapResource.Origin.#ctor">
+            <summary>
+            Default constructor
+            </summary>
+        </member>
+        <member name="M:GTiff2Tiles.Core.TileMapResource.Origin.#ctor(System.Double,System.Double)">
+            <summary>
+            Initialize new origin
+            </summary>
+            <param name="x">X</param>
+            <param name="y">Y</param>
+        </member>
+        <member name="M:GTiff2Tiles.Core.TileMapResource.Origin.#ctor(GTiff2Tiles.Core.Coordinates.ICoordinate)">
+            <summary>
+            Initialize new origin
+            </summary>
+            <param name="coordinate">Coordinate</param>
+            <exception cref="T:System.ArgumentNullException"/>
+        </member>
+        <member name="T:GTiff2Tiles.Core.TileMapResource.TileFormat">
+            <summary>
+            TileMap's TileFormat
+            </summary>
+        </member>
+        <member name="F:GTiff2Tiles.Core.TileMapResource.TileFormat.DefaultMimeType">
+            <summary>
+            Default mime type is image
+            </summary>
+        </member>
+        <member name="P:GTiff2Tiles.Core.TileMapResource.TileFormat.Width">
+            <summary>
+            Tile's width
+            </summary>
+        </member>
+        <member name="P:GTiff2Tiles.Core.TileMapResource.TileFormat.Height">
+            <summary>
+            Tile's height
+            </summary>
+        </member>
+        <member name="P:GTiff2Tiles.Core.TileMapResource.TileFormat.MimeType">
+            <summary>
+            Tile's type
+            </summary>
+        </member>
+        <member name="P:GTiff2Tiles.Core.TileMapResource.TileFormat.Extension">
+            <summary>
+            Tile's extension
+            </summary>
+        </member>
+        <member name="M:GTiff2Tiles.Core.TileMapResource.TileFormat.#ctor">
+            <summary>
+            Default constructor
+            </summary>
+        </member>
+        <member name="M:GTiff2Tiles.Core.TileMapResource.TileFormat.#ctor(System.Int32,System.Int32,System.String,System.String)">
+            <summary>
+            Initialize new tile format
+            </summary>
+            <param name="width">Tile's width</param>
+            <param name="height">Tile's height</param>
+            <param name="mimeType">Tile's type</param>
+            <param name="extension">Tile's extension</param>
+        </member>
+        <member name="M:GTiff2Tiles.Core.TileMapResource.TileFormat.#ctor(GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.TileExtension)">
+            <summary>
+            Initialize new tile format with "image/extension" mime type
+            </summary>
+            <param name="size"></param>
+            <param name="tileExtension"></param>
+            <exception cref="T:System.ArgumentNullException"/>
+            <exception cref="T:System.NotSupportedException"/>
+        </member>
+        <member name="T:GTiff2Tiles.Core.TileMapResource.TileMap">
+            <summary>
+            TileMapResource's root
+            </summary>
+        </member>
+        <member name="F:GTiff2Tiles.Core.TileMapResource.TileMap.DefaultVersion">
+            <summary>
+            1.0.0
+            </summary>
+        </member>
+        <member name="F:GTiff2Tiles.Core.TileMapResource.TileMap.DefaultTileMapServiceLink">
+            <summary>
+            http://tms.osgeo.org/1.0.0
+            </summary>
+        </member>
+        <member name="P:GTiff2Tiles.Core.TileMapResource.TileMap.Serializer">
+            <summary>
+            Xml serializer
+            </summary>
+        </member>
+        <member name="P:GTiff2Tiles.Core.TileMapResource.TileMap.Version">
+            <summary>
+            TileMap's standard version
+            </summary>
+        </member>
+        <member name="P:GTiff2Tiles.Core.TileMapResource.TileMap.TileMapServiceLink">
+            <summary>
+            Link to standard
+            </summary>
+        </member>
+        <member name="P:GTiff2Tiles.Core.TileMapResource.TileMap.Srs">
+            <summary>
+            Coordinate system
+            </summary>
+        </member>
+        <member name="P:GTiff2Tiles.Core.TileMapResource.TileMap.BoundingBox">
+            <summary>
+            Bounding box
+            </summary>
+        </member>
+        <member name="P:GTiff2Tiles.Core.TileMapResource.TileMap.Origin">
+            <summary>
+            Origin
+            </summary>
+        </member>
+        <member name="P:GTiff2Tiles.Core.TileMapResource.TileMap.TileFormat">
+            <summary>
+            Tile format
+            </summary>
+        </member>
+        <member name="P:GTiff2Tiles.Core.TileMapResource.TileMap.TileSets">
+            <summary>
+             Tiles sets
+            </summary>
+        </member>
+        <member name="M:GTiff2Tiles.Core.TileMapResource.TileMap.#ctor">
+            <summary>
+            Default constructor
+            </summary>
+        </member>
+        <member name="M:GTiff2Tiles.Core.TileMapResource.TileMap.#ctor(System.String,GTiff2Tiles.Core.TileMapResource.BoundingBox,GTiff2Tiles.Core.TileMapResource.Origin,GTiff2Tiles.Core.TileMapResource.TileFormat,GTiff2Tiles.Core.TileMapResource.TileSets,System.String,System.String)">
+            <summary>
+            Initialize a new tile map
+            </summary>
+            <param name="srs">Coordinate system</param>
+            <param name="boundingBox">Bounding box</param>
+            <param name="origin">Origin</param>
+            <param name="tileFormat">Tile format</param>
+            <param name="tileSets">Tiles sets</param>
+            <param name="version">Standard version
+            <remarks><para/>1.0.0 by default</remarks></param>
+            <param name="tileMapServiceLink">Link to standard
+            <remarks><para/>http://tms.osgeo.org/1.0.0 by default</remarks></param>
+        </member>
+        <member name="M:GTiff2Tiles.Core.TileMapResource.TileMap.#ctor(GTiff2Tiles.Core.Coordinates.ICoordinate,GTiff2Tiles.Core.Coordinates.ICoordinate,GTiff2Tiles.Core.Coordinates.ICoordinate,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.TileExtension,System.Collections.Generic.HashSet{GTiff2Tiles.Core.TileMapResource.TileSet},GTiff2Tiles.Core.Enums.CoordinateSystem,System.String,System.String)">
+            <summary>
+            Initialize a new tile map
+            </summary>
+            <param name="minCoordinate">Minimal coordinate for bounding box</param>
+            <param name="maxCoordinate">Maximal coordinate for bounding box</param>
+            <param name="originCoordinate">Origin coordinate</param>
+            <param name="tileSize">Tile's size</param>
+            <param name="tileExtension">Tile's extension</param>
+            <param name="tileSetCollection">Collection of <see cref="T:GTiff2Tiles.Core.TileMapResource.TileSet"/>s</param>
+            <param name="coordinateSystem">Tile's coordinate system</param>
+            <param name="version">Standard version
+            <remarks><para/>1.0.0 by default</remarks></param>
+            <param name="tileMapServiceLink">Link to standard
+            <remarks><para/>http://tms.osgeo.org/1.0.0 by default</remarks></param>
+            <exception cref="T:System.NotSupportedException"/>
+        </member>
+        <member name="M:GTiff2Tiles.Core.TileMapResource.TileMap.Serialize(System.IO.Stream)">
+            <summary>
+            Serializes this <see cref="T:GTiff2Tiles.Core.TileMapResource.TileMap"/> into <see cref="T:System.IO.Stream"/>
+            </summary>
+            <param name="stream">Target <see cref="T:System.IO.Stream"/></param>
+            <exception cref="T:System.ArgumentNullException"/>
+        </member>
+        <member name="M:GTiff2Tiles.Core.TileMapResource.TileMap.Deserialize(System.IO.Stream)">
+            <summary>
+            Deserializes <see cref="T:GTiff2Tiles.Core.TileMapResource.TileMap"/> from <see cref="T:System.IO.Stream"/>
+            </summary>
+            <param name="stream"><see cref="T:System.IO.Stream"/>, from which the xml is taken</param>
+            <returns>Deserialized <see cref="T:GTiff2Tiles.Core.TileMapResource.TileMap"/></returns>
+            <exception cref="T:System.ArgumentNullException"/>
+        </member>
+        <member name="T:GTiff2Tiles.Core.TileMapResource.TileSet">
+            <summary>
+            TileMap's TileSets's TileSet
+            </summary>
+        </member>
+        <member name="P:GTiff2Tiles.Core.TileMapResource.TileSet.Href">
+            <summary>
+            Link to a zoom
+            </summary>
+        </member>
+        <member name="P:GTiff2Tiles.Core.TileMapResource.TileSet.UnitsPerPixel">
+            <summary>
+            Pixel resolution
+            </summary>
+        </member>
+        <member name="P:GTiff2Tiles.Core.TileMapResource.TileSet.Order">
+            <summary>
+            Zoom
+            </summary>
+        </member>
+        <member name="M:GTiff2Tiles.Core.TileMapResource.TileSet.#ctor">
+            <summary>
+            Default constructor
+            </summary>
+        </member>
+        <member name="M:GTiff2Tiles.Core.TileMapResource.TileSet.#ctor(System.Int32,System.Double,System.Int32)">
+            <summary>
+            Initialize a new tile set
+            </summary>
+            <param name="href">Link to a zoom</param>
+            <param name="unitsPerPixel">Pixel resolution</param>
+            <param name="order">Zoom</param>
+        </member>
+        <member name="T:GTiff2Tiles.Core.TileMapResource.TileSets">
+            <summary>
+            TileMap's TileSets
+            </summary>
+        </member>
+        <member name="P:GTiff2Tiles.Core.TileMapResource.TileSets.TileSetCollection">
+            <summary>
+            Collection of <see cref="T:GTiff2Tiles.Core.TileMapResource.TileSet"/>s
+            </summary>
+        </member>
+        <member name="P:GTiff2Tiles.Core.TileMapResource.TileSets.Profile">
+            <summary>
+            Tile's profile
+            </summary>
+        </member>
+        <member name="M:GTiff2Tiles.Core.TileMapResource.TileSets.#ctor">
+            <summary>
+            Default constructor
+            </summary>
+        </member>
+        <member name="M:GTiff2Tiles.Core.TileMapResource.TileSets.#ctor(System.Collections.Generic.HashSet{GTiff2Tiles.Core.TileMapResource.TileSet},System.String)">
+            <summary>
+            Initialize a new tile sets
+            </summary>
+            <param name="tileSetCollection">Collection of <see cref="T:GTiff2Tiles.Core.TileMapResource.TileSet"/>s</param>
+            <param name="profile">Tile's profle</param>
+        </member>
+        <member name="M:GTiff2Tiles.Core.TileMapResource.TileSets.#ctor(System.Collections.Generic.HashSet{GTiff2Tiles.Core.TileMapResource.TileSet},GTiff2Tiles.Core.Enums.CoordinateSystem)">
+            <summary>
+            Initialize a new tile sets
+            </summary>
+            <param name="tileSetCollection">Collection of <see cref="T:GTiff2Tiles.Core.TileMapResource.TileSet"/>s</param>
+            <param name="coordinateSystem">Tile's <see cref="T:GTiff2Tiles.Core.Enums.CoordinateSystem"/></param>
+            <exception cref="T:System.NotSupportedException"/>
+        </member>
         <member name="T:GTiff2Tiles.Core.Tiles.ITile">
             <summary>
             Interface for all tiles
