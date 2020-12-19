@@ -57,3 +57,5 @@ Project is licensed under [DBAD](LICENSE.html) license.
 ![Icon](images/Icon.png)
 
 Icon is provided by [Google’s material design](https://material.io/tools/icons/?icon=image&style=baseline) and is used in all of **GTiff2Tiles** projects.
+
+Examples GeoTIFFs for Tokyo were downloaded using free & opensource [SAS Planet](http://www.sasgis.org/download/) from [bing maps](https://www.bing.com/maps).
