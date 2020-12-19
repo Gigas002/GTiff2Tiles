@@ -38,6 +38,7 @@ This is a new major release of **GTiff2Tiles**. There are a lot of incompatible 
 - Removed `AnyCPU` builds (*now only x64 configuration available*);
 - Fixed Linux build and apps;
 - Fixed SemVer violations;
+- Perform analysis with **Microsoft.CodeAnalysis.NetAnalyzers** (*included in .net 5.0+ by default*);
 
 ### Core
 
@@ -114,7 +115,6 @@ Only changes in public API are listed.
 - Removed **System.Threading.Tasks.Extensions** package, since project doesn't target *netstandard2.0* anymore;
 - Add **Microsoft.SourceLink.GitHub** package ver. **1.0.0**;
 - Add **BitMiracle.LibTiff.NET** package ver. **2.4.639**;
-- Add **Microsoft.CodeAnalysis.NetAnalyzers** package ver. **5.0.1** (*build from source only*);
 
 **Updated dependencies:**
 
@@ -146,10 +146,6 @@ Read updated [docs](https://gigas002.github.io/GTiff2Tiles/console-index.html) t
 - `-p/--progress` lets you hide the **progress output**;
 - `--timeleft` lets you see the **estimated time left** in output while working;
 - `--tilesize` lets you specify the **size** of tile's images;
-
-**Changed dependencies:**
-
-- Add **Microsoft.CodeAnalysis.NetAnalyzers** package ver. **5.0.1** (*build from source only*);
 
 **Updated dependencies:**
 
@@ -183,7 +179,6 @@ Added the block of additional (*optional*) settings, which lets you to:
 **Changed dependencies:**
 
 - Moved from **Caliburn.Micro** to **Prism.DryIoc** ver. **8.0.0.1909**;
-- Add **Microsoft.CodeAnalysis.NetAnalyzers** package ver. **5.0.1** (*build from source only*);
 
 **Updated dependencies:**
 
@@ -205,7 +200,6 @@ Completely rewritten benchmarks. Now everything's done automatically, though it 
 **New dependencies:**
 
 - **BenchmarkDotNet** ver. **0.12.1**;
-- **Microsoft.CodeAnalysis.NetAnalyzers** package ver. **5.0.1** (*build from source only*);
 
 **Updated dependencies:**
 
@@ -221,7 +215,6 @@ Added **coverlet** dependency to generate code coverage reports.
 
 - **coverlet.collector** ver. **1.3.0**;
 - **coverlet.msbuild** ver. **2.9.0**;
-- Add **Microsoft.CodeAnalysis.NetAnalyzers** package ver. **5.0.1** (*build from source only*);
 
 **Updated dependencies:**
 

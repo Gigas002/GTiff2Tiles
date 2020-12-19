@@ -16,7 +16,3 @@ You can run tests and analyze code coverage by running the [codecov-local.ps1](h
 - [NUnit3TestAdapter](https://www.nuget.org/packages/NUnit3TestAdapter/) – 3.17.0;
 - [coverlet.collector](https://www.nuget.org/packages/coverlet.collector) – 1.3.0;
 - [coverlet.msbuild](https://www.nuget.org/packages/coverlet.msbuild) – 2.9.0;
-
-When building from source, there are more packages needed:
-
-- [Microsoft.CodeAnalysis.NetAnalyzers](https://www.nuget.org/packages/Microsoft.CodeAnalysis.NetAnalyzers) – 5.0.1;

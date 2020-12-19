@@ -27,7 +27,7 @@ Main namespaces are the following:
 
 When building from source, there are more packages needed:
 
-- [Microsoft.CodeAnalysis.NetAnalyzers](https://www.nuget.org/packages/Microsoft.CodeAnalysis.NetAnalyzers) – 5.0.1;
+- [Microsoft.SourceLink.GitHub](https://www.nuget.org/packages/Microsoft.SourceLink.GitHub) – 1.0.0;
 
 ## Offline documentation
 
