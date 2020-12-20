@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Xml.Serialization;
 
-// TODO: tests
-
 namespace GTiff2Tiles.Core.TileMapResource
 {
     /// <summary>
