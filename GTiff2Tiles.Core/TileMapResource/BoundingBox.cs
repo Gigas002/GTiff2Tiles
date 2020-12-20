@@ -2,8 +2,6 @@
 using System.Xml.Serialization;
 using GTiff2Tiles.Core.Coordinates;
 
-// TODO: tests
-
 namespace GTiff2Tiles.Core.TileMapResource
 {
     /// <summary>
