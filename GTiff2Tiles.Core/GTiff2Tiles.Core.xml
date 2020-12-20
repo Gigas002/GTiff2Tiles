@@ -1864,7 +1864,7 @@
             Default constructor
             </summary>
         </member>
-        <member name="M:GTiff2Tiles.Core.TileMapResource.TileSet.#ctor(System.Int32,System.Double,System.Int32)">
+        <member name="M:GTiff2Tiles.Core.TileMapResource.TileSet.#ctor(System.String,System.Double,System.Int32)">
             <summary>
             Initialize a new tile set
             </summary>

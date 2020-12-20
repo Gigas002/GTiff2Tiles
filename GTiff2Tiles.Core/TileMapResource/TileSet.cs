@@ -18,7 +18,7 @@ namespace GTiff2Tiles.Core.TileMapResource
         /// Link to a zoom
         /// </summary>
         [XmlAttribute(AttributeName = "href")]
-        public int Href { get; init; }
+        public string Href { get; init; }
 
         /// <summary>
         /// Pixel resolution
@@ -47,7 +47,7 @@ namespace GTiff2Tiles.Core.TileMapResource
         /// <param name="href">Link to a zoom</param>
         /// <param name="unitsPerPixel">Pixel resolution</param>
         /// <param name="order">Zoom</param>
-        public TileSet(int href, double unitsPerPixel, int order) => (Href, UnitsPerPixel, Order) = (href, unitsPerPixel, order);
+        public TileSet(string href, double unitsPerPixel, int order) => (Href, UnitsPerPixel, Order) = (href, unitsPerPixel, order);
 
         #endregion
     }
