@@ -11,7 +11,7 @@ namespace GTiff2Tiles.Core.TileMapResource
     /// </summary>
     [Serializable]
     [XmlRoot(ElementName = "Origin")]
-    public class Origin
+    public record Origin
     {
         #region Properties
 

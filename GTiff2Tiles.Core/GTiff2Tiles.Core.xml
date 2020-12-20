@@ -1718,6 +1718,7 @@
         <member name="T:GTiff2Tiles.Core.TileMapResource.TileMap">
             <summary>
             TileMapResource's root
+            <remarks><para/>Based on produced by MapTiler tilemapresource.xml</remarks>
             </summary>
         </member>
         <member name="F:GTiff2Tiles.Core.TileMapResource.TileMap.DefaultVersion">
@@ -1789,13 +1790,12 @@
             <param name="tileMapServiceLink">Link to standard
             <remarks><para/>http://tms.osgeo.org/1.0.0 by default</remarks></param>
         </member>
-        <member name="M:GTiff2Tiles.Core.TileMapResource.TileMap.#ctor(GTiff2Tiles.Core.Coordinates.ICoordinate,GTiff2Tiles.Core.Coordinates.ICoordinate,GTiff2Tiles.Core.Coordinates.ICoordinate,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.TileExtension,System.Collections.Generic.HashSet{GTiff2Tiles.Core.TileMapResource.TileSet},GTiff2Tiles.Core.Enums.CoordinateSystem,System.String,System.String)">
+        <member name="M:GTiff2Tiles.Core.TileMapResource.TileMap.#ctor(GTiff2Tiles.Core.Coordinates.ICoordinate,GTiff2Tiles.Core.Coordinates.ICoordinate,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.TileExtension,System.Collections.Generic.HashSet{GTiff2Tiles.Core.TileMapResource.TileSet},GTiff2Tiles.Core.Enums.CoordinateSystem,System.String,System.String,GTiff2Tiles.Core.Coordinates.ICoordinate)">
             <summary>
             Initialize a new tile map
             </summary>
             <param name="minCoordinate">Minimal coordinate for bounding box</param>
             <param name="maxCoordinate">Maximal coordinate for bounding box</param>
-            <param name="originCoordinate">Origin coordinate</param>
             <param name="tileSize">Tile's size</param>
             <param name="tileExtension">Tile's extension</param>
             <param name="tileSetCollection">Collection of <see cref="T:GTiff2Tiles.Core.TileMapResource.TileSet"/>s</param>
@@ -1804,6 +1804,24 @@
             <remarks><para/>1.0.0 by default</remarks></param>
             <param name="tileMapServiceLink">Link to standard
             <remarks><para/>http://tms.osgeo.org/1.0.0 by default</remarks></param>
+            <param name="originCoordinate">Origin coordinate
+            <remarks><para/>-180.0, -90.0 by default</remarks></param>
+            <exception cref="T:System.NotSupportedException"/>
+        </member>
+        <member name="M:GTiff2Tiles.Core.TileMapResource.TileMap.#ctor(GTiff2Tiles.Core.GeoTiffs.IGeoTiff,GTiff2Tiles.Core.Tiles.ITile,System.Collections.Generic.HashSet{GTiff2Tiles.Core.TileMapResource.TileSet},System.String,System.String,GTiff2Tiles.Core.Coordinates.ICoordinate)">
+            <summary>
+            Initialize a new tile map
+            </summary>
+            <param name="geoTiff"><see cref="T:GTiff2Tiles.Core.GeoTiffs.IGeoTiff"/> for which tiles were created</param>
+            <param name="tileInfo">Info about <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>, that were created</param>
+            <param name="tileSetCollection">Collection of <see cref="T:GTiff2Tiles.Core.TileMapResource.TileSet"/>s</param>
+            <param name="version">Standard version
+            <remarks><para/>1.0.0 by default</remarks></param>
+            <param name="tileMapServiceLink">Link to standard
+            <remarks><para/>http://tms.osgeo.org/1.0.0 by default</remarks></param>
+            <param name="originCoordinate">Origin coordinate
+            <remarks><para/>-180.0, -90.0 by default</remarks></param>
+            <exception cref="T:System.ArgumentNullException"/>
             <exception cref="T:System.NotSupportedException"/>
         </member>
         <member name="M:GTiff2Tiles.Core.TileMapResource.TileMap.Serialize(System.IO.Stream)">

@@ -11,7 +11,7 @@ namespace GTiff2Tiles.Core.TileMapResource
     /// </summary>
     [Serializable]
     [XmlRoot(ElementName = "BoundingBox")]
-    public class BoundingBox
+    public record BoundingBox
     {
         #region Properties
 

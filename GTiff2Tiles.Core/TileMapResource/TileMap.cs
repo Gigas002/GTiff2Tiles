@@ -20,7 +20,7 @@ namespace GTiff2Tiles.Core.TileMapResource
     /// </summary>
     [Serializable]
     [XmlRoot(ElementName = "TileMap")]
-    public class TileMap
+    public record TileMap
     {
         #region Properties
 

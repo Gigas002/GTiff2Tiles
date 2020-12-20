@@ -13,7 +13,7 @@ namespace GTiff2Tiles.Core.TileMapResource
     /// </summary>
     [Serializable]
     [XmlRoot(ElementName = "TileSets")]
-    public class TileSets
+    public record TileSets
     {
         #region Properties
 
