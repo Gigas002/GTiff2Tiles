@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using GTiff2Tiles.Core.Coordinates;
 using GTiff2Tiles.Core.Enums;
+using GTiff2Tiles.Core.Images;
 using GTiff2Tiles.Core.TileMapResource;
 using NUnit.Framework;
 
@@ -76,6 +79,12 @@ namespace GTiff2Tiles.Tests.Tests.TileMapResources
 
         [Test]
         public void TileSetsBadCs() => Assert.Throws<NotSupportedException>(() => _ = new TileSets(TileSetCollection, CoordinateSystem.Other));
+
+        #endregion
+
+        #region Methods
+
+        
 
         #endregion
     }

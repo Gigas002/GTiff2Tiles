@@ -1907,6 +1907,16 @@
             <param name="coordinateSystem">Tile's <see cref="T:GTiff2Tiles.Core.Enums.CoordinateSystem"/></param>
             <exception cref="T:System.NotSupportedException"/>
         </member>
+        <member name="M:GTiff2Tiles.Core.TileMapResource.TileSets.GenerateTileSetCollection(System.Int32,System.Int32,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.CoordinateSystem)">
+            <summary>
+            Generates collection of <see cref="T:GTiff2Tiles.Core.TileMapResource.TileSet"/>s
+            </summary>
+            <param name="minZ">Minimal zoom in collection</param>
+            <param name="maxZ">Maximal zoom in collection</param>
+            <param name="tileSize">Tile's size</param>
+            <param name="coordinateSystem">Tile's coordinate system</param>
+            <returns>Collection of <see cref="T:GTiff2Tiles.Core.TileMapResource.TileSet"/>s</returns>
+        </member>
         <member name="T:GTiff2Tiles.Core.Tiles.ITile">
             <summary>
             Interface for all tiles
