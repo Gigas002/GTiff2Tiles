@@ -4,8 +4,6 @@ using GTiff2Tiles.Core.Enums;
 using GTiff2Tiles.Core.Images;
 using GTiff2Tiles.Core.Localization;
 
-// TODO: tests
-
 namespace GTiff2Tiles.Core.TileMapResource
 {
     /// <summary>
