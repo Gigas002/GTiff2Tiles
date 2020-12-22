@@ -6,8 +6,6 @@ using GTiff2Tiles.Core.Enums;
 using GTiff2Tiles.Core.Images;
 using GTiff2Tiles.Core.Localization;
 
-// TODO: test for GenerateTileSetCollection method
-
 namespace GTiff2Tiles.Core.TileMapResource
 {
     /// <summary>

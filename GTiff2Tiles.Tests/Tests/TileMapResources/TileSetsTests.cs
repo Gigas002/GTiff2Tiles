@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using GTiff2Tiles.Core.Coordinates;
 using GTiff2Tiles.Core.Enums;
 using GTiff2Tiles.Core.Images;
 using GTiff2Tiles.Core.TileMapResource;
@@ -84,7 +82,16 @@ namespace GTiff2Tiles.Tests.Tests.TileMapResources
 
         #region Methods
 
-        
+        [Test]
+        public void GenerateCollection()
+        {
+            const int minZ = 0;
+            const int maxZ = 18;
+            Size tileSize = new(256, 256);
+            const CoordinateSystem cs = CoordinateSystem.Epsg4326;
+
+            Assert.DoesNotThrow(() => _ = TileSets.GenerateTileSetCollection(minZ, maxZ, tileSize, cs));
+        }
 
         #endregion
     }
