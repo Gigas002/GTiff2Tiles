@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<TileMap xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" version="1.0.1" tilemapservice="http://tms.osgeo.org/1.0.1">
+  <SRS>EPSG:4326</SRS>
+  <BoundingBox minx="139.746094" miny="35.507812" maxx="139.921875" maxy="35.683594" />
+  <Origin x="-180" y="-90" />
+  <TileFormat width="256" height="256" mime-type="image/png" extension="png" />
+  <TileSets profile="geodetic">
+    <TileSet href="0" units-per-pixel="0.703125" order="0" />
+    <TileSet href="1" units-per-pixel="0.3515625" order="1" />
+    <TileSet href="2" units-per-pixel="0.17578125" order="2" />
+    <TileSet href="3" units-per-pixel="0.087890625" order="3" />
+    <TileSet href="4" units-per-pixel="0.0439453125" order="4" />
+    <TileSet href="5" units-per-pixel="0.02197265625" order="5" />
+    <TileSet href="6" units-per-pixel="0.010986328125" order="6" />
+    <TileSet href="7" units-per-pixel="0.0054931640625" order="7" />
+    <TileSet href="8" units-per-pixel="0.00274658203125" order="8" />
+    <TileSet href="9" units-per-pixel="0.001373291015625" order="9" />
+    <TileSet href="10" units-per-pixel="0.0006866455078125" order="10" />
+    <TileSet href="11" units-per-pixel="0.00034332275390625" order="11" />
+    <TileSet href="12" units-per-pixel="0.000171661376953125" order="12" />
+    <TileSet href="13" units-per-pixel="8.58306884765625E-05" order="13" />
+    <TileSet href="14" units-per-pixel="4.291534423828125E-05" order="14" />
+    <TileSet href="15" units-per-pixel="2.1457672119140625E-05" order="15" />
+    <TileSet href="16" units-per-pixel="1.0728836059570312E-05" order="16" />
+    <TileSet href="17" units-per-pixel="5.364418029785156E-06" order="17" />
+    <TileSet href="18" units-per-pixel="2.682209014892578E-06" order="18" />
+  </TileSets>
+</TileMap>
