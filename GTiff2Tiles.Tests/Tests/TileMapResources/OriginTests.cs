@@ -10,7 +10,7 @@ namespace GTiff2Tiles.Tests.Tests.TileMapResources
     {
         #region Consts
 
-        private static readonly ICoordinate OriginCoordinate = new GeodeticCoordinate(-180.0, -90.0);
+        private readonly ICoordinate _originCoordinate = new GeodeticCoordinate(-180.0, -90.0);
 
         #endregion
 
@@ -24,10 +24,10 @@ namespace GTiff2Tiles.Tests.Tests.TileMapResources
         {
             Origin origin = null;
 
-            Assert.DoesNotThrow(() => origin = new(OriginCoordinate.X, OriginCoordinate.Y));
+            Assert.DoesNotThrow(() => origin = new(_originCoordinate.X, _originCoordinate.Y));
 
-            Assert.True(Math.Abs(origin.X - OriginCoordinate.X) < double.Epsilon &&
-                        Math.Abs(origin.Y - OriginCoordinate.Y) < double.Epsilon);
+            Assert.True(Math.Abs(origin.X - _originCoordinate.X) < double.Epsilon &&
+                        Math.Abs(origin.Y - _originCoordinate.Y) < double.Epsilon);
         }
 
         [Test]
@@ -35,10 +35,10 @@ namespace GTiff2Tiles.Tests.Tests.TileMapResources
         {
             Origin origin = null;
 
-            Assert.DoesNotThrow(() => origin = new(OriginCoordinate));
+            Assert.DoesNotThrow(() => origin = new(_originCoordinate));
 
-            Assert.True(Math.Abs(origin.X - OriginCoordinate.X) < double.Epsilon &&
-                        Math.Abs(origin.Y - OriginCoordinate.Y) < double.Epsilon);
+            Assert.True(Math.Abs(origin.X - _originCoordinate.X) < double.Epsilon &&
+                        Math.Abs(origin.Y - _originCoordinate.Y) < double.Epsilon);
         }
 
         [Test]

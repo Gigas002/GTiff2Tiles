@@ -11,9 +11,9 @@ namespace GTiff2Tiles.Tests.Tests.TileMapResources
     {
         #region Consts
 
-        private static readonly ICoordinate TokyoGeodeticMin = Locations.TokyoGeodeticMin;
+        private readonly ICoordinate _tokyoGeodeticMin = Locations.TokyoGeodeticMin;
 
-        private static readonly ICoordinate TokyoGeodeticMax = Locations.TokyoGeodeticMax;
+        private readonly ICoordinate _tokyoGeodeticMax = Locations.TokyoGeodeticMax;
 
         #endregion
 
@@ -27,14 +27,14 @@ namespace GTiff2Tiles.Tests.Tests.TileMapResources
         {
             BoundingBox boundingBox = null;
 
-            Assert.DoesNotThrow(() => boundingBox = new(TokyoGeodeticMin.X, TokyoGeodeticMin.Y, TokyoGeodeticMax.X,
-                                                        TokyoGeodeticMax.Y));
+            Assert.DoesNotThrow(() => boundingBox = new(_tokyoGeodeticMin.X, _tokyoGeodeticMin.Y, _tokyoGeodeticMax.X,
+                                                        _tokyoGeodeticMax.Y));
 
-            Assert.True(Math.Abs(boundingBox.MinX - TokyoGeodeticMin.X) < double.Epsilon &&
-                        Math.Abs(boundingBox.MinY - TokyoGeodeticMin.Y) < double.Epsilon);
+            Assert.True(Math.Abs(boundingBox.MinX - _tokyoGeodeticMin.X) < double.Epsilon &&
+                        Math.Abs(boundingBox.MinY - _tokyoGeodeticMin.Y) < double.Epsilon);
 
-            Assert.True(Math.Abs(boundingBox.MaxX - TokyoGeodeticMax.X) < double.Epsilon &&
-                        Math.Abs(boundingBox.MaxY - TokyoGeodeticMax.Y) < double.Epsilon);
+            Assert.True(Math.Abs(boundingBox.MaxX - _tokyoGeodeticMax.X) < double.Epsilon &&
+                        Math.Abs(boundingBox.MaxY - _tokyoGeodeticMax.Y) < double.Epsilon);
         }
 
         [Test]
@@ -42,20 +42,20 @@ namespace GTiff2Tiles.Tests.Tests.TileMapResources
         {
             BoundingBox boundingBox = null;
 
-            Assert.DoesNotThrow(() => boundingBox = new(TokyoGeodeticMin, TokyoGeodeticMax));
+            Assert.DoesNotThrow(() => boundingBox = new(_tokyoGeodeticMin, _tokyoGeodeticMax));
 
-            Assert.True(Math.Abs(boundingBox.MinX - TokyoGeodeticMin.X) < double.Epsilon &&
-                        Math.Abs(boundingBox.MinY - TokyoGeodeticMin.Y) < double.Epsilon);
+            Assert.True(Math.Abs(boundingBox.MinX - _tokyoGeodeticMin.X) < double.Epsilon &&
+                        Math.Abs(boundingBox.MinY - _tokyoGeodeticMin.Y) < double.Epsilon);
 
-            Assert.True(Math.Abs(boundingBox.MaxX - TokyoGeodeticMax.X) < double.Epsilon &&
-                        Math.Abs(boundingBox.MaxY - TokyoGeodeticMax.Y) < double.Epsilon);
+            Assert.True(Math.Abs(boundingBox.MaxX - _tokyoGeodeticMax.X) < double.Epsilon &&
+                        Math.Abs(boundingBox.MaxY - _tokyoGeodeticMax.Y) < double.Epsilon);
         }
 
         [Test]
-        public void FromCoordinatesBad1() => Assert.Throws<ArgumentNullException>(() => _ = new BoundingBox(null, TokyoGeodeticMax));
+        public void FromCoordinatesBad1() => Assert.Throws<ArgumentNullException>(() => _ = new BoundingBox(null, _tokyoGeodeticMax));
 
         [Test]
-        public void FromCoordinatesBad2() => Assert.Throws<ArgumentNullException>(() => _ = new BoundingBox(TokyoGeodeticMin, null));
+        public void FromCoordinatesBad2() => Assert.Throws<ArgumentNullException>(() => _ = new BoundingBox(_tokyoGeodeticMin, null));
 
         #endregion
     }

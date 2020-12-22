@@ -17,13 +17,19 @@ namespace GTiff2Tiles.Tests.Tests.TileMapResources
 
         private const string JpegMimeType = "image/jpeg";
 
-        private const string PngExtension = "png";
+        private const string PngExtensionString = "png";
 
-        private const string WebpExtension = "webp";
+        private const string WebpExtensionString = "webp";
 
-        private const string JpgExtension = "jpg";
+        private const string JpgExtensionString = "jpg";
 
-        private static readonly Size TileSize = new(256, 256);
+        private readonly Size _tileSize = new(256, 256);
+
+        private const TileExtension PngExtension = TileExtension.Png;
+
+        private const TileExtension JpgExtension = TileExtension.Jpg;
+
+        private const TileExtension WebpExtension = TileExtension.Webp;
 
         #endregion
 
@@ -37,11 +43,11 @@ namespace GTiff2Tiles.Tests.Tests.TileMapResources
         {
             TileFormat tileFormat = null;
 
-            Assert.DoesNotThrow(() => tileFormat = new TileFormat(TileSize.Width, TileSize.Height, PngMimeType, PngExtension));
+            Assert.DoesNotThrow(() => tileFormat = new TileFormat(_tileSize.Width, _tileSize.Height, PngMimeType, PngExtensionString));
 
-            Assert.True(tileFormat.Width == TileSize.Width && tileFormat.Height == TileSize.Height);
+            Assert.True(tileFormat.Width == _tileSize.Width && tileFormat.Height == _tileSize.Height);
             Assert.True(tileFormat.MimeType.Equals(PngMimeType, StringComparison.Ordinal));
-            Assert.True(tileFormat.Extension.Equals(PngExtension, StringComparison.Ordinal));
+            Assert.True(tileFormat.Extension.Equals(PngExtensionString, StringComparison.Ordinal));
         }
 
         [Test]
@@ -49,11 +55,11 @@ namespace GTiff2Tiles.Tests.Tests.TileMapResources
         {
             TileFormat tileFormat = null;
 
-            Assert.DoesNotThrow(() => tileFormat = new TileFormat(TileSize, TileExtension.Png));
+            Assert.DoesNotThrow(() => tileFormat = new TileFormat(_tileSize, PngExtension));
 
-            Assert.True(tileFormat.Width == TileSize.Width && tileFormat.Height == TileSize.Height);
+            Assert.True(tileFormat.Width == _tileSize.Width && tileFormat.Height == _tileSize.Height);
             Assert.True(tileFormat.MimeType.Equals(PngMimeType, StringComparison.Ordinal));
-            Assert.True(tileFormat.Extension.Equals(PngExtension, StringComparison.Ordinal));
+            Assert.True(tileFormat.Extension.Equals(PngExtensionString, StringComparison.Ordinal));
         }
 
         [Test]
@@ -61,11 +67,11 @@ namespace GTiff2Tiles.Tests.Tests.TileMapResources
         {
             TileFormat tileFormat = null;
 
-            Assert.DoesNotThrow(() => tileFormat = new TileFormat(TileSize, TileExtension.Webp));
+            Assert.DoesNotThrow(() => tileFormat = new TileFormat(_tileSize, WebpExtension));
 
-            Assert.True(tileFormat.Width == TileSize.Width && tileFormat.Height == TileSize.Height);
+            Assert.True(tileFormat.Width == _tileSize.Width && tileFormat.Height == _tileSize.Height);
             Assert.True(tileFormat.MimeType.Equals(WebpMimeType, StringComparison.Ordinal));
-            Assert.True(tileFormat.Extension.Equals(WebpExtension, StringComparison.Ordinal));
+            Assert.True(tileFormat.Extension.Equals(WebpExtensionString, StringComparison.Ordinal));
         }
 
         [Test]
@@ -73,15 +79,15 @@ namespace GTiff2Tiles.Tests.Tests.TileMapResources
         {
             TileFormat tileFormat = null;
 
-            Assert.DoesNotThrow(() => tileFormat = new TileFormat(TileSize, TileExtension.Jpg));
+            Assert.DoesNotThrow(() => tileFormat = new TileFormat(_tileSize, JpgExtension));
 
-            Assert.True(tileFormat.Width == TileSize.Width && tileFormat.Height == TileSize.Height);
+            Assert.True(tileFormat.Width == _tileSize.Width && tileFormat.Height == _tileSize.Height);
             Assert.True(tileFormat.MimeType.Equals(JpegMimeType, StringComparison.Ordinal));
-            Assert.True(tileFormat.Extension.Equals(JpgExtension, StringComparison.Ordinal));
+            Assert.True(tileFormat.Extension.Equals(JpgExtensionString, StringComparison.Ordinal));
         }
 
         [Test]
-        public void TileFormatBadSize() => Assert.Throws<ArgumentNullException>(() => _ = new TileFormat(null, TileExtension.Png));
+        public void TileFormatBadSize() => Assert.Throws<ArgumentNullException>(() => _ = new TileFormat(null, PngExtension));
 
         #endregion
     }

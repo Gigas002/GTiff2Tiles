@@ -16,23 +16,34 @@ namespace GTiff2Tiles.Tests.Tests.TileMapResources
 
         private const string MercatorProfile = "mercator";
 
-        private HashSet<TileSet> TileSetCollection { get; set; }
+        private const int MinZ = 0;
+
+        private const int MaxZ = 18;
+
+        private const double Units10 = 1.0;
+
+        private const double Units11 = 1.1;
+
+        private HashSet<TileSet> _tileSetCollection;
+
+        private readonly Size _tileSize = new(256, 256);
+
+        private const CoordinateSystem Cs4326 = CoordinateSystem.Epsg4326;
+
+        private const CoordinateSystem Cs3857 = CoordinateSystem.Epsg3857;
+
+        private const CoordinateSystem CsOther = CoordinateSystem.Other;
 
         [SetUp]
         public void SetUp()
         {
-            const string href1 = "10";
-            const double units1 = 1.0;
-            const int order1 = 10;
+            string href1 = $"{MinZ}";
+            string href2 = $"{MaxZ}";
 
-            const string href2 = "11";
-            const double units2 = 1.1;
-            const int order2 = 11;
+            TileSet ts1 = new(href1, Units10, MinZ);
+            TileSet ts2 = new(href2, Units11, MaxZ);
 
-            TileSet ts1 = new(href1, units1, order1);
-            TileSet ts2 = new(href2, units2, order2);
-
-            TileSetCollection = new HashSet<TileSet> { ts1, ts2 };
+            _tileSetCollection = new HashSet<TileSet> { ts1, ts2 };
         }
 
         #endregion
@@ -47,9 +58,9 @@ namespace GTiff2Tiles.Tests.Tests.TileMapResources
         {
             TileSets tileSets = null;
 
-            Assert.DoesNotThrow(() => tileSets = new(TileSetCollection, GeodeticProfile));
+            Assert.DoesNotThrow(() => tileSets = new(_tileSetCollection, GeodeticProfile));
 
-            Assert.True(tileSets.TileSetCollection == TileSetCollection &&
+            Assert.True(tileSets.TileSetCollection == _tileSetCollection &&
                         tileSets.Profile.Equals(GeodeticProfile, StringComparison.Ordinal));
         }
 
@@ -58,9 +69,9 @@ namespace GTiff2Tiles.Tests.Tests.TileMapResources
         {
             TileSets tileSets = null;
 
-            Assert.DoesNotThrow(() => tileSets = new(TileSetCollection, CoordinateSystem.Epsg4326));
+            Assert.DoesNotThrow(() => tileSets = new(_tileSetCollection, Cs4326));
 
-            Assert.True(tileSets.TileSetCollection == TileSetCollection &&
+            Assert.True(tileSets.TileSetCollection == _tileSetCollection &&
                         tileSets.Profile.Equals(GeodeticProfile, StringComparison.Ordinal));
         }
 
@@ -69,29 +80,22 @@ namespace GTiff2Tiles.Tests.Tests.TileMapResources
         {
             TileSets tileSets = null;
 
-            Assert.DoesNotThrow(() => tileSets = new(TileSetCollection, CoordinateSystem.Epsg3857));
+            Assert.DoesNotThrow(() => tileSets = new(_tileSetCollection, Cs3857));
 
-            Assert.True(tileSets.TileSetCollection == TileSetCollection &&
+            Assert.True(tileSets.TileSetCollection == _tileSetCollection &&
                         tileSets.Profile.Equals(MercatorProfile, StringComparison.Ordinal));
         }
 
         [Test]
-        public void TileSetsBadCs() => Assert.Throws<NotSupportedException>(() => _ = new TileSets(TileSetCollection, CoordinateSystem.Other));
+        public void TileSetsBadCs() => Assert.Throws<NotSupportedException>(() => _ = new TileSets(_tileSetCollection, CsOther));
 
         #endregion
 
         #region Methods
 
         [Test]
-        public void GenerateCollection()
-        {
-            const int minZ = 0;
-            const int maxZ = 18;
-            Size tileSize = new(256, 256);
-            const CoordinateSystem cs = CoordinateSystem.Epsg4326;
-
-            Assert.DoesNotThrow(() => _ = TileSets.GenerateTileSetCollection(minZ, maxZ, tileSize, cs));
-        }
+        public void GenerateCollection() =>
+            Assert.DoesNotThrow(() => _ = TileSets.GenerateTileSetCollection(MinZ, MaxZ, _tileSize, Cs4326));
 
         #endregion
     }
