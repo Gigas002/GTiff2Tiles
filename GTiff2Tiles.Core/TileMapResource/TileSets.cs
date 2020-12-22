@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Xml.Serialization;
 using GTiff2Tiles.Core.Coordinates;
 using GTiff2Tiles.Core.Enums;
@@ -36,14 +37,14 @@ namespace GTiff2Tiles.Core.TileMapResource
         /// <summary>
         /// Default constructor
         /// </summary>
-        public TileSets() { }
+        public TileSets() => TileSetCollection = new HashSet<TileSet>();
 
         /// <summary>
         /// Initialize a new tile sets
         /// </summary>
         /// <param name="tileSetCollection">Collection of <see cref="TileSet"/>s</param>
         /// <param name="profile">Tile's profle</param>
-        public TileSets(HashSet<TileSet> tileSetCollection, string profile) => (TileSetCollection, Profile) = (tileSetCollection, profile);
+        public TileSets(IEnumerable<TileSet> tileSetCollection, string profile) => (TileSetCollection, Profile) = (tileSetCollection.ToHashSet(), profile);
 
         /// <summary>
         /// Initialize a new tile sets
@@ -51,9 +52,9 @@ namespace GTiff2Tiles.Core.TileMapResource
         /// <param name="tileSetCollection">Collection of <see cref="TileSet"/>s</param>
         /// <param name="coordinateSystem">Tile's <see cref="CoordinateSystem"/></param>
         /// <exception cref="NotSupportedException"/>
-        public TileSets(HashSet<TileSet> tileSetCollection, CoordinateSystem coordinateSystem)
+        public TileSets(IEnumerable<TileSet> tileSetCollection, CoordinateSystem coordinateSystem)
         {
-            TileSetCollection = tileSetCollection;
+            TileSetCollection = tileSetCollection.ToHashSet();
 
             Profile = coordinateSystem switch
             {

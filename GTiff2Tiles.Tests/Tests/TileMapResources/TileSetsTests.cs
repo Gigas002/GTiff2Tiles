@@ -60,8 +60,9 @@ namespace GTiff2Tiles.Tests.Tests.TileMapResources
 
             Assert.DoesNotThrow(() => tileSets = new(_tileSetCollection, GeodeticProfile));
 
-            Assert.True(tileSets.TileSetCollection == _tileSetCollection &&
-                        tileSets.Profile.Equals(GeodeticProfile, StringComparison.Ordinal));
+            foreach (TileSet baseTs in _tileSetCollection) Assert.True(tileSets.TileSetCollection.Contains(baseTs));
+
+            Assert.True(tileSets.Profile.Equals(GeodeticProfile, StringComparison.Ordinal));
         }
 
         [Test]
@@ -71,8 +72,9 @@ namespace GTiff2Tiles.Tests.Tests.TileMapResources
 
             Assert.DoesNotThrow(() => tileSets = new(_tileSetCollection, Cs4326));
 
-            Assert.True(tileSets.TileSetCollection == _tileSetCollection &&
-                        tileSets.Profile.Equals(GeodeticProfile, StringComparison.Ordinal));
+            foreach (TileSet baseTs in _tileSetCollection) Assert.True(tileSets.TileSetCollection.Contains(baseTs));
+
+            Assert.True(tileSets.Profile.Equals(GeodeticProfile, StringComparison.Ordinal));
         }
 
         [Test]
@@ -82,8 +84,9 @@ namespace GTiff2Tiles.Tests.Tests.TileMapResources
 
             Assert.DoesNotThrow(() => tileSets = new(_tileSetCollection, Cs3857));
 
-            Assert.True(tileSets.TileSetCollection == _tileSetCollection &&
-                        tileSets.Profile.Equals(MercatorProfile, StringComparison.Ordinal));
+            foreach (TileSet baseTs in _tileSetCollection) Assert.True(tileSets.TileSetCollection.Contains(baseTs));
+
+            Assert.True(tileSets.Profile.Equals(MercatorProfile, StringComparison.Ordinal));
         }
 
         [Test]

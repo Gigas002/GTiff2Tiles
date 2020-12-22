@@ -45,6 +45,10 @@ namespace GTiff2Tiles.Tests.Constants
 
         internal static string Input3395FilePath => Path.Combine(InputDirectoryPath, Input3395FileName);
 
+        private const string TileMapResourceXmlName = "tilemapresource.xml";
+
+        internal static string TileMapResourceXmlPath => Path.Combine(InputDirectoryPath, TileMapResourceXmlName);
+
         #endregion
 
         #region Output

@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Xml;
 using System.Xml.Serialization;
 using GTiff2Tiles.Core.Coordinates;
 using GTiff2Tiles.Core.Enums;
 using GTiff2Tiles.Core.Images;
-
-// TODO: tests, changelog entry
 
 namespace GTiff2Tiles.Core.TileMapResource
 {
@@ -124,7 +123,7 @@ namespace GTiff2Tiles.Core.TileMapResource
         /// <param name="originCoordinate">Origin coordinate
         /// <remarks><para/>-180.0, -90.0 by default</remarks></param>
         public TileMap(ICoordinate minCoordinate, ICoordinate maxCoordinate,
-                       Size tileSize, TileExtension tileExtension, HashSet<TileSet> tileSetCollection, CoordinateSystem coordinateSystem,
+                       Size tileSize, TileExtension tileExtension, IEnumerable<TileSet> tileSetCollection, CoordinateSystem coordinateSystem,
                        string version = DefaultVersion, string tileMapServiceLink = DefaultTileMapServiceLink, ICoordinate originCoordinate = null)
         {
             (Version, TileMapServiceLink) = (version, tileMapServiceLink);
@@ -133,7 +132,7 @@ namespace GTiff2Tiles.Core.TileMapResource
             BoundingBox = new(minCoordinate, maxCoordinate);
             Origin = originCoordinate == null ? new() : new(originCoordinate);
             TileFormat = new(tileSize, tileExtension);
-            TileSets = new(tileSetCollection, coordinateSystem);
+            TileSets = new(tileSetCollection.ToHashSet(), coordinateSystem);
         }
 
         #endregion

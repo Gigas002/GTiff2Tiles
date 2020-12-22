@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Globalization;
+using System.IO;
 using GTiff2Tiles.Core.Coordinates;
 using GTiff2Tiles.Core.Enums;
-using GTiff2Tiles.Core.Helpers;
 using GTiff2Tiles.Core.Images;
 using GTiff2Tiles.Core.TileMapResource;
 using GTiff2Tiles.Tests.Constants;
@@ -15,6 +15,8 @@ namespace GTiff2Tiles.Tests.Tests.TileMapResources
     public sealed class TileMapTests
     {
         #region SetUp and consts
+
+        private string _timestamp;
 
         private const string Version = "1.0.1";
 
@@ -28,7 +30,7 @@ namespace GTiff2Tiles.Tests.Tests.TileMapResources
 
         private TileFormat _tileFormat;
 
-        private HashSet<TileSet> _tileSetCollection;
+        private IEnumerable<TileSet> _tileSetCollection;
 
         private TileSets _tileSets;
 
@@ -48,17 +50,28 @@ namespace GTiff2Tiles.Tests.Tests.TileMapResources
 
         private const CoordinateSystem Cs4326 = CoordinateSystem.Epsg4326;
 
+        private const string XmlName = "tilemapresource.xml";
+
+        private readonly string _inXmlPath = FileSystemEntries.TileMapResourceXmlPath;
+
+        private string _outXmlPath;
+
         [SetUp]
         public void SetUp()
         {
+            _timestamp = DateTime.Now.ToString(Core.Constants.DateTimePatterns.LongWithMs,
+                                               CultureInfo.InvariantCulture);
+
             _boundingBox = new(_tokyoGeodeticMin, _tokyoGeodeticMax);
             _origin = new(_originCoordinate);
             _tileFormat = new(_tileSize, Extension);
 
-            _tileSetCollection = TileSets.GenerateTileSetCollection(MinZ, MaxZ, _tileSize, Cs4326).ToHashSet();
+            _tileSetCollection = TileSets.GenerateTileSetCollection(MinZ, MaxZ, _tileSize, Cs4326);
             _tileSets = new TileSets(_tileSetCollection, Cs4326);
 
-            NetVipsHelper.DisableLog();
+            _outXmlPath = Path.Combine(FileSystemEntries.OutputDirectoryPath, $"{_timestamp}_{XmlName}");
+
+            FileSystemEntries.OutputDirectoryInfo.Create();
         }
 
         #endregion
@@ -76,9 +89,9 @@ namespace GTiff2Tiles.Tests.Tests.TileMapResources
             Assert.DoesNotThrow(() => tileMap = new TileMap(Srs, _boundingBox, _origin, _tileFormat, _tileSets, Version,
                                                             TmsLink));
 
-            Assert.True(string.Equals(tileMap.Version, Version, StringComparison.Ordinal));
-            Assert.True(string.Equals(tileMap.TileMapServiceLink, TmsLink, StringComparison.Ordinal));
-            Assert.True(string.Equals(tileMap.Srs, Srs, StringComparison.Ordinal));
+            Assert.True(tileMap.Version.Equals(Version, StringComparison.Ordinal));
+            Assert.True(tileMap.TileMapServiceLink.Equals(TmsLink, StringComparison.Ordinal));
+            Assert.True(tileMap.Srs.Equals(Srs, StringComparison.Ordinal));
             Assert.True(tileMap.BoundingBox == _boundingBox);
             Assert.True(tileMap.Origin == _origin);
             Assert.True(tileMap.TileFormat == _tileFormat);
@@ -94,7 +107,67 @@ namespace GTiff2Tiles.Tests.Tests.TileMapResources
 
         #region Methods
 
+        #region GetSrs
 
+        [Test]
+        public void GetSrs4326() => Assert.True(TileMap.GetSrs(Cs4326).Equals(Srs, StringComparison.Ordinal));
+
+        [Test]
+        public void GetSrs3857() => Assert.True(TileMap.GetSrs(CoordinateSystem.Epsg3857).Equals("EPSG:3857", StringComparison.Ordinal));
+
+        [Test]
+        public void GetSrsOther() => Assert.True(string.IsNullOrWhiteSpace(TileMap.GetSrs(CoordinateSystem.Other)));
+
+        #endregion
+
+        #region Serialize
+
+        [Test]
+        public void SerializeNormal()
+        {
+            TileMap tileMap = new(_tokyoGeodeticMin, _tokyoGeodeticMax, _tileSize, Extension, _tileSetCollection,
+                                  Cs4326, Version, TmsLink, _originCoordinate);
+
+            using FileStream fileStream = File.OpenWrite(_outXmlPath);
+
+            Assert.DoesNotThrow(() => tileMap.Serialize(fileStream));
+        }
+
+        [Test]
+        public void SerializeNullStream()
+        {
+            TileMap tileMap = new(_tokyoGeodeticMin, _tokyoGeodeticMax, _tileSize, Extension, _tileSetCollection,
+                                  Cs4326, Version, TmsLink, _originCoordinate);
+
+            Assert.Throws<ArgumentNullException>(() => tileMap.Serialize(null));
+        }
+
+        #endregion
+
+        #region Deserialize
+
+        [Test]
+        public void DeserializeNormal()
+        {
+            using FileStream fileStream = File.OpenRead(_inXmlPath);
+
+            TileMap tileMap = TileMap.Deserialize(fileStream);
+
+            Assert.True(tileMap.Version.Equals(Version, StringComparison.Ordinal));
+            Assert.True(tileMap.TileMapServiceLink.Equals(TmsLink, StringComparison.Ordinal));
+            Assert.True(tileMap.Srs.Equals(Srs, StringComparison.Ordinal));
+            Assert.True(tileMap.BoundingBox == _boundingBox);
+            Assert.True(tileMap.Origin == _origin);
+            Assert.True(tileMap.TileFormat == _tileFormat);
+
+            foreach (TileSet baseTs in _tileSetCollection) Assert.True(tileMap.TileSets.TileSetCollection.Contains(baseTs));
+        }
+
+        [Test]
+        public void DeserializeNullStream() =>
+            Assert.Throws<ArgumentNullException>(() => _ = TileMap.Deserialize(null));
+
+        #endregion
 
         #endregion
     }

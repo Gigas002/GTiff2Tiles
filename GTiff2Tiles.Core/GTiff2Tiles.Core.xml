@@ -1790,7 +1790,7 @@
             <param name="tileMapServiceLink">Link to standard
             <remarks><para/>http://tms.osgeo.org/1.0.0 by default</remarks></param>
         </member>
-        <member name="M:GTiff2Tiles.Core.TileMapResource.TileMap.#ctor(GTiff2Tiles.Core.Coordinates.ICoordinate,GTiff2Tiles.Core.Coordinates.ICoordinate,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.TileExtension,System.Collections.Generic.HashSet{GTiff2Tiles.Core.TileMapResource.TileSet},GTiff2Tiles.Core.Enums.CoordinateSystem,System.String,System.String,GTiff2Tiles.Core.Coordinates.ICoordinate)">
+        <member name="M:GTiff2Tiles.Core.TileMapResource.TileMap.#ctor(GTiff2Tiles.Core.Coordinates.ICoordinate,GTiff2Tiles.Core.Coordinates.ICoordinate,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.TileExtension,System.Collections.Generic.IEnumerable{GTiff2Tiles.Core.TileMapResource.TileSet},GTiff2Tiles.Core.Enums.CoordinateSystem,System.String,System.String,GTiff2Tiles.Core.Coordinates.ICoordinate)">
             <summary>
             Initialize a new tile map
             </summary>
@@ -1884,14 +1884,14 @@
             Default constructor
             </summary>
         </member>
-        <member name="M:GTiff2Tiles.Core.TileMapResource.TileSets.#ctor(System.Collections.Generic.HashSet{GTiff2Tiles.Core.TileMapResource.TileSet},System.String)">
+        <member name="M:GTiff2Tiles.Core.TileMapResource.TileSets.#ctor(System.Collections.Generic.IEnumerable{GTiff2Tiles.Core.TileMapResource.TileSet},System.String)">
             <summary>
             Initialize a new tile sets
             </summary>
             <param name="tileSetCollection">Collection of <see cref="T:GTiff2Tiles.Core.TileMapResource.TileSet"/>s</param>
             <param name="profile">Tile's profle</param>
         </member>
-        <member name="M:GTiff2Tiles.Core.TileMapResource.TileSets.#ctor(System.Collections.Generic.HashSet{GTiff2Tiles.Core.TileMapResource.TileSet},GTiff2Tiles.Core.Enums.CoordinateSystem)">
+        <member name="M:GTiff2Tiles.Core.TileMapResource.TileSets.#ctor(System.Collections.Generic.IEnumerable{GTiff2Tiles.Core.TileMapResource.TileSet},GTiff2Tiles.Core.Enums.CoordinateSystem)">
             <summary>
             Initialize a new tile sets
             </summary>
