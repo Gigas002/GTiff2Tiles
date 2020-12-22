@@ -209,7 +209,6 @@ namespace GTiff2Tiles.Core.GeoTiffs
             IsDisposed = true;
         }
 
-#pragma warning disable CA1816 // Change Tile.DisposeAsync() to call GC.SuppressFinalize(object). This will prevent unnecessary finalization of the object once it has been disposed and it has fallen out of scope.
         /// <inheritdoc />
         public ValueTask DisposeAsync()
         {
@@ -228,7 +227,6 @@ namespace GTiff2Tiles.Core.GeoTiffs
 
 #pragma warning restore CA1031 // Do not catch general exception types
         }
-#pragma warning restore CA1816 // Change Tile.DisposeAsync() to call GC.SuppressFinalize(object). This will prevent unnecessary finalization of the object once it has been disposed and it has fallen out of scope.
 
         #endregion
 
