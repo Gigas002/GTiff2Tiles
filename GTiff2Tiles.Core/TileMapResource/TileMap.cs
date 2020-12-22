@@ -5,10 +5,7 @@ using System.Xml;
 using System.Xml.Serialization;
 using GTiff2Tiles.Core.Coordinates;
 using GTiff2Tiles.Core.Enums;
-using GTiff2Tiles.Core.GeoTiffs;
 using GTiff2Tiles.Core.Images;
-using GTiff2Tiles.Core.Localization;
-using GTiff2Tiles.Core.Tiles;
 
 // TODO: tests, changelog entry
 
@@ -126,68 +123,36 @@ namespace GTiff2Tiles.Core.TileMapResource
         /// <remarks><para/>http://tms.osgeo.org/1.0.0 by default</remarks></param>
         /// <param name="originCoordinate">Origin coordinate
         /// <remarks><para/>-180.0, -90.0 by default</remarks></param>
-        /// <exception cref="NotSupportedException"/>
         public TileMap(ICoordinate minCoordinate, ICoordinate maxCoordinate,
                        Size tileSize, TileExtension tileExtension, HashSet<TileSet> tileSetCollection, CoordinateSystem coordinateSystem,
                        string version = DefaultVersion, string tileMapServiceLink = DefaultTileMapServiceLink, ICoordinate originCoordinate = null)
         {
             (Version, TileMapServiceLink) = (version, tileMapServiceLink);
 
-            Srs = coordinateSystem switch
-            {
-                CoordinateSystem.Epsg4326 => nameof(CoordinateSystem.Epsg4326).ToUpperInvariant(),
-                CoordinateSystem.Epsg3857 => nameof(CoordinateSystem.Epsg3857).ToUpperInvariant(),
-                _ => throw new NotSupportedException(string.Format(Strings.Culture, Strings.NotSupported, coordinateSystem))
-            };
-
+            Srs = GetSrs(coordinateSystem);
             BoundingBox = new(minCoordinate, maxCoordinate);
             Origin = originCoordinate == null ? new() : new(originCoordinate);
             TileFormat = new(tileSize, tileExtension);
             TileSets = new(tileSetCollection, coordinateSystem);
         }
 
-        /// <summary>
-        /// Initialize a new tile map
-        /// </summary>
-        /// <param name="geoTiff"><see cref="IGeoTiff"/> for which tiles were created</param>
-        /// <param name="tileInfo">Info about <see cref="ITile"/>, that were created</param>
-        /// <param name="tileSetCollection">Collection of <see cref="TileSet"/>s</param>
-        /// <param name="version">Standard version
-        /// <remarks><para/>1.0.0 by default</remarks></param>
-        /// <param name="tileMapServiceLink">Link to standard
-        /// <remarks><para/>http://tms.osgeo.org/1.0.0 by default</remarks></param>
-        /// <param name="originCoordinate">Origin coordinate
-        /// <remarks><para/>-180.0, -90.0 by default</remarks></param>
-        /// <exception cref="ArgumentNullException"/>
-        /// <exception cref="NotSupportedException"/>
-        public TileMap(IGeoTiff geoTiff, ITile tileInfo, HashSet<TileSet> tileSetCollection,
-                       string version = DefaultVersion, string tileMapServiceLink = DefaultTileMapServiceLink, ICoordinate originCoordinate = null)
-        {
-            #region Preconditions checks
-
-            if (geoTiff is null) throw new ArgumentNullException(nameof(geoTiff));
-            if (tileInfo is null) throw new ArgumentNullException(nameof(tileInfo));
-
-            #endregion
-
-            (Version, TileMapServiceLink) = (version, tileMapServiceLink);
-
-            Srs = geoTiff.GeoCoordinateSystem switch
-            {
-                CoordinateSystem.Epsg4326 => nameof(CoordinateSystem.Epsg4326).ToUpperInvariant(),
-                CoordinateSystem.Epsg3857 => nameof(CoordinateSystem.Epsg3857).ToUpperInvariant(),
-                _ => throw new NotSupportedException(string.Format(Strings.Culture, Strings.NotSupported, geoTiff.GeoCoordinateSystem))
-            };
-
-            BoundingBox = new BoundingBox(geoTiff.MinCoordinate, geoTiff.MaxCoordinate);
-            Origin = originCoordinate == null ? new() : new(originCoordinate);
-            TileFormat = new(tileInfo.Size, tileInfo.Extension);
-            TileSets = new(tileSetCollection, geoTiff.GeoCoordinateSystem);
-        }
-
         #endregion
 
         #region Methods
+
+        /// <summary>
+        /// Convert <see cref="CoordinateSystem"/> into SRS string
+        /// </summary>
+        /// <param name="coordinateSystem">Coordinate system</param>
+        /// <returns>Srs string;
+        /// <remarks><para/>Empty string, if coordinate
+        /// system is not supported</remarks></returns>
+        public static string GetSrs(CoordinateSystem coordinateSystem) => coordinateSystem switch
+        {
+            CoordinateSystem.Epsg4326 => "EPSG:4326",
+            CoordinateSystem.Epsg3857 => "EPSG:3857",
+            _ => string.Empty
+        };
 
         /// <summary>
         /// Serializes this <see cref="TileMap"/> into <see cref="Stream"/>

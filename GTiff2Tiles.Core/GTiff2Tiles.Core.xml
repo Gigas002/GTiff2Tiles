@@ -1806,23 +1806,15 @@
             <remarks><para/>http://tms.osgeo.org/1.0.0 by default</remarks></param>
             <param name="originCoordinate">Origin coordinate
             <remarks><para/>-180.0, -90.0 by default</remarks></param>
-            <exception cref="T:System.NotSupportedException"/>
         </member>
-        <member name="M:GTiff2Tiles.Core.TileMapResource.TileMap.#ctor(GTiff2Tiles.Core.GeoTiffs.IGeoTiff,GTiff2Tiles.Core.Tiles.ITile,System.Collections.Generic.HashSet{GTiff2Tiles.Core.TileMapResource.TileSet},System.String,System.String,GTiff2Tiles.Core.Coordinates.ICoordinate)">
+        <member name="M:GTiff2Tiles.Core.TileMapResource.TileMap.GetSrs(GTiff2Tiles.Core.Enums.CoordinateSystem)">
             <summary>
-            Initialize a new tile map
+            Convert <see cref="T:GTiff2Tiles.Core.Enums.CoordinateSystem"/> into SRS string
             </summary>
-            <param name="geoTiff"><see cref="T:GTiff2Tiles.Core.GeoTiffs.IGeoTiff"/> for which tiles were created</param>
-            <param name="tileInfo">Info about <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>, that were created</param>
-            <param name="tileSetCollection">Collection of <see cref="T:GTiff2Tiles.Core.TileMapResource.TileSet"/>s</param>
-            <param name="version">Standard version
-            <remarks><para/>1.0.0 by default</remarks></param>
-            <param name="tileMapServiceLink">Link to standard
-            <remarks><para/>http://tms.osgeo.org/1.0.0 by default</remarks></param>
-            <param name="originCoordinate">Origin coordinate
-            <remarks><para/>-180.0, -90.0 by default</remarks></param>
-            <exception cref="T:System.ArgumentNullException"/>
-            <exception cref="T:System.NotSupportedException"/>
+            <param name="coordinateSystem">Coordinate system</param>
+            <returns>Srs string;
+            <remarks><para/>Empty string, if coordinate
+            system is not supported</remarks></returns>
         </member>
         <member name="M:GTiff2Tiles.Core.TileMapResource.TileMap.Serialize(System.IO.Stream)">
             <summary>
