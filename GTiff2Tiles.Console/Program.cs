@@ -2,6 +2,7 @@
 #pragma warning disable CA1308 // Normalize strings to uppercase
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
@@ -14,6 +15,7 @@ using GTiff2Tiles.Core.Enums;
 using GTiff2Tiles.Core.GeoTiffs;
 using GTiff2Tiles.Core.Helpers;
 using GTiff2Tiles.Core.Images;
+using GTiff2Tiles.Core.TileMapResource;
 using GTiff2Tiles.Core.Tiles;
 
 namespace GTiff2Tiles.Console
@@ -107,6 +109,16 @@ namespace GTiff2Tiles.Console
         /// </summary>
         private static Size TileSize { get; set; } = Tile.DefaultSize;
 
+        /// <summary>
+        /// Do you want to create tilemapresource.xml?
+        /// </summary>
+        private static bool IsTmr { get; set; }
+
+        /// <summary>
+        /// tilemapresource.xml
+        /// </summary>
+        private const string XmlName = "tilemapresource.xml";
+
         #endregion
 
         private static async Task Main(string[] args)
@@ -161,6 +173,18 @@ namespace GTiff2Tiles.Console
                                                        TileSize, TileExtension, TargetInterpolation, BandsCount,
                                                        TileCacheCount, ThreadsCount, consoleProgress, printTimeAction)
                            .ConfigureAwait(false);
+
+                // Generate tilemapresource if needed
+                if (IsTmr)
+                {
+                    IEnumerable<TileSet> tileSets = TileSets.GenerateTileSetCollection(MinZ, MaxZ, TileSize, TargetCoordinateSystem);
+                    TileMap tileMap = new(image.MinCoordinate, image.MaxCoordinate, TileSize, TileExtension, tileSets,
+                                          TargetCoordinateSystem);
+
+                    string xmlPath = $"{OutputDirectoryPath}/{XmlName}";
+                    await using FileStream fs = File.OpenWrite(xmlPath);
+                    tileMap.Serialize(fs);
+                }
             }
             catch (Exception exception)
             {
@@ -229,6 +253,7 @@ namespace GTiff2Tiles.Console
             IsProgress = bool.Parse(options.IsProgress);
             IsTime = bool.Parse(options.IsTime);
             TileSize = new Size(options.TileSize, options.TileSize);
+            IsTmr = bool.Parse(options.IsTmr);
         }
 
         #endregion

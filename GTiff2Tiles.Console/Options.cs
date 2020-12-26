@@ -119,10 +119,18 @@ namespace GTiff2Tiles.Console
 
         /// <summary>
         /// Ready tile's size
-        /// <remarks><para/>256x256 by default</remarks>
+        /// <remarks><para/>256 by default</remarks>
         /// </summary>
-        [Option("tilesize", Required = false, HelpText = "Ready tile's size; 256x256 by default")]
+        [Option("tilesize", Required = false, HelpText = "Ready tile's size; 256 by default")]
         public int TileSize { get; set; } = 256;
+
+
+        /// <summary>
+        /// Do you want to generate tilemapresource.xml?
+        /// <remarks><para/><see langword="false"/> by default</remarks>
+        /// </summary>
+        [Option("tmr", Required = false, HelpText = "Do you want to generate tilemapresource.xml? False by default")]
+        public string IsTmr { get; set; } = "false";
 
         #endregion
     }

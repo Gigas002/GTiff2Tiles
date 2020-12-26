@@ -14,4 +14,4 @@
 # Tile's extension is .webp, tmscompatible, mercator, cubic interpolation, 3 bands, 128x128 resolution.
 # Tile cache set to 1001, memory cache 2147483649.
 # You'll see the progress and time left.
-# ./GTiff2Tiles.Console -i "D:/Examples/Input.tif" -o "D:/Examples/Output" --minz 0 --maxz 12 --threads 5 --extension .webp -t "D:/Examples/tmp" --tms false -c mercator --interpolation cubic -b 3 --tilecache 1001 -m 2147483649 --progress true --timeleft true --tilesize 128
+# ./GTiff2Tiles.Console -i "D:/Examples/Input.tif" -o "D:/Examples/Output" --minz 0 --maxz 12 --threads 5 --extension .webp -t "D:/Examples/tmp" --tms false -c mercator --interpolation cubic -b 3 --tilecache 1001 -m 2147483649 --progress true --timeleft true --tilesize 128 --tmr true

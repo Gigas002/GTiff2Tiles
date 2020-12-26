@@ -25,10 +25,11 @@ If you’re using **Windows 7 SP1**, you can experience weird error with **GDAL*
 |       |      --tms      | Do you want to create tms-compatible tiles? `true` by default |    No     |
 |  -c   |  --coordinates  |    Target tiles coordinate system, `geodetic` by default     |    No     |
 |       | --interpolation |     Interpolation of ready tiles, `lanczos3` by default      |    No     |
-|  -b   |     --bands     |         Count of bands in ready tiles, 4 by default          |    No     |
-|       |   --tilecache   | How much tiles would you like to store in memory cache? 100 by default |    No     |
+|  -b   |     --bands     |        Count of bands in ready tiles, `4` by default         |    No     |
+|       |   --tilecache   | How much tiles would you like to store in memory cache? `100` by default |    No     |
 |  -m   |   --memcache    | Maximum size of input files to store in RAM, `2147483648` by default |    No     |
 |  -p   |   --progress    |      Do you want to see the progress? `true` by default      |    No     |
+|       |      --tmr      | Do you want to create `tilemapresource.xml`? `false` by default |    No     |
 |       |   --timeleft    |  Do you want to see estimated time left? `false` by default  |    No     |
 |       |   --tilesize    |              Ready tile's size, 256 by default               |    No     |
 |       |    --version    |                       Current version                        |           |
@@ -68,9 +69,11 @@ Take a look at [Start.ps1](https://github.com/Gigas002/GTiff2Tiles/blob/master/G
 
 **--progress** is `bool` parameter. If it’s set to `true` – you’ll see cropping progress in your command line. `true` by default.
 
+**--tmr** is `bool` parameter. If it's set to `true`, the program will create `tilemapresource.xml` after cropping tiles. `false` by default.
+
 **--timeleft** is a `bool` parameter. If it’s set to `true` – you’ll see estimated time left before end of cropping after each tile is cropped. `false` (*beware, too much output can slow app down*) by default.
 
-**--tilesize** is `int` parameter, representing the size of one side (**tiles should be a square, so specifying 2 side’s sizes is redundant*) of ready tiles. `256` by default.
+**--tilesize** is `int` parameter, representing the size of one side (*tiles should be a square, so specifying 2 side’s sizes is redundant*) of ready tiles. `256` by default.
 
 ### Offline docs
 
