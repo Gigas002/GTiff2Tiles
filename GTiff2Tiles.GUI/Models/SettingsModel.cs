@@ -16,6 +16,8 @@ namespace GTiff2Tiles.GUI.Models
     /// </summary>
     public sealed class SettingsModel
     {
+        #region Properties
+
         /// <summary>
         /// Path to input file
         /// </summary>
@@ -143,6 +145,12 @@ namespace GTiff2Tiles.GUI.Models
         public bool TmsCompatible { get; init; }
 
         /// <summary>
+        /// Do you want to create tilemapresource.xml?
+        /// </summary>
+        [JsonPropertyName(nameof(IsTmr))]
+        public bool IsTmr { get; init; }
+
+        /// <summary>
         /// Current theme
         /// </summary>
         [JsonPropertyName(nameof(Theme))]
@@ -187,6 +195,8 @@ namespace GTiff2Tiles.GUI.Models
         /// Get the full path of Settings.json file
         /// </summary>
         internal static readonly string Location = Path.Combine(AppContext.BaseDirectory, "settings.json");
+
+        #endregion
 
         /// <summary>
         /// Save the <see cref="SettingsModel"/> into file;

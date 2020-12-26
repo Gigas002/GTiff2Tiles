@@ -286,6 +286,15 @@ namespace GTiff2Tiles.GUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Create tilemapresource.xml.
+        /// </summary>
+        internal static string TmrCheckBoxContent {
+            get {
+                return ResourceManager.GetString("TmrCheckBoxContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to TMS compatible.
         /// </summary>
         internal static string TmsCheckBoxContent {

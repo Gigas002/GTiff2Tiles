@@ -117,7 +117,7 @@ namespace GTiff2Tiles.Console
         /// <summary>
         /// tilemapresource.xml
         /// </summary>
-        private const string XmlName = "tilemapresource.xml";
+        private const string TmrName = "tilemapresource.xml";
 
         #endregion
 
@@ -181,7 +181,7 @@ namespace GTiff2Tiles.Console
                     TileMap tileMap = new(image.MinCoordinate, image.MaxCoordinate, TileSize, TileExtension, tileSets,
                                           TargetCoordinateSystem);
 
-                    string xmlPath = $"{OutputDirectoryPath}/{XmlName}";
+                    string xmlPath = $"{OutputDirectoryPath}/{TmrName}";
                     await using FileStream fs = File.OpenWrite(xmlPath);
                     tileMap.Serialize(fs);
                 }

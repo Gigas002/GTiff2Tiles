@@ -280,6 +280,8 @@
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="{StaticResource InnerMargin}"/>
                             <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="{StaticResource InnerMargin}"/>
+                            <RowDefinition Height="Auto"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
@@ -358,8 +360,16 @@
                             </materialDesignThemes:HintAssist.Hint>
                         </TextBox>
 
+                        <!-- TileMapResource -->
+                        <CheckBox Grid.Row="10" Grid.Column="0"
+                                  Grid.ColumnSpan="3"
+                                  VerticalContentAlignment="Bottom"
+                                  Style="{StaticResource MaterialDesignCheckBox}"
+                                  IsChecked="{Binding IsTmr}"
+                                  Content="{Binding TmrCheckBoxContent}"/>
+
                         <!-- Save settings button -->
-                        <Button Grid.Row="10" Grid.Column="0"
+                        <Button Grid.Row="12" Grid.Column="0"
                                 Grid.ColumnSpan="3"
                                 FontSize="18"
                                 Content="{Binding SaveSettingsButtonContent}"

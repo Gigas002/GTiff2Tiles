@@ -39,6 +39,7 @@ This is a new major release of **GTiff2Tiles**. There are a lot of incompatible 
 - Fixed Linux build and apps;
 - Fixed SemVer violations;
 - Perform analysis with **Microsoft.CodeAnalysis.NetAnalyzers** (*included in .net 5.0+ by default*);
+- Add ability to create `tilemapresource.xml`;
 
 ### Core
 
@@ -146,6 +147,7 @@ Read updated [docs](https://gigas002.github.io/GTiff2Tiles/console-index.html) t
 - `-p/--progress` lets you hide the **progress output**;
 - `--timeleft` lets you see the **estimated time left** in output while working;
 - `--tilesize` lets you specify the **size** of tile's images;
+- `--tmr` lets you create the `tilemapresource.xml`;
 
 **Updated dependencies:**
 
@@ -173,6 +175,7 @@ Added the block of additional (*optional*) settings, which lets you to:
 - Auto-guess the **number of threads** or select it by your own (*just uncheck the checkbox*);
 - Change **number of tiles** in cache (*performance tweak*);
 - Select **maximal size** for input files to store in *RAM*;
+- Create `tilemapresource.xml` on tiles crop;
 - Save all the **settings** in *settings.json* and see the same page on each start of the application;
 - Also now you can see the *Time passed* **timer** on the right side;
 

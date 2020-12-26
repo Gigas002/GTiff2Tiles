@@ -3,6 +3,7 @@
 #pragma warning disable CA1308 // Normalize strings to uppercase
 
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Globalization;
@@ -19,6 +20,7 @@ using GTiff2Tiles.Core.Constants;
 using GTiff2Tiles.Core.Enums;
 using GTiff2Tiles.Core.GeoTiffs;
 using GTiff2Tiles.Core.Helpers;
+using GTiff2Tiles.Core.TileMapResource;
 using GTiff2Tiles.Core.Tiles;
 using GTiff2Tiles.GUI.Localization;
 using GTiff2Tiles.GUI.Models;
@@ -445,6 +447,28 @@ namespace GTiff2Tiles.GUI.ViewModels
 
         #endregion
 
+        #region TileMapResource
+
+        private const string TmrName = "tilemapresource.xml";
+
+        private bool _isTmr;
+
+        /// <summary>
+        /// Shows if you want to create tilemapresource.xml
+        /// </summary>
+        public bool IsTmr
+        {
+            get => _isTmr;
+            set => SetProperty(ref _isTmr, value);
+        }
+
+        /// <summary>
+        /// Text near tmr check box
+        /// </summary>
+        public static string TmrCheckBoxContent => Strings.TmrCheckBoxContent;
+
+        #endregion
+
         #region Settings
 
         private SettingsModel _settings;
@@ -603,6 +627,7 @@ namespace GTiff2Tiles.GUI.ViewModels
             BandsCount = Settings.BandsCount;
 
             TmsCompatible = Settings.TmsCompatible;
+            IsTmr = Settings.IsTmr;
 
             Themes.Add(Theme.Dark);
             Themes.Add(Theme.Light);
@@ -736,6 +761,18 @@ namespace GTiff2Tiles.GUI.ViewModels
                 await image.WriteTilesToDirectoryAsync(OutputDirectoryPath, MinZ, MaxZ, TmsCompatible, TileSize,
                                                        TargetTileExtension, TargetInterpolation, BandsCount, TileCache,
                                                        threadsCount, progress).ConfigureAwait(true);
+
+                // Generate tilemapresource if needed
+                if (IsTmr)
+                {
+                    IEnumerable<TileSet> tileSets = TileSets.GenerateTileSetCollection(MinZ, MaxZ, TileSize, TargetCoordinateSystem);
+                    TileMap tileMap = new(image.MinCoordinate, image.MaxCoordinate, TileSize, TargetTileExtension, tileSets,
+                                          TargetCoordinateSystem);
+
+                    string xmlPath = $"{OutputDirectoryPath}/{TmrName}";
+                    await using FileStream fs = File.OpenWrite(xmlPath);
+                    tileMap.Serialize(fs);
+                }
             }
             catch (Exception exception)
             {
@@ -771,6 +808,7 @@ namespace GTiff2Tiles.GUI.ViewModels
                 Interpolation = SettingsModel.ParseInterpolation(TargetInterpolation),
                 BandsCount = BandsCount,
                 TmsCompatible = TmsCompatible, Theme = ThemeModel.GetTheme(Theme),
+                IsTmr = IsTmr,
                 TileSideSize = TileSideSize,
                 IsAutoThreads = IsAutoThreads, ThreadsCount = ThreadsCount,
                 TileCache = TileCache, Memory = Memory

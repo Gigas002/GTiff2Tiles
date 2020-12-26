@@ -192,6 +192,9 @@
   <data name="TimePassedValue" xml:space="preserve">
     <value>{0} {1}:{2}:{3}</value>
   </data>
+  <data name="TmrCheckBoxContent" xml:space="preserve">
+    <value>Создать tilemapresource.xml</value>
+  </data>
   <data name="TmsCheckBoxContent" xml:space="preserve">
     <value>Совместимо с TMS</value>
   </data>

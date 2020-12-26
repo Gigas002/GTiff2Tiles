@@ -37,6 +37,7 @@ Besides writing args each time the program start, you can specify the default va
   "Interpolation": "lanczos3",
   "BandsCount": 4,
   "TmsCompatible": false,
+  "IsTmr": false,
   "Theme": "dark",
   "TileSideSize": 256,
   "IsAutoThreads": true,
@@ -60,6 +61,7 @@ Args explanation:
 - **Interpolation** -- interpolation of ready tiles. Can be: `nearest`, `linear`, `cubic`, `mitchell`, `lanczos2` or `lanczos3`;
 - **BandsCount** -- number of bands in ready tiles. Can be in range `[1, 4]`;
 - **TmsCompatible** -- are tiles tms compatible? Can be `false` or `true`;
+- **IsTmr** -- do you want to create `tilemapresource.xml`? Can be `false` or `true`;
 - **Theme** -- app theme. Can be `dark` or `light`;
 - **TileSideSize** -- size of tile's side. `int`;
 - **IsAutoThreads** -- do you want to calculate threads automatically? Can be `true` or `false`;
