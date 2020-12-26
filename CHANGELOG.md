@@ -122,7 +122,7 @@ Only changes in public API are listed.
 - Update **MaxRev.Gdal.LinuxRuntime.Minimal** to **3.2.0.200**;
 - Update **MaxRev.Gdal.WindowsRuntime.Minimal** to **3.2.0.200**;
 - Update **NetVips** to **1.2.4**;
-- Update **NetVips.Native** to **8.10.1**;
+- Update **NetVips.Native** to **8.10.5**;
 
 ### Console
 
