@@ -19,7 +19,7 @@ if ($IsWindows -or $buildAll)
 
     # GTiff2Tiles.GUI
     Write-Output "Start win-x64-GUI publish"
-    dotnet publish "GTiff2Tiles.GUI/GTiff2Tiles.GUI.csproj" -c Release /p:PublishDir=../Publish/GTiff2Tiles.GUI/win-x64
+    dotnet publish "GTiff2Tiles.GUI/GTiff2Tiles.GUI.csproj" -c Release /p:PublishDir=../Publish/GTiff2Tiles.GUI/win-x64 /p:Platform=x64
     Write-Output "Ended win-x64-GUI publish"
 }
 
