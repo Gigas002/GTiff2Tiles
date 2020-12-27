@@ -22,7 +22,7 @@ Main namespaces are the following:
 - [MaxRev.Gdal.LinuxRuntime.Minimal](https://www.nuget.org/packages/MaxRev.Gdal.LinuxRuntime.Minimal/) – 3.2.0.200;
 - [MaxRev.Gdal.WindowsRuntime.Minimal](https://www.nuget.org/packages/MaxRev.Gdal.WindowsRuntime.Minimal/) – 3.2.0.200;
 - [NetVips](https://www.nuget.org/packages/NetVips/) – 1.2.4;
-- [NetVips.Native](https://www.nuget.org/packages/NetVips.Native/) – 8.10.5;
+- [NetVips.Native](https://www.nuget.org/packages/NetVips.Native/) – 8.10.5.1;
 - [BitMiracle.LibTiff.NET](https://www.nuget.org/packages/BitMiracle.LibTiff.NET) – 2.4.639
 
 When building from source, there are more packages needed:
