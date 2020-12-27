@@ -1330,63 +1330,6 @@ references:
   isSpec: "True"
   fullName: GTiff2Tiles.Core.GeoTiffs.Raster.Raster
   nameWithType: Raster.Raster
-- uid: GTiff2Tiles.Core.GeoTiffs.Raster.CreateOverviewTile(GTiff2Tiles.Core.Tiles.RasterTile@,GTiff2Tiles.Core.Tiles.RasterTile,GTiff2Tiles.Core.Tiles.RasterTile,GTiff2Tiles.Core.Tiles.RasterTile,GTiff2Tiles.Core.Tiles.RasterTile,System.Boolean)
-  name: CreateOverviewTile(ref RasterTile, RasterTile, RasterTile, RasterTile, RasterTile, Boolean)
-  href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_CreateOverviewTile_GTiff2Tiles_Core_Tiles_RasterTile__GTiff2Tiles_Core_Tiles_RasterTile_GTiff2Tiles_Core_Tiles_RasterTile_GTiff2Tiles_Core_Tiles_RasterTile_GTiff2Tiles_Core_Tiles_RasterTile_System_Boolean_
-  commentId: M:GTiff2Tiles.Core.GeoTiffs.Raster.CreateOverviewTile(GTiff2Tiles.Core.Tiles.RasterTile@,GTiff2Tiles.Core.Tiles.RasterTile,GTiff2Tiles.Core.Tiles.RasterTile,GTiff2Tiles.Core.Tiles.RasterTile,GTiff2Tiles.Core.Tiles.RasterTile,System.Boolean)
-  name.vb: CreateOverviewTile(ByRef RasterTile, RasterTile, RasterTile, RasterTile, RasterTile, Boolean)
-  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.CreateOverviewTile(ref GTiff2Tiles.Core.Tiles.RasterTile, GTiff2Tiles.Core.Tiles.RasterTile, GTiff2Tiles.Core.Tiles.RasterTile, GTiff2Tiles.Core.Tiles.RasterTile, GTiff2Tiles.Core.Tiles.RasterTile, System.Boolean)
-  fullName.vb: GTiff2Tiles.Core.GeoTiffs.Raster.CreateOverviewTile(ByRef GTiff2Tiles.Core.Tiles.RasterTile, GTiff2Tiles.Core.Tiles.RasterTile, GTiff2Tiles.Core.Tiles.RasterTile, GTiff2Tiles.Core.Tiles.RasterTile, GTiff2Tiles.Core.Tiles.RasterTile, System.Boolean)
-  nameWithType: Raster.CreateOverviewTile(ref RasterTile, RasterTile, RasterTile, RasterTile, RasterTile, Boolean)
-  nameWithType.vb: Raster.CreateOverviewTile(ByRef RasterTile, RasterTile, RasterTile, RasterTile, RasterTile, Boolean)
-- uid: GTiff2Tiles.Core.GeoTiffs.Raster.CreateOverviewTile(GTiff2Tiles.Core.Tiles.RasterTile@,System.Collections.Generic.HashSet{GTiff2Tiles.Core.Tiles.RasterTile},System.Boolean)
-  name: CreateOverviewTile(ref RasterTile, HashSet<RasterTile>, Boolean)
-  href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_CreateOverviewTile_GTiff2Tiles_Core_Tiles_RasterTile__System_Collections_Generic_HashSet_GTiff2Tiles_Core_Tiles_RasterTile__System_Boolean_
-  commentId: M:GTiff2Tiles.Core.GeoTiffs.Raster.CreateOverviewTile(GTiff2Tiles.Core.Tiles.RasterTile@,System.Collections.Generic.HashSet{GTiff2Tiles.Core.Tiles.RasterTile},System.Boolean)
-  name.vb: CreateOverviewTile(ByRef RasterTile, HashSet(Of RasterTile), Boolean)
-  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.CreateOverviewTile(ref GTiff2Tiles.Core.Tiles.RasterTile, System.Collections.Generic.HashSet<GTiff2Tiles.Core.Tiles.RasterTile>, System.Boolean)
-  fullName.vb: GTiff2Tiles.Core.GeoTiffs.Raster.CreateOverviewTile(ByRef GTiff2Tiles.Core.Tiles.RasterTile, System.Collections.Generic.HashSet(Of GTiff2Tiles.Core.Tiles.RasterTile), System.Boolean)
-  nameWithType: Raster.CreateOverviewTile(ref RasterTile, HashSet<RasterTile>, Boolean)
-  nameWithType.vb: Raster.CreateOverviewTile(ByRef RasterTile, HashSet(Of RasterTile), Boolean)
-- uid: GTiff2Tiles.Core.GeoTiffs.Raster.CreateOverviewTile*
-  name: CreateOverviewTile
-  href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_CreateOverviewTile_
-  commentId: Overload:GTiff2Tiles.Core.GeoTiffs.Raster.CreateOverviewTile
-  isSpec: "True"
-  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.CreateOverviewTile
-  nameWithType: Raster.CreateOverviewTile
-- uid: GTiff2Tiles.Core.GeoTiffs.Raster.CreateOverviewTiles(System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.RasterTile},System.Int32,System.Int32,System.Collections.Generic.HashSet{GTiff2Tiles.Core.Tiles.RasterTile},System.Boolean,GTiff2Tiles.Core.Enums.CoordinateSystem,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.TileExtension,System.Boolean,System.Int32)
-  name: CreateOverviewTiles(ChannelWriter<RasterTile>, Int32, Int32, HashSet<RasterTile>, Boolean, CoordinateSystem, Size, TileExtension, Boolean, Int32)
-  href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_CreateOverviewTiles_System_Threading_Channels_ChannelWriter_GTiff2Tiles_Core_Tiles_RasterTile__System_Int32_System_Int32_System_Collections_Generic_HashSet_GTiff2Tiles_Core_Tiles_RasterTile__System_Boolean_GTiff2Tiles_Core_Enums_CoordinateSystem_GTiff2Tiles_Core_Images_Size_GTiff2Tiles_Core_Enums_TileExtension_System_Boolean_System_Int32_
-  commentId: M:GTiff2Tiles.Core.GeoTiffs.Raster.CreateOverviewTiles(System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.RasterTile},System.Int32,System.Int32,System.Collections.Generic.HashSet{GTiff2Tiles.Core.Tiles.RasterTile},System.Boolean,GTiff2Tiles.Core.Enums.CoordinateSystem,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.TileExtension,System.Boolean,System.Int32)
-  name.vb: CreateOverviewTiles(ChannelWriter(Of RasterTile), Int32, Int32, HashSet(Of RasterTile), Boolean, CoordinateSystem, Size, TileExtension, Boolean, Int32)
-  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.CreateOverviewTiles(System.Threading.Channels.ChannelWriter<GTiff2Tiles.Core.Tiles.RasterTile>, System.Int32, System.Int32, System.Collections.Generic.HashSet<GTiff2Tiles.Core.Tiles.RasterTile>, System.Boolean, GTiff2Tiles.Core.Enums.CoordinateSystem, GTiff2Tiles.Core.Images.Size, GTiff2Tiles.Core.Enums.TileExtension, System.Boolean, System.Int32)
-  fullName.vb: GTiff2Tiles.Core.GeoTiffs.Raster.CreateOverviewTiles(System.Threading.Channels.ChannelWriter(Of GTiff2Tiles.Core.Tiles.RasterTile), System.Int32, System.Int32, System.Collections.Generic.HashSet(Of GTiff2Tiles.Core.Tiles.RasterTile), System.Boolean, GTiff2Tiles.Core.Enums.CoordinateSystem, GTiff2Tiles.Core.Images.Size, GTiff2Tiles.Core.Enums.TileExtension, System.Boolean, System.Int32)
-  nameWithType: Raster.CreateOverviewTiles(ChannelWriter<RasterTile>, Int32, Int32, HashSet<RasterTile>, Boolean, CoordinateSystem, Size, TileExtension, Boolean, Int32)
-  nameWithType.vb: Raster.CreateOverviewTiles(ChannelWriter(Of RasterTile), Int32, Int32, HashSet(Of RasterTile), Boolean, CoordinateSystem, Size, TileExtension, Boolean, Int32)
-- uid: GTiff2Tiles.Core.GeoTiffs.Raster.CreateOverviewTiles*
-  name: CreateOverviewTiles
-  href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_CreateOverviewTiles_
-  commentId: Overload:GTiff2Tiles.Core.GeoTiffs.Raster.CreateOverviewTiles
-  isSpec: "True"
-  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.CreateOverviewTiles
-  nameWithType: Raster.CreateOverviewTiles
-- uid: GTiff2Tiles.Core.GeoTiffs.Raster.CreateOverviewTilesAsync(System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.RasterTile},System.Int32,System.Int32,System.Collections.Generic.HashSet{GTiff2Tiles.Core.Tiles.RasterTile},System.Boolean,GTiff2Tiles.Core.Enums.CoordinateSystem,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.TileExtension,System.Boolean,System.Int32)
-  name: CreateOverviewTilesAsync(ChannelWriter<RasterTile>, Int32, Int32, HashSet<RasterTile>, Boolean, CoordinateSystem, Size, TileExtension, Boolean, Int32)
-  href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_CreateOverviewTilesAsync_System_Threading_Channels_ChannelWriter_GTiff2Tiles_Core_Tiles_RasterTile__System_Int32_System_Int32_System_Collections_Generic_HashSet_GTiff2Tiles_Core_Tiles_RasterTile__System_Boolean_GTiff2Tiles_Core_Enums_CoordinateSystem_GTiff2Tiles_Core_Images_Size_GTiff2Tiles_Core_Enums_TileExtension_System_Boolean_System_Int32_
-  commentId: M:GTiff2Tiles.Core.GeoTiffs.Raster.CreateOverviewTilesAsync(System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.RasterTile},System.Int32,System.Int32,System.Collections.Generic.HashSet{GTiff2Tiles.Core.Tiles.RasterTile},System.Boolean,GTiff2Tiles.Core.Enums.CoordinateSystem,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.TileExtension,System.Boolean,System.Int32)
-  name.vb: CreateOverviewTilesAsync(ChannelWriter(Of RasterTile), Int32, Int32, HashSet(Of RasterTile), Boolean, CoordinateSystem, Size, TileExtension, Boolean, Int32)
-  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.CreateOverviewTilesAsync(System.Threading.Channels.ChannelWriter<GTiff2Tiles.Core.Tiles.RasterTile>, System.Int32, System.Int32, System.Collections.Generic.HashSet<GTiff2Tiles.Core.Tiles.RasterTile>, System.Boolean, GTiff2Tiles.Core.Enums.CoordinateSystem, GTiff2Tiles.Core.Images.Size, GTiff2Tiles.Core.Enums.TileExtension, System.Boolean, System.Int32)
-  fullName.vb: GTiff2Tiles.Core.GeoTiffs.Raster.CreateOverviewTilesAsync(System.Threading.Channels.ChannelWriter(Of GTiff2Tiles.Core.Tiles.RasterTile), System.Int32, System.Int32, System.Collections.Generic.HashSet(Of GTiff2Tiles.Core.Tiles.RasterTile), System.Boolean, GTiff2Tiles.Core.Enums.CoordinateSystem, GTiff2Tiles.Core.Images.Size, GTiff2Tiles.Core.Enums.TileExtension, System.Boolean, System.Int32)
-  nameWithType: Raster.CreateOverviewTilesAsync(ChannelWriter<RasterTile>, Int32, Int32, HashSet<RasterTile>, Boolean, CoordinateSystem, Size, TileExtension, Boolean, Int32)
-  nameWithType.vb: Raster.CreateOverviewTilesAsync(ChannelWriter(Of RasterTile), Int32, Int32, HashSet(Of RasterTile), Boolean, CoordinateSystem, Size, TileExtension, Boolean, Int32)
-- uid: GTiff2Tiles.Core.GeoTiffs.Raster.CreateOverviewTilesAsync*
-  name: CreateOverviewTilesAsync
-  href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_CreateOverviewTilesAsync_
-  commentId: Overload:GTiff2Tiles.Core.GeoTiffs.Raster.CreateOverviewTilesAsync
-  isSpec: "True"
-  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.CreateOverviewTilesAsync
-  nameWithType: Raster.CreateOverviewTilesAsync
 - uid: GTiff2Tiles.Core.GeoTiffs.Raster.CreateTileImage(NetVips.Image,GTiff2Tiles.Core.Tiles.RasterTile)
   name: CreateTileImage(Image, RasterTile)
   href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_CreateTileImage_NetVips_Image_GTiff2Tiles_Core_Tiles_RasterTile_
@@ -1471,25 +1414,6 @@ references:
   isSpec: "True"
   fullName: GTiff2Tiles.Core.GeoTiffs.Raster.GeoCoordinateSystem
   nameWithType: Raster.GeoCoordinateSystem
-- uid: GTiff2Tiles.Core.GeoTiffs.Raster.GetBorders(System.IO.Stream,GTiff2Tiles.Core.Enums.CoordinateSystem)
-  name: GetBorders(Stream, CoordinateSystem)
-  href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_GetBorders_System_IO_Stream_GTiff2Tiles_Core_Enums_CoordinateSystem_
-  commentId: M:GTiff2Tiles.Core.GeoTiffs.Raster.GetBorders(System.IO.Stream,GTiff2Tiles.Core.Enums.CoordinateSystem)
-  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.GetBorders(System.IO.Stream, GTiff2Tiles.Core.Enums.CoordinateSystem)
-  nameWithType: Raster.GetBorders(Stream, CoordinateSystem)
-- uid: GTiff2Tiles.Core.GeoTiffs.Raster.GetBorders(System.String,GTiff2Tiles.Core.Enums.CoordinateSystem)
-  name: GetBorders(String, CoordinateSystem)
-  href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_GetBorders_System_String_GTiff2Tiles_Core_Enums_CoordinateSystem_
-  commentId: M:GTiff2Tiles.Core.GeoTiffs.Raster.GetBorders(System.String,GTiff2Tiles.Core.Enums.CoordinateSystem)
-  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.GetBorders(System.String, GTiff2Tiles.Core.Enums.CoordinateSystem)
-  nameWithType: Raster.GetBorders(String, CoordinateSystem)
-- uid: GTiff2Tiles.Core.GeoTiffs.Raster.GetBorders*
-  name: GetBorders
-  href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_GetBorders_
-  commentId: Overload:GTiff2Tiles.Core.GeoTiffs.Raster.GetBorders
-  isSpec: "True"
-  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.GetBorders
-  nameWithType: Raster.GetBorders
 - uid: GTiff2Tiles.Core.GeoTiffs.Raster.IsDisposed
   name: IsDisposed
   href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_IsDisposed
@@ -1503,75 +1427,6 @@ references:
   isSpec: "True"
   fullName: GTiff2Tiles.Core.GeoTiffs.Raster.IsDisposed
   nameWithType: Raster.IsDisposed
-- uid: GTiff2Tiles.Core.GeoTiffs.Raster.JoinTilesIntoBytes(GTiff2Tiles.Core.Tiles.RasterTile,GTiff2Tiles.Core.Tiles.RasterTile,GTiff2Tiles.Core.Tiles.RasterTile,GTiff2Tiles.Core.Tiles.RasterTile,System.Boolean,GTiff2Tiles.Core.Images.Size,System.Int32,GTiff2Tiles.Core.Enums.TileExtension)
-  name: JoinTilesIntoBytes(RasterTile, RasterTile, RasterTile, RasterTile, Boolean, Size, Int32, TileExtension)
-  href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_JoinTilesIntoBytes_GTiff2Tiles_Core_Tiles_RasterTile_GTiff2Tiles_Core_Tiles_RasterTile_GTiff2Tiles_Core_Tiles_RasterTile_GTiff2Tiles_Core_Tiles_RasterTile_System_Boolean_GTiff2Tiles_Core_Images_Size_System_Int32_GTiff2Tiles_Core_Enums_TileExtension_
-  commentId: M:GTiff2Tiles.Core.GeoTiffs.Raster.JoinTilesIntoBytes(GTiff2Tiles.Core.Tiles.RasterTile,GTiff2Tiles.Core.Tiles.RasterTile,GTiff2Tiles.Core.Tiles.RasterTile,GTiff2Tiles.Core.Tiles.RasterTile,System.Boolean,GTiff2Tiles.Core.Images.Size,System.Int32,GTiff2Tiles.Core.Enums.TileExtension)
-  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.JoinTilesIntoBytes(GTiff2Tiles.Core.Tiles.RasterTile, GTiff2Tiles.Core.Tiles.RasterTile, GTiff2Tiles.Core.Tiles.RasterTile, GTiff2Tiles.Core.Tiles.RasterTile, System.Boolean, GTiff2Tiles.Core.Images.Size, System.Int32, GTiff2Tiles.Core.Enums.TileExtension)
-  nameWithType: Raster.JoinTilesIntoBytes(RasterTile, RasterTile, RasterTile, RasterTile, Boolean, Size, Int32, TileExtension)
-- uid: GTiff2Tiles.Core.GeoTiffs.Raster.JoinTilesIntoBytes*
-  name: JoinTilesIntoBytes
-  href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_JoinTilesIntoBytes_
-  commentId: Overload:GTiff2Tiles.Core.GeoTiffs.Raster.JoinTilesIntoBytes
-  isSpec: "True"
-  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.JoinTilesIntoBytes
-  nameWithType: Raster.JoinTilesIntoBytes
-- uid: GTiff2Tiles.Core.GeoTiffs.Raster.JoinTilesIntoImage(GTiff2Tiles.Core.Tiles.RasterTile,GTiff2Tiles.Core.Tiles.RasterTile,GTiff2Tiles.Core.Tiles.RasterTile,GTiff2Tiles.Core.Tiles.RasterTile,System.Boolean,GTiff2Tiles.Core.Images.Size,System.Int32)
-  name: JoinTilesIntoImage(RasterTile, RasterTile, RasterTile, RasterTile, Boolean, Size, Int32)
-  href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_JoinTilesIntoImage_GTiff2Tiles_Core_Tiles_RasterTile_GTiff2Tiles_Core_Tiles_RasterTile_GTiff2Tiles_Core_Tiles_RasterTile_GTiff2Tiles_Core_Tiles_RasterTile_System_Boolean_GTiff2Tiles_Core_Images_Size_System_Int32_
-  commentId: M:GTiff2Tiles.Core.GeoTiffs.Raster.JoinTilesIntoImage(GTiff2Tiles.Core.Tiles.RasterTile,GTiff2Tiles.Core.Tiles.RasterTile,GTiff2Tiles.Core.Tiles.RasterTile,GTiff2Tiles.Core.Tiles.RasterTile,System.Boolean,GTiff2Tiles.Core.Images.Size,System.Int32)
-  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.JoinTilesIntoImage(GTiff2Tiles.Core.Tiles.RasterTile, GTiff2Tiles.Core.Tiles.RasterTile, GTiff2Tiles.Core.Tiles.RasterTile, GTiff2Tiles.Core.Tiles.RasterTile, System.Boolean, GTiff2Tiles.Core.Images.Size, System.Int32)
-  nameWithType: Raster.JoinTilesIntoImage(RasterTile, RasterTile, RasterTile, RasterTile, Boolean, Size, Int32)
-- uid: GTiff2Tiles.Core.GeoTiffs.Raster.JoinTilesIntoImage(System.Collections.Generic.IEnumerable{System.Byte},System.Collections.Generic.IEnumerable{System.Byte},System.Collections.Generic.IEnumerable{System.Byte},System.Collections.Generic.IEnumerable{System.Byte},GTiff2Tiles.Core.Images.Size,System.Int32)
-  name: JoinTilesIntoImage(IEnumerable<Byte>, IEnumerable<Byte>, IEnumerable<Byte>, IEnumerable<Byte>, Size, Int32)
-  href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_JoinTilesIntoImage_System_Collections_Generic_IEnumerable_System_Byte__System_Collections_Generic_IEnumerable_System_Byte__System_Collections_Generic_IEnumerable_System_Byte__System_Collections_Generic_IEnumerable_System_Byte__GTiff2Tiles_Core_Images_Size_System_Int32_
-  commentId: M:GTiff2Tiles.Core.GeoTiffs.Raster.JoinTilesIntoImage(System.Collections.Generic.IEnumerable{System.Byte},System.Collections.Generic.IEnumerable{System.Byte},System.Collections.Generic.IEnumerable{System.Byte},System.Collections.Generic.IEnumerable{System.Byte},GTiff2Tiles.Core.Images.Size,System.Int32)
-  name.vb: JoinTilesIntoImage(IEnumerable(Of Byte), IEnumerable(Of Byte), IEnumerable(Of Byte), IEnumerable(Of Byte), Size, Int32)
-  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.JoinTilesIntoImage(System.Collections.Generic.IEnumerable<System.Byte>, System.Collections.Generic.IEnumerable<System.Byte>, System.Collections.Generic.IEnumerable<System.Byte>, System.Collections.Generic.IEnumerable<System.Byte>, GTiff2Tiles.Core.Images.Size, System.Int32)
-  fullName.vb: GTiff2Tiles.Core.GeoTiffs.Raster.JoinTilesIntoImage(System.Collections.Generic.IEnumerable(Of System.Byte), System.Collections.Generic.IEnumerable(Of System.Byte), System.Collections.Generic.IEnumerable(Of System.Byte), System.Collections.Generic.IEnumerable(Of System.Byte), GTiff2Tiles.Core.Images.Size, System.Int32)
-  nameWithType: Raster.JoinTilesIntoImage(IEnumerable<Byte>, IEnumerable<Byte>, IEnumerable<Byte>, IEnumerable<Byte>, Size, Int32)
-  nameWithType.vb: Raster.JoinTilesIntoImage(IEnumerable(Of Byte), IEnumerable(Of Byte), IEnumerable(Of Byte), IEnumerable(Of Byte), Size, Int32)
-- uid: GTiff2Tiles.Core.GeoTiffs.Raster.JoinTilesIntoImage(System.String,System.String,System.String,System.String,GTiff2Tiles.Core.Images.Size,System.Int32)
-  name: JoinTilesIntoImage(String, String, String, String, Size, Int32)
-  href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_JoinTilesIntoImage_System_String_System_String_System_String_System_String_GTiff2Tiles_Core_Images_Size_System_Int32_
-  commentId: M:GTiff2Tiles.Core.GeoTiffs.Raster.JoinTilesIntoImage(System.String,System.String,System.String,System.String,GTiff2Tiles.Core.Images.Size,System.Int32)
-  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.JoinTilesIntoImage(System.String, System.String, System.String, System.String, GTiff2Tiles.Core.Images.Size, System.Int32)
-  nameWithType: Raster.JoinTilesIntoImage(String, String, String, String, Size, Int32)
-- uid: GTiff2Tiles.Core.GeoTiffs.Raster.JoinTilesIntoImage*
-  name: JoinTilesIntoImage
-  href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_JoinTilesIntoImage_
-  commentId: Overload:GTiff2Tiles.Core.GeoTiffs.Raster.JoinTilesIntoImage
-  isSpec: "True"
-  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.JoinTilesIntoImage
-  nameWithType: Raster.JoinTilesIntoImage
-- uid: GTiff2Tiles.Core.GeoTiffs.Raster.JoinTilesIntoImageAsync(GTiff2Tiles.Core.Tiles.RasterTile,GTiff2Tiles.Core.Tiles.RasterTile,GTiff2Tiles.Core.Tiles.RasterTile,GTiff2Tiles.Core.Tiles.RasterTile,System.Boolean,GTiff2Tiles.Core.Images.Size,System.Int32)
-  name: JoinTilesIntoImageAsync(RasterTile, RasterTile, RasterTile, RasterTile, Boolean, Size, Int32)
-  href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_JoinTilesIntoImageAsync_GTiff2Tiles_Core_Tiles_RasterTile_GTiff2Tiles_Core_Tiles_RasterTile_GTiff2Tiles_Core_Tiles_RasterTile_GTiff2Tiles_Core_Tiles_RasterTile_System_Boolean_GTiff2Tiles_Core_Images_Size_System_Int32_
-  commentId: M:GTiff2Tiles.Core.GeoTiffs.Raster.JoinTilesIntoImageAsync(GTiff2Tiles.Core.Tiles.RasterTile,GTiff2Tiles.Core.Tiles.RasterTile,GTiff2Tiles.Core.Tiles.RasterTile,GTiff2Tiles.Core.Tiles.RasterTile,System.Boolean,GTiff2Tiles.Core.Images.Size,System.Int32)
-  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.JoinTilesIntoImageAsync(GTiff2Tiles.Core.Tiles.RasterTile, GTiff2Tiles.Core.Tiles.RasterTile, GTiff2Tiles.Core.Tiles.RasterTile, GTiff2Tiles.Core.Tiles.RasterTile, System.Boolean, GTiff2Tiles.Core.Images.Size, System.Int32)
-  nameWithType: Raster.JoinTilesIntoImageAsync(RasterTile, RasterTile, RasterTile, RasterTile, Boolean, Size, Int32)
-- uid: GTiff2Tiles.Core.GeoTiffs.Raster.JoinTilesIntoImageAsync(System.Collections.Generic.IEnumerable{System.Byte},System.Collections.Generic.IEnumerable{System.Byte},System.Collections.Generic.IEnumerable{System.Byte},System.Collections.Generic.IEnumerable{System.Byte},GTiff2Tiles.Core.Images.Size,System.Int32)
-  name: JoinTilesIntoImageAsync(IEnumerable<Byte>, IEnumerable<Byte>, IEnumerable<Byte>, IEnumerable<Byte>, Size, Int32)
-  href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_JoinTilesIntoImageAsync_System_Collections_Generic_IEnumerable_System_Byte__System_Collections_Generic_IEnumerable_System_Byte__System_Collections_Generic_IEnumerable_System_Byte__System_Collections_Generic_IEnumerable_System_Byte__GTiff2Tiles_Core_Images_Size_System_Int32_
-  commentId: M:GTiff2Tiles.Core.GeoTiffs.Raster.JoinTilesIntoImageAsync(System.Collections.Generic.IEnumerable{System.Byte},System.Collections.Generic.IEnumerable{System.Byte},System.Collections.Generic.IEnumerable{System.Byte},System.Collections.Generic.IEnumerable{System.Byte},GTiff2Tiles.Core.Images.Size,System.Int32)
-  name.vb: JoinTilesIntoImageAsync(IEnumerable(Of Byte), IEnumerable(Of Byte), IEnumerable(Of Byte), IEnumerable(Of Byte), Size, Int32)
-  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.JoinTilesIntoImageAsync(System.Collections.Generic.IEnumerable<System.Byte>, System.Collections.Generic.IEnumerable<System.Byte>, System.Collections.Generic.IEnumerable<System.Byte>, System.Collections.Generic.IEnumerable<System.Byte>, GTiff2Tiles.Core.Images.Size, System.Int32)
-  fullName.vb: GTiff2Tiles.Core.GeoTiffs.Raster.JoinTilesIntoImageAsync(System.Collections.Generic.IEnumerable(Of System.Byte), System.Collections.Generic.IEnumerable(Of System.Byte), System.Collections.Generic.IEnumerable(Of System.Byte), System.Collections.Generic.IEnumerable(Of System.Byte), GTiff2Tiles.Core.Images.Size, System.Int32)
-  nameWithType: Raster.JoinTilesIntoImageAsync(IEnumerable<Byte>, IEnumerable<Byte>, IEnumerable<Byte>, IEnumerable<Byte>, Size, Int32)
-  nameWithType.vb: Raster.JoinTilesIntoImageAsync(IEnumerable(Of Byte), IEnumerable(Of Byte), IEnumerable(Of Byte), IEnumerable(Of Byte), Size, Int32)
-- uid: GTiff2Tiles.Core.GeoTiffs.Raster.JoinTilesIntoImageAsync(System.String,System.String,System.String,System.String,GTiff2Tiles.Core.Images.Size,System.Int32)
-  name: JoinTilesIntoImageAsync(String, String, String, String, Size, Int32)
-  href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_JoinTilesIntoImageAsync_System_String_System_String_System_String_System_String_GTiff2Tiles_Core_Images_Size_System_Int32_
-  commentId: M:GTiff2Tiles.Core.GeoTiffs.Raster.JoinTilesIntoImageAsync(System.String,System.String,System.String,System.String,GTiff2Tiles.Core.Images.Size,System.Int32)
-  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.JoinTilesIntoImageAsync(System.String, System.String, System.String, System.String, GTiff2Tiles.Core.Images.Size, System.Int32)
-  nameWithType: Raster.JoinTilesIntoImageAsync(String, String, String, String, Size, Int32)
-- uid: GTiff2Tiles.Core.GeoTiffs.Raster.JoinTilesIntoImageAsync*
-  name: JoinTilesIntoImageAsync
-  href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_JoinTilesIntoImageAsync_
-  commentId: Overload:GTiff2Tiles.Core.GeoTiffs.Raster.JoinTilesIntoImageAsync
-  isSpec: "True"
-  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.JoinTilesIntoImageAsync
-  nameWithType: Raster.JoinTilesIntoImageAsync
 - uid: GTiff2Tiles.Core.GeoTiffs.Raster.MaxCoordinate
   name: MaxCoordinate
   href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_MaxCoordinate
@@ -1611,54 +1466,6 @@ references:
   isSpec: "True"
   fullName: GTiff2Tiles.Core.GeoTiffs.Raster.Size
   nameWithType: Raster.Size
-- uid: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToAsyncEnumerable(System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.Interpolation,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Action{System.String})
-  name: WriteTilesToAsyncEnumerable(Int32, Int32, Boolean, Size, Interpolation, Int32, Int32, Int32, IProgress<Double>, Action<String>)
-  href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_WriteTilesToAsyncEnumerable_System_Int32_System_Int32_System_Boolean_GTiff2Tiles_Core_Images_Size_GTiff2Tiles_Core_Enums_Interpolation_System_Int32_System_Int32_System_Int32_System_IProgress_System_Double__System_Action_System_String__
-  commentId: M:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToAsyncEnumerable(System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.Interpolation,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Action{System.String})
-  name.vb: WriteTilesToAsyncEnumerable(Int32, Int32, Boolean, Size, Interpolation, Int32, Int32, Int32, IProgress(Of Double), Action(Of String))
-  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToAsyncEnumerable(System.Int32, System.Int32, System.Boolean, GTiff2Tiles.Core.Images.Size, GTiff2Tiles.Core.Enums.Interpolation, System.Int32, System.Int32, System.Int32, System.IProgress<System.Double>, System.Action<System.String>)
-  fullName.vb: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToAsyncEnumerable(System.Int32, System.Int32, System.Boolean, GTiff2Tiles.Core.Images.Size, GTiff2Tiles.Core.Enums.Interpolation, System.Int32, System.Int32, System.Int32, System.IProgress(Of System.Double), System.Action(Of System.String))
-  nameWithType: Raster.WriteTilesToAsyncEnumerable(Int32, Int32, Boolean, Size, Interpolation, Int32, Int32, Int32, IProgress<Double>, Action<String>)
-  nameWithType.vb: Raster.WriteTilesToAsyncEnumerable(Int32, Int32, Boolean, Size, Interpolation, Int32, Int32, Int32, IProgress(Of Double), Action(Of String))
-- uid: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToAsyncEnumerable*
-  name: WriteTilesToAsyncEnumerable
-  href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_WriteTilesToAsyncEnumerable_
-  commentId: Overload:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToAsyncEnumerable
-  isSpec: "True"
-  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToAsyncEnumerable
-  nameWithType: Raster.WriteTilesToAsyncEnumerable
-- uid: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToChannel(System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.RasterTile},System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.Interpolation,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Action{System.String})
-  name: WriteTilesToChannel(ChannelWriter<RasterTile>, Int32, Int32, Boolean, Size, Interpolation, Int32, Int32, Int32, IProgress<Double>, Action<String>)
-  href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_WriteTilesToChannel_System_Threading_Channels_ChannelWriter_GTiff2Tiles_Core_Tiles_RasterTile__System_Int32_System_Int32_System_Boolean_GTiff2Tiles_Core_Images_Size_GTiff2Tiles_Core_Enums_Interpolation_System_Int32_System_Int32_System_Int32_System_IProgress_System_Double__System_Action_System_String__
-  commentId: M:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToChannel(System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.RasterTile},System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.Interpolation,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Action{System.String})
-  name.vb: WriteTilesToChannel(ChannelWriter(Of RasterTile), Int32, Int32, Boolean, Size, Interpolation, Int32, Int32, Int32, IProgress(Of Double), Action(Of String))
-  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToChannel(System.Threading.Channels.ChannelWriter<GTiff2Tiles.Core.Tiles.RasterTile>, System.Int32, System.Int32, System.Boolean, GTiff2Tiles.Core.Images.Size, GTiff2Tiles.Core.Enums.Interpolation, System.Int32, System.Int32, System.Int32, System.IProgress<System.Double>, System.Action<System.String>)
-  fullName.vb: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToChannel(System.Threading.Channels.ChannelWriter(Of GTiff2Tiles.Core.Tiles.RasterTile), System.Int32, System.Int32, System.Boolean, GTiff2Tiles.Core.Images.Size, GTiff2Tiles.Core.Enums.Interpolation, System.Int32, System.Int32, System.Int32, System.IProgress(Of System.Double), System.Action(Of System.String))
-  nameWithType: Raster.WriteTilesToChannel(ChannelWriter<RasterTile>, Int32, Int32, Boolean, Size, Interpolation, Int32, Int32, Int32, IProgress<Double>, Action<String>)
-  nameWithType.vb: Raster.WriteTilesToChannel(ChannelWriter(Of RasterTile), Int32, Int32, Boolean, Size, Interpolation, Int32, Int32, Int32, IProgress(Of Double), Action(Of String))
-- uid: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToChannel*
-  name: WriteTilesToChannel
-  href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_WriteTilesToChannel_
-  commentId: Overload:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToChannel
-  isSpec: "True"
-  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToChannel
-  nameWithType: Raster.WriteTilesToChannel
-- uid: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToChannelAsync(System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.RasterTile},System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.Interpolation,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Action{System.String})
-  name: WriteTilesToChannelAsync(ChannelWriter<RasterTile>, Int32, Int32, Boolean, Size, Interpolation, Int32, Int32, Int32, IProgress<Double>, Action<String>)
-  href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_WriteTilesToChannelAsync_System_Threading_Channels_ChannelWriter_GTiff2Tiles_Core_Tiles_RasterTile__System_Int32_System_Int32_System_Boolean_GTiff2Tiles_Core_Images_Size_GTiff2Tiles_Core_Enums_Interpolation_System_Int32_System_Int32_System_Int32_System_IProgress_System_Double__System_Action_System_String__
-  commentId: M:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToChannelAsync(System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.RasterTile},System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.Interpolation,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Action{System.String})
-  name.vb: WriteTilesToChannelAsync(ChannelWriter(Of RasterTile), Int32, Int32, Boolean, Size, Interpolation, Int32, Int32, Int32, IProgress(Of Double), Action(Of String))
-  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToChannelAsync(System.Threading.Channels.ChannelWriter<GTiff2Tiles.Core.Tiles.RasterTile>, System.Int32, System.Int32, System.Boolean, GTiff2Tiles.Core.Images.Size, GTiff2Tiles.Core.Enums.Interpolation, System.Int32, System.Int32, System.Int32, System.IProgress<System.Double>, System.Action<System.String>)
-  fullName.vb: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToChannelAsync(System.Threading.Channels.ChannelWriter(Of GTiff2Tiles.Core.Tiles.RasterTile), System.Int32, System.Int32, System.Boolean, GTiff2Tiles.Core.Images.Size, GTiff2Tiles.Core.Enums.Interpolation, System.Int32, System.Int32, System.Int32, System.IProgress(Of System.Double), System.Action(Of System.String))
-  nameWithType: Raster.WriteTilesToChannelAsync(ChannelWriter<RasterTile>, Int32, Int32, Boolean, Size, Interpolation, Int32, Int32, Int32, IProgress<Double>, Action<String>)
-  nameWithType.vb: Raster.WriteTilesToChannelAsync(ChannelWriter(Of RasterTile), Int32, Int32, Boolean, Size, Interpolation, Int32, Int32, Int32, IProgress(Of Double), Action(Of String))
-- uid: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToChannelAsync*
-  name: WriteTilesToChannelAsync
-  href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_WriteTilesToChannelAsync_
-  commentId: Overload:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToChannelAsync
-  isSpec: "True"
-  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToChannelAsync
-  nameWithType: Raster.WriteTilesToChannelAsync
 - uid: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToDirectory(System.String,System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.TileExtension,GTiff2Tiles.Core.Enums.Interpolation,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Action{System.String})
   name: WriteTilesToDirectory(String, Int32, Int32, Boolean, Size, TileExtension, Interpolation, Int32, Int32, Int32, IProgress<Double>, Action<String>)
   href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_WriteTilesToDirectory_System_String_System_Int32_System_Int32_System_Boolean_GTiff2Tiles_Core_Images_Size_GTiff2Tiles_Core_Enums_TileExtension_GTiff2Tiles_Core_Enums_Interpolation_System_Int32_System_Int32_System_Int32_System_IProgress_System_Double__System_Action_System_String__
@@ -1675,38 +1482,6 @@ references:
   isSpec: "True"
   fullName: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToDirectory
   nameWithType: Raster.WriteTilesToDirectory
-- uid: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToDirectoryAsync(System.String,System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.TileExtension,GTiff2Tiles.Core.Enums.Interpolation,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Action{System.String})
-  name: WriteTilesToDirectoryAsync(String, Int32, Int32, Boolean, Size, TileExtension, Interpolation, Int32, Int32, Int32, IProgress<Double>, Action<String>)
-  href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_WriteTilesToDirectoryAsync_System_String_System_Int32_System_Int32_System_Boolean_GTiff2Tiles_Core_Images_Size_GTiff2Tiles_Core_Enums_TileExtension_GTiff2Tiles_Core_Enums_Interpolation_System_Int32_System_Int32_System_Int32_System_IProgress_System_Double__System_Action_System_String__
-  commentId: M:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToDirectoryAsync(System.String,System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.TileExtension,GTiff2Tiles.Core.Enums.Interpolation,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Action{System.String})
-  name.vb: WriteTilesToDirectoryAsync(String, Int32, Int32, Boolean, Size, TileExtension, Interpolation, Int32, Int32, Int32, IProgress(Of Double), Action(Of String))
-  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToDirectoryAsync(System.String, System.Int32, System.Int32, System.Boolean, GTiff2Tiles.Core.Images.Size, GTiff2Tiles.Core.Enums.TileExtension, GTiff2Tiles.Core.Enums.Interpolation, System.Int32, System.Int32, System.Int32, System.IProgress<System.Double>, System.Action<System.String>)
-  fullName.vb: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToDirectoryAsync(System.String, System.Int32, System.Int32, System.Boolean, GTiff2Tiles.Core.Images.Size, GTiff2Tiles.Core.Enums.TileExtension, GTiff2Tiles.Core.Enums.Interpolation, System.Int32, System.Int32, System.Int32, System.IProgress(Of System.Double), System.Action(Of System.String))
-  nameWithType: Raster.WriteTilesToDirectoryAsync(String, Int32, Int32, Boolean, Size, TileExtension, Interpolation, Int32, Int32, Int32, IProgress<Double>, Action<String>)
-  nameWithType.vb: Raster.WriteTilesToDirectoryAsync(String, Int32, Int32, Boolean, Size, TileExtension, Interpolation, Int32, Int32, Int32, IProgress(Of Double), Action(Of String))
-- uid: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToDirectoryAsync*
-  name: WriteTilesToDirectoryAsync
-  href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_WriteTilesToDirectoryAsync_
-  commentId: Overload:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToDirectoryAsync
-  isSpec: "True"
-  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToDirectoryAsync
-  nameWithType: Raster.WriteTilesToDirectoryAsync
-- uid: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToEnumerable(System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.Interpolation,System.Int32,System.Int32,System.IProgress{System.Double},System.Action{System.String})
-  name: WriteTilesToEnumerable(Int32, Int32, Boolean, Size, Interpolation, Int32, Int32, IProgress<Double>, Action<String>)
-  href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_WriteTilesToEnumerable_System_Int32_System_Int32_System_Boolean_GTiff2Tiles_Core_Images_Size_GTiff2Tiles_Core_Enums_Interpolation_System_Int32_System_Int32_System_IProgress_System_Double__System_Action_System_String__
-  commentId: M:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToEnumerable(System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.Interpolation,System.Int32,System.Int32,System.IProgress{System.Double},System.Action{System.String})
-  name.vb: WriteTilesToEnumerable(Int32, Int32, Boolean, Size, Interpolation, Int32, Int32, IProgress(Of Double), Action(Of String))
-  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToEnumerable(System.Int32, System.Int32, System.Boolean, GTiff2Tiles.Core.Images.Size, GTiff2Tiles.Core.Enums.Interpolation, System.Int32, System.Int32, System.IProgress<System.Double>, System.Action<System.String>)
-  fullName.vb: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToEnumerable(System.Int32, System.Int32, System.Boolean, GTiff2Tiles.Core.Images.Size, GTiff2Tiles.Core.Enums.Interpolation, System.Int32, System.Int32, System.IProgress(Of System.Double), System.Action(Of System.String))
-  nameWithType: Raster.WriteTilesToEnumerable(Int32, Int32, Boolean, Size, Interpolation, Int32, Int32, IProgress<Double>, Action<String>)
-  nameWithType.vb: Raster.WriteTilesToEnumerable(Int32, Int32, Boolean, Size, Interpolation, Int32, Int32, IProgress(Of Double), Action(Of String))
-- uid: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToEnumerable*
-  name: WriteTilesToEnumerable
-  href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_WriteTilesToEnumerable_
-  commentId: Overload:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToEnumerable
-  isSpec: "True"
-  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToEnumerable
-  nameWithType: Raster.WriteTilesToEnumerable
 - uid: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToChannel(NetVips.Image,GTiff2Tiles.Core.Tiles.RasterTile,System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.RasterTile})
   name: WriteTileToChannel(Image, RasterTile, ChannelWriter<RasterTile>)
   href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_WriteTileToChannel_NetVips_Image_GTiff2Tiles_Core_Tiles_RasterTile_System_Threading_Channels_ChannelWriter_GTiff2Tiles_Core_Tiles_RasterTile__

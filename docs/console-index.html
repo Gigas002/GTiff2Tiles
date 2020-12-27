@@ -8,7 +8,7 @@
     <title>GTiff2Tiles.Console </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="GTiff2Tiles.Console ">
-    <meta name="generator" content="docfx 2.56.2.0">
+    <meta name="generator" content="docfx 2.56.6.0">
     
     <link rel="shortcut icon" href="images/Icon.ico">
     <link rel="stylesheet" href="styles/docfx.vendor.css">
@@ -110,7 +110,7 @@ Any <strong>GeoTIFF</strong> (with less, than <strong>5 bands</strong>) on input
 <td style="text-align: center;">No</td>
 </tr>
 <tr>
-<td style="text-align: center;"></td>
+<td style="text-align: center;">-e</td>
 <td style="text-align: center;">--extension</td>
 <td style="text-align: center;">Extension of ready tiles, <code>.png</code> by default</td>
 <td style="text-align: center;">No</td>
@@ -142,13 +142,13 @@ Any <strong>GeoTIFF</strong> (with less, than <strong>5 bands</strong>) on input
 <tr>
 <td style="text-align: center;">-b</td>
 <td style="text-align: center;">--bands</td>
-<td style="text-align: center;">Count of bands in ready tiles, 4 by default</td>
+<td style="text-align: center;">Count of bands in ready tiles, <code>4</code> by default</td>
 <td style="text-align: center;">No</td>
 </tr>
 <tr>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">--tilecache</td>
-<td style="text-align: center;">How much tiles would you like to store in memory cache? 100 by default</td>
+<td style="text-align: center;">How much tiles would you like to store in memory cache? <code>100</code> by default</td>
 <td style="text-align: center;">No</td>
 </tr>
 <tr>
@@ -158,9 +158,15 @@ Any <strong>GeoTIFF</strong> (with less, than <strong>5 bands</strong>) on input
 <td style="text-align: center;">No</td>
 </tr>
 <tr>
-<td style="text-align: center;"></td>
+<td style="text-align: center;">-p</td>
 <td style="text-align: center;">--progress</td>
 <td style="text-align: center;">Do you want to see the progress? <code>true</code> by default</td>
+<td style="text-align: center;">No</td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">--tmr</td>
+<td style="text-align: center;">Do you want to create <code>tilemapresource.xml</code>? <code>false</code> by default</td>
 <td style="text-align: center;">No</td>
 </tr>
 <tr>
@@ -206,8 +212,9 @@ Any <strong>GeoTIFF</strong> (with less, than <strong>5 bands</strong>) on input
 <p><strong>--tilecache</strong> is <code>int</code> parameter, representing count of tiles to store in RAM to crop them faster (<em>that’s vips stuff</em>). <code>1000</code> by default.</p>
 <p><strong>--memcache</strong> is <code>long</code> parameter, representing maximal size (<em>in bytes</em>) of input file to store in RAM to crop it faster. By default is <code>2147483648</code> (<em>which equals to 2Gb</em>).</p>
 <p><strong>--progress</strong> is <code>bool</code> parameter. If it’s set to <code>true</code> – you’ll see cropping progress in your command line. <code>true</code> by default.</p>
+<p><strong>--tmr</strong> is <code>bool</code> parameter. If it's set to <code>true</code>, the program will create <code>tilemapresource.xml</code> after cropping tiles. <code>false</code> by default.</p>
 <p><strong>--timeleft</strong> is a <code>bool</code> parameter. If it’s set to <code>true</code> – you’ll see estimated time left before end of cropping after each tile is cropped. <code>false</code> (<em>beware, too much output can slow app down</em>) by default.</p>
-<p><strong>--tilesize</strong> is <code>int</code> parameter, representing the size of one side (*<em>tiles should be a square, so specifying 2 side’s sizes is redundant</em>) of ready tiles. <code>256</code> by default.</p>
+<p><strong>--tilesize</strong> is <code>int</code> parameter, representing the size of one side (<em>tiles should be a square, so specifying 2 side’s sizes is redundant</em>) of ready tiles. <code>256</code> by default.</p>
 <h3 id="offline-docs">Offline docs</h3>
 <p>Offline docs are also available as <a href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Console/console-index.pdf">pdf</a> and distributed alongside the application.</p>
 <h2 id="build-dependencies">Build dependencies</h2>
@@ -228,7 +235,8 @@ Any <strong>GeoTIFF</strong> (with less, than <strong>5 bands</strong>) on input
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
-              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+                <h5>In This Article</h5>
+                <div></div>
               </nav>
             </div>
           </div>

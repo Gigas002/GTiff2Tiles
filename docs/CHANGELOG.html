@@ -8,7 +8,7 @@
     <title>CHANGELOG </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="CHANGELOG ">
-    <meta name="generator" content="docfx 2.56.2.0">
+    <meta name="generator" content="docfx 2.56.6.0">
     
     <link rel="shortcut icon" href="images/Icon.ico">
     <link rel="stylesheet" href="styles/docfx.vendor.css">
@@ -62,67 +62,224 @@
             <article class="content wrap" id="_content" data-uid="">
 <h1 id="changelog">CHANGELOG</h1>
 
-<h2 id="wip--200">WIP – 2.0.0</h2>
-<p>I’ve noticed, that I’ve violated the semantic versioning rules in the past. Sorry. That release contains incompatible changes, so it’s a major release.</p>
-<p>Changes since 1.4.1:</p>
-<h3 id="overall">Overall</h3>
+<h2 id="wip----200">WIP -- 2.0.0</h2>
+<p>This is a new major release of <strong>GTiff2Tiles</strong>. There are a lot of incompatible major and minor changes since <strong>1.4.1</strong> listed below.</p>
+<h3 id="repo-organization">Repo organization</h3>
 <ul>
-<li>Update <strong>.NET Core</strong> version to <strong>5.0.100-preview.7</strong>;</li>
-<li>Drop support of <strong>.NET Framework and .NET Standard</strong>;</li>
-<li>Fixed <strong>Linux</strong> build and apps;</li>
-<li>Create <strong>Docker image</strong> for <strong>GTiff2Tiles.Console</strong> (<em>GitHub packages and Docker Hub</em>);</li>
-<li>Move to <strong><a href="https://dbad-license.org/">DBAD</a></strong> license;</li>
-<li>Configured CI/CD for full repo;</li>
-<li>Reduced tile shifting in output tiles (resolved by updating <strong>NetVips.Native to 8.10.0+</strong>);</li>
-<li>Added <strong>Microsoft.CodeAnalysis.FxCopAnalyzers</strong> dependency;</li>
-<li>Added <strong>BitMiracle.LibTiff.NET</strong> dependency;</li>
-<li>Move all docs to <strong>GitHub Pages</strong> and <strong>pdf</strong>, using <strong>docfx</strong>;</li>
+<li>Rewritten issue templates;</li>
+<li>Rewritten <strong>GitHub Projects</strong>;</li>
+<li>Added <strong>GitHub Milestones</strong>;</li>
+<li>More issues's labels;</li>
+<li>Add CI (<em>build &amp; tests on Windows and Ubuntu2004</em>) on <strong>GitHub</strong>;</li>
+<li>Add <strong>GitHub's CI</strong> badge to readme;</li>
+<li>Improved Appveyor CI;</li>
+<li>Add CD through Appveyor;</li>
+<li>Add <strong>CODE_OF_CONDUCT.md</strong>;</li>
+<li>Add <strong>CONTRIBUTING.md</strong>;</li>
+<li>Add <strong>Pull Request</strong> template;</li>
+<li>Add <strong>code coderage</strong> badge;</li>
+</ul>
+<h3 id="new-packages">New packages</h3>
+<ul>
+<li><a href="https://hub.docker.com/r/gigas002/gtiff2tiles-console">Docker Hub</a> (<em>GTiff2Tiles.Console</em>);</li>
+<li><a href="https://github.com/Gigas002/GTiff2Tiles/packages/145349">GitHub Packages: Docker</a> (<em>GTiff2Tiles.Console</em>);</li>
+<li><a href="https://github.com/Gigas002/GTiff2Tiles/packages/146275">GitHub Packages: nuget package</a> (<em>GTiff2Tiles.Core</em>);</li>
+</ul>
+<h3 id="all-solution">All solution</h3>
+<ul>
+<li>Rewritten and added new publish scripts;</li>
+<li>Bump <strong>.NET Core</strong>/<strong>.NET</strong> version to <strong>5.0.101</strong>;</li>
+<li>Fixed localization files's names;</li>
+<li>Moved to <strong><a href="https://dbad-license.org/">DBAD</a></strong> license;</li>
+<li>Drop support of <strong>.NET Framework</strong> and <strong>.NET Standard</strong>;</li>
+<li>Add <strong>appveyor</strong> configuration;</li>
+<li>Add a lot more metadata to <code>.csproj</code> files;</li>
+<li>Cleaner code thanks to new code analysis dependency;</li>
+<li>Removed <code>AnyCPU</code> builds (<em>now only x64 configuration available</em>);</li>
+<li>Fixed Linux build and apps;</li>
+<li>Fixed SemVer violations;</li>
+<li>Perform analysis with <strong>Microsoft.CodeAnalysis.NetAnalyzers</strong> (<em>included in .net 5.0+ by default</em>);</li>
+<li>Add ability to create <code>tilemapresource.xml</code>;</li>
 </ul>
 <h3 id="core">Core</h3>
-<p><strong>Breaking changes:</strong></p>
+<p>Core library was completely rewritten, a lot of new, moved and removed API. Please read <a href="https://gigas002.github.io/GTiff2Tiles/api/index.html">docs on GitHub Pages</a> for new API, here's only a quick list of changes in previous API. Old docs are still available at <a href="https://github.com/Gigas002/GTiff2Tiles/wiki">GitHub Wiki</a>.</p>
+<p><strong>Overall:</strong></p>
 <ul>
-<li>Renamed <code>GenerateTilesByCroppingAsync</code> to <code>GenerateTilesAsync</code>;</li>
-<li><code>GenerateTilesAsync</code> now takes lesser params (<em>WIP</em>);</li>
-<li>Added <code>Enums.Image.TileExtension</code> enum to choose the extension of output tiles (docs WIP);</li>
+<li>Better performance on all tasks;</li>
+<li>A lot of new/changed API;</li>
+<li>Completed and expanded all xml-docs;</li>
+<li>Improved publishing of package;</li>
+<li>Building .snupkg as well;</li>
+<li>Better error/exception-handling;</li>
+<li>Less useless localization strings;</li>
+<li>Reduced tile shifting in output tiles (resolved by updating <strong>NetVips.Native to 8.10.0+</strong>);</li>
 </ul>
-<p><strong>Dependencies:</strong></p>
+<h4 id="changed-api">Changed API</h4>
+<p>Only changes in public API are listed.</p>
+<p><strong>GTiff2Tiles.Core.Tile:</strong></p>
 <ul>
-<li>Update <strong>MaxRev.Gdal.Core</strong> package to <strong>3.1.0.100</strong>;</li>
-<li>Update <strong>MaxRev.Gdal.WindowsRuntime.Minimal</strong> package to <strong>3.1.0.100</strong>;</li>
-<li>Update <strong>MaxRev.Gdal.LinuxRuntime.Minimal</strong> package to <strong>3.1.0.100</strong>;</li>
-<li>Update <strong>NetVips</strong> package to <strong>1.2.4</strong>;</li>
-<li>Update <strong>NetVips.Native</strong> package to <strong>8.10.0</strong>;</li>
+<li><code>GTiff2Tiles.Core.Tile</code> namespace renamed to <code>GTiff2Tiles.Core.Tiles</code>;</li>
+<li><code>Tile</code> is no longer <code>static</code> class, methods moved to the corresponding classes in <code>GTiff2Tiles.Core.Tiles</code> namespace;</li>
+<li><code>public static (int tileMinX, int tileMinY, int tileMaxX, int tileMaxY) GetTileNumbersFromCoords(double minX, double minY, double maxX, double maxY, int zoom, bool tmsCompatible)</code> method moved to <code>GTiff2Tiles.Core.Coordinates.GeoCoordinate</code> class and it's inherited classes as method <code>public static (Number minNumber, Number maxNumber) GetNumbers(GeoCoordinate minCoordinate, GeoCoordinate maxCoordinate, int z, Size tileSize, bool tmsCompatible)</code>;</li>
+<li><code>public static (double minX, double minY, double maxX, double maxY) TileBounds(int tileX, int tileY, int zoom, bool tmsCompatible)</code> method moved to <code>GTiff2Tiles.Core.Tiles.Number</code> class as method <code>public static (GeodeticCoordinate minCoordinate, GeodeticCoordinate maxCoordinate) ToGeodeticCoordinates(Number number, Size tileSize, bool tmsCompatible)</code></li>
 </ul>
-<h3 id="benchmarks">Benchmarks</h3>
+<p><strong>GTiff2Tiles.Core.Image.Gdal:</strong></p>
 <ul>
-<li>Update <strong>CommandLineParser</strong> package to <strong>2.8.0</strong>;</li>
-<li>Add <strong>BenchmarkDotNet</strong> package dependency;</li>
-<li>Use latest images from <strong>docker hub</strong> to run benchs;</li>
+<li>Static class <code>GTiff2Tiles.Core.Image.Gdal</code> is moved to <code>GTiff2Tiles.Core</code> namespace and renamed to <code>GdalWorker</code>;</li>
+<li>Constants from <code>GTiff2Tiles.Core.Enums.Image.Gdal</code> class moved to <code>GTiff2Tiles.Core.GdalWorker</code>;</li>
+<li>Using <code>SrsEpsg4326</code> string instead of <code>Wgs84</code>;</li>
+<li><code>RepairTifOptions</code> renamed to <code>ConvertCoordinateSystemOptions</code> and doesn't contain <code>-t_srs</code> param anymore;</li>
+<li><code>TempFileName</code>'s value now <code>_tmp_converted.tif</code>;</li>
+<li><code>public static async ValueTask WarpAsync(FileInfo inputFileInfo, FileInfo outputFileInfo, string[] options, OSGeo.GDAL.Gdal.GDALProgressFuncDelegate callback = null)</code> changed to <code>public static Task WarpAsync(string inputFilePath, string outputFilePath, string[] options, IProgress&lt;double&gt; progress = null)</code>;</li>
+<li><code>public static async ValueTask&lt;string&gt; InfoAsync(FileInfo inputFileInfo, string[] options = null)</code> changed to <code>public static Task&lt;string&gt; InfoAsync(string inputFilePath, string[] options = null)</code>;</li>
+<li><code>ConfigureGdal()</code> is now public and calls <code>MaxRev.Gdal.Core.GdalBase.ConfigureAll()</code> method instead of self-implemented configuration;</li>
+</ul>
+<p><strong>GTiff2Tiles.Core.Image.Image:</strong></p>
+<ul>
+<li><code>GTiff2Tiles.Core.Image.Image</code> class is renamed and moved to <code>GTiff2Tiles.Core.GeoTiffs.Raster</code>;</li>
+<li><code>int RasterXSize</code> and <code>int RasterYSize</code> properties are now one new property <code>Size Size</code>;</li>
+<li><code>FileInfo InputFileInfo</code> property is removed;</li>
+<li><code>double MinX</code> and <code>double MinY</code> properties are now one new property <code>GeoCoordinate MinCoordinate</code>;</li>
+<li><code>double MaxX</code> and <code>double MaxY</code> properties are now one new property <code>GeoCoordinate MaxCoordinate</code>;</li>
+<li>Constructor <code>public Image(FileInfo inputFileInfo)</code> changed to <code>public Raster(string inputFilePath, long maxMemoryCache = 2147483648)</code>;</li>
+<li><code>public async ValueTask GenerateTilesByJoiningAsync(DirectoryInfo outputDirectoryInfo, int minZ, int maxZ, bool tmsCompatible, IProgress&lt;double&gt; progress, int threadsCount)</code> methods is now <code>public Task CreateOverviewTilesAsync(ChannelWriter&lt;RasterTile&gt; channelWriter, int minZ, int maxZ, HashSet&lt;RasterTile&gt; tiles, bool isBuffered, CoordinateSystem coordinateSystem, Size tileSize = null, TileExtension extension = TileExtension.Png, bool tmsCompatible = false, int bandsCount = 4)</code>;</li>
+<li><code>public async ValueTask GenerateTilesByCroppingAsync(DirectoryInfo outputDirectoryInfo, int minZ, int maxZ, bool tmsCompatible, IProgress&lt;double&gt; progress, int threadsCount)</code> method is now <code>public Task WriteTilesToDirectoryAsync(string outputDirectoryPath, int minZ, int maxZ, bool tmsCompatible = false, Size tileSize = null, TileExtension tileExtension = TileExtension.Png, Interpolation interpolation = Interpolation.Lanczos3, int bandsCount = RasterTile.DefaultBandsCount, int tileCacheCount = 1000, int threadsCount = 0, IProgress&lt;double&gt; progress = null, Action&lt;string&gt; printTimeAction = null)</code>;</li>
+</ul>
+<p><strong>GTiff2Tiles.Core.Helpers.CheckHelper:</strong></p>
+<ul>
+<li><code>public static void CheckDirectory(DirectoryInfo directoryInfo, bool? shouldBeEmpty = null)</code> method is now <code>public static void CheckDirectory(string? directoryPath, bool? shouldBeEmpty = null)</code>;</li>
+<li><code>public static async ValueTask&lt;bool&gt; CheckInputFileAsync(FileInfo inputFileInfo)</code> method is now <code>public static async ValueTask&lt;bool&gt; CheckInputFileAsync(string inputFilePath, CoordinateSystem targetSystem)</code>;</li>
+</ul>
+<p><strong>GTiff2Tiles.Core.Helpers.GdalHelper:</strong></p>
+<ul>
+<li><code>GdalHelper</code> class is removed, use <code>MaxRev.Gdal.Core.GdalBase.ConfigureAll()</code> method to configure gdal instead;</li>
+</ul>
+<p><strong>GTiff2Tiles.Core.Exceptions:</strong></p>
+<ul>
+<li><code>GTiff2Tiles.Core.Exceptions.Tile.TileException</code> class is removed.</li>
+<li><code>GTiff2Tiles.Core.Exceptions.Tile.ImageException</code> class is renamed and moved to <code>GTiff2Tiles.Core.Exceptions.RasterException</code>;</li>
+<li><code>GTiff2Tiles.Core.Exceptions.Image.GdalException</code> class is removed.</li>
+</ul>
+<p><strong>GTiff2Tiles.Core.Enums:</strong></p>
+<ul>
+<li>Class <code>Extensions</code> is renamed and moved to <code>GTiff2Tiles.Core.Constants.FileExtensions</code>;</li>
+<li>Class <code>DateTimePatterns</code> is moved to <code>GTiff2Tiles.Core.Constants</code> namespace;</li>
+<li>Class <code>Algorithms</code> is removed;</li>
+<li>Class <code>GTiff2Tiles.Core.Enums.Image.Gdal</code> is removed, values moved to <code>GdalWorker</code> class (<em>read it's docs</em>);</li>
+</ul>
+<p><strong>Changed dependencies:</strong></p>
+<ul>
+<li>Removed <strong>System.Threading.Tasks.Extensions</strong> package, since project doesn't target <em>netstandard2.0</em> anymore;</li>
+<li>Add <strong>Microsoft.SourceLink.GitHub</strong> package ver. <strong>1.0.0</strong>;</li>
+<li>Add <strong>BitMiracle.LibTiff.NET</strong> package ver. <strong>2.4.639</strong>;</li>
+</ul>
+<p><strong>Updated dependencies:</strong></p>
+<ul>
+<li>Update <strong>MaxRev.Gdal.Core</strong> to <strong>3.2.0.210</strong>;</li>
+<li>Update <strong>MaxRev.Gdal.LinuxRuntime.Minimal</strong> to <strong>3.2.0.200</strong>;</li>
+<li>Update <strong>MaxRev.Gdal.WindowsRuntime.Minimal</strong> to <strong>3.2.0.200</strong>;</li>
+<li>Update <strong>NetVips</strong> to <strong>1.2.4</strong>;</li>
+<li>Update <strong>NetVips.Native</strong> to <strong>8.10.5.1</strong>;</li>
 </ul>
 <h3 id="console">Console</h3>
+<p>Read updated <a href="https://gigas002.github.io/GTiff2Tiles/console-index.html">docs</a> to learn more about options and using, here's just a quick list of changes.</p>
+<p><strong>Changed parameters:</strong></p>
 <ul>
-<li>Update <strong>CommandLineParser</strong> package to <strong>2.8.0</strong>;</li>
-<li>Added <code>--extension</code> option to choose output tiles’s extension;</li>
-<li>Made <code>-t/--tmp</code> optional;</li>
-<li>Made <code>--tms</code> optional;</li>
+<li><code>-a/--algorithm</code> is removed, now <code>crop</code> is default algorithm for creating tiles (<em>better performance and tiles quality</em>);</li>
+<li><code>-t/--temp</code> is now optional;</li>
+<li><code>--tms</code> is now optional;</li>
+<li><code>--threads</code> now calculates optimal number of threads by default instead of hardcoded <code>5</code> threads;</li>
+</ul>
+<p><strong>New parameters:</strong></p>
+<ul>
+<li><code>-e/--extension</code> lets you choose <strong>extension</strong> for your output tiles;</li>
+<li><code>-c/--coordinates</code> lets you choose tiles <strong>coordinate system</strong>;</li>
+<li><code>--interpolation</code> lets you choose tiles <strong>interpolation</strong>;</li>
+<li><code>-b/--bands</code> lets you choose <strong>number of bands</strong> in output tiles;</li>
+<li><code>--tilecache</code> lets you choose <strong>number of tiles</strong> to store in memory cache (performance tweaks);</li>
+<li><code>-m/--memcache</code> lets you choose maximal <strong>size</strong> of input files to store in RAM;</li>
+<li><code>-p/--progress</code> lets you hide the <strong>progress output</strong>;</li>
+<li><code>--timeleft</code> lets you see the <strong>estimated time left</strong> in output while working;</li>
+<li><code>--tilesize</code> lets you specify the <strong>size</strong> of tile's images;</li>
+<li><code>--tmr</code> lets you create the <code>tilemapresource.xml</code>;</li>
+</ul>
+<p><strong>Updated dependencies:</strong></p>
+<ul>
+<li>Update <strong>CommandLineParser</strong> to <strong>2.8.0</strong>;</li>
 </ul>
 <h3 id="gui">GUI</h3>
+<p>Read updated <a href="https://gigas002.github.io/GTiff2Tiles/gui-index.html">docs</a> to learn more about options and using, here's just a quick list of changes.</p>
+<p><strong>New parameters for creating tiles:</strong></p>
+<p>Now you're able to select tiles:</p>
 <ul>
-<li>Update <strong>MaterialDesignColors</strong> package to <strong>1.2.6</strong>;</li>
-<li>Update <strong>MaterialDesignThemes</strong> package to <strong>3.1.3</strong>;</li>
-<li>Update <strong>MaterialDesignExtensions</strong> package to <strong>3.2.0</strong>;</li>
-<li>Moved from <strong>Caliburn.Micro</strong> to <strong>Prism.DryIoc</strong> ver. <strong>8.0.0.1850-pre</strong>;</li>
-<li>Added <strong>Tile extension</strong> option to choose output tiles’s extension;</li>
+<li>Extension;</li>
+<li>Coordinate system;</li>
+<li>Interpolation;</li>
+<li>Number of bands;</li>
+</ul>
+<p><strong>Other new features:</strong></p>
+<p>Added the block of additional (<em>optional</em>) settings, which lets you to:</p>
+<ul>
+<li>Change the <strong>theme</strong> to <em>Light</em> or <em>Dark</em>;</li>
+<li>Change the <strong>size</strong> of ready tiles;</li>
+<li>Auto-guess the <strong>number of threads</strong> or select it by your own (<em>just uncheck the checkbox</em>);</li>
+<li>Change <strong>number of tiles</strong> in cache (<em>performance tweak</em>);</li>
+<li>Select <strong>maximal size</strong> for input files to store in <em>RAM</em>;</li>
+<li>Create <code>tilemapresource.xml</code> on tiles crop;</li>
+<li>Save all the <strong>settings</strong> in <em>settings.json</em> and see the same page on each start of the application;</li>
+<li>Also now you can see the <em>Time passed</em> <strong>timer</strong> on the right side;</li>
+</ul>
+<p><strong>Changed dependencies:</strong></p>
+<ul>
+<li>Moved from <strong>Caliburn.Micro</strong> to <strong>Prism.DryIoc</strong> ver. <strong>8.0.0.1909</strong>;</li>
+</ul>
+<p><strong>Updated dependencies:</strong></p>
+<ul>
+<li>Updated <strong>MaterialDesignColors</strong> to <strong>1.2.7</strong>;</li>
+<li>Updated <strong>MaterialDesignThemes</strong> to <strong>3.2.0</strong>;</li>
+<li>Updated <strong>MaterialDesignExtensions</strong> to <strong>3.3.0-a01</strong>;</li>
+</ul>
+<h3 id="benchmarks">Benchmarks</h3>
+<p>Completely rewritten benchmarks. Now everything's done automatically, though it requires some changes to prerequisites. Running it's a bit tricky, so be sure to read updated <a href="https://gigas002.github.io/GTiff2Tiles/benchmarks-index.html">docs</a>.</p>
+<ul>
+<li>You're no longer need installed <strong>MapTiler Pro</strong> or packed to <code>.exe</code> <strong>Gdal2Tiles</strong>, but you need to install <strong>Docker</strong>. Therefore, benchmarks can be run only on devices with Linux or Windows 10 (<em>with WSL2 recommended</em>).</li>
+<li>Always using latest version of <strong>MapTiler</strong> and <strong>Gdal2Tiles</strong> to run against it (<em>thanks to Docker</em>);</li>
+</ul>
+<p><strong>Changes to parameters:</strong></p>
+<ul>
+<li>All parameters, except <code>-i/--input</code> are removed. By using <code>input</code> you can select <strong>input geotiff</strong> to run benchmarks against;</li>
+</ul>
+<p><strong>New dependencies:</strong></p>
+<ul>
+<li><strong>BenchmarkDotNet</strong> ver. <strong>0.12.1</strong>;</li>
+</ul>
+<p><strong>Updated dependencies:</strong></p>
+<ul>
+<li>Update <strong>CommandLineParser</strong> to <strong>2.8.0</strong>;</li>
 </ul>
 <h3 id="tests">Tests</h3>
+<p>Tests are now completely rewritten to cover <strong>~94%</strong> of <strong>GTiff2Tiles.Core</strong> new API and some usecases.</p>
+<p><strong>New dependencies:</strong></p>
+<p>Added <strong>coverlet</strong> dependency to generate code coverage reports.</p>
 <ul>
-<li>Update <strong>Microsoft.NET.Test.Sdk</strong> package to <strong>16.7.1</strong>;</li>
-<li>Update <strong>NUnit3TestAdapter</strong> package to <strong>3.17.0</strong>;</li>
-<li>Add <strong>coverlet.collector</strong> and <strong>coverlet.msbuild</strong> dependencies for code coverage;</li>
+<li><strong>coverlet.collector</strong> ver. <strong>1.3.0</strong>;</li>
+<li><strong>coverlet.msbuild</strong> ver. <strong>2.9.0</strong>;</li>
+</ul>
+<p><strong>Updated dependencies:</strong></p>
+<ul>
+<li>Update <strong>NUnit3TestAdapter</strong> to <strong>3.17.0</strong>;</li>
+<li>Update <strong>Microsoft.NET.Test.Sdk</strong> to <strong>16.8.3</strong>;</li>
+</ul>
+<h3 id="documentation">Documentation</h3>
+<ul>
+<li>Core docs now auto-generated by <strong>docfx</strong>;</li>
+<li>Docs migrated from <strong>GitHub Wiki</strong> to <strong>GitHub Pages</strong> (<em>1.4.x docs will stay on GitHub Wiki</em>) and <strong>.pdf</strong>-files;</li>
+<li>Completed and improved all <strong>xml-docs</strong>;</li>
+<li>Moved all project-specific docs from <strong>README.md</strong> to their own files;</li>
 </ul>
 <h2 id="21102019--released-141">21.10.2019 – Released 1.4.1</h2>
 <p>Changes since 1.4.0:</p>
-<h3 id="overall-1">Overall</h3>
+<h3 id="overall">Overall</h3>
 <ul>
 <li>Now library also supports <strong>.NET Standard 2.0</strong>;</li>
 <li>Fixed binary releases;</li>
@@ -130,7 +287,7 @@
 </ul>
 <h2 id="20102019--released-140">20.10.2019 – Released 1.4.0</h2>
 <p>Changes since 1.3.1:</p>
-<h3 id="overall-2">Overall</h3>
+<h3 id="overall-1">Overall</h3>
 <p><strong>BREAKING CHANGES:</strong></p>
 <ul>
 <li>Solution is rebuild with <strong>.NET Core 3.0 SDK</strong>;</li>
@@ -187,7 +344,7 @@
 </ul>
 <h2 id="28072019--released-130">28.07.2019 – Released 1.3.0</h2>
 <p>Changes since 1.2.0:</p>
-<h3 id="overall-3">Overall</h3>
+<h3 id="overall-2">Overall</h3>
 <ul>
 <li>Solution rebuilt in <strong>Visual Studio 2019</strong>;</li>
 <li>Removed explicitly unused packages;</li>
@@ -302,7 +459,8 @@
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
-              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+                <h5>In This Article</h5>
+                <div></div>
               </nav>
             </div>
           </div>

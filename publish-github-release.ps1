@@ -49,6 +49,7 @@ if ($IsWindows -or $buildAll)
     Copy-Item -Path "CHANGELOG.md" -Destination "Publish/GTiff2Tiles.Console/win-x64/CHANGELOG.md"
 
     # GTiff2Tiles.GUI
+    Copy-Item -Path "GTiff2Tiles.GUI/gui-index.pdf" -Destination "Publish/GTiff2Tiles.GUI/win-x64/gui-index.pdf"
     Copy-Item -Path "LICENSE.md" -Destination "Publish/GTiff2Tiles.GUI/win-x64/LICENSE.md"
     Copy-Item -Path "CHANGELOG.md" -Destination "Publish/GTiff2Tiles.GUI/win-x64/CHANGELOG.md"
 }
