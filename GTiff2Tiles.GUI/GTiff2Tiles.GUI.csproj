@@ -4,9 +4,9 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net5.0-windows</TargetFramework>
     <VersionPrefix>2.0.0</VersionPrefix>
-    <VersionSuffix>ci439</VersionSuffix>
-    <AssemblyVersion>2.0.0.665</AssemblyVersion>
-    <FileVersion>2.0.0.665</FileVersion>
+    <VersionSuffix>rc.1</VersionSuffix>
+    <AssemblyVersion>2.0.0.667</AssemblyVersion>
+    <FileVersion>2.0.0.667</FileVersion>
     <Platforms>x64</Platforms>
     <Configurations>Debug;Release;Appveyor</Configurations>
     <PackageIcon>Icon.png</PackageIcon>
