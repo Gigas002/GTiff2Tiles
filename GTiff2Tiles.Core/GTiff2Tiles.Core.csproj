@@ -5,8 +5,8 @@
     <TargetFramework>net5.0</TargetFramework>
     <VersionPrefix>2.0.0</VersionPrefix>
     <VersionSuffix>rc.1</VersionSuffix>
-    <AssemblyVersion>2.0.0.654</AssemblyVersion>
-    <FileVersion>2.0.0.654</FileVersion>
+    <AssemblyVersion>2.0.0.655</AssemblyVersion>
+    <FileVersion>2.0.0.655</FileVersion>
     <Platforms>x64</Platforms>
     <Configurations>Debug;Release;Appveyor</Configurations>
     <PackageIcon>Icon.png</PackageIcon>
