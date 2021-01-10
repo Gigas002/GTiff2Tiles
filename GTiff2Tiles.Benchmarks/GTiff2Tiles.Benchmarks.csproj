@@ -5,8 +5,8 @@
     <TargetFramework>net5.0</TargetFramework>
     <VersionPrefix>2.0.0</VersionPrefix>
     <VersionSuffix>rc.1</VersionSuffix>
-    <AssemblyVersion>2.0.0.647</AssemblyVersion>
-    <FileVersion>2.0.0.647</FileVersion>
+    <AssemblyVersion>2.0.0.648</AssemblyVersion>
+    <FileVersion>2.0.0.648</FileVersion>
     <Platforms>x64</Platforms>
     <Configurations>Debug;Release;Appveyor</Configurations>
     <PackageIcon>Icon.png</PackageIcon>
@@ -15,7 +15,7 @@
     <Authors>Gigas002</Authors>
     <Company>Gigas002</Company>
     <Description>Benchmarks project for GTiff2Tiles</Description>
-    <Copyright>Copyright © Gigas002 2020</Copyright>
+    <Copyright>Copyright © Gigas002 2021</Copyright>
     <PackageProjectUrl>https://github.com/Gigas002/GTiff2Tiles</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Gigas002/GTiff2Tiles</RepositoryUrl>
     <PackageReleaseNotes>https://github.com/Gigas002/GTiff2Tiles/blob/master/CHANGELOG.md</PackageReleaseNotes>

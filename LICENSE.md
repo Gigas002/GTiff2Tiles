@@ -2,7 +2,7 @@
 
 > Version 1.1, December 2016
 >
-> Copyright (C) 2020 <https://github.com/Gigas002>
+> Copyright (C) 2021 <https://github.com/Gigas002>
 
 Everyone is permitted to copy and distribute verbatim or modified copies of this license document.
 
