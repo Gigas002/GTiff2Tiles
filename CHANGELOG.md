@@ -56,6 +56,20 @@ Core library was completely rewritten, a lot of new, moved and removed API. Plea
 - Less useless localization strings;
 - Reduced tile shifting in output tiles (resolved by updating **NetVips.Native to 8.10.0+**);
 
+**Changed dependencies:**
+
+- Removed **System.Threading.Tasks.Extensions** package, since project doesn't target *netstandard2.0* anymore;
+- Add **Microsoft.SourceLink.GitHub** package ver. **1.0.0**;
+- Add **BitMiracle.LibTiff.NET** package ver. **2.4.639**;
+
+**Updated dependencies:**
+
+- Update **MaxRev.Gdal.Core** to **3.2.0.250**;
+- Update **MaxRev.Gdal.LinuxRuntime.Minimal** to **3.2.0.250**;
+- Update **MaxRev.Gdal.WindowsRuntime.Minimal** to **3.2.0.250**;
+- Update **NetVips** to **1.2.4**;
+- Update **NetVips.Native** to **8.10.5.1**;
+
 #### Changed API
 
 Only changes in public API are listed.
@@ -110,20 +124,6 @@ Only changes in public API are listed.
 - Class `DateTimePatterns` is moved to `GTiff2Tiles.Core.Constants` namespace;
 - Class `Algorithms` is removed;
 - Class `GTiff2Tiles.Core.Enums.Image.Gdal` is removed, values moved to `GdalWorker` class (*read it's docs*);
-
-**Changed dependencies:**
-
-- Removed **System.Threading.Tasks.Extensions** package, since project doesn't target *netstandard2.0* anymore;
-- Add **Microsoft.SourceLink.GitHub** package ver. **1.0.0**;
-- Add **BitMiracle.LibTiff.NET** package ver. **2.4.639**;
-
-**Updated dependencies:**
-
-- Update **MaxRev.Gdal.Core** to **3.2.0.210**;
-- Update **MaxRev.Gdal.LinuxRuntime.Minimal** to **3.2.0.200**;
-- Update **MaxRev.Gdal.WindowsRuntime.Minimal** to **3.2.0.200**;
-- Update **NetVips** to **1.2.4**;
-- Update **NetVips.Native** to **8.10.5.1**;
 
 ### Console
 
@@ -221,6 +221,7 @@ Added **coverlet** dependency to generate code coverage reports.
 
 **Updated dependencies:**
 
+- Update **NUnit** to **3.13.0**;
 - Update **NUnit3TestAdapter** to **3.17.0**;
 - Update **Microsoft.NET.Test.Sdk** to **16.8.3**;
 
