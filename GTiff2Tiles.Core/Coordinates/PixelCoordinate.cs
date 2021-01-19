@@ -50,8 +50,8 @@ namespace GTiff2Tiles.Core.Coordinates
 
             #endregion
 
-            int tileX = Convert.ToInt32(Math.Ceiling(X / tileSize.Width) - 1.0);
-            int tileY = Convert.ToInt32(Math.Ceiling(Y / tileSize.Height) - 1.0);
+            int tileX = X == 0 ? 0 : Convert.ToInt32(Math.Ceiling(X / tileSize.Width) - 1.0);
+            int tileY = Y == 0 ? 0 : Convert.ToInt32(Math.Ceiling(Y / tileSize.Height) - 1.0);
 
             Number result = new(tileX, tileY, z);
             if (!tmsCompatible) result = result.Flip();
