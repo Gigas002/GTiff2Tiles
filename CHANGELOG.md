@@ -28,7 +28,7 @@ This is a new major release of **GTiff2Tiles**. There are a lot of incompatible 
 ### All solution
 
 - Rewritten and added new publish scripts;
-- Bump **.NET Core**/**.NET** version to **5.0.101**;
+- Bump **.NET Core**/**.NET** version to **5.0.102**;
 - Fixed localization files's names;
 - Moved to **[DBAD](https://dbad-license.org/)** license;
 - Drop support of **.NET Framework** and **.NET Standard**;
@@ -216,8 +216,8 @@ Tests are now completely rewritten to cover **~94%** of **GTiff2Tiles.Core** new
 
 Added **coverlet** dependency to generate code coverage reports.
 
-- **coverlet.collector** ver. **3.0.0**;
-- **coverlet.msbuild** ver. **3.0.0**;
+- **coverlet.collector** ver. **3.0.1**;
+- **coverlet.msbuild** ver. **3.0.1**;
 
 **Updated dependencies:**
 
