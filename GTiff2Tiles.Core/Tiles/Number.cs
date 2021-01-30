@@ -321,11 +321,10 @@ namespace GTiff2Tiles.Core.Tiles
 
             for (int zoom = minZ; zoom <= maxZ; zoom++)
             {
-                (Number minNumber, Number maxNumber) =
-                    GeoCoordinate.GetNumbers(minCoordinate, maxCoordinate, zoom, tileSize, tmsCompatible);
+                (Number minNumber, Number maxNumber) = GeoCoordinate.GetNumbers(minCoordinate, maxCoordinate, zoom, tileSize, tmsCompatible);
 
-                int xsCount = Enumerable.Range(minNumber.X, maxNumber.X - minNumber.X + 1).Count();
-                int ysCount = Enumerable.Range(minNumber.Y, maxNumber.Y - minNumber.Y + 1).Count();
+                int xsCount = maxNumber.X - minNumber.X + 1;
+                int ysCount = maxNumber.Y - minNumber.Y + 1;
 
                 tilesCount += xsCount * ysCount;
             }
