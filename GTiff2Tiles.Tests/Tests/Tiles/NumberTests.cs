@@ -259,6 +259,18 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
         public void GetCountBadMaxZ() => Assert.Throws<ArgumentOutOfRangeException>(() => Number.GetCount(Locations.TokyoGeodeticMin, Locations.TokyoGeodeticMax,
                                                                                                           0, -1, false, Tile.DefaultSize));
 
+        /// <summary>
+        /// Throw overflow exception. I don't think it's a good idea to create billions of tiles and I think it CAN kill your hdd
+        /// see https://github.com/Gigas002/GTiff2Tiles/issues/108
+        /// </summary>
+        [Test]
+        public void GetCountTooMuch()
+        {
+            GeodeticCoordinate min = new(-180.0, -90.0);
+            GeodeticCoordinate max = new(180.0, 90.0);
+            Assert.Throws<OverflowException>(() => Number.GetCount(min, max, 0, 15, false, Tile.DefaultSize));
+        }
+
         #endregion
 
         #endregion
