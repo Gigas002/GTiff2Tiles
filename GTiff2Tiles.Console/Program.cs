@@ -119,6 +119,11 @@ namespace GTiff2Tiles.Console
         /// </summary>
         private const string TmrName = "tilemapresource.xml";
 
+        /// <summary>
+        /// Property for actual progress reporing
+        /// </summary>
+        private static int ProgressValue { get; set; }
+
         #endregion
 
         private static async Task Main(string[] args)
@@ -146,7 +151,7 @@ namespace GTiff2Tiles.Console
             }
 
             // Create progress-reporter
-            Progress<double> consoleProgress = IsProgress ? new Progress<double>(System.Console.WriteLine) : null;
+            IProgress<double> consoleProgress = IsProgress ? new Progress<double>(ProgressReporter) : null;
             Action<string> printTimeAction = IsTime ? new Action<string>(System.Console.WriteLine) : null;
 
             // Create temp directory object
@@ -199,6 +204,20 @@ namespace GTiff2Tiles.Console
         }
 
         #region Methods
+
+        /// <summary>
+        /// Report int progress
+        /// </summary>
+        /// <param name="progressValue">Progress's double value</param>
+        private static void ProgressReporter(double progressValue)
+        {
+            int progressToInt = (int)Math.Round(progressValue);
+
+            if (progressToInt.Equals(ProgressValue)) return;
+
+            ProgressValue = progressToInt;
+            System.Console.WriteLine(ProgressValue);
+        }
 
         /// <summary>
         /// Set properties values from command line options
