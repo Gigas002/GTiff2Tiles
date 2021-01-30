@@ -216,8 +216,8 @@ Tests are now completely rewritten to cover **~94%** of **GTiff2Tiles.Core** new
 
 Added **coverlet** dependency to generate code coverage reports.
 
-- **coverlet.collector** ver. **3.0.1**;
-- **coverlet.msbuild** ver. **3.0.1**;
+- **coverlet.collector** ver. **3.0.2**;
+- **coverlet.msbuild** ver. **3.0.2**;
 
 **Updated dependencies:**
 
