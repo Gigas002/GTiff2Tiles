@@ -358,3 +358,4 @@ MigrationBackup/
 /Examples/Output
 /_docs/api
 /docs/pdf/GTiff2Tiles.json
+/GTiff2Tiles.Tests/coverage.opencover.xml

@@ -88,7 +88,7 @@
 <h3 id="all-solution">All solution</h3>
 <ul>
 <li>Rewritten and added new publish scripts;</li>
-<li>Bump <strong>.NET Core</strong>/<strong>.NET</strong> version to <strong>5.0.101</strong>;</li>
+<li>Bump <strong>.NET Core</strong>/<strong>.NET</strong> version to <strong>5.0.102</strong>;</li>
 <li>Fixed localization files's names;</li>
 <li>Moved to <strong><a href="https://dbad-license.org/">DBAD</a></strong> license;</li>
 <li>Drop support of <strong>.NET Framework</strong> and <strong>.NET Standard</strong>;</li>
@@ -100,6 +100,8 @@
 <li>Fixed SemVer violations;</li>
 <li>Perform analysis with <strong>Microsoft.CodeAnalysis.NetAnalyzers</strong> (<em>included in .net 5.0+ by default</em>);</li>
 <li>Add ability to create <code>tilemapresource.xml</code>;</li>
+<li>Fixed worldwide tiles creation (<em>see #108</em>);</li>
+<li>Moved native dependencies from library to apps;</li>
 </ul>
 <h3 id="core">Core</h3>
 <p>Core library was completely rewritten, a lot of new, moved and removed API. Please read <a href="https://gigas002.github.io/GTiff2Tiles/api/index.html">docs on GitHub Pages</a> for new API, here's only a quick list of changes in previous API. Old docs are still available at <a href="https://github.com/Gigas002/GTiff2Tiles/wiki">GitHub Wiki</a>.</p>
@@ -113,6 +115,18 @@
 <li>Better error/exception-handling;</li>
 <li>Less useless localization strings;</li>
 <li>Reduced tile shifting in output tiles (resolved by updating <strong>NetVips.Native to 8.10.0+</strong>);</li>
+</ul>
+<p><strong>Changed dependencies:</strong></p>
+<ul>
+<li>Removed <strong>System.Threading.Tasks.Extensions</strong> package, since project doesn't target <em>netstandard2.0</em> anymore;</li>
+<li>Add <strong>Microsoft.SourceLink.GitHub</strong> package ver. <strong>1.0.0</strong>;</li>
+<li>Add <strong>BitMiracle.LibTiff.NET</strong> package ver. <strong>2.4.639</strong>;</li>
+<li>Moved <strong>MaxRev.Gdal.LinuxRuntime.Minimal</strong>, <strong>MaxRev.Gdal.WindowsRuntime.Minimal</strong> and <strong>NetVips.Native</strong>s to apps from core;</li>
+</ul>
+<p><strong>Updated dependencies:</strong></p>
+<ul>
+<li>Update <strong>MaxRev.Gdal.Core</strong> to <strong>3.2.0.250</strong>;</li>
+<li>Update <strong>NetVips</strong> to <strong>1.2.4</strong>;</li>
 </ul>
 <h4 id="changed-api">Changed API</h4>
 <p>Only changes in public API are listed.</p>
@@ -167,20 +181,6 @@
 <li>Class <code>Algorithms</code> is removed;</li>
 <li>Class <code>GTiff2Tiles.Core.Enums.Image.Gdal</code> is removed, values moved to <code>GdalWorker</code> class (<em>read it's docs</em>);</li>
 </ul>
-<p><strong>Changed dependencies:</strong></p>
-<ul>
-<li>Removed <strong>System.Threading.Tasks.Extensions</strong> package, since project doesn't target <em>netstandard2.0</em> anymore;</li>
-<li>Add <strong>Microsoft.SourceLink.GitHub</strong> package ver. <strong>1.0.0</strong>;</li>
-<li>Add <strong>BitMiracle.LibTiff.NET</strong> package ver. <strong>2.4.639</strong>;</li>
-</ul>
-<p><strong>Updated dependencies:</strong></p>
-<ul>
-<li>Update <strong>MaxRev.Gdal.Core</strong> to <strong>3.2.0.210</strong>;</li>
-<li>Update <strong>MaxRev.Gdal.LinuxRuntime.Minimal</strong> to <strong>3.2.0.200</strong>;</li>
-<li>Update <strong>MaxRev.Gdal.WindowsRuntime.Minimal</strong> to <strong>3.2.0.200</strong>;</li>
-<li>Update <strong>NetVips</strong> to <strong>1.2.4</strong>;</li>
-<li>Update <strong>NetVips.Native</strong> to <strong>8.10.5.1</strong>;</li>
-</ul>
 <h3 id="console">Console</h3>
 <p>Read updated <a href="https://gigas002.github.io/GTiff2Tiles/console-index.html">docs</a> to learn more about options and using, here's just a quick list of changes.</p>
 <p><strong>Changed parameters:</strong></p>
@@ -202,6 +202,13 @@
 <li><code>--timeleft</code> lets you see the <strong>estimated time left</strong> in output while working;</li>
 <li><code>--tilesize</code> lets you specify the <strong>size</strong> of tile's images;</li>
 <li><code>--tmr</code> lets you create the <code>tilemapresource.xml</code>;</li>
+</ul>
+<p><strong>New dependencies:</strong></p>
+<ul>
+<li>Add <strong>MaxRev.Gdal.LinuxRuntime.Minimal</strong> package ver. <strong>3.2.0.250</strong>;</li>
+<li>Add <strong>MaxRev.Gdal.WindowsRuntime.Minimal</strong> package ver. <strong>3.2.0.250</strong>;</li>
+<li>Add <strong>NetVips.Native.win-x64</strong> package ver. <strong>8.10.5.1</strong>;</li>
+<li>Add <strong>NetVips.Native.linux-x64</strong> package ver. <strong>8.10.5.1</strong>;</li>
 </ul>
 <p><strong>Updated dependencies:</strong></p>
 <ul>
@@ -229,6 +236,11 @@
 <li>Save all the <strong>settings</strong> in <em>settings.json</em> and see the same page on each start of the application;</li>
 <li>Also now you can see the <em>Time passed</em> <strong>timer</strong> on the right side;</li>
 </ul>
+<p><strong>New dependencies:</strong></p>
+<ul>
+<li>Add <strong>MaxRev.Gdal.WindowsRuntime.Minimal</strong> package ver. <strong>3.2.0.250</strong>;</li>
+<li>Add <strong>NetVips.Native.win-x64</strong> package ver. <strong>8.10.5.1</strong>;</li>
+</ul>
 <p><strong>Changed dependencies:</strong></p>
 <ul>
 <li>Moved from <strong>Caliburn.Micro</strong> to <strong>Prism.DryIoc</strong> ver. <strong>8.0.0.1909</strong>;</li>
@@ -252,6 +264,10 @@
 <p><strong>New dependencies:</strong></p>
 <ul>
 <li><strong>BenchmarkDotNet</strong> ver. <strong>0.12.1</strong>;</li>
+<li>Add <strong>MaxRev.Gdal.LinuxRuntime.Minimal</strong> package ver. <strong>3.2.0.250</strong>;</li>
+<li>Add <strong>MaxRev.Gdal.WindowsRuntime.Minimal</strong> package ver. <strong>3.2.0.250</strong>;</li>
+<li>Add <strong>NetVips.Native.win-x64</strong> package ver. <strong>8.10.5.1</strong>;</li>
+<li>Add <strong>NetVips.Native.linux-x64</strong> package ver. <strong>8.10.5.1</strong>;</li>
 </ul>
 <p><strong>Updated dependencies:</strong></p>
 <ul>
@@ -262,11 +278,16 @@
 <p><strong>New dependencies:</strong></p>
 <p>Added <strong>coverlet</strong> dependency to generate code coverage reports.</p>
 <ul>
-<li><strong>coverlet.collector</strong> ver. <strong>1.3.0</strong>;</li>
-<li><strong>coverlet.msbuild</strong> ver. <strong>2.9.0</strong>;</li>
+<li><strong>coverlet.collector</strong> ver. <strong>3.0.2</strong>;</li>
+<li><strong>coverlet.msbuild</strong> ver. <strong>3.0.2</strong>;</li>
+<li>Add <strong>MaxRev.Gdal.LinuxRuntime.Minimal</strong> package ver. <strong>3.2.0.250</strong>;</li>
+<li>Add <strong>MaxRev.Gdal.WindowsRuntime.Minimal</strong> package ver. <strong>3.2.0.250</strong>;</li>
+<li>Add <strong>NetVips.Native.win-x64</strong> package ver. <strong>8.10.5.1</strong>;</li>
+<li>Add <strong>NetVips.Native.linux-x64</strong> package ver. <strong>8.10.5.1</strong>;</li>
 </ul>
 <p><strong>Updated dependencies:</strong></p>
 <ul>
+<li>Update <strong>NUnit</strong> to <strong>3.13.1</strong>;</li>
 <li>Update <strong>NUnit3TestAdapter</strong> to <strong>3.17.0</strong>;</li>
 <li>Update <strong>Microsoft.NET.Test.Sdk</strong> to <strong>16.8.3</strong>;</li>
 </ul>
