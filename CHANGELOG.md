@@ -221,7 +221,7 @@ Added **coverlet** dependency to generate code coverage reports.
 
 **Updated dependencies:**
 
-- Update **NUnit** to **3.13.0**;
+- Update **NUnit** to **3.13.1**;
 - Update **NUnit3TestAdapter** to **3.17.0**;
 - Update **Microsoft.NET.Test.Sdk** to **16.8.3**;
 
