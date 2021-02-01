@@ -40,6 +40,8 @@ This is a new major release of **GTiff2Tiles**. There are a lot of incompatible 
 - Fixed SemVer violations;
 - Perform analysis with **Microsoft.CodeAnalysis.NetAnalyzers** (*included in .net 5.0+ by default*);
 - Add ability to create `tilemapresource.xml`;
+- Fixed worldwide tiles creation (*see #108*);
+- Moved native dependencies from library to apps;
 
 ### Core
 
@@ -61,14 +63,12 @@ Core library was completely rewritten, a lot of new, moved and removed API. Plea
 - Removed **System.Threading.Tasks.Extensions** package, since project doesn't target *netstandard2.0* anymore;
 - Add **Microsoft.SourceLink.GitHub** package ver. **1.0.0**;
 - Add **BitMiracle.LibTiff.NET** package ver. **2.4.639**;
+- Moved **MaxRev.Gdal.LinuxRuntime.Minimal**, **MaxRev.Gdal.WindowsRuntime.Minimal** and **NetVips.Native**s to apps from core;
 
 **Updated dependencies:**
 
 - Update **MaxRev.Gdal.Core** to **3.2.0.250**;
-- Update **MaxRev.Gdal.LinuxRuntime.Minimal** to **3.2.0.250**;
-- Update **MaxRev.Gdal.WindowsRuntime.Minimal** to **3.2.0.250**;
 - Update **NetVips** to **1.2.4**;
-- Update **NetVips.Native** to **8.10.5.1**;
 
 #### Changed API
 
@@ -149,6 +149,13 @@ Read updated [docs](https://gigas002.github.io/GTiff2Tiles/console-index.html) t
 - `--tilesize` lets you specify the **size** of tile's images;
 - `--tmr` lets you create the `tilemapresource.xml`;
 
+**New dependencies:**
+
+- Add **MaxRev.Gdal.LinuxRuntime.Minimal** package ver. **3.2.0.250**;
+- Add **MaxRev.Gdal.WindowsRuntime.Minimal** package ver. **3.2.0.250**;
+- Add **NetVips.Native.win-x64** package ver. **8.10.5.1**;
+- Add **NetVips.Native.linux-x64** package ver. **8.10.5.1**;
+
 **Updated dependencies:**
 
 - Update **CommandLineParser** to **2.8.0**;
@@ -179,6 +186,11 @@ Added the block of additional (*optional*) settings, which lets you to:
 - Save all the **settings** in *settings.json* and see the same page on each start of the application;
 - Also now you can see the *Time passed* **timer** on the right side;
 
+**New dependencies:**
+
+- Add **MaxRev.Gdal.WindowsRuntime.Minimal** package ver. **3.2.0.250**;
+- Add **NetVips.Native.win-x64** package ver. **8.10.5.1**;
+
 **Changed dependencies:**
 
 - Moved from **Caliburn.Micro** to **Prism.DryIoc** ver. **8.0.0.1909**;
@@ -203,6 +215,10 @@ Completely rewritten benchmarks. Now everything's done automatically, though it 
 **New dependencies:**
 
 - **BenchmarkDotNet** ver. **0.12.1**;
+- Add **MaxRev.Gdal.LinuxRuntime.Minimal** package ver. **3.2.0.250**;
+- Add **MaxRev.Gdal.WindowsRuntime.Minimal** package ver. **3.2.0.250**;
+- Add **NetVips.Native.win-x64** package ver. **8.10.5.1**;
+- Add **NetVips.Native.linux-x64** package ver. **8.10.5.1**;
 
 **Updated dependencies:**
 
@@ -218,6 +234,10 @@ Added **coverlet** dependency to generate code coverage reports.
 
 - **coverlet.collector** ver. **3.0.2**;
 - **coverlet.msbuild** ver. **3.0.2**;
+- Add **MaxRev.Gdal.LinuxRuntime.Minimal** package ver. **3.2.0.250**;
+- Add **MaxRev.Gdal.WindowsRuntime.Minimal** package ver. **3.2.0.250**;
+- Add **NetVips.Native.win-x64** package ver. **8.10.5.1**;
+- Add **NetVips.Native.linux-x64** package ver. **8.10.5.1**;
 
 **Updated dependencies:**
 

@@ -16,3 +16,7 @@ You can run tests and analyze code coverage by running the [codecov-local.ps1](h
 - [NUnit3TestAdapter](https://www.nuget.org/packages/NUnit3TestAdapter/) – 3.17.0;
 - [coverlet.collector](https://www.nuget.org/packages/coverlet.collector) – 3.0.2;
 - [coverlet.msbuild](https://www.nuget.org/packages/coverlet.msbuild) – 3.0.2;
+- [MaxRev.Gdal.LinuxRuntime.Minimal](https://www.nuget.org/packages/MaxRev.Gdal.LinuxRuntime.Minimal/) – 3.2.0.250;
+- [MaxRev.Gdal.WindowsRuntime.Minimal](https://www.nuget.org/packages/MaxRev.Gdal.WindowsRuntime.Minimal/) – 3.2.0.250;
+- [NetVips.Native.win-x64](https://www.nuget.org/packages/NetVips.Native.win-x64) – 8.10.5.1;
+- [NetVips.Native.linux-x64](https://www.nuget.org/packages/NetVips.Native.linux-x64/) – 8.10.5.1;

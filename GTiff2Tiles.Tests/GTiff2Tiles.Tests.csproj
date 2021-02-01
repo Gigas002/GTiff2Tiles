@@ -4,8 +4,8 @@
     <TargetFramework>net5.0</TargetFramework>
     <VersionPrefix>2.0.0</VersionPrefix>
     <VersionSuffix>rc.1</VersionSuffix>
-    <AssemblyVersion>2.0.0.764</AssemblyVersion>
-    <FileVersion>2.0.0.764</FileVersion>
+    <AssemblyVersion>2.0.0.766</AssemblyVersion>
+    <FileVersion>2.0.0.766</FileVersion>
     <Platforms>x64</Platforms>
     <Configurations>Debug;Release;Appveyor</Configurations>
     <PackageIcon>Icon.png</PackageIcon>
@@ -45,6 +45,10 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="MaxRev.Gdal.LinuxRuntime.Minimal" Version="3.2.0.250" />
+    <PackageReference Include="MaxRev.Gdal.WindowsRuntime.Minimal" Version="3.2.0.250" />
+    <PackageReference Include="NetVips.Native.linux-x64" Version="8.10.5.1" />
+    <PackageReference Include="NetVips.Native.win-x64" Version="8.10.5.1" />
     <PackageReference Include="nunit" Version="3.13.1" />
     <PackageReference Include="NUnit3TestAdapter" Version="3.17.0">
       <PrivateAssets>all</PrivateAssets>
