@@ -28,7 +28,7 @@ This is a new major release of **GTiff2Tiles**. There are a lot of incompatible 
 ### All solution
 
 - Rewritten and added new publish scripts;
-- Bump **.NET Core**/**.NET** version to **5.0.102**;
+- Bump **.NET Core**/**.NET** version to **5.0.103**;
 - Fixed localization files's names;
 - Moved to **[DBAD](https://dbad-license.org/)** license;
 - Drop support of **.NET Framework** and **.NET Standard**;
@@ -197,8 +197,8 @@ Added the block of additional (*optional*) settings, which lets you to:
 
 **Updated dependencies:**
 
-- Updated **MaterialDesignColors** to **1.2.7**;
-- Updated **MaterialDesignThemes** to **3.2.0**;
+- Updated **MaterialDesignColors** to **2.0.0**;
+- Updated **MaterialDesignThemes** to **4.0.0**;
 - Updated **MaterialDesignExtensions** to **3.3.0-a01**;
 
 ### Benchmarks
