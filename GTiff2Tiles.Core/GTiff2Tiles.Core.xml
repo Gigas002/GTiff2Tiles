@@ -2074,6 +2074,11 @@
             Shows if this <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>'s already disposed
             </summary>
         </member>
+        <member name="P:GTiff2Tiles.Core.Tiles.ITile.CoordinateSystem">
+            <summary>
+            Coordinate system of this <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>
+            </summary>
+        </member>
         <member name="P:GTiff2Tiles.Core.Tiles.ITile.MinCoordinate">
             <summary>
             Minimal <see cref="T:GTiff2Tiles.Core.Coordinates.GeoCoordinate"/> of this <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>
@@ -2453,6 +2458,9 @@
             </summary>
         </member>
         <member name="P:GTiff2Tiles.Core.Tiles.Tile.IsDisposed">
+            <inheritdoc />
+        </member>
+        <member name="P:GTiff2Tiles.Core.Tiles.Tile.CoordinateSystem">
             <inheritdoc />
         </member>
         <member name="P:GTiff2Tiles.Core.Tiles.Tile.MinCoordinate">

@@ -39,6 +39,9 @@ namespace GTiff2Tiles.Core.Tiles
         public bool IsDisposed { get; private set; }
 
         /// <inheritdoc />
+        public CoordinateSystem CoordinateSystem { get; } = CoordinateSystem.Epsg4326;
+
+        /// <inheritdoc />
         public GeoCoordinate MinCoordinate { get; }
 
         /// <inheritdoc />

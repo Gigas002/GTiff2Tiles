@@ -22,6 +22,11 @@ namespace GTiff2Tiles.Core.Tiles
         public bool IsDisposed { get; }
 
         /// <summary>
+        /// Coordinate system of this <see cref="ITile"/>
+        /// </summary>
+        public CoordinateSystem CoordinateSystem { get; }
+
+        /// <summary>
         /// Minimal <see cref="GeoCoordinate"/> of this <see cref="ITile"/>
         /// </summary>
         public GeoCoordinate MinCoordinate { get; }

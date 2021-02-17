@@ -201,6 +201,7 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
                 tile = new RasterTile(Locations.TokyoGeodeticNtmsNumber, Cs4326);
 
                 bool isDisposed = tile.IsDisposed;
+                CoordinateSystem coordinateSystem = tile.CoordinateSystem;
                 GeoCoordinate minC = tile.MinCoordinate;
                 GeoCoordinate maxC = tile.MaxCoordinate;
                 Number num = tile.Number;
