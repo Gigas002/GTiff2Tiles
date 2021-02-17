@@ -67,22 +67,9 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
 
             Assert.DoesNotThrowAsync(async () =>
             {
-                await using ITile tile = new RasterTile(Locations.TokyoGeodeticTmsNumber, Cs4326, size, bytes, extension, tmsCompatible,
-                                                        bandsCount, interpolation);
+                await using ITile tile = new RasterTile(Locations.TokyoGeodeticTmsNumber, Cs4326, size, tmsCompatible);
             });
         }
-
-        [Test]
-        public void FromNumberSmallBands() => Assert.ThrowsAsync<ArgumentOutOfRangeException>(async () =>
-        {
-            await using ITile tile = new RasterTile(Locations.TokyoGeodeticNtmsNumber, Cs4326, bandsCount: -1);
-        });
-
-        [Test]
-        public void FromNumberMuchBands() => Assert.ThrowsAsync<ArgumentOutOfRangeException>(async () =>
-        {
-            await using ITile tile = new RasterTile(Locations.TokyoGeodeticNtmsNumber, Cs4326, bandsCount: 5);
-        });
 
         [Test]
         public void FromNumberNotSquare() => Assert.ThrowsAsync<ArgumentException>(async () =>
@@ -115,26 +102,9 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
             {
                 await using ITile tile = new RasterTile(Locations.TokyoGeodeticCoordinate,
                                                         Locations.TokyoGeodeticCoordinate,
-                                                        10, size, bytes, extension, tmsCompatible,
-                                                        bandsCount, interpolation);
+                                                        10, size, tmsCompatible);
             });
         }
-
-        [Test]
-        public void FromCoordinatesSmallBands() => Assert.ThrowsAsync<ArgumentOutOfRangeException>(async () =>
-        {
-            await using ITile tile = new RasterTile(Locations.TokyoGeodeticCoordinate,
-                                                    Locations.TokyoGeodeticCoordinate,
-                                                    10, bandsCount: -1);
-        });
-
-        [Test]
-        public void FromCoordinatesMuchBands() => Assert.ThrowsAsync<ArgumentOutOfRangeException>(async () =>
-        {
-            await using ITile tile = new RasterTile(Locations.TokyoGeodeticCoordinate,
-                                                    Locations.TokyoGeodeticCoordinate,
-                                                    10, bandsCount: 5);
-        });
 
         [Test]
         public void FromCoordinatesNotSquare() => Assert.ThrowsAsync<ArgumentException>(async () =>
@@ -221,13 +191,30 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
         }
 
         [Test]
-        public void SetProperties() => Assert.DoesNotThrowAsync(async () =>
+        public void SetProperties()
         {
-            await using ITile tile = new RasterTile(Locations.TokyoGeodeticNtmsNumber, Cs4326)
+            using ITile tile = new RasterTile(Locations.TokyoGeodeticNtmsNumber, Cs4326);
+
+            Assert.DoesNotThrow(() =>
             {
-                Bytes = null, Path = string.Empty, MinimalBytesCount = int.MinValue
-            };
-        });
+                tile.Bytes = null;
+                tile.Path = string.Empty;
+                tile.MinimalBytesCount = int.MinValue;
+                tile.Extension = TileExtension.Webp;
+                tile.Size = Tile.DefaultSize;
+                tile.TmsCompatible = true;
+            });
+
+            using RasterTile rasterTile = (RasterTile)tile;
+            Assert.DoesNotThrow(() =>
+            {
+                rasterTile.BandsCount = 3;
+                rasterTile.Interpolation = Interpolation.Cubic;
+            });
+
+            Assert.Throws<ArgumentOutOfRangeException>(() => rasterTile.BandsCount = -1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => rasterTile.BandsCount = 5);
+        }
 
         #endregion
 

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using GTiff2Tiles.Core.Coordinates;
 using GTiff2Tiles.Core.Enums;
 using GTiff2Tiles.Core.GeoTiffs;
@@ -16,6 +15,11 @@ namespace GTiff2Tiles.Core.Tiles
     /// </summary>
     public class RasterTile : Tile
     {
+        /// <summary>
+        /// <see cref="BandsCount"/> backing field
+        /// </summary>
+        private int _bandsCount = DefaultBandsCount;
+
         #region Properties/Constants
 
         /// <summary>
@@ -26,75 +30,42 @@ namespace GTiff2Tiles.Core.Tiles
         /// <summary>
         /// Count of bands in <see cref="RasterTile"/>
         /// </summary>
-        public int BandsCount { get; }
+        public int BandsCount
+        {
+            get => _bandsCount;
+            set
+            {
+                if (value <= 0 || value > 4) throw new ArgumentOutOfRangeException(nameof(value));
+
+                _bandsCount = value;
+            }
+        }
 
         /// <summary>
         /// Interpolation of this <see cref="RasterTile"/>
         /// </summary>
-        public Interpolation Interpolation { get; }
+        public Interpolation Interpolation { get; set; } = Interpolation.Lanczos3;
 
         #endregion
 
         #region Constructors
 
-        /// <inheritdoc cref="Tile(Number,CoordinateSystem,Size,IEnumerable{byte},TileExtension,bool)"/>
+        /// <inheritdoc cref="Tile(Number,CoordinateSystem,Size,bool)"/>
         /// <param name="number"></param>
         /// <param name="coordinateSystem"></param>
         /// <param name="size"></param>
-        /// <param name="bytes"></param>
-        /// <param name="extension"></param>
         /// <param name="tmsCompatible"></param>
-        /// <param name="bandsCount"><see cref="BandsCount"/>
-        /// <remarks><para/>Must be in range (0, 4];
-        /// <para/><see cref="DefaultBandsCount"/> by default</remarks></param>
-        /// <param name="interpolation"><see cref="Interpolation"/>
-        /// <remarks><para/><see cref="Enums.Interpolation.Lanczos3"/> by default</remarks></param>
         /// <exception cref="ArgumentOutOfRangeException"/>
-        public RasterTile(Number number, CoordinateSystem coordinateSystem,
-                          Size size = null, IEnumerable<byte> bytes = null,
-                          TileExtension extension = TileExtension.Png, bool tmsCompatible = false,
-                          int bandsCount = DefaultBandsCount,
-                          Interpolation interpolation = Interpolation.Lanczos3)
-            : base(number, coordinateSystem, size, bytes, extension, tmsCompatible)
-        {
-            #region Preconditions checks
+        public RasterTile(Number number, CoordinateSystem coordinateSystem, Size size = null, bool tmsCompatible = false) : base(number, coordinateSystem, size, tmsCompatible) { }
 
-            if (bandsCount <= 0 || bandsCount > 4) throw new ArgumentOutOfRangeException(nameof(bandsCount));
-
-            #endregion
-
-            (BandsCount, Interpolation) = (bandsCount, interpolation);
-        }
-
-        /// <inheritdoc cref="Tile(GeoCoordinate,GeoCoordinate,int,Size,IEnumerable{byte},TileExtension,bool)"/>
+        /// <inheritdoc cref="Tile(GeoCoordinate,GeoCoordinate,int,Size,bool)"/>
         /// <param name="minCoordinate"></param>
         /// <param name="maxCoordinate"></param>
         /// <param name="zoom"></param>
         /// <param name="size"></param>
-        /// <param name="bytes"></param>
-        /// <param name="extension"></param>
         /// <param name="tmsCompatible"></param>
-        /// <param name="bandsCount"><see cref="BandsCount"/>
-        /// <remarks><para/>Must be in range (0, 4];
-        /// <para/><see cref="DefaultBandsCount"/> by default</remarks></param>
-        /// <param name="interpolation"><see cref="Interpolation"/>
-        /// <remarks><para/><see cref="Enums.Interpolation.Lanczos3"/> by default</remarks></param>
         /// <exception cref="ArgumentOutOfRangeException"/>
-        public RasterTile(GeoCoordinate minCoordinate, GeoCoordinate maxCoordinate, int zoom,
-                          Size size = null, IEnumerable<byte> bytes = null,
-                          TileExtension extension = TileExtension.Png,
-                          bool tmsCompatible = false, int bandsCount = DefaultBandsCount,
-                          Interpolation interpolation = Interpolation.Lanczos3)
-            : base(minCoordinate, maxCoordinate, zoom, size, bytes, extension, tmsCompatible)
-        {
-            #region Preconditions checks
-
-            if (bandsCount <= 0 || bandsCount > 4) throw new ArgumentOutOfRangeException(nameof(bandsCount));
-
-            #endregion
-
-            (BandsCount, Interpolation) = (bandsCount, interpolation);
-        }
+        public RasterTile(GeoCoordinate minCoordinate, GeoCoordinate maxCoordinate, int zoom, Size size = null, bool tmsCompatible = false) : base(minCoordinate, maxCoordinate, zoom, size, tmsCompatible) { }
 
         #endregion
     }

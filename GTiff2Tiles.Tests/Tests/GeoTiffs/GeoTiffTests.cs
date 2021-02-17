@@ -233,12 +233,12 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
             using Raster raster = new(_in4326, Cs4326);
             Number number = Locations.TokyoGeodeticNtmsNumber;
 
-            using RasterTile t1 = new(number, raster.GeoCoordinateSystem, interpolation: Interpolation.Nearest);
-            using RasterTile t2 = new(number, raster.GeoCoordinateSystem, interpolation: Interpolation.Linear);
-            using RasterTile t3 = new(number, raster.GeoCoordinateSystem, interpolation: Interpolation.Cubic);
-            using RasterTile t4 = new(number, raster.GeoCoordinateSystem, interpolation: Interpolation.Mitchell);
-            using RasterTile t5 = new(number, raster.GeoCoordinateSystem, interpolation: Interpolation.Lanczos2);
-            using RasterTile t6 = new(number, raster.GeoCoordinateSystem, interpolation: Interpolation.Lanczos3);
+            using RasterTile t1 = new(number, raster.GeoCoordinateSystem) { Interpolation = Interpolation.Nearest };
+            using RasterTile t2 = new(number, raster.GeoCoordinateSystem) { Interpolation = Interpolation.Linear };
+            using RasterTile t3 = new(number, raster.GeoCoordinateSystem) { Interpolation = Interpolation.Cubic };
+            using RasterTile t4 = new(number, raster.GeoCoordinateSystem) { Interpolation = Interpolation.Mitchell };
+            using RasterTile t5 = new(number, raster.GeoCoordinateSystem) { Interpolation = Interpolation.Lanczos2 };
+            using RasterTile t6 = new(number, raster.GeoCoordinateSystem) { Interpolation = Interpolation.Lanczos3 };
 
             Assert.DoesNotThrow(() => raster.CreateTileImage(raster.Data, t1));
             Assert.DoesNotThrow(() => raster.CreateTileImage(raster.Data, t2));

@@ -49,7 +49,7 @@ namespace GTiff2Tiles.Core.Tiles
         /// <summary>
         /// <see cref="Images.Size"/> (width and height) of this <see cref="ITile"/>
         /// </summary>
-        public Size Size { get; }
+        public Size Size { get; set; }
 
         /// <summary>
         /// Path on disk of this <see cref="ITile"/>
@@ -59,12 +59,12 @@ namespace GTiff2Tiles.Core.Tiles
         /// <summary>
         /// Extension of <see cref="ITile"/>
         /// </summary>
-        public TileExtension Extension { get; }
+        public TileExtension Extension { get; set; }
 
         /// <summary>
         /// Is <see cref="ITile"/> tms compatible?
         /// </summary>
-        public bool TmsCompatible { get; }
+        public bool TmsCompatible { get; set; }
 
         /// <summary>
         /// <see cref="ITile"/>s with <see cref="Bytes"/> count lesser

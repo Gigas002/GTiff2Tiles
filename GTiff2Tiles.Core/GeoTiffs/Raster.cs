@@ -454,9 +454,12 @@ namespace GTiff2Tiles.Core.GeoTiffs
                 CheckHelper.CheckDirectory(tileDirectoryPath);
 
                 Number tileNumber = new(x, y, z);
-                RasterTile tile = new(tileNumber, GeoCoordinateSystem, extension: tileExtension,
-                                      tmsCompatible: tmsCompatible, size: tileSize,
-                                      bandsCount: bandsCount, interpolation: interpolation);
+                RasterTile tile = new(tileNumber, GeoCoordinateSystem, tileSize, tmsCompatible)
+                {
+                    Extension = tileExtension,
+                    BandsCount = bandsCount,
+                    Interpolation = interpolation
+                };
 
                 // Important: OpenLayers requires replacement of tileY to tileY+1
                 tile.Path = Path.Combine(tileDirectoryPath, $"{y}{tile.GetExtensionString()}");
@@ -562,8 +565,11 @@ namespace GTiff2Tiles.Core.GeoTiffs
             void MakeTile(int x, int y, int z)
             {
                 Number tileNumber = new(x, y, z);
-                RasterTile tile = new(tileNumber, GeoCoordinateSystem, tmsCompatible: tmsCompatible,
-                                      size: tileSize, bandsCount: bandsCount, interpolation: interpolation);
+                RasterTile tile =
+                    new(tileNumber, GeoCoordinateSystem, tileSize, tmsCompatible)
+                    {
+                        BandsCount = bandsCount, Interpolation = interpolation
+                    };
 
                 // Should not throw exception if tile was skipped
                 // ReSharper disable once AccessToDisposedClosure
@@ -649,8 +655,11 @@ namespace GTiff2Tiles.Core.GeoTiffs
             RasterTile MakeTile(int x, int y, int z)
             {
                 Number tileNumber = new(x, y, z);
-                RasterTile tile = new(tileNumber, GeoCoordinateSystem, tmsCompatible: tmsCompatible,
-                                      size: tileSize, bandsCount: bandsCount, interpolation: interpolation);
+                RasterTile tile =
+                    new(tileNumber, GeoCoordinateSystem, tileSize, tmsCompatible)
+                    {
+                        BandsCount = bandsCount, Interpolation = interpolation
+                    };
 
                 tile.Bytes = WriteTileToEnumerable(tileCache, tile);
 
@@ -929,8 +938,11 @@ namespace GTiff2Tiles.Core.GeoTiffs
                     {
                         Number number = new(x1, y, z1);
 
-                        RasterTile tile = new(number, coordinateSystem, tileSize, null, extension,
-                                              tmsCompatible, bandsCount);
+                        RasterTile tile =
+                            new(number, coordinateSystem, tileSize, tmsCompatible)
+                            {
+                                Extension = extension, BandsCount = bandsCount
+                            };
                         CreateOverviewTile(ref tile, tiles, isBuffered);
 
                         channelWriter.TryWrite(tile);

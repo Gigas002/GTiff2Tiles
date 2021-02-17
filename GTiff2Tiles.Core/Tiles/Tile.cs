@@ -19,7 +19,7 @@ namespace GTiff2Tiles.Core.Tiles
     /// <summary>
     /// Basic implementation of <see cref="ITile"/> interface
     /// </summary>
-    public class Tile : ITile
+    public abstract class Tile : ITile
     {
         #region Properties
 
@@ -54,16 +54,16 @@ namespace GTiff2Tiles.Core.Tiles
         public IEnumerable<byte> Bytes { get; set; }
 
         /// <inheritdoc />
-        public Size Size { get; }
+        public Size Size { get; set; }
 
         /// <inheritdoc />
         public string Path { get; set; }
 
         /// <inheritdoc />
-        public TileExtension Extension { get; }
+        public TileExtension Extension { get; set; } = TileExtension.Png;
 
         /// <inheritdoc />
-        public bool TmsCompatible { get; }
+        public bool TmsCompatible { get; set; }
 
         /// <inheritdoc />
         /// <summary>
@@ -84,19 +84,15 @@ namespace GTiff2Tiles.Core.Tiles
         /// <remarks>should be a square, e.g. 256x256;
         /// <para/>If set to <see langword="null"/>, uses <see cref="DefaultSize"/>
         /// as value</remarks></param>
-        /// <param name="bytes"><see cref="Bytes"/></param>
-        /// <param name="extension"><see cref="Extension"/></param>
         /// <param name="tmsCompatible">Is tms compatible?</param>
         /// <exception cref="ArgumentException"/>
-        protected Tile(Number number, CoordinateSystem coordinateSystem, Size size = null,
-                       IEnumerable<byte> bytes = null, TileExtension extension = TileExtension.Png,
-                       bool tmsCompatible = false)
+        protected Tile(Number number, CoordinateSystem coordinateSystem, Size size = null, bool tmsCompatible = false)
         {
-            (Number, Bytes, Extension, TmsCompatible, Size) = (number, bytes, extension, tmsCompatible, size ?? DefaultSize);
+            (Number, CoordinateSystem, TmsCompatible, Size) = (number, coordinateSystem, tmsCompatible, size ?? DefaultSize);
 
             if (!Size.IsSquare) throw new ArgumentException(Strings.NotSqare, nameof(size));
 
-            (MinCoordinate, MaxCoordinate) = Number.ToGeoCoordinates(coordinateSystem, Size, tmsCompatible);
+            (MinCoordinate, MaxCoordinate) = Number.ToGeoCoordinates(CoordinateSystem, Size, TmsCompatible);
         }
 
         /// <summary>
@@ -109,26 +105,22 @@ namespace GTiff2Tiles.Core.Tiles
         /// <remarks>should be a square, e.g. 256x256;
         /// <para/>If set to <see langword="null"/>, uses <see cref="DefaultSize"/>
         /// as value</remarks></param>
-        /// <param name="bytes"><see cref="Bytes"/></param>
-        /// <param name="extension"><see cref="Extension"/></param>
         /// <param name="tmsCompatible">Is tms compatible?</param>
         /// <exception cref="ArgumentException"/>
-        protected Tile(GeoCoordinate minCoordinate, GeoCoordinate maxCoordinate, int zoom, Size size = null,
-                       IEnumerable<byte> bytes = null, TileExtension extension = TileExtension.Png,
-                       bool tmsCompatible = false)
+        protected Tile(GeoCoordinate minCoordinate, GeoCoordinate maxCoordinate, int zoom, Size size = null, bool tmsCompatible = false)
         {
-            Size = size ?? DefaultSize;
+            (MinCoordinate, MaxCoordinate, TmsCompatible, Size) = (minCoordinate, maxCoordinate, tmsCompatible, size ?? DefaultSize);
 
             if (!Size.IsSquare) throw new ArgumentException(Strings.NotSqare, nameof(size));
 
-            (Number minNumber, Number maxNumber) = GeoCoordinate.GetNumbers(minCoordinate, maxCoordinate, zoom, Size, tmsCompatible);
+            (Number minNumber, Number maxNumber) = GeoCoordinate.GetNumbers(MinCoordinate, MaxCoordinate, zoom, Size, TmsCompatible);
 
             if (!minNumber.Equals(maxNumber))
                 throw new ArgumentException(Strings.CoordinatesDoesntFit);
 
-            (Number, Bytes, Extension, TmsCompatible) = (minNumber, bytes, extension, tmsCompatible);
-            (MinCoordinate, MaxCoordinate) = (minCoordinate, maxCoordinate);
+            Number = minNumber;
         }
+
 
         /// <summary>
         /// Calls <see cref="Dispose(bool)"/> on this <see cref="Tile"/>
