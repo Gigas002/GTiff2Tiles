@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Channels;
+using GTiff2Tiles.Core.Args;
 using GTiff2Tiles.Core.Coordinates;
 using GTiff2Tiles.Core.Enums;
+using GTiff2Tiles.Core.GeoTiffs;
 using GTiff2Tiles.Core.Images;
 
 // ReSharper disable UnusedMember.Global
@@ -105,6 +108,30 @@ namespace GTiff2Tiles.Core.Tiles
         /// <param name="path">Full path to write <see cref="ITile"/>
         /// <remarks><para/>if not set, <see cref="Path"/> property will be used instead</remarks></param>
         public void WriteToFile(string path = null);
+
+        /// <summary>
+        /// Write tile to file, using source geotiff and corresponding args
+        /// </summary>
+        /// <param name="sourceGeoTiff">Source <see cref="IGeoTiff"/></param>
+        /// <param name="args">Additional arguments</param>
+        public void WriteToFile(IGeoTiff sourceGeoTiff, IWriteTilesArgs args);
+
+        /// <summary>
+        /// Write tile to enumerable of bytes, using source geotiff and corresponding args
+        /// </summary>
+        /// <param name="sourceGeoTiff">Source <see cref="IGeoTiff"/></param>
+        /// <param name="args">Additional arguments</param>
+        public IEnumerable<byte> WriteToEnumerable(IGeoTiff sourceGeoTiff, IWriteTilesArgs args);
+
+        /// <summary>
+        /// Write tile to channel, using source geotiff and corresponding args
+        /// </summary>
+        /// <typeparam name="T">Inheritors of <see cref="ITile"/></typeparam>
+        /// <param name="sourceGeoTiff">Source <see cref="IGeoTiff"/></param>
+        /// <param name="tileWriter">Target <see cref="ChannelWriter{T}"/></param>
+        /// <param name="args">Additional arguments</param>
+        /// <returns><see langword="true"/> if no errors happened; <see langword="false"/> otherwse</returns>
+        public bool WriteToChannel<T>(IGeoTiff sourceGeoTiff, ChannelWriter<T> tileWriter, IWriteTilesArgs args) where T : class, ITile;
 
         #endregion
     }

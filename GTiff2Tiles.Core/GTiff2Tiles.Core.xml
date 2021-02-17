@@ -2155,6 +2155,30 @@
             <param name="path">Full path to write <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>
             <remarks><para/>if not set, <see cref="P:GTiff2Tiles.Core.Tiles.ITile.Path"/> property will be used instead</remarks></param>
         </member>
+        <member name="M:GTiff2Tiles.Core.Tiles.ITile.WriteToFile(GTiff2Tiles.Core.GeoTiffs.IGeoTiff,GTiff2Tiles.Core.Args.IWriteTilesArgs)">
+            <summary>
+            Write tile to file, using source geotiff and corresponding args
+            </summary>
+            <param name="sourceGeoTiff">Source <see cref="T:GTiff2Tiles.Core.GeoTiffs.IGeoTiff"/></param>
+            <param name="args">Additional arguments</param>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Tiles.ITile.WriteToEnumerable(GTiff2Tiles.Core.GeoTiffs.IGeoTiff,GTiff2Tiles.Core.Args.IWriteTilesArgs)">
+            <summary>
+            Write tile to enumerable of bytes, using source geotiff and corresponding args
+            </summary>
+            <param name="sourceGeoTiff">Source <see cref="T:GTiff2Tiles.Core.GeoTiffs.IGeoTiff"/></param>
+            <param name="args">Additional arguments</param>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Tiles.ITile.WriteToChannel``1(GTiff2Tiles.Core.GeoTiffs.IGeoTiff,System.Threading.Channels.ChannelWriter{``0},GTiff2Tiles.Core.Args.IWriteTilesArgs)">
+            <summary>
+            Write tile to channel, using source geotiff and corresponding args
+            </summary>
+            <typeparam name="T">Inheritors of <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/></typeparam>
+            <param name="sourceGeoTiff">Source <see cref="T:GTiff2Tiles.Core.GeoTiffs.IGeoTiff"/></param>
+            <param name="tileWriter">Target <see cref="T:System.Threading.Channels.ChannelWriter`1"/></param>
+            <param name="args">Additional arguments</param>
+            <returns><see langword="true"/> if no errors happened; <see langword="false"/> otherwse</returns>
+        </member>
         <member name="T:GTiff2Tiles.Core.Tiles.Number">
             <summary>
             <see cref="T:GTiff2Tiles.Core.Tiles.Number"/> of <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>
@@ -2431,6 +2455,27 @@
             <param name="tmsCompatible"></param>
             <exception cref="T:System.ArgumentOutOfRangeException"/>
         </member>
+        <member name="M:GTiff2Tiles.Core.Tiles.RasterTile.CreateImage(GTiff2Tiles.Core.GeoTiffs.IGeoTiff,NetVips.Image)">
+            <summary>
+            Create <see cref="T:NetVips.Image"/> for one <see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/>
+            from input <see cref="T:NetVips.Image"/> or tile cache
+            </summary>
+            <param name="sourceGeoTiff">Source <see cref="T:GTiff2Tiles.Core.GeoTiffs.IGeoTiff"/></param>
+            <param name="tileCache">Source <see cref="T:NetVips.Image"/>
+            or tile cache</param>
+            <returns>Ready <see cref="T:NetVips.Image"/> for <see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/></returns>
+            <exception cref="T:System.ArgumentNullException"/>
+            <exception cref="T:System.ArgumentException"/>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Tiles.RasterTile.WriteToFile(GTiff2Tiles.Core.GeoTiffs.IGeoTiff,GTiff2Tiles.Core.Args.IWriteTilesArgs)">
+            <inheritdoc />
+        </member>
+        <member name="M:GTiff2Tiles.Core.Tiles.RasterTile.WriteToEnumerable(GTiff2Tiles.Core.GeoTiffs.IGeoTiff,GTiff2Tiles.Core.Args.IWriteTilesArgs)">
+            <inheritdoc />
+        </member>
+        <member name="M:GTiff2Tiles.Core.Tiles.RasterTile.WriteToChannel``1(GTiff2Tiles.Core.GeoTiffs.IGeoTiff,System.Threading.Channels.ChannelWriter{``0},GTiff2Tiles.Core.Args.IWriteTilesArgs)">
+            <inheritdoc />
+        </member>
         <member name="T:GTiff2Tiles.Core.Tiles.Tile">
             <summary>
             Basic implementation of <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/> interface
@@ -2560,6 +2605,15 @@
             <summary></summary>
             <param name="tile"><see cref="T:GTiff2Tiles.Core.Tiles.ITile"/> to write</param>
             <param name="path"></param>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Tiles.Tile.WriteToFile(GTiff2Tiles.Core.GeoTiffs.IGeoTiff,GTiff2Tiles.Core.Args.IWriteTilesArgs)">
+            <inheritdoc />
+        </member>
+        <member name="M:GTiff2Tiles.Core.Tiles.Tile.WriteToEnumerable(GTiff2Tiles.Core.GeoTiffs.IGeoTiff,GTiff2Tiles.Core.Args.IWriteTilesArgs)">
+            <inheritdoc />
+        </member>
+        <member name="M:GTiff2Tiles.Core.Tiles.Tile.WriteToChannel``1(GTiff2Tiles.Core.GeoTiffs.IGeoTiff,System.Threading.Channels.ChannelWriter{``0},GTiff2Tiles.Core.Args.IWriteTilesArgs)">
+            <inheritdoc />
         </member>
     </members>
 </doc>

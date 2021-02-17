@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Channels;
 using System.Threading.Tasks;
+using GTiff2Tiles.Core.Args;
 using GTiff2Tiles.Core.Constants;
 using GTiff2Tiles.Core.Coordinates;
 using GTiff2Tiles.Core.Enums;
+using GTiff2Tiles.Core.GeoTiffs;
 using GTiff2Tiles.Core.Helpers;
 using GTiff2Tiles.Core.Images;
 using GTiff2Tiles.Core.Localization;
@@ -289,6 +292,20 @@ namespace GTiff2Tiles.Core.Tiles
 
             File.WriteAllBytes(path, tile.Bytes.ToArray());
         }
+
+        #endregion
+
+        #region WriteTile
+
+        /// <inheritdoc />
+        public abstract void WriteToFile(IGeoTiff sourceGeoTiff, IWriteTilesArgs args);
+
+        /// <inheritdoc />
+        public abstract IEnumerable<byte> WriteToEnumerable(IGeoTiff sourceGeoTiff, IWriteTilesArgs args);
+
+        /// <inheritdoc />
+        public abstract bool WriteToChannel<T>(IGeoTiff sourceGeoTiff, ChannelWriter<T> tileWriter,
+                                               IWriteTilesArgs args) where T : class, ITile;
 
         #endregion
 
