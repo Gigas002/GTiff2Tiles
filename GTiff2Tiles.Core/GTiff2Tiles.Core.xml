@@ -4,6 +4,161 @@
         <name>GTiff2Tiles.Core</name>
     </assembly>
     <members>
+        <member name="T:GTiff2Tiles.Core.Args.IWriteTilesArgs">
+            <summary>
+            Interface with args for creating different kind of tiles
+            </summary>
+        </member>
+        <member name="P:GTiff2Tiles.Core.Args.IWriteTilesArgs.MinZ">
+            <summary>
+            Minimal zoom
+            </summary>
+        </member>
+        <member name="P:GTiff2Tiles.Core.Args.IWriteTilesArgs.MaxZ">
+            <summary>
+            Maximal zoom
+            </summary>
+        </member>
+        <member name="P:GTiff2Tiles.Core.Args.IWriteTilesArgs.MinCoordinate">
+            <summary>
+            Minimal coordinate
+            </summary>
+        </member>
+        <member name="P:GTiff2Tiles.Core.Args.IWriteTilesArgs.MaxCoordinate">
+            <summary>
+            Maximal coordinate
+            </summary>
+        </member>
+        <member name="P:GTiff2Tiles.Core.Args.IWriteTilesArgs.TmsCompatible">
+            <summary>
+            Is tms compatible?
+            </summary>
+        </member>
+        <member name="P:GTiff2Tiles.Core.Args.IWriteTilesArgs.TileSize">
+            <summary>
+            Size of tiles
+            </summary>
+        </member>
+        <member name="P:GTiff2Tiles.Core.Args.IWriteTilesArgs.Progress">
+            <summary>
+            Progress-reporter
+            </summary>
+        </member>
+        <member name="P:GTiff2Tiles.Core.Args.IWriteTilesArgs.OutputDirectoryPath">
+            <summary>
+            Full path to output directory
+            </summary>
+        </member>
+        <member name="P:GTiff2Tiles.Core.Args.IWriteTilesArgs.ThreadsCount">
+            <summary>
+            Count of threads
+            </summary>
+        </member>
+        <member name="P:GTiff2Tiles.Core.Args.IWriteTilesArgs.IsDisposed">
+            <summary>
+            Shows if this object is already disposed
+            </summary>
+        </member>
+        <member name="T:GTiff2Tiles.Core.Args.WriteRasterTilesArgs">
+            <summary>
+            Class with args for creating raster tiles
+            </summary>
+        </member>
+        <member name="P:GTiff2Tiles.Core.Args.WriteRasterTilesArgs.MinZ">
+            <inheritdoc />
+        </member>
+        <member name="P:GTiff2Tiles.Core.Args.WriteRasterTilesArgs.MaxZ">
+            <inheritdoc />
+        </member>
+        <member name="P:GTiff2Tiles.Core.Args.WriteRasterTilesArgs.MinCoordinate">
+            <inheritdoc />
+        </member>
+        <member name="P:GTiff2Tiles.Core.Args.WriteRasterTilesArgs.MaxCoordinate">
+            <inheritdoc />
+        </member>
+        <member name="P:GTiff2Tiles.Core.Args.WriteRasterTilesArgs.TmsCompatible">
+            <inheritdoc />
+            <remarks><para/><see langword="false"/> by default</remarks>
+        </member>
+        <member name="P:GTiff2Tiles.Core.Args.WriteRasterTilesArgs.TileSize">
+            <inheritdoc />
+            <remarks><para/>256x256 by default</remarks>
+        </member>
+        <member name="P:GTiff2Tiles.Core.Args.WriteRasterTilesArgs.Progress">
+            <inheritdoc />
+        </member>
+        <member name="P:GTiff2Tiles.Core.Args.WriteRasterTilesArgs.OutputDirectoryPath">
+            <inheritdoc />
+        </member>
+        <member name="P:GTiff2Tiles.Core.Args.WriteRasterTilesArgs.IsDisposed">
+            <inheritdoc />
+        </member>
+        <member name="P:GTiff2Tiles.Core.Args.WriteRasterTilesArgs.ThreadsCount">
+            <inheritdoc />
+        </member>
+        <member name="P:GTiff2Tiles.Core.Args.WriteRasterTilesArgs.TileInterpolation">
+            <summary>
+            Interpolation of ready tiles
+            <remarks><para/><see cref="F:GTiff2Tiles.Core.Enums.Interpolation.Lanczos3"/> by default</remarks>
+            </summary>
+        </member>
+        <member name="P:GTiff2Tiles.Core.Args.WriteRasterTilesArgs.BandsCount">
+            <summary>
+            Count of <see cref="T:GTiff2Tiles.Core.Images.Band"/>s in ready <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>s
+            <remarks><para/>4 by default</remarks>
+            </summary>
+        </member>
+        <member name="P:GTiff2Tiles.Core.Args.WriteRasterTilesArgs.TileCacheCount">
+            <summary>
+            Count of <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/> to be in cache
+            <remarks><para/>1000 by default</remarks>
+            </summary>
+        </member>
+        <member name="P:GTiff2Tiles.Core.Args.WriteRasterTilesArgs.TileExtension">
+            <summary>
+            Extension of ready tiles
+            </summary>
+        </member>
+        <member name="P:GTiff2Tiles.Core.Args.WriteRasterTilesArgs.TimePrinter">
+            <summary>
+            Prints time left
+            </summary>
+        </member>
+        <member name="P:GTiff2Tiles.Core.Args.WriteRasterTilesArgs.TileCache">
+            <summary>
+            Raster image source cache
+            </summary>
+        </member>
+        <member name="T:GTiff2Tiles.Core.Args.WriteRasterTilesArgs.PrintTime">
+            <summary>
+            Prints estimated time left
+            </summary>
+            <param name="timeString">String to print</param>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Args.WriteRasterTilesArgs.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Create new object woth default args
+            </summary>
+            <param name="minZ">Minimal zoom
+            <remarks><para/>Should be >= 0 and lesser or equal, than <paramref name="maxZ"/>
+            </remarks></param>
+            <param name="maxZ">Maximal zoom
+            <remarks><para/>Should be >= 0 and bigger or equal, than <paramref name="minZ"/>
+            </remarks></param>
+            <exception cref="T:System.ArgumentOutOfRangeException"/>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Args.WriteRasterTilesArgs.Finalize">
+            <summary>
+            Calls <see cref="M:GTiff2Tiles.Core.Args.WriteRasterTilesArgs.Dispose(System.Boolean)"/> on this object
+            </summary>
+        </member>
+        <member name="M:GTiff2Tiles.Core.Args.WriteRasterTilesArgs.Dispose">
+            <inheritdoc />
+        </member>
+        <member name="M:GTiff2Tiles.Core.Args.WriteRasterTilesArgs.Dispose(System.Boolean)">
+            <inheritdoc cref="M:GTiff2Tiles.Core.Args.WriteRasterTilesArgs.Dispose"/>
+            <param name="disposing">Dispose static fields?</param>
+        </member>
         <member name="T:GTiff2Tiles.Core.Constants.DateTimePatterns">
             <summary>
             String patterns for <see cref="T:System.DateTime"/>
