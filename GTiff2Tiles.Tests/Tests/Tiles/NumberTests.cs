@@ -1,4 +1,6 @@
-﻿using System;
+﻿#pragma warning disable CA1508 // Avoid dead conditional code
+
+using System;
 using GTiff2Tiles.Core.Coordinates;
 using GTiff2Tiles.Core.Enums;
 using GTiff2Tiles.Core.Tiles;
@@ -575,3 +577,5 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
         #endregion
     }
 }
+
+#pragma warning restore CA1508 // Avoid dead conditional code

@@ -137,7 +137,7 @@ namespace GTiff2Tiles.Tests.Tests.Args
         [Test]
         public void DisposeTest()
         {
-            WriteRasterTilesArgs args = new(MinZ, MaxZ);
+            using WriteRasterTilesArgs args = new(MinZ, MaxZ);
 
             Assert.DoesNotThrow(() => args.Dispose());
 

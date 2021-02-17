@@ -934,6 +934,55 @@
             <exception cref="T:System.ArgumentNullException"/>
             <exception cref="T:System.NotSupportedException"/>
         </member>
+        <member name="T:GTiff2Tiles.Core.GeoTiffs.GeoTiff">
+            <summary>
+            Base abstract class for GeoTiffs
+            </summary>
+        </member>
+        <member name="P:GTiff2Tiles.Core.GeoTiffs.GeoTiff.Size">
+            <inheritdoc />
+        </member>
+        <member name="P:GTiff2Tiles.Core.GeoTiffs.GeoTiff.MinCoordinate">
+            <inheritdoc />
+        </member>
+        <member name="P:GTiff2Tiles.Core.GeoTiffs.GeoTiff.MaxCoordinate">
+            <inheritdoc />
+        </member>
+        <member name="P:GTiff2Tiles.Core.GeoTiffs.GeoTiff.GeoCoordinateSystem">
+            <inheritdoc />
+        </member>
+        <member name="P:GTiff2Tiles.Core.GeoTiffs.GeoTiff.IsDisposed">
+            <inheritdoc />
+        </member>
+        <member name="M:GTiff2Tiles.Core.GeoTiffs.GeoTiff.Dispose">
+            <inheritdoc />
+        </member>
+        <member name="M:GTiff2Tiles.Core.GeoTiffs.GeoTiff.Dispose(System.Boolean)">
+            <inheritdoc cref="M:GTiff2Tiles.Core.GeoTiffs.GeoTiff.Dispose"/>
+            <param name="disposing">Dispose static fields?</param>
+        </member>
+        <member name="M:GTiff2Tiles.Core.GeoTiffs.GeoTiff.DisposeAsync">
+            <inheritdoc />
+        </member>
+        <member name="M:GTiff2Tiles.Core.GeoTiffs.GeoTiff.GetBorders(System.IO.Stream,GTiff2Tiles.Core.Enums.CoordinateSystem)">
+            <summary>
+            Gets minimal and maximal coordinates from input GeoTiff
+            </summary>
+            <param name="inputStream">Any kind of stream with GeoTiff's data</param>
+            <param name="coordinateSystem">GeoTiff's <see cref="T:GTiff2Tiles.Core.Enums.CoordinateSystem"/>
+            <remarks><para/>If set to <see cref="F:GTiff2Tiles.Core.Enums.CoordinateSystem.Other"/> throws
+            <see cref="T:System.NotSupportedException"/></remarks></param>
+            <returns><see cref="T:System.ValueTuple`2"/> of
+            <see cref="T:GTiff2Tiles.Core.Coordinates.GeoCoordinate"/>s of image's borders</returns>
+            <exception cref="T:System.ArgumentNullException"/>
+            <exception cref="T:System.NotSupportedException"/>
+            <exception cref="T:System.ArgumentException"/>
+        </member>
+        <member name="M:GTiff2Tiles.Core.GeoTiffs.GeoTiff.GetBorders(System.String,GTiff2Tiles.Core.Enums.CoordinateSystem)">
+            <inheritdoc cref="M:GTiff2Tiles.Core.GeoTiffs.GeoTiff.GetBorders(System.IO.Stream,GTiff2Tiles.Core.Enums.CoordinateSystem)"/>
+            <param name="filePath">Full path to GeoTiff file</param>
+            <param name="coordinateSystem"></param>
+        </member>
         <member name="T:GTiff2Tiles.Core.GeoTiffs.IGeoTiff">
             <summary>
             Main interface for different type of GeoTiffs and <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>
@@ -969,21 +1018,6 @@
             Class, representing <see cref="T:GTiff2Tiles.Core.GeoTiffs.Raster"/> GeoTiff.
             Used for creating <see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/>s
             </summary>
-        </member>
-        <member name="P:GTiff2Tiles.Core.GeoTiffs.Raster.Size">
-            <inheritdoc />
-        </member>
-        <member name="P:GTiff2Tiles.Core.GeoTiffs.Raster.MinCoordinate">
-            <inheritdoc />
-        </member>
-        <member name="P:GTiff2Tiles.Core.GeoTiffs.Raster.MaxCoordinate">
-            <inheritdoc />
-        </member>
-        <member name="P:GTiff2Tiles.Core.GeoTiffs.Raster.GeoCoordinateSystem">
-            <inheritdoc />
-        </member>
-        <member name="P:GTiff2Tiles.Core.GeoTiffs.Raster.IsDisposed">
-            <inheritdoc />
         </member>
         <member name="P:GTiff2Tiles.Core.GeoTiffs.Raster.Data">
             <summary>
@@ -1024,14 +1058,7 @@
             Calls <see cref="M:GTiff2Tiles.Core.GeoTiffs.Raster.Dispose(System.Boolean)"/> on this <see cref="T:GTiff2Tiles.Core.GeoTiffs.Raster"/>
             </summary>
         </member>
-        <member name="M:GTiff2Tiles.Core.GeoTiffs.Raster.Dispose">
-            <inheritdoc />
-        </member>
         <member name="M:GTiff2Tiles.Core.GeoTiffs.Raster.Dispose(System.Boolean)">
-            <inheritdoc cref="M:GTiff2Tiles.Core.GeoTiffs.Raster.Dispose"/>
-            <param name="disposing">Dispose static fields?</param>
-        </member>
-        <member name="M:GTiff2Tiles.Core.GeoTiffs.Raster.DisposeAsync">
             <inheritdoc />
         </member>
         <member name="M:GTiff2Tiles.Core.GeoTiffs.Raster.CreateTileImage(NetVips.Image,GTiff2Tiles.Core.Tiles.RasterTile)">
@@ -1177,25 +1204,6 @@
             <returns><see cref="T:System.Collections.Generic.IAsyncEnumerable`1"/> of <see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/>s</returns>
             <exception cref="T:System.ArgumentOutOfRangeException"/>
             <exception cref="T:GTiff2Tiles.Core.Exceptions.RasterException"/>
-        </member>
-        <member name="M:GTiff2Tiles.Core.GeoTiffs.Raster.GetBorders(System.IO.Stream,GTiff2Tiles.Core.Enums.CoordinateSystem)">
-            <summary>
-            Gets minimal and maximal coordinates from input GeoTiff
-            </summary>
-            <param name="inputStream">Any kind of stream with GeoTiff's data</param>
-            <param name="coordinateSystem">GeoTiff's <see cref="T:GTiff2Tiles.Core.Enums.CoordinateSystem"/>
-            <remarks><para/>If set to <see cref="F:GTiff2Tiles.Core.Enums.CoordinateSystem.Other"/> throws
-            <see cref="T:System.NotSupportedException"/></remarks></param>
-            <returns><see cref="T:System.ValueTuple`2"/> of
-            <see cref="T:GTiff2Tiles.Core.Coordinates.GeoCoordinate"/>s of image's borders</returns>
-            <exception cref="T:System.ArgumentNullException"/>
-            <exception cref="T:System.NotSupportedException"/>
-            <exception cref="T:System.ArgumentException"/>
-        </member>
-        <member name="M:GTiff2Tiles.Core.GeoTiffs.Raster.GetBorders(System.String,GTiff2Tiles.Core.Enums.CoordinateSystem)">
-            <inheritdoc cref="M:GTiff2Tiles.Core.GeoTiffs.Raster.GetBorders(System.IO.Stream,GTiff2Tiles.Core.Enums.CoordinateSystem)"/>
-            <param name="filePath">Full path to GeoTiff file</param>
-            <param name="coordinateSystem"></param>
         </member>
         <member name="M:GTiff2Tiles.Core.GeoTiffs.Raster.CreateOverviewTiles(System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.RasterTile},System.Int32,System.Int32,System.Collections.Generic.HashSet{GTiff2Tiles.Core.Tiles.RasterTile},System.Boolean,GTiff2Tiles.Core.Enums.CoordinateSystem,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.TileExtension,System.Boolean,System.Int32)">
             <summary>

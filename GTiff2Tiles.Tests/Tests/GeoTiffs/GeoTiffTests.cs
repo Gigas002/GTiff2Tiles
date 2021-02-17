@@ -1,4 +1,6 @@
-﻿using System;
+﻿#pragma warning disable CA1508 // Avoid dead conditional code
+
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
@@ -1086,3 +1088,5 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
         #endregion
     }
 }
+
+#pragma warning restore CA1508 // Avoid dead conditional code
