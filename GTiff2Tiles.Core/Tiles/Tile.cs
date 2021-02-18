@@ -307,6 +307,9 @@ namespace GTiff2Tiles.Core.Tiles
         public abstract bool WriteToChannel<T>(IGeoTiff sourceGeoTiff, ChannelWriter<T> tileWriter,
                                                IWriteTilesArgs args) where T : class, ITile;
 
+        /// <inheritdoc />
+        public abstract IEnumerable<byte> WriteOverviewTileBytes<T>(T[] allBaseTiles) where T : class, ITile;
+
         #endregion
 
         #endregion

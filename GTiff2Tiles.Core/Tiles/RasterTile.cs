@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Threading.Channels;
 using GTiff2Tiles.Core.Args;
 using GTiff2Tiles.Core.Coordinates;
@@ -159,6 +161,63 @@ namespace GTiff2Tiles.Core.Tiles
             Bytes = WriteToEnumerable(sourceGeoTiff, args);
 
             return Validate(false) && tileWriter.TryWrite(this as T);
+        }
+
+        /// <inheritdoc />
+        public override IEnumerable<byte> WriteOverviewTileBytes<T>(T[] allBaseTiles)
+        {
+            Number[] numbers = Number.GetLowerNumbers();
+            T[] lowerTiles = new T[4];
+            lowerTiles[0] = allBaseTiles.FirstOrDefault(t => t.Number == numbers[0]);
+            lowerTiles[1] = allBaseTiles.FirstOrDefault(t => t.Number == numbers[1]);
+            lowerTiles[2] = allBaseTiles.FirstOrDefault(t => t.Number == numbers[2]);
+            lowerTiles[3] = allBaseTiles.FirstOrDefault(t => t.Number == numbers[3]);
+            bool isBuffered = lowerTiles[0].Bytes != null;
+
+            Image image = WriteOverviewTileImage(lowerTiles, isBuffered);
+
+            byte[] result = image?.WriteToBuffer(GetExtensionString(Extension));
+            image?.Dispose();
+
+            return result;
+        }
+
+        /// <summary>
+        /// Create <see cref="Image"/> from 4 underlying lower tiles
+        /// </summary>
+        /// <typeparam name="T">Inheritors of <see cref="ITile"/></typeparam>
+        /// <param name="fourBaseTiles">4 lower tiles</param>
+        /// <param name="isBuffered">Do base tiles have bytes or they use paths?</param>
+        /// <returns>Upper tile <see cref="Image"/></returns>
+        public Image WriteOverviewTileImage<T>(T[] fourBaseTiles, bool isBuffered) where T : class, ITile
+        {
+            if (!isBuffered)
+            {
+                foreach (T tile in fourBaseTiles)
+                    tile.Bytes = File.ReadAllBytes(tile.Path);
+            }
+
+            Image[] images = new Image[4];
+
+            bool empty = true;
+
+            for (int i = 0; i < 4; i++)
+            {
+                Size size = new(fourBaseTiles[i].Size.Width / 2, fourBaseTiles[i].Size.Height / 2);
+                byte[] bytes = fourBaseTiles[i].Bytes?.ToArray();
+
+                if (bytes.Any())
+                {
+                    empty = false;
+                    images[i] = Image.NewFromBuffer(bytes).ThumbnailImage(size.Width, size.Height);
+                }
+                else
+                {
+                    images[i] = Image.Black(size.Width, size.Height, BandsCount);
+                }
+            }
+
+            return empty ? null : Image.Arrayjoin(images, 2);
         }
 
         #endregion

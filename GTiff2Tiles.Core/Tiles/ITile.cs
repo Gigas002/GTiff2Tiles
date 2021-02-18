@@ -133,6 +133,14 @@ namespace GTiff2Tiles.Core.Tiles
         /// <returns><see langword="true"/> if no errors happened; <see langword="false"/> otherwse</returns>
         public bool WriteToChannel<T>(IGeoTiff sourceGeoTiff, ChannelWriter<T> tileWriter, IWriteTilesArgs args) where T : class, ITile;
 
+        /// <summary>
+        /// Create overview bytes for current <see cref="ITile"/> from source <see cref="ITile"/>s
+        /// </summary>
+        /// <typeparam name="T">Inheritors of <see cref="ITile"/></typeparam>
+        /// <param name="allBaseTiles">Array of all tiles to search 4 correlating</param>
+        /// <returns>Bytes of overview tile</returns>
+        public IEnumerable<byte> WriteOverviewTileBytes<T>(T[] allBaseTiles) where T : class, ITile;
+
         #endregion
     }
 }

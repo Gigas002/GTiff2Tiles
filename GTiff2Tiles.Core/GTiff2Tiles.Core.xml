@@ -2196,6 +2196,14 @@
             <param name="args">Additional arguments</param>
             <returns><see langword="true"/> if no errors happened; <see langword="false"/> otherwse</returns>
         </member>
+        <member name="M:GTiff2Tiles.Core.Tiles.ITile.WriteOverviewTileBytes``1(``0[])">
+            <summary>
+            Create overview bytes for current <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/> from source <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>s
+            </summary>
+            <typeparam name="T">Inheritors of <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/></typeparam>
+            <param name="allBaseTiles">Array of all tiles to search 4 correlating</param>
+            <returns>Bytes of overview tile</returns>
+        </member>
         <member name="T:GTiff2Tiles.Core.Tiles.Number">
             <summary>
             <see cref="T:GTiff2Tiles.Core.Tiles.Number"/> of <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/>
@@ -2493,6 +2501,18 @@
         <member name="M:GTiff2Tiles.Core.Tiles.RasterTile.WriteToChannel``1(GTiff2Tiles.Core.GeoTiffs.IGeoTiff,System.Threading.Channels.ChannelWriter{``0},GTiff2Tiles.Core.Args.IWriteTilesArgs)">
             <inheritdoc />
         </member>
+        <member name="M:GTiff2Tiles.Core.Tiles.RasterTile.WriteOverviewTileBytes``1(``0[])">
+            <inheritdoc />
+        </member>
+        <member name="M:GTiff2Tiles.Core.Tiles.RasterTile.WriteOverviewTileImage``1(``0[],System.Boolean)">
+            <summary>
+            Create <see cref="T:NetVips.Image"/> from 4 underlying lower tiles
+            </summary>
+            <typeparam name="T">Inheritors of <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/></typeparam>
+            <param name="fourBaseTiles">4 lower tiles</param>
+            <param name="isBuffered">Do base tiles have bytes or they use paths?</param>
+            <returns>Upper tile <see cref="T:NetVips.Image"/></returns>
+        </member>
         <member name="T:GTiff2Tiles.Core.Tiles.Tile">
             <summary>
             Basic implementation of <see cref="T:GTiff2Tiles.Core.Tiles.ITile"/> interface
@@ -2630,6 +2650,9 @@
             <inheritdoc />
         </member>
         <member name="M:GTiff2Tiles.Core.Tiles.Tile.WriteToChannel``1(GTiff2Tiles.Core.GeoTiffs.IGeoTiff,System.Threading.Channels.ChannelWriter{``0},GTiff2Tiles.Core.Args.IWriteTilesArgs)">
+            <inheritdoc />
+        </member>
+        <member name="M:GTiff2Tiles.Core.Tiles.Tile.WriteOverviewTileBytes``1(``0[])">
             <inheritdoc />
         </member>
     </members>

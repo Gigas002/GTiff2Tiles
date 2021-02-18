@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading.Channels;
 using System.Threading.Tasks;
 using GTiff2Tiles.Core.Args;
@@ -17,7 +18,6 @@ namespace GTiff2Tiles.Core
 
     public static class TileGenerator
     {
-        // TODO: out string?
         public static void WriteRasterTilesToDirectory(Raster raster, WriteRasterTilesArgs args)
         {
             #region Preconditions checks
@@ -166,7 +166,7 @@ namespace GTiff2Tiles.Core
             }
         }
 
-        public static IEnumerable<ITile> WriteRasterTilesToEnumerable(Raster raster, WriteRasterTilesArgs args)
+        public static IEnumerable<RasterTile> WriteRasterTilesToEnumerable(Raster raster, WriteRasterTilesArgs args)
         {
             using Image tileCache = raster.Data.Tilecache(args.TileSize.Width,
                                                           args.TileSize.Height,
@@ -204,6 +204,48 @@ namespace GTiff2Tiles.Core
                     }
                 }
             }
+        }
+
+        public static void WriteOverviewRasterTilesToChannel(IEnumerable<RasterTile> baseTiles,
+                                                             ChannelWriter<RasterTile> tileWriter,
+                                                             WriteRasterTilesArgs args)
+        {
+            for (int z = args.MinZ; z <= args.MaxZ; z++)
+            {
+                (Number minNumber, Number maxNumber) =
+                    GeoCoordinate.GetNumbers(args.MinCoordinate, args.MaxCoordinate, z, args.TileSize,
+                                             args.TmsCompatible);
+
+                for (int x = minNumber.X; x <= maxNumber.X; x++)
+                {
+                    int x1 = x;
+                    int z1 = z;
+                    Parallel.For(minNumber.Y, maxNumber.Y + 1, y =>
+                    {
+                        Number number = new(x1, y, z1);
+
+                        RasterTile tile = new(number, args.GeoCoordinateSystem, args.TileSize, args.TmsCompatible)
+                        {
+                            Extension = args.TileExtension, BandsCount = args.BandsCount,
+                            Interpolation = args.TileInterpolation
+                        };
+                        tile.Bytes = tile.WriteOverviewTileBytes(baseTiles.ToArray());
+
+                        tileWriter.TryWrite(tile);
+                    });
+                }
+            }
+        }
+
+        public static void WriteLowerRasterTiles(RasterTile tile)
+        {
+            // TODO: in ITIle?
+            // Writes LOWER tiles of this current tile
+        }
+
+        private static bool CheckRasterArgs(WriteRasterTilesArgs args)
+        {
+            return true;
         }
     }
 }
