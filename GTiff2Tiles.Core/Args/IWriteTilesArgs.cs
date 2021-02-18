@@ -1,5 +1,6 @@
 ﻿using System;
 using GTiff2Tiles.Core.Coordinates;
+using GTiff2Tiles.Core.Enums;
 using GTiff2Tiles.Core.Images;
 
 namespace GTiff2Tiles.Core.Args
@@ -58,5 +59,10 @@ namespace GTiff2Tiles.Core.Args
         /// Shows if this object is already disposed
         /// </summary>
         public bool IsDisposed { get; }
+
+        /// <summary>
+        /// Tiles coordinate system
+        /// </summary>
+        public CoordinateSystem GeoCoordinateSystem { get; }
     }
 }

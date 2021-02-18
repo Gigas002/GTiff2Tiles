@@ -59,6 +59,11 @@
             Shows if this object is already disposed
             </summary>
         </member>
+        <member name="P:GTiff2Tiles.Core.Args.IWriteTilesArgs.GeoCoordinateSystem">
+            <summary>
+            Tiles coordinate system
+            </summary>
+        </member>
         <member name="T:GTiff2Tiles.Core.Args.WriteRasterTilesArgs">
             <summary>
             Class with args for creating raster tiles
@@ -95,6 +100,10 @@
         </member>
         <member name="P:GTiff2Tiles.Core.Args.WriteRasterTilesArgs.ThreadsCount">
             <inheritdoc />
+        </member>
+        <member name="P:GTiff2Tiles.Core.Args.WriteRasterTilesArgs.GeoCoordinateSystem">
+            <inheritdoc />
+            <remarks>EPSG:4326 by default</remarks>
         </member>
         <member name="P:GTiff2Tiles.Core.Args.WriteRasterTilesArgs.TileInterpolation">
             <summary>

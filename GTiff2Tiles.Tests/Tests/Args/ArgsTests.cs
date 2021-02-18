@@ -57,7 +57,8 @@ namespace GTiff2Tiles.Tests.Tests.Args
                 Progress = null,
                 ThreadsCount = 1000,
                 TileSize = Tile.DefaultSize,
-                TmsCompatible = true
+                TmsCompatible = true,
+                GeoCoordinateSystem = CoordinateSystem.Epsg3857
             };
         });
 
@@ -70,7 +71,7 @@ namespace GTiff2Tiles.Tests.Tests.Args
                 MaxCoordinate = new GeodeticCoordinate(1.0, 1.0), OutputDirectoryPath = string.Empty,
                 Progress = null, ThreadsCount = 1000, TileSize = Tile.DefaultSize, TmsCompatible = true,
                 TileCacheCount = 4, TileExtension = TileExtension.Webp, TileInterpolation = Interpolation.Cubic,
-                TimePrinter = Console.WriteLine
+                TimePrinter = Console.WriteLine, GeoCoordinateSystem = CoordinateSystem.Epsg3857
             };
         });
 
@@ -89,6 +90,7 @@ namespace GTiff2Tiles.Tests.Tests.Args
             int thc = args.ThreadsCount;
             Size ts = args.TileSize;
             bool tic = args.TmsCompatible;
+            CoordinateSystem cs = args.GeoCoordinateSystem;
         });
 
         [Test]
@@ -111,6 +113,7 @@ namespace GTiff2Tiles.Tests.Tests.Args
             Size ts = args.TileSize;
             WriteRasterTilesArgs.PrintTime tp = args.TimePrinter;
             bool tic = args.TmsCompatible;
+            CoordinateSystem cs = args.GeoCoordinateSystem;
         });
 
         #endregion

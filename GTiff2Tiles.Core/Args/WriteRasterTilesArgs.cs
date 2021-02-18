@@ -53,6 +53,10 @@ namespace GTiff2Tiles.Core.Args
         /// <inheritdoc />
         public int ThreadsCount { get; set; }
 
+        /// <inheritdoc />
+        /// <remarks>EPSG:4326 by default</remarks>
+        public CoordinateSystem GeoCoordinateSystem { get; set; } = CoordinateSystem.Epsg4326;
+
         #endregion
 
         /// <summary>
