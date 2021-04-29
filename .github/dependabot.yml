@@ -1,0 +1,28 @@
+version: 2
+updates:
+- package-ecosystem: nuget
+  directory: "/"
+  schedule:
+    interval: daily
+    time: "22:00"
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: MaxRev.Gdal.Core
+    versions:
+    - 3.2.0.300
+    - 3.2.0.310
+  - dependency-name: Microsoft.NET.Test.Sdk
+    versions:
+    - 16.9.1
+  - dependency-name: MaterialDesignThemes
+    versions:
+    - 4.0.0
+  - dependency-name: MaterialDesignColors
+    versions:
+    - 2.0.0
+  - dependency-name: coverlet.msbuild
+    versions:
+    - 3.0.2
+  - dependency-name: coverlet.collector
+    versions:
+    - 3.0.2
