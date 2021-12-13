@@ -24,6 +24,7 @@
     <PackageTags>gtiff2tiles gdal2tiles tif tiff geotiff gdal tile maptiler</PackageTags>
     <PackageId>GTiff2Tiles</PackageId>
     <Product>GTiff2Tiles</Product>
+    <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
   <PropertyGroup>
