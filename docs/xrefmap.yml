@@ -7,6 +7,439 @@ references:
   commentId: N:GTiff2Tiles.Core
   fullName: GTiff2Tiles.Core
   nameWithType: GTiff2Tiles.Core
+- uid: GTiff2Tiles.Core.Args
+  name: GTiff2Tiles.Core.Args
+  href: api/GTiff2Tiles.Core.Args.html
+  commentId: N:GTiff2Tiles.Core.Args
+  fullName: GTiff2Tiles.Core.Args
+  nameWithType: GTiff2Tiles.Core.Args
+- uid: GTiff2Tiles.Core.Args.IWriteTilesArgs
+  name: IWriteTilesArgs
+  href: api/GTiff2Tiles.Core.Args.IWriteTilesArgs.html
+  commentId: T:GTiff2Tiles.Core.Args.IWriteTilesArgs
+  fullName: GTiff2Tiles.Core.Args.IWriteTilesArgs
+  nameWithType: IWriteTilesArgs
+- uid: GTiff2Tiles.Core.Args.IWriteTilesArgs.GeoCoordinateSystem
+  name: GeoCoordinateSystem
+  href: api/GTiff2Tiles.Core.Args.IWriteTilesArgs.html#GTiff2Tiles_Core_Args_IWriteTilesArgs_GeoCoordinateSystem
+  commentId: P:GTiff2Tiles.Core.Args.IWriteTilesArgs.GeoCoordinateSystem
+  fullName: GTiff2Tiles.Core.Args.IWriteTilesArgs.GeoCoordinateSystem
+  nameWithType: IWriteTilesArgs.GeoCoordinateSystem
+- uid: GTiff2Tiles.Core.Args.IWriteTilesArgs.GeoCoordinateSystem*
+  name: GeoCoordinateSystem
+  href: api/GTiff2Tiles.Core.Args.IWriteTilesArgs.html#GTiff2Tiles_Core_Args_IWriteTilesArgs_GeoCoordinateSystem_
+  commentId: Overload:GTiff2Tiles.Core.Args.IWriteTilesArgs.GeoCoordinateSystem
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.Args.IWriteTilesArgs.GeoCoordinateSystem
+  nameWithType: IWriteTilesArgs.GeoCoordinateSystem
+- uid: GTiff2Tiles.Core.Args.IWriteTilesArgs.IsDisposed
+  name: IsDisposed
+  href: api/GTiff2Tiles.Core.Args.IWriteTilesArgs.html#GTiff2Tiles_Core_Args_IWriteTilesArgs_IsDisposed
+  commentId: P:GTiff2Tiles.Core.Args.IWriteTilesArgs.IsDisposed
+  fullName: GTiff2Tiles.Core.Args.IWriteTilesArgs.IsDisposed
+  nameWithType: IWriteTilesArgs.IsDisposed
+- uid: GTiff2Tiles.Core.Args.IWriteTilesArgs.IsDisposed*
+  name: IsDisposed
+  href: api/GTiff2Tiles.Core.Args.IWriteTilesArgs.html#GTiff2Tiles_Core_Args_IWriteTilesArgs_IsDisposed_
+  commentId: Overload:GTiff2Tiles.Core.Args.IWriteTilesArgs.IsDisposed
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.Args.IWriteTilesArgs.IsDisposed
+  nameWithType: IWriteTilesArgs.IsDisposed
+- uid: GTiff2Tiles.Core.Args.IWriteTilesArgs.MaxCoordinate
+  name: MaxCoordinate
+  href: api/GTiff2Tiles.Core.Args.IWriteTilesArgs.html#GTiff2Tiles_Core_Args_IWriteTilesArgs_MaxCoordinate
+  commentId: P:GTiff2Tiles.Core.Args.IWriteTilesArgs.MaxCoordinate
+  fullName: GTiff2Tiles.Core.Args.IWriteTilesArgs.MaxCoordinate
+  nameWithType: IWriteTilesArgs.MaxCoordinate
+- uid: GTiff2Tiles.Core.Args.IWriteTilesArgs.MaxCoordinate*
+  name: MaxCoordinate
+  href: api/GTiff2Tiles.Core.Args.IWriteTilesArgs.html#GTiff2Tiles_Core_Args_IWriteTilesArgs_MaxCoordinate_
+  commentId: Overload:GTiff2Tiles.Core.Args.IWriteTilesArgs.MaxCoordinate
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.Args.IWriteTilesArgs.MaxCoordinate
+  nameWithType: IWriteTilesArgs.MaxCoordinate
+- uid: GTiff2Tiles.Core.Args.IWriteTilesArgs.MaxZ
+  name: MaxZ
+  href: api/GTiff2Tiles.Core.Args.IWriteTilesArgs.html#GTiff2Tiles_Core_Args_IWriteTilesArgs_MaxZ
+  commentId: P:GTiff2Tiles.Core.Args.IWriteTilesArgs.MaxZ
+  fullName: GTiff2Tiles.Core.Args.IWriteTilesArgs.MaxZ
+  nameWithType: IWriteTilesArgs.MaxZ
+- uid: GTiff2Tiles.Core.Args.IWriteTilesArgs.MaxZ*
+  name: MaxZ
+  href: api/GTiff2Tiles.Core.Args.IWriteTilesArgs.html#GTiff2Tiles_Core_Args_IWriteTilesArgs_MaxZ_
+  commentId: Overload:GTiff2Tiles.Core.Args.IWriteTilesArgs.MaxZ
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.Args.IWriteTilesArgs.MaxZ
+  nameWithType: IWriteTilesArgs.MaxZ
+- uid: GTiff2Tiles.Core.Args.IWriteTilesArgs.MinCoordinate
+  name: MinCoordinate
+  href: api/GTiff2Tiles.Core.Args.IWriteTilesArgs.html#GTiff2Tiles_Core_Args_IWriteTilesArgs_MinCoordinate
+  commentId: P:GTiff2Tiles.Core.Args.IWriteTilesArgs.MinCoordinate
+  fullName: GTiff2Tiles.Core.Args.IWriteTilesArgs.MinCoordinate
+  nameWithType: IWriteTilesArgs.MinCoordinate
+- uid: GTiff2Tiles.Core.Args.IWriteTilesArgs.MinCoordinate*
+  name: MinCoordinate
+  href: api/GTiff2Tiles.Core.Args.IWriteTilesArgs.html#GTiff2Tiles_Core_Args_IWriteTilesArgs_MinCoordinate_
+  commentId: Overload:GTiff2Tiles.Core.Args.IWriteTilesArgs.MinCoordinate
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.Args.IWriteTilesArgs.MinCoordinate
+  nameWithType: IWriteTilesArgs.MinCoordinate
+- uid: GTiff2Tiles.Core.Args.IWriteTilesArgs.MinZ
+  name: MinZ
+  href: api/GTiff2Tiles.Core.Args.IWriteTilesArgs.html#GTiff2Tiles_Core_Args_IWriteTilesArgs_MinZ
+  commentId: P:GTiff2Tiles.Core.Args.IWriteTilesArgs.MinZ
+  fullName: GTiff2Tiles.Core.Args.IWriteTilesArgs.MinZ
+  nameWithType: IWriteTilesArgs.MinZ
+- uid: GTiff2Tiles.Core.Args.IWriteTilesArgs.MinZ*
+  name: MinZ
+  href: api/GTiff2Tiles.Core.Args.IWriteTilesArgs.html#GTiff2Tiles_Core_Args_IWriteTilesArgs_MinZ_
+  commentId: Overload:GTiff2Tiles.Core.Args.IWriteTilesArgs.MinZ
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.Args.IWriteTilesArgs.MinZ
+  nameWithType: IWriteTilesArgs.MinZ
+- uid: GTiff2Tiles.Core.Args.IWriteTilesArgs.OutputDirectoryPath
+  name: OutputDirectoryPath
+  href: api/GTiff2Tiles.Core.Args.IWriteTilesArgs.html#GTiff2Tiles_Core_Args_IWriteTilesArgs_OutputDirectoryPath
+  commentId: P:GTiff2Tiles.Core.Args.IWriteTilesArgs.OutputDirectoryPath
+  fullName: GTiff2Tiles.Core.Args.IWriteTilesArgs.OutputDirectoryPath
+  nameWithType: IWriteTilesArgs.OutputDirectoryPath
+- uid: GTiff2Tiles.Core.Args.IWriteTilesArgs.OutputDirectoryPath*
+  name: OutputDirectoryPath
+  href: api/GTiff2Tiles.Core.Args.IWriteTilesArgs.html#GTiff2Tiles_Core_Args_IWriteTilesArgs_OutputDirectoryPath_
+  commentId: Overload:GTiff2Tiles.Core.Args.IWriteTilesArgs.OutputDirectoryPath
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.Args.IWriteTilesArgs.OutputDirectoryPath
+  nameWithType: IWriteTilesArgs.OutputDirectoryPath
+- uid: GTiff2Tiles.Core.Args.IWriteTilesArgs.Progress
+  name: Progress
+  href: api/GTiff2Tiles.Core.Args.IWriteTilesArgs.html#GTiff2Tiles_Core_Args_IWriteTilesArgs_Progress
+  commentId: P:GTiff2Tiles.Core.Args.IWriteTilesArgs.Progress
+  fullName: GTiff2Tiles.Core.Args.IWriteTilesArgs.Progress
+  nameWithType: IWriteTilesArgs.Progress
+- uid: GTiff2Tiles.Core.Args.IWriteTilesArgs.Progress*
+  name: Progress
+  href: api/GTiff2Tiles.Core.Args.IWriteTilesArgs.html#GTiff2Tiles_Core_Args_IWriteTilesArgs_Progress_
+  commentId: Overload:GTiff2Tiles.Core.Args.IWriteTilesArgs.Progress
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.Args.IWriteTilesArgs.Progress
+  nameWithType: IWriteTilesArgs.Progress
+- uid: GTiff2Tiles.Core.Args.IWriteTilesArgs.ThreadsCount
+  name: ThreadsCount
+  href: api/GTiff2Tiles.Core.Args.IWriteTilesArgs.html#GTiff2Tiles_Core_Args_IWriteTilesArgs_ThreadsCount
+  commentId: P:GTiff2Tiles.Core.Args.IWriteTilesArgs.ThreadsCount
+  fullName: GTiff2Tiles.Core.Args.IWriteTilesArgs.ThreadsCount
+  nameWithType: IWriteTilesArgs.ThreadsCount
+- uid: GTiff2Tiles.Core.Args.IWriteTilesArgs.ThreadsCount*
+  name: ThreadsCount
+  href: api/GTiff2Tiles.Core.Args.IWriteTilesArgs.html#GTiff2Tiles_Core_Args_IWriteTilesArgs_ThreadsCount_
+  commentId: Overload:GTiff2Tiles.Core.Args.IWriteTilesArgs.ThreadsCount
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.Args.IWriteTilesArgs.ThreadsCount
+  nameWithType: IWriteTilesArgs.ThreadsCount
+- uid: GTiff2Tiles.Core.Args.IWriteTilesArgs.TileSize
+  name: TileSize
+  href: api/GTiff2Tiles.Core.Args.IWriteTilesArgs.html#GTiff2Tiles_Core_Args_IWriteTilesArgs_TileSize
+  commentId: P:GTiff2Tiles.Core.Args.IWriteTilesArgs.TileSize
+  fullName: GTiff2Tiles.Core.Args.IWriteTilesArgs.TileSize
+  nameWithType: IWriteTilesArgs.TileSize
+- uid: GTiff2Tiles.Core.Args.IWriteTilesArgs.TileSize*
+  name: TileSize
+  href: api/GTiff2Tiles.Core.Args.IWriteTilesArgs.html#GTiff2Tiles_Core_Args_IWriteTilesArgs_TileSize_
+  commentId: Overload:GTiff2Tiles.Core.Args.IWriteTilesArgs.TileSize
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.Args.IWriteTilesArgs.TileSize
+  nameWithType: IWriteTilesArgs.TileSize
+- uid: GTiff2Tiles.Core.Args.IWriteTilesArgs.TmsCompatible
+  name: TmsCompatible
+  href: api/GTiff2Tiles.Core.Args.IWriteTilesArgs.html#GTiff2Tiles_Core_Args_IWriteTilesArgs_TmsCompatible
+  commentId: P:GTiff2Tiles.Core.Args.IWriteTilesArgs.TmsCompatible
+  fullName: GTiff2Tiles.Core.Args.IWriteTilesArgs.TmsCompatible
+  nameWithType: IWriteTilesArgs.TmsCompatible
+- uid: GTiff2Tiles.Core.Args.IWriteTilesArgs.TmsCompatible*
+  name: TmsCompatible
+  href: api/GTiff2Tiles.Core.Args.IWriteTilesArgs.html#GTiff2Tiles_Core_Args_IWriteTilesArgs_TmsCompatible_
+  commentId: Overload:GTiff2Tiles.Core.Args.IWriteTilesArgs.TmsCompatible
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.Args.IWriteTilesArgs.TmsCompatible
+  nameWithType: IWriteTilesArgs.TmsCompatible
+- uid: GTiff2Tiles.Core.Args.WriteRasterTilesArgs
+  name: WriteRasterTilesArgs
+  href: api/GTiff2Tiles.Core.Args.WriteRasterTilesArgs.html
+  commentId: T:GTiff2Tiles.Core.Args.WriteRasterTilesArgs
+  fullName: GTiff2Tiles.Core.Args.WriteRasterTilesArgs
+  nameWithType: WriteRasterTilesArgs
+- uid: GTiff2Tiles.Core.Args.WriteRasterTilesArgs.#ctor(System.Int32,System.Int32)
+  name: WriteRasterTilesArgs(Int32, Int32)
+  href: api/GTiff2Tiles.Core.Args.WriteRasterTilesArgs.html#GTiff2Tiles_Core_Args_WriteRasterTilesArgs__ctor_System_Int32_System_Int32_
+  commentId: M:GTiff2Tiles.Core.Args.WriteRasterTilesArgs.#ctor(System.Int32,System.Int32)
+  fullName: GTiff2Tiles.Core.Args.WriteRasterTilesArgs.WriteRasterTilesArgs(System.Int32, System.Int32)
+  nameWithType: WriteRasterTilesArgs.WriteRasterTilesArgs(Int32, Int32)
+- uid: GTiff2Tiles.Core.Args.WriteRasterTilesArgs.#ctor*
+  name: WriteRasterTilesArgs
+  href: api/GTiff2Tiles.Core.Args.WriteRasterTilesArgs.html#GTiff2Tiles_Core_Args_WriteRasterTilesArgs__ctor_
+  commentId: Overload:GTiff2Tiles.Core.Args.WriteRasterTilesArgs.#ctor
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.Args.WriteRasterTilesArgs.WriteRasterTilesArgs
+  nameWithType: WriteRasterTilesArgs.WriteRasterTilesArgs
+- uid: GTiff2Tiles.Core.Args.WriteRasterTilesArgs.BandsCount
+  name: BandsCount
+  href: api/GTiff2Tiles.Core.Args.WriteRasterTilesArgs.html#GTiff2Tiles_Core_Args_WriteRasterTilesArgs_BandsCount
+  commentId: P:GTiff2Tiles.Core.Args.WriteRasterTilesArgs.BandsCount
+  fullName: GTiff2Tiles.Core.Args.WriteRasterTilesArgs.BandsCount
+  nameWithType: WriteRasterTilesArgs.BandsCount
+- uid: GTiff2Tiles.Core.Args.WriteRasterTilesArgs.BandsCount*
+  name: BandsCount
+  href: api/GTiff2Tiles.Core.Args.WriteRasterTilesArgs.html#GTiff2Tiles_Core_Args_WriteRasterTilesArgs_BandsCount_
+  commentId: Overload:GTiff2Tiles.Core.Args.WriteRasterTilesArgs.BandsCount
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.Args.WriteRasterTilesArgs.BandsCount
+  nameWithType: WriteRasterTilesArgs.BandsCount
+- uid: GTiff2Tiles.Core.Args.WriteRasterTilesArgs.Dispose
+  name: Dispose()
+  href: api/GTiff2Tiles.Core.Args.WriteRasterTilesArgs.html#GTiff2Tiles_Core_Args_WriteRasterTilesArgs_Dispose
+  commentId: M:GTiff2Tiles.Core.Args.WriteRasterTilesArgs.Dispose
+  fullName: GTiff2Tiles.Core.Args.WriteRasterTilesArgs.Dispose()
+  nameWithType: WriteRasterTilesArgs.Dispose()
+- uid: GTiff2Tiles.Core.Args.WriteRasterTilesArgs.Dispose(System.Boolean)
+  name: Dispose(Boolean)
+  href: api/GTiff2Tiles.Core.Args.WriteRasterTilesArgs.html#GTiff2Tiles_Core_Args_WriteRasterTilesArgs_Dispose_System_Boolean_
+  commentId: M:GTiff2Tiles.Core.Args.WriteRasterTilesArgs.Dispose(System.Boolean)
+  fullName: GTiff2Tiles.Core.Args.WriteRasterTilesArgs.Dispose(System.Boolean)
+  nameWithType: WriteRasterTilesArgs.Dispose(Boolean)
+- uid: GTiff2Tiles.Core.Args.WriteRasterTilesArgs.Dispose*
+  name: Dispose
+  href: api/GTiff2Tiles.Core.Args.WriteRasterTilesArgs.html#GTiff2Tiles_Core_Args_WriteRasterTilesArgs_Dispose_
+  commentId: Overload:GTiff2Tiles.Core.Args.WriteRasterTilesArgs.Dispose
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.Args.WriteRasterTilesArgs.Dispose
+  nameWithType: WriteRasterTilesArgs.Dispose
+- uid: GTiff2Tiles.Core.Args.WriteRasterTilesArgs.Finalize
+  name: Finalize()
+  href: api/GTiff2Tiles.Core.Args.WriteRasterTilesArgs.html#GTiff2Tiles_Core_Args_WriteRasterTilesArgs_Finalize
+  commentId: M:GTiff2Tiles.Core.Args.WriteRasterTilesArgs.Finalize
+  fullName: GTiff2Tiles.Core.Args.WriteRasterTilesArgs.Finalize()
+  nameWithType: WriteRasterTilesArgs.Finalize()
+- uid: GTiff2Tiles.Core.Args.WriteRasterTilesArgs.Finalize*
+  name: Finalize
+  href: api/GTiff2Tiles.Core.Args.WriteRasterTilesArgs.html#GTiff2Tiles_Core_Args_WriteRasterTilesArgs_Finalize_
+  commentId: Overload:GTiff2Tiles.Core.Args.WriteRasterTilesArgs.Finalize
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.Args.WriteRasterTilesArgs.Finalize
+  nameWithType: WriteRasterTilesArgs.Finalize
+- uid: GTiff2Tiles.Core.Args.WriteRasterTilesArgs.GeoCoordinateSystem
+  name: GeoCoordinateSystem
+  href: api/GTiff2Tiles.Core.Args.WriteRasterTilesArgs.html#GTiff2Tiles_Core_Args_WriteRasterTilesArgs_GeoCoordinateSystem
+  commentId: P:GTiff2Tiles.Core.Args.WriteRasterTilesArgs.GeoCoordinateSystem
+  fullName: GTiff2Tiles.Core.Args.WriteRasterTilesArgs.GeoCoordinateSystem
+  nameWithType: WriteRasterTilesArgs.GeoCoordinateSystem
+- uid: GTiff2Tiles.Core.Args.WriteRasterTilesArgs.GeoCoordinateSystem*
+  name: GeoCoordinateSystem
+  href: api/GTiff2Tiles.Core.Args.WriteRasterTilesArgs.html#GTiff2Tiles_Core_Args_WriteRasterTilesArgs_GeoCoordinateSystem_
+  commentId: Overload:GTiff2Tiles.Core.Args.WriteRasterTilesArgs.GeoCoordinateSystem
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.Args.WriteRasterTilesArgs.GeoCoordinateSystem
+  nameWithType: WriteRasterTilesArgs.GeoCoordinateSystem
+- uid: GTiff2Tiles.Core.Args.WriteRasterTilesArgs.IsDisposed
+  name: IsDisposed
+  href: api/GTiff2Tiles.Core.Args.WriteRasterTilesArgs.html#GTiff2Tiles_Core_Args_WriteRasterTilesArgs_IsDisposed
+  commentId: P:GTiff2Tiles.Core.Args.WriteRasterTilesArgs.IsDisposed
+  fullName: GTiff2Tiles.Core.Args.WriteRasterTilesArgs.IsDisposed
+  nameWithType: WriteRasterTilesArgs.IsDisposed
+- uid: GTiff2Tiles.Core.Args.WriteRasterTilesArgs.IsDisposed*
+  name: IsDisposed
+  href: api/GTiff2Tiles.Core.Args.WriteRasterTilesArgs.html#GTiff2Tiles_Core_Args_WriteRasterTilesArgs_IsDisposed_
+  commentId: Overload:GTiff2Tiles.Core.Args.WriteRasterTilesArgs.IsDisposed
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.Args.WriteRasterTilesArgs.IsDisposed
+  nameWithType: WriteRasterTilesArgs.IsDisposed
+- uid: GTiff2Tiles.Core.Args.WriteRasterTilesArgs.MaxCoordinate
+  name: MaxCoordinate
+  href: api/GTiff2Tiles.Core.Args.WriteRasterTilesArgs.html#GTiff2Tiles_Core_Args_WriteRasterTilesArgs_MaxCoordinate
+  commentId: P:GTiff2Tiles.Core.Args.WriteRasterTilesArgs.MaxCoordinate
+  fullName: GTiff2Tiles.Core.Args.WriteRasterTilesArgs.MaxCoordinate
+  nameWithType: WriteRasterTilesArgs.MaxCoordinate
+- uid: GTiff2Tiles.Core.Args.WriteRasterTilesArgs.MaxCoordinate*
+  name: MaxCoordinate
+  href: api/GTiff2Tiles.Core.Args.WriteRasterTilesArgs.html#GTiff2Tiles_Core_Args_WriteRasterTilesArgs_MaxCoordinate_
+  commentId: Overload:GTiff2Tiles.Core.Args.WriteRasterTilesArgs.MaxCoordinate
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.Args.WriteRasterTilesArgs.MaxCoordinate
+  nameWithType: WriteRasterTilesArgs.MaxCoordinate
+- uid: GTiff2Tiles.Core.Args.WriteRasterTilesArgs.MaxZ
+  name: MaxZ
+  href: api/GTiff2Tiles.Core.Args.WriteRasterTilesArgs.html#GTiff2Tiles_Core_Args_WriteRasterTilesArgs_MaxZ
+  commentId: P:GTiff2Tiles.Core.Args.WriteRasterTilesArgs.MaxZ
+  fullName: GTiff2Tiles.Core.Args.WriteRasterTilesArgs.MaxZ
+  nameWithType: WriteRasterTilesArgs.MaxZ
+- uid: GTiff2Tiles.Core.Args.WriteRasterTilesArgs.MaxZ*
+  name: MaxZ
+  href: api/GTiff2Tiles.Core.Args.WriteRasterTilesArgs.html#GTiff2Tiles_Core_Args_WriteRasterTilesArgs_MaxZ_
+  commentId: Overload:GTiff2Tiles.Core.Args.WriteRasterTilesArgs.MaxZ
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.Args.WriteRasterTilesArgs.MaxZ
+  nameWithType: WriteRasterTilesArgs.MaxZ
+- uid: GTiff2Tiles.Core.Args.WriteRasterTilesArgs.MinCoordinate
+  name: MinCoordinate
+  href: api/GTiff2Tiles.Core.Args.WriteRasterTilesArgs.html#GTiff2Tiles_Core_Args_WriteRasterTilesArgs_MinCoordinate
+  commentId: P:GTiff2Tiles.Core.Args.WriteRasterTilesArgs.MinCoordinate
+  fullName: GTiff2Tiles.Core.Args.WriteRasterTilesArgs.MinCoordinate
+  nameWithType: WriteRasterTilesArgs.MinCoordinate
+- uid: GTiff2Tiles.Core.Args.WriteRasterTilesArgs.MinCoordinate*
+  name: MinCoordinate
+  href: api/GTiff2Tiles.Core.Args.WriteRasterTilesArgs.html#GTiff2Tiles_Core_Args_WriteRasterTilesArgs_MinCoordinate_
+  commentId: Overload:GTiff2Tiles.Core.Args.WriteRasterTilesArgs.MinCoordinate
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.Args.WriteRasterTilesArgs.MinCoordinate
+  nameWithType: WriteRasterTilesArgs.MinCoordinate
+- uid: GTiff2Tiles.Core.Args.WriteRasterTilesArgs.MinZ
+  name: MinZ
+  href: api/GTiff2Tiles.Core.Args.WriteRasterTilesArgs.html#GTiff2Tiles_Core_Args_WriteRasterTilesArgs_MinZ
+  commentId: P:GTiff2Tiles.Core.Args.WriteRasterTilesArgs.MinZ
+  fullName: GTiff2Tiles.Core.Args.WriteRasterTilesArgs.MinZ
+  nameWithType: WriteRasterTilesArgs.MinZ
+- uid: GTiff2Tiles.Core.Args.WriteRasterTilesArgs.MinZ*
+  name: MinZ
+  href: api/GTiff2Tiles.Core.Args.WriteRasterTilesArgs.html#GTiff2Tiles_Core_Args_WriteRasterTilesArgs_MinZ_
+  commentId: Overload:GTiff2Tiles.Core.Args.WriteRasterTilesArgs.MinZ
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.Args.WriteRasterTilesArgs.MinZ
+  nameWithType: WriteRasterTilesArgs.MinZ
+- uid: GTiff2Tiles.Core.Args.WriteRasterTilesArgs.OutputDirectoryPath
+  name: OutputDirectoryPath
+  href: api/GTiff2Tiles.Core.Args.WriteRasterTilesArgs.html#GTiff2Tiles_Core_Args_WriteRasterTilesArgs_OutputDirectoryPath
+  commentId: P:GTiff2Tiles.Core.Args.WriteRasterTilesArgs.OutputDirectoryPath
+  fullName: GTiff2Tiles.Core.Args.WriteRasterTilesArgs.OutputDirectoryPath
+  nameWithType: WriteRasterTilesArgs.OutputDirectoryPath
+- uid: GTiff2Tiles.Core.Args.WriteRasterTilesArgs.OutputDirectoryPath*
+  name: OutputDirectoryPath
+  href: api/GTiff2Tiles.Core.Args.WriteRasterTilesArgs.html#GTiff2Tiles_Core_Args_WriteRasterTilesArgs_OutputDirectoryPath_
+  commentId: Overload:GTiff2Tiles.Core.Args.WriteRasterTilesArgs.OutputDirectoryPath
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.Args.WriteRasterTilesArgs.OutputDirectoryPath
+  nameWithType: WriteRasterTilesArgs.OutputDirectoryPath
+- uid: GTiff2Tiles.Core.Args.WriteRasterTilesArgs.PrintTime
+  name: WriteRasterTilesArgs.PrintTime
+  href: api/GTiff2Tiles.Core.Args.WriteRasterTilesArgs.PrintTime.html
+  commentId: T:GTiff2Tiles.Core.Args.WriteRasterTilesArgs.PrintTime
+  fullName: GTiff2Tiles.Core.Args.WriteRasterTilesArgs.PrintTime
+  nameWithType: WriteRasterTilesArgs.PrintTime
+- uid: GTiff2Tiles.Core.Args.WriteRasterTilesArgs.Progress
+  name: Progress
+  href: api/GTiff2Tiles.Core.Args.WriteRasterTilesArgs.html#GTiff2Tiles_Core_Args_WriteRasterTilesArgs_Progress
+  commentId: P:GTiff2Tiles.Core.Args.WriteRasterTilesArgs.Progress
+  fullName: GTiff2Tiles.Core.Args.WriteRasterTilesArgs.Progress
+  nameWithType: WriteRasterTilesArgs.Progress
+- uid: GTiff2Tiles.Core.Args.WriteRasterTilesArgs.Progress*
+  name: Progress
+  href: api/GTiff2Tiles.Core.Args.WriteRasterTilesArgs.html#GTiff2Tiles_Core_Args_WriteRasterTilesArgs_Progress_
+  commentId: Overload:GTiff2Tiles.Core.Args.WriteRasterTilesArgs.Progress
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.Args.WriteRasterTilesArgs.Progress
+  nameWithType: WriteRasterTilesArgs.Progress
+- uid: GTiff2Tiles.Core.Args.WriteRasterTilesArgs.ThreadsCount
+  name: ThreadsCount
+  href: api/GTiff2Tiles.Core.Args.WriteRasterTilesArgs.html#GTiff2Tiles_Core_Args_WriteRasterTilesArgs_ThreadsCount
+  commentId: P:GTiff2Tiles.Core.Args.WriteRasterTilesArgs.ThreadsCount
+  fullName: GTiff2Tiles.Core.Args.WriteRasterTilesArgs.ThreadsCount
+  nameWithType: WriteRasterTilesArgs.ThreadsCount
+- uid: GTiff2Tiles.Core.Args.WriteRasterTilesArgs.ThreadsCount*
+  name: ThreadsCount
+  href: api/GTiff2Tiles.Core.Args.WriteRasterTilesArgs.html#GTiff2Tiles_Core_Args_WriteRasterTilesArgs_ThreadsCount_
+  commentId: Overload:GTiff2Tiles.Core.Args.WriteRasterTilesArgs.ThreadsCount
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.Args.WriteRasterTilesArgs.ThreadsCount
+  nameWithType: WriteRasterTilesArgs.ThreadsCount
+- uid: GTiff2Tiles.Core.Args.WriteRasterTilesArgs.TileCache
+  name: TileCache
+  href: api/GTiff2Tiles.Core.Args.WriteRasterTilesArgs.html#GTiff2Tiles_Core_Args_WriteRasterTilesArgs_TileCache
+  commentId: P:GTiff2Tiles.Core.Args.WriteRasterTilesArgs.TileCache
+  fullName: GTiff2Tiles.Core.Args.WriteRasterTilesArgs.TileCache
+  nameWithType: WriteRasterTilesArgs.TileCache
+- uid: GTiff2Tiles.Core.Args.WriteRasterTilesArgs.TileCache*
+  name: TileCache
+  href: api/GTiff2Tiles.Core.Args.WriteRasterTilesArgs.html#GTiff2Tiles_Core_Args_WriteRasterTilesArgs_TileCache_
+  commentId: Overload:GTiff2Tiles.Core.Args.WriteRasterTilesArgs.TileCache
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.Args.WriteRasterTilesArgs.TileCache
+  nameWithType: WriteRasterTilesArgs.TileCache
+- uid: GTiff2Tiles.Core.Args.WriteRasterTilesArgs.TileCacheCount
+  name: TileCacheCount
+  href: api/GTiff2Tiles.Core.Args.WriteRasterTilesArgs.html#GTiff2Tiles_Core_Args_WriteRasterTilesArgs_TileCacheCount
+  commentId: P:GTiff2Tiles.Core.Args.WriteRasterTilesArgs.TileCacheCount
+  fullName: GTiff2Tiles.Core.Args.WriteRasterTilesArgs.TileCacheCount
+  nameWithType: WriteRasterTilesArgs.TileCacheCount
+- uid: GTiff2Tiles.Core.Args.WriteRasterTilesArgs.TileCacheCount*
+  name: TileCacheCount
+  href: api/GTiff2Tiles.Core.Args.WriteRasterTilesArgs.html#GTiff2Tiles_Core_Args_WriteRasterTilesArgs_TileCacheCount_
+  commentId: Overload:GTiff2Tiles.Core.Args.WriteRasterTilesArgs.TileCacheCount
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.Args.WriteRasterTilesArgs.TileCacheCount
+  nameWithType: WriteRasterTilesArgs.TileCacheCount
+- uid: GTiff2Tiles.Core.Args.WriteRasterTilesArgs.TileExtension
+  name: TileExtension
+  href: api/GTiff2Tiles.Core.Args.WriteRasterTilesArgs.html#GTiff2Tiles_Core_Args_WriteRasterTilesArgs_TileExtension
+  commentId: P:GTiff2Tiles.Core.Args.WriteRasterTilesArgs.TileExtension
+  fullName: GTiff2Tiles.Core.Args.WriteRasterTilesArgs.TileExtension
+  nameWithType: WriteRasterTilesArgs.TileExtension
+- uid: GTiff2Tiles.Core.Args.WriteRasterTilesArgs.TileExtension*
+  name: TileExtension
+  href: api/GTiff2Tiles.Core.Args.WriteRasterTilesArgs.html#GTiff2Tiles_Core_Args_WriteRasterTilesArgs_TileExtension_
+  commentId: Overload:GTiff2Tiles.Core.Args.WriteRasterTilesArgs.TileExtension
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.Args.WriteRasterTilesArgs.TileExtension
+  nameWithType: WriteRasterTilesArgs.TileExtension
+- uid: GTiff2Tiles.Core.Args.WriteRasterTilesArgs.TileInterpolation
+  name: TileInterpolation
+  href: api/GTiff2Tiles.Core.Args.WriteRasterTilesArgs.html#GTiff2Tiles_Core_Args_WriteRasterTilesArgs_TileInterpolation
+  commentId: P:GTiff2Tiles.Core.Args.WriteRasterTilesArgs.TileInterpolation
+  fullName: GTiff2Tiles.Core.Args.WriteRasterTilesArgs.TileInterpolation
+  nameWithType: WriteRasterTilesArgs.TileInterpolation
+- uid: GTiff2Tiles.Core.Args.WriteRasterTilesArgs.TileInterpolation*
+  name: TileInterpolation
+  href: api/GTiff2Tiles.Core.Args.WriteRasterTilesArgs.html#GTiff2Tiles_Core_Args_WriteRasterTilesArgs_TileInterpolation_
+  commentId: Overload:GTiff2Tiles.Core.Args.WriteRasterTilesArgs.TileInterpolation
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.Args.WriteRasterTilesArgs.TileInterpolation
+  nameWithType: WriteRasterTilesArgs.TileInterpolation
+- uid: GTiff2Tiles.Core.Args.WriteRasterTilesArgs.TileSize
+  name: TileSize
+  href: api/GTiff2Tiles.Core.Args.WriteRasterTilesArgs.html#GTiff2Tiles_Core_Args_WriteRasterTilesArgs_TileSize
+  commentId: P:GTiff2Tiles.Core.Args.WriteRasterTilesArgs.TileSize
+  fullName: GTiff2Tiles.Core.Args.WriteRasterTilesArgs.TileSize
+  nameWithType: WriteRasterTilesArgs.TileSize
+- uid: GTiff2Tiles.Core.Args.WriteRasterTilesArgs.TileSize*
+  name: TileSize
+  href: api/GTiff2Tiles.Core.Args.WriteRasterTilesArgs.html#GTiff2Tiles_Core_Args_WriteRasterTilesArgs_TileSize_
+  commentId: Overload:GTiff2Tiles.Core.Args.WriteRasterTilesArgs.TileSize
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.Args.WriteRasterTilesArgs.TileSize
+  nameWithType: WriteRasterTilesArgs.TileSize
+- uid: GTiff2Tiles.Core.Args.WriteRasterTilesArgs.TimePrinter
+  name: TimePrinter
+  href: api/GTiff2Tiles.Core.Args.WriteRasterTilesArgs.html#GTiff2Tiles_Core_Args_WriteRasterTilesArgs_TimePrinter
+  commentId: P:GTiff2Tiles.Core.Args.WriteRasterTilesArgs.TimePrinter
+  fullName: GTiff2Tiles.Core.Args.WriteRasterTilesArgs.TimePrinter
+  nameWithType: WriteRasterTilesArgs.TimePrinter
+- uid: GTiff2Tiles.Core.Args.WriteRasterTilesArgs.TimePrinter*
+  name: TimePrinter
+  href: api/GTiff2Tiles.Core.Args.WriteRasterTilesArgs.html#GTiff2Tiles_Core_Args_WriteRasterTilesArgs_TimePrinter_
+  commentId: Overload:GTiff2Tiles.Core.Args.WriteRasterTilesArgs.TimePrinter
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.Args.WriteRasterTilesArgs.TimePrinter
+  nameWithType: WriteRasterTilesArgs.TimePrinter
+- uid: GTiff2Tiles.Core.Args.WriteRasterTilesArgs.TmsCompatible
+  name: TmsCompatible
+  href: api/GTiff2Tiles.Core.Args.WriteRasterTilesArgs.html#GTiff2Tiles_Core_Args_WriteRasterTilesArgs_TmsCompatible
+  commentId: P:GTiff2Tiles.Core.Args.WriteRasterTilesArgs.TmsCompatible
+  fullName: GTiff2Tiles.Core.Args.WriteRasterTilesArgs.TmsCompatible
+  nameWithType: WriteRasterTilesArgs.TmsCompatible
+- uid: GTiff2Tiles.Core.Args.WriteRasterTilesArgs.TmsCompatible*
+  name: TmsCompatible
+  href: api/GTiff2Tiles.Core.Args.WriteRasterTilesArgs.html#GTiff2Tiles_Core_Args_WriteRasterTilesArgs_TmsCompatible_
+  commentId: Overload:GTiff2Tiles.Core.Args.WriteRasterTilesArgs.TmsCompatible
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.Args.WriteRasterTilesArgs.TmsCompatible
+  nameWithType: WriteRasterTilesArgs.TmsCompatible
 - uid: GTiff2Tiles.Core.Constants
   name: GTiff2Tiles.Core.Constants
   href: api/GTiff2Tiles.Core.Constants.html
@@ -901,48 +1334,6 @@ references:
   commentId: F:GTiff2Tiles.Core.Enums.CoordinateSystem.Other
   fullName: GTiff2Tiles.Core.Enums.CoordinateSystem.Other
   nameWithType: CoordinateSystem.Other
-- uid: GTiff2Tiles.Core.Enums.Interpolation
-  name: Interpolation
-  href: api/GTiff2Tiles.Core.Enums.Interpolation.html
-  commentId: T:GTiff2Tiles.Core.Enums.Interpolation
-  fullName: GTiff2Tiles.Core.Enums.Interpolation
-  nameWithType: Interpolation
-- uid: GTiff2Tiles.Core.Enums.Interpolation.Cubic
-  name: Cubic
-  href: api/GTiff2Tiles.Core.Enums.Interpolation.html#GTiff2Tiles_Core_Enums_Interpolation_Cubic
-  commentId: F:GTiff2Tiles.Core.Enums.Interpolation.Cubic
-  fullName: GTiff2Tiles.Core.Enums.Interpolation.Cubic
-  nameWithType: Interpolation.Cubic
-- uid: GTiff2Tiles.Core.Enums.Interpolation.Lanczos2
-  name: Lanczos2
-  href: api/GTiff2Tiles.Core.Enums.Interpolation.html#GTiff2Tiles_Core_Enums_Interpolation_Lanczos2
-  commentId: F:GTiff2Tiles.Core.Enums.Interpolation.Lanczos2
-  fullName: GTiff2Tiles.Core.Enums.Interpolation.Lanczos2
-  nameWithType: Interpolation.Lanczos2
-- uid: GTiff2Tiles.Core.Enums.Interpolation.Lanczos3
-  name: Lanczos3
-  href: api/GTiff2Tiles.Core.Enums.Interpolation.html#GTiff2Tiles_Core_Enums_Interpolation_Lanczos3
-  commentId: F:GTiff2Tiles.Core.Enums.Interpolation.Lanczos3
-  fullName: GTiff2Tiles.Core.Enums.Interpolation.Lanczos3
-  nameWithType: Interpolation.Lanczos3
-- uid: GTiff2Tiles.Core.Enums.Interpolation.Linear
-  name: Linear
-  href: api/GTiff2Tiles.Core.Enums.Interpolation.html#GTiff2Tiles_Core_Enums_Interpolation_Linear
-  commentId: F:GTiff2Tiles.Core.Enums.Interpolation.Linear
-  fullName: GTiff2Tiles.Core.Enums.Interpolation.Linear
-  nameWithType: Interpolation.Linear
-- uid: GTiff2Tiles.Core.Enums.Interpolation.Mitchell
-  name: Mitchell
-  href: api/GTiff2Tiles.Core.Enums.Interpolation.html#GTiff2Tiles_Core_Enums_Interpolation_Mitchell
-  commentId: F:GTiff2Tiles.Core.Enums.Interpolation.Mitchell
-  fullName: GTiff2Tiles.Core.Enums.Interpolation.Mitchell
-  nameWithType: Interpolation.Mitchell
-- uid: GTiff2Tiles.Core.Enums.Interpolation.Nearest
-  name: Nearest
-  href: api/GTiff2Tiles.Core.Enums.Interpolation.html#GTiff2Tiles_Core_Enums_Interpolation_Nearest
-  commentId: F:GTiff2Tiles.Core.Enums.Interpolation.Nearest
-  fullName: GTiff2Tiles.Core.Enums.Interpolation.Nearest
-  nameWithType: Interpolation.Nearest
 - uid: GTiff2Tiles.Core.Enums.TileExtension
   name: TileExtension
   href: api/GTiff2Tiles.Core.Enums.TileExtension.html
@@ -991,11 +1382,11 @@ references:
   commentId: M:GTiff2Tiles.Core.Exceptions.DirectoryException.#ctor(System.String)
   fullName: GTiff2Tiles.Core.Exceptions.DirectoryException.DirectoryException(System.String)
   nameWithType: DirectoryException.DirectoryException(String)
-- uid: GTiff2Tiles.Core.Exceptions.DirectoryException.#ctor(System.String,System.Exception)
+- uid: GTiff2Tiles.Core.Exceptions.DirectoryException.#ctor(System.String,Exception)
   name: DirectoryException(String, Exception)
-  href: api/GTiff2Tiles.Core.Exceptions.DirectoryException.html#GTiff2Tiles_Core_Exceptions_DirectoryException__ctor_System_String_System_Exception_
-  commentId: M:GTiff2Tiles.Core.Exceptions.DirectoryException.#ctor(System.String,System.Exception)
-  fullName: GTiff2Tiles.Core.Exceptions.DirectoryException.DirectoryException(System.String, System.Exception)
+  href: api/GTiff2Tiles.Core.Exceptions.DirectoryException.html#GTiff2Tiles_Core_Exceptions_DirectoryException__ctor_System_String_Exception_
+  commentId: M:GTiff2Tiles.Core.Exceptions.DirectoryException.#ctor(System.String,Exception)
+  fullName: GTiff2Tiles.Core.Exceptions.DirectoryException.DirectoryException(System.String, Exception)
   nameWithType: DirectoryException.DirectoryException(String, Exception)
 - uid: GTiff2Tiles.Core.Exceptions.DirectoryException.#ctor*
   name: DirectoryException
@@ -1022,11 +1413,11 @@ references:
   commentId: M:GTiff2Tiles.Core.Exceptions.FileException.#ctor(System.String)
   fullName: GTiff2Tiles.Core.Exceptions.FileException.FileException(System.String)
   nameWithType: FileException.FileException(String)
-- uid: GTiff2Tiles.Core.Exceptions.FileException.#ctor(System.String,System.Exception)
+- uid: GTiff2Tiles.Core.Exceptions.FileException.#ctor(System.String,Exception)
   name: FileException(String, Exception)
-  href: api/GTiff2Tiles.Core.Exceptions.FileException.html#GTiff2Tiles_Core_Exceptions_FileException__ctor_System_String_System_Exception_
-  commentId: M:GTiff2Tiles.Core.Exceptions.FileException.#ctor(System.String,System.Exception)
-  fullName: GTiff2Tiles.Core.Exceptions.FileException.FileException(System.String, System.Exception)
+  href: api/GTiff2Tiles.Core.Exceptions.FileException.html#GTiff2Tiles_Core_Exceptions_FileException__ctor_System_String_Exception_
+  commentId: M:GTiff2Tiles.Core.Exceptions.FileException.#ctor(System.String,Exception)
+  fullName: GTiff2Tiles.Core.Exceptions.FileException.FileException(System.String, Exception)
   nameWithType: FileException.FileException(String, Exception)
 - uid: GTiff2Tiles.Core.Exceptions.FileException.#ctor*
   name: FileException
@@ -1053,11 +1444,11 @@ references:
   commentId: M:GTiff2Tiles.Core.Exceptions.RasterException.#ctor(System.String)
   fullName: GTiff2Tiles.Core.Exceptions.RasterException.RasterException(System.String)
   nameWithType: RasterException.RasterException(String)
-- uid: GTiff2Tiles.Core.Exceptions.RasterException.#ctor(System.String,System.Exception)
+- uid: GTiff2Tiles.Core.Exceptions.RasterException.#ctor(System.String,Exception)
   name: RasterException(String, Exception)
-  href: api/GTiff2Tiles.Core.Exceptions.RasterException.html#GTiff2Tiles_Core_Exceptions_RasterException__ctor_System_String_System_Exception_
-  commentId: M:GTiff2Tiles.Core.Exceptions.RasterException.#ctor(System.String,System.Exception)
-  fullName: GTiff2Tiles.Core.Exceptions.RasterException.RasterException(System.String, System.Exception)
+  href: api/GTiff2Tiles.Core.Exceptions.RasterException.html#GTiff2Tiles_Core_Exceptions_RasterException__ctor_System_String_Exception_
+  commentId: M:GTiff2Tiles.Core.Exceptions.RasterException.#ctor(System.String,Exception)
+  fullName: GTiff2Tiles.Core.Exceptions.RasterException.RasterException(System.String, Exception)
   nameWithType: RasterException.RasterException(String, Exception)
 - uid: GTiff2Tiles.Core.Exceptions.RasterException.#ctor*
   name: RasterException
@@ -1091,13 +1482,13 @@ references:
   commentId: F:GTiff2Tiles.Core.GdalWorker.ConvertCoordinateSystemOptions
   fullName: GTiff2Tiles.Core.GdalWorker.ConvertCoordinateSystemOptions
   nameWithType: GdalWorker.ConvertCoordinateSystemOptions
-- uid: GTiff2Tiles.Core.GdalWorker.ConvertGeoTiffToTargetSystemAsync(System.String,System.String,GTiff2Tiles.Core.Enums.CoordinateSystem,System.IProgress{System.Double})
+- uid: GTiff2Tiles.Core.GdalWorker.ConvertGeoTiffToTargetSystemAsync(System.String,System.String,GTiff2Tiles.Core.Enums.CoordinateSystem,IProgress{System.Double})
   name: ConvertGeoTiffToTargetSystemAsync(String, String, CoordinateSystem, IProgress<Double>)
-  href: api/GTiff2Tiles.Core.GdalWorker.html#GTiff2Tiles_Core_GdalWorker_ConvertGeoTiffToTargetSystemAsync_System_String_System_String_GTiff2Tiles_Core_Enums_CoordinateSystem_System_IProgress_System_Double__
-  commentId: M:GTiff2Tiles.Core.GdalWorker.ConvertGeoTiffToTargetSystemAsync(System.String,System.String,GTiff2Tiles.Core.Enums.CoordinateSystem,System.IProgress{System.Double})
+  href: api/GTiff2Tiles.Core.GdalWorker.html#GTiff2Tiles_Core_GdalWorker_ConvertGeoTiffToTargetSystemAsync_System_String_System_String_GTiff2Tiles_Core_Enums_CoordinateSystem_IProgress_System_Double__
+  commentId: M:GTiff2Tiles.Core.GdalWorker.ConvertGeoTiffToTargetSystemAsync(System.String,System.String,GTiff2Tiles.Core.Enums.CoordinateSystem,IProgress{System.Double})
   name.vb: ConvertGeoTiffToTargetSystemAsync(String, String, CoordinateSystem, IProgress(Of Double))
-  fullName: GTiff2Tiles.Core.GdalWorker.ConvertGeoTiffToTargetSystemAsync(System.String, System.String, GTiff2Tiles.Core.Enums.CoordinateSystem, System.IProgress<System.Double>)
-  fullName.vb: GTiff2Tiles.Core.GdalWorker.ConvertGeoTiffToTargetSystemAsync(System.String, System.String, GTiff2Tiles.Core.Enums.CoordinateSystem, System.IProgress(Of System.Double))
+  fullName: GTiff2Tiles.Core.GdalWorker.ConvertGeoTiffToTargetSystemAsync(System.String, System.String, GTiff2Tiles.Core.Enums.CoordinateSystem, IProgress<System.Double>)
+  fullName.vb: GTiff2Tiles.Core.GdalWorker.ConvertGeoTiffToTargetSystemAsync(System.String, System.String, GTiff2Tiles.Core.Enums.CoordinateSystem, IProgress(Of System.Double))
   nameWithType: GdalWorker.ConvertGeoTiffToTargetSystemAsync(String, String, CoordinateSystem, IProgress<Double>)
   nameWithType.vb: GdalWorker.ConvertGeoTiffToTargetSystemAsync(String, String, CoordinateSystem, IProgress(Of Double))
 - uid: GTiff2Tiles.Core.GdalWorker.ConvertGeoTiffToTargetSystemAsync*
@@ -1206,13 +1597,13 @@ references:
   commentId: F:GTiff2Tiles.Core.GdalWorker.TempFileName
   fullName: GTiff2Tiles.Core.GdalWorker.TempFileName
   nameWithType: GdalWorker.TempFileName
-- uid: GTiff2Tiles.Core.GdalWorker.WarpAsync(System.String,System.String,System.String[],System.IProgress{System.Double})
+- uid: GTiff2Tiles.Core.GdalWorker.WarpAsync(System.String,System.String,System.String[],IProgress{System.Double})
   name: WarpAsync(String, String, String[], IProgress<Double>)
-  href: api/GTiff2Tiles.Core.GdalWorker.html#GTiff2Tiles_Core_GdalWorker_WarpAsync_System_String_System_String_System_String___System_IProgress_System_Double__
-  commentId: M:GTiff2Tiles.Core.GdalWorker.WarpAsync(System.String,System.String,System.String[],System.IProgress{System.Double})
+  href: api/GTiff2Tiles.Core.GdalWorker.html#GTiff2Tiles_Core_GdalWorker_WarpAsync_System_String_System_String_System_String___IProgress_System_Double__
+  commentId: M:GTiff2Tiles.Core.GdalWorker.WarpAsync(System.String,System.String,System.String[],IProgress{System.Double})
   name.vb: WarpAsync(String, String, String(), IProgress(Of Double))
-  fullName: GTiff2Tiles.Core.GdalWorker.WarpAsync(System.String, System.String, System.String[], System.IProgress<System.Double>)
-  fullName.vb: GTiff2Tiles.Core.GdalWorker.WarpAsync(System.String, System.String, System.String(), System.IProgress(Of System.Double))
+  fullName: GTiff2Tiles.Core.GdalWorker.WarpAsync(System.String, System.String, System.String[], IProgress<System.Double>)
+  fullName.vb: GTiff2Tiles.Core.GdalWorker.WarpAsync(System.String, System.String, System.String(), IProgress(Of System.Double))
   nameWithType: GdalWorker.WarpAsync(String, String, String[], IProgress<Double>)
   nameWithType.vb: GdalWorker.WarpAsync(String, String, String(), IProgress(Of Double))
 - uid: GTiff2Tiles.Core.GdalWorker.WarpAsync*
@@ -1228,6 +1619,128 @@ references:
   commentId: N:GTiff2Tiles.Core.GeoTiffs
   fullName: GTiff2Tiles.Core.GeoTiffs
   nameWithType: GTiff2Tiles.Core.GeoTiffs
+- uid: GTiff2Tiles.Core.GeoTiffs.GeoTiff
+  name: GeoTiff
+  href: api/GTiff2Tiles.Core.GeoTiffs.GeoTiff.html
+  commentId: T:GTiff2Tiles.Core.GeoTiffs.GeoTiff
+  fullName: GTiff2Tiles.Core.GeoTiffs.GeoTiff
+  nameWithType: GeoTiff
+- uid: GTiff2Tiles.Core.GeoTiffs.GeoTiff.Dispose
+  name: Dispose()
+  href: api/GTiff2Tiles.Core.GeoTiffs.GeoTiff.html#GTiff2Tiles_Core_GeoTiffs_GeoTiff_Dispose
+  commentId: M:GTiff2Tiles.Core.GeoTiffs.GeoTiff.Dispose
+  fullName: GTiff2Tiles.Core.GeoTiffs.GeoTiff.Dispose()
+  nameWithType: GeoTiff.Dispose()
+- uid: GTiff2Tiles.Core.GeoTiffs.GeoTiff.Dispose(System.Boolean)
+  name: Dispose(Boolean)
+  href: api/GTiff2Tiles.Core.GeoTiffs.GeoTiff.html#GTiff2Tiles_Core_GeoTiffs_GeoTiff_Dispose_System_Boolean_
+  commentId: M:GTiff2Tiles.Core.GeoTiffs.GeoTiff.Dispose(System.Boolean)
+  fullName: GTiff2Tiles.Core.GeoTiffs.GeoTiff.Dispose(System.Boolean)
+  nameWithType: GeoTiff.Dispose(Boolean)
+- uid: GTiff2Tiles.Core.GeoTiffs.GeoTiff.Dispose*
+  name: Dispose
+  href: api/GTiff2Tiles.Core.GeoTiffs.GeoTiff.html#GTiff2Tiles_Core_GeoTiffs_GeoTiff_Dispose_
+  commentId: Overload:GTiff2Tiles.Core.GeoTiffs.GeoTiff.Dispose
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.GeoTiffs.GeoTiff.Dispose
+  nameWithType: GeoTiff.Dispose
+- uid: GTiff2Tiles.Core.GeoTiffs.GeoTiff.DisposeAsync
+  name: DisposeAsync()
+  href: api/GTiff2Tiles.Core.GeoTiffs.GeoTiff.html#GTiff2Tiles_Core_GeoTiffs_GeoTiff_DisposeAsync
+  commentId: M:GTiff2Tiles.Core.GeoTiffs.GeoTiff.DisposeAsync
+  fullName: GTiff2Tiles.Core.GeoTiffs.GeoTiff.DisposeAsync()
+  nameWithType: GeoTiff.DisposeAsync()
+- uid: GTiff2Tiles.Core.GeoTiffs.GeoTiff.DisposeAsync*
+  name: DisposeAsync
+  href: api/GTiff2Tiles.Core.GeoTiffs.GeoTiff.html#GTiff2Tiles_Core_GeoTiffs_GeoTiff_DisposeAsync_
+  commentId: Overload:GTiff2Tiles.Core.GeoTiffs.GeoTiff.DisposeAsync
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.GeoTiffs.GeoTiff.DisposeAsync
+  nameWithType: GeoTiff.DisposeAsync
+- uid: GTiff2Tiles.Core.GeoTiffs.GeoTiff.GeoCoordinateSystem
+  name: GeoCoordinateSystem
+  href: api/GTiff2Tiles.Core.GeoTiffs.GeoTiff.html#GTiff2Tiles_Core_GeoTiffs_GeoTiff_GeoCoordinateSystem
+  commentId: P:GTiff2Tiles.Core.GeoTiffs.GeoTiff.GeoCoordinateSystem
+  fullName: GTiff2Tiles.Core.GeoTiffs.GeoTiff.GeoCoordinateSystem
+  nameWithType: GeoTiff.GeoCoordinateSystem
+- uid: GTiff2Tiles.Core.GeoTiffs.GeoTiff.GeoCoordinateSystem*
+  name: GeoCoordinateSystem
+  href: api/GTiff2Tiles.Core.GeoTiffs.GeoTiff.html#GTiff2Tiles_Core_GeoTiffs_GeoTiff_GeoCoordinateSystem_
+  commentId: Overload:GTiff2Tiles.Core.GeoTiffs.GeoTiff.GeoCoordinateSystem
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.GeoTiffs.GeoTiff.GeoCoordinateSystem
+  nameWithType: GeoTiff.GeoCoordinateSystem
+- uid: GTiff2Tiles.Core.GeoTiffs.GeoTiff.GetBorders(Stream,GTiff2Tiles.Core.Enums.CoordinateSystem)
+  name: GetBorders(Stream, CoordinateSystem)
+  href: api/GTiff2Tiles.Core.GeoTiffs.GeoTiff.html#GTiff2Tiles_Core_GeoTiffs_GeoTiff_GetBorders_Stream_GTiff2Tiles_Core_Enums_CoordinateSystem_
+  commentId: M:GTiff2Tiles.Core.GeoTiffs.GeoTiff.GetBorders(Stream,GTiff2Tiles.Core.Enums.CoordinateSystem)
+  fullName: GTiff2Tiles.Core.GeoTiffs.GeoTiff.GetBorders(Stream, GTiff2Tiles.Core.Enums.CoordinateSystem)
+  nameWithType: GeoTiff.GetBorders(Stream, CoordinateSystem)
+- uid: GTiff2Tiles.Core.GeoTiffs.GeoTiff.GetBorders(System.String,GTiff2Tiles.Core.Enums.CoordinateSystem)
+  name: GetBorders(String, CoordinateSystem)
+  href: api/GTiff2Tiles.Core.GeoTiffs.GeoTiff.html#GTiff2Tiles_Core_GeoTiffs_GeoTiff_GetBorders_System_String_GTiff2Tiles_Core_Enums_CoordinateSystem_
+  commentId: M:GTiff2Tiles.Core.GeoTiffs.GeoTiff.GetBorders(System.String,GTiff2Tiles.Core.Enums.CoordinateSystem)
+  fullName: GTiff2Tiles.Core.GeoTiffs.GeoTiff.GetBorders(System.String, GTiff2Tiles.Core.Enums.CoordinateSystem)
+  nameWithType: GeoTiff.GetBorders(String, CoordinateSystem)
+- uid: GTiff2Tiles.Core.GeoTiffs.GeoTiff.GetBorders*
+  name: GetBorders
+  href: api/GTiff2Tiles.Core.GeoTiffs.GeoTiff.html#GTiff2Tiles_Core_GeoTiffs_GeoTiff_GetBorders_
+  commentId: Overload:GTiff2Tiles.Core.GeoTiffs.GeoTiff.GetBorders
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.GeoTiffs.GeoTiff.GetBorders
+  nameWithType: GeoTiff.GetBorders
+- uid: GTiff2Tiles.Core.GeoTiffs.GeoTiff.IsDisposed
+  name: IsDisposed
+  href: api/GTiff2Tiles.Core.GeoTiffs.GeoTiff.html#GTiff2Tiles_Core_GeoTiffs_GeoTiff_IsDisposed
+  commentId: P:GTiff2Tiles.Core.GeoTiffs.GeoTiff.IsDisposed
+  fullName: GTiff2Tiles.Core.GeoTiffs.GeoTiff.IsDisposed
+  nameWithType: GeoTiff.IsDisposed
+- uid: GTiff2Tiles.Core.GeoTiffs.GeoTiff.IsDisposed*
+  name: IsDisposed
+  href: api/GTiff2Tiles.Core.GeoTiffs.GeoTiff.html#GTiff2Tiles_Core_GeoTiffs_GeoTiff_IsDisposed_
+  commentId: Overload:GTiff2Tiles.Core.GeoTiffs.GeoTiff.IsDisposed
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.GeoTiffs.GeoTiff.IsDisposed
+  nameWithType: GeoTiff.IsDisposed
+- uid: GTiff2Tiles.Core.GeoTiffs.GeoTiff.MaxCoordinate
+  name: MaxCoordinate
+  href: api/GTiff2Tiles.Core.GeoTiffs.GeoTiff.html#GTiff2Tiles_Core_GeoTiffs_GeoTiff_MaxCoordinate
+  commentId: P:GTiff2Tiles.Core.GeoTiffs.GeoTiff.MaxCoordinate
+  fullName: GTiff2Tiles.Core.GeoTiffs.GeoTiff.MaxCoordinate
+  nameWithType: GeoTiff.MaxCoordinate
+- uid: GTiff2Tiles.Core.GeoTiffs.GeoTiff.MaxCoordinate*
+  name: MaxCoordinate
+  href: api/GTiff2Tiles.Core.GeoTiffs.GeoTiff.html#GTiff2Tiles_Core_GeoTiffs_GeoTiff_MaxCoordinate_
+  commentId: Overload:GTiff2Tiles.Core.GeoTiffs.GeoTiff.MaxCoordinate
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.GeoTiffs.GeoTiff.MaxCoordinate
+  nameWithType: GeoTiff.MaxCoordinate
+- uid: GTiff2Tiles.Core.GeoTiffs.GeoTiff.MinCoordinate
+  name: MinCoordinate
+  href: api/GTiff2Tiles.Core.GeoTiffs.GeoTiff.html#GTiff2Tiles_Core_GeoTiffs_GeoTiff_MinCoordinate
+  commentId: P:GTiff2Tiles.Core.GeoTiffs.GeoTiff.MinCoordinate
+  fullName: GTiff2Tiles.Core.GeoTiffs.GeoTiff.MinCoordinate
+  nameWithType: GeoTiff.MinCoordinate
+- uid: GTiff2Tiles.Core.GeoTiffs.GeoTiff.MinCoordinate*
+  name: MinCoordinate
+  href: api/GTiff2Tiles.Core.GeoTiffs.GeoTiff.html#GTiff2Tiles_Core_GeoTiffs_GeoTiff_MinCoordinate_
+  commentId: Overload:GTiff2Tiles.Core.GeoTiffs.GeoTiff.MinCoordinate
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.GeoTiffs.GeoTiff.MinCoordinate
+  nameWithType: GeoTiff.MinCoordinate
+- uid: GTiff2Tiles.Core.GeoTiffs.GeoTiff.Size
+  name: Size
+  href: api/GTiff2Tiles.Core.GeoTiffs.GeoTiff.html#GTiff2Tiles_Core_GeoTiffs_GeoTiff_Size
+  commentId: P:GTiff2Tiles.Core.GeoTiffs.GeoTiff.Size
+  fullName: GTiff2Tiles.Core.GeoTiffs.GeoTiff.Size
+  nameWithType: GeoTiff.Size
+- uid: GTiff2Tiles.Core.GeoTiffs.GeoTiff.Size*
+  name: Size
+  href: api/GTiff2Tiles.Core.GeoTiffs.GeoTiff.html#GTiff2Tiles_Core_GeoTiffs_GeoTiff_Size_
+  commentId: Overload:GTiff2Tiles.Core.GeoTiffs.GeoTiff.Size
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.GeoTiffs.GeoTiff.Size
+  nameWithType: GeoTiff.Size
 - uid: GTiff2Tiles.Core.GeoTiffs.IGeoTiff
   name: IGeoTiff
   href: api/GTiff2Tiles.Core.GeoTiffs.IGeoTiff.html
@@ -1305,11 +1818,11 @@ references:
   commentId: T:GTiff2Tiles.Core.GeoTiffs.Raster
   fullName: GTiff2Tiles.Core.GeoTiffs.Raster
   nameWithType: Raster
-- uid: GTiff2Tiles.Core.GeoTiffs.Raster.#ctor(System.IO.Stream,GTiff2Tiles.Core.Enums.CoordinateSystem)
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster.#ctor(Stream,GTiff2Tiles.Core.Enums.CoordinateSystem)
   name: Raster(Stream, CoordinateSystem)
-  href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster__ctor_System_IO_Stream_GTiff2Tiles_Core_Enums_CoordinateSystem_
-  commentId: M:GTiff2Tiles.Core.GeoTiffs.Raster.#ctor(System.IO.Stream,GTiff2Tiles.Core.Enums.CoordinateSystem)
-  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.Raster(System.IO.Stream, GTiff2Tiles.Core.Enums.CoordinateSystem)
+  href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster__ctor_Stream_GTiff2Tiles_Core_Enums_CoordinateSystem_
+  commentId: M:GTiff2Tiles.Core.GeoTiffs.Raster.#ctor(Stream,GTiff2Tiles.Core.Enums.CoordinateSystem)
+  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.Raster(Stream, GTiff2Tiles.Core.Enums.CoordinateSystem)
   nameWithType: Raster.Raster(Stream, CoordinateSystem)
 - uid: GTiff2Tiles.Core.GeoTiffs.Raster.#ctor(System.String,GTiff2Tiles.Core.Enums.CoordinateSystem,System.Int64)
   name: Raster(String, CoordinateSystem, Int64)
@@ -1330,6 +1843,63 @@ references:
   isSpec: "True"
   fullName: GTiff2Tiles.Core.GeoTiffs.Raster.Raster
   nameWithType: Raster.Raster
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster.CreateOverviewTile(GTiff2Tiles.Core.Tiles.RasterTile@,GTiff2Tiles.Core.Tiles.RasterTile,GTiff2Tiles.Core.Tiles.RasterTile,GTiff2Tiles.Core.Tiles.RasterTile,GTiff2Tiles.Core.Tiles.RasterTile,System.Boolean)
+  name: CreateOverviewTile(ref RasterTile, RasterTile, RasterTile, RasterTile, RasterTile, Boolean)
+  href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_CreateOverviewTile_GTiff2Tiles_Core_Tiles_RasterTile__GTiff2Tiles_Core_Tiles_RasterTile_GTiff2Tiles_Core_Tiles_RasterTile_GTiff2Tiles_Core_Tiles_RasterTile_GTiff2Tiles_Core_Tiles_RasterTile_System_Boolean_
+  commentId: M:GTiff2Tiles.Core.GeoTiffs.Raster.CreateOverviewTile(GTiff2Tiles.Core.Tiles.RasterTile@,GTiff2Tiles.Core.Tiles.RasterTile,GTiff2Tiles.Core.Tiles.RasterTile,GTiff2Tiles.Core.Tiles.RasterTile,GTiff2Tiles.Core.Tiles.RasterTile,System.Boolean)
+  name.vb: CreateOverviewTile(ByRef RasterTile, RasterTile, RasterTile, RasterTile, RasterTile, Boolean)
+  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.CreateOverviewTile(ref GTiff2Tiles.Core.Tiles.RasterTile, GTiff2Tiles.Core.Tiles.RasterTile, GTiff2Tiles.Core.Tiles.RasterTile, GTiff2Tiles.Core.Tiles.RasterTile, GTiff2Tiles.Core.Tiles.RasterTile, System.Boolean)
+  fullName.vb: GTiff2Tiles.Core.GeoTiffs.Raster.CreateOverviewTile(ByRef GTiff2Tiles.Core.Tiles.RasterTile, GTiff2Tiles.Core.Tiles.RasterTile, GTiff2Tiles.Core.Tiles.RasterTile, GTiff2Tiles.Core.Tiles.RasterTile, GTiff2Tiles.Core.Tiles.RasterTile, System.Boolean)
+  nameWithType: Raster.CreateOverviewTile(ref RasterTile, RasterTile, RasterTile, RasterTile, RasterTile, Boolean)
+  nameWithType.vb: Raster.CreateOverviewTile(ByRef RasterTile, RasterTile, RasterTile, RasterTile, RasterTile, Boolean)
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster.CreateOverviewTile(GTiff2Tiles.Core.Tiles.RasterTile@,HashSet{GTiff2Tiles.Core.Tiles.RasterTile},System.Boolean)
+  name: CreateOverviewTile(ref RasterTile, HashSet<RasterTile>, Boolean)
+  href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_CreateOverviewTile_GTiff2Tiles_Core_Tiles_RasterTile__HashSet_GTiff2Tiles_Core_Tiles_RasterTile__System_Boolean_
+  commentId: M:GTiff2Tiles.Core.GeoTiffs.Raster.CreateOverviewTile(GTiff2Tiles.Core.Tiles.RasterTile@,HashSet{GTiff2Tiles.Core.Tiles.RasterTile},System.Boolean)
+  name.vb: CreateOverviewTile(ByRef RasterTile, HashSet(Of RasterTile), Boolean)
+  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.CreateOverviewTile(ref GTiff2Tiles.Core.Tiles.RasterTile, HashSet<GTiff2Tiles.Core.Tiles.RasterTile>, System.Boolean)
+  fullName.vb: GTiff2Tiles.Core.GeoTiffs.Raster.CreateOverviewTile(ByRef GTiff2Tiles.Core.Tiles.RasterTile, HashSet(Of GTiff2Tiles.Core.Tiles.RasterTile), System.Boolean)
+  nameWithType: Raster.CreateOverviewTile(ref RasterTile, HashSet<RasterTile>, Boolean)
+  nameWithType.vb: Raster.CreateOverviewTile(ByRef RasterTile, HashSet(Of RasterTile), Boolean)
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster.CreateOverviewTile*
+  name: CreateOverviewTile
+  href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_CreateOverviewTile_
+  commentId: Overload:GTiff2Tiles.Core.GeoTiffs.Raster.CreateOverviewTile
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.CreateOverviewTile
+  nameWithType: Raster.CreateOverviewTile
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster.CreateOverviewTiles(System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.RasterTile},System.Int32,System.Int32,HashSet{GTiff2Tiles.Core.Tiles.RasterTile},System.Boolean,GTiff2Tiles.Core.Enums.CoordinateSystem,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.TileExtension,System.Boolean,System.Int32)
+  name: CreateOverviewTiles(ChannelWriter<RasterTile>, Int32, Int32, HashSet<RasterTile>, Boolean, CoordinateSystem, Size, TileExtension, Boolean, Int32)
+  href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_CreateOverviewTiles_System_Threading_Channels_ChannelWriter_GTiff2Tiles_Core_Tiles_RasterTile__System_Int32_System_Int32_HashSet_GTiff2Tiles_Core_Tiles_RasterTile__System_Boolean_GTiff2Tiles_Core_Enums_CoordinateSystem_GTiff2Tiles_Core_Images_Size_GTiff2Tiles_Core_Enums_TileExtension_System_Boolean_System_Int32_
+  commentId: M:GTiff2Tiles.Core.GeoTiffs.Raster.CreateOverviewTiles(System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.RasterTile},System.Int32,System.Int32,HashSet{GTiff2Tiles.Core.Tiles.RasterTile},System.Boolean,GTiff2Tiles.Core.Enums.CoordinateSystem,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.TileExtension,System.Boolean,System.Int32)
+  name.vb: CreateOverviewTiles(ChannelWriter(Of RasterTile), Int32, Int32, HashSet(Of RasterTile), Boolean, CoordinateSystem, Size, TileExtension, Boolean, Int32)
+  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.CreateOverviewTiles(System.Threading.Channels.ChannelWriter<GTiff2Tiles.Core.Tiles.RasterTile>, System.Int32, System.Int32, HashSet<GTiff2Tiles.Core.Tiles.RasterTile>, System.Boolean, GTiff2Tiles.Core.Enums.CoordinateSystem, GTiff2Tiles.Core.Images.Size, GTiff2Tiles.Core.Enums.TileExtension, System.Boolean, System.Int32)
+  fullName.vb: GTiff2Tiles.Core.GeoTiffs.Raster.CreateOverviewTiles(System.Threading.Channels.ChannelWriter(Of GTiff2Tiles.Core.Tiles.RasterTile), System.Int32, System.Int32, HashSet(Of GTiff2Tiles.Core.Tiles.RasterTile), System.Boolean, GTiff2Tiles.Core.Enums.CoordinateSystem, GTiff2Tiles.Core.Images.Size, GTiff2Tiles.Core.Enums.TileExtension, System.Boolean, System.Int32)
+  nameWithType: Raster.CreateOverviewTiles(ChannelWriter<RasterTile>, Int32, Int32, HashSet<RasterTile>, Boolean, CoordinateSystem, Size, TileExtension, Boolean, Int32)
+  nameWithType.vb: Raster.CreateOverviewTiles(ChannelWriter(Of RasterTile), Int32, Int32, HashSet(Of RasterTile), Boolean, CoordinateSystem, Size, TileExtension, Boolean, Int32)
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster.CreateOverviewTiles*
+  name: CreateOverviewTiles
+  href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_CreateOverviewTiles_
+  commentId: Overload:GTiff2Tiles.Core.GeoTiffs.Raster.CreateOverviewTiles
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.CreateOverviewTiles
+  nameWithType: Raster.CreateOverviewTiles
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster.CreateOverviewTilesAsync(System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.RasterTile},System.Int32,System.Int32,HashSet{GTiff2Tiles.Core.Tiles.RasterTile},System.Boolean,GTiff2Tiles.Core.Enums.CoordinateSystem,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.TileExtension,System.Boolean,System.Int32)
+  name: CreateOverviewTilesAsync(ChannelWriter<RasterTile>, Int32, Int32, HashSet<RasterTile>, Boolean, CoordinateSystem, Size, TileExtension, Boolean, Int32)
+  href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_CreateOverviewTilesAsync_System_Threading_Channels_ChannelWriter_GTiff2Tiles_Core_Tiles_RasterTile__System_Int32_System_Int32_HashSet_GTiff2Tiles_Core_Tiles_RasterTile__System_Boolean_GTiff2Tiles_Core_Enums_CoordinateSystem_GTiff2Tiles_Core_Images_Size_GTiff2Tiles_Core_Enums_TileExtension_System_Boolean_System_Int32_
+  commentId: M:GTiff2Tiles.Core.GeoTiffs.Raster.CreateOverviewTilesAsync(System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.RasterTile},System.Int32,System.Int32,HashSet{GTiff2Tiles.Core.Tiles.RasterTile},System.Boolean,GTiff2Tiles.Core.Enums.CoordinateSystem,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.TileExtension,System.Boolean,System.Int32)
+  name.vb: CreateOverviewTilesAsync(ChannelWriter(Of RasterTile), Int32, Int32, HashSet(Of RasterTile), Boolean, CoordinateSystem, Size, TileExtension, Boolean, Int32)
+  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.CreateOverviewTilesAsync(System.Threading.Channels.ChannelWriter<GTiff2Tiles.Core.Tiles.RasterTile>, System.Int32, System.Int32, HashSet<GTiff2Tiles.Core.Tiles.RasterTile>, System.Boolean, GTiff2Tiles.Core.Enums.CoordinateSystem, GTiff2Tiles.Core.Images.Size, GTiff2Tiles.Core.Enums.TileExtension, System.Boolean, System.Int32)
+  fullName.vb: GTiff2Tiles.Core.GeoTiffs.Raster.CreateOverviewTilesAsync(System.Threading.Channels.ChannelWriter(Of GTiff2Tiles.Core.Tiles.RasterTile), System.Int32, System.Int32, HashSet(Of GTiff2Tiles.Core.Tiles.RasterTile), System.Boolean, GTiff2Tiles.Core.Enums.CoordinateSystem, GTiff2Tiles.Core.Images.Size, GTiff2Tiles.Core.Enums.TileExtension, System.Boolean, System.Int32)
+  nameWithType: Raster.CreateOverviewTilesAsync(ChannelWriter<RasterTile>, Int32, Int32, HashSet<RasterTile>, Boolean, CoordinateSystem, Size, TileExtension, Boolean, Int32)
+  nameWithType.vb: Raster.CreateOverviewTilesAsync(ChannelWriter(Of RasterTile), Int32, Int32, HashSet(Of RasterTile), Boolean, CoordinateSystem, Size, TileExtension, Boolean, Int32)
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster.CreateOverviewTilesAsync*
+  name: CreateOverviewTilesAsync
+  href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_CreateOverviewTilesAsync_
+  commentId: Overload:GTiff2Tiles.Core.GeoTiffs.Raster.CreateOverviewTilesAsync
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.CreateOverviewTilesAsync
+  nameWithType: Raster.CreateOverviewTilesAsync
 - uid: GTiff2Tiles.Core.GeoTiffs.Raster.CreateTileImage(NetVips.Image,GTiff2Tiles.Core.Tiles.RasterTile)
   name: CreateTileImage(Image, RasterTile)
   href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_CreateTileImage_NetVips_Image_GTiff2Tiles_Core_Tiles_RasterTile_
@@ -1356,12 +1926,6 @@ references:
   isSpec: "True"
   fullName: GTiff2Tiles.Core.GeoTiffs.Raster.Data
   nameWithType: Raster.Data
-- uid: GTiff2Tiles.Core.GeoTiffs.Raster.Dispose
-  name: Dispose()
-  href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_Dispose
-  commentId: M:GTiff2Tiles.Core.GeoTiffs.Raster.Dispose
-  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.Dispose()
-  nameWithType: Raster.Dispose()
 - uid: GTiff2Tiles.Core.GeoTiffs.Raster.Dispose(System.Boolean)
   name: Dispose(Boolean)
   href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_Dispose_System_Boolean_
@@ -1375,19 +1939,6 @@ references:
   isSpec: "True"
   fullName: GTiff2Tiles.Core.GeoTiffs.Raster.Dispose
   nameWithType: Raster.Dispose
-- uid: GTiff2Tiles.Core.GeoTiffs.Raster.DisposeAsync
-  name: DisposeAsync()
-  href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_DisposeAsync
-  commentId: M:GTiff2Tiles.Core.GeoTiffs.Raster.DisposeAsync
-  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.DisposeAsync()
-  nameWithType: Raster.DisposeAsync()
-- uid: GTiff2Tiles.Core.GeoTiffs.Raster.DisposeAsync*
-  name: DisposeAsync
-  href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_DisposeAsync_
-  commentId: Overload:GTiff2Tiles.Core.GeoTiffs.Raster.DisposeAsync
-  isSpec: "True"
-  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.DisposeAsync
-  nameWithType: Raster.DisposeAsync
 - uid: GTiff2Tiles.Core.GeoTiffs.Raster.Finalize
   name: Finalize()
   href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_Finalize
@@ -1401,80 +1952,132 @@ references:
   isSpec: "True"
   fullName: GTiff2Tiles.Core.GeoTiffs.Raster.Finalize
   nameWithType: Raster.Finalize
-- uid: GTiff2Tiles.Core.GeoTiffs.Raster.GeoCoordinateSystem
-  name: GeoCoordinateSystem
-  href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_GeoCoordinateSystem
-  commentId: P:GTiff2Tiles.Core.GeoTiffs.Raster.GeoCoordinateSystem
-  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.GeoCoordinateSystem
-  nameWithType: Raster.GeoCoordinateSystem
-- uid: GTiff2Tiles.Core.GeoTiffs.Raster.GeoCoordinateSystem*
-  name: GeoCoordinateSystem
-  href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_GeoCoordinateSystem_
-  commentId: Overload:GTiff2Tiles.Core.GeoTiffs.Raster.GeoCoordinateSystem
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster.JoinTilesIntoBytes(GTiff2Tiles.Core.Tiles.RasterTile,GTiff2Tiles.Core.Tiles.RasterTile,GTiff2Tiles.Core.Tiles.RasterTile,GTiff2Tiles.Core.Tiles.RasterTile,System.Boolean,GTiff2Tiles.Core.Images.Size,System.Int32,GTiff2Tiles.Core.Enums.TileExtension)
+  name: JoinTilesIntoBytes(RasterTile, RasterTile, RasterTile, RasterTile, Boolean, Size, Int32, TileExtension)
+  href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_JoinTilesIntoBytes_GTiff2Tiles_Core_Tiles_RasterTile_GTiff2Tiles_Core_Tiles_RasterTile_GTiff2Tiles_Core_Tiles_RasterTile_GTiff2Tiles_Core_Tiles_RasterTile_System_Boolean_GTiff2Tiles_Core_Images_Size_System_Int32_GTiff2Tiles_Core_Enums_TileExtension_
+  commentId: M:GTiff2Tiles.Core.GeoTiffs.Raster.JoinTilesIntoBytes(GTiff2Tiles.Core.Tiles.RasterTile,GTiff2Tiles.Core.Tiles.RasterTile,GTiff2Tiles.Core.Tiles.RasterTile,GTiff2Tiles.Core.Tiles.RasterTile,System.Boolean,GTiff2Tiles.Core.Images.Size,System.Int32,GTiff2Tiles.Core.Enums.TileExtension)
+  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.JoinTilesIntoBytes(GTiff2Tiles.Core.Tiles.RasterTile, GTiff2Tiles.Core.Tiles.RasterTile, GTiff2Tiles.Core.Tiles.RasterTile, GTiff2Tiles.Core.Tiles.RasterTile, System.Boolean, GTiff2Tiles.Core.Images.Size, System.Int32, GTiff2Tiles.Core.Enums.TileExtension)
+  nameWithType: Raster.JoinTilesIntoBytes(RasterTile, RasterTile, RasterTile, RasterTile, Boolean, Size, Int32, TileExtension)
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster.JoinTilesIntoBytes*
+  name: JoinTilesIntoBytes
+  href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_JoinTilesIntoBytes_
+  commentId: Overload:GTiff2Tiles.Core.GeoTiffs.Raster.JoinTilesIntoBytes
   isSpec: "True"
-  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.GeoCoordinateSystem
-  nameWithType: Raster.GeoCoordinateSystem
-- uid: GTiff2Tiles.Core.GeoTiffs.Raster.IsDisposed
-  name: IsDisposed
-  href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_IsDisposed
-  commentId: P:GTiff2Tiles.Core.GeoTiffs.Raster.IsDisposed
-  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.IsDisposed
-  nameWithType: Raster.IsDisposed
-- uid: GTiff2Tiles.Core.GeoTiffs.Raster.IsDisposed*
-  name: IsDisposed
-  href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_IsDisposed_
-  commentId: Overload:GTiff2Tiles.Core.GeoTiffs.Raster.IsDisposed
+  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.JoinTilesIntoBytes
+  nameWithType: Raster.JoinTilesIntoBytes
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster.JoinTilesIntoImage(GTiff2Tiles.Core.Tiles.RasterTile,GTiff2Tiles.Core.Tiles.RasterTile,GTiff2Tiles.Core.Tiles.RasterTile,GTiff2Tiles.Core.Tiles.RasterTile,System.Boolean,GTiff2Tiles.Core.Images.Size,System.Int32)
+  name: JoinTilesIntoImage(RasterTile, RasterTile, RasterTile, RasterTile, Boolean, Size, Int32)
+  href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_JoinTilesIntoImage_GTiff2Tiles_Core_Tiles_RasterTile_GTiff2Tiles_Core_Tiles_RasterTile_GTiff2Tiles_Core_Tiles_RasterTile_GTiff2Tiles_Core_Tiles_RasterTile_System_Boolean_GTiff2Tiles_Core_Images_Size_System_Int32_
+  commentId: M:GTiff2Tiles.Core.GeoTiffs.Raster.JoinTilesIntoImage(GTiff2Tiles.Core.Tiles.RasterTile,GTiff2Tiles.Core.Tiles.RasterTile,GTiff2Tiles.Core.Tiles.RasterTile,GTiff2Tiles.Core.Tiles.RasterTile,System.Boolean,GTiff2Tiles.Core.Images.Size,System.Int32)
+  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.JoinTilesIntoImage(GTiff2Tiles.Core.Tiles.RasterTile, GTiff2Tiles.Core.Tiles.RasterTile, GTiff2Tiles.Core.Tiles.RasterTile, GTiff2Tiles.Core.Tiles.RasterTile, System.Boolean, GTiff2Tiles.Core.Images.Size, System.Int32)
+  nameWithType: Raster.JoinTilesIntoImage(RasterTile, RasterTile, RasterTile, RasterTile, Boolean, Size, Int32)
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster.JoinTilesIntoImage(IEnumerable{System.Byte},IEnumerable{System.Byte},IEnumerable{System.Byte},IEnumerable{System.Byte},GTiff2Tiles.Core.Images.Size,System.Int32)
+  name: JoinTilesIntoImage(IEnumerable<Byte>, IEnumerable<Byte>, IEnumerable<Byte>, IEnumerable<Byte>, Size, Int32)
+  href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_JoinTilesIntoImage_IEnumerable_System_Byte__IEnumerable_System_Byte__IEnumerable_System_Byte__IEnumerable_System_Byte__GTiff2Tiles_Core_Images_Size_System_Int32_
+  commentId: M:GTiff2Tiles.Core.GeoTiffs.Raster.JoinTilesIntoImage(IEnumerable{System.Byte},IEnumerable{System.Byte},IEnumerable{System.Byte},IEnumerable{System.Byte},GTiff2Tiles.Core.Images.Size,System.Int32)
+  name.vb: JoinTilesIntoImage(IEnumerable(Of Byte), IEnumerable(Of Byte), IEnumerable(Of Byte), IEnumerable(Of Byte), Size, Int32)
+  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.JoinTilesIntoImage(IEnumerable<System.Byte>, IEnumerable<System.Byte>, IEnumerable<System.Byte>, IEnumerable<System.Byte>, GTiff2Tiles.Core.Images.Size, System.Int32)
+  fullName.vb: GTiff2Tiles.Core.GeoTiffs.Raster.JoinTilesIntoImage(IEnumerable(Of System.Byte), IEnumerable(Of System.Byte), IEnumerable(Of System.Byte), IEnumerable(Of System.Byte), GTiff2Tiles.Core.Images.Size, System.Int32)
+  nameWithType: Raster.JoinTilesIntoImage(IEnumerable<Byte>, IEnumerable<Byte>, IEnumerable<Byte>, IEnumerable<Byte>, Size, Int32)
+  nameWithType.vb: Raster.JoinTilesIntoImage(IEnumerable(Of Byte), IEnumerable(Of Byte), IEnumerable(Of Byte), IEnumerable(Of Byte), Size, Int32)
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster.JoinTilesIntoImage(System.String,System.String,System.String,System.String,GTiff2Tiles.Core.Images.Size,System.Int32)
+  name: JoinTilesIntoImage(String, String, String, String, Size, Int32)
+  href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_JoinTilesIntoImage_System_String_System_String_System_String_System_String_GTiff2Tiles_Core_Images_Size_System_Int32_
+  commentId: M:GTiff2Tiles.Core.GeoTiffs.Raster.JoinTilesIntoImage(System.String,System.String,System.String,System.String,GTiff2Tiles.Core.Images.Size,System.Int32)
+  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.JoinTilesIntoImage(System.String, System.String, System.String, System.String, GTiff2Tiles.Core.Images.Size, System.Int32)
+  nameWithType: Raster.JoinTilesIntoImage(String, String, String, String, Size, Int32)
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster.JoinTilesIntoImage*
+  name: JoinTilesIntoImage
+  href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_JoinTilesIntoImage_
+  commentId: Overload:GTiff2Tiles.Core.GeoTiffs.Raster.JoinTilesIntoImage
   isSpec: "True"
-  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.IsDisposed
-  nameWithType: Raster.IsDisposed
-- uid: GTiff2Tiles.Core.GeoTiffs.Raster.MaxCoordinate
-  name: MaxCoordinate
-  href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_MaxCoordinate
-  commentId: P:GTiff2Tiles.Core.GeoTiffs.Raster.MaxCoordinate
-  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.MaxCoordinate
-  nameWithType: Raster.MaxCoordinate
-- uid: GTiff2Tiles.Core.GeoTiffs.Raster.MaxCoordinate*
-  name: MaxCoordinate
-  href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_MaxCoordinate_
-  commentId: Overload:GTiff2Tiles.Core.GeoTiffs.Raster.MaxCoordinate
+  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.JoinTilesIntoImage
+  nameWithType: Raster.JoinTilesIntoImage
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster.JoinTilesIntoImageAsync(GTiff2Tiles.Core.Tiles.RasterTile,GTiff2Tiles.Core.Tiles.RasterTile,GTiff2Tiles.Core.Tiles.RasterTile,GTiff2Tiles.Core.Tiles.RasterTile,System.Boolean,GTiff2Tiles.Core.Images.Size,System.Int32)
+  name: JoinTilesIntoImageAsync(RasterTile, RasterTile, RasterTile, RasterTile, Boolean, Size, Int32)
+  href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_JoinTilesIntoImageAsync_GTiff2Tiles_Core_Tiles_RasterTile_GTiff2Tiles_Core_Tiles_RasterTile_GTiff2Tiles_Core_Tiles_RasterTile_GTiff2Tiles_Core_Tiles_RasterTile_System_Boolean_GTiff2Tiles_Core_Images_Size_System_Int32_
+  commentId: M:GTiff2Tiles.Core.GeoTiffs.Raster.JoinTilesIntoImageAsync(GTiff2Tiles.Core.Tiles.RasterTile,GTiff2Tiles.Core.Tiles.RasterTile,GTiff2Tiles.Core.Tiles.RasterTile,GTiff2Tiles.Core.Tiles.RasterTile,System.Boolean,GTiff2Tiles.Core.Images.Size,System.Int32)
+  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.JoinTilesIntoImageAsync(GTiff2Tiles.Core.Tiles.RasterTile, GTiff2Tiles.Core.Tiles.RasterTile, GTiff2Tiles.Core.Tiles.RasterTile, GTiff2Tiles.Core.Tiles.RasterTile, System.Boolean, GTiff2Tiles.Core.Images.Size, System.Int32)
+  nameWithType: Raster.JoinTilesIntoImageAsync(RasterTile, RasterTile, RasterTile, RasterTile, Boolean, Size, Int32)
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster.JoinTilesIntoImageAsync(IEnumerable{System.Byte},IEnumerable{System.Byte},IEnumerable{System.Byte},IEnumerable{System.Byte},GTiff2Tiles.Core.Images.Size,System.Int32)
+  name: JoinTilesIntoImageAsync(IEnumerable<Byte>, IEnumerable<Byte>, IEnumerable<Byte>, IEnumerable<Byte>, Size, Int32)
+  href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_JoinTilesIntoImageAsync_IEnumerable_System_Byte__IEnumerable_System_Byte__IEnumerable_System_Byte__IEnumerable_System_Byte__GTiff2Tiles_Core_Images_Size_System_Int32_
+  commentId: M:GTiff2Tiles.Core.GeoTiffs.Raster.JoinTilesIntoImageAsync(IEnumerable{System.Byte},IEnumerable{System.Byte},IEnumerable{System.Byte},IEnumerable{System.Byte},GTiff2Tiles.Core.Images.Size,System.Int32)
+  name.vb: JoinTilesIntoImageAsync(IEnumerable(Of Byte), IEnumerable(Of Byte), IEnumerable(Of Byte), IEnumerable(Of Byte), Size, Int32)
+  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.JoinTilesIntoImageAsync(IEnumerable<System.Byte>, IEnumerable<System.Byte>, IEnumerable<System.Byte>, IEnumerable<System.Byte>, GTiff2Tiles.Core.Images.Size, System.Int32)
+  fullName.vb: GTiff2Tiles.Core.GeoTiffs.Raster.JoinTilesIntoImageAsync(IEnumerable(Of System.Byte), IEnumerable(Of System.Byte), IEnumerable(Of System.Byte), IEnumerable(Of System.Byte), GTiff2Tiles.Core.Images.Size, System.Int32)
+  nameWithType: Raster.JoinTilesIntoImageAsync(IEnumerable<Byte>, IEnumerable<Byte>, IEnumerable<Byte>, IEnumerable<Byte>, Size, Int32)
+  nameWithType.vb: Raster.JoinTilesIntoImageAsync(IEnumerable(Of Byte), IEnumerable(Of Byte), IEnumerable(Of Byte), IEnumerable(Of Byte), Size, Int32)
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster.JoinTilesIntoImageAsync(System.String,System.String,System.String,System.String,GTiff2Tiles.Core.Images.Size,System.Int32)
+  name: JoinTilesIntoImageAsync(String, String, String, String, Size, Int32)
+  href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_JoinTilesIntoImageAsync_System_String_System_String_System_String_System_String_GTiff2Tiles_Core_Images_Size_System_Int32_
+  commentId: M:GTiff2Tiles.Core.GeoTiffs.Raster.JoinTilesIntoImageAsync(System.String,System.String,System.String,System.String,GTiff2Tiles.Core.Images.Size,System.Int32)
+  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.JoinTilesIntoImageAsync(System.String, System.String, System.String, System.String, GTiff2Tiles.Core.Images.Size, System.Int32)
+  nameWithType: Raster.JoinTilesIntoImageAsync(String, String, String, String, Size, Int32)
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster.JoinTilesIntoImageAsync*
+  name: JoinTilesIntoImageAsync
+  href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_JoinTilesIntoImageAsync_
+  commentId: Overload:GTiff2Tiles.Core.GeoTiffs.Raster.JoinTilesIntoImageAsync
   isSpec: "True"
-  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.MaxCoordinate
-  nameWithType: Raster.MaxCoordinate
-- uid: GTiff2Tiles.Core.GeoTiffs.Raster.MinCoordinate
-  name: MinCoordinate
-  href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_MinCoordinate
-  commentId: P:GTiff2Tiles.Core.GeoTiffs.Raster.MinCoordinate
-  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.MinCoordinate
-  nameWithType: Raster.MinCoordinate
-- uid: GTiff2Tiles.Core.GeoTiffs.Raster.MinCoordinate*
-  name: MinCoordinate
-  href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_MinCoordinate_
-  commentId: Overload:GTiff2Tiles.Core.GeoTiffs.Raster.MinCoordinate
+  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.JoinTilesIntoImageAsync
+  nameWithType: Raster.JoinTilesIntoImageAsync
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToAsyncEnumerable(System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,NetVips.Enums.Kernel,System.Int32,System.Int32,System.Int32,IProgress{System.Double},Action{System.String})
+  name: WriteTilesToAsyncEnumerable(Int32, Int32, Boolean, Size, Enums.Kernel, Int32, Int32, Int32, IProgress<Double>, Action<String>)
+  href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_WriteTilesToAsyncEnumerable_System_Int32_System_Int32_System_Boolean_GTiff2Tiles_Core_Images_Size_NetVips_Enums_Kernel_System_Int32_System_Int32_System_Int32_IProgress_System_Double__Action_System_String__
+  commentId: M:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToAsyncEnumerable(System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,NetVips.Enums.Kernel,System.Int32,System.Int32,System.Int32,IProgress{System.Double},Action{System.String})
+  name.vb: WriteTilesToAsyncEnumerable(Int32, Int32, Boolean, Size, Enums.Kernel, Int32, Int32, Int32, IProgress(Of Double), Action(Of String))
+  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToAsyncEnumerable(System.Int32, System.Int32, System.Boolean, GTiff2Tiles.Core.Images.Size, NetVips.Enums.Kernel, System.Int32, System.Int32, System.Int32, IProgress<System.Double>, Action<System.String>)
+  fullName.vb: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToAsyncEnumerable(System.Int32, System.Int32, System.Boolean, GTiff2Tiles.Core.Images.Size, NetVips.Enums.Kernel, System.Int32, System.Int32, System.Int32, IProgress(Of System.Double), Action(Of System.String))
+  nameWithType: Raster.WriteTilesToAsyncEnumerable(Int32, Int32, Boolean, Size, Enums.Kernel, Int32, Int32, Int32, IProgress<Double>, Action<String>)
+  nameWithType.vb: Raster.WriteTilesToAsyncEnumerable(Int32, Int32, Boolean, Size, Enums.Kernel, Int32, Int32, Int32, IProgress(Of Double), Action(Of String))
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToAsyncEnumerable*
+  name: WriteTilesToAsyncEnumerable
+  href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_WriteTilesToAsyncEnumerable_
+  commentId: Overload:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToAsyncEnumerable
   isSpec: "True"
-  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.MinCoordinate
-  nameWithType: Raster.MinCoordinate
-- uid: GTiff2Tiles.Core.GeoTiffs.Raster.Size
-  name: Size
-  href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_Size
-  commentId: P:GTiff2Tiles.Core.GeoTiffs.Raster.Size
-  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.Size
-  nameWithType: Raster.Size
-- uid: GTiff2Tiles.Core.GeoTiffs.Raster.Size*
-  name: Size
-  href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_Size_
-  commentId: Overload:GTiff2Tiles.Core.GeoTiffs.Raster.Size
+  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToAsyncEnumerable
+  nameWithType: Raster.WriteTilesToAsyncEnumerable
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToChannel(System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.RasterTile},System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,NetVips.Enums.Kernel,System.Int32,System.Int32,System.Int32,IProgress{System.Double},Action{System.String})
+  name: WriteTilesToChannel(ChannelWriter<RasterTile>, Int32, Int32, Boolean, Size, Enums.Kernel, Int32, Int32, Int32, IProgress<Double>, Action<String>)
+  href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_WriteTilesToChannel_System_Threading_Channels_ChannelWriter_GTiff2Tiles_Core_Tiles_RasterTile__System_Int32_System_Int32_System_Boolean_GTiff2Tiles_Core_Images_Size_NetVips_Enums_Kernel_System_Int32_System_Int32_System_Int32_IProgress_System_Double__Action_System_String__
+  commentId: M:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToChannel(System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.RasterTile},System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,NetVips.Enums.Kernel,System.Int32,System.Int32,System.Int32,IProgress{System.Double},Action{System.String})
+  name.vb: WriteTilesToChannel(ChannelWriter(Of RasterTile), Int32, Int32, Boolean, Size, Enums.Kernel, Int32, Int32, Int32, IProgress(Of Double), Action(Of String))
+  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToChannel(System.Threading.Channels.ChannelWriter<GTiff2Tiles.Core.Tiles.RasterTile>, System.Int32, System.Int32, System.Boolean, GTiff2Tiles.Core.Images.Size, NetVips.Enums.Kernel, System.Int32, System.Int32, System.Int32, IProgress<System.Double>, Action<System.String>)
+  fullName.vb: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToChannel(System.Threading.Channels.ChannelWriter(Of GTiff2Tiles.Core.Tiles.RasterTile), System.Int32, System.Int32, System.Boolean, GTiff2Tiles.Core.Images.Size, NetVips.Enums.Kernel, System.Int32, System.Int32, System.Int32, IProgress(Of System.Double), Action(Of System.String))
+  nameWithType: Raster.WriteTilesToChannel(ChannelWriter<RasterTile>, Int32, Int32, Boolean, Size, Enums.Kernel, Int32, Int32, Int32, IProgress<Double>, Action<String>)
+  nameWithType.vb: Raster.WriteTilesToChannel(ChannelWriter(Of RasterTile), Int32, Int32, Boolean, Size, Enums.Kernel, Int32, Int32, Int32, IProgress(Of Double), Action(Of String))
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToChannel*
+  name: WriteTilesToChannel
+  href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_WriteTilesToChannel_
+  commentId: Overload:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToChannel
   isSpec: "True"
-  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.Size
-  nameWithType: Raster.Size
-- uid: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToDirectory(System.String,System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.TileExtension,GTiff2Tiles.Core.Enums.Interpolation,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Action{System.String})
-  name: WriteTilesToDirectory(String, Int32, Int32, Boolean, Size, TileExtension, Interpolation, Int32, Int32, Int32, IProgress<Double>, Action<String>)
-  href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_WriteTilesToDirectory_System_String_System_Int32_System_Int32_System_Boolean_GTiff2Tiles_Core_Images_Size_GTiff2Tiles_Core_Enums_TileExtension_GTiff2Tiles_Core_Enums_Interpolation_System_Int32_System_Int32_System_Int32_System_IProgress_System_Double__System_Action_System_String__
-  commentId: M:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToDirectory(System.String,System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.TileExtension,GTiff2Tiles.Core.Enums.Interpolation,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Action{System.String})
-  name.vb: WriteTilesToDirectory(String, Int32, Int32, Boolean, Size, TileExtension, Interpolation, Int32, Int32, Int32, IProgress(Of Double), Action(Of String))
-  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToDirectory(System.String, System.Int32, System.Int32, System.Boolean, GTiff2Tiles.Core.Images.Size, GTiff2Tiles.Core.Enums.TileExtension, GTiff2Tiles.Core.Enums.Interpolation, System.Int32, System.Int32, System.Int32, System.IProgress<System.Double>, System.Action<System.String>)
-  fullName.vb: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToDirectory(System.String, System.Int32, System.Int32, System.Boolean, GTiff2Tiles.Core.Images.Size, GTiff2Tiles.Core.Enums.TileExtension, GTiff2Tiles.Core.Enums.Interpolation, System.Int32, System.Int32, System.Int32, System.IProgress(Of System.Double), System.Action(Of System.String))
-  nameWithType: Raster.WriteTilesToDirectory(String, Int32, Int32, Boolean, Size, TileExtension, Interpolation, Int32, Int32, Int32, IProgress<Double>, Action<String>)
-  nameWithType.vb: Raster.WriteTilesToDirectory(String, Int32, Int32, Boolean, Size, TileExtension, Interpolation, Int32, Int32, Int32, IProgress(Of Double), Action(Of String))
+  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToChannel
+  nameWithType: Raster.WriteTilesToChannel
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToChannelAsync(System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.RasterTile},System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,NetVips.Enums.Kernel,System.Int32,System.Int32,System.Int32,IProgress{System.Double},Action{System.String})
+  name: WriteTilesToChannelAsync(ChannelWriter<RasterTile>, Int32, Int32, Boolean, Size, Enums.Kernel, Int32, Int32, Int32, IProgress<Double>, Action<String>)
+  href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_WriteTilesToChannelAsync_System_Threading_Channels_ChannelWriter_GTiff2Tiles_Core_Tiles_RasterTile__System_Int32_System_Int32_System_Boolean_GTiff2Tiles_Core_Images_Size_NetVips_Enums_Kernel_System_Int32_System_Int32_System_Int32_IProgress_System_Double__Action_System_String__
+  commentId: M:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToChannelAsync(System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.RasterTile},System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,NetVips.Enums.Kernel,System.Int32,System.Int32,System.Int32,IProgress{System.Double},Action{System.String})
+  name.vb: WriteTilesToChannelAsync(ChannelWriter(Of RasterTile), Int32, Int32, Boolean, Size, Enums.Kernel, Int32, Int32, Int32, IProgress(Of Double), Action(Of String))
+  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToChannelAsync(System.Threading.Channels.ChannelWriter<GTiff2Tiles.Core.Tiles.RasterTile>, System.Int32, System.Int32, System.Boolean, GTiff2Tiles.Core.Images.Size, NetVips.Enums.Kernel, System.Int32, System.Int32, System.Int32, IProgress<System.Double>, Action<System.String>)
+  fullName.vb: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToChannelAsync(System.Threading.Channels.ChannelWriter(Of GTiff2Tiles.Core.Tiles.RasterTile), System.Int32, System.Int32, System.Boolean, GTiff2Tiles.Core.Images.Size, NetVips.Enums.Kernel, System.Int32, System.Int32, System.Int32, IProgress(Of System.Double), Action(Of System.String))
+  nameWithType: Raster.WriteTilesToChannelAsync(ChannelWriter<RasterTile>, Int32, Int32, Boolean, Size, Enums.Kernel, Int32, Int32, Int32, IProgress<Double>, Action<String>)
+  nameWithType.vb: Raster.WriteTilesToChannelAsync(ChannelWriter(Of RasterTile), Int32, Int32, Boolean, Size, Enums.Kernel, Int32, Int32, Int32, IProgress(Of Double), Action(Of String))
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToChannelAsync*
+  name: WriteTilesToChannelAsync
+  href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_WriteTilesToChannelAsync_
+  commentId: Overload:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToChannelAsync
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToChannelAsync
+  nameWithType: Raster.WriteTilesToChannelAsync
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToDirectory(System.String,System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.TileExtension,NetVips.Enums.Kernel,System.Int32,System.Int32,System.Int32,IProgress{System.Double},Action{System.String})
+  name: WriteTilesToDirectory(String, Int32, Int32, Boolean, Size, TileExtension, Enums.Kernel, Int32, Int32, Int32, IProgress<Double>, Action<String>)
+  href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_WriteTilesToDirectory_System_String_System_Int32_System_Int32_System_Boolean_GTiff2Tiles_Core_Images_Size_GTiff2Tiles_Core_Enums_TileExtension_NetVips_Enums_Kernel_System_Int32_System_Int32_System_Int32_IProgress_System_Double__Action_System_String__
+  commentId: M:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToDirectory(System.String,System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.TileExtension,NetVips.Enums.Kernel,System.Int32,System.Int32,System.Int32,IProgress{System.Double},Action{System.String})
+  name.vb: WriteTilesToDirectory(String, Int32, Int32, Boolean, Size, TileExtension, Enums.Kernel, Int32, Int32, Int32, IProgress(Of Double), Action(Of String))
+  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToDirectory(System.String, System.Int32, System.Int32, System.Boolean, GTiff2Tiles.Core.Images.Size, GTiff2Tiles.Core.Enums.TileExtension, NetVips.Enums.Kernel, System.Int32, System.Int32, System.Int32, IProgress<System.Double>, Action<System.String>)
+  fullName.vb: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToDirectory(System.String, System.Int32, System.Int32, System.Boolean, GTiff2Tiles.Core.Images.Size, GTiff2Tiles.Core.Enums.TileExtension, NetVips.Enums.Kernel, System.Int32, System.Int32, System.Int32, IProgress(Of System.Double), Action(Of System.String))
+  nameWithType: Raster.WriteTilesToDirectory(String, Int32, Int32, Boolean, Size, TileExtension, Enums.Kernel, Int32, Int32, Int32, IProgress<Double>, Action<String>)
+  nameWithType.vb: Raster.WriteTilesToDirectory(String, Int32, Int32, Boolean, Size, TileExtension, Enums.Kernel, Int32, Int32, Int32, IProgress(Of Double), Action(Of String))
 - uid: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToDirectory*
   name: WriteTilesToDirectory
   href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_WriteTilesToDirectory_
@@ -1482,6 +2085,38 @@ references:
   isSpec: "True"
   fullName: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToDirectory
   nameWithType: Raster.WriteTilesToDirectory
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToDirectoryAsync(System.String,System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.TileExtension,NetVips.Enums.Kernel,System.Int32,System.Int32,System.Int32,IProgress{System.Double},Action{System.String})
+  name: WriteTilesToDirectoryAsync(String, Int32, Int32, Boolean, Size, TileExtension, Enums.Kernel, Int32, Int32, Int32, IProgress<Double>, Action<String>)
+  href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_WriteTilesToDirectoryAsync_System_String_System_Int32_System_Int32_System_Boolean_GTiff2Tiles_Core_Images_Size_GTiff2Tiles_Core_Enums_TileExtension_NetVips_Enums_Kernel_System_Int32_System_Int32_System_Int32_IProgress_System_Double__Action_System_String__
+  commentId: M:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToDirectoryAsync(System.String,System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.TileExtension,NetVips.Enums.Kernel,System.Int32,System.Int32,System.Int32,IProgress{System.Double},Action{System.String})
+  name.vb: WriteTilesToDirectoryAsync(String, Int32, Int32, Boolean, Size, TileExtension, Enums.Kernel, Int32, Int32, Int32, IProgress(Of Double), Action(Of String))
+  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToDirectoryAsync(System.String, System.Int32, System.Int32, System.Boolean, GTiff2Tiles.Core.Images.Size, GTiff2Tiles.Core.Enums.TileExtension, NetVips.Enums.Kernel, System.Int32, System.Int32, System.Int32, IProgress<System.Double>, Action<System.String>)
+  fullName.vb: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToDirectoryAsync(System.String, System.Int32, System.Int32, System.Boolean, GTiff2Tiles.Core.Images.Size, GTiff2Tiles.Core.Enums.TileExtension, NetVips.Enums.Kernel, System.Int32, System.Int32, System.Int32, IProgress(Of System.Double), Action(Of System.String))
+  nameWithType: Raster.WriteTilesToDirectoryAsync(String, Int32, Int32, Boolean, Size, TileExtension, Enums.Kernel, Int32, Int32, Int32, IProgress<Double>, Action<String>)
+  nameWithType.vb: Raster.WriteTilesToDirectoryAsync(String, Int32, Int32, Boolean, Size, TileExtension, Enums.Kernel, Int32, Int32, Int32, IProgress(Of Double), Action(Of String))
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToDirectoryAsync*
+  name: WriteTilesToDirectoryAsync
+  href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_WriteTilesToDirectoryAsync_
+  commentId: Overload:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToDirectoryAsync
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToDirectoryAsync
+  nameWithType: Raster.WriteTilesToDirectoryAsync
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToEnumerable(System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,NetVips.Enums.Kernel,System.Int32,System.Int32,IProgress{System.Double},Action{System.String})
+  name: WriteTilesToEnumerable(Int32, Int32, Boolean, Size, Enums.Kernel, Int32, Int32, IProgress<Double>, Action<String>)
+  href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_WriteTilesToEnumerable_System_Int32_System_Int32_System_Boolean_GTiff2Tiles_Core_Images_Size_NetVips_Enums_Kernel_System_Int32_System_Int32_IProgress_System_Double__Action_System_String__
+  commentId: M:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToEnumerable(System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,NetVips.Enums.Kernel,System.Int32,System.Int32,IProgress{System.Double},Action{System.String})
+  name.vb: WriteTilesToEnumerable(Int32, Int32, Boolean, Size, Enums.Kernel, Int32, Int32, IProgress(Of Double), Action(Of String))
+  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToEnumerable(System.Int32, System.Int32, System.Boolean, GTiff2Tiles.Core.Images.Size, NetVips.Enums.Kernel, System.Int32, System.Int32, IProgress<System.Double>, Action<System.String>)
+  fullName.vb: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToEnumerable(System.Int32, System.Int32, System.Boolean, GTiff2Tiles.Core.Images.Size, NetVips.Enums.Kernel, System.Int32, System.Int32, IProgress(Of System.Double), Action(Of System.String))
+  nameWithType: Raster.WriteTilesToEnumerable(Int32, Int32, Boolean, Size, Enums.Kernel, Int32, Int32, IProgress<Double>, Action<String>)
+  nameWithType.vb: Raster.WriteTilesToEnumerable(Int32, Int32, Boolean, Size, Enums.Kernel, Int32, Int32, IProgress(Of Double), Action(Of String))
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToEnumerable*
+  name: WriteTilesToEnumerable
+  href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_WriteTilesToEnumerable_
+  commentId: Overload:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToEnumerable
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToEnumerable
+  nameWithType: Raster.WriteTilesToEnumerable
 - uid: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToChannel(NetVips.Image,GTiff2Tiles.Core.Tiles.RasterTile,System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.RasterTile})
   name: WriteTileToChannel(Image, RasterTile, ChannelWriter<RasterTile>)
   href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_WriteTileToChannel_NetVips_Image_GTiff2Tiles_Core_Tiles_RasterTile_System_Threading_Channels_ChannelWriter_GTiff2Tiles_Core_Tiles_RasterTile__
@@ -1648,13 +2283,13 @@ references:
   isSpec: "True"
   fullName: GTiff2Tiles.Core.Helpers.ProgressHelper.GetEstimatedTimeLeft
   nameWithType: ProgressHelper.GetEstimatedTimeLeft
-- uid: GTiff2Tiles.Core.Helpers.ProgressHelper.PrintEstimatedTimeLeft(System.Double,System.Diagnostics.Stopwatch,System.Action{System.String})
+- uid: GTiff2Tiles.Core.Helpers.ProgressHelper.PrintEstimatedTimeLeft(System.Double,System.Diagnostics.Stopwatch,Action{System.String})
   name: PrintEstimatedTimeLeft(Double, Stopwatch, Action<String>)
-  href: api/GTiff2Tiles.Core.Helpers.ProgressHelper.html#GTiff2Tiles_Core_Helpers_ProgressHelper_PrintEstimatedTimeLeft_System_Double_System_Diagnostics_Stopwatch_System_Action_System_String__
-  commentId: M:GTiff2Tiles.Core.Helpers.ProgressHelper.PrintEstimatedTimeLeft(System.Double,System.Diagnostics.Stopwatch,System.Action{System.String})
+  href: api/GTiff2Tiles.Core.Helpers.ProgressHelper.html#GTiff2Tiles_Core_Helpers_ProgressHelper_PrintEstimatedTimeLeft_System_Double_System_Diagnostics_Stopwatch_Action_System_String__
+  commentId: M:GTiff2Tiles.Core.Helpers.ProgressHelper.PrintEstimatedTimeLeft(System.Double,System.Diagnostics.Stopwatch,Action{System.String})
   name.vb: PrintEstimatedTimeLeft(Double, Stopwatch, Action(Of String))
-  fullName: GTiff2Tiles.Core.Helpers.ProgressHelper.PrintEstimatedTimeLeft(System.Double, System.Diagnostics.Stopwatch, System.Action<System.String>)
-  fullName.vb: GTiff2Tiles.Core.Helpers.ProgressHelper.PrintEstimatedTimeLeft(System.Double, System.Diagnostics.Stopwatch, System.Action(Of System.String))
+  fullName: GTiff2Tiles.Core.Helpers.ProgressHelper.PrintEstimatedTimeLeft(System.Double, System.Diagnostics.Stopwatch, Action<System.String>)
+  fullName.vb: GTiff2Tiles.Core.Helpers.ProgressHelper.PrintEstimatedTimeLeft(System.Double, System.Diagnostics.Stopwatch, Action(Of System.String))
   nameWithType: ProgressHelper.PrintEstimatedTimeLeft(Double, Stopwatch, Action<String>)
   nameWithType.vb: ProgressHelper.PrintEstimatedTimeLeft(Double, Stopwatch, Action(Of String))
 - uid: GTiff2Tiles.Core.Helpers.ProgressHelper.PrintEstimatedTimeLeft*
@@ -1753,13 +2388,13 @@ references:
   isSpec: "True"
   fullName: GTiff2Tiles.Core.Images.Band.Band
   nameWithType: Band.Band
-- uid: GTiff2Tiles.Core.Images.Band.AddBands(NetVips.Image@,System.Collections.Generic.IEnumerable{GTiff2Tiles.Core.Images.Band})
+- uid: GTiff2Tiles.Core.Images.Band.AddBands(NetVips.Image@,IEnumerable{GTiff2Tiles.Core.Images.Band})
   name: AddBands(ref Image, IEnumerable<Band>)
-  href: api/GTiff2Tiles.Core.Images.Band.html#GTiff2Tiles_Core_Images_Band_AddBands_NetVips_Image__System_Collections_Generic_IEnumerable_GTiff2Tiles_Core_Images_Band__
-  commentId: M:GTiff2Tiles.Core.Images.Band.AddBands(NetVips.Image@,System.Collections.Generic.IEnumerable{GTiff2Tiles.Core.Images.Band})
+  href: api/GTiff2Tiles.Core.Images.Band.html#GTiff2Tiles_Core_Images_Band_AddBands_NetVips_Image__IEnumerable_GTiff2Tiles_Core_Images_Band__
+  commentId: M:GTiff2Tiles.Core.Images.Band.AddBands(NetVips.Image@,IEnumerable{GTiff2Tiles.Core.Images.Band})
   name.vb: AddBands(ByRef Image, IEnumerable(Of Band))
-  fullName: GTiff2Tiles.Core.Images.Band.AddBands(ref NetVips.Image, System.Collections.Generic.IEnumerable<GTiff2Tiles.Core.Images.Band>)
-  fullName.vb: GTiff2Tiles.Core.Images.Band.AddBands(ByRef NetVips.Image, System.Collections.Generic.IEnumerable(Of GTiff2Tiles.Core.Images.Band))
+  fullName: GTiff2Tiles.Core.Images.Band.AddBands(ref NetVips.Image, IEnumerable<GTiff2Tiles.Core.Images.Band>)
+  fullName.vb: GTiff2Tiles.Core.Images.Band.AddBands(ByRef NetVips.Image, IEnumerable(Of GTiff2Tiles.Core.Images.Band))
   nameWithType: Band.AddBands(ref Image, IEnumerable<Band>)
   nameWithType.vb: Band.AddBands(ByRef Image, IEnumerable(Of Band))
 - uid: GTiff2Tiles.Core.Images.Band.AddBands*
@@ -2037,6 +2672,616 @@ references:
   isSpec: "True"
   fullName: GTiff2Tiles.Core.Images.Size.Width
   nameWithType: Size.Width
+- uid: GTiff2Tiles.Core.TileGenerator
+  name: TileGenerator
+  href: api/GTiff2Tiles.Core.TileGenerator.html
+  commentId: T:GTiff2Tiles.Core.TileGenerator
+  fullName: GTiff2Tiles.Core.TileGenerator
+  nameWithType: TileGenerator
+- uid: GTiff2Tiles.Core.TileGenerator.WriteLowerRasterTiles(GTiff2Tiles.Core.Tiles.RasterTile)
+  name: WriteLowerRasterTiles(RasterTile)
+  href: api/GTiff2Tiles.Core.TileGenerator.html#GTiff2Tiles_Core_TileGenerator_WriteLowerRasterTiles_GTiff2Tiles_Core_Tiles_RasterTile_
+  commentId: M:GTiff2Tiles.Core.TileGenerator.WriteLowerRasterTiles(GTiff2Tiles.Core.Tiles.RasterTile)
+  fullName: GTiff2Tiles.Core.TileGenerator.WriteLowerRasterTiles(GTiff2Tiles.Core.Tiles.RasterTile)
+  nameWithType: TileGenerator.WriteLowerRasterTiles(RasterTile)
+- uid: GTiff2Tiles.Core.TileGenerator.WriteLowerRasterTiles*
+  name: WriteLowerRasterTiles
+  href: api/GTiff2Tiles.Core.TileGenerator.html#GTiff2Tiles_Core_TileGenerator_WriteLowerRasterTiles_
+  commentId: Overload:GTiff2Tiles.Core.TileGenerator.WriteLowerRasterTiles
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.TileGenerator.WriteLowerRasterTiles
+  nameWithType: TileGenerator.WriteLowerRasterTiles
+- uid: GTiff2Tiles.Core.TileGenerator.WriteOverviewRasterTilesToChannel(IEnumerable{GTiff2Tiles.Core.Tiles.RasterTile},System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.RasterTile},GTiff2Tiles.Core.Args.WriteRasterTilesArgs)
+  name: WriteOverviewRasterTilesToChannel(IEnumerable<RasterTile>, ChannelWriter<RasterTile>, WriteRasterTilesArgs)
+  href: api/GTiff2Tiles.Core.TileGenerator.html#GTiff2Tiles_Core_TileGenerator_WriteOverviewRasterTilesToChannel_IEnumerable_GTiff2Tiles_Core_Tiles_RasterTile__System_Threading_Channels_ChannelWriter_GTiff2Tiles_Core_Tiles_RasterTile__GTiff2Tiles_Core_Args_WriteRasterTilesArgs_
+  commentId: M:GTiff2Tiles.Core.TileGenerator.WriteOverviewRasterTilesToChannel(IEnumerable{GTiff2Tiles.Core.Tiles.RasterTile},System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.RasterTile},GTiff2Tiles.Core.Args.WriteRasterTilesArgs)
+  name.vb: WriteOverviewRasterTilesToChannel(IEnumerable(Of RasterTile), ChannelWriter(Of RasterTile), WriteRasterTilesArgs)
+  fullName: GTiff2Tiles.Core.TileGenerator.WriteOverviewRasterTilesToChannel(IEnumerable<GTiff2Tiles.Core.Tiles.RasterTile>, System.Threading.Channels.ChannelWriter<GTiff2Tiles.Core.Tiles.RasterTile>, GTiff2Tiles.Core.Args.WriteRasterTilesArgs)
+  fullName.vb: GTiff2Tiles.Core.TileGenerator.WriteOverviewRasterTilesToChannel(IEnumerable(Of GTiff2Tiles.Core.Tiles.RasterTile), System.Threading.Channels.ChannelWriter(Of GTiff2Tiles.Core.Tiles.RasterTile), GTiff2Tiles.Core.Args.WriteRasterTilesArgs)
+  nameWithType: TileGenerator.WriteOverviewRasterTilesToChannel(IEnumerable<RasterTile>, ChannelWriter<RasterTile>, WriteRasterTilesArgs)
+  nameWithType.vb: TileGenerator.WriteOverviewRasterTilesToChannel(IEnumerable(Of RasterTile), ChannelWriter(Of RasterTile), WriteRasterTilesArgs)
+- uid: GTiff2Tiles.Core.TileGenerator.WriteOverviewRasterTilesToChannel*
+  name: WriteOverviewRasterTilesToChannel
+  href: api/GTiff2Tiles.Core.TileGenerator.html#GTiff2Tiles_Core_TileGenerator_WriteOverviewRasterTilesToChannel_
+  commentId: Overload:GTiff2Tiles.Core.TileGenerator.WriteOverviewRasterTilesToChannel
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.TileGenerator.WriteOverviewRasterTilesToChannel
+  nameWithType: TileGenerator.WriteOverviewRasterTilesToChannel
+- uid: GTiff2Tiles.Core.TileGenerator.WriteRasterTilesToChannel(GTiff2Tiles.Core.GeoTiffs.Raster,System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.RasterTile},GTiff2Tiles.Core.Args.WriteRasterTilesArgs)
+  name: WriteRasterTilesToChannel(Raster, ChannelWriter<RasterTile>, WriteRasterTilesArgs)
+  href: api/GTiff2Tiles.Core.TileGenerator.html#GTiff2Tiles_Core_TileGenerator_WriteRasterTilesToChannel_GTiff2Tiles_Core_GeoTiffs_Raster_System_Threading_Channels_ChannelWriter_GTiff2Tiles_Core_Tiles_RasterTile__GTiff2Tiles_Core_Args_WriteRasterTilesArgs_
+  commentId: M:GTiff2Tiles.Core.TileGenerator.WriteRasterTilesToChannel(GTiff2Tiles.Core.GeoTiffs.Raster,System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.RasterTile},GTiff2Tiles.Core.Args.WriteRasterTilesArgs)
+  name.vb: WriteRasterTilesToChannel(Raster, ChannelWriter(Of RasterTile), WriteRasterTilesArgs)
+  fullName: GTiff2Tiles.Core.TileGenerator.WriteRasterTilesToChannel(GTiff2Tiles.Core.GeoTiffs.Raster, System.Threading.Channels.ChannelWriter<GTiff2Tiles.Core.Tiles.RasterTile>, GTiff2Tiles.Core.Args.WriteRasterTilesArgs)
+  fullName.vb: GTiff2Tiles.Core.TileGenerator.WriteRasterTilesToChannel(GTiff2Tiles.Core.GeoTiffs.Raster, System.Threading.Channels.ChannelWriter(Of GTiff2Tiles.Core.Tiles.RasterTile), GTiff2Tiles.Core.Args.WriteRasterTilesArgs)
+  nameWithType: TileGenerator.WriteRasterTilesToChannel(Raster, ChannelWriter<RasterTile>, WriteRasterTilesArgs)
+  nameWithType.vb: TileGenerator.WriteRasterTilesToChannel(Raster, ChannelWriter(Of RasterTile), WriteRasterTilesArgs)
+- uid: GTiff2Tiles.Core.TileGenerator.WriteRasterTilesToChannel*
+  name: WriteRasterTilesToChannel
+  href: api/GTiff2Tiles.Core.TileGenerator.html#GTiff2Tiles_Core_TileGenerator_WriteRasterTilesToChannel_
+  commentId: Overload:GTiff2Tiles.Core.TileGenerator.WriteRasterTilesToChannel
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.TileGenerator.WriteRasterTilesToChannel
+  nameWithType: TileGenerator.WriteRasterTilesToChannel
+- uid: GTiff2Tiles.Core.TileGenerator.WriteRasterTilesToDirectory(GTiff2Tiles.Core.GeoTiffs.Raster,GTiff2Tiles.Core.Args.WriteRasterTilesArgs)
+  name: WriteRasterTilesToDirectory(Raster, WriteRasterTilesArgs)
+  href: api/GTiff2Tiles.Core.TileGenerator.html#GTiff2Tiles_Core_TileGenerator_WriteRasterTilesToDirectory_GTiff2Tiles_Core_GeoTiffs_Raster_GTiff2Tiles_Core_Args_WriteRasterTilesArgs_
+  commentId: M:GTiff2Tiles.Core.TileGenerator.WriteRasterTilesToDirectory(GTiff2Tiles.Core.GeoTiffs.Raster,GTiff2Tiles.Core.Args.WriteRasterTilesArgs)
+  fullName: GTiff2Tiles.Core.TileGenerator.WriteRasterTilesToDirectory(GTiff2Tiles.Core.GeoTiffs.Raster, GTiff2Tiles.Core.Args.WriteRasterTilesArgs)
+  nameWithType: TileGenerator.WriteRasterTilesToDirectory(Raster, WriteRasterTilesArgs)
+- uid: GTiff2Tiles.Core.TileGenerator.WriteRasterTilesToDirectory*
+  name: WriteRasterTilesToDirectory
+  href: api/GTiff2Tiles.Core.TileGenerator.html#GTiff2Tiles_Core_TileGenerator_WriteRasterTilesToDirectory_
+  commentId: Overload:GTiff2Tiles.Core.TileGenerator.WriteRasterTilesToDirectory
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.TileGenerator.WriteRasterTilesToDirectory
+  nameWithType: TileGenerator.WriteRasterTilesToDirectory
+- uid: GTiff2Tiles.Core.TileGenerator.WriteRasterTilesToEnumerable(GTiff2Tiles.Core.GeoTiffs.Raster,GTiff2Tiles.Core.Args.WriteRasterTilesArgs)
+  name: WriteRasterTilesToEnumerable(Raster, WriteRasterTilesArgs)
+  href: api/GTiff2Tiles.Core.TileGenerator.html#GTiff2Tiles_Core_TileGenerator_WriteRasterTilesToEnumerable_GTiff2Tiles_Core_GeoTiffs_Raster_GTiff2Tiles_Core_Args_WriteRasterTilesArgs_
+  commentId: M:GTiff2Tiles.Core.TileGenerator.WriteRasterTilesToEnumerable(GTiff2Tiles.Core.GeoTiffs.Raster,GTiff2Tiles.Core.Args.WriteRasterTilesArgs)
+  fullName: GTiff2Tiles.Core.TileGenerator.WriteRasterTilesToEnumerable(GTiff2Tiles.Core.GeoTiffs.Raster, GTiff2Tiles.Core.Args.WriteRasterTilesArgs)
+  nameWithType: TileGenerator.WriteRasterTilesToEnumerable(Raster, WriteRasterTilesArgs)
+- uid: GTiff2Tiles.Core.TileGenerator.WriteRasterTilesToEnumerable*
+  name: WriteRasterTilesToEnumerable
+  href: api/GTiff2Tiles.Core.TileGenerator.html#GTiff2Tiles_Core_TileGenerator_WriteRasterTilesToEnumerable_
+  commentId: Overload:GTiff2Tiles.Core.TileGenerator.WriteRasterTilesToEnumerable
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.TileGenerator.WriteRasterTilesToEnumerable
+  nameWithType: TileGenerator.WriteRasterTilesToEnumerable
+- uid: GTiff2Tiles.Core.TileMapResource
+  name: GTiff2Tiles.Core.TileMapResource
+  href: api/GTiff2Tiles.Core.TileMapResource.html
+  commentId: N:GTiff2Tiles.Core.TileMapResource
+  fullName: GTiff2Tiles.Core.TileMapResource
+  nameWithType: GTiff2Tiles.Core.TileMapResource
+- uid: GTiff2Tiles.Core.TileMapResource.BoundingBox
+  name: BoundingBox
+  href: api/GTiff2Tiles.Core.TileMapResource.BoundingBox.html
+  commentId: T:GTiff2Tiles.Core.TileMapResource.BoundingBox
+  fullName: GTiff2Tiles.Core.TileMapResource.BoundingBox
+  nameWithType: BoundingBox
+- uid: GTiff2Tiles.Core.TileMapResource.BoundingBox.#ctor
+  name: BoundingBox()
+  href: api/GTiff2Tiles.Core.TileMapResource.BoundingBox.html#GTiff2Tiles_Core_TileMapResource_BoundingBox__ctor
+  commentId: M:GTiff2Tiles.Core.TileMapResource.BoundingBox.#ctor
+  fullName: GTiff2Tiles.Core.TileMapResource.BoundingBox.BoundingBox()
+  nameWithType: BoundingBox.BoundingBox()
+- uid: GTiff2Tiles.Core.TileMapResource.BoundingBox.#ctor(GTiff2Tiles.Core.Coordinates.ICoordinate,GTiff2Tiles.Core.Coordinates.ICoordinate)
+  name: BoundingBox(ICoordinate, ICoordinate)
+  href: api/GTiff2Tiles.Core.TileMapResource.BoundingBox.html#GTiff2Tiles_Core_TileMapResource_BoundingBox__ctor_GTiff2Tiles_Core_Coordinates_ICoordinate_GTiff2Tiles_Core_Coordinates_ICoordinate_
+  commentId: M:GTiff2Tiles.Core.TileMapResource.BoundingBox.#ctor(GTiff2Tiles.Core.Coordinates.ICoordinate,GTiff2Tiles.Core.Coordinates.ICoordinate)
+  fullName: GTiff2Tiles.Core.TileMapResource.BoundingBox.BoundingBox(GTiff2Tiles.Core.Coordinates.ICoordinate, GTiff2Tiles.Core.Coordinates.ICoordinate)
+  nameWithType: BoundingBox.BoundingBox(ICoordinate, ICoordinate)
+- uid: GTiff2Tiles.Core.TileMapResource.BoundingBox.#ctor(System.Double,System.Double,System.Double,System.Double)
+  name: BoundingBox(Double, Double, Double, Double)
+  href: api/GTiff2Tiles.Core.TileMapResource.BoundingBox.html#GTiff2Tiles_Core_TileMapResource_BoundingBox__ctor_System_Double_System_Double_System_Double_System_Double_
+  commentId: M:GTiff2Tiles.Core.TileMapResource.BoundingBox.#ctor(System.Double,System.Double,System.Double,System.Double)
+  fullName: GTiff2Tiles.Core.TileMapResource.BoundingBox.BoundingBox(System.Double, System.Double, System.Double, System.Double)
+  nameWithType: BoundingBox.BoundingBox(Double, Double, Double, Double)
+- uid: GTiff2Tiles.Core.TileMapResource.BoundingBox.#ctor*
+  name: BoundingBox
+  href: api/GTiff2Tiles.Core.TileMapResource.BoundingBox.html#GTiff2Tiles_Core_TileMapResource_BoundingBox__ctor_
+  commentId: Overload:GTiff2Tiles.Core.TileMapResource.BoundingBox.#ctor
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.TileMapResource.BoundingBox.BoundingBox
+  nameWithType: BoundingBox.BoundingBox
+- uid: GTiff2Tiles.Core.TileMapResource.BoundingBox.MaxX
+  name: MaxX
+  href: api/GTiff2Tiles.Core.TileMapResource.BoundingBox.html#GTiff2Tiles_Core_TileMapResource_BoundingBox_MaxX
+  commentId: P:GTiff2Tiles.Core.TileMapResource.BoundingBox.MaxX
+  fullName: GTiff2Tiles.Core.TileMapResource.BoundingBox.MaxX
+  nameWithType: BoundingBox.MaxX
+- uid: GTiff2Tiles.Core.TileMapResource.BoundingBox.MaxX*
+  name: MaxX
+  href: api/GTiff2Tiles.Core.TileMapResource.BoundingBox.html#GTiff2Tiles_Core_TileMapResource_BoundingBox_MaxX_
+  commentId: Overload:GTiff2Tiles.Core.TileMapResource.BoundingBox.MaxX
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.TileMapResource.BoundingBox.MaxX
+  nameWithType: BoundingBox.MaxX
+- uid: GTiff2Tiles.Core.TileMapResource.BoundingBox.MaxY
+  name: MaxY
+  href: api/GTiff2Tiles.Core.TileMapResource.BoundingBox.html#GTiff2Tiles_Core_TileMapResource_BoundingBox_MaxY
+  commentId: P:GTiff2Tiles.Core.TileMapResource.BoundingBox.MaxY
+  fullName: GTiff2Tiles.Core.TileMapResource.BoundingBox.MaxY
+  nameWithType: BoundingBox.MaxY
+- uid: GTiff2Tiles.Core.TileMapResource.BoundingBox.MaxY*
+  name: MaxY
+  href: api/GTiff2Tiles.Core.TileMapResource.BoundingBox.html#GTiff2Tiles_Core_TileMapResource_BoundingBox_MaxY_
+  commentId: Overload:GTiff2Tiles.Core.TileMapResource.BoundingBox.MaxY
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.TileMapResource.BoundingBox.MaxY
+  nameWithType: BoundingBox.MaxY
+- uid: GTiff2Tiles.Core.TileMapResource.BoundingBox.MinX
+  name: MinX
+  href: api/GTiff2Tiles.Core.TileMapResource.BoundingBox.html#GTiff2Tiles_Core_TileMapResource_BoundingBox_MinX
+  commentId: P:GTiff2Tiles.Core.TileMapResource.BoundingBox.MinX
+  fullName: GTiff2Tiles.Core.TileMapResource.BoundingBox.MinX
+  nameWithType: BoundingBox.MinX
+- uid: GTiff2Tiles.Core.TileMapResource.BoundingBox.MinX*
+  name: MinX
+  href: api/GTiff2Tiles.Core.TileMapResource.BoundingBox.html#GTiff2Tiles_Core_TileMapResource_BoundingBox_MinX_
+  commentId: Overload:GTiff2Tiles.Core.TileMapResource.BoundingBox.MinX
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.TileMapResource.BoundingBox.MinX
+  nameWithType: BoundingBox.MinX
+- uid: GTiff2Tiles.Core.TileMapResource.BoundingBox.MinY
+  name: MinY
+  href: api/GTiff2Tiles.Core.TileMapResource.BoundingBox.html#GTiff2Tiles_Core_TileMapResource_BoundingBox_MinY
+  commentId: P:GTiff2Tiles.Core.TileMapResource.BoundingBox.MinY
+  fullName: GTiff2Tiles.Core.TileMapResource.BoundingBox.MinY
+  nameWithType: BoundingBox.MinY
+- uid: GTiff2Tiles.Core.TileMapResource.BoundingBox.MinY*
+  name: MinY
+  href: api/GTiff2Tiles.Core.TileMapResource.BoundingBox.html#GTiff2Tiles_Core_TileMapResource_BoundingBox_MinY_
+  commentId: Overload:GTiff2Tiles.Core.TileMapResource.BoundingBox.MinY
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.TileMapResource.BoundingBox.MinY
+  nameWithType: BoundingBox.MinY
+- uid: GTiff2Tiles.Core.TileMapResource.Origin
+  name: Origin
+  href: api/GTiff2Tiles.Core.TileMapResource.Origin.html
+  commentId: T:GTiff2Tiles.Core.TileMapResource.Origin
+  fullName: GTiff2Tiles.Core.TileMapResource.Origin
+  nameWithType: Origin
+- uid: GTiff2Tiles.Core.TileMapResource.Origin.#ctor
+  name: Origin()
+  href: api/GTiff2Tiles.Core.TileMapResource.Origin.html#GTiff2Tiles_Core_TileMapResource_Origin__ctor
+  commentId: M:GTiff2Tiles.Core.TileMapResource.Origin.#ctor
+  fullName: GTiff2Tiles.Core.TileMapResource.Origin.Origin()
+  nameWithType: Origin.Origin()
+- uid: GTiff2Tiles.Core.TileMapResource.Origin.#ctor(GTiff2Tiles.Core.Coordinates.ICoordinate)
+  name: Origin(ICoordinate)
+  href: api/GTiff2Tiles.Core.TileMapResource.Origin.html#GTiff2Tiles_Core_TileMapResource_Origin__ctor_GTiff2Tiles_Core_Coordinates_ICoordinate_
+  commentId: M:GTiff2Tiles.Core.TileMapResource.Origin.#ctor(GTiff2Tiles.Core.Coordinates.ICoordinate)
+  fullName: GTiff2Tiles.Core.TileMapResource.Origin.Origin(GTiff2Tiles.Core.Coordinates.ICoordinate)
+  nameWithType: Origin.Origin(ICoordinate)
+- uid: GTiff2Tiles.Core.TileMapResource.Origin.#ctor(System.Double,System.Double)
+  name: Origin(Double, Double)
+  href: api/GTiff2Tiles.Core.TileMapResource.Origin.html#GTiff2Tiles_Core_TileMapResource_Origin__ctor_System_Double_System_Double_
+  commentId: M:GTiff2Tiles.Core.TileMapResource.Origin.#ctor(System.Double,System.Double)
+  fullName: GTiff2Tiles.Core.TileMapResource.Origin.Origin(System.Double, System.Double)
+  nameWithType: Origin.Origin(Double, Double)
+- uid: GTiff2Tiles.Core.TileMapResource.Origin.#ctor*
+  name: Origin
+  href: api/GTiff2Tiles.Core.TileMapResource.Origin.html#GTiff2Tiles_Core_TileMapResource_Origin__ctor_
+  commentId: Overload:GTiff2Tiles.Core.TileMapResource.Origin.#ctor
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.TileMapResource.Origin.Origin
+  nameWithType: Origin.Origin
+- uid: GTiff2Tiles.Core.TileMapResource.Origin.X
+  name: X
+  href: api/GTiff2Tiles.Core.TileMapResource.Origin.html#GTiff2Tiles_Core_TileMapResource_Origin_X
+  commentId: P:GTiff2Tiles.Core.TileMapResource.Origin.X
+  fullName: GTiff2Tiles.Core.TileMapResource.Origin.X
+  nameWithType: Origin.X
+- uid: GTiff2Tiles.Core.TileMapResource.Origin.X*
+  name: X
+  href: api/GTiff2Tiles.Core.TileMapResource.Origin.html#GTiff2Tiles_Core_TileMapResource_Origin_X_
+  commentId: Overload:GTiff2Tiles.Core.TileMapResource.Origin.X
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.TileMapResource.Origin.X
+  nameWithType: Origin.X
+- uid: GTiff2Tiles.Core.TileMapResource.Origin.Y
+  name: Y
+  href: api/GTiff2Tiles.Core.TileMapResource.Origin.html#GTiff2Tiles_Core_TileMapResource_Origin_Y
+  commentId: P:GTiff2Tiles.Core.TileMapResource.Origin.Y
+  fullName: GTiff2Tiles.Core.TileMapResource.Origin.Y
+  nameWithType: Origin.Y
+- uid: GTiff2Tiles.Core.TileMapResource.Origin.Y*
+  name: Y
+  href: api/GTiff2Tiles.Core.TileMapResource.Origin.html#GTiff2Tiles_Core_TileMapResource_Origin_Y_
+  commentId: Overload:GTiff2Tiles.Core.TileMapResource.Origin.Y
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.TileMapResource.Origin.Y
+  nameWithType: Origin.Y
+- uid: GTiff2Tiles.Core.TileMapResource.TileFormat
+  name: TileFormat
+  href: api/GTiff2Tiles.Core.TileMapResource.TileFormat.html
+  commentId: T:GTiff2Tiles.Core.TileMapResource.TileFormat
+  fullName: GTiff2Tiles.Core.TileMapResource.TileFormat
+  nameWithType: TileFormat
+- uid: GTiff2Tiles.Core.TileMapResource.TileFormat.#ctor
+  name: TileFormat()
+  href: api/GTiff2Tiles.Core.TileMapResource.TileFormat.html#GTiff2Tiles_Core_TileMapResource_TileFormat__ctor
+  commentId: M:GTiff2Tiles.Core.TileMapResource.TileFormat.#ctor
+  fullName: GTiff2Tiles.Core.TileMapResource.TileFormat.TileFormat()
+  nameWithType: TileFormat.TileFormat()
+- uid: GTiff2Tiles.Core.TileMapResource.TileFormat.#ctor(GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.TileExtension)
+  name: TileFormat(Size, TileExtension)
+  href: api/GTiff2Tiles.Core.TileMapResource.TileFormat.html#GTiff2Tiles_Core_TileMapResource_TileFormat__ctor_GTiff2Tiles_Core_Images_Size_GTiff2Tiles_Core_Enums_TileExtension_
+  commentId: M:GTiff2Tiles.Core.TileMapResource.TileFormat.#ctor(GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.TileExtension)
+  fullName: GTiff2Tiles.Core.TileMapResource.TileFormat.TileFormat(GTiff2Tiles.Core.Images.Size, GTiff2Tiles.Core.Enums.TileExtension)
+  nameWithType: TileFormat.TileFormat(Size, TileExtension)
+- uid: GTiff2Tiles.Core.TileMapResource.TileFormat.#ctor(System.Int32,System.Int32,System.String,System.String)
+  name: TileFormat(Int32, Int32, String, String)
+  href: api/GTiff2Tiles.Core.TileMapResource.TileFormat.html#GTiff2Tiles_Core_TileMapResource_TileFormat__ctor_System_Int32_System_Int32_System_String_System_String_
+  commentId: M:GTiff2Tiles.Core.TileMapResource.TileFormat.#ctor(System.Int32,System.Int32,System.String,System.String)
+  fullName: GTiff2Tiles.Core.TileMapResource.TileFormat.TileFormat(System.Int32, System.Int32, System.String, System.String)
+  nameWithType: TileFormat.TileFormat(Int32, Int32, String, String)
+- uid: GTiff2Tiles.Core.TileMapResource.TileFormat.#ctor*
+  name: TileFormat
+  href: api/GTiff2Tiles.Core.TileMapResource.TileFormat.html#GTiff2Tiles_Core_TileMapResource_TileFormat__ctor_
+  commentId: Overload:GTiff2Tiles.Core.TileMapResource.TileFormat.#ctor
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.TileMapResource.TileFormat.TileFormat
+  nameWithType: TileFormat.TileFormat
+- uid: GTiff2Tiles.Core.TileMapResource.TileFormat.Extension
+  name: Extension
+  href: api/GTiff2Tiles.Core.TileMapResource.TileFormat.html#GTiff2Tiles_Core_TileMapResource_TileFormat_Extension
+  commentId: P:GTiff2Tiles.Core.TileMapResource.TileFormat.Extension
+  fullName: GTiff2Tiles.Core.TileMapResource.TileFormat.Extension
+  nameWithType: TileFormat.Extension
+- uid: GTiff2Tiles.Core.TileMapResource.TileFormat.Extension*
+  name: Extension
+  href: api/GTiff2Tiles.Core.TileMapResource.TileFormat.html#GTiff2Tiles_Core_TileMapResource_TileFormat_Extension_
+  commentId: Overload:GTiff2Tiles.Core.TileMapResource.TileFormat.Extension
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.TileMapResource.TileFormat.Extension
+  nameWithType: TileFormat.Extension
+- uid: GTiff2Tiles.Core.TileMapResource.TileFormat.Height
+  name: Height
+  href: api/GTiff2Tiles.Core.TileMapResource.TileFormat.html#GTiff2Tiles_Core_TileMapResource_TileFormat_Height
+  commentId: P:GTiff2Tiles.Core.TileMapResource.TileFormat.Height
+  fullName: GTiff2Tiles.Core.TileMapResource.TileFormat.Height
+  nameWithType: TileFormat.Height
+- uid: GTiff2Tiles.Core.TileMapResource.TileFormat.Height*
+  name: Height
+  href: api/GTiff2Tiles.Core.TileMapResource.TileFormat.html#GTiff2Tiles_Core_TileMapResource_TileFormat_Height_
+  commentId: Overload:GTiff2Tiles.Core.TileMapResource.TileFormat.Height
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.TileMapResource.TileFormat.Height
+  nameWithType: TileFormat.Height
+- uid: GTiff2Tiles.Core.TileMapResource.TileFormat.MimeType
+  name: MimeType
+  href: api/GTiff2Tiles.Core.TileMapResource.TileFormat.html#GTiff2Tiles_Core_TileMapResource_TileFormat_MimeType
+  commentId: P:GTiff2Tiles.Core.TileMapResource.TileFormat.MimeType
+  fullName: GTiff2Tiles.Core.TileMapResource.TileFormat.MimeType
+  nameWithType: TileFormat.MimeType
+- uid: GTiff2Tiles.Core.TileMapResource.TileFormat.MimeType*
+  name: MimeType
+  href: api/GTiff2Tiles.Core.TileMapResource.TileFormat.html#GTiff2Tiles_Core_TileMapResource_TileFormat_MimeType_
+  commentId: Overload:GTiff2Tiles.Core.TileMapResource.TileFormat.MimeType
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.TileMapResource.TileFormat.MimeType
+  nameWithType: TileFormat.MimeType
+- uid: GTiff2Tiles.Core.TileMapResource.TileFormat.Width
+  name: Width
+  href: api/GTiff2Tiles.Core.TileMapResource.TileFormat.html#GTiff2Tiles_Core_TileMapResource_TileFormat_Width
+  commentId: P:GTiff2Tiles.Core.TileMapResource.TileFormat.Width
+  fullName: GTiff2Tiles.Core.TileMapResource.TileFormat.Width
+  nameWithType: TileFormat.Width
+- uid: GTiff2Tiles.Core.TileMapResource.TileFormat.Width*
+  name: Width
+  href: api/GTiff2Tiles.Core.TileMapResource.TileFormat.html#GTiff2Tiles_Core_TileMapResource_TileFormat_Width_
+  commentId: Overload:GTiff2Tiles.Core.TileMapResource.TileFormat.Width
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.TileMapResource.TileFormat.Width
+  nameWithType: TileFormat.Width
+- uid: GTiff2Tiles.Core.TileMapResource.TileMap
+  name: TileMap
+  href: api/GTiff2Tiles.Core.TileMapResource.TileMap.html
+  commentId: T:GTiff2Tiles.Core.TileMapResource.TileMap
+  fullName: GTiff2Tiles.Core.TileMapResource.TileMap
+  nameWithType: TileMap
+- uid: GTiff2Tiles.Core.TileMapResource.TileMap.#ctor
+  name: TileMap()
+  href: api/GTiff2Tiles.Core.TileMapResource.TileMap.html#GTiff2Tiles_Core_TileMapResource_TileMap__ctor
+  commentId: M:GTiff2Tiles.Core.TileMapResource.TileMap.#ctor
+  fullName: GTiff2Tiles.Core.TileMapResource.TileMap.TileMap()
+  nameWithType: TileMap.TileMap()
+- uid: GTiff2Tiles.Core.TileMapResource.TileMap.#ctor(GTiff2Tiles.Core.Coordinates.ICoordinate,GTiff2Tiles.Core.Coordinates.ICoordinate,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.TileExtension,IEnumerable{GTiff2Tiles.Core.TileMapResource.TileSet},GTiff2Tiles.Core.Enums.CoordinateSystem,System.String,System.String,GTiff2Tiles.Core.Coordinates.ICoordinate)
+  name: TileMap(ICoordinate, ICoordinate, Size, TileExtension, IEnumerable<TileSet>, CoordinateSystem, String, String, ICoordinate)
+  href: api/GTiff2Tiles.Core.TileMapResource.TileMap.html#GTiff2Tiles_Core_TileMapResource_TileMap__ctor_GTiff2Tiles_Core_Coordinates_ICoordinate_GTiff2Tiles_Core_Coordinates_ICoordinate_GTiff2Tiles_Core_Images_Size_GTiff2Tiles_Core_Enums_TileExtension_IEnumerable_GTiff2Tiles_Core_TileMapResource_TileSet__GTiff2Tiles_Core_Enums_CoordinateSystem_System_String_System_String_GTiff2Tiles_Core_Coordinates_ICoordinate_
+  commentId: M:GTiff2Tiles.Core.TileMapResource.TileMap.#ctor(GTiff2Tiles.Core.Coordinates.ICoordinate,GTiff2Tiles.Core.Coordinates.ICoordinate,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.TileExtension,IEnumerable{GTiff2Tiles.Core.TileMapResource.TileSet},GTiff2Tiles.Core.Enums.CoordinateSystem,System.String,System.String,GTiff2Tiles.Core.Coordinates.ICoordinate)
+  name.vb: TileMap(ICoordinate, ICoordinate, Size, TileExtension, IEnumerable(Of TileSet), CoordinateSystem, String, String, ICoordinate)
+  fullName: GTiff2Tiles.Core.TileMapResource.TileMap.TileMap(GTiff2Tiles.Core.Coordinates.ICoordinate, GTiff2Tiles.Core.Coordinates.ICoordinate, GTiff2Tiles.Core.Images.Size, GTiff2Tiles.Core.Enums.TileExtension, IEnumerable<GTiff2Tiles.Core.TileMapResource.TileSet>, GTiff2Tiles.Core.Enums.CoordinateSystem, System.String, System.String, GTiff2Tiles.Core.Coordinates.ICoordinate)
+  fullName.vb: GTiff2Tiles.Core.TileMapResource.TileMap.TileMap(GTiff2Tiles.Core.Coordinates.ICoordinate, GTiff2Tiles.Core.Coordinates.ICoordinate, GTiff2Tiles.Core.Images.Size, GTiff2Tiles.Core.Enums.TileExtension, IEnumerable(Of GTiff2Tiles.Core.TileMapResource.TileSet), GTiff2Tiles.Core.Enums.CoordinateSystem, System.String, System.String, GTiff2Tiles.Core.Coordinates.ICoordinate)
+  nameWithType: TileMap.TileMap(ICoordinate, ICoordinate, Size, TileExtension, IEnumerable<TileSet>, CoordinateSystem, String, String, ICoordinate)
+  nameWithType.vb: TileMap.TileMap(ICoordinate, ICoordinate, Size, TileExtension, IEnumerable(Of TileSet), CoordinateSystem, String, String, ICoordinate)
+- uid: GTiff2Tiles.Core.TileMapResource.TileMap.#ctor(System.String,GTiff2Tiles.Core.TileMapResource.BoundingBox,GTiff2Tiles.Core.TileMapResource.Origin,GTiff2Tiles.Core.TileMapResource.TileFormat,GTiff2Tiles.Core.TileMapResource.TileSets,System.String,System.String)
+  name: TileMap(String, BoundingBox, Origin, TileFormat, TileSets, String, String)
+  href: api/GTiff2Tiles.Core.TileMapResource.TileMap.html#GTiff2Tiles_Core_TileMapResource_TileMap__ctor_System_String_GTiff2Tiles_Core_TileMapResource_BoundingBox_GTiff2Tiles_Core_TileMapResource_Origin_GTiff2Tiles_Core_TileMapResource_TileFormat_GTiff2Tiles_Core_TileMapResource_TileSets_System_String_System_String_
+  commentId: M:GTiff2Tiles.Core.TileMapResource.TileMap.#ctor(System.String,GTiff2Tiles.Core.TileMapResource.BoundingBox,GTiff2Tiles.Core.TileMapResource.Origin,GTiff2Tiles.Core.TileMapResource.TileFormat,GTiff2Tiles.Core.TileMapResource.TileSets,System.String,System.String)
+  fullName: GTiff2Tiles.Core.TileMapResource.TileMap.TileMap(System.String, GTiff2Tiles.Core.TileMapResource.BoundingBox, GTiff2Tiles.Core.TileMapResource.Origin, GTiff2Tiles.Core.TileMapResource.TileFormat, GTiff2Tiles.Core.TileMapResource.TileSets, System.String, System.String)
+  nameWithType: TileMap.TileMap(String, BoundingBox, Origin, TileFormat, TileSets, String, String)
+- uid: GTiff2Tiles.Core.TileMapResource.TileMap.#ctor*
+  name: TileMap
+  href: api/GTiff2Tiles.Core.TileMapResource.TileMap.html#GTiff2Tiles_Core_TileMapResource_TileMap__ctor_
+  commentId: Overload:GTiff2Tiles.Core.TileMapResource.TileMap.#ctor
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.TileMapResource.TileMap.TileMap
+  nameWithType: TileMap.TileMap
+- uid: GTiff2Tiles.Core.TileMapResource.TileMap.BoundingBox
+  name: BoundingBox
+  href: api/GTiff2Tiles.Core.TileMapResource.TileMap.html#GTiff2Tiles_Core_TileMapResource_TileMap_BoundingBox
+  commentId: P:GTiff2Tiles.Core.TileMapResource.TileMap.BoundingBox
+  fullName: GTiff2Tiles.Core.TileMapResource.TileMap.BoundingBox
+  nameWithType: TileMap.BoundingBox
+- uid: GTiff2Tiles.Core.TileMapResource.TileMap.BoundingBox*
+  name: BoundingBox
+  href: api/GTiff2Tiles.Core.TileMapResource.TileMap.html#GTiff2Tiles_Core_TileMapResource_TileMap_BoundingBox_
+  commentId: Overload:GTiff2Tiles.Core.TileMapResource.TileMap.BoundingBox
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.TileMapResource.TileMap.BoundingBox
+  nameWithType: TileMap.BoundingBox
+- uid: GTiff2Tiles.Core.TileMapResource.TileMap.Deserialize(Stream)
+  name: Deserialize(Stream)
+  href: api/GTiff2Tiles.Core.TileMapResource.TileMap.html#GTiff2Tiles_Core_TileMapResource_TileMap_Deserialize_Stream_
+  commentId: M:GTiff2Tiles.Core.TileMapResource.TileMap.Deserialize(Stream)
+  fullName: GTiff2Tiles.Core.TileMapResource.TileMap.Deserialize(Stream)
+  nameWithType: TileMap.Deserialize(Stream)
+- uid: GTiff2Tiles.Core.TileMapResource.TileMap.Deserialize*
+  name: Deserialize
+  href: api/GTiff2Tiles.Core.TileMapResource.TileMap.html#GTiff2Tiles_Core_TileMapResource_TileMap_Deserialize_
+  commentId: Overload:GTiff2Tiles.Core.TileMapResource.TileMap.Deserialize
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.TileMapResource.TileMap.Deserialize
+  nameWithType: TileMap.Deserialize
+- uid: GTiff2Tiles.Core.TileMapResource.TileMap.GetSrs(GTiff2Tiles.Core.Enums.CoordinateSystem)
+  name: GetSrs(CoordinateSystem)
+  href: api/GTiff2Tiles.Core.TileMapResource.TileMap.html#GTiff2Tiles_Core_TileMapResource_TileMap_GetSrs_GTiff2Tiles_Core_Enums_CoordinateSystem_
+  commentId: M:GTiff2Tiles.Core.TileMapResource.TileMap.GetSrs(GTiff2Tiles.Core.Enums.CoordinateSystem)
+  fullName: GTiff2Tiles.Core.TileMapResource.TileMap.GetSrs(GTiff2Tiles.Core.Enums.CoordinateSystem)
+  nameWithType: TileMap.GetSrs(CoordinateSystem)
+- uid: GTiff2Tiles.Core.TileMapResource.TileMap.GetSrs*
+  name: GetSrs
+  href: api/GTiff2Tiles.Core.TileMapResource.TileMap.html#GTiff2Tiles_Core_TileMapResource_TileMap_GetSrs_
+  commentId: Overload:GTiff2Tiles.Core.TileMapResource.TileMap.GetSrs
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.TileMapResource.TileMap.GetSrs
+  nameWithType: TileMap.GetSrs
+- uid: GTiff2Tiles.Core.TileMapResource.TileMap.Origin
+  name: Origin
+  href: api/GTiff2Tiles.Core.TileMapResource.TileMap.html#GTiff2Tiles_Core_TileMapResource_TileMap_Origin
+  commentId: P:GTiff2Tiles.Core.TileMapResource.TileMap.Origin
+  fullName: GTiff2Tiles.Core.TileMapResource.TileMap.Origin
+  nameWithType: TileMap.Origin
+- uid: GTiff2Tiles.Core.TileMapResource.TileMap.Origin*
+  name: Origin
+  href: api/GTiff2Tiles.Core.TileMapResource.TileMap.html#GTiff2Tiles_Core_TileMapResource_TileMap_Origin_
+  commentId: Overload:GTiff2Tiles.Core.TileMapResource.TileMap.Origin
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.TileMapResource.TileMap.Origin
+  nameWithType: TileMap.Origin
+- uid: GTiff2Tiles.Core.TileMapResource.TileMap.Serialize(Stream)
+  name: Serialize(Stream)
+  href: api/GTiff2Tiles.Core.TileMapResource.TileMap.html#GTiff2Tiles_Core_TileMapResource_TileMap_Serialize_Stream_
+  commentId: M:GTiff2Tiles.Core.TileMapResource.TileMap.Serialize(Stream)
+  fullName: GTiff2Tiles.Core.TileMapResource.TileMap.Serialize(Stream)
+  nameWithType: TileMap.Serialize(Stream)
+- uid: GTiff2Tiles.Core.TileMapResource.TileMap.Serialize*
+  name: Serialize
+  href: api/GTiff2Tiles.Core.TileMapResource.TileMap.html#GTiff2Tiles_Core_TileMapResource_TileMap_Serialize_
+  commentId: Overload:GTiff2Tiles.Core.TileMapResource.TileMap.Serialize
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.TileMapResource.TileMap.Serialize
+  nameWithType: TileMap.Serialize
+- uid: GTiff2Tiles.Core.TileMapResource.TileMap.Srs
+  name: Srs
+  href: api/GTiff2Tiles.Core.TileMapResource.TileMap.html#GTiff2Tiles_Core_TileMapResource_TileMap_Srs
+  commentId: P:GTiff2Tiles.Core.TileMapResource.TileMap.Srs
+  fullName: GTiff2Tiles.Core.TileMapResource.TileMap.Srs
+  nameWithType: TileMap.Srs
+- uid: GTiff2Tiles.Core.TileMapResource.TileMap.Srs*
+  name: Srs
+  href: api/GTiff2Tiles.Core.TileMapResource.TileMap.html#GTiff2Tiles_Core_TileMapResource_TileMap_Srs_
+  commentId: Overload:GTiff2Tiles.Core.TileMapResource.TileMap.Srs
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.TileMapResource.TileMap.Srs
+  nameWithType: TileMap.Srs
+- uid: GTiff2Tiles.Core.TileMapResource.TileMap.TileFormat
+  name: TileFormat
+  href: api/GTiff2Tiles.Core.TileMapResource.TileMap.html#GTiff2Tiles_Core_TileMapResource_TileMap_TileFormat
+  commentId: P:GTiff2Tiles.Core.TileMapResource.TileMap.TileFormat
+  fullName: GTiff2Tiles.Core.TileMapResource.TileMap.TileFormat
+  nameWithType: TileMap.TileFormat
+- uid: GTiff2Tiles.Core.TileMapResource.TileMap.TileFormat*
+  name: TileFormat
+  href: api/GTiff2Tiles.Core.TileMapResource.TileMap.html#GTiff2Tiles_Core_TileMapResource_TileMap_TileFormat_
+  commentId: Overload:GTiff2Tiles.Core.TileMapResource.TileMap.TileFormat
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.TileMapResource.TileMap.TileFormat
+  nameWithType: TileMap.TileFormat
+- uid: GTiff2Tiles.Core.TileMapResource.TileMap.TileMapServiceLink
+  name: TileMapServiceLink
+  href: api/GTiff2Tiles.Core.TileMapResource.TileMap.html#GTiff2Tiles_Core_TileMapResource_TileMap_TileMapServiceLink
+  commentId: P:GTiff2Tiles.Core.TileMapResource.TileMap.TileMapServiceLink
+  fullName: GTiff2Tiles.Core.TileMapResource.TileMap.TileMapServiceLink
+  nameWithType: TileMap.TileMapServiceLink
+- uid: GTiff2Tiles.Core.TileMapResource.TileMap.TileMapServiceLink*
+  name: TileMapServiceLink
+  href: api/GTiff2Tiles.Core.TileMapResource.TileMap.html#GTiff2Tiles_Core_TileMapResource_TileMap_TileMapServiceLink_
+  commentId: Overload:GTiff2Tiles.Core.TileMapResource.TileMap.TileMapServiceLink
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.TileMapResource.TileMap.TileMapServiceLink
+  nameWithType: TileMap.TileMapServiceLink
+- uid: GTiff2Tiles.Core.TileMapResource.TileMap.TileSets
+  name: TileSets
+  href: api/GTiff2Tiles.Core.TileMapResource.TileMap.html#GTiff2Tiles_Core_TileMapResource_TileMap_TileSets
+  commentId: P:GTiff2Tiles.Core.TileMapResource.TileMap.TileSets
+  fullName: GTiff2Tiles.Core.TileMapResource.TileMap.TileSets
+  nameWithType: TileMap.TileSets
+- uid: GTiff2Tiles.Core.TileMapResource.TileMap.TileSets*
+  name: TileSets
+  href: api/GTiff2Tiles.Core.TileMapResource.TileMap.html#GTiff2Tiles_Core_TileMapResource_TileMap_TileSets_
+  commentId: Overload:GTiff2Tiles.Core.TileMapResource.TileMap.TileSets
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.TileMapResource.TileMap.TileSets
+  nameWithType: TileMap.TileSets
+- uid: GTiff2Tiles.Core.TileMapResource.TileMap.Version
+  name: Version
+  href: api/GTiff2Tiles.Core.TileMapResource.TileMap.html#GTiff2Tiles_Core_TileMapResource_TileMap_Version
+  commentId: P:GTiff2Tiles.Core.TileMapResource.TileMap.Version
+  fullName: GTiff2Tiles.Core.TileMapResource.TileMap.Version
+  nameWithType: TileMap.Version
+- uid: GTiff2Tiles.Core.TileMapResource.TileMap.Version*
+  name: Version
+  href: api/GTiff2Tiles.Core.TileMapResource.TileMap.html#GTiff2Tiles_Core_TileMapResource_TileMap_Version_
+  commentId: Overload:GTiff2Tiles.Core.TileMapResource.TileMap.Version
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.TileMapResource.TileMap.Version
+  nameWithType: TileMap.Version
+- uid: GTiff2Tiles.Core.TileMapResource.TileSet
+  name: TileSet
+  href: api/GTiff2Tiles.Core.TileMapResource.TileSet.html
+  commentId: T:GTiff2Tiles.Core.TileMapResource.TileSet
+  fullName: GTiff2Tiles.Core.TileMapResource.TileSet
+  nameWithType: TileSet
+- uid: GTiff2Tiles.Core.TileMapResource.TileSet.#ctor
+  name: TileSet()
+  href: api/GTiff2Tiles.Core.TileMapResource.TileSet.html#GTiff2Tiles_Core_TileMapResource_TileSet__ctor
+  commentId: M:GTiff2Tiles.Core.TileMapResource.TileSet.#ctor
+  fullName: GTiff2Tiles.Core.TileMapResource.TileSet.TileSet()
+  nameWithType: TileSet.TileSet()
+- uid: GTiff2Tiles.Core.TileMapResource.TileSet.#ctor(System.String,System.Double,System.Int32)
+  name: TileSet(String, Double, Int32)
+  href: api/GTiff2Tiles.Core.TileMapResource.TileSet.html#GTiff2Tiles_Core_TileMapResource_TileSet__ctor_System_String_System_Double_System_Int32_
+  commentId: M:GTiff2Tiles.Core.TileMapResource.TileSet.#ctor(System.String,System.Double,System.Int32)
+  fullName: GTiff2Tiles.Core.TileMapResource.TileSet.TileSet(System.String, System.Double, System.Int32)
+  nameWithType: TileSet.TileSet(String, Double, Int32)
+- uid: GTiff2Tiles.Core.TileMapResource.TileSet.#ctor*
+  name: TileSet
+  href: api/GTiff2Tiles.Core.TileMapResource.TileSet.html#GTiff2Tiles_Core_TileMapResource_TileSet__ctor_
+  commentId: Overload:GTiff2Tiles.Core.TileMapResource.TileSet.#ctor
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.TileMapResource.TileSet.TileSet
+  nameWithType: TileSet.TileSet
+- uid: GTiff2Tiles.Core.TileMapResource.TileSet.Href
+  name: Href
+  href: api/GTiff2Tiles.Core.TileMapResource.TileSet.html#GTiff2Tiles_Core_TileMapResource_TileSet_Href
+  commentId: P:GTiff2Tiles.Core.TileMapResource.TileSet.Href
+  fullName: GTiff2Tiles.Core.TileMapResource.TileSet.Href
+  nameWithType: TileSet.Href
+- uid: GTiff2Tiles.Core.TileMapResource.TileSet.Href*
+  name: Href
+  href: api/GTiff2Tiles.Core.TileMapResource.TileSet.html#GTiff2Tiles_Core_TileMapResource_TileSet_Href_
+  commentId: Overload:GTiff2Tiles.Core.TileMapResource.TileSet.Href
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.TileMapResource.TileSet.Href
+  nameWithType: TileSet.Href
+- uid: GTiff2Tiles.Core.TileMapResource.TileSet.Order
+  name: Order
+  href: api/GTiff2Tiles.Core.TileMapResource.TileSet.html#GTiff2Tiles_Core_TileMapResource_TileSet_Order
+  commentId: P:GTiff2Tiles.Core.TileMapResource.TileSet.Order
+  fullName: GTiff2Tiles.Core.TileMapResource.TileSet.Order
+  nameWithType: TileSet.Order
+- uid: GTiff2Tiles.Core.TileMapResource.TileSet.Order*
+  name: Order
+  href: api/GTiff2Tiles.Core.TileMapResource.TileSet.html#GTiff2Tiles_Core_TileMapResource_TileSet_Order_
+  commentId: Overload:GTiff2Tiles.Core.TileMapResource.TileSet.Order
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.TileMapResource.TileSet.Order
+  nameWithType: TileSet.Order
+- uid: GTiff2Tiles.Core.TileMapResource.TileSet.UnitsPerPixel
+  name: UnitsPerPixel
+  href: api/GTiff2Tiles.Core.TileMapResource.TileSet.html#GTiff2Tiles_Core_TileMapResource_TileSet_UnitsPerPixel
+  commentId: P:GTiff2Tiles.Core.TileMapResource.TileSet.UnitsPerPixel
+  fullName: GTiff2Tiles.Core.TileMapResource.TileSet.UnitsPerPixel
+  nameWithType: TileSet.UnitsPerPixel
+- uid: GTiff2Tiles.Core.TileMapResource.TileSet.UnitsPerPixel*
+  name: UnitsPerPixel
+  href: api/GTiff2Tiles.Core.TileMapResource.TileSet.html#GTiff2Tiles_Core_TileMapResource_TileSet_UnitsPerPixel_
+  commentId: Overload:GTiff2Tiles.Core.TileMapResource.TileSet.UnitsPerPixel
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.TileMapResource.TileSet.UnitsPerPixel
+  nameWithType: TileSet.UnitsPerPixel
+- uid: GTiff2Tiles.Core.TileMapResource.TileSets
+  name: TileSets
+  href: api/GTiff2Tiles.Core.TileMapResource.TileSets.html
+  commentId: T:GTiff2Tiles.Core.TileMapResource.TileSets
+  fullName: GTiff2Tiles.Core.TileMapResource.TileSets
+  nameWithType: TileSets
+- uid: GTiff2Tiles.Core.TileMapResource.TileSets.#ctor
+  name: TileSets()
+  href: api/GTiff2Tiles.Core.TileMapResource.TileSets.html#GTiff2Tiles_Core_TileMapResource_TileSets__ctor
+  commentId: M:GTiff2Tiles.Core.TileMapResource.TileSets.#ctor
+  fullName: GTiff2Tiles.Core.TileMapResource.TileSets.TileSets()
+  nameWithType: TileSets.TileSets()
+- uid: GTiff2Tiles.Core.TileMapResource.TileSets.#ctor(IEnumerable{GTiff2Tiles.Core.TileMapResource.TileSet},GTiff2Tiles.Core.Enums.CoordinateSystem)
+  name: TileSets(IEnumerable<TileSet>, CoordinateSystem)
+  href: api/GTiff2Tiles.Core.TileMapResource.TileSets.html#GTiff2Tiles_Core_TileMapResource_TileSets__ctor_IEnumerable_GTiff2Tiles_Core_TileMapResource_TileSet__GTiff2Tiles_Core_Enums_CoordinateSystem_
+  commentId: M:GTiff2Tiles.Core.TileMapResource.TileSets.#ctor(IEnumerable{GTiff2Tiles.Core.TileMapResource.TileSet},GTiff2Tiles.Core.Enums.CoordinateSystem)
+  name.vb: TileSets(IEnumerable(Of TileSet), CoordinateSystem)
+  fullName: GTiff2Tiles.Core.TileMapResource.TileSets.TileSets(IEnumerable<GTiff2Tiles.Core.TileMapResource.TileSet>, GTiff2Tiles.Core.Enums.CoordinateSystem)
+  fullName.vb: GTiff2Tiles.Core.TileMapResource.TileSets.TileSets(IEnumerable(Of GTiff2Tiles.Core.TileMapResource.TileSet), GTiff2Tiles.Core.Enums.CoordinateSystem)
+  nameWithType: TileSets.TileSets(IEnumerable<TileSet>, CoordinateSystem)
+  nameWithType.vb: TileSets.TileSets(IEnumerable(Of TileSet), CoordinateSystem)
+- uid: GTiff2Tiles.Core.TileMapResource.TileSets.#ctor(IEnumerable{GTiff2Tiles.Core.TileMapResource.TileSet},System.String)
+  name: TileSets(IEnumerable<TileSet>, String)
+  href: api/GTiff2Tiles.Core.TileMapResource.TileSets.html#GTiff2Tiles_Core_TileMapResource_TileSets__ctor_IEnumerable_GTiff2Tiles_Core_TileMapResource_TileSet__System_String_
+  commentId: M:GTiff2Tiles.Core.TileMapResource.TileSets.#ctor(IEnumerable{GTiff2Tiles.Core.TileMapResource.TileSet},System.String)
+  name.vb: TileSets(IEnumerable(Of TileSet), String)
+  fullName: GTiff2Tiles.Core.TileMapResource.TileSets.TileSets(IEnumerable<GTiff2Tiles.Core.TileMapResource.TileSet>, System.String)
+  fullName.vb: GTiff2Tiles.Core.TileMapResource.TileSets.TileSets(IEnumerable(Of GTiff2Tiles.Core.TileMapResource.TileSet), System.String)
+  nameWithType: TileSets.TileSets(IEnumerable<TileSet>, String)
+  nameWithType.vb: TileSets.TileSets(IEnumerable(Of TileSet), String)
+- uid: GTiff2Tiles.Core.TileMapResource.TileSets.#ctor*
+  name: TileSets
+  href: api/GTiff2Tiles.Core.TileMapResource.TileSets.html#GTiff2Tiles_Core_TileMapResource_TileSets__ctor_
+  commentId: Overload:GTiff2Tiles.Core.TileMapResource.TileSets.#ctor
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.TileMapResource.TileSets.TileSets
+  nameWithType: TileSets.TileSets
+- uid: GTiff2Tiles.Core.TileMapResource.TileSets.GenerateTileSetCollection(System.Int32,System.Int32,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.CoordinateSystem)
+  name: GenerateTileSetCollection(Int32, Int32, Size, CoordinateSystem)
+  href: api/GTiff2Tiles.Core.TileMapResource.TileSets.html#GTiff2Tiles_Core_TileMapResource_TileSets_GenerateTileSetCollection_System_Int32_System_Int32_GTiff2Tiles_Core_Images_Size_GTiff2Tiles_Core_Enums_CoordinateSystem_
+  commentId: M:GTiff2Tiles.Core.TileMapResource.TileSets.GenerateTileSetCollection(System.Int32,System.Int32,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.CoordinateSystem)
+  fullName: GTiff2Tiles.Core.TileMapResource.TileSets.GenerateTileSetCollection(System.Int32, System.Int32, GTiff2Tiles.Core.Images.Size, GTiff2Tiles.Core.Enums.CoordinateSystem)
+  nameWithType: TileSets.GenerateTileSetCollection(Int32, Int32, Size, CoordinateSystem)
+- uid: GTiff2Tiles.Core.TileMapResource.TileSets.GenerateTileSetCollection*
+  name: GenerateTileSetCollection
+  href: api/GTiff2Tiles.Core.TileMapResource.TileSets.html#GTiff2Tiles_Core_TileMapResource_TileSets_GenerateTileSetCollection_
+  commentId: Overload:GTiff2Tiles.Core.TileMapResource.TileSets.GenerateTileSetCollection
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.TileMapResource.TileSets.GenerateTileSetCollection
+  nameWithType: TileSets.GenerateTileSetCollection
+- uid: GTiff2Tiles.Core.TileMapResource.TileSets.Profile
+  name: Profile
+  href: api/GTiff2Tiles.Core.TileMapResource.TileSets.html#GTiff2Tiles_Core_TileMapResource_TileSets_Profile
+  commentId: P:GTiff2Tiles.Core.TileMapResource.TileSets.Profile
+  fullName: GTiff2Tiles.Core.TileMapResource.TileSets.Profile
+  nameWithType: TileSets.Profile
+- uid: GTiff2Tiles.Core.TileMapResource.TileSets.Profile*
+  name: Profile
+  href: api/GTiff2Tiles.Core.TileMapResource.TileSets.html#GTiff2Tiles_Core_TileMapResource_TileSets_Profile_
+  commentId: Overload:GTiff2Tiles.Core.TileMapResource.TileSets.Profile
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.TileMapResource.TileSets.Profile
+  nameWithType: TileSets.Profile
+- uid: GTiff2Tiles.Core.TileMapResource.TileSets.TileSetCollection
+  name: TileSetCollection
+  href: api/GTiff2Tiles.Core.TileMapResource.TileSets.html#GTiff2Tiles_Core_TileMapResource_TileSets_TileSetCollection
+  commentId: P:GTiff2Tiles.Core.TileMapResource.TileSets.TileSetCollection
+  fullName: GTiff2Tiles.Core.TileMapResource.TileSets.TileSetCollection
+  nameWithType: TileSets.TileSetCollection
+- uid: GTiff2Tiles.Core.TileMapResource.TileSets.TileSetCollection*
+  name: TileSetCollection
+  href: api/GTiff2Tiles.Core.TileMapResource.TileSets.html#GTiff2Tiles_Core_TileMapResource_TileSets_TileSetCollection_
+  commentId: Overload:GTiff2Tiles.Core.TileMapResource.TileSets.TileSetCollection
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.TileMapResource.TileSets.TileSetCollection
+  nameWithType: TileSets.TileSetCollection
 - uid: GTiff2Tiles.Core.Tiles
   name: GTiff2Tiles.Core.Tiles
   href: api/GTiff2Tiles.Core.Tiles.html
@@ -2075,6 +3320,19 @@ references:
   isSpec: "True"
   fullName: GTiff2Tiles.Core.Tiles.ITile.CalculatePosition
   nameWithType: ITile.CalculatePosition
+- uid: GTiff2Tiles.Core.Tiles.ITile.CoordinateSystem
+  name: CoordinateSystem
+  href: api/GTiff2Tiles.Core.Tiles.ITile.html#GTiff2Tiles_Core_Tiles_ITile_CoordinateSystem
+  commentId: P:GTiff2Tiles.Core.Tiles.ITile.CoordinateSystem
+  fullName: GTiff2Tiles.Core.Tiles.ITile.CoordinateSystem
+  nameWithType: ITile.CoordinateSystem
+- uid: GTiff2Tiles.Core.Tiles.ITile.CoordinateSystem*
+  name: CoordinateSystem
+  href: api/GTiff2Tiles.Core.Tiles.ITile.html#GTiff2Tiles_Core_Tiles_ITile_CoordinateSystem_
+  commentId: Overload:GTiff2Tiles.Core.Tiles.ITile.CoordinateSystem
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.Tiles.ITile.CoordinateSystem
+  nameWithType: ITile.CoordinateSystem
 - uid: GTiff2Tiles.Core.Tiles.ITile.Extension
   name: Extension
   href: api/GTiff2Tiles.Core.Tiles.ITile.html#GTiff2Tiles_Core_Tiles_ITile_Extension
@@ -2218,6 +3476,57 @@ references:
   isSpec: "True"
   fullName: GTiff2Tiles.Core.Tiles.ITile.Validate
   nameWithType: ITile.Validate
+- uid: GTiff2Tiles.Core.Tiles.ITile.WriteOverviewTileBytes*
+  name: WriteOverviewTileBytes
+  href: api/GTiff2Tiles.Core.Tiles.ITile.html#GTiff2Tiles_Core_Tiles_ITile_WriteOverviewTileBytes_
+  commentId: Overload:GTiff2Tiles.Core.Tiles.ITile.WriteOverviewTileBytes
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.Tiles.ITile.WriteOverviewTileBytes
+  nameWithType: ITile.WriteOverviewTileBytes
+- uid: GTiff2Tiles.Core.Tiles.ITile.WriteOverviewTileBytes``1(``0[])
+  name: WriteOverviewTileBytes<T>(T[])
+  href: api/GTiff2Tiles.Core.Tiles.ITile.html#GTiff2Tiles_Core_Tiles_ITile_WriteOverviewTileBytes__1___0___
+  commentId: M:GTiff2Tiles.Core.Tiles.ITile.WriteOverviewTileBytes``1(``0[])
+  name.vb: WriteOverviewTileBytes(Of T)(T())
+  fullName: GTiff2Tiles.Core.Tiles.ITile.WriteOverviewTileBytes<T>(T[])
+  fullName.vb: GTiff2Tiles.Core.Tiles.ITile.WriteOverviewTileBytes(Of T)(T())
+  nameWithType: ITile.WriteOverviewTileBytes<T>(T[])
+  nameWithType.vb: ITile.WriteOverviewTileBytes(Of T)(T())
+- uid: GTiff2Tiles.Core.Tiles.ITile.WriteToChannel*
+  name: WriteToChannel
+  href: api/GTiff2Tiles.Core.Tiles.ITile.html#GTiff2Tiles_Core_Tiles_ITile_WriteToChannel_
+  commentId: Overload:GTiff2Tiles.Core.Tiles.ITile.WriteToChannel
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.Tiles.ITile.WriteToChannel
+  nameWithType: ITile.WriteToChannel
+- uid: GTiff2Tiles.Core.Tiles.ITile.WriteToChannel``1(GTiff2Tiles.Core.GeoTiffs.IGeoTiff,System.Threading.Channels.ChannelWriter{``0},GTiff2Tiles.Core.Args.IWriteTilesArgs)
+  name: WriteToChannel<T>(IGeoTiff, ChannelWriter<T>, IWriteTilesArgs)
+  href: api/GTiff2Tiles.Core.Tiles.ITile.html#GTiff2Tiles_Core_Tiles_ITile_WriteToChannel__1_GTiff2Tiles_Core_GeoTiffs_IGeoTiff_System_Threading_Channels_ChannelWriter___0__GTiff2Tiles_Core_Args_IWriteTilesArgs_
+  commentId: M:GTiff2Tiles.Core.Tiles.ITile.WriteToChannel``1(GTiff2Tiles.Core.GeoTiffs.IGeoTiff,System.Threading.Channels.ChannelWriter{``0},GTiff2Tiles.Core.Args.IWriteTilesArgs)
+  name.vb: WriteToChannel(Of T)(IGeoTiff, ChannelWriter(Of T), IWriteTilesArgs)
+  fullName: GTiff2Tiles.Core.Tiles.ITile.WriteToChannel<T>(GTiff2Tiles.Core.GeoTiffs.IGeoTiff, System.Threading.Channels.ChannelWriter<T>, GTiff2Tiles.Core.Args.IWriteTilesArgs)
+  fullName.vb: GTiff2Tiles.Core.Tiles.ITile.WriteToChannel(Of T)(GTiff2Tiles.Core.GeoTiffs.IGeoTiff, System.Threading.Channels.ChannelWriter(Of T), GTiff2Tiles.Core.Args.IWriteTilesArgs)
+  nameWithType: ITile.WriteToChannel<T>(IGeoTiff, ChannelWriter<T>, IWriteTilesArgs)
+  nameWithType.vb: ITile.WriteToChannel(Of T)(IGeoTiff, ChannelWriter(Of T), IWriteTilesArgs)
+- uid: GTiff2Tiles.Core.Tiles.ITile.WriteToEnumerable(GTiff2Tiles.Core.GeoTiffs.IGeoTiff,GTiff2Tiles.Core.Args.IWriteTilesArgs)
+  name: WriteToEnumerable(IGeoTiff, IWriteTilesArgs)
+  href: api/GTiff2Tiles.Core.Tiles.ITile.html#GTiff2Tiles_Core_Tiles_ITile_WriteToEnumerable_GTiff2Tiles_Core_GeoTiffs_IGeoTiff_GTiff2Tiles_Core_Args_IWriteTilesArgs_
+  commentId: M:GTiff2Tiles.Core.Tiles.ITile.WriteToEnumerable(GTiff2Tiles.Core.GeoTiffs.IGeoTiff,GTiff2Tiles.Core.Args.IWriteTilesArgs)
+  fullName: GTiff2Tiles.Core.Tiles.ITile.WriteToEnumerable(GTiff2Tiles.Core.GeoTiffs.IGeoTiff, GTiff2Tiles.Core.Args.IWriteTilesArgs)
+  nameWithType: ITile.WriteToEnumerable(IGeoTiff, IWriteTilesArgs)
+- uid: GTiff2Tiles.Core.Tiles.ITile.WriteToEnumerable*
+  name: WriteToEnumerable
+  href: api/GTiff2Tiles.Core.Tiles.ITile.html#GTiff2Tiles_Core_Tiles_ITile_WriteToEnumerable_
+  commentId: Overload:GTiff2Tiles.Core.Tiles.ITile.WriteToEnumerable
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.Tiles.ITile.WriteToEnumerable
+  nameWithType: ITile.WriteToEnumerable
+- uid: GTiff2Tiles.Core.Tiles.ITile.WriteToFile(GTiff2Tiles.Core.GeoTiffs.IGeoTiff,GTiff2Tiles.Core.Args.IWriteTilesArgs)
+  name: WriteToFile(IGeoTiff, IWriteTilesArgs)
+  href: api/GTiff2Tiles.Core.Tiles.ITile.html#GTiff2Tiles_Core_Tiles_ITile_WriteToFile_GTiff2Tiles_Core_GeoTiffs_IGeoTiff_GTiff2Tiles_Core_Args_IWriteTilesArgs_
+  commentId: M:GTiff2Tiles.Core.Tiles.ITile.WriteToFile(GTiff2Tiles.Core.GeoTiffs.IGeoTiff,GTiff2Tiles.Core.Args.IWriteTilesArgs)
+  fullName: GTiff2Tiles.Core.Tiles.ITile.WriteToFile(GTiff2Tiles.Core.GeoTiffs.IGeoTiff, GTiff2Tiles.Core.Args.IWriteTilesArgs)
+  nameWithType: ITile.WriteToFile(IGeoTiff, IWriteTilesArgs)
 - uid: GTiff2Tiles.Core.Tiles.ITile.WriteToFile(System.String)
   name: WriteToFile(String)
   href: api/GTiff2Tiles.Core.Tiles.ITile.html#GTiff2Tiles_Core_Tiles_ITile_WriteToFile_System_String_
@@ -2577,24 +3886,18 @@ references:
   commentId: T:GTiff2Tiles.Core.Tiles.RasterTile
   fullName: GTiff2Tiles.Core.Tiles.RasterTile
   nameWithType: RasterTile
-- uid: GTiff2Tiles.Core.Tiles.RasterTile.#ctor(GTiff2Tiles.Core.Coordinates.GeoCoordinate,GTiff2Tiles.Core.Coordinates.GeoCoordinate,System.Int32,GTiff2Tiles.Core.Images.Size,System.Collections.Generic.IEnumerable{System.Byte},GTiff2Tiles.Core.Enums.TileExtension,System.Boolean,System.Int32,GTiff2Tiles.Core.Enums.Interpolation)
-  name: RasterTile(GeoCoordinate, GeoCoordinate, Int32, Size, IEnumerable<Byte>, TileExtension, Boolean, Int32, Interpolation)
-  href: api/GTiff2Tiles.Core.Tiles.RasterTile.html#GTiff2Tiles_Core_Tiles_RasterTile__ctor_GTiff2Tiles_Core_Coordinates_GeoCoordinate_GTiff2Tiles_Core_Coordinates_GeoCoordinate_System_Int32_GTiff2Tiles_Core_Images_Size_System_Collections_Generic_IEnumerable_System_Byte__GTiff2Tiles_Core_Enums_TileExtension_System_Boolean_System_Int32_GTiff2Tiles_Core_Enums_Interpolation_
-  commentId: M:GTiff2Tiles.Core.Tiles.RasterTile.#ctor(GTiff2Tiles.Core.Coordinates.GeoCoordinate,GTiff2Tiles.Core.Coordinates.GeoCoordinate,System.Int32,GTiff2Tiles.Core.Images.Size,System.Collections.Generic.IEnumerable{System.Byte},GTiff2Tiles.Core.Enums.TileExtension,System.Boolean,System.Int32,GTiff2Tiles.Core.Enums.Interpolation)
-  name.vb: RasterTile(GeoCoordinate, GeoCoordinate, Int32, Size, IEnumerable(Of Byte), TileExtension, Boolean, Int32, Interpolation)
-  fullName: GTiff2Tiles.Core.Tiles.RasterTile.RasterTile(GTiff2Tiles.Core.Coordinates.GeoCoordinate, GTiff2Tiles.Core.Coordinates.GeoCoordinate, System.Int32, GTiff2Tiles.Core.Images.Size, System.Collections.Generic.IEnumerable<System.Byte>, GTiff2Tiles.Core.Enums.TileExtension, System.Boolean, System.Int32, GTiff2Tiles.Core.Enums.Interpolation)
-  fullName.vb: GTiff2Tiles.Core.Tiles.RasterTile.RasterTile(GTiff2Tiles.Core.Coordinates.GeoCoordinate, GTiff2Tiles.Core.Coordinates.GeoCoordinate, System.Int32, GTiff2Tiles.Core.Images.Size, System.Collections.Generic.IEnumerable(Of System.Byte), GTiff2Tiles.Core.Enums.TileExtension, System.Boolean, System.Int32, GTiff2Tiles.Core.Enums.Interpolation)
-  nameWithType: RasterTile.RasterTile(GeoCoordinate, GeoCoordinate, Int32, Size, IEnumerable<Byte>, TileExtension, Boolean, Int32, Interpolation)
-  nameWithType.vb: RasterTile.RasterTile(GeoCoordinate, GeoCoordinate, Int32, Size, IEnumerable(Of Byte), TileExtension, Boolean, Int32, Interpolation)
-- uid: GTiff2Tiles.Core.Tiles.RasterTile.#ctor(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Enums.CoordinateSystem,GTiff2Tiles.Core.Images.Size,System.Collections.Generic.IEnumerable{System.Byte},GTiff2Tiles.Core.Enums.TileExtension,System.Boolean,System.Int32,GTiff2Tiles.Core.Enums.Interpolation)
-  name: RasterTile(Number, CoordinateSystem, Size, IEnumerable<Byte>, TileExtension, Boolean, Int32, Interpolation)
-  href: api/GTiff2Tiles.Core.Tiles.RasterTile.html#GTiff2Tiles_Core_Tiles_RasterTile__ctor_GTiff2Tiles_Core_Tiles_Number_GTiff2Tiles_Core_Enums_CoordinateSystem_GTiff2Tiles_Core_Images_Size_System_Collections_Generic_IEnumerable_System_Byte__GTiff2Tiles_Core_Enums_TileExtension_System_Boolean_System_Int32_GTiff2Tiles_Core_Enums_Interpolation_
-  commentId: M:GTiff2Tiles.Core.Tiles.RasterTile.#ctor(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Enums.CoordinateSystem,GTiff2Tiles.Core.Images.Size,System.Collections.Generic.IEnumerable{System.Byte},GTiff2Tiles.Core.Enums.TileExtension,System.Boolean,System.Int32,GTiff2Tiles.Core.Enums.Interpolation)
-  name.vb: RasterTile(Number, CoordinateSystem, Size, IEnumerable(Of Byte), TileExtension, Boolean, Int32, Interpolation)
-  fullName: GTiff2Tiles.Core.Tiles.RasterTile.RasterTile(GTiff2Tiles.Core.Tiles.Number, GTiff2Tiles.Core.Enums.CoordinateSystem, GTiff2Tiles.Core.Images.Size, System.Collections.Generic.IEnumerable<System.Byte>, GTiff2Tiles.Core.Enums.TileExtension, System.Boolean, System.Int32, GTiff2Tiles.Core.Enums.Interpolation)
-  fullName.vb: GTiff2Tiles.Core.Tiles.RasterTile.RasterTile(GTiff2Tiles.Core.Tiles.Number, GTiff2Tiles.Core.Enums.CoordinateSystem, GTiff2Tiles.Core.Images.Size, System.Collections.Generic.IEnumerable(Of System.Byte), GTiff2Tiles.Core.Enums.TileExtension, System.Boolean, System.Int32, GTiff2Tiles.Core.Enums.Interpolation)
-  nameWithType: RasterTile.RasterTile(Number, CoordinateSystem, Size, IEnumerable<Byte>, TileExtension, Boolean, Int32, Interpolation)
-  nameWithType.vb: RasterTile.RasterTile(Number, CoordinateSystem, Size, IEnumerable(Of Byte), TileExtension, Boolean, Int32, Interpolation)
+- uid: GTiff2Tiles.Core.Tiles.RasterTile.#ctor(GTiff2Tiles.Core.Coordinates.GeoCoordinate,GTiff2Tiles.Core.Coordinates.GeoCoordinate,System.Int32,GTiff2Tiles.Core.Images.Size,System.Boolean)
+  name: RasterTile(GeoCoordinate, GeoCoordinate, Int32, Size, Boolean)
+  href: api/GTiff2Tiles.Core.Tiles.RasterTile.html#GTiff2Tiles_Core_Tiles_RasterTile__ctor_GTiff2Tiles_Core_Coordinates_GeoCoordinate_GTiff2Tiles_Core_Coordinates_GeoCoordinate_System_Int32_GTiff2Tiles_Core_Images_Size_System_Boolean_
+  commentId: M:GTiff2Tiles.Core.Tiles.RasterTile.#ctor(GTiff2Tiles.Core.Coordinates.GeoCoordinate,GTiff2Tiles.Core.Coordinates.GeoCoordinate,System.Int32,GTiff2Tiles.Core.Images.Size,System.Boolean)
+  fullName: GTiff2Tiles.Core.Tiles.RasterTile.RasterTile(GTiff2Tiles.Core.Coordinates.GeoCoordinate, GTiff2Tiles.Core.Coordinates.GeoCoordinate, System.Int32, GTiff2Tiles.Core.Images.Size, System.Boolean)
+  nameWithType: RasterTile.RasterTile(GeoCoordinate, GeoCoordinate, Int32, Size, Boolean)
+- uid: GTiff2Tiles.Core.Tiles.RasterTile.#ctor(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Enums.CoordinateSystem,GTiff2Tiles.Core.Images.Size,System.Boolean)
+  name: RasterTile(Number, CoordinateSystem, Size, Boolean)
+  href: api/GTiff2Tiles.Core.Tiles.RasterTile.html#GTiff2Tiles_Core_Tiles_RasterTile__ctor_GTiff2Tiles_Core_Tiles_Number_GTiff2Tiles_Core_Enums_CoordinateSystem_GTiff2Tiles_Core_Images_Size_System_Boolean_
+  commentId: M:GTiff2Tiles.Core.Tiles.RasterTile.#ctor(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Enums.CoordinateSystem,GTiff2Tiles.Core.Images.Size,System.Boolean)
+  fullName: GTiff2Tiles.Core.Tiles.RasterTile.RasterTile(GTiff2Tiles.Core.Tiles.Number, GTiff2Tiles.Core.Enums.CoordinateSystem, GTiff2Tiles.Core.Images.Size, System.Boolean)
+  nameWithType: RasterTile.RasterTile(Number, CoordinateSystem, Size, Boolean)
 - uid: GTiff2Tiles.Core.Tiles.RasterTile.#ctor*
   name: RasterTile
   href: api/GTiff2Tiles.Core.Tiles.RasterTile.html#GTiff2Tiles_Core_Tiles_RasterTile__ctor_
@@ -2615,6 +3918,19 @@ references:
   isSpec: "True"
   fullName: GTiff2Tiles.Core.Tiles.RasterTile.BandsCount
   nameWithType: RasterTile.BandsCount
+- uid: GTiff2Tiles.Core.Tiles.RasterTile.CreateImage(GTiff2Tiles.Core.GeoTiffs.IGeoTiff,NetVips.Image)
+  name: CreateImage(IGeoTiff, Image)
+  href: api/GTiff2Tiles.Core.Tiles.RasterTile.html#GTiff2Tiles_Core_Tiles_RasterTile_CreateImage_GTiff2Tiles_Core_GeoTiffs_IGeoTiff_NetVips_Image_
+  commentId: M:GTiff2Tiles.Core.Tiles.RasterTile.CreateImage(GTiff2Tiles.Core.GeoTiffs.IGeoTiff,NetVips.Image)
+  fullName: GTiff2Tiles.Core.Tiles.RasterTile.CreateImage(GTiff2Tiles.Core.GeoTiffs.IGeoTiff, NetVips.Image)
+  nameWithType: RasterTile.CreateImage(IGeoTiff, Image)
+- uid: GTiff2Tiles.Core.Tiles.RasterTile.CreateImage*
+  name: CreateImage
+  href: api/GTiff2Tiles.Core.Tiles.RasterTile.html#GTiff2Tiles_Core_Tiles_RasterTile_CreateImage_
+  commentId: Overload:GTiff2Tiles.Core.Tiles.RasterTile.CreateImage
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.Tiles.RasterTile.CreateImage
+  nameWithType: RasterTile.CreateImage
 - uid: GTiff2Tiles.Core.Tiles.RasterTile.DefaultBandsCount
   name: DefaultBandsCount
   href: api/GTiff2Tiles.Core.Tiles.RasterTile.html#GTiff2Tiles_Core_Tiles_RasterTile_DefaultBandsCount
@@ -2634,30 +3950,98 @@ references:
   isSpec: "True"
   fullName: GTiff2Tiles.Core.Tiles.RasterTile.Interpolation
   nameWithType: RasterTile.Interpolation
+- uid: GTiff2Tiles.Core.Tiles.RasterTile.WriteOverviewTileBytes*
+  name: WriteOverviewTileBytes
+  href: api/GTiff2Tiles.Core.Tiles.RasterTile.html#GTiff2Tiles_Core_Tiles_RasterTile_WriteOverviewTileBytes_
+  commentId: Overload:GTiff2Tiles.Core.Tiles.RasterTile.WriteOverviewTileBytes
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.Tiles.RasterTile.WriteOverviewTileBytes
+  nameWithType: RasterTile.WriteOverviewTileBytes
+- uid: GTiff2Tiles.Core.Tiles.RasterTile.WriteOverviewTileBytes``1(``0[])
+  name: WriteOverviewTileBytes<T>(T[])
+  href: api/GTiff2Tiles.Core.Tiles.RasterTile.html#GTiff2Tiles_Core_Tiles_RasterTile_WriteOverviewTileBytes__1___0___
+  commentId: M:GTiff2Tiles.Core.Tiles.RasterTile.WriteOverviewTileBytes``1(``0[])
+  name.vb: WriteOverviewTileBytes(Of T)(T())
+  fullName: GTiff2Tiles.Core.Tiles.RasterTile.WriteOverviewTileBytes<T>(T[])
+  fullName.vb: GTiff2Tiles.Core.Tiles.RasterTile.WriteOverviewTileBytes(Of T)(T())
+  nameWithType: RasterTile.WriteOverviewTileBytes<T>(T[])
+  nameWithType.vb: RasterTile.WriteOverviewTileBytes(Of T)(T())
+- uid: GTiff2Tiles.Core.Tiles.RasterTile.WriteOverviewTileImage*
+  name: WriteOverviewTileImage
+  href: api/GTiff2Tiles.Core.Tiles.RasterTile.html#GTiff2Tiles_Core_Tiles_RasterTile_WriteOverviewTileImage_
+  commentId: Overload:GTiff2Tiles.Core.Tiles.RasterTile.WriteOverviewTileImage
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.Tiles.RasterTile.WriteOverviewTileImage
+  nameWithType: RasterTile.WriteOverviewTileImage
+- uid: GTiff2Tiles.Core.Tiles.RasterTile.WriteOverviewTileImage``1(``0[],System.Boolean)
+  name: WriteOverviewTileImage<T>(T[], Boolean)
+  href: api/GTiff2Tiles.Core.Tiles.RasterTile.html#GTiff2Tiles_Core_Tiles_RasterTile_WriteOverviewTileImage__1___0___System_Boolean_
+  commentId: M:GTiff2Tiles.Core.Tiles.RasterTile.WriteOverviewTileImage``1(``0[],System.Boolean)
+  name.vb: WriteOverviewTileImage(Of T)(T(), Boolean)
+  fullName: GTiff2Tiles.Core.Tiles.RasterTile.WriteOverviewTileImage<T>(T[], System.Boolean)
+  fullName.vb: GTiff2Tiles.Core.Tiles.RasterTile.WriteOverviewTileImage(Of T)(T(), System.Boolean)
+  nameWithType: RasterTile.WriteOverviewTileImage<T>(T[], Boolean)
+  nameWithType.vb: RasterTile.WriteOverviewTileImage(Of T)(T(), Boolean)
+- uid: GTiff2Tiles.Core.Tiles.RasterTile.WriteToChannel*
+  name: WriteToChannel
+  href: api/GTiff2Tiles.Core.Tiles.RasterTile.html#GTiff2Tiles_Core_Tiles_RasterTile_WriteToChannel_
+  commentId: Overload:GTiff2Tiles.Core.Tiles.RasterTile.WriteToChannel
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.Tiles.RasterTile.WriteToChannel
+  nameWithType: RasterTile.WriteToChannel
+- uid: GTiff2Tiles.Core.Tiles.RasterTile.WriteToChannel``1(GTiff2Tiles.Core.GeoTiffs.IGeoTiff,System.Threading.Channels.ChannelWriter{``0},GTiff2Tiles.Core.Args.IWriteTilesArgs)
+  name: WriteToChannel<T>(IGeoTiff, ChannelWriter<T>, IWriteTilesArgs)
+  href: api/GTiff2Tiles.Core.Tiles.RasterTile.html#GTiff2Tiles_Core_Tiles_RasterTile_WriteToChannel__1_GTiff2Tiles_Core_GeoTiffs_IGeoTiff_System_Threading_Channels_ChannelWriter___0__GTiff2Tiles_Core_Args_IWriteTilesArgs_
+  commentId: M:GTiff2Tiles.Core.Tiles.RasterTile.WriteToChannel``1(GTiff2Tiles.Core.GeoTiffs.IGeoTiff,System.Threading.Channels.ChannelWriter{``0},GTiff2Tiles.Core.Args.IWriteTilesArgs)
+  name.vb: WriteToChannel(Of T)(IGeoTiff, ChannelWriter(Of T), IWriteTilesArgs)
+  fullName: GTiff2Tiles.Core.Tiles.RasterTile.WriteToChannel<T>(GTiff2Tiles.Core.GeoTiffs.IGeoTiff, System.Threading.Channels.ChannelWriter<T>, GTiff2Tiles.Core.Args.IWriteTilesArgs)
+  fullName.vb: GTiff2Tiles.Core.Tiles.RasterTile.WriteToChannel(Of T)(GTiff2Tiles.Core.GeoTiffs.IGeoTiff, System.Threading.Channels.ChannelWriter(Of T), GTiff2Tiles.Core.Args.IWriteTilesArgs)
+  nameWithType: RasterTile.WriteToChannel<T>(IGeoTiff, ChannelWriter<T>, IWriteTilesArgs)
+  nameWithType.vb: RasterTile.WriteToChannel(Of T)(IGeoTiff, ChannelWriter(Of T), IWriteTilesArgs)
+- uid: GTiff2Tiles.Core.Tiles.RasterTile.WriteToEnumerable(GTiff2Tiles.Core.GeoTiffs.IGeoTiff,GTiff2Tiles.Core.Args.IWriteTilesArgs)
+  name: WriteToEnumerable(IGeoTiff, IWriteTilesArgs)
+  href: api/GTiff2Tiles.Core.Tiles.RasterTile.html#GTiff2Tiles_Core_Tiles_RasterTile_WriteToEnumerable_GTiff2Tiles_Core_GeoTiffs_IGeoTiff_GTiff2Tiles_Core_Args_IWriteTilesArgs_
+  commentId: M:GTiff2Tiles.Core.Tiles.RasterTile.WriteToEnumerable(GTiff2Tiles.Core.GeoTiffs.IGeoTiff,GTiff2Tiles.Core.Args.IWriteTilesArgs)
+  fullName: GTiff2Tiles.Core.Tiles.RasterTile.WriteToEnumerable(GTiff2Tiles.Core.GeoTiffs.IGeoTiff, GTiff2Tiles.Core.Args.IWriteTilesArgs)
+  nameWithType: RasterTile.WriteToEnumerable(IGeoTiff, IWriteTilesArgs)
+- uid: GTiff2Tiles.Core.Tiles.RasterTile.WriteToEnumerable*
+  name: WriteToEnumerable
+  href: api/GTiff2Tiles.Core.Tiles.RasterTile.html#GTiff2Tiles_Core_Tiles_RasterTile_WriteToEnumerable_
+  commentId: Overload:GTiff2Tiles.Core.Tiles.RasterTile.WriteToEnumerable
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.Tiles.RasterTile.WriteToEnumerable
+  nameWithType: RasterTile.WriteToEnumerable
+- uid: GTiff2Tiles.Core.Tiles.RasterTile.WriteToFile(GTiff2Tiles.Core.GeoTiffs.IGeoTiff,GTiff2Tiles.Core.Args.IWriteTilesArgs)
+  name: WriteToFile(IGeoTiff, IWriteTilesArgs)
+  href: api/GTiff2Tiles.Core.Tiles.RasterTile.html#GTiff2Tiles_Core_Tiles_RasterTile_WriteToFile_GTiff2Tiles_Core_GeoTiffs_IGeoTiff_GTiff2Tiles_Core_Args_IWriteTilesArgs_
+  commentId: M:GTiff2Tiles.Core.Tiles.RasterTile.WriteToFile(GTiff2Tiles.Core.GeoTiffs.IGeoTiff,GTiff2Tiles.Core.Args.IWriteTilesArgs)
+  fullName: GTiff2Tiles.Core.Tiles.RasterTile.WriteToFile(GTiff2Tiles.Core.GeoTiffs.IGeoTiff, GTiff2Tiles.Core.Args.IWriteTilesArgs)
+  nameWithType: RasterTile.WriteToFile(IGeoTiff, IWriteTilesArgs)
+- uid: GTiff2Tiles.Core.Tiles.RasterTile.WriteToFile*
+  name: WriteToFile
+  href: api/GTiff2Tiles.Core.Tiles.RasterTile.html#GTiff2Tiles_Core_Tiles_RasterTile_WriteToFile_
+  commentId: Overload:GTiff2Tiles.Core.Tiles.RasterTile.WriteToFile
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.Tiles.RasterTile.WriteToFile
+  nameWithType: RasterTile.WriteToFile
 - uid: GTiff2Tiles.Core.Tiles.Tile
   name: Tile
   href: api/GTiff2Tiles.Core.Tiles.Tile.html
   commentId: T:GTiff2Tiles.Core.Tiles.Tile
   fullName: GTiff2Tiles.Core.Tiles.Tile
   nameWithType: Tile
-- uid: GTiff2Tiles.Core.Tiles.Tile.#ctor(GTiff2Tiles.Core.Coordinates.GeoCoordinate,GTiff2Tiles.Core.Coordinates.GeoCoordinate,System.Int32,GTiff2Tiles.Core.Images.Size,System.Collections.Generic.IEnumerable{System.Byte},GTiff2Tiles.Core.Enums.TileExtension,System.Boolean)
-  name: Tile(GeoCoordinate, GeoCoordinate, Int32, Size, IEnumerable<Byte>, TileExtension, Boolean)
-  href: api/GTiff2Tiles.Core.Tiles.Tile.html#GTiff2Tiles_Core_Tiles_Tile__ctor_GTiff2Tiles_Core_Coordinates_GeoCoordinate_GTiff2Tiles_Core_Coordinates_GeoCoordinate_System_Int32_GTiff2Tiles_Core_Images_Size_System_Collections_Generic_IEnumerable_System_Byte__GTiff2Tiles_Core_Enums_TileExtension_System_Boolean_
-  commentId: M:GTiff2Tiles.Core.Tiles.Tile.#ctor(GTiff2Tiles.Core.Coordinates.GeoCoordinate,GTiff2Tiles.Core.Coordinates.GeoCoordinate,System.Int32,GTiff2Tiles.Core.Images.Size,System.Collections.Generic.IEnumerable{System.Byte},GTiff2Tiles.Core.Enums.TileExtension,System.Boolean)
-  name.vb: Tile(GeoCoordinate, GeoCoordinate, Int32, Size, IEnumerable(Of Byte), TileExtension, Boolean)
-  fullName: GTiff2Tiles.Core.Tiles.Tile.Tile(GTiff2Tiles.Core.Coordinates.GeoCoordinate, GTiff2Tiles.Core.Coordinates.GeoCoordinate, System.Int32, GTiff2Tiles.Core.Images.Size, System.Collections.Generic.IEnumerable<System.Byte>, GTiff2Tiles.Core.Enums.TileExtension, System.Boolean)
-  fullName.vb: GTiff2Tiles.Core.Tiles.Tile.Tile(GTiff2Tiles.Core.Coordinates.GeoCoordinate, GTiff2Tiles.Core.Coordinates.GeoCoordinate, System.Int32, GTiff2Tiles.Core.Images.Size, System.Collections.Generic.IEnumerable(Of System.Byte), GTiff2Tiles.Core.Enums.TileExtension, System.Boolean)
-  nameWithType: Tile.Tile(GeoCoordinate, GeoCoordinate, Int32, Size, IEnumerable<Byte>, TileExtension, Boolean)
-  nameWithType.vb: Tile.Tile(GeoCoordinate, GeoCoordinate, Int32, Size, IEnumerable(Of Byte), TileExtension, Boolean)
-- uid: GTiff2Tiles.Core.Tiles.Tile.#ctor(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Enums.CoordinateSystem,GTiff2Tiles.Core.Images.Size,System.Collections.Generic.IEnumerable{System.Byte},GTiff2Tiles.Core.Enums.TileExtension,System.Boolean)
-  name: Tile(Number, CoordinateSystem, Size, IEnumerable<Byte>, TileExtension, Boolean)
-  href: api/GTiff2Tiles.Core.Tiles.Tile.html#GTiff2Tiles_Core_Tiles_Tile__ctor_GTiff2Tiles_Core_Tiles_Number_GTiff2Tiles_Core_Enums_CoordinateSystem_GTiff2Tiles_Core_Images_Size_System_Collections_Generic_IEnumerable_System_Byte__GTiff2Tiles_Core_Enums_TileExtension_System_Boolean_
-  commentId: M:GTiff2Tiles.Core.Tiles.Tile.#ctor(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Enums.CoordinateSystem,GTiff2Tiles.Core.Images.Size,System.Collections.Generic.IEnumerable{System.Byte},GTiff2Tiles.Core.Enums.TileExtension,System.Boolean)
-  name.vb: Tile(Number, CoordinateSystem, Size, IEnumerable(Of Byte), TileExtension, Boolean)
-  fullName: GTiff2Tiles.Core.Tiles.Tile.Tile(GTiff2Tiles.Core.Tiles.Number, GTiff2Tiles.Core.Enums.CoordinateSystem, GTiff2Tiles.Core.Images.Size, System.Collections.Generic.IEnumerable<System.Byte>, GTiff2Tiles.Core.Enums.TileExtension, System.Boolean)
-  fullName.vb: GTiff2Tiles.Core.Tiles.Tile.Tile(GTiff2Tiles.Core.Tiles.Number, GTiff2Tiles.Core.Enums.CoordinateSystem, GTiff2Tiles.Core.Images.Size, System.Collections.Generic.IEnumerable(Of System.Byte), GTiff2Tiles.Core.Enums.TileExtension, System.Boolean)
-  nameWithType: Tile.Tile(Number, CoordinateSystem, Size, IEnumerable<Byte>, TileExtension, Boolean)
-  nameWithType.vb: Tile.Tile(Number, CoordinateSystem, Size, IEnumerable(Of Byte), TileExtension, Boolean)
+- uid: GTiff2Tiles.Core.Tiles.Tile.#ctor(GTiff2Tiles.Core.Coordinates.GeoCoordinate,GTiff2Tiles.Core.Coordinates.GeoCoordinate,System.Int32,GTiff2Tiles.Core.Images.Size,System.Boolean)
+  name: Tile(GeoCoordinate, GeoCoordinate, Int32, Size, Boolean)
+  href: api/GTiff2Tiles.Core.Tiles.Tile.html#GTiff2Tiles_Core_Tiles_Tile__ctor_GTiff2Tiles_Core_Coordinates_GeoCoordinate_GTiff2Tiles_Core_Coordinates_GeoCoordinate_System_Int32_GTiff2Tiles_Core_Images_Size_System_Boolean_
+  commentId: M:GTiff2Tiles.Core.Tiles.Tile.#ctor(GTiff2Tiles.Core.Coordinates.GeoCoordinate,GTiff2Tiles.Core.Coordinates.GeoCoordinate,System.Int32,GTiff2Tiles.Core.Images.Size,System.Boolean)
+  fullName: GTiff2Tiles.Core.Tiles.Tile.Tile(GTiff2Tiles.Core.Coordinates.GeoCoordinate, GTiff2Tiles.Core.Coordinates.GeoCoordinate, System.Int32, GTiff2Tiles.Core.Images.Size, System.Boolean)
+  nameWithType: Tile.Tile(GeoCoordinate, GeoCoordinate, Int32, Size, Boolean)
+- uid: GTiff2Tiles.Core.Tiles.Tile.#ctor(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Enums.CoordinateSystem,GTiff2Tiles.Core.Images.Size,System.Boolean)
+  name: Tile(Number, CoordinateSystem, Size, Boolean)
+  href: api/GTiff2Tiles.Core.Tiles.Tile.html#GTiff2Tiles_Core_Tiles_Tile__ctor_GTiff2Tiles_Core_Tiles_Number_GTiff2Tiles_Core_Enums_CoordinateSystem_GTiff2Tiles_Core_Images_Size_System_Boolean_
+  commentId: M:GTiff2Tiles.Core.Tiles.Tile.#ctor(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Enums.CoordinateSystem,GTiff2Tiles.Core.Images.Size,System.Boolean)
+  fullName: GTiff2Tiles.Core.Tiles.Tile.Tile(GTiff2Tiles.Core.Tiles.Number, GTiff2Tiles.Core.Enums.CoordinateSystem, GTiff2Tiles.Core.Images.Size, System.Boolean)
+  nameWithType: Tile.Tile(Number, CoordinateSystem, Size, Boolean)
 - uid: GTiff2Tiles.Core.Tiles.Tile.#ctor*
   name: Tile
   href: api/GTiff2Tiles.Core.Tiles.Tile.html#GTiff2Tiles_Core_Tiles_Tile__ctor_
@@ -2697,6 +4081,19 @@ references:
   isSpec: "True"
   fullName: GTiff2Tiles.Core.Tiles.Tile.CalculatePosition
   nameWithType: Tile.CalculatePosition
+- uid: GTiff2Tiles.Core.Tiles.Tile.CoordinateSystem
+  name: CoordinateSystem
+  href: api/GTiff2Tiles.Core.Tiles.Tile.html#GTiff2Tiles_Core_Tiles_Tile_CoordinateSystem
+  commentId: P:GTiff2Tiles.Core.Tiles.Tile.CoordinateSystem
+  fullName: GTiff2Tiles.Core.Tiles.Tile.CoordinateSystem
+  nameWithType: Tile.CoordinateSystem
+- uid: GTiff2Tiles.Core.Tiles.Tile.CoordinateSystem*
+  name: CoordinateSystem
+  href: api/GTiff2Tiles.Core.Tiles.Tile.html#GTiff2Tiles_Core_Tiles_Tile_CoordinateSystem_
+  commentId: Overload:GTiff2Tiles.Core.Tiles.Tile.CoordinateSystem
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.Tiles.Tile.CoordinateSystem
+  nameWithType: Tile.CoordinateSystem
 - uid: GTiff2Tiles.Core.Tiles.Tile.DefaultSize
   name: DefaultSize
   href: api/GTiff2Tiles.Core.Tiles.Tile.html#GTiff2Tiles_Core_Tiles_Tile_DefaultSize
@@ -2903,6 +4300,57 @@ references:
   isSpec: "True"
   fullName: GTiff2Tiles.Core.Tiles.Tile.Validate
   nameWithType: Tile.Validate
+- uid: GTiff2Tiles.Core.Tiles.Tile.WriteOverviewTileBytes*
+  name: WriteOverviewTileBytes
+  href: api/GTiff2Tiles.Core.Tiles.Tile.html#GTiff2Tiles_Core_Tiles_Tile_WriteOverviewTileBytes_
+  commentId: Overload:GTiff2Tiles.Core.Tiles.Tile.WriteOverviewTileBytes
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.Tiles.Tile.WriteOverviewTileBytes
+  nameWithType: Tile.WriteOverviewTileBytes
+- uid: GTiff2Tiles.Core.Tiles.Tile.WriteOverviewTileBytes``1(``0[])
+  name: WriteOverviewTileBytes<T>(T[])
+  href: api/GTiff2Tiles.Core.Tiles.Tile.html#GTiff2Tiles_Core_Tiles_Tile_WriteOverviewTileBytes__1___0___
+  commentId: M:GTiff2Tiles.Core.Tiles.Tile.WriteOverviewTileBytes``1(``0[])
+  name.vb: WriteOverviewTileBytes(Of T)(T())
+  fullName: GTiff2Tiles.Core.Tiles.Tile.WriteOverviewTileBytes<T>(T[])
+  fullName.vb: GTiff2Tiles.Core.Tiles.Tile.WriteOverviewTileBytes(Of T)(T())
+  nameWithType: Tile.WriteOverviewTileBytes<T>(T[])
+  nameWithType.vb: Tile.WriteOverviewTileBytes(Of T)(T())
+- uid: GTiff2Tiles.Core.Tiles.Tile.WriteToChannel*
+  name: WriteToChannel
+  href: api/GTiff2Tiles.Core.Tiles.Tile.html#GTiff2Tiles_Core_Tiles_Tile_WriteToChannel_
+  commentId: Overload:GTiff2Tiles.Core.Tiles.Tile.WriteToChannel
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.Tiles.Tile.WriteToChannel
+  nameWithType: Tile.WriteToChannel
+- uid: GTiff2Tiles.Core.Tiles.Tile.WriteToChannel``1(GTiff2Tiles.Core.GeoTiffs.IGeoTiff,System.Threading.Channels.ChannelWriter{``0},GTiff2Tiles.Core.Args.IWriteTilesArgs)
+  name: WriteToChannel<T>(IGeoTiff, ChannelWriter<T>, IWriteTilesArgs)
+  href: api/GTiff2Tiles.Core.Tiles.Tile.html#GTiff2Tiles_Core_Tiles_Tile_WriteToChannel__1_GTiff2Tiles_Core_GeoTiffs_IGeoTiff_System_Threading_Channels_ChannelWriter___0__GTiff2Tiles_Core_Args_IWriteTilesArgs_
+  commentId: M:GTiff2Tiles.Core.Tiles.Tile.WriteToChannel``1(GTiff2Tiles.Core.GeoTiffs.IGeoTiff,System.Threading.Channels.ChannelWriter{``0},GTiff2Tiles.Core.Args.IWriteTilesArgs)
+  name.vb: WriteToChannel(Of T)(IGeoTiff, ChannelWriter(Of T), IWriteTilesArgs)
+  fullName: GTiff2Tiles.Core.Tiles.Tile.WriteToChannel<T>(GTiff2Tiles.Core.GeoTiffs.IGeoTiff, System.Threading.Channels.ChannelWriter<T>, GTiff2Tiles.Core.Args.IWriteTilesArgs)
+  fullName.vb: GTiff2Tiles.Core.Tiles.Tile.WriteToChannel(Of T)(GTiff2Tiles.Core.GeoTiffs.IGeoTiff, System.Threading.Channels.ChannelWriter(Of T), GTiff2Tiles.Core.Args.IWriteTilesArgs)
+  nameWithType: Tile.WriteToChannel<T>(IGeoTiff, ChannelWriter<T>, IWriteTilesArgs)
+  nameWithType.vb: Tile.WriteToChannel(Of T)(IGeoTiff, ChannelWriter(Of T), IWriteTilesArgs)
+- uid: GTiff2Tiles.Core.Tiles.Tile.WriteToEnumerable(GTiff2Tiles.Core.GeoTiffs.IGeoTiff,GTiff2Tiles.Core.Args.IWriteTilesArgs)
+  name: WriteToEnumerable(IGeoTiff, IWriteTilesArgs)
+  href: api/GTiff2Tiles.Core.Tiles.Tile.html#GTiff2Tiles_Core_Tiles_Tile_WriteToEnumerable_GTiff2Tiles_Core_GeoTiffs_IGeoTiff_GTiff2Tiles_Core_Args_IWriteTilesArgs_
+  commentId: M:GTiff2Tiles.Core.Tiles.Tile.WriteToEnumerable(GTiff2Tiles.Core.GeoTiffs.IGeoTiff,GTiff2Tiles.Core.Args.IWriteTilesArgs)
+  fullName: GTiff2Tiles.Core.Tiles.Tile.WriteToEnumerable(GTiff2Tiles.Core.GeoTiffs.IGeoTiff, GTiff2Tiles.Core.Args.IWriteTilesArgs)
+  nameWithType: Tile.WriteToEnumerable(IGeoTiff, IWriteTilesArgs)
+- uid: GTiff2Tiles.Core.Tiles.Tile.WriteToEnumerable*
+  name: WriteToEnumerable
+  href: api/GTiff2Tiles.Core.Tiles.Tile.html#GTiff2Tiles_Core_Tiles_Tile_WriteToEnumerable_
+  commentId: Overload:GTiff2Tiles.Core.Tiles.Tile.WriteToEnumerable
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.Tiles.Tile.WriteToEnumerable
+  nameWithType: Tile.WriteToEnumerable
+- uid: GTiff2Tiles.Core.Tiles.Tile.WriteToFile(GTiff2Tiles.Core.GeoTiffs.IGeoTiff,GTiff2Tiles.Core.Args.IWriteTilesArgs)
+  name: WriteToFile(IGeoTiff, IWriteTilesArgs)
+  href: api/GTiff2Tiles.Core.Tiles.Tile.html#GTiff2Tiles_Core_Tiles_Tile_WriteToFile_GTiff2Tiles_Core_GeoTiffs_IGeoTiff_GTiff2Tiles_Core_Args_IWriteTilesArgs_
+  commentId: M:GTiff2Tiles.Core.Tiles.Tile.WriteToFile(GTiff2Tiles.Core.GeoTiffs.IGeoTiff,GTiff2Tiles.Core.Args.IWriteTilesArgs)
+  fullName: GTiff2Tiles.Core.Tiles.Tile.WriteToFile(GTiff2Tiles.Core.GeoTiffs.IGeoTiff, GTiff2Tiles.Core.Args.IWriteTilesArgs)
+  nameWithType: Tile.WriteToFile(IGeoTiff, IWriteTilesArgs)
 - uid: GTiff2Tiles.Core.Tiles.Tile.WriteToFile(GTiff2Tiles.Core.Tiles.ITile,System.String)
   name: WriteToFile(ITile, String)
   href: api/GTiff2Tiles.Core.Tiles.Tile.html#GTiff2Tiles_Core_Tiles_Tile_WriteToFile_GTiff2Tiles_Core_Tiles_ITile_System_String_

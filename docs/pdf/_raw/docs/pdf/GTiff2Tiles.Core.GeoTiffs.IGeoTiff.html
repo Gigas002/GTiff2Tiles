@@ -1,0 +1,151 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <link rel="stylesheet" href="styles/docfx.vendor.css">
+    <link rel="stylesheet" href="styles/default.css">
+    <link rel="stylesheet" href="styles/main.css">
+  </head>
+  <body>
+    <article>
+  
+  
+  <h1 id="GTiff2Tiles_Core_GeoTiffs_IGeoTiff" data-uid="GTiff2Tiles.Core.GeoTiffs.IGeoTiff" class="text-break">Interface IGeoTiff
+  </h1>
+  <div class="markdown level0 summary"><p>Main interface for different type of GeoTiffs and <a class="xref" href="GTiff2Tiles.Core.Tiles.ITile.html">ITile</a></p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="GTiff2Tiles.Core.GeoTiffs.html">GTiff2Tiles.Core.GeoTiffs</a></h6>
+  <h6><strong>Assembly</strong>: GTiff2Tiles.Core.dll</h6>
+  <h5 id="GTiff2Tiles_Core_GeoTiffs_IGeoTiff_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public interface IGeoTiff : IAsyncDisposable, IDisposable</code></pre>
+  </div>
+  <h3 id="properties">Properties
+  </h3>
+  <a id="GTiff2Tiles_Core_GeoTiffs_IGeoTiff_GeoCoordinateSystem_" data-uid="GTiff2Tiles.Core.GeoTiffs.IGeoTiff.GeoCoordinateSystem*"></a>
+  <h4 id="GTiff2Tiles_Core_GeoTiffs_IGeoTiff_GeoCoordinateSystem" data-uid="GTiff2Tiles.Core.GeoTiffs.IGeoTiff.GeoCoordinateSystem">GeoCoordinateSystem</h4>
+  <div class="markdown level1 summary"><p>Type of desired <a class="xref" href="GTiff2Tiles.Core.Enums.CoordinateSystem.html">CoordinateSystem</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">CoordinateSystem GeoCoordinateSystem { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="GTiff2Tiles.Core.Enums.CoordinateSystem.html">CoordinateSystem</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GTiff2Tiles_Core_GeoTiffs_IGeoTiff_IsDisposed_" data-uid="GTiff2Tiles.Core.GeoTiffs.IGeoTiff.IsDisposed*"></a>
+  <h4 id="GTiff2Tiles_Core_GeoTiffs_IGeoTiff_IsDisposed" data-uid="GTiff2Tiles.Core.GeoTiffs.IGeoTiff.IsDisposed">IsDisposed</h4>
+  <div class="markdown level1 summary"><p>Shows if resources have already been disposed</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool IsDisposed { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GTiff2Tiles_Core_GeoTiffs_IGeoTiff_MaxCoordinate_" data-uid="GTiff2Tiles.Core.GeoTiffs.IGeoTiff.MaxCoordinate*"></a>
+  <h4 id="GTiff2Tiles_Core_GeoTiffs_IGeoTiff_MaxCoordinate" data-uid="GTiff2Tiles.Core.GeoTiffs.IGeoTiff.MaxCoordinate">MaxCoordinate</h4>
+  <div class="markdown level1 summary"><p>Maximal <a class="xref" href="GTiff2Tiles.Core.Coordinates.GeoCoordinate.html">GeoCoordinate</a> of this <a class="xref" href="GTiff2Tiles.Core.GeoTiffs.IGeoTiff.html">IGeoTiff</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">GeoCoordinate MaxCoordinate { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="GTiff2Tiles.Core.Coordinates.GeoCoordinate.html">GeoCoordinate</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GTiff2Tiles_Core_GeoTiffs_IGeoTiff_MinCoordinate_" data-uid="GTiff2Tiles.Core.GeoTiffs.IGeoTiff.MinCoordinate*"></a>
+  <h4 id="GTiff2Tiles_Core_GeoTiffs_IGeoTiff_MinCoordinate" data-uid="GTiff2Tiles.Core.GeoTiffs.IGeoTiff.MinCoordinate">MinCoordinate</h4>
+  <div class="markdown level1 summary"><p>Minimal <a class="xref" href="GTiff2Tiles.Core.Coordinates.GeoCoordinate.html">GeoCoordinate</a> of this <a class="xref" href="GTiff2Tiles.Core.GeoTiffs.IGeoTiff.html">IGeoTiff</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">GeoCoordinate MinCoordinate { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="GTiff2Tiles.Core.Coordinates.GeoCoordinate.html">GeoCoordinate</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GTiff2Tiles_Core_GeoTiffs_IGeoTiff_Size_" data-uid="GTiff2Tiles.Core.GeoTiffs.IGeoTiff.Size*"></a>
+  <h4 id="GTiff2Tiles_Core_GeoTiffs_IGeoTiff_Size" data-uid="GTiff2Tiles.Core.GeoTiffs.IGeoTiff.Size">Size</h4>
+  <div class="markdown level1 summary"><p>Image&apos;s <a class="xref" href="GTiff2Tiles.Core.Images.Size.html">Size</a> (width and height)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Size Size { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="GTiff2Tiles.Core.Images.Size.html">Size</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</article>
+    <script type="text/javascript" src="styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="styles/docfx.js"></script>
+    <script type="text/javascript" src="styles/main.js"></script>
+  </body>
+</html>

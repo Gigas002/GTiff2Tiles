@@ -4,4 +4,4 @@ docfx metadata
 docfx build
 
 # Requires wkhtmltopdf to be added to system path
-docfx pdf
+# docfx pdf

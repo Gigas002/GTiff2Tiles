@@ -1,0 +1,229 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <link rel="stylesheet" href="styles/docfx.vendor.css">
+    <link rel="stylesheet" href="styles/default.css">
+    <link rel="stylesheet" href="styles/main.css">
+  </head>
+  <body>
+    <article>
+  
+  
+  <h1 id="GTiff2Tiles_Core_TileGenerator" data-uid="GTiff2Tiles.Core.TileGenerator" class="text-break">Class TileGenerator
+  </h1>
+  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">TileGenerator</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ToString()</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="GTiff2Tiles.Core.html">GTiff2Tiles.Core</a></h6>
+  <h6><strong>Assembly</strong>: GTiff2Tiles.Core.dll</h6>
+  <h5 id="GTiff2Tiles_Core_TileGenerator_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static class TileGenerator</code></pre>
+  </div>
+  <h3 id="methods">Methods
+  </h3>
+  <a id="GTiff2Tiles_Core_TileGenerator_WriteLowerRasterTiles_" data-uid="GTiff2Tiles.Core.TileGenerator.WriteLowerRasterTiles*"></a>
+  <h4 id="GTiff2Tiles_Core_TileGenerator_WriteLowerRasterTiles_GTiff2Tiles_Core_Tiles_RasterTile_" data-uid="GTiff2Tiles.Core.TileGenerator.WriteLowerRasterTiles(GTiff2Tiles.Core.Tiles.RasterTile)">WriteLowerRasterTiles(RasterTile)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void WriteLowerRasterTiles(RasterTile tile)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterTile</a></td>
+        <td><span class="parametername">tile</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GTiff2Tiles_Core_TileGenerator_WriteOverviewRasterTilesToChannel_" data-uid="GTiff2Tiles.Core.TileGenerator.WriteOverviewRasterTilesToChannel*"></a>
+  <h4 id="GTiff2Tiles_Core_TileGenerator_WriteOverviewRasterTilesToChannel_IEnumerable_GTiff2Tiles_Core_Tiles_RasterTile__System_Threading_Channels_ChannelWriter_GTiff2Tiles_Core_Tiles_RasterTile__GTiff2Tiles_Core_Args_WriteRasterTilesArgs_" data-uid="GTiff2Tiles.Core.TileGenerator.WriteOverviewRasterTilesToChannel(IEnumerable{GTiff2Tiles.Core.Tiles.RasterTile},System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.RasterTile},GTiff2Tiles.Core.Args.WriteRasterTilesArgs)">WriteOverviewRasterTilesToChannel(IEnumerable&lt;RasterTile&gt;, ChannelWriter&lt;RasterTile&gt;, WriteRasterTilesArgs)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void WriteOverviewRasterTilesToChannel(IEnumerable&lt;RasterTile&gt; baseTiles, ChannelWriter&lt;RasterTile&gt; tileWriter, WriteRasterTilesArgs args)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IEnumerable</span>&lt;<a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterTile</a>&gt;</td>
+        <td><span class="parametername">baseTiles</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Threading.Channels.ChannelWriter</span>&lt;<a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterTile</a>&gt;</td>
+        <td><span class="parametername">tileWriter</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="GTiff2Tiles.Core.Args.WriteRasterTilesArgs.html">WriteRasterTilesArgs</a></td>
+        <td><span class="parametername">args</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GTiff2Tiles_Core_TileGenerator_WriteRasterTilesToChannel_" data-uid="GTiff2Tiles.Core.TileGenerator.WriteRasterTilesToChannel*"></a>
+  <h4 id="GTiff2Tiles_Core_TileGenerator_WriteRasterTilesToChannel_GTiff2Tiles_Core_GeoTiffs_Raster_System_Threading_Channels_ChannelWriter_GTiff2Tiles_Core_Tiles_RasterTile__GTiff2Tiles_Core_Args_WriteRasterTilesArgs_" data-uid="GTiff2Tiles.Core.TileGenerator.WriteRasterTilesToChannel(GTiff2Tiles.Core.GeoTiffs.Raster,System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.RasterTile},GTiff2Tiles.Core.Args.WriteRasterTilesArgs)">WriteRasterTilesToChannel(Raster, ChannelWriter&lt;RasterTile&gt;, WriteRasterTilesArgs)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void WriteRasterTilesToChannel(Raster raster, ChannelWriter&lt;RasterTile&gt; tileWriter, WriteRasterTilesArgs args)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="GTiff2Tiles.Core.GeoTiffs.Raster.html">Raster</a></td>
+        <td><span class="parametername">raster</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Threading.Channels.ChannelWriter</span>&lt;<a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterTile</a>&gt;</td>
+        <td><span class="parametername">tileWriter</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="GTiff2Tiles.Core.Args.WriteRasterTilesArgs.html">WriteRasterTilesArgs</a></td>
+        <td><span class="parametername">args</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GTiff2Tiles_Core_TileGenerator_WriteRasterTilesToDirectory_" data-uid="GTiff2Tiles.Core.TileGenerator.WriteRasterTilesToDirectory*"></a>
+  <h4 id="GTiff2Tiles_Core_TileGenerator_WriteRasterTilesToDirectory_GTiff2Tiles_Core_GeoTiffs_Raster_GTiff2Tiles_Core_Args_WriteRasterTilesArgs_" data-uid="GTiff2Tiles.Core.TileGenerator.WriteRasterTilesToDirectory(GTiff2Tiles.Core.GeoTiffs.Raster,GTiff2Tiles.Core.Args.WriteRasterTilesArgs)">WriteRasterTilesToDirectory(Raster, WriteRasterTilesArgs)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void WriteRasterTilesToDirectory(Raster raster, WriteRasterTilesArgs args)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="GTiff2Tiles.Core.GeoTiffs.Raster.html">Raster</a></td>
+        <td><span class="parametername">raster</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="GTiff2Tiles.Core.Args.WriteRasterTilesArgs.html">WriteRasterTilesArgs</a></td>
+        <td><span class="parametername">args</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GTiff2Tiles_Core_TileGenerator_WriteRasterTilesToEnumerable_" data-uid="GTiff2Tiles.Core.TileGenerator.WriteRasterTilesToEnumerable*"></a>
+  <h4 id="GTiff2Tiles_Core_TileGenerator_WriteRasterTilesToEnumerable_GTiff2Tiles_Core_GeoTiffs_Raster_GTiff2Tiles_Core_Args_WriteRasterTilesArgs_" data-uid="GTiff2Tiles.Core.TileGenerator.WriteRasterTilesToEnumerable(GTiff2Tiles.Core.GeoTiffs.Raster,GTiff2Tiles.Core.Args.WriteRasterTilesArgs)">WriteRasterTilesToEnumerable(Raster, WriteRasterTilesArgs)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IEnumerable&lt;RasterTile&gt; WriteRasterTilesToEnumerable(Raster raster, WriteRasterTilesArgs args)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="GTiff2Tiles.Core.GeoTiffs.Raster.html">Raster</a></td>
+        <td><span class="parametername">raster</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="GTiff2Tiles.Core.Args.WriteRasterTilesArgs.html">WriteRasterTilesArgs</a></td>
+        <td><span class="parametername">args</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IEnumerable</span>&lt;<a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterTile</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</article>
+    <script type="text/javascript" src="styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="styles/docfx.js"></script>
+    <script type="text/javascript" src="styles/main.js"></script>
+  </body>
+</html>

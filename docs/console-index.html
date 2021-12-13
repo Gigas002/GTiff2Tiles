@@ -8,7 +8,7 @@
     <title>GTiff2Tiles.Console </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="GTiff2Tiles.Console ">
-    <meta name="generator" content="docfx 2.56.6.0">
+    <meta name="generator" content="docfx 2.58.9.0">
     
     <link rel="shortcut icon" href="images/Icon.ico">
     <link rel="stylesheet" href="styles/docfx.vendor.css">
@@ -66,7 +66,7 @@
 <p>Supports <strong>only GeoTIFF</strong> as input data and creates <strong>geodetic or mercator</strong> tiles on output in <strong><a href="https://wiki.osgeo.org/wiki/Tile_Map_Service_Specification">tms</a></strong> or <strong>non-tms</strong> (<em>Google maps like</em>) structure.
 Any <strong>GeoTIFF</strong> (with less, than <strong>5 bands</strong>) on input is supported, if it's not <strong>EPSG:4326</strong> or <strong>EPSG:3857</strong>, it'll be converted to your selected target coordinate system and saved inside <strong>temp</strong> directory before cropping.</p>
 <h2 id="requirements">Requirements</h2>
-<p>Application runs on <strong>Linux x64</strong> (<em>tested on Ubuntu 18.04+</em>) and <strong>Windows x64</strong> (<em>tested on Win 7 SP1+</em>) operating systems.</p>
+<p>Application runs on <strong>Linux x64</strong> (<em>tested on Ubuntu 20.04+</em>) and <strong>Windows x64</strong> (<em>tested on Win 10</em>) operating systems.</p>
 <p>If you’re using <strong>Windows 7 SP1</strong>, you can experience weird error with <strong>GDAL</strong> packages. It’s recommended to install <a href="https://www.microsoft.com/en-us/download/details.aspx?id=26764">KB2533623</a> to fix it. You can read about this Windows update on <a href="https://support.microsoft.com/en-us/help/2533623/microsoft-security-advisory-insecure-library-loading-could-allow-remot">MSDN</a>.</p>
 <h2 id="usage">Usage</h2>
 <table>
@@ -221,10 +221,10 @@ Any <strong>GeoTIFF</strong> (with less, than <strong>5 bands</strong>) on input
 <ul>
 <li>GTiff2Tiles.Core;</li>
 <li><a href="https://www.nuget.org/packages/CommandLineParser/">CommandLineParser</a> – 2.8.0;</li>
-<li><a href="https://www.nuget.org/packages/MaxRev.Gdal.LinuxRuntime.Minimal/">MaxRev.Gdal.LinuxRuntime.Minimal</a> – 3.2.0.250;</li>
-<li><a href="https://www.nuget.org/packages/MaxRev.Gdal.WindowsRuntime.Minimal/">MaxRev.Gdal.WindowsRuntime.Minimal</a> – 3.2.0.250;</li>
-<li><a href="https://www.nuget.org/packages/NetVips.Native.win-x64">NetVips.Native.win-x64</a> – 8.10.5.1;</li>
-<li><a href="https://www.nuget.org/packages/NetVips.Native.linux-x64/">NetVips.Native.linux-x64</a> – 8.10.5.1;</li>
+<li><a href="https://www.nuget.org/packages/MaxRev.Gdal.LinuxRuntime.Minimal/">MaxRev.Gdal.LinuxRuntime.Minimal</a> – 3.2.0.300;</li>
+<li><a href="https://www.nuget.org/packages/MaxRev.Gdal.WindowsRuntime.Minimal/">MaxRev.Gdal.WindowsRuntime.Minimal</a> – 3.2.0.310;</li>
+<li><a href="https://www.nuget.org/packages/NetVips.Native.win-x64">NetVips.Native.win-x64</a> – 8.12.1;</li>
+<li><a href="https://www.nuget.org/packages/NetVips.Native.linux-x64/">NetVips.Native.linux-x64</a> – 8.12.1;</li>
 </ul>
 </article>
           </div>

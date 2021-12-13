@@ -8,7 +8,7 @@
     <title>CHANGELOG </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="CHANGELOG ">
-    <meta name="generator" content="docfx 2.56.6.0">
+    <meta name="generator" content="docfx 2.58.9.0">
     
     <link rel="shortcut icon" href="images/Icon.ico">
     <link rel="stylesheet" href="styles/docfx.vendor.css">
@@ -88,7 +88,7 @@
 <h3 id="all-solution">All solution</h3>
 <ul>
 <li>Rewritten and added new publish scripts;</li>
-<li>Bump <strong>.NET Core</strong>/<strong>.NET</strong> version to <strong>5.0.102</strong>;</li>
+<li>Bump <strong>.NET Core</strong>/<strong>.NET</strong> version to <strong>6.0.100 LTS</strong>;</li>
 <li>Fixed localization files's names;</li>
 <li>Moved to <strong><a href="https://dbad-license.org/">DBAD</a></strong> license;</li>
 <li>Drop support of <strong>.NET Framework</strong> and <strong>.NET Standard</strong>;</li>
@@ -119,14 +119,14 @@
 <p><strong>Changed dependencies:</strong></p>
 <ul>
 <li>Removed <strong>System.Threading.Tasks.Extensions</strong> package, since project doesn't target <em>netstandard2.0</em> anymore;</li>
-<li>Add <strong>Microsoft.SourceLink.GitHub</strong> package ver. <strong>1.0.0</strong>;</li>
-<li>Add <strong>BitMiracle.LibTiff.NET</strong> package ver. <strong>2.4.639</strong>;</li>
+<li>Add <strong>Microsoft.SourceLink.GitHub</strong> package ver. <strong>1.1.1</strong>;</li>
+<li>Add <strong>BitMiracle.LibTiff.NET</strong> package ver. <strong>2.4.649</strong>;</li>
 <li>Moved <strong>MaxRev.Gdal.LinuxRuntime.Minimal</strong>, <strong>MaxRev.Gdal.WindowsRuntime.Minimal</strong> and <strong>NetVips.Native</strong>s to apps from core;</li>
 </ul>
 <p><strong>Updated dependencies:</strong></p>
 <ul>
-<li>Update <strong>MaxRev.Gdal.Core</strong> to <strong>3.2.0.250</strong>;</li>
-<li>Update <strong>NetVips</strong> to <strong>1.2.4</strong>;</li>
+<li>Update <strong>MaxRev.Gdal.Core</strong> to <strong>3.2.0.320</strong>;</li>
+<li>Update <strong>NetVips</strong> to <strong>2.1.0</strong>;</li>
 </ul>
 <h4 id="changed-api">Changed API</h4>
 <p>Only changes in public API are listed.</p>
@@ -238,18 +238,18 @@
 </ul>
 <p><strong>New dependencies:</strong></p>
 <ul>
-<li>Add <strong>MaxRev.Gdal.WindowsRuntime.Minimal</strong> package ver. <strong>3.2.0.250</strong>;</li>
-<li>Add <strong>NetVips.Native.win-x64</strong> package ver. <strong>8.10.5.1</strong>;</li>
+<li>Add <strong>MaxRev.Gdal.WindowsRuntime.Minimal</strong> package ver. <strong>3.2.0.310</strong>;</li>
+<li>Add <strong>NetVips.Native.win-x64</strong> package ver. <strong>8.12.1</strong>;</li>
 </ul>
 <p><strong>Changed dependencies:</strong></p>
 <ul>
-<li>Moved from <strong>Caliburn.Micro</strong> to <strong>Prism.DryIoc</strong> ver. <strong>8.0.0.1909</strong>;</li>
+<li>Moved from <strong>Caliburn.Micro</strong> to <strong>Prism.DryIoc</strong> ver. <strong>8.1.97</strong>;</li>
 </ul>
 <p><strong>Updated dependencies:</strong></p>
 <ul>
-<li>Updated <strong>MaterialDesignColors</strong> to <strong>1.2.7</strong>;</li>
-<li>Updated <strong>MaterialDesignThemes</strong> to <strong>3.2.0</strong>;</li>
-<li>Updated <strong>MaterialDesignExtensions</strong> to <strong>3.3.0-a01</strong>;</li>
+<li>Updated <strong>MaterialDesignColors</strong> to <strong>2.0.4</strong>;</li>
+<li>Updated <strong>MaterialDesignThemes</strong> to <strong>4.0.3</strong>;</li>
+<li>Updated <strong>MaterialDesignExtensions</strong> to <strong>4.0.0-a02</strong>;</li>
 </ul>
 <h3 id="benchmarks">Benchmarks</h3>
 <p>Completely rewritten benchmarks. Now everything's done automatically, though it requires some changes to prerequisites. Running it's a bit tricky, so be sure to read updated <a href="https://gigas002.github.io/GTiff2Tiles/benchmarks-index.html">docs</a>.</p>
@@ -263,11 +263,11 @@
 </ul>
 <p><strong>New dependencies:</strong></p>
 <ul>
-<li><strong>BenchmarkDotNet</strong> ver. <strong>0.12.1</strong>;</li>
-<li>Add <strong>MaxRev.Gdal.LinuxRuntime.Minimal</strong> package ver. <strong>3.2.0.250</strong>;</li>
-<li>Add <strong>MaxRev.Gdal.WindowsRuntime.Minimal</strong> package ver. <strong>3.2.0.250</strong>;</li>
-<li>Add <strong>NetVips.Native.win-x64</strong> package ver. <strong>8.10.5.1</strong>;</li>
-<li>Add <strong>NetVips.Native.linux-x64</strong> package ver. <strong>8.10.5.1</strong>;</li>
+<li><strong>BenchmarkDotNet</strong> ver. <strong>0.13.1</strong>;</li>
+<li>Add <strong>MaxRev.Gdal.LinuxRuntime.Minimal</strong> package ver. <strong>3.2.0.300</strong>;</li>
+<li>Add <strong>MaxRev.Gdal.WindowsRuntime.Minimal</strong> package ver. <strong>3.2.0.310</strong>;</li>
+<li>Add <strong>NetVips.Native.win-x64</strong> package ver. <strong>8.12.1</strong>;</li>
+<li>Add <strong>NetVips.Native.linux-x64</strong> package ver. <strong>8.12.1</strong>;</li>
 </ul>
 <p><strong>Updated dependencies:</strong></p>
 <ul>
@@ -278,18 +278,18 @@
 <p><strong>New dependencies:</strong></p>
 <p>Added <strong>coverlet</strong> dependency to generate code coverage reports.</p>
 <ul>
-<li><strong>coverlet.collector</strong> ver. <strong>3.0.2</strong>;</li>
-<li><strong>coverlet.msbuild</strong> ver. <strong>3.0.2</strong>;</li>
-<li>Add <strong>MaxRev.Gdal.LinuxRuntime.Minimal</strong> package ver. <strong>3.2.0.250</strong>;</li>
-<li>Add <strong>MaxRev.Gdal.WindowsRuntime.Minimal</strong> package ver. <strong>3.2.0.250</strong>;</li>
-<li>Add <strong>NetVips.Native.win-x64</strong> package ver. <strong>8.10.5.1</strong>;</li>
-<li>Add <strong>NetVips.Native.linux-x64</strong> package ver. <strong>8.10.5.1</strong>;</li>
+<li><strong>coverlet.collector</strong> ver. <strong>3.1.0</strong>;</li>
+<li><strong>coverlet.msbuild</strong> ver. <strong>3.1.0</strong>;</li>
+<li>Add <strong>MaxRev.Gdal.LinuxRuntime.Minimal</strong> package ver. <strong>3.2.0.300</strong>;</li>
+<li>Add <strong>MaxRev.Gdal.WindowsRuntime.Minimal</strong> package ver. <strong>3.2.0.310</strong>;</li>
+<li>Add <strong>NetVips.Native.win-x64</strong> package ver. <strong>8.12.1</strong>;</li>
+<li>Add <strong>NetVips.Native.linux-x64</strong> package ver. <strong>8.12.1</strong>;</li>
 </ul>
 <p><strong>Updated dependencies:</strong></p>
 <ul>
-<li>Update <strong>NUnit</strong> to <strong>3.13.1</strong>;</li>
-<li>Update <strong>NUnit3TestAdapter</strong> to <strong>3.17.0</strong>;</li>
-<li>Update <strong>Microsoft.NET.Test.Sdk</strong> to <strong>16.8.3</strong>;</li>
+<li>Update <strong>NUnit</strong> to <strong>3.13.2</strong>;</li>
+<li>Update <strong>NUnit3TestAdapter</strong> to <strong>4.1.0</strong>;</li>
+<li>Update <strong>Microsoft.NET.Test.Sdk</strong> to <strong>17.0.0</strong>;</li>
 </ul>
 <h3 id="documentation">Documentation</h3>
 <ul>

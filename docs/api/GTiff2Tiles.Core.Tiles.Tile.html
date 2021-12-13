@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class Tile
    ">
-    <meta name="generator" content="docfx 2.56.6.0">
+    <meta name="generator" content="docfx 2.58.9.0">
     
     <link rel="shortcut icon" href="../images/Icon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -85,8 +85,8 @@
   <div classs="implements">
     <h5>Implements</h5>
     <div><a class="xref" href="GTiff2Tiles.Core.Tiles.ITile.html">ITile</a></div>
-    <div><span class="xref">System.IDisposable</span></div>
-    <div><span class="xref">System.IAsyncDisposable</span></div>
+    <div><span class="xref">IDisposable</span></div>
+    <div><span class="xref">IAsyncDisposable</span></div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
@@ -116,25 +116,25 @@
   <h6><strong>Assembly</strong>: GTiff2Tiles.Core.dll</h6>
   <h5 id="GTiff2Tiles_Core_Tiles_Tile_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class Tile : ITile, IDisposable, IAsyncDisposable</code></pre>
+    <pre><code class="lang-csharp hljs">public abstract class Tile : ITile, IDisposable, IAsyncDisposable</code></pre>
   </div>
   <h3 id="constructors">Constructors
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/Gigas002/GTiff2Tiles/new/master/apiSpec/new?filename=GTiff2Tiles_Core_Tiles_Tile__ctor_GTiff2Tiles_Core_Coordinates_GeoCoordinate_GTiff2Tiles_Core_Coordinates_GeoCoordinate_System_Int32_GTiff2Tiles_Core_Images_Size_System_Collections_Generic_IEnumerable_System_Byte__GTiff2Tiles_Core_Enums_TileExtension_System_Boolean_.md&amp;value=---%0Auid%3A%20GTiff2Tiles.Core.Tiles.Tile.%23ctor(GTiff2Tiles.Core.Coordinates.GeoCoordinate%2CGTiff2Tiles.Core.Coordinates.GeoCoordinate%2CSystem.Int32%2CGTiff2Tiles.Core.Images.Size%2CSystem.Collections.Generic.IEnumerable%7BSystem.Byte%7D%2CGTiff2Tiles.Core.Enums.TileExtension%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/Gigas002/GTiff2Tiles/new/master/apiSpec/new?filename=GTiff2Tiles_Core_Tiles_Tile__ctor_GTiff2Tiles_Core_Coordinates_GeoCoordinate_GTiff2Tiles_Core_Coordinates_GeoCoordinate_System_Int32_GTiff2Tiles_Core_Images_Size_System_Boolean_.md&amp;value=---%0Auid%3A%20GTiff2Tiles.Core.Tiles.Tile.%23ctor(GTiff2Tiles.Core.Coordinates.GeoCoordinate%2CGTiff2Tiles.Core.Coordinates.GeoCoordinate%2CSystem.Int32%2CGTiff2Tiles.Core.Images.Size%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Tiles/Tile.cs/#L113">View Source</a>
+    <a href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Tiles/Tile.cs/#L108">View Source</a>
   </span>
   <a id="GTiff2Tiles_Core_Tiles_Tile__ctor_" data-uid="GTiff2Tiles.Core.Tiles.Tile.#ctor*"></a>
-  <h4 id="GTiff2Tiles_Core_Tiles_Tile__ctor_GTiff2Tiles_Core_Coordinates_GeoCoordinate_GTiff2Tiles_Core_Coordinates_GeoCoordinate_System_Int32_GTiff2Tiles_Core_Images_Size_System_Collections_Generic_IEnumerable_System_Byte__GTiff2Tiles_Core_Enums_TileExtension_System_Boolean_" data-uid="GTiff2Tiles.Core.Tiles.Tile.#ctor(GTiff2Tiles.Core.Coordinates.GeoCoordinate,GTiff2Tiles.Core.Coordinates.GeoCoordinate,System.Int32,GTiff2Tiles.Core.Images.Size,System.Collections.Generic.IEnumerable{System.Byte},GTiff2Tiles.Core.Enums.TileExtension,System.Boolean)">Tile(GeoCoordinate, GeoCoordinate, Int32, Size, IEnumerable&lt;Byte&gt;, TileExtension, Boolean)</h4>
+  <h4 id="GTiff2Tiles_Core_Tiles_Tile__ctor_GTiff2Tiles_Core_Coordinates_GeoCoordinate_GTiff2Tiles_Core_Coordinates_GeoCoordinate_System_Int32_GTiff2Tiles_Core_Images_Size_System_Boolean_" data-uid="GTiff2Tiles.Core.Tiles.Tile.#ctor(GTiff2Tiles.Core.Coordinates.GeoCoordinate,GTiff2Tiles.Core.Coordinates.GeoCoordinate,System.Int32,GTiff2Tiles.Core.Images.Size,System.Boolean)">Tile(GeoCoordinate, GeoCoordinate, Int32, Size, Boolean)</h4>
   <div class="markdown level1 summary"><p>Creates new <a class="xref" href="GTiff2Tiles.Core.Tiles.Tile.html">Tile</a> from <a class="xref" href="GTiff2Tiles.Core.Coordinates.GeoCoordinate.html">GeoCoordinate</a> values</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected Tile(GeoCoordinate minCoordinate, GeoCoordinate maxCoordinate, int zoom, Size size = null, IEnumerable&lt;byte&gt; bytes = null, TileExtension extension = TileExtension.Png, bool tmsCompatible = false)</code></pre>
+    <pre><code class="lang-csharp hljs">protected Tile(GeoCoordinate minCoordinate, GeoCoordinate maxCoordinate, int zoom, Size size = null, bool tmsCompatible = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -174,18 +174,6 @@ as value</remarks>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
-        <td><span class="parametername">bytes</span></td>
-        <td><p><a class="xref" href="GTiff2Tiles.Core.Tiles.Tile.html#GTiff2Tiles_Core_Tiles_Tile_Bytes">Bytes</a></p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="GTiff2Tiles.Core.Enums.TileExtension.html">TileExtension</a></td>
-        <td><span class="parametername">extension</span></td>
-        <td><p><a class="xref" href="GTiff2Tiles.Core.Tiles.Tile.html#GTiff2Tiles_Core_Tiles_Tile_Extension">Extension</a></p>
-</td>
-      </tr>
-      <tr>
         <td><span class="xref">System.Boolean</span></td>
         <td><span class="parametername">tmsCompatible</span></td>
         <td><p>Is tms compatible?</p>
@@ -193,36 +181,21 @@ as value</remarks>
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/Gigas002/GTiff2Tiles/new/master/apiSpec/new?filename=GTiff2Tiles_Core_Tiles_Tile__ctor_GTiff2Tiles_Core_Tiles_Number_GTiff2Tiles_Core_Enums_CoordinateSystem_GTiff2Tiles_Core_Images_Size_System_Collections_Generic_IEnumerable_System_Byte__GTiff2Tiles_Core_Enums_TileExtension_System_Boolean_.md&amp;value=---%0Auid%3A%20GTiff2Tiles.Core.Tiles.Tile.%23ctor(GTiff2Tiles.Core.Tiles.Number%2CGTiff2Tiles.Core.Enums.CoordinateSystem%2CGTiff2Tiles.Core.Images.Size%2CSystem.Collections.Generic.IEnumerable%7BSystem.Byte%7D%2CGTiff2Tiles.Core.Enums.TileExtension%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/Gigas002/GTiff2Tiles/new/master/apiSpec/new?filename=GTiff2Tiles_Core_Tiles_Tile__ctor_GTiff2Tiles_Core_Tiles_Number_GTiff2Tiles_Core_Enums_CoordinateSystem_GTiff2Tiles_Core_Images_Size_System_Boolean_.md&amp;value=---%0Auid%3A%20GTiff2Tiles.Core.Tiles.Tile.%23ctor(GTiff2Tiles.Core.Tiles.Number%2CGTiff2Tiles.Core.Enums.CoordinateSystem%2CGTiff2Tiles.Core.Images.Size%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Tiles/Tile.cs/#L88">View Source</a>
+    <a href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Tiles/Tile.cs/#L87">View Source</a>
   </span>
   <a id="GTiff2Tiles_Core_Tiles_Tile__ctor_" data-uid="GTiff2Tiles.Core.Tiles.Tile.#ctor*"></a>
-  <h4 id="GTiff2Tiles_Core_Tiles_Tile__ctor_GTiff2Tiles_Core_Tiles_Number_GTiff2Tiles_Core_Enums_CoordinateSystem_GTiff2Tiles_Core_Images_Size_System_Collections_Generic_IEnumerable_System_Byte__GTiff2Tiles_Core_Enums_TileExtension_System_Boolean_" data-uid="GTiff2Tiles.Core.Tiles.Tile.#ctor(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Enums.CoordinateSystem,GTiff2Tiles.Core.Images.Size,System.Collections.Generic.IEnumerable{System.Byte},GTiff2Tiles.Core.Enums.TileExtension,System.Boolean)">Tile(Number, CoordinateSystem, Size, IEnumerable&lt;Byte&gt;, TileExtension, Boolean)</h4>
+  <h4 id="GTiff2Tiles_Core_Tiles_Tile__ctor_GTiff2Tiles_Core_Tiles_Number_GTiff2Tiles_Core_Enums_CoordinateSystem_GTiff2Tiles_Core_Images_Size_System_Boolean_" data-uid="GTiff2Tiles.Core.Tiles.Tile.#ctor(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Enums.CoordinateSystem,GTiff2Tiles.Core.Images.Size,System.Boolean)">Tile(Number, CoordinateSystem, Size, Boolean)</h4>
   <div class="markdown level1 summary"><p>Creates new <a class="xref" href="GTiff2Tiles.Core.Tiles.Tile.html">Tile</a></p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected Tile(Number number, CoordinateSystem coordinateSystem, Size size = null, IEnumerable&lt;byte&gt; bytes = null, TileExtension extension = TileExtension.Png, bool tmsCompatible = false)</code></pre>
+    <pre><code class="lang-csharp hljs">protected Tile(Number number, CoordinateSystem coordinateSystem, Size size = null, bool tmsCompatible = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -256,37 +229,10 @@ as value</remarks>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
-        <td><span class="parametername">bytes</span></td>
-        <td><p><a class="xref" href="GTiff2Tiles.Core.Tiles.Tile.html#GTiff2Tiles_Core_Tiles_Tile_Bytes">Bytes</a></p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="GTiff2Tiles.Core.Enums.TileExtension.html">TileExtension</a></td>
-        <td><span class="parametername">extension</span></td>
-        <td><p><a class="xref" href="GTiff2Tiles.Core.Tiles.Tile.html#GTiff2Tiles_Core_Tiles_Tile_Extension">Extension</a></p>
-</td>
-      </tr>
-      <tr>
         <td><span class="xref">System.Boolean</span></td>
         <td><span class="parametername">tmsCompatible</span></td>
         <td><p>Is tms compatible?</p>
 </td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td></td>
       </tr>
     </tbody>
   </table>
@@ -297,7 +243,7 @@ as value</remarks>
     <a href="https://github.com/Gigas002/GTiff2Tiles/new/master/apiSpec/new?filename=GTiff2Tiles_Core_Tiles_Tile_DefaultSize.md&amp;value=---%0Auid%3A%20GTiff2Tiles.Core.Tiles.Tile.DefaultSize%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Tiles/Tile.cs/#L36">View Source</a>
+    <a href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Tiles/Tile.cs/#L34">View Source</a>
   </span>
   <h4 id="GTiff2Tiles_Core_Tiles_Tile_DefaultSize" data-uid="GTiff2Tiles.Core.Tiles.Tile.DefaultSize">DefaultSize</h4>
   <div class="markdown level1 summary"><p>Default <a class="xref" href="GTiff2Tiles.Core.Tiles.Tile.html">Tile</a>'s <a class="xref" href="GTiff2Tiles.Core.Images.Size.html">Size</a>
@@ -331,12 +277,11 @@ as values for width and height</remarks></p>
     <a href="https://github.com/Gigas002/GTiff2Tiles/new/master/apiSpec/new?filename=GTiff2Tiles_Core_Tiles_Tile_Bytes.md&amp;value=---%0Auid%3A%20GTiff2Tiles.Core.Tiles.Tile.Bytes%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Tiles/Tile.cs/#L51">View Source</a>
+    <a href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Tiles/Tile.cs/#L52">View Source</a>
   </span>
   <a id="GTiff2Tiles_Core_Tiles_Tile_Bytes_" data-uid="GTiff2Tiles.Core.Tiles.Tile.Bytes*"></a>
   <h4 id="GTiff2Tiles_Core_Tiles_Tile_Bytes" data-uid="GTiff2Tiles.Core.Tiles.Tile.Bytes">Bytes</h4>
-  <div class="markdown level1 summary"><p>Collection of <a class="xref" href="GTiff2Tiles.Core.Tiles.ITile.html">ITile</a>'s bytes</p>
-</div>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -352,7 +297,37 @@ as values for width and height</remarks></p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
+        <td><span class="xref">IEnumerable</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Gigas002/GTiff2Tiles/new/master/apiSpec/new?filename=GTiff2Tiles_Core_Tiles_Tile_CoordinateSystem.md&amp;value=---%0Auid%3A%20GTiff2Tiles.Core.Tiles.Tile.CoordinateSystem%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Tiles/Tile.cs/#L40">View Source</a>
+  </span>
+  <a id="GTiff2Tiles_Core_Tiles_Tile_CoordinateSystem_" data-uid="GTiff2Tiles.Core.Tiles.Tile.CoordinateSystem*"></a>
+  <h4 id="GTiff2Tiles_Core_Tiles_Tile_CoordinateSystem" data-uid="GTiff2Tiles.Core.Tiles.Tile.CoordinateSystem">CoordinateSystem</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CoordinateSystem CoordinateSystem { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="GTiff2Tiles.Core.Enums.CoordinateSystem.html">CoordinateSystem</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -362,16 +337,15 @@ as values for width and height</remarks></p>
     <a href="https://github.com/Gigas002/GTiff2Tiles/new/master/apiSpec/new?filename=GTiff2Tiles_Core_Tiles_Tile_Extension.md&amp;value=---%0Auid%3A%20GTiff2Tiles.Core.Tiles.Tile.Extension%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Tiles/Tile.cs/#L60">View Source</a>
+    <a href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Tiles/Tile.cs/#L61">View Source</a>
   </span>
   <a id="GTiff2Tiles_Core_Tiles_Tile_Extension_" data-uid="GTiff2Tiles.Core.Tiles.Tile.Extension*"></a>
   <h4 id="GTiff2Tiles_Core_Tiles_Tile_Extension" data-uid="GTiff2Tiles.Core.Tiles.Tile.Extension">Extension</h4>
-  <div class="markdown level1 summary"><p>Extension of <a class="xref" href="GTiff2Tiles.Core.Tiles.ITile.html">ITile</a></p>
-</div>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public TileExtension Extension { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public TileExtension Extension { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -393,12 +367,11 @@ as values for width and height</remarks></p>
     <a href="https://github.com/Gigas002/GTiff2Tiles/new/master/apiSpec/new?filename=GTiff2Tiles_Core_Tiles_Tile_IsDisposed.md&amp;value=---%0Auid%3A%20GTiff2Tiles.Core.Tiles.Tile.IsDisposed%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Tiles/Tile.cs/#L39">View Source</a>
+    <a href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Tiles/Tile.cs/#L37">View Source</a>
   </span>
   <a id="GTiff2Tiles_Core_Tiles_Tile_IsDisposed_" data-uid="GTiff2Tiles.Core.Tiles.Tile.IsDisposed*"></a>
   <h4 id="GTiff2Tiles_Core_Tiles_Tile_IsDisposed" data-uid="GTiff2Tiles.Core.Tiles.Tile.IsDisposed">IsDisposed</h4>
-  <div class="markdown level1 summary"><p>Shows if this <a class="xref" href="GTiff2Tiles.Core.Tiles.ITile.html">ITile</a>'s already disposed</p>
-</div>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -424,12 +397,11 @@ as values for width and height</remarks></p>
     <a href="https://github.com/Gigas002/GTiff2Tiles/new/master/apiSpec/new?filename=GTiff2Tiles_Core_Tiles_Tile_MaxCoordinate.md&amp;value=---%0Auid%3A%20GTiff2Tiles.Core.Tiles.Tile.MaxCoordinate%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Tiles/Tile.cs/#L45">View Source</a>
+    <a href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Tiles/Tile.cs/#L46">View Source</a>
   </span>
   <a id="GTiff2Tiles_Core_Tiles_Tile_MaxCoordinate_" data-uid="GTiff2Tiles.Core.Tiles.Tile.MaxCoordinate*"></a>
   <h4 id="GTiff2Tiles_Core_Tiles_Tile_MaxCoordinate" data-uid="GTiff2Tiles.Core.Tiles.Tile.MaxCoordinate">MaxCoordinate</h4>
-  <div class="markdown level1 summary"><p>Maximal <a class="xref" href="GTiff2Tiles.Core.Coordinates.GeoCoordinate.html">GeoCoordinate</a> of this <a class="xref" href="GTiff2Tiles.Core.Tiles.ITile.html">ITile</a></p>
-</div>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -455,12 +427,11 @@ as values for width and height</remarks></p>
     <a href="https://github.com/Gigas002/GTiff2Tiles/new/master/apiSpec/new?filename=GTiff2Tiles_Core_Tiles_Tile_MinCoordinate.md&amp;value=---%0Auid%3A%20GTiff2Tiles.Core.Tiles.Tile.MinCoordinate%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Tiles/Tile.cs/#L42">View Source</a>
+    <a href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Tiles/Tile.cs/#L43">View Source</a>
   </span>
   <a id="GTiff2Tiles_Core_Tiles_Tile_MinCoordinate_" data-uid="GTiff2Tiles.Core.Tiles.Tile.MinCoordinate*"></a>
   <h4 id="GTiff2Tiles_Core_Tiles_Tile_MinCoordinate" data-uid="GTiff2Tiles.Core.Tiles.Tile.MinCoordinate">MinCoordinate</h4>
-  <div class="markdown level1 summary"><p>Minimal <a class="xref" href="GTiff2Tiles.Core.Coordinates.GeoCoordinate.html">GeoCoordinate</a> of this <a class="xref" href="GTiff2Tiles.Core.Tiles.ITile.html">ITile</a></p>
-</div>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -486,7 +457,7 @@ as values for width and height</remarks></p>
     <a href="https://github.com/Gigas002/GTiff2Tiles/new/master/apiSpec/new?filename=GTiff2Tiles_Core_Tiles_Tile_MinimalBytesCount.md&amp;value=---%0Auid%3A%20GTiff2Tiles.Core.Tiles.Tile.MinimalBytesCount%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Tiles/Tile.cs/#L69">View Source</a>
+    <a href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Tiles/Tile.cs/#L70">View Source</a>
   </span>
   <a id="GTiff2Tiles_Core_Tiles_Tile_MinimalBytesCount_" data-uid="GTiff2Tiles.Core.Tiles.Tile.MinimalBytesCount*"></a>
   <h4 id="GTiff2Tiles_Core_Tiles_Tile_MinimalBytesCount" data-uid="GTiff2Tiles.Core.Tiles.Tile.MinimalBytesCount">MinimalBytesCount</h4>
@@ -517,12 +488,11 @@ as values for width and height</remarks></p>
     <a href="https://github.com/Gigas002/GTiff2Tiles/new/master/apiSpec/new?filename=GTiff2Tiles_Core_Tiles_Tile_Number.md&amp;value=---%0Auid%3A%20GTiff2Tiles.Core.Tiles.Tile.Number%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Tiles/Tile.cs/#L48">View Source</a>
+    <a href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Tiles/Tile.cs/#L49">View Source</a>
   </span>
   <a id="GTiff2Tiles_Core_Tiles_Tile_Number_" data-uid="GTiff2Tiles.Core.Tiles.Tile.Number*"></a>
   <h4 id="GTiff2Tiles_Core_Tiles_Tile_Number" data-uid="GTiff2Tiles.Core.Tiles.Tile.Number">Number</h4>
-  <div class="markdown level1 summary"><p><a class="xref" href="GTiff2Tiles.Core.Tiles.Number.html">Number</a> of this <a class="xref" href="GTiff2Tiles.Core.Tiles.ITile.html">ITile</a></p>
-</div>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -548,12 +518,11 @@ as values for width and height</remarks></p>
     <a href="https://github.com/Gigas002/GTiff2Tiles/new/master/apiSpec/new?filename=GTiff2Tiles_Core_Tiles_Tile_Path.md&amp;value=---%0Auid%3A%20GTiff2Tiles.Core.Tiles.Tile.Path%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Tiles/Tile.cs/#L57">View Source</a>
+    <a href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Tiles/Tile.cs/#L58">View Source</a>
   </span>
   <a id="GTiff2Tiles_Core_Tiles_Tile_Path_" data-uid="GTiff2Tiles.Core.Tiles.Tile.Path*"></a>
   <h4 id="GTiff2Tiles_Core_Tiles_Tile_Path" data-uid="GTiff2Tiles.Core.Tiles.Tile.Path">Path</h4>
-  <div class="markdown level1 summary"><p>Path on disk of this <a class="xref" href="GTiff2Tiles.Core.Tiles.ITile.html">ITile</a></p>
-</div>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -579,16 +548,15 @@ as values for width and height</remarks></p>
     <a href="https://github.com/Gigas002/GTiff2Tiles/new/master/apiSpec/new?filename=GTiff2Tiles_Core_Tiles_Tile_Size.md&amp;value=---%0Auid%3A%20GTiff2Tiles.Core.Tiles.Tile.Size%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Tiles/Tile.cs/#L54">View Source</a>
+    <a href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Tiles/Tile.cs/#L55">View Source</a>
   </span>
   <a id="GTiff2Tiles_Core_Tiles_Tile_Size_" data-uid="GTiff2Tiles.Core.Tiles.Tile.Size*"></a>
   <h4 id="GTiff2Tiles_Core_Tiles_Tile_Size" data-uid="GTiff2Tiles.Core.Tiles.Tile.Size">Size</h4>
-  <div class="markdown level1 summary"><p><a class="xref" href="GTiff2Tiles.Core.Images.Size.html">Size</a> (width and height) of this <a class="xref" href="GTiff2Tiles.Core.Tiles.ITile.html">ITile</a></p>
-</div>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Size Size { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public Size Size { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -610,16 +578,15 @@ as values for width and height</remarks></p>
     <a href="https://github.com/Gigas002/GTiff2Tiles/new/master/apiSpec/new?filename=GTiff2Tiles_Core_Tiles_Tile_TmsCompatible.md&amp;value=---%0Auid%3A%20GTiff2Tiles.Core.Tiles.Tile.TmsCompatible%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Tiles/Tile.cs/#L63">View Source</a>
+    <a href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Tiles/Tile.cs/#L64">View Source</a>
   </span>
   <a id="GTiff2Tiles_Core_Tiles_Tile_TmsCompatible_" data-uid="GTiff2Tiles.Core.Tiles.Tile.TmsCompatible*"></a>
   <h4 id="GTiff2Tiles_Core_Tiles_Tile_TmsCompatible" data-uid="GTiff2Tiles.Core.Tiles.Tile.TmsCompatible">TmsCompatible</h4>
-  <div class="markdown level1 summary"><p>Is <a class="xref" href="GTiff2Tiles.Core.Tiles.ITile.html">ITile</a> tms compatible?</p>
-</div>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool TmsCompatible { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public bool TmsCompatible { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -643,12 +610,11 @@ as values for width and height</remarks></p>
     <a href="https://github.com/Gigas002/GTiff2Tiles/new/master/apiSpec/new?filename=GTiff2Tiles_Core_Tiles_Tile_CalculatePosition.md&amp;value=---%0Auid%3A%20GTiff2Tiles.Core.Tiles.Tile.CalculatePosition%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Tiles/Tile.cs/#L221">View Source</a>
+    <a href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Tiles/Tile.cs/#L214">View Source</a>
   </span>
   <a id="GTiff2Tiles_Core_Tiles_Tile_CalculatePosition_" data-uid="GTiff2Tiles.Core.Tiles.Tile.CalculatePosition*"></a>
   <h4 id="GTiff2Tiles_Core_Tiles_Tile_CalculatePosition" data-uid="GTiff2Tiles.Core.Tiles.Tile.CalculatePosition">CalculatePosition()</h4>
-  <div class="markdown level1 summary"><p>Calculates this <a class="xref" href="GTiff2Tiles.Core.Tiles.ITile.html">ITile</a>'s position in upper <a class="xref" href="GTiff2Tiles.Core.Tiles.ITile.html">ITile</a></p>
-</div>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -665,10 +631,7 @@ as values for width and height</remarks></p>
     <tbody>
       <tr>
         <td><span class="xref">System.Int32</span></td>
-        <td><p>Value in range from 0 to 3
-<remarks><p>Starts always from upper-left corner and goes to
-lower-right, but maths depends on <a class="xref" href="GTiff2Tiles.Core.Tiles.ITile.html#GTiff2Tiles_Core_Tiles_ITile_TmsCompatible">TmsCompatible</a> value</remarks></p>
-</td>
+        <td></td>
       </tr>
     </tbody>
   </table>
@@ -677,12 +640,11 @@ lower-right, but maths depends on <a class="xref" href="GTiff2Tiles.Core.Tiles.I
     <a href="https://github.com/Gigas002/GTiff2Tiles/new/master/apiSpec/new?filename=GTiff2Tiles_Core_Tiles_Tile_CalculatePosition_GTiff2Tiles_Core_Tiles_Number_System_Boolean_.md&amp;value=---%0Auid%3A%20GTiff2Tiles.Core.Tiles.Tile.CalculatePosition(GTiff2Tiles.Core.Tiles.Number%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Tiles/Tile.cs/#L227">View Source</a>
+    <a href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Tiles/Tile.cs/#L220">View Source</a>
   </span>
   <a id="GTiff2Tiles_Core_Tiles_Tile_CalculatePosition_" data-uid="GTiff2Tiles.Core.Tiles.Tile.CalculatePosition*"></a>
   <h4 id="GTiff2Tiles_Core_Tiles_Tile_CalculatePosition_GTiff2Tiles_Core_Tiles_Number_System_Boolean_" data-uid="GTiff2Tiles.Core.Tiles.Tile.CalculatePosition(GTiff2Tiles.Core.Tiles.Number,System.Boolean)">CalculatePosition(Number, Boolean)</h4>
-  <div class="markdown level1 summary"><p>Calculates this <a class="xref" href="GTiff2Tiles.Core.Tiles.ITile.html">ITile</a>'s position in upper <a class="xref" href="GTiff2Tiles.Core.Tiles.ITile.html">ITile</a></p>
-</div>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -723,24 +685,6 @@ lower-right, but maths depends on <a class="xref" href="GTiff2Tiles.Core.Tiles.I
     <tbody>
       <tr>
         <td><span class="xref">System.Int32</span></td>
-        <td><p>Value in range from 0 to 3
-<remarks><p>Starts always from upper-left corner and goes to
-lower-right, but maths depends on <a class="xref" href="GTiff2Tiles.Core.Tiles.ITile.html#GTiff2Tiles_Core_Tiles_ITile_TmsCompatible">TmsCompatible</a> value</remarks></p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -750,7 +694,7 @@ lower-right, but maths depends on <a class="xref" href="GTiff2Tiles.Core.Tiles.I
     <a href="https://github.com/Gigas002/GTiff2Tiles/new/master/apiSpec/new?filename=GTiff2Tiles_Core_Tiles_Tile_Dispose.md&amp;value=---%0Auid%3A%20GTiff2Tiles.Core.Tiles.Tile.Dispose%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Tiles/Tile.cs/#L142">View Source</a>
+    <a href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Tiles/Tile.cs/#L135">View Source</a>
   </span>
   <a id="GTiff2Tiles_Core_Tiles_Tile_Dispose_" data-uid="GTiff2Tiles.Core.Tiles.Tile.Dispose*"></a>
   <h4 id="GTiff2Tiles_Core_Tiles_Tile_Dispose" data-uid="GTiff2Tiles.Core.Tiles.Tile.Dispose">Dispose()</h4>
@@ -765,7 +709,7 @@ lower-right, but maths depends on <a class="xref" href="GTiff2Tiles.Core.Tiles.I
     <a href="https://github.com/Gigas002/GTiff2Tiles/new/master/apiSpec/new?filename=GTiff2Tiles_Core_Tiles_Tile_Dispose_System_Boolean_.md&amp;value=---%0Auid%3A%20GTiff2Tiles.Core.Tiles.Tile.Dispose(System.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Tiles/Tile.cs/#L150">View Source</a>
+    <a href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Tiles/Tile.cs/#L143">View Source</a>
   </span>
   <a id="GTiff2Tiles_Core_Tiles_Tile_Dispose_" data-uid="GTiff2Tiles.Core.Tiles.Tile.Dispose*"></a>
   <h4 id="GTiff2Tiles_Core_Tiles_Tile_Dispose_System_Boolean_" data-uid="GTiff2Tiles.Core.Tiles.Tile.Dispose(System.Boolean)">Dispose(Boolean)</h4>
@@ -798,7 +742,7 @@ lower-right, but maths depends on <a class="xref" href="GTiff2Tiles.Core.Tiles.I
     <a href="https://github.com/Gigas002/GTiff2Tiles/new/master/apiSpec/new?filename=GTiff2Tiles_Core_Tiles_Tile_DisposeAsync.md&amp;value=---%0Auid%3A%20GTiff2Tiles.Core.Tiles.Tile.DisposeAsync%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Tiles/Tile.cs/#L165">View Source</a>
+    <a href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Tiles/Tile.cs/#L158">View Source</a>
   </span>
   <a id="GTiff2Tiles_Core_Tiles_Tile_DisposeAsync_" data-uid="GTiff2Tiles.Core.Tiles.Tile.DisposeAsync*"></a>
   <h4 id="GTiff2Tiles_Core_Tiles_Tile_DisposeAsync" data-uid="GTiff2Tiles.Core.Tiles.Tile.DisposeAsync">DisposeAsync()</h4>
@@ -818,7 +762,7 @@ lower-right, but maths depends on <a class="xref" href="GTiff2Tiles.Core.Tiles.I
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Threading.Tasks.ValueTask</span></td>
+        <td><span class="xref">ValueTask</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -828,7 +772,7 @@ lower-right, but maths depends on <a class="xref" href="GTiff2Tiles.Core.Tiles.I
     <a href="https://github.com/Gigas002/GTiff2Tiles/new/master/apiSpec/new?filename=GTiff2Tiles_Core_Tiles_Tile_Finalize.md&amp;value=---%0Auid%3A%20GTiff2Tiles.Core.Tiles.Tile.Finalize%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Tiles/Tile.cs/#L133">View Source</a>
+    <a href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Tiles/Tile.cs/#L126">View Source</a>
   </span>
   <a id="GTiff2Tiles_Core_Tiles_Tile_Finalize_" data-uid="GTiff2Tiles.Core.Tiles.Tile.Finalize*"></a>
   <h4 id="GTiff2Tiles_Core_Tiles_Tile_Finalize" data-uid="GTiff2Tiles.Core.Tiles.Tile.Finalize">Finalize()</h4>
@@ -844,12 +788,11 @@ lower-right, but maths depends on <a class="xref" href="GTiff2Tiles.Core.Tiles.I
     <a href="https://github.com/Gigas002/GTiff2Tiles/new/master/apiSpec/new?filename=GTiff2Tiles_Core_Tiles_Tile_GetExtensionString.md&amp;value=---%0Auid%3A%20GTiff2Tiles.Core.Tiles.Tile.GetExtensionString%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Tiles/Tile.cs/#L259">View Source</a>
+    <a href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Tiles/Tile.cs/#L252">View Source</a>
   </span>
   <a id="GTiff2Tiles_Core_Tiles_Tile_GetExtensionString_" data-uid="GTiff2Tiles.Core.Tiles.Tile.GetExtensionString*"></a>
   <h4 id="GTiff2Tiles_Core_Tiles_Tile_GetExtensionString" data-uid="GTiff2Tiles.Core.Tiles.Tile.GetExtensionString">GetExtensionString()</h4>
-  <div class="markdown level1 summary"><p>Get <span class="xref">System.String</span> from <a class="xref" href="GTiff2Tiles.Core.Enums.TileExtension.html">TileExtension</a></p>
-</div>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -866,8 +809,7 @@ lower-right, but maths depends on <a class="xref" href="GTiff2Tiles.Core.Tiles.I
     <tbody>
       <tr>
         <td><span class="xref">System.String</span></td>
-        <td><p>Converted <span class="xref">System.String</span></p>
-</td>
+        <td></td>
       </tr>
     </tbody>
   </table>
@@ -876,12 +818,11 @@ lower-right, but maths depends on <a class="xref" href="GTiff2Tiles.Core.Tiles.I
     <a href="https://github.com/Gigas002/GTiff2Tiles/new/master/apiSpec/new?filename=GTiff2Tiles_Core_Tiles_Tile_GetExtensionString_GTiff2Tiles_Core_Enums_TileExtension_.md&amp;value=---%0Auid%3A%20GTiff2Tiles.Core.Tiles.Tile.GetExtensionString(GTiff2Tiles.Core.Enums.TileExtension)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Tiles/Tile.cs/#L264">View Source</a>
+    <a href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Tiles/Tile.cs/#L257">View Source</a>
   </span>
   <a id="GTiff2Tiles_Core_Tiles_Tile_GetExtensionString_" data-uid="GTiff2Tiles.Core.Tiles.Tile.GetExtensionString*"></a>
   <h4 id="GTiff2Tiles_Core_Tiles_Tile_GetExtensionString_GTiff2Tiles_Core_Enums_TileExtension_" data-uid="GTiff2Tiles.Core.Tiles.Tile.GetExtensionString(GTiff2Tiles.Core.Enums.TileExtension)">GetExtensionString(TileExtension)</h4>
-  <div class="markdown level1 summary"><p>Get <span class="xref">System.String</span> from <a class="xref" href="GTiff2Tiles.Core.Enums.TileExtension.html">TileExtension</a></p>
-</div>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -916,22 +857,6 @@ lower-right, but maths depends on <a class="xref" href="GTiff2Tiles.Core.Tiles.I
     <tbody>
       <tr>
         <td><span class="xref">System.String</span></td>
-        <td><p>Converted <span class="xref">System.String</span></p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -941,13 +866,11 @@ lower-right, but maths depends on <a class="xref" href="GTiff2Tiles.Core.Tiles.I
     <a href="https://github.com/Gigas002/GTiff2Tiles/new/master/apiSpec/new?filename=GTiff2Tiles_Core_Tiles_Tile_Validate_GTiff2Tiles_Core_Tiles_ITile_System_Boolean_.md&amp;value=---%0Auid%3A%20GTiff2Tiles.Core.Tiles.Tile.Validate(GTiff2Tiles.Core.Tiles.ITile%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Tiles/Tile.cs/#L193">View Source</a>
+    <a href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Tiles/Tile.cs/#L186">View Source</a>
   </span>
   <a id="GTiff2Tiles_Core_Tiles_Tile_Validate_" data-uid="GTiff2Tiles.Core.Tiles.Tile.Validate*"></a>
   <h4 id="GTiff2Tiles_Core_Tiles_Tile_Validate_GTiff2Tiles_Core_Tiles_ITile_System_Boolean_" data-uid="GTiff2Tiles.Core.Tiles.Tile.Validate(GTiff2Tiles.Core.Tiles.ITile,System.Boolean)">Validate(ITile, Boolean)</h4>
-  <div class="markdown level1 summary"><p>Checks if this <a class="xref" href="GTiff2Tiles.Core.Tiles.ITile.html">ITile</a> is not empty or too small
-<remarks><p>See <a class="xref" href="GTiff2Tiles.Core.Tiles.ITile.html#GTiff2Tiles_Core_Tiles_ITile_MinimalBytesCount">MinimalBytesCount</a> property for more info</remarks></p>
-</div>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -987,9 +910,7 @@ lower-right, but maths depends on <a class="xref" href="GTiff2Tiles.Core.Tiles.I
     <tbody>
       <tr>
         <td><span class="xref">System.Boolean</span></td>
-        <td><p><span class="xref">true</span> if <a class="xref" href="GTiff2Tiles.Core.Tiles.ITile.html">ITile</a>'s valid;</p>
-<p><span class="xref">false</span> otherwise
-</td>
+        <td></td>
       </tr>
     </tbody>
   </table>
@@ -998,13 +919,11 @@ lower-right, but maths depends on <a class="xref" href="GTiff2Tiles.Core.Tiles.I
     <a href="https://github.com/Gigas002/GTiff2Tiles/new/master/apiSpec/new?filename=GTiff2Tiles_Core_Tiles_Tile_Validate_System_Boolean_.md&amp;value=---%0Auid%3A%20GTiff2Tiles.Core.Tiles.Tile.Validate(System.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Tiles/Tile.cs/#L188">View Source</a>
+    <a href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Tiles/Tile.cs/#L181">View Source</a>
   </span>
   <a id="GTiff2Tiles_Core_Tiles_Tile_Validate_" data-uid="GTiff2Tiles.Core.Tiles.Tile.Validate*"></a>
   <h4 id="GTiff2Tiles_Core_Tiles_Tile_Validate_System_Boolean_" data-uid="GTiff2Tiles.Core.Tiles.Tile.Validate(System.Boolean)">Validate(Boolean)</h4>
-  <div class="markdown level1 summary"><p>Checks if this <a class="xref" href="GTiff2Tiles.Core.Tiles.ITile.html">ITile</a> is not empty or too small
-<remarks><p>See <a class="xref" href="GTiff2Tiles.Core.Tiles.ITile.html#GTiff2Tiles_Core_Tiles_ITile_MinimalBytesCount">MinimalBytesCount</a> property for more info</remarks></p>
-</div>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -1023,8 +942,7 @@ lower-right, but maths depends on <a class="xref" href="GTiff2Tiles.Core.Tiles.I
       <tr>
         <td><span class="xref">System.Boolean</span></td>
         <td><span class="parametername">isCheckPath</span></td>
-        <td><p>Do you want to check <a class="xref" href="GTiff2Tiles.Core.Tiles.ITile.html#GTiff2Tiles_Core_Tiles_ITile_Path">Path</a>?</p>
-</td>
+        <td></td>
       </tr>
     </tbody>
   </table>
@@ -1039,9 +957,234 @@ lower-right, but maths depends on <a class="xref" href="GTiff2Tiles.Core.Tiles.I
     <tbody>
       <tr>
         <td><span class="xref">System.Boolean</span></td>
-        <td><p><span class="xref">true</span> if <a class="xref" href="GTiff2Tiles.Core.Tiles.ITile.html">ITile</a>'s valid;</p>
-<p><span class="xref">false</span> otherwise
-</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Gigas002/GTiff2Tiles/new/master/apiSpec/new?filename=GTiff2Tiles_Core_Tiles_Tile_WriteOverviewTileBytes__1___0___.md&amp;value=---%0Auid%3A%20GTiff2Tiles.Core.Tiles.Tile.WriteOverviewTileBytes%60%601(%60%600%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Tiles/Tile.cs/#L306">View Source</a>
+  </span>
+  <a id="GTiff2Tiles_Core_Tiles_Tile_WriteOverviewTileBytes_" data-uid="GTiff2Tiles.Core.Tiles.Tile.WriteOverviewTileBytes*"></a>
+  <h4 id="GTiff2Tiles_Core_Tiles_Tile_WriteOverviewTileBytes__1___0___" data-uid="GTiff2Tiles.Core.Tiles.Tile.WriteOverviewTileBytes``1(``0[])">WriteOverviewTileBytes&lt;T&gt;(T[])</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract IEnumerable&lt;byte&gt; WriteOverviewTileBytes&lt;T&gt;(T[] allBaseTiles)
+
+    where T : class, ITile</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>T[]</td>
+        <td><span class="parametername">allBaseTiles</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IEnumerable</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Gigas002/GTiff2Tiles/new/master/apiSpec/new?filename=GTiff2Tiles_Core_Tiles_Tile_WriteToChannel__1_GTiff2Tiles_Core_GeoTiffs_IGeoTiff_System_Threading_Channels_ChannelWriter___0__GTiff2Tiles_Core_Args_IWriteTilesArgs_.md&amp;value=---%0Auid%3A%20GTiff2Tiles.Core.Tiles.Tile.WriteToChannel%60%601(GTiff2Tiles.Core.GeoTiffs.IGeoTiff%2CSystem.Threading.Channels.ChannelWriter%7B%60%600%7D%2CGTiff2Tiles.Core.Args.IWriteTilesArgs)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Tiles/Tile.cs/#L302">View Source</a>
+  </span>
+  <a id="GTiff2Tiles_Core_Tiles_Tile_WriteToChannel_" data-uid="GTiff2Tiles.Core.Tiles.Tile.WriteToChannel*"></a>
+  <h4 id="GTiff2Tiles_Core_Tiles_Tile_WriteToChannel__1_GTiff2Tiles_Core_GeoTiffs_IGeoTiff_System_Threading_Channels_ChannelWriter___0__GTiff2Tiles_Core_Args_IWriteTilesArgs_" data-uid="GTiff2Tiles.Core.Tiles.Tile.WriteToChannel``1(GTiff2Tiles.Core.GeoTiffs.IGeoTiff,System.Threading.Channels.ChannelWriter{``0},GTiff2Tiles.Core.Args.IWriteTilesArgs)">WriteToChannel&lt;T&gt;(IGeoTiff, ChannelWriter&lt;T&gt;, IWriteTilesArgs)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract bool WriteToChannel&lt;T&gt;(IGeoTiff sourceGeoTiff, ChannelWriter&lt;T&gt; tileWriter, IWriteTilesArgs args)
+
+    where T : class, ITile</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="GTiff2Tiles.Core.GeoTiffs.IGeoTiff.html">IGeoTiff</a></td>
+        <td><span class="parametername">sourceGeoTiff</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Threading.Channels.ChannelWriter</span>&lt;T&gt;</td>
+        <td><span class="parametername">tileWriter</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="GTiff2Tiles.Core.Args.IWriteTilesArgs.html">IWriteTilesArgs</a></td>
+        <td><span class="parametername">args</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Gigas002/GTiff2Tiles/new/master/apiSpec/new?filename=GTiff2Tiles_Core_Tiles_Tile_WriteToEnumerable_GTiff2Tiles_Core_GeoTiffs_IGeoTiff_GTiff2Tiles_Core_Args_IWriteTilesArgs_.md&amp;value=---%0Auid%3A%20GTiff2Tiles.Core.Tiles.Tile.WriteToEnumerable(GTiff2Tiles.Core.GeoTiffs.IGeoTiff%2CGTiff2Tiles.Core.Args.IWriteTilesArgs)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Tiles/Tile.cs/#L299">View Source</a>
+  </span>
+  <a id="GTiff2Tiles_Core_Tiles_Tile_WriteToEnumerable_" data-uid="GTiff2Tiles.Core.Tiles.Tile.WriteToEnumerable*"></a>
+  <h4 id="GTiff2Tiles_Core_Tiles_Tile_WriteToEnumerable_GTiff2Tiles_Core_GeoTiffs_IGeoTiff_GTiff2Tiles_Core_Args_IWriteTilesArgs_" data-uid="GTiff2Tiles.Core.Tiles.Tile.WriteToEnumerable(GTiff2Tiles.Core.GeoTiffs.IGeoTiff,GTiff2Tiles.Core.Args.IWriteTilesArgs)">WriteToEnumerable(IGeoTiff, IWriteTilesArgs)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract IEnumerable&lt;byte&gt; WriteToEnumerable(IGeoTiff sourceGeoTiff, IWriteTilesArgs args)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="GTiff2Tiles.Core.GeoTiffs.IGeoTiff.html">IGeoTiff</a></td>
+        <td><span class="parametername">sourceGeoTiff</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="GTiff2Tiles.Core.Args.IWriteTilesArgs.html">IWriteTilesArgs</a></td>
+        <td><span class="parametername">args</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IEnumerable</span>&lt;<span class="xref">System.Byte</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Gigas002/GTiff2Tiles/new/master/apiSpec/new?filename=GTiff2Tiles_Core_Tiles_Tile_WriteToFile_GTiff2Tiles_Core_GeoTiffs_IGeoTiff_GTiff2Tiles_Core_Args_IWriteTilesArgs_.md&amp;value=---%0Auid%3A%20GTiff2Tiles.Core.Tiles.Tile.WriteToFile(GTiff2Tiles.Core.GeoTiffs.IGeoTiff%2CGTiff2Tiles.Core.Args.IWriteTilesArgs)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Tiles/Tile.cs/#L296">View Source</a>
+  </span>
+  <a id="GTiff2Tiles_Core_Tiles_Tile_WriteToFile_" data-uid="GTiff2Tiles.Core.Tiles.Tile.WriteToFile*"></a>
+  <h4 id="GTiff2Tiles_Core_Tiles_Tile_WriteToFile_GTiff2Tiles_Core_GeoTiffs_IGeoTiff_GTiff2Tiles_Core_Args_IWriteTilesArgs_" data-uid="GTiff2Tiles.Core.Tiles.Tile.WriteToFile(GTiff2Tiles.Core.GeoTiffs.IGeoTiff,GTiff2Tiles.Core.Args.IWriteTilesArgs)">WriteToFile(IGeoTiff, IWriteTilesArgs)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract void WriteToFile(IGeoTiff sourceGeoTiff, IWriteTilesArgs args)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="GTiff2Tiles.Core.GeoTiffs.IGeoTiff.html">IGeoTiff</a></td>
+        <td><span class="parametername">sourceGeoTiff</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="GTiff2Tiles.Core.Args.IWriteTilesArgs.html">IWriteTilesArgs</a></td>
+        <td><span class="parametername">args</span></td>
+        <td></td>
       </tr>
     </tbody>
   </table>
@@ -1050,7 +1193,7 @@ lower-right, but maths depends on <a class="xref" href="GTiff2Tiles.Core.Tiles.I
     <a href="https://github.com/Gigas002/GTiff2Tiles/new/master/apiSpec/new?filename=GTiff2Tiles_Core_Tiles_Tile_WriteToFile_GTiff2Tiles_Core_Tiles_ITile_System_String_.md&amp;value=---%0Auid%3A%20GTiff2Tiles.Core.Tiles.Tile.WriteToFile(GTiff2Tiles.Core.Tiles.ITile%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Tiles/Tile.cs/#L284">View Source</a>
+    <a href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Tiles/Tile.cs/#L277">View Source</a>
   </span>
   <a id="GTiff2Tiles_Core_Tiles_Tile_WriteToFile_" data-uid="GTiff2Tiles.Core.Tiles.Tile.WriteToFile*"></a>
   <h4 id="GTiff2Tiles_Core_Tiles_Tile_WriteToFile_GTiff2Tiles_Core_Tiles_ITile_System_String_" data-uid="GTiff2Tiles.Core.Tiles.Tile.WriteToFile(GTiff2Tiles.Core.Tiles.ITile,System.String)">WriteToFile(ITile, String)</h4>
@@ -1083,32 +1226,16 @@ lower-right, but maths depends on <a class="xref" href="GTiff2Tiles.Core.Tiles.I
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
     <a href="https://github.com/Gigas002/GTiff2Tiles/new/master/apiSpec/new?filename=GTiff2Tiles_Core_Tiles_Tile_WriteToFile_System_String_.md&amp;value=---%0Auid%3A%20GTiff2Tiles.Core.Tiles.Tile.WriteToFile(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Tiles/Tile.cs/#L278">View Source</a>
+    <a href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Tiles/Tile.cs/#L271">View Source</a>
   </span>
   <a id="GTiff2Tiles_Core_Tiles_Tile_WriteToFile_" data-uid="GTiff2Tiles.Core.Tiles.Tile.WriteToFile*"></a>
   <h4 id="GTiff2Tiles_Core_Tiles_Tile_WriteToFile_System_String_" data-uid="GTiff2Tiles.Core.Tiles.Tile.WriteToFile(System.String)">WriteToFile(String)</h4>
-  <div class="markdown level1 summary"><p>Writes <a class="xref" href="GTiff2Tiles.Core.Tiles.ITile.html">ITile</a>'s <a class="xref" href="GTiff2Tiles.Core.Tiles.ITile.html#GTiff2Tiles_Core_Tiles_ITile_Bytes">Bytes</a> to file</p>
-</div>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -1127,23 +1254,6 @@ lower-right, but maths depends on <a class="xref" href="GTiff2Tiles.Core.Tiles.I
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">path</span></td>
-        <td><p>Full path to write <a class="xref" href="GTiff2Tiles.Core.Tiles.ITile.html">ITile</a>
-<remarks><p>if not set, <a class="xref" href="GTiff2Tiles.Core.Tiles.ITile.html#GTiff2Tiles_Core_Tiles_ITile_Path">Path</a> property will be used instead</remarks></p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -1153,10 +1263,10 @@ lower-right, but maths depends on <a class="xref" href="GTiff2Tiles.Core.Tiles.I
       <a class="xref" href="GTiff2Tiles.Core.Tiles.ITile.html">ITile</a>
   </div>
   <div>
-      <span class="xref">System.IDisposable</span>
+      <span class="xref">IDisposable</span>
   </div>
   <div>
-      <span class="xref">System.IAsyncDisposable</span>
+      <span class="xref">IAsyncDisposable</span>
   </div>
 </article>
           </div>
@@ -1169,7 +1279,7 @@ lower-right, but maths depends on <a class="xref" href="GTiff2Tiles.Core.Tiles.I
                     <a href="https://github.com/Gigas002/GTiff2Tiles/new/master/apiSpec/new?filename=GTiff2Tiles_Core_Tiles_Tile.md&amp;value=---%0Auid%3A%20GTiff2Tiles.Core.Tiles.Tile%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Tiles/Tile.cs/#L22" class="contribution-link">View Source</a>
+                    <a href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Tiles/Tile.cs/#L20" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

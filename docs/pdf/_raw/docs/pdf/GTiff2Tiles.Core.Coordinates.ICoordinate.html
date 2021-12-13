@@ -1,0 +1,199 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <link rel="stylesheet" href="styles/docfx.vendor.css">
+    <link rel="stylesheet" href="styles/default.css">
+    <link rel="stylesheet" href="styles/main.css">
+  </head>
+  <body>
+    <article>
+  
+  
+  <h1 id="GTiff2Tiles_Core_Coordinates_ICoordinate" data-uid="GTiff2Tiles.Core.Coordinates.ICoordinate" class="text-break">Interface ICoordinate
+  </h1>
+  <div class="markdown level0 summary"><p>Interface for any coordinate</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="GTiff2Tiles.Core.Coordinates.html">GTiff2Tiles.Core.Coordinates</a></h6>
+  <h6><strong>Assembly</strong>: GTiff2Tiles.Core.dll</h6>
+  <h5 id="GTiff2Tiles_Core_Coordinates_ICoordinate_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public interface ICoordinate : IEquatable&lt;ICoordinate&gt;</code></pre>
+  </div>
+  <h3 id="properties">Properties
+  </h3>
+  <a id="GTiff2Tiles_Core_Coordinates_ICoordinate_X_" data-uid="GTiff2Tiles.Core.Coordinates.ICoordinate.X*"></a>
+  <h4 id="GTiff2Tiles_Core_Coordinates_ICoordinate_X" data-uid="GTiff2Tiles.Core.Coordinates.ICoordinate.X">X</h4>
+  <div class="markdown level1 summary"><p>X coordinate value or Longitude</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">double X { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Double</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GTiff2Tiles_Core_Coordinates_ICoordinate_Y_" data-uid="GTiff2Tiles.Core.Coordinates.ICoordinate.Y*"></a>
+  <h4 id="GTiff2Tiles_Core_Coordinates_ICoordinate_Y" data-uid="GTiff2Tiles.Core.Coordinates.ICoordinate.Y">Y</h4>
+  <div class="markdown level1 summary"><p>Y coordinate value or Latitude</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">double Y { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Double</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <a id="GTiff2Tiles_Core_Coordinates_ICoordinate_Round_" data-uid="GTiff2Tiles.Core.Coordinates.ICoordinate.Round*"></a>
+  <h4 id="GTiff2Tiles_Core_Coordinates_ICoordinate_Round__1_System_Int32_" data-uid="GTiff2Tiles.Core.Coordinates.ICoordinate.Round``1(System.Int32)">Round&lt;T&gt;(Int32)</h4>
+  <div class="markdown level1 summary"><p>Round coordinate&apos;s <a class="xref" href="GTiff2Tiles.Core.Coordinates.ICoordinate.html#GTiff2Tiles_Core_Coordinates_ICoordinate_X">X</a> and <a class="xref" href="GTiff2Tiles.Core.Coordinates.ICoordinate.html#GTiff2Tiles_Core_Coordinates_ICoordinate_Y">Y</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">T Round&lt;T&gt;(int digits)
+
+    where T : ICoordinate</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">digits</span></td>
+        <td><p>Number of digits after zero in return falue
+<remarks><p>Must be bigger or equal, than 0</remarks></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><p>Rounded coordinate</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>Child of <a class="xref" href="GTiff2Tiles.Core.Coordinates.ICoordinate.html">ICoordinate</a></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GTiff2Tiles_Core_Coordinates_ICoordinate_ToNumber_" data-uid="GTiff2Tiles.Core.Coordinates.ICoordinate.ToNumber*"></a>
+  <h4 id="GTiff2Tiles_Core_Coordinates_ICoordinate_ToNumber_System_Int32_GTiff2Tiles_Core_Images_Size_System_Boolean_" data-uid="GTiff2Tiles.Core.Coordinates.ICoordinate.ToNumber(System.Int32,GTiff2Tiles.Core.Images.Size,System.Boolean)">ToNumber(Int32, Size, Boolean)</h4>
+  <div class="markdown level1 summary"><p>Calculate <a class="xref" href="GTiff2Tiles.Core.Tiles.Number.html">Number</a> for current <a class="xref" href="GTiff2Tiles.Core.Coordinates.ICoordinate.html">ICoordinate</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Number ToNumber(int z, Size tileSize, bool tmsCompatible)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">z</span></td>
+        <td><p>Zoom
+<remarks><p>Must be &gt;= 0</remarks></p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="GTiff2Tiles.Core.Images.Size.html">Size</a></td>
+        <td><span class="parametername">tileSize</span></td>
+        <td><p><a class="xref" href="GTiff2Tiles.Core.Tiles.ITile.html">ITile</a>&apos;s size</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">tmsCompatible</span></td>
+        <td><p>Is <a class="xref" href="GTiff2Tiles.Core.Tiles.ITile.html">ITile</a> tms compatible?</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="GTiff2Tiles.Core.Tiles.Number.html">Number</a></td>
+        <td><p><a class="xref" href="GTiff2Tiles.Core.Tiles.Number.html">Number</a> in which this <a class="xref" href="GTiff2Tiles.Core.Coordinates.ICoordinate.html">ICoordinate</a> belongs</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+</article>
+    <script type="text/javascript" src="styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="styles/docfx.js"></script>
+    <script type="text/javascript" src="styles/main.js"></script>
+  </body>
+</html>

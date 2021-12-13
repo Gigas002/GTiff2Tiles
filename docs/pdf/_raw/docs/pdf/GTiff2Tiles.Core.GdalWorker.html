@@ -1,0 +1,571 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <link rel="stylesheet" href="styles/docfx.vendor.css">
+    <link rel="stylesheet" href="styles/default.css">
+    <link rel="stylesheet" href="styles/main.css">
+  </head>
+  <body>
+    <article>
+  
+  
+  <h1 id="GTiff2Tiles_Core_GdalWorker" data-uid="GTiff2Tiles.Core.GdalWorker" class="text-break">Class GdalWorker
+  </h1>
+  <div class="markdown level0 summary"><p>Gdal&apos;s methods to work with input files</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">GdalWorker</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ToString()</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="GTiff2Tiles.Core.html">GTiff2Tiles.Core</a></h6>
+  <h6><strong>Assembly</strong>: GTiff2Tiles.Core.dll</h6>
+  <h5 id="GTiff2Tiles_Core_GdalWorker_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static class GdalWorker</code></pre>
+  </div>
+  <h3 id="fields">Fields
+  </h3>
+  <h4 id="GTiff2Tiles_Core_GdalWorker_ConvertCoordinateSystemOptions" data-uid="GTiff2Tiles.Core.GdalWorker.ConvertCoordinateSystemOptions">ConvertCoordinateSystemOptions</h4>
+  <div class="markdown level1 summary"><p>Options for GdalWarp to convert GeoTiff&apos;s coordinate system;
+<remarks><p>Requires you to add target system param (-t_srs).
+Included default args: <pre><code>-overwrite -multi -srcnodata 0
+-of GTiff -ot Byte</code></pre></remarks></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly string[] ConvertCoordinateSystemOptions</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span>[]</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h4 id="GTiff2Tiles_Core_GdalWorker_SrsEpsg3857" data-uid="GTiff2Tiles.Core.GdalWorker.SrsEpsg3857">SrsEpsg3857</h4>
+  <div class="markdown level1 summary"><p>-t_srs EPSG:3857</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly string[] SrsEpsg3857</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span>[]</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h4 id="GTiff2Tiles_Core_GdalWorker_SrsEpsg4326" data-uid="GTiff2Tiles.Core.GdalWorker.SrsEpsg4326">SrsEpsg4326</h4>
+  <div class="markdown level1 summary"><p>-t_srs EPSG:4326</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly string[] SrsEpsg4326</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span>[]</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h4 id="GTiff2Tiles_Core_GdalWorker_TempFileName" data-uid="GTiff2Tiles.Core.GdalWorker.TempFileName">TempFileName</h4>
+  <div class="markdown level1 summary"><p>Name for temporary (converted) GeoTiff
+<remarks><p>Includes .tif extension,
+looks like: _tmp_converted.tif</remarks></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly string TempFileName</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <a id="GTiff2Tiles_Core_GdalWorker_ConfigureGdal_" data-uid="GTiff2Tiles.Core.GdalWorker.ConfigureGdal*"></a>
+  <h4 id="GTiff2Tiles_Core_GdalWorker_ConfigureGdal" data-uid="GTiff2Tiles.Core.GdalWorker.ConfigureGdal">ConfigureGdal()</h4>
+  <div class="markdown level1 summary"><p>Initialize Gdal, if it hadn&apos;t been initialized yet</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void ConfigureGdal()</code></pre>
+  </div>
+  <a id="GTiff2Tiles_Core_GdalWorker_ConvertGeoTiffToTargetSystemAsync_" data-uid="GTiff2Tiles.Core.GdalWorker.ConvertGeoTiffToTargetSystemAsync*"></a>
+  <h4 id="GTiff2Tiles_Core_GdalWorker_ConvertGeoTiffToTargetSystemAsync_System_String_System_String_GTiff2Tiles_Core_Enums_CoordinateSystem_IProgress_System_Double__" data-uid="GTiff2Tiles.Core.GdalWorker.ConvertGeoTiffToTargetSystemAsync(System.String,System.String,GTiff2Tiles.Core.Enums.CoordinateSystem,IProgress{System.Double})">ConvertGeoTiffToTargetSystemAsync(String, String, CoordinateSystem, IProgress&lt;Double&gt;)</h4>
+  <div class="markdown level1 summary"><p>Converts current GeoTiff to a new GeoTiff with target <a class="xref" href="GTiff2Tiles.Core.Enums.CoordinateSystem.html">CoordinateSystem</a>
+through GdalWarp</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task ConvertGeoTiffToTargetSystemAsync(string inputFilePath, string outputFilePath, CoordinateSystem targetSystem, IProgress&lt;double&gt; progress = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">inputFilePath</span></td>
+        <td><p>Input GeoTiff&apos;s path</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">outputFilePath</span></td>
+        <td><p>Output GeoTiff&apos;s path</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="GTiff2Tiles.Core.Enums.CoordinateSystem.html">CoordinateSystem</a></td>
+        <td><span class="parametername">targetSystem</span></td>
+        <td><p>Target <a class="xref" href="GTiff2Tiles.Core.Enums.CoordinateSystem.html">CoordinateSystem</a></p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">IProgress</span>&lt;<span class="xref">System.Double</span>&gt;</td>
+        <td><span class="parametername">progress</span></td>
+        <td><p>GdalWarp&apos;s progress
+<remarks><p><span class="xref">null</span> by default</remarks></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GTiff2Tiles_Core_GdalWorker_GetCoordinateSystem_" data-uid="GTiff2Tiles.Core.GdalWorker.GetCoordinateSystem*"></a>
+  <h4 id="GTiff2Tiles_Core_GdalWorker_GetCoordinateSystem_System_String_" data-uid="GTiff2Tiles.Core.GdalWorker.GetCoordinateSystem(System.String)">GetCoordinateSystem(String)</h4>
+  <div class="markdown level1 summary"><p>Gets supported coordinate system from proj string of GeoTiff</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static CoordinateSystem GetCoordinateSystem(string projString)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">projString</span></td>
+        <td><p>Proj string of input GeoTiff</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="GTiff2Tiles.Core.Enums.CoordinateSystem.html">CoordinateSystem</a></td>
+        <td><p>Input file&apos;s <a class="xref" href="GTiff2Tiles.Core.Enums.CoordinateSystem.html">CoordinateSystem</a></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GTiff2Tiles_Core_GdalWorker_GetGeoTransform_" data-uid="GTiff2Tiles.Core.GdalWorker.GetGeoTransform*"></a>
+  <h4 id="GTiff2Tiles_Core_GdalWorker_GetGeoTransform_System_String_" data-uid="GTiff2Tiles.Core.GdalWorker.GetGeoTransform(System.String)">GetGeoTransform(String)</h4>
+  <div class="markdown level1 summary"><p>Gets the coordinates and pixel sizes of image</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static double[] GetGeoTransform(string inputFilePath)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">inputFilePath</span></td>
+        <td><p>Input GeoTiff&apos;s path</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Double</span>[]</td>
+        <td><p>Array of double coordinates and pixel sizes if everything is OK;
+<p><span class="xref">null</span> otherwise</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GTiff2Tiles_Core_GdalWorker_GetImageBorders_" data-uid="GTiff2Tiles.Core.GdalWorker.GetImageBorders*"></a>
+  <h4 id="GTiff2Tiles_Core_GdalWorker_GetImageBorders_System_String_GTiff2Tiles_Core_Images_Size_GTiff2Tiles_Core_Enums_CoordinateSystem_" data-uid="GTiff2Tiles.Core.GdalWorker.GetImageBorders(System.String,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.CoordinateSystem)">GetImageBorders(String, Size, CoordinateSystem)</h4>
+  <div class="markdown level1 summary"><p>Gets the coordinates borders of the input Geotiff file</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static (GeoCoordinate minCoordinate, GeoCoordinate maxCoordinate) GetImageBorders(string inputFilePath, Size size, CoordinateSystem coordinateSystem)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">inputFilePath</span></td>
+        <td><p>Input GeoTiff&apos;s path</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="GTiff2Tiles.Core.Images.Size.html">Size</a></td>
+        <td><span class="parametername">size</span></td>
+        <td><p>Image&apos;s <a class="xref" href="GTiff2Tiles.Core.Images.Size.html">Size</a>s</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="GTiff2Tiles.Core.Enums.CoordinateSystem.html">CoordinateSystem</a></td>
+        <td><span class="parametername">coordinateSystem</span></td>
+        <td><p>Image&apos;s coordinate system</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ValueTuple</span>&lt;<a class="xref" href="GTiff2Tiles.Core.Coordinates.GeoCoordinate.html">GeoCoordinate</a>, <a class="xref" href="GTiff2Tiles.Core.Coordinates.GeoCoordinate.html">GeoCoordinate</a>&gt;</td>
+        <td><p><see cref="!:ValueTuple&lt;T1,T2>"></see> of
+<a class="xref" href="GTiff2Tiles.Core.Coordinates.GeoCoordinate.html">GeoCoordinate</a>s of image&apos;s borders</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GTiff2Tiles_Core_GdalWorker_GetProjString_" data-uid="GTiff2Tiles.Core.GdalWorker.GetProjString*"></a>
+  <h4 id="GTiff2Tiles_Core_GdalWorker_GetProjString_System_String_" data-uid="GTiff2Tiles.Core.GdalWorker.GetProjString(System.String)">GetProjString(String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string GetProjString(string inputFilePath)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">inputFilePath</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GTiff2Tiles_Core_GdalWorker_GetProjStringAsync_" data-uid="GTiff2Tiles.Core.GdalWorker.GetProjStringAsync*"></a>
+  <h4 id="GTiff2Tiles_Core_GdalWorker_GetProjStringAsync_System_String_" data-uid="GTiff2Tiles.Core.GdalWorker.GetProjStringAsync(System.String)">GetProjStringAsync(String)</h4>
+  <div class="markdown level1 summary"><p>Gets proj <span class="xref">System.String</span> of input file</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task&lt;string&gt; GetProjStringAsync(string inputFilePath)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">inputFilePath</span></td>
+        <td><p>Input GeoTiff&apos;s path</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span>&lt;<span class="xref">System.String</span>&gt;</td>
+        <td><p>Proj <span class="xref">System.String</span> if everything OK;
+<p><span class="xref">null</span> otherwise</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GTiff2Tiles_Core_GdalWorker_InfoAsync_" data-uid="GTiff2Tiles.Core.GdalWorker.InfoAsync*"></a>
+  <h4 id="GTiff2Tiles_Core_GdalWorker_InfoAsync_System_String_System_String___" data-uid="GTiff2Tiles.Core.GdalWorker.InfoAsync(System.String,System.String[])">InfoAsync(String, String[])</h4>
+  <div class="markdown level1 summary"><p>Runs GdalInfo with passed parameters</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task&lt;string&gt; InfoAsync(string inputFilePath, string[] options = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">inputFilePath</span></td>
+        <td><p>Input GeoTiff&apos;s path</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span>[]</td>
+        <td><span class="parametername">options</span></td>
+        <td><p>Array of string parameters for GdalInfo
+<remarks><p><span class="xref">null</span> by default</remarks></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span>&lt;<span class="xref">System.String</span>&gt;</td>
+        <td><p><span class="xref">System.String</span> from GdalInfo if everything OK;
+<p><span class="xref">null</span> otherwise</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GTiff2Tiles_Core_GdalWorker_WarpAsync_" data-uid="GTiff2Tiles.Core.GdalWorker.WarpAsync*"></a>
+  <h4 id="GTiff2Tiles_Core_GdalWorker_WarpAsync_System_String_System_String_System_String___IProgress_System_Double__" data-uid="GTiff2Tiles.Core.GdalWorker.WarpAsync(System.String,System.String,System.String[],IProgress{System.Double})">WarpAsync(String, String, String[], IProgress&lt;Double&gt;)</h4>
+  <div class="markdown level1 summary"><p>Runs GdalWarp with passed parameters</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task WarpAsync(string inputFilePath, string outputFilePath, string[] options, IProgress&lt;double&gt; progress = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">inputFilePath</span></td>
+        <td><p>Input GeoTiff&apos;s path</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">outputFilePath</span></td>
+        <td><p>Output file&apos;s path</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span>[]</td>
+        <td><span class="parametername">options</span></td>
+        <td><p>Array of string parameters
+<remarks><p>See <a class="xref" href="GTiff2Tiles.Core.GdalWorker.html#GTiff2Tiles_Core_GdalWorker_ConvertCoordinateSystemOptions">ConvertCoordinateSystemOptions</a> field for
+more info</remarks></p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">IProgress</span>&lt;<span class="xref">System.Double</span>&gt;</td>
+        <td><span class="parametername">progress</span></td>
+        <td><p>GdalWarp&apos;s progress
+<remarks><p><span class="xref">null</span> by default</remarks></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</article>
+    <script type="text/javascript" src="styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="styles/docfx.js"></script>
+    <script type="text/javascript" src="styles/main.js"></script>
+  </body>
+</html>

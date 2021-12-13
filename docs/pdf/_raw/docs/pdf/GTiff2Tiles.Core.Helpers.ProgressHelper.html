@@ -1,0 +1,152 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <link rel="stylesheet" href="styles/docfx.vendor.css">
+    <link rel="stylesheet" href="styles/default.css">
+    <link rel="stylesheet" href="styles/main.css">
+  </head>
+  <body>
+    <article>
+  
+  
+  <h1 id="GTiff2Tiles_Core_Helpers_ProgressHelper" data-uid="GTiff2Tiles.Core.Helpers.ProgressHelper" class="text-break">Class ProgressHelper
+  </h1>
+  <div class="markdown level0 summary"><p>Class with methods to simplify progress-reporting</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">ProgressHelper</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ToString()</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="GTiff2Tiles.Core.Helpers.html">GTiff2Tiles.Core.Helpers</a></h6>
+  <h6><strong>Assembly</strong>: GTiff2Tiles.Core.dll</h6>
+  <h5 id="GTiff2Tiles_Core_Helpers_ProgressHelper_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static class ProgressHelper</code></pre>
+  </div>
+  <h3 id="methods">Methods
+  </h3>
+  <a id="GTiff2Tiles_Core_Helpers_ProgressHelper_GetEstimatedTimeLeft_" data-uid="GTiff2Tiles.Core.Helpers.ProgressHelper.GetEstimatedTimeLeft*"></a>
+  <h4 id="GTiff2Tiles_Core_Helpers_ProgressHelper_GetEstimatedTimeLeft_System_Double_System_Diagnostics_Stopwatch_" data-uid="GTiff2Tiles.Core.Helpers.ProgressHelper.GetEstimatedTimeLeft(System.Double,System.Diagnostics.Stopwatch)">GetEstimatedTimeLeft(Double, Stopwatch)</h4>
+  <div class="markdown level1 summary"><p>Calculate estimated time left, based on your current progress and time from start</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static TimeSpan GetEstimatedTimeLeft(double percentage, Stopwatch stopwatch)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Double</span></td>
+        <td><span class="parametername">percentage</span></td>
+        <td><p>Current progress;
+<remarks><p>Should be in range (0.0, 100.0]</remarks></p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Diagnostics.Stopwatch</span></td>
+        <td><span class="parametername">stopwatch</span></td>
+        <td><p>Time passed from the start</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TimeSpan</span></td>
+        <td><p>Estimated <see cref="!:TimeSpan"></see> left</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <a id="GTiff2Tiles_Core_Helpers_ProgressHelper_PrintEstimatedTimeLeft_" data-uid="GTiff2Tiles.Core.Helpers.ProgressHelper.PrintEstimatedTimeLeft*"></a>
+  <h4 id="GTiff2Tiles_Core_Helpers_ProgressHelper_PrintEstimatedTimeLeft_System_Double_System_Diagnostics_Stopwatch_Action_System_String__" data-uid="GTiff2Tiles.Core.Helpers.ProgressHelper.PrintEstimatedTimeLeft(System.Double,System.Diagnostics.Stopwatch,Action{System.String})">PrintEstimatedTimeLeft(Double, Stopwatch, Action&lt;String&gt;)</h4>
+  <div class="markdown level1 summary"><p>Prints estimated time left</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void PrintEstimatedTimeLeft(double percentage, Stopwatch stopwatch = null, Action&lt;string&gt; reporter = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Double</span></td>
+        <td><span class="parametername">percentage</span></td>
+        <td><p>Current progress;
+<remarks><p>Should be in range (0.0, 100.0]</remarks></p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Diagnostics.Stopwatch</span></td>
+        <td><span class="parametername">stopwatch</span></td>
+        <td><p>Time passed from the start;
+<remarks><p>If set to <span class="xref">null</span> no time printed</remarks></p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Action</span>&lt;<span class="xref">System.String</span>&gt;</td>
+        <td><span class="parametername">reporter</span></td>
+        <td><p>Delegate to work with reported string
+<remarks><p>E.g. <see cref="!:Console.WriteLine(string)"></see>; if set to <span class="xref">null</span> no time printed</remarks></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+</article>
+    <script type="text/javascript" src="styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="styles/docfx.js"></script>
+    <script type="text/javascript" src="styles/main.js"></script>
+  </body>
+</html>
