@@ -151,16 +151,16 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
         #region Properties
 
         [Test]
-        public void GetProperties() => Assert.DoesNotThrowAsync(async () =>
+        public void GetProperties() => Assert.DoesNotThrow(() =>
         {
-            await using IGeoTiff tiff = new Raster(_in4326, Cs4326);
+            using IGeoTiff tiff = new Raster(_in4326, Cs4326);
             bool d = tiff.IsDisposed;
             Size s = tiff.Size;
             GeoCoordinate mic = tiff.MinCoordinate;
             GeoCoordinate mac = tiff.MaxCoordinate;
             CoordinateSystem g = tiff.GeoCoordinateSystem;
 
-            await using Raster raster = (Raster)tiff;
+            using Raster raster = (Raster)tiff;
             using Image data = raster.Data;
         });
 
@@ -493,7 +493,7 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
 
             await GdalWorker.ConvertGeoTiffToTargetSystemAsync(_in4326, tmp, Cs3857).ConfigureAwait(false);
 
-            await using Raster raster = new(tmp, Cs3857);
+            using Raster raster = new(tmp, Cs3857);
 
             Assert.DoesNotThrowAsync(() => raster.WriteTilesToDirectoryAsync(outPath, 0, 11));
         }
@@ -506,7 +506,7 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
 
             await GdalWorker.ConvertGeoTiffToTargetSystemAsync(_in3785, tmp, Cs4326).ConfigureAwait(false);
 
-            await using Raster raster = new(tmp, Cs4326);
+            using Raster raster = new(tmp, Cs4326);
 
             Assert.DoesNotThrowAsync(() => raster.WriteTilesToDirectoryAsync(outPath, 0, 11));
         }
@@ -519,7 +519,7 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
 
             await GdalWorker.ConvertGeoTiffToTargetSystemAsync(_in3395, tmp, Cs4326).ConfigureAwait(false);
 
-            await using Raster raster = new(tmp, Cs4326);
+            using Raster raster = new(tmp, Cs4326);
 
             Assert.DoesNotThrowAsync(() => raster.WriteTilesToDirectoryAsync(outPath, 0, 11));
         }

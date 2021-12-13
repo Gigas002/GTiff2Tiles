@@ -107,30 +107,7 @@ namespace GTiff2Tiles.GUI.Models
         /// <summary>
         /// Tile interpolation
         /// </summary>
-        internal Interpolation TargetInterpolation => Interpolation.ToLowerInvariant() switch
-        {
-            "nearest" => Core.Enums.Interpolation.Nearest,
-            "linear" => Core.Enums.Interpolation.Linear,
-            "cubic" => Core.Enums.Interpolation.Cubic,
-            "mitchell" => Core.Enums.Interpolation.Mitchell,
-            "lanczos2" => Core.Enums.Interpolation.Lanczos2,
-            _ => Core.Enums.Interpolation.Lanczos3
-        };
-
-        /// <summary>
-        /// Parse <see cref="Core.Enums.Interpolation"/> enum into <see cref="string"/>
-        /// </summary>
-        /// <param name="interpolation">Interpolation to parse</param>
-        /// <returns>Corresponding <see cref="string"/></returns>
-        internal static string ParseInterpolation(Interpolation interpolation) => interpolation switch
-        {
-            Core.Enums.Interpolation.Nearest => nameof(Core.Enums.Interpolation.Nearest).ToLowerInvariant(),
-            Core.Enums.Interpolation.Linear => nameof(Core.Enums.Interpolation.Linear).ToLowerInvariant(),
-            Core.Enums.Interpolation.Cubic => nameof(Core.Enums.Interpolation.Cubic).ToLowerInvariant(),
-            Core.Enums.Interpolation.Mitchell => nameof(Core.Enums.Interpolation.Mitchell).ToLowerInvariant(),
-            Core.Enums.Interpolation.Lanczos2 => nameof(Core.Enums.Interpolation.Lanczos2).ToLowerInvariant(),
-            _ => nameof(Core.Enums.Interpolation.Lanczos3).ToLowerInvariant()
-        };
+        internal NetVips.Enums.Kernel TargetInterpolation => Enum.Parse<NetVips.Enums.Kernel>(Interpolation, true);
 
         /// <summary>
         /// Number of bands in tile

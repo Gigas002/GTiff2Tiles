@@ -220,12 +220,12 @@ namespace GTiff2Tiles.GUI.ViewModels
 
         #region Interpolation / Bands count / Grid.Row=10
 
-        private Interpolation _targetInterpolation;
+        private NetVips.Enums.Kernel _targetInterpolation;
 
         /// <summary>
         /// <see cref="Interpolation"/> of ready tiles
         /// </summary>
-        public Interpolation TargetInterpolation
+        public NetVips.Enums.Kernel TargetInterpolation
         {
             get => _targetInterpolation;
             set => SetProperty(ref _targetInterpolation, value);
@@ -239,7 +239,7 @@ namespace GTiff2Tiles.GUI.ViewModels
         /// <summary>
         /// Collection of supprted <see cref="Interpolation"/>s
         /// </summary>
-        public ObservableCollection<Interpolation> Interpolations { get; } = new();
+        public ObservableCollection<NetVips.Enums.Kernel> Interpolations { get; } = new();
 
         private int _bandsCount;
 
@@ -616,12 +616,12 @@ namespace GTiff2Tiles.GUI.ViewModels
             CoordinateSystems.Add(CoordinateSystem.Epsg4326);
             TargetCoordinateSystem = Settings.TargetCoordinateSystem;
 
-            Interpolations.Add(Interpolation.Linear);
-            Interpolations.Add(Interpolation.Nearest);
-            Interpolations.Add(Interpolation.Cubic);
-            Interpolations.Add(Interpolation.Lanczos2);
-            Interpolations.Add(Interpolation.Lanczos3);
-            Interpolations.Add(Interpolation.Mitchell);
+            Interpolations.Add(NetVips.Enums.Kernel.Linear);
+            Interpolations.Add(NetVips.Enums.Kernel.Nearest);
+            Interpolations.Add(NetVips.Enums.Kernel.Cubic);
+            Interpolations.Add(NetVips.Enums.Kernel.Lanczos2);
+            Interpolations.Add(NetVips.Enums.Kernel.Lanczos3);
+            Interpolations.Add(NetVips.Enums.Kernel.Mitchell);
             TargetInterpolation = Settings.TargetInterpolation;
 
             BandsCount = Settings.BandsCount;
@@ -755,7 +755,7 @@ namespace GTiff2Tiles.GUI.ViewModels
                     inputFilePath = tempFilePath;
                 }
 
-                await using Raster image = new(inputFilePath, TargetCoordinateSystem);
+                using Raster image = new(inputFilePath, TargetCoordinateSystem);
 
                 // Generate tiles
                 await image.WriteTilesToDirectoryAsync(OutputDirectoryPath, MinZ, MaxZ, TmsCompatible, TileSize,
@@ -770,7 +770,7 @@ namespace GTiff2Tiles.GUI.ViewModels
                                           TargetCoordinateSystem);
 
                     string xmlPath = $"{OutputDirectoryPath}/{TmrName}";
-                    await using FileStream fs = File.OpenWrite(xmlPath);
+                    using FileStream fs = File.OpenWrite(xmlPath);
                     tileMap.Serialize(fs);
                 }
             }
@@ -805,7 +805,7 @@ namespace GTiff2Tiles.GUI.ViewModels
                 MinZ = MinZ, MaxZ = MaxZ,
                 TileExtension = Tile.GetExtensionString(TargetTileExtension),
                 CoordinateSystem = SettingsModel.ParseCoordinateSystem(TargetCoordinateSystem),
-                Interpolation = SettingsModel.ParseInterpolation(TargetInterpolation),
+                Interpolation = TargetInterpolation.ToString(),
                 BandsCount = BandsCount,
                 TmsCompatible = TmsCompatible, Theme = ThemeModel.GetTheme(Theme),
                 IsTmr = IsTmr,

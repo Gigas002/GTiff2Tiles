@@ -171,7 +171,7 @@ namespace GTiff2Tiles.Console
                     InputFilePath = tempFilePath;
                 }
 
-                await using Raster image = new(InputFilePath, TargetCoordinateSystem, MemCache);
+                using Raster image = new(InputFilePath, TargetCoordinateSystem, MemCache);
 
                 // Generate tiles
                 await image.WriteTilesToDirectoryAsync(OutputDirectoryPath, MinZ, MaxZ, TmsCompatible,
@@ -187,7 +187,7 @@ namespace GTiff2Tiles.Console
                                           TargetCoordinateSystem);
 
                     string xmlPath = $"{OutputDirectoryPath}/{TmrName}";
-                    await using FileStream fs = File.OpenWrite(xmlPath);
+                    using FileStream fs = File.OpenWrite(xmlPath);
                     tileMap.Serialize(fs);
                 }
             }

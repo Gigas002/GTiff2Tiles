@@ -644,7 +644,7 @@ public class Raster : GeoTiff
     /// <param name="tileSize"><see cref="Images.Size"/> of <see cref="ITile"/>s
     /// <remarks><para/>256x256 by default</remarks></param>
     /// <param name="interpolation">Interpolation of ready tiles
-    /// <remarks><para/><see cref="Interpolation.Lanczos3"/> by default</remarks></param>
+    /// <remarks><para/><see cref="NetVips.Enums.Kernel.Lanczos3"/> by default</remarks></param>
     /// <param name="bandsCount">Count of <see cref="Band"/>s in ready <see cref="ITile"/>s
     /// <remarks><para/>4 by default</remarks></param>
     /// <param name="tileCacheCount">Count of <see cref="ITile"/> to be in cache

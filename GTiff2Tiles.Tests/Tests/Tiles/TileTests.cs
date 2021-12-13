@@ -50,9 +50,9 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
         #region FromNumber
 
         [Test]
-        public void FromNumberDefaultArgs() => Assert.DoesNotThrowAsync(async () =>
+        public void FromNumberDefaultArgs() => Assert.DoesNotThrow(() =>
         {
-            await using ITile tile = new RasterTile(Locations.TokyoGeodeticNtmsNumber, Cs4326);
+            using ITile tile = new RasterTile(Locations.TokyoGeodeticNtmsNumber, Cs4326);
         });
 
         [Test]
@@ -65,16 +65,16 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
             const int bandsCount = 3;
             const NetVips.Enums.Kernel interpolation = NetVips.Enums.Kernel.Cubic;
 
-            Assert.DoesNotThrowAsync(async () =>
+            Assert.DoesNotThrow(() =>
             {
-                await using ITile tile = new RasterTile(Locations.TokyoGeodeticTmsNumber, Cs4326, size, tmsCompatible);
+                using ITile tile = new RasterTile(Locations.TokyoGeodeticTmsNumber, Cs4326, size, tmsCompatible);
             });
         }
 
         [Test]
-        public void FromNumberNotSquare() => Assert.ThrowsAsync<ArgumentException>(async () =>
+        public void FromNumberNotSquare() => Assert.Throws<ArgumentException>(() =>
         {
-            await using ITile tile = new RasterTile(Locations.TokyoGeodeticNtmsNumber, Cs4326, new Size(1, 256));
+            using ITile tile = new RasterTile(Locations.TokyoGeodeticNtmsNumber, Cs4326, new Size(1, 256));
         });
 
         #endregion
@@ -82,9 +82,9 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
         #region FromCoordinates
 
         [Test]
-        public void FromCoordinatesDefaultArgs() => Assert.DoesNotThrowAsync(async () =>
+        public void FromCoordinatesDefaultArgs() => Assert.DoesNotThrow(() =>
         {
-            await using ITile tile = new RasterTile(Locations.TokyoGeodeticCoordinate,
+            using ITile tile = new RasterTile(Locations.TokyoGeodeticCoordinate,
                                                     Locations.TokyoGeodeticCoordinate, 10);
         });
 
@@ -98,18 +98,18 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
             const int bandsCount = 3;
             const NetVips.Enums.Kernel interpolation = NetVips.Enums.Kernel.Cubic;
 
-            Assert.DoesNotThrowAsync(async () =>
+            Assert.DoesNotThrow(() =>
             {
-                await using ITile tile = new RasterTile(Locations.TokyoGeodeticCoordinate,
+                using ITile tile = new RasterTile(Locations.TokyoGeodeticCoordinate,
                                                         Locations.TokyoGeodeticCoordinate,
                                                         10, size, tmsCompatible);
             });
         }
 
         [Test]
-        public void FromCoordinatesNotSquare() => Assert.ThrowsAsync<ArgumentException>(async () =>
+        public void FromCoordinatesNotSquare() => Assert.Throws<ArgumentException>(() =>
         {
-            await using ITile tile = new RasterTile(Locations.TokyoGeodeticCoordinate,
+            using ITile tile = new RasterTile(Locations.TokyoGeodeticCoordinate,
                                                     Locations.TokyoGeodeticCoordinate,
                                                     10, new Size(1, 256));
         });
@@ -121,9 +121,9 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
             GeoCoordinate max = new GeodeticCoordinate(180.0, 90.0);
             const int zoom = 10;
 
-            Assert.ThrowsAsync<ArgumentException>(async () =>
+            Assert.Throws<ArgumentException>(() =>
             {
-                await using ITile tile = new RasterTile(min, max, zoom);
+                using ITile tile = new RasterTile(min, max, zoom);
             });
         }
 
@@ -182,9 +182,9 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
                 int minBytesC = tile.MinimalBytesCount;
             });
 
-            Assert.DoesNotThrowAsync(async () =>
+            Assert.DoesNotThrow(() =>
             {
-                await using RasterTile rasterTile = (RasterTile)tile;
+                using RasterTile rasterTile = (RasterTile)tile;
                 int bandsCount = rasterTile.BandsCount;
                 NetVips.Enums.Kernel interpolation = rasterTile.Interpolation;
             });
