@@ -11,11 +11,11 @@ jobs:
     runs-on: windows-latest
     
     steps:
-    - uses: actions/checkout@v2.3.4
+    - uses: actions/checkout@v2.4.0
     - name: Setup .NET Core
-      uses: actions/setup-dotnet@v1.7.2
+      uses: actions/setup-dotnet@v1.9.0
       with:
-        dotnet-version: 5.0.103
+        dotnet-version: 6.0.100
     - name: Build with dotnet
       run: |
         echo Build win-x64 start
@@ -74,11 +74,11 @@ jobs:
     runs-on: windows-latest
     
     steps:
-    - uses: actions/checkout@v2.3.4
+    - uses: actions/checkout@v2.4.0
     - name: Setup .NET Core
-      uses: actions/setup-dotnet@v1.7.2
+      uses: actions/setup-dotnet@v1.9.0
       with:
-        dotnet-version: 5.0.103
+        dotnet-version: 6.0.100
     - name: Run unit tests
       run: |
         echo Unit tests win-x64 start
@@ -92,11 +92,11 @@ jobs:
     runs-on: ubuntu-latest
       
     steps:
-    - uses: actions/checkout@v2.3.4
+    - uses: actions/checkout@v2.4.0
     - name: Setup .NET Core
-      uses: actions/setup-dotnet@v1.7.2
+      uses: actions/setup-dotnet@v1.9.0
       with:
-        dotnet-version: 5.0.103
+        dotnet-version: 6.0.100
     - name: Build with dotnet
       run: |
         echo Build linux-x64 core start
@@ -116,11 +116,11 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-    - uses: actions/checkout@v2.3.4
+    - uses: actions/checkout@v2.4.0
     - name: Setup .NET Core
-      uses: actions/setup-dotnet@v1.7.2
+      uses: actions/setup-dotnet@v1.9.0
       with:
-        dotnet-version: 5.0.103
+        dotnet-version: 6.0.100
     - name: Run unit tests
       run: |
         echo Unit tests linux-x64 start
