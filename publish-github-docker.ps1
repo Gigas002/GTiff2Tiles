@@ -1,11 +1,11 @@
 $GH_TOKEN=$args[0]
 $appveyorWorker=$args[1]
 
-$appVsProfile="Visual Studio 2019"
+$appVsProfile="Visual Studio 2022"
 
 if ($appveyorWorker -eq $appVsProfile)
 {
-    Write-Output "Using VS2019, skip publishing docker image..."
+    Write-Output "Using VS2022, skip publishing docker image..."
     return
 }
 
