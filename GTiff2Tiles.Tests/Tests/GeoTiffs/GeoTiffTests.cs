@@ -235,12 +235,12 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
             using Raster raster = new(_in4326, Cs4326);
             Number number = Locations.TokyoGeodeticNtmsNumber;
 
-            using RasterTile t1 = new(number, raster.GeoCoordinateSystem) { Interpolation = Interpolation.Nearest };
-            using RasterTile t2 = new(number, raster.GeoCoordinateSystem) { Interpolation = Interpolation.Linear };
-            using RasterTile t3 = new(number, raster.GeoCoordinateSystem) { Interpolation = Interpolation.Cubic };
-            using RasterTile t4 = new(number, raster.GeoCoordinateSystem) { Interpolation = Interpolation.Mitchell };
-            using RasterTile t5 = new(number, raster.GeoCoordinateSystem) { Interpolation = Interpolation.Lanczos2 };
-            using RasterTile t6 = new(number, raster.GeoCoordinateSystem) { Interpolation = Interpolation.Lanczos3 };
+            using RasterTile t1 = new(number, raster.GeoCoordinateSystem) { Interpolation = NetVips.Enums.Kernel.Nearest };
+            using RasterTile t2 = new(number, raster.GeoCoordinateSystem) { Interpolation = NetVips.Enums.Kernel.Linear };
+            using RasterTile t3 = new(number, raster.GeoCoordinateSystem) { Interpolation = NetVips.Enums.Kernel.Cubic };
+            using RasterTile t4 = new(number, raster.GeoCoordinateSystem) { Interpolation = NetVips.Enums.Kernel.Mitchell };
+            using RasterTile t5 = new(number, raster.GeoCoordinateSystem) { Interpolation = NetVips.Enums.Kernel.Lanczos2 };
+            using RasterTile t6 = new(number, raster.GeoCoordinateSystem) { Interpolation = NetVips.Enums.Kernel.Lanczos3 };
 
             Assert.DoesNotThrow(() => raster.CreateTileImage(raster.Data, t1));
             Assert.DoesNotThrow(() => raster.CreateTileImage(raster.Data, t2));
@@ -387,7 +387,7 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
             using Raster raster = new(_in4326, Cs4326);
 
             Assert.DoesNotThrowAsync(() => raster.WriteTilesToDirectoryAsync(outPath, 0, 11,
-              true, new Size(64, 64), TileExtension.Jpg, Interpolation.Cubic, 3, 999, 10,
+              true, new Size(64, 64), TileExtension.Jpg, NetVips.Enums.Kernel.Cubic, 3, 999, 10,
               new Progress<double>(), Reporter));
 
             Directory.Delete(outPath, true);
@@ -472,7 +472,7 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
             using Raster raster = new(_in4326, Cs4326);
 
             Assert.DoesNotThrowAsync(() => raster.WriteTilesToDirectoryAsync(outPath, 0, 11,
-                   interpolation: Interpolation.Cubic));
+                   interpolation: NetVips.Enums.Kernel.Cubic));
         }
 
         [Test]
@@ -552,7 +552,7 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
             Channel<RasterTile> channel = Channel.CreateUnbounded<RasterTile>();
 
             Assert.DoesNotThrowAsync(async () => await raster.WriteTilesToChannelAsync(channel.Writer, 0, 11,
-                   true, new Size(128, 128), Interpolation.Cubic, 3, 999, 10, new Progress<double>(), Reporter).ConfigureAwait(false));
+                   true, new Size(128, 128), NetVips.Enums.Kernel.Cubic, 3, 999, 10, new Progress<double>(), Reporter).ConfigureAwait(false));
         }
 
         [Test]
@@ -596,7 +596,7 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
 
             IEnumerable<ITile> tiles = null;
             Assert.DoesNotThrow(() => tiles = raster.WriteTilesToEnumerable(0, 11,
-                   true, new Size(128, 128), Interpolation.Mitchell, 3, 999, new Progress<double>(), Reporter));
+                   true, new Size(128, 128), NetVips.Enums.Kernel.Mitchell, 3, 999, new Progress<double>(), Reporter));
 
             Assert.True(tiles?.Any());
         }
@@ -643,7 +643,7 @@ namespace GTiff2Tiles.Tests.Tests.GeoTiffs
 
             IAsyncEnumerable<ITile> tiles = null;
             Assert.DoesNotThrow(() => tiles = raster.WriteTilesToAsyncEnumerable(0, 11,
-                   true, new Size(128, 128), Interpolation.Nearest, 3, 999, 10, new Progress<double>(), Reporter));
+                   true, new Size(128, 128), NetVips.Enums.Kernel.Nearest, 3, 999, 10, new Progress<double>(), Reporter));
 
             Assert.DoesNotThrowAsync(async () =>
             {

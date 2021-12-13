@@ -51,7 +51,7 @@ namespace GTiff2Tiles.Core.Tiles
         /// <summary>
         /// Interpolation of this <see cref="RasterTile"/>
         /// </summary>
-        public Interpolation Interpolation { get; set; } = Interpolation.Lanczos3;
+        public NetVips.Enums.Kernel Interpolation { get; set; } = NetVips.Enums.Kernel.Lanczos3;
 
         #endregion
 
@@ -98,19 +98,6 @@ namespace GTiff2Tiles.Core.Tiles
 
             if (tileCache == null) throw new ArgumentNullException(nameof(tileCache));
 
-            string interpolation = Interpolation switch
-            {
-#pragma warning disable CA1308 // Normalize strings to uppercase
-                Interpolation.Nearest => nameof(Interpolation.Nearest).ToLowerInvariant(),
-                Interpolation.Linear => nameof(Interpolation.Linear).ToLowerInvariant(),
-                Interpolation.Cubic => nameof(Interpolation.Cubic).ToLowerInvariant(),
-                Interpolation.Mitchell => nameof(Interpolation.Mitchell).ToLowerInvariant(),
-                Interpolation.Lanczos2 => nameof(Interpolation.Lanczos2).ToLowerInvariant(),
-                Interpolation.Lanczos3 => nameof(Interpolation.Lanczos3).ToLowerInvariant(),
-                _ => throw new NotSupportedException(string.Format(Strings.Culture, Strings.NotSupported, Interpolation))
-#pragma warning restore CA1308 // Normalize strings to uppercase
-            };
-
             #endregion
 
             // Get postitions and sizes for current tile
@@ -123,7 +110,7 @@ namespace GTiff2Tiles.Core.Tiles
             // Crop and resize tile
             Image tempTileImage = tileCache.Crop((int)readArea.OriginCoordinate.X, (int)readArea.OriginCoordinate.Y,
                                                  readArea.Size.Width, readArea.Size.Height)
-                                           .Resize(xScale, interpolation, yScale);
+                                           .Resize(xScale, Interpolation, yScale);
 
             // Add alpha channel if needed
             Band.AddDefaultBands(ref tempTileImage, BandsCount);

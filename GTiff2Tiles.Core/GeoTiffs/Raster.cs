@@ -202,19 +202,6 @@ namespace GTiff2Tiles.Core.GeoTiffs
             if (tileCache == null) throw new ArgumentNullException(nameof(tileCache));
             if (tile == null) throw new ArgumentNullException(nameof(tile));
 
-            string interpolation = tile.Interpolation switch
-            {
-#pragma warning disable CA1308 // Normalize strings to uppercase
-                Interpolation.Nearest => nameof(Interpolation.Nearest).ToLowerInvariant(),
-                Interpolation.Linear => nameof(Interpolation.Linear).ToLowerInvariant(),
-                Interpolation.Cubic => nameof(Interpolation.Cubic).ToLowerInvariant(),
-                Interpolation.Mitchell => nameof(Interpolation.Mitchell).ToLowerInvariant(),
-                Interpolation.Lanczos2 => nameof(Interpolation.Lanczos2).ToLowerInvariant(),
-                Interpolation.Lanczos3 => nameof(Interpolation.Lanczos3).ToLowerInvariant(),
-                _ => throw new NotSupportedException(string.Format(Strings.Culture, Strings.NotSupported, tile.Interpolation))
-#pragma warning restore CA1308 // Normalize strings to uppercase
-            };
-
             #endregion
 
             // Get postitions and sizes for current tile
@@ -227,7 +214,7 @@ namespace GTiff2Tiles.Core.GeoTiffs
             // Crop and resize tile
             Image tempTileImage = tileCache.Crop((int)readArea.OriginCoordinate.X, (int)readArea.OriginCoordinate.Y,
                                                  readArea.Size.Width, readArea.Size.Height)
-                                           .Resize(xScale, interpolation, yScale);
+                                           .Resize(xScale, tile.Interpolation, yScale);
 
             // Add alpha channel if needed
             Band.AddDefaultBands(ref tempTileImage, tile.BandsCount);
@@ -364,7 +351,7 @@ namespace GTiff2Tiles.Core.GeoTiffs
         public void WriteTilesToDirectory(string outputDirectoryPath, int minZ, int maxZ,
                                           bool tmsCompatible = false, Size tileSize = null,
                                           TileExtension tileExtension = TileExtension.Png,
-                                          Interpolation interpolation = Interpolation.Lanczos3,
+                                          NetVips.Enums.Kernel interpolation = NetVips.Enums.Kernel.Lanczos3,
                                           int bandsCount = RasterTile.DefaultBandsCount,
                                           int tileCacheCount = 1000, int threadsCount = 0,
                                           IProgress<double> progress = null,
@@ -451,7 +438,7 @@ namespace GTiff2Tiles.Core.GeoTiffs
         public Task WriteTilesToDirectoryAsync(string outputDirectoryPath, int minZ, int maxZ,
                                                bool tmsCompatible = false, Size tileSize = null,
                                                TileExtension tileExtension = TileExtension.Png,
-                                               Interpolation interpolation = Interpolation.Lanczos3,
+                                               NetVips.Enums.Kernel interpolation = NetVips.Enums.Kernel.Lanczos3,
                                                int bandsCount = RasterTile.DefaultBandsCount,
                                                int tileCacheCount = 1000, int threadsCount = 0,
                                                IProgress<double> progress = null,
@@ -480,7 +467,7 @@ namespace GTiff2Tiles.Core.GeoTiffs
         /// <exception cref="RasterException"/>
         public void WriteTilesToChannel(ChannelWriter<RasterTile> channelWriter, int minZ, int maxZ,
                                         bool tmsCompatible = false, Size tileSize = null,
-                                        Interpolation interpolation = Interpolation.Lanczos3,
+                                        NetVips.Enums.Kernel interpolation = NetVips.Enums.Kernel.Lanczos3,
                                         int bandsCount = RasterTile.DefaultBandsCount,
                                         int tileCacheCount = 1000, int threadsCount = 0,
                                         IProgress<double> progress = null,
@@ -557,7 +544,7 @@ namespace GTiff2Tiles.Core.GeoTiffs
         /// <inheritdoc cref="WriteTilesToChannel"/>
         public Task WriteTilesToChannelAsync(ChannelWriter<RasterTile> channelWriter, int minZ, int maxZ,
                                              bool tmsCompatible = false, Size tileSize = null,
-                                             Interpolation interpolation = Interpolation.Lanczos3,
+                                             NetVips.Enums.Kernel interpolation = NetVips.Enums.Kernel.Lanczos3,
                                              int bandsCount = RasterTile.DefaultBandsCount,
                                              int tileCacheCount = 1000, int threadsCount = 0,
                                              IProgress<double> progress = null,
@@ -574,7 +561,7 @@ namespace GTiff2Tiles.Core.GeoTiffs
         /// <inheritdoc cref="WriteTilesToAsyncEnumerable"/>
         public IEnumerable<RasterTile> WriteTilesToEnumerable(int minZ, int maxZ,
                                                          bool tmsCompatible = false, Size tileSize = null,
-                                                         Interpolation interpolation = Interpolation.Lanczos3,
+                                                         NetVips.Enums.Kernel interpolation = NetVips.Enums.Kernel.Lanczos3,
                                                          int bandsCount = RasterTile.DefaultBandsCount,
                                                          int tileCacheCount = 1000,
                                                          IProgress<double> progress = null,
@@ -674,7 +661,7 @@ namespace GTiff2Tiles.Core.GeoTiffs
         /// <exception cref="RasterException"/>
         public IAsyncEnumerable<RasterTile> WriteTilesToAsyncEnumerable(int minZ, int maxZ,
                                                                         bool tmsCompatible = false, Size tileSize = null,
-                                                                        Interpolation interpolation = Interpolation.Lanczos3,
+                                                                        NetVips.Enums.Kernel interpolation = NetVips.Enums.Kernel.Lanczos3,
                                                                         int bandsCount = RasterTile.DefaultBandsCount,
                                                                         int tileCacheCount = 1000, int threadsCount = 0,
                                                                         IProgress<double> progress = null,

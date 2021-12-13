@@ -61,9 +61,9 @@ namespace GTiff2Tiles.Core.Args
 
         /// <summary>
         /// Interpolation of ready tiles
-        /// <remarks><para/><see cref="Interpolation.Lanczos3"/> by default</remarks>
+        /// <remarks><para/><see cref="NetVips.Enums.Kernel.Lanczos3"/> by default</remarks>
         /// </summary>
-        public Interpolation TileInterpolation { get; set; } = Interpolation.Lanczos3;
+        public NetVips.Enums.Kernel TileInterpolation { get; set; } = NetVips.Enums.Kernel.Lanczos3;
 
         /// <summary>
         /// Count of <see cref="Band"/>s in ready <see cref="ITile"/>s

@@ -77,7 +77,7 @@ namespace GTiff2Tiles.Console
         /// <summary>
         /// Interpolation of ready tiles
         /// </summary>
-        private static Interpolation TargetInterpolation { get; set; } = Interpolation.Lanczos3;
+        private static NetVips.Enums.Kernel TargetInterpolation { get; set; } = NetVips.Enums.Kernel.Lanczos3;
 
         /// <summary>
         /// Count of bands in ready tiles
@@ -256,15 +256,7 @@ namespace GTiff2Tiles.Console
                 _ => CoordinateSystem.Epsg4326
             };
 
-            TargetInterpolation = options.Interpolation.ToLowerInvariant() switch
-            {
-                "nearest" => Interpolation.Nearest,
-                "linear" => Interpolation.Linear,
-                "cubic" => Interpolation.Cubic,
-                "mitchell" => Interpolation.Mitchell,
-                "lanczos2" => Interpolation.Lanczos2,
-                _ => Interpolation.Lanczos3
-            };
+            TargetInterpolation = Enum.Parse<NetVips.Enums.Kernel>(options.Interpolation, true);
 
             BandsCount = options.BandsCount;
             TileCacheCount = options.TileCacheCount;

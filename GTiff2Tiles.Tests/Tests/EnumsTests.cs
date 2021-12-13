@@ -23,12 +23,12 @@ namespace GTiff2Tiles.Tests.Tests
         [Test]
         public void GetInterpolations() => Assert.DoesNotThrow(() =>
         {
-            Interpolation i = Interpolation.Nearest;
-            i = Interpolation.Linear;
-            i = Interpolation.Cubic;
-            i = Interpolation.Mitchell;
-            i = Interpolation.Lanczos2;
-            i = Interpolation.Lanczos3;
+            NetVips.Enums.Kernel i = NetVips.Enums.Kernel.Nearest;
+            i = NetVips.Enums.Kernel.Linear;
+            i = NetVips.Enums.Kernel.Cubic;
+            i = NetVips.Enums.Kernel.Mitchell;
+            i = NetVips.Enums.Kernel.Lanczos2;
+            i = NetVips.Enums.Kernel.Lanczos3;
         });
 
         [Test]

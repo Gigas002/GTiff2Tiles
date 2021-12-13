@@ -65,7 +65,7 @@ namespace GTiff2Tiles.Benchmarks
 
             using Raster raster = new(path, CoordinateSystem.Epsg4326);
             raster.WriteTilesToDirectory($"{Data}/{GetOutDirectory(GTiff2TilesOut)}", MinZ, MaxZ,
-                                         false, Tile.DefaultSize, TileExtension.Png, Interpolation.Cubic, 4, threadsCount: _tc);
+                                         false, Tile.DefaultSize, TileExtension.Png, NetVips.Enums.Kernel.Cubic, 4, threadsCount: _tc);
         }
 
         [Benchmark]

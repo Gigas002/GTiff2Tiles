@@ -70,7 +70,7 @@ namespace GTiff2Tiles.Tests.Tests.Args
                 TileCache = Image.Black(10, 10, 4), BandsCount = 1, MinCoordinate = new GeodeticCoordinate(0.0, 0.0),
                 MaxCoordinate = new GeodeticCoordinate(1.0, 1.0), OutputDirectoryPath = string.Empty,
                 Progress = null, ThreadsCount = 1000, TileSize = Tile.DefaultSize, TmsCompatible = true,
-                TileCacheCount = 4, TileExtension = TileExtension.Webp, TileInterpolation = Interpolation.Cubic,
+                TileCacheCount = 4, TileExtension = TileExtension.Webp, TileInterpolation = NetVips.Enums.Kernel.Cubic,
                 TimePrinter = Console.WriteLine, GeoCoordinateSystem = CoordinateSystem.Epsg3857
             };
         });
@@ -109,7 +109,7 @@ namespace GTiff2Tiles.Tests.Tests.Args
             int thc = args.ThreadsCount;
             int tcc = args.TileCacheCount;
             TileExtension te = args.TileExtension;
-            Interpolation ti = args.TileInterpolation;
+            NetVips.Enums.Kernel ti = args.TileInterpolation;
             Size ts = args.TileSize;
             WriteRasterTilesArgs.PrintTime tp = args.TimePrinter;
             bool tic = args.TmsCompatible;

@@ -63,7 +63,7 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
             const TileExtension extension = TileExtension.Webp;
             const bool tmsCompatible = true;
             const int bandsCount = 3;
-            const Interpolation interpolation = Interpolation.Cubic;
+            const NetVips.Enums.Kernel interpolation = NetVips.Enums.Kernel.Cubic;
 
             Assert.DoesNotThrowAsync(async () =>
             {
@@ -96,7 +96,7 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
             const TileExtension extension = TileExtension.Webp;
             const bool tmsCompatible = true;
             const int bandsCount = 3;
-            const Interpolation interpolation = Interpolation.Cubic;
+            const NetVips.Enums.Kernel interpolation = NetVips.Enums.Kernel.Cubic;
 
             Assert.DoesNotThrowAsync(async () =>
             {
@@ -186,7 +186,7 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
             {
                 await using RasterTile rasterTile = (RasterTile)tile;
                 int bandsCount = rasterTile.BandsCount;
-                Interpolation interpolation = rasterTile.Interpolation;
+                NetVips.Enums.Kernel interpolation = rasterTile.Interpolation;
             });
         }
 
@@ -209,7 +209,7 @@ namespace GTiff2Tiles.Tests.Tests.Tiles
             Assert.DoesNotThrow(() =>
             {
                 rasterTile.BandsCount = 3;
-                rasterTile.Interpolation = Interpolation.Cubic;
+                rasterTile.Interpolation = NetVips.Enums.Kernel.Cubic;
             });
 
             Assert.Throws<ArgumentOutOfRangeException>(() => rasterTile.BandsCount = -1);
