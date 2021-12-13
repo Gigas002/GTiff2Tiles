@@ -1,5 +1,4 @@
-﻿using System;
-using GTiff2Tiles.Core.Coordinates;
+﻿using GTiff2Tiles.Core.Coordinates;
 using GTiff2Tiles.Core.Enums;
 using GTiff2Tiles.Core.Images;
 

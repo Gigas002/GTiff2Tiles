@@ -26,6 +26,7 @@
     <UseWPF>true</UseWPF>
     <StartupObject>GTiff2Tiles.GUI.App</StartupObject>
     <IsPackable>false</IsPackable>
+    <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
   <PropertyGroup>

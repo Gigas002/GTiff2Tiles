@@ -1,23 +1,22 @@
-﻿namespace GTiff2Tiles.Core.Enums
+﻿namespace GTiff2Tiles.Core.Enums;
+
+/// <summary>
+/// Extensions of ready tiles
+/// </summary>
+public enum TileExtension
 {
     /// <summary>
-    /// Extensions of ready tiles
+    /// .png
     /// </summary>
-    public enum TileExtension
-    {
-        /// <summary>
-        /// .png
-        /// </summary>
-        Png,
+    Png,
 
-        /// <summary>
-        /// .jpg
-        /// </summary>
-        Jpg,
+    /// <summary>
+    /// .jpg
+    /// </summary>
+    Jpg,
 
-        /// <summary>
-        /// .webp
-        /// </summary>
-        Webp
-    }
+    /// <summary>
+    /// .webp
+    /// </summary>
+    Webp
 }

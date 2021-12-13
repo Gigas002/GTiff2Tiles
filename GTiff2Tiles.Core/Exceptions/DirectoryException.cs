@@ -1,21 +1,18 @@
-﻿using System;
+﻿namespace GTiff2Tiles.Core.Exceptions;
 
-namespace GTiff2Tiles.Core.Exceptions
+/// <inheritdoc />
+public sealed class DirectoryException : Exception
 {
+    #region Constructors
+
     /// <inheritdoc />
-    public sealed class DirectoryException : Exception
-    {
-        #region Constructors
+    public DirectoryException(string message) : base(message) { }
 
-        /// <inheritdoc />
-        public DirectoryException(string message) : base(message) { }
+    /// <inheritdoc />
+    public DirectoryException(string message, Exception innerException) : base(message, innerException) { }
 
-        /// <inheritdoc />
-        public DirectoryException(string message, Exception innerException) : base(message, innerException) { }
+    /// <inheritdoc />
+    public DirectoryException() { }
 
-        /// <inheritdoc />
-        public DirectoryException() { }
-
-        #endregion
-    }
+    #endregion
 }

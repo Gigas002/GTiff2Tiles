@@ -1,18 +1,17 @@
-﻿namespace GTiff2Tiles.GUI.Enums
+﻿namespace GTiff2Tiles.GUI.Enums;
+
+/// <summary>
+/// Supported themes
+/// </summary>
+public enum Theme
 {
     /// <summary>
-    /// Supported themes
+    /// Dark theme
     /// </summary>
-    public enum Theme
-    {
-        /// <summary>
-        /// Dark theme
-        /// </summary>
-        Dark,
+    Dark,
 
-        /// <summary>
-        /// Light theme
-        /// </summary>
-        Light
-    }
+    /// <summary>
+    /// Light theme
+    /// </summary>
+    Light
 }
