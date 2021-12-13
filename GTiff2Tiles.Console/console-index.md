@@ -7,7 +7,7 @@ Any **GeoTIFF** (with less, than **5 bands**) on input is supported, if it's not
 
 ## Requirements
 
-Application runs on **Linux x64** (*tested on Ubuntu 18.04+*) and **Windows x64** (*tested on Win 7 SP1+*) operating systems.
+Application runs on **Linux x64** (*tested on Ubuntu 20.04+*) and **Windows x64** (*tested on Win 10*) operating systems.
 
 If you’re using **Windows 7 SP1**, you can experience weird error with **GDAL** packages. It’s recommended to install [KB2533623](https://www.microsoft.com/en-us/download/details.aspx?id=26764) to fix it. You can read about this Windows update on [MSDN](https://support.microsoft.com/en-us/help/2533623/microsoft-security-advisory-insecure-library-loading-could-allow-remot).
 
@@ -83,7 +83,7 @@ Offline docs are also available as [pdf](https://github.com/Gigas002/GTiff2Tiles
 
 - GTiff2Tiles.Core;
 - [CommandLineParser](https://www.nuget.org/packages/CommandLineParser/) – 2.8.0;
-- [MaxRev.Gdal.LinuxRuntime.Minimal](https://www.nuget.org/packages/MaxRev.Gdal.LinuxRuntime.Minimal/) – 3.2.0.250;
-- [MaxRev.Gdal.WindowsRuntime.Minimal](https://www.nuget.org/packages/MaxRev.Gdal.WindowsRuntime.Minimal/) – 3.2.0.250;
-- [NetVips.Native.win-x64](https://www.nuget.org/packages/NetVips.Native.win-x64) – 8.10.5.1;
-- [NetVips.Native.linux-x64](https://www.nuget.org/packages/NetVips.Native.linux-x64/) – 8.10.5.1;
+- [MaxRev.Gdal.LinuxRuntime.Minimal](https://www.nuget.org/packages/MaxRev.Gdal.LinuxRuntime.Minimal/) – 3.2.0.300;
+- [MaxRev.Gdal.WindowsRuntime.Minimal](https://www.nuget.org/packages/MaxRev.Gdal.WindowsRuntime.Minimal/) – 3.2.0.310;
+- [NetVips.Native.win-x64](https://www.nuget.org/packages/NetVips.Native.win-x64) – 8.12.1;
+- [NetVips.Native.linux-x64](https://www.nuget.org/packages/NetVips.Native.linux-x64/) – 8.12.1;

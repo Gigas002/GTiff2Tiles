@@ -61,14 +61,14 @@ Core library was completely rewritten, a lot of new, moved and removed API. Plea
 **Changed dependencies:**
 
 - Removed **System.Threading.Tasks.Extensions** package, since project doesn't target *netstandard2.0* anymore;
-- Add **Microsoft.SourceLink.GitHub** package ver. **1.0.0**;
-- Add **BitMiracle.LibTiff.NET** package ver. **2.4.639**;
+- Add **Microsoft.SourceLink.GitHub** package ver. **1.1.1**;
+- Add **BitMiracle.LibTiff.NET** package ver. **2.4.649**;
 - Moved **MaxRev.Gdal.LinuxRuntime.Minimal**, **MaxRev.Gdal.WindowsRuntime.Minimal** and **NetVips.Native**s to apps from core;
 
 **Updated dependencies:**
 
-- Update **MaxRev.Gdal.Core** to **3.2.0.250**;
-- Update **NetVips** to **1.2.4**;
+- Update **MaxRev.Gdal.Core** to **3.2.0.320**;
+- Update **NetVips** to **2.1.0**;
 
 #### Changed API
 
@@ -188,18 +188,18 @@ Added the block of additional (*optional*) settings, which lets you to:
 
 **New dependencies:**
 
-- Add **MaxRev.Gdal.WindowsRuntime.Minimal** package ver. **3.2.0.250**;
-- Add **NetVips.Native.win-x64** package ver. **8.10.5.1**;
+- Add **MaxRev.Gdal.WindowsRuntime.Minimal** package ver. **3.2.0.310**;
+- Add **NetVips.Native.win-x64** package ver. **8.12.1**;
 
 **Changed dependencies:**
 
-- Moved from **Caliburn.Micro** to **Prism.DryIoc** ver. **8.0.0.1909**;
+- Moved from **Caliburn.Micro** to **Prism.DryIoc** ver. **8.1.97**;
 
 **Updated dependencies:**
 
-- Updated **MaterialDesignColors** to **2.0.0**;
-- Updated **MaterialDesignThemes** to **4.0.0**;
-- Updated **MaterialDesignExtensions** to **3.3.0-a01**;
+- Updated **MaterialDesignColors** to **2.0.4**;
+- Updated **MaterialDesignThemes** to **4.0.3**;
+- Updated **MaterialDesignExtensions** to **4.0.0-a02**;
 
 ### Benchmarks
 
@@ -214,11 +214,11 @@ Completely rewritten benchmarks. Now everything's done automatically, though it 
 
 **New dependencies:**
 
-- **BenchmarkDotNet** ver. **0.12.1**;
-- Add **MaxRev.Gdal.LinuxRuntime.Minimal** package ver. **3.2.0.250**;
-- Add **MaxRev.Gdal.WindowsRuntime.Minimal** package ver. **3.2.0.250**;
-- Add **NetVips.Native.win-x64** package ver. **8.10.5.1**;
-- Add **NetVips.Native.linux-x64** package ver. **8.10.5.1**;
+- **BenchmarkDotNet** ver. **0.13.1**;
+- Add **MaxRev.Gdal.LinuxRuntime.Minimal** package ver. **3.2.0.300**;
+- Add **MaxRev.Gdal.WindowsRuntime.Minimal** package ver. **3.2.0.310**;
+- Add **NetVips.Native.win-x64** package ver. **8.12.1**;
+- Add **NetVips.Native.linux-x64** package ver. **8.12.1**;
 
 **Updated dependencies:**
 
@@ -232,18 +232,18 @@ Tests are now completely rewritten to cover **~94%** of **GTiff2Tiles.Core** new
 
 Added **coverlet** dependency to generate code coverage reports.
 
-- **coverlet.collector** ver. **3.0.2**;
-- **coverlet.msbuild** ver. **3.0.2**;
-- Add **MaxRev.Gdal.LinuxRuntime.Minimal** package ver. **3.2.0.250**;
-- Add **MaxRev.Gdal.WindowsRuntime.Minimal** package ver. **3.2.0.250**;
-- Add **NetVips.Native.win-x64** package ver. **8.10.5.1**;
-- Add **NetVips.Native.linux-x64** package ver. **8.10.5.1**;
+- **coverlet.collector** ver. **3.1.0**;
+- **coverlet.msbuild** ver. **3.1.0**;
+- Add **MaxRev.Gdal.LinuxRuntime.Minimal** package ver. **3.2.0.300**;
+- Add **MaxRev.Gdal.WindowsRuntime.Minimal** package ver. **3.2.0.310**;
+- Add **NetVips.Native.win-x64** package ver. **8.12.1**;
+- Add **NetVips.Native.linux-x64** package ver. **8.12.1**;
 
 **Updated dependencies:**
 
-- Update **NUnit** to **3.13.1**;
-- Update **NUnit3TestAdapter** to **3.17.0**;
-- Update **Microsoft.NET.Test.Sdk** to **16.8.3**;
+- Update **NUnit** to **3.13.2**;
+- Update **NUnit3TestAdapter** to **4.1.0**;
+- Update **Microsoft.NET.Test.Sdk** to **17.0.0**;
 
 ### Documentation
 

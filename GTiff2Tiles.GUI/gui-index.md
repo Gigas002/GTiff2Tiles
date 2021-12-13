@@ -14,14 +14,12 @@ If you’re using **Windows 7 SP1**, you can experience weird error with **GDAL*
 ### Build dependencies
 
 - GTiff2Tiles.Core;
-- [Prism.DryIoc](https://www.nuget.org/packages/Prism.DryIoc) – 8.0.0.1909;
-- [MaterialDesignColors](https://www.nuget.org/packages/MaterialDesignColors) – 2.0.0;
-- [MaterialDesignThemes](https://www.nuget.org/packages/MaterialDesignThemes) – 4.0.0;
-- [MaterialDesignExtensions](https://www.nuget.org/packages/MaterialDesignExtensions) – 3.3.0-a01;
-- [MaxRev.Gdal.LinuxRuntime.Minimal](https://www.nuget.org/packages/MaxRev.Gdal.LinuxRuntime.Minimal/) – 3.2.0.250;
-- [MaxRev.Gdal.WindowsRuntime.Minimal](https://www.nuget.org/packages/MaxRev.Gdal.WindowsRuntime.Minimal/) – 3.2.0.250;
-- [NetVips.Native.win-x64](https://www.nuget.org/packages/NetVips.Native.win-x64) – 8.10.5.1;
-- [NetVips.Native.linux-x64](https://www.nuget.org/packages/NetVips.Native.linux-x64/) – 8.10.5.1;
+- [Prism.DryIoc](https://www.nuget.org/packages/Prism.DryIoc) – 8.1.97;
+- [MaterialDesignColors](https://www.nuget.org/packages/MaterialDesignColors) – 2.0.4;
+- [MaterialDesignThemes](https://www.nuget.org/packages/MaterialDesignThemes) – 4.3.0;
+- [MaterialDesignExtensions](https://www.nuget.org/packages/MaterialDesignExtensions) – 4.0.0-a02;
+- [MaxRev.Gdal.WindowsRuntime.Minimal](https://www.nuget.org/packages/MaxRev.Gdal.WindowsRuntime.Minimal/) – 3.2.0.310;
+- [NetVips.Native.win-x64](https://www.nuget.org/packages/NetVips.Native.win-x64) – 8.12.1;
 
 ## Using
 

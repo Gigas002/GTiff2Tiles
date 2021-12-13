@@ -20,13 +20,13 @@ Main namespaces are the following:
 
 **To actually use MaxRev.Gdal.Core and NetVips in your applications, add needed native packages, see dependencies for GTiff2Tiles.Console to find out windows-x64 and linux-x64 natives!**
 
-- [MaxRev.Gdal.Core](https://www.nuget.org/packages/MaxRev.Gdal.Core/) – 3.2.0.250;
-- [NetVips](https://www.nuget.org/packages/NetVips/) – 1.2.4;
-- [BitMiracle.LibTiff.NET](https://www.nuget.org/packages/BitMiracle.LibTiff.NET) – 2.4.639
+- [MaxRev.Gdal.Core](https://www.nuget.org/packages/MaxRev.Gdal.Core/) – 3.2.0.320;
+- [NetVips](https://www.nuget.org/packages/NetVips/) – 2.1.0;
+- [BitMiracle.LibTiff.NET](https://www.nuget.org/packages/BitMiracle.LibTiff.NET) – 2.4.649
 
 When building from source, there are more packages needed:
 
-- [Microsoft.SourceLink.GitHub](https://www.nuget.org/packages/Microsoft.SourceLink.GitHub) – 1.0.0;
+- [Microsoft.SourceLink.GitHub](https://www.nuget.org/packages/Microsoft.SourceLink.GitHub) – 1.1.1;
 
 ## Offline documentation
 
