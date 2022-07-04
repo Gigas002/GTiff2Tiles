@@ -56,12 +56,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="MaxRev.Gdal.WindowsRuntime.Minimal" Version="3.2.0.310" />
-    <PackageReference Include="NetVips.Native.win-x64" Version="8.12.1" />
+    <PackageReference Include="MaxRev.Gdal.WindowsRuntime.Minimal" Version="3.3.3.110" />
+    <PackageReference Include="NetVips.Native.win-x64" Version="8.12.2" />
     <PackageReference Include="Prism.DryIoc" Version="8.1.97" />
-    <PackageReference Include="MaterialDesignColors" Version="2.0.4" />
+    <PackageReference Include="MaterialDesignColors" Version="2.0.6" />
     <PackageReference Include="MaterialDesignExtensions" Version="4.0.0-a02" />
-    <PackageReference Include="MaterialDesignThemes" Version="4.3.0" />
+    <PackageReference Include="MaterialDesignThemes" Version="4.5.0" />
   </ItemGroup>
 
   <ItemGroup>
