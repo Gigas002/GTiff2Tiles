@@ -1,6 +1,6 @@
 name: .NET Core CI
 
-on: [push]
+on: [push, pull_request]
 
 jobs:
 
@@ -11,16 +11,15 @@ jobs:
     runs-on: windows-latest
     
     steps:
-    - uses: actions/checkout@v2.4.0
-    - name: Setup .NET Core
-      uses: actions/setup-dotnet@v1.9.0
+    - uses: actions/checkout@v3.0.2
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v2.1.0
       with:
-        dotnet-version: 6.0.100
-    - name: Build with dotnet
-      run: |
-        echo Build win-x64 start
-        dotnet build -c Release /p:Platform=x64        
-        echo Build win-x64 complete
+        dotnet-version: 6.0.x
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: Build
+      run: dotnet build --no-restore -c Release /p:Platform=x64
         
 # Publish core package to nuget
 
@@ -40,7 +39,7 @@ jobs:
       
 #       # Publish
 #       - name: Publish on NuGet on version change
-#         uses: brandedoutcast/publish-nuget@v2.5.2
+#         uses: brandedoutcast/publish-nuget@v2.5.5
 #         with:
 #           # Filepath of the project to be packaged, relative to root of repository
 #           PROJECT_FILE_PATH: GTiff2Tiles.Core/GTiff2Tiles.Core.csproj
@@ -74,16 +73,17 @@ jobs:
     runs-on: windows-latest
     
     steps:
-    - uses: actions/checkout@v2.4.0
-    - name: Setup .NET Core
-      uses: actions/setup-dotnet@v1.9.0
+    - uses: actions/checkout@v3.0.2
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v2.1.0
       with:
-        dotnet-version: 6.0.100
-    - name: Run unit tests
-      run: |
-        echo Unit tests win-x64 start
-        dotnet test -c Release /p:Platform=x64
-        echo Unit tests win-x64 complete
+        dotnet-version: 6.0.x
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: Build
+      run: dotnet build --no-restore -c Release /p:Platform=x64
+    - name: Test
+      run: dotnet test -c Release /p:Platform=x64
         
 # Build on Linux (Ubuntu)
 
@@ -92,22 +92,23 @@ jobs:
     runs-on: ubuntu-latest
       
     steps:
-    - uses: actions/checkout@v2.4.0
-    - name: Setup .NET Core
-      uses: actions/setup-dotnet@v1.9.0
+    - uses: actions/checkout@v3.0.2
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v2.1.0
       with:
-        dotnet-version: 6.0.100
-    - name: Build with dotnet
+        dotnet-version: 6.0.x
+    - name: Restore dependencies
       run: |
-        echo Build linux-x64 core start
-        dotnet build GTiff2Tiles.Core -c Release /p:Platform=x64
-        echo Build linux-x64 benchmarks start
-        dotnet build GTiff2Tiles.Benchmarks -c Release /p:Platform=x64
-        echo Build linux-x64 console start
-        dotnet build GTiff2Tiles.Console -c Release /p:Platform=x64
-        echo Build linux-x64 tests start
-        dotnet build GTiff2Tiles.Tests -c Release /p:Platform=x64
-        echo Build linux-x64 complete
+        dotnet restore GTiff2Tiles.Core
+        dotnet restore GTiff2Tiles.Benchmarks
+        dotnet restore GTiff2Tiles.Console
+        dotnet restore GTiff2Tiles.Tests
+    - name: Build
+      run: |
+        dotnet build GTiff2Tiles.Core --no-restore -c Release /p:Platform=x64
+        dotnet build GTiff2Tiles.Benchmarks --no-restore -c Release /p:Platform=x64
+        dotnet build GTiff2Tiles.Console --no-restore -c Release /p:Platform=x64
+        dotnet build GTiff2Tiles.Tests --no-restore -c Release /p:Platform=x64
               
 # Unit tests on Linux (Ubuntu)
 
@@ -116,13 +117,14 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-    - uses: actions/checkout@v2.4.0
-    - name: Setup .NET Core
-      uses: actions/setup-dotnet@v1.9.0
+    - uses: actions/checkout@v3.0.2
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v2.1.0
       with:
-        dotnet-version: 6.0.100
-    - name: Run unit tests
-      run: |
-        echo Unit tests linux-x64 start
-        dotnet test GTiff2Tiles.Tests -c Release /p:Platform=x64
-        echo Unit tests linux-x64 complete
+        dotnet-version: 6.0.x
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: Build
+      run: dotnet build --no-restore -c Release /p:Platform=x64
+    - name: Test
+      run: dotnet test -c Release /p:Platform=x64
