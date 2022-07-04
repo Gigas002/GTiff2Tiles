@@ -271,9 +271,9 @@ public static class GdalWorker
 
         #endregion
 
-        bool isWgs84 = projString.Contains(Proj.DatumWgs84, StringComparison.InvariantCulture);
-        bool isLongLat = projString.Contains(Proj.ProjLongLat, StringComparison.InvariantCulture);
-        bool isMerc = projString.Contains(Proj.ProjMerc, StringComparison.InvariantCulture);
+        bool isWgs84 = projString.Contains(GTiff2Tiles.Core.Constants.Proj.DatumWgs84, StringComparison.InvariantCulture);
+        bool isLongLat = projString.Contains(GTiff2Tiles.Core.Constants.Proj.ProjLongLat, StringComparison.InvariantCulture);
+        bool isMerc = projString.Contains(GTiff2Tiles.Core.Constants.Proj.ProjMerc, StringComparison.InvariantCulture);
 
         return isWgs84 switch
         {
