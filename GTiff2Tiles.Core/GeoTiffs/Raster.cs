@@ -209,7 +209,7 @@ public class Raster : GeoTiff
         // Crop and resize tile
         Image tempTileImage = tileCache.Crop((int)readArea.OriginCoordinate.X, (int)readArea.OriginCoordinate.Y,
                                              readArea.Size.Width, readArea.Size.Height)
-                                       .Resize(xScale, tile.Interpolation, yScale);
+                                       .Resize(xScale, tile.Interpolation, null, yScale);
 
         // Add alpha channel if needed
         Band.AddDefaultBands(ref tempTileImage, tile.BandsCount);
