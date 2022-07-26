@@ -3,15 +3,15 @@ pull_requests:
   do_not_increment_build_number: true
 skip_tags: true
 image:
-- Ubuntu2004
+- Ubuntu
 - Visual Studio 2022
 configuration: Appveyor
 platform: x64
 environment:
   GH_TOKEN:
-    secure: 54Mee2f+YfZkeBfnRY3k47s32QDdxpTSW8d2H2SHzUA7oKu72gQjTD1SVqZadBmN
+    secure: BV2YJ1b6Uj2cFZqvw0/JMzsfAReaRqbwFnhUQQFfI/srW5dMYuk6mCsbx2Zhte2H
   NUGET_API_KEY:
-    secure: BmZ3/8sN8tg20TLTa0Qqw+L3JqM7G2K6wp/KLf+1gCkx29RvgHG+9CGAD80KGH7Q
+    secure: TckP2JYCNhvzczhWFFbEHGX7nkSaMxPYY7xmgSqbt3CJzu33sPpZy2gKt6F/FYez
 before_build:
 - pwsh: dotnet restore
 build:
