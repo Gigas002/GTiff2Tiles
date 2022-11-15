@@ -9,7 +9,7 @@ configuration: Appveyor
 platform: x64
 environment:
   GH_TOKEN:
-    secure: BV2YJ1b6Uj2cFZqvw0/JMzsfAReaRqbwFnhUQQFfI/srW5dMYuk6mCsbx2Zhte2H
+    secure: vDDcxUMbqWehTBZmMLBOdkLPy91l30JeZuy124fVsiMomzvAy+u7VPleqhSCWIzJCHDs+vTeNBM1TkllUtkmgqG4EZrbdDmLyrSc03vO0jAUZh/cBjaFCchz1IAf5F6B
   NUGET_API_KEY:
     secure: TckP2JYCNhvzczhWFFbEHGX7nkSaMxPYY7xmgSqbt3CJzu33sPpZy2gKt6F/FYez
 before_build:
