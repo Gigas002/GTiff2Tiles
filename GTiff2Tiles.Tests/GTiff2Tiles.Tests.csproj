@@ -48,7 +48,7 @@
     </PackageReference>
     <PackageReference Include="MaxRev.Gdal.LinuxRuntime.Minimal" Version="3.3.3.120" />
     <PackageReference Include="MaxRev.Gdal.WindowsRuntime.Minimal" Version="3.3.3.110" />
-    <PackageReference Include="NetVips.Native.linux-x64" Version="8.13.0" />
+    <PackageReference Include="NetVips.Native.linux-x64" Version="8.13.2" />
     <PackageReference Include="NetVips.Native.win-x64" Version="8.13.0" />
     <PackageReference Include="nunit" Version="3.13.3" />
     <PackageReference Include="NUnit3TestAdapter" Version="4.3.0">
