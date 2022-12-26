@@ -58,7 +58,7 @@
   <ItemGroup>
     <PackageReference Include="BitMiracle.LibTiff.NET" Version="2.4.649" />
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
-    <PackageReference Include="MaxRev.Gdal.Core" Version="3.6.0.100" />
+    <PackageReference Include="MaxRev.Gdal.Core" Version="3.6.1.100" />
     <PackageReference Include="NetVips" Version="2.2.0" />
   </ItemGroup>
 
