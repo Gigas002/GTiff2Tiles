@@ -57,7 +57,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="MaxRev.Gdal.WindowsRuntime.Minimal" Version="3.6.1.100" />
+    <PackageReference Include="MaxRev.Gdal.WindowsRuntime.Minimal" Version="3.6.1.110" />
     <PackageReference Include="NetVips.Native.win-x64" Version="8.13.2" />
     <PackageReference Include="Prism.DryIoc" Version="8.1.97" />
     <PackageReference Include="MaterialDesignColors" Version="2.0.9" />
