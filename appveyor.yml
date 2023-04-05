@@ -9,7 +9,7 @@ configuration: Appveyor
 platform: x64
 environment:
   GH_TOKEN:
-    secure: lbFX2SdWZMksEL4oLYQULko7/zU6PyKiDQzT6ZeukLAKb1lJkedvpqbzh39mztnWAhR5/hp5FyWR/h9RvjgXxqfl3vIaw5KQKQZPCONqpBkkUzkXTqoZOMsp8ZZ4D5jV
+    secure: AIkUFG4ODEAwR/3lTNtyhoJFrE0wGH44gl2Z5nqBs4/YuuL7u3OVF0I0hFjgNlTK
   NUGET_API_KEY:
     secure: 9KLbyhLNRd8taIVw+2Uz9zLyXH0Mflk1Z4aS2QMovvCNtcdDCURAt+j5KCIKkV34
 before_build:
@@ -46,8 +46,7 @@ deploy:
 - provider: NuGet
   server: https://nuget.pkg.github.com/gigas002/index.json
   api_key: $(GH_TOKEN)
-  username:
-    secure: rZ2WjoUDzL3ZjbEuu/WA5g==
+  username: Gigas002
   artifact: /.*(\.)nupkg/
   on:
     branch: master
