@@ -47,7 +47,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="MaxRev.Gdal.LinuxRuntime.Minimal" Version="3.6.3.100" />
-    <PackageReference Include="MaxRev.Gdal.WindowsRuntime.Minimal" Version="3.6.1.110" />
+    <PackageReference Include="MaxRev.Gdal.WindowsRuntime.Minimal" Version="3.6.4.100" />
     <PackageReference Include="NetVips.Native.linux-x64" Version="8.14.2" />
     <PackageReference Include="NetVips.Native.win-x64" Version="8.14.2" />
     <PackageReference Include="nunit" Version="3.13.3" />
