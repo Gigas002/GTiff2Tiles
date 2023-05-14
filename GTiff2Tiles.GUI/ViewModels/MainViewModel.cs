@@ -40,11 +40,6 @@ public class MainViewModel : BindableBase
 
     #region DialogHost / Main grid
 
-    /// <summary>
-    /// Identifier of DialogHost on <see cref="MainView"/>
-    /// </summary>
-    public static string DialogHostId => "DialogHost";
-
     private bool _isMainGridEnabled;
 
     /// <summary>
@@ -656,7 +651,7 @@ public class MainViewModel : BindableBase
     {
         try
         {
-            OpenFileDialogResult dialogResult = await OpenFileDialog.ShowDialogAsync(DialogHostId, new OpenFileDialogArguments())
+            OpenFileDialogResult dialogResult = await OpenFileDialog.ShowDialogAsync(dialogHostName: null, new OpenFileDialogArguments())
                                                                     .ConfigureAwait(true);
 
             InputFilePath = dialogResult.Canceled ? InputFilePath : dialogResult.FileInfo.FullName;
@@ -676,7 +671,7 @@ public class MainViewModel : BindableBase
         try
         {
             OpenDirectoryDialogArguments args = new() { CreateNewDirectoryEnabled = true };
-            OpenDirectoryDialogResult dialogResult = await OpenDirectoryDialog.ShowDialogAsync(DialogHostId, args).ConfigureAwait(true);
+            OpenDirectoryDialogResult dialogResult = await OpenDirectoryDialog.ShowDialogAsync(dialogHostName: null, args).ConfigureAwait(true);
 
             OutputDirectoryPath = dialogResult.Canceled ? OutputDirectoryPath : dialogResult.Directory;
         }
@@ -695,7 +690,7 @@ public class MainViewModel : BindableBase
         try
         {
             OpenDirectoryDialogArguments args = new() { CreateNewDirectoryEnabled = true };
-            OpenDirectoryDialogResult dialogResult = await OpenDirectoryDialog.ShowDialogAsync(DialogHostId, args).ConfigureAwait(true);
+            OpenDirectoryDialogResult dialogResult = await OpenDirectoryDialog.ShowDialogAsync(dialogHostName: null, args).ConfigureAwait(true);
 
             TempDirectoryPath = dialogResult.Canceled ? TempDirectoryPath : dialogResult.Directory;
         }

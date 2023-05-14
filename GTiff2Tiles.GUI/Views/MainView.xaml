@@ -36,7 +36,6 @@
         </ResourceDictionary>
     </materialDesignExtensions:MaterialWindow.Resources>
     <materialDesignThemes:DialogHost 
-        Identifier="{Binding DialogHostId}"
         DialogTheme="{Binding BaseDialogTheme}">
         <Grid>
             <Grid.RowDefinitions>
