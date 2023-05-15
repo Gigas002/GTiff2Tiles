@@ -12,12 +12,12 @@ The following benchmarks were run at **25.08.2020**.
 ## Build dependencies
 
 - GTiff2Tiles.Core;
-- [BenchmarkDotNet](https://www.nuget.org/packages/BenchmarkDotNet/) – 0.13.1;
-- [CommandLineParser](https://www.nuget.org/packages/CommandLineParser/) – 2.8.0;
-- [MaxRev.Gdal.LinuxRuntime.Minimal](https://www.nuget.org/packages/MaxRev.Gdal.LinuxRuntime.Minimal/) – 3.2.0.300;
-- [MaxRev.Gdal.WindowsRuntime.Minimal](https://www.nuget.org/packages/MaxRev.Gdal.WindowsRuntime.Minimal/) – 3.2.0.310;
-- [NetVips.Native.win-x64](https://www.nuget.org/packages/NetVips.Native.win-x64) – 8.12.1;
-- [NetVips.Native.linux-x64](https://www.nuget.org/packages/NetVips.Native.linux-x64/) – 8.12.1;
+- [BenchmarkDotNet](https://www.nuget.org/packages/BenchmarkDotNet/) – 0.13.5;
+- [CommandLineParser](https://www.nuget.org/packages/CommandLineParser/) – 2.9.1;
+- [MaxRev.Gdal.LinuxRuntime.Minimal](https://www.nuget.org/packages/MaxRev.Gdal.LinuxRuntime.Minimal/) – 3.7.0.100;
+- [MaxRev.Gdal.WindowsRuntime.Minimal](https://www.nuget.org/packages/MaxRev.Gdal.WindowsRuntime.Minimal/) – 3.7.0.100;
+- [MaxRev.Gdal.MacosRuntime.Minimal.x64](https://www.nuget.org/packages/MaxRev.Gdal.MacosRuntime.Minimal.x64/) – 3.7.0.217;
+- [NetVips.Native](https://www.nuget.org/packages/NetVips.Native.win-x64) – 8.14.2;
 
 ## Running by yourself
 

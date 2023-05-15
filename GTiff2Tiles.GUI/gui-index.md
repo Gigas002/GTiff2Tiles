@@ -15,11 +15,11 @@ If you’re using **Windows 7 SP1**, you can experience weird error with **GDAL*
 
 - GTiff2Tiles.Core;
 - [Prism.DryIoc](https://www.nuget.org/packages/Prism.DryIoc) – 8.1.97;
-- [MaterialDesignColors](https://www.nuget.org/packages/MaterialDesignColors) – 2.0.4;
-- [MaterialDesignThemes](https://www.nuget.org/packages/MaterialDesignThemes) – 4.3.0;
+- [MaterialDesignColors](https://www.nuget.org/packages/MaterialDesignColors) – 2.1.4;
+- [MaterialDesignThemes](https://www.nuget.org/packages/MaterialDesignThemes) – 4.9.0;
 - [MaterialDesignExtensions](https://www.nuget.org/packages/MaterialDesignExtensions) – 4.0.0-a02;
-- [MaxRev.Gdal.WindowsRuntime.Minimal](https://www.nuget.org/packages/MaxRev.Gdal.WindowsRuntime.Minimal/) – 3.2.0.310;
-- [NetVips.Native.win-x64](https://www.nuget.org/packages/NetVips.Native.win-x64) – 8.12.1;
+- [MaxRev.Gdal.WindowsRuntime.Minimal](https://www.nuget.org/packages/MaxRev.Gdal.WindowsRuntime.Minimal/) – 3.7.0.100;
+- [NetVips.Native.win-x64](https://www.nuget.org/packages/NetVips.Native.win-x64) – 8.14.2;
 
 ## Using
 

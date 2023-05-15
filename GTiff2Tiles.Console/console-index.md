@@ -82,8 +82,8 @@ Offline docs are also available as [pdf](https://github.com/Gigas002/GTiff2Tiles
 ## Build dependencies
 
 - GTiff2Tiles.Core;
-- [CommandLineParser](https://www.nuget.org/packages/CommandLineParser/) – 2.8.0;
-- [MaxRev.Gdal.LinuxRuntime.Minimal](https://www.nuget.org/packages/MaxRev.Gdal.LinuxRuntime.Minimal/) – 3.2.0.300;
-- [MaxRev.Gdal.WindowsRuntime.Minimal](https://www.nuget.org/packages/MaxRev.Gdal.WindowsRuntime.Minimal/) – 3.2.0.310;
-- [NetVips.Native.win-x64](https://www.nuget.org/packages/NetVips.Native.win-x64) – 8.12.1;
-- [NetVips.Native.linux-x64](https://www.nuget.org/packages/NetVips.Native.linux-x64/) – 8.12.1;
+- [CommandLineParser](https://www.nuget.org/packages/CommandLineParser/) – 2.9.1;
+- [MaxRev.Gdal.LinuxRuntime.Minimal](https://www.nuget.org/packages/MaxRev.Gdal.LinuxRuntime.Minimal/) – 3.7.0.100;
+- [MaxRev.Gdal.WindowsRuntime.Minimal](https://www.nuget.org/packages/MaxRev.Gdal.WindowsRuntime.Minimal/) – 3.7.0.100;
+- [MaxRev.Gdal.MacosRuntime.Minimal.x64](https://www.nuget.org/packages/MaxRev.Gdal.MacosRuntime.Minimal.x64/) – 3.7.0.217;
+- [NetVips.Native](https://www.nuget.org/packages/NetVips.Native.win-x64) – 8.14.2;
