@@ -556,7 +556,7 @@ public class MainViewModel : BindableBase
     /// <summary>
     /// Copyright string
     /// </summary>
-    public static string Copyright => "© Gigas002 2020";
+    public static string Copyright => "© Gigas002 2023";
 
     /// <summary>
     /// Info about current version
