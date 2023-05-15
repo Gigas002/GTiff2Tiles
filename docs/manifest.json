@@ -1,6 +1,6 @@
 {
   "homepages": [],
-  "source_base_path": "C:/Users/gigas/Documents/Visual Studio 2019/Projects/GTiff2Tiles",
+  "source_base_path": "C:/Users/Pushkin Andrei/Documents/GTiff2Tiles",
   "xrefmap": "xrefmap.yml",
   "files": [
     {
@@ -8,11 +8,9 @@
       "source_relative_path": "CHANGELOG.md",
       "output": {
         ".html": {
-          "relative_path": "CHANGELOG.html",
-          "hash": "mdpo5oq3jBfoSn/hU3kCDG+WndtVcAppezOWyfyyIw4="
+          "relative_path": "CHANGELOG.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -20,11 +18,9 @@
       "source_relative_path": "CONTRIBUTING.md",
       "output": {
         ".html": {
-          "relative_path": "CONTRIBUTING.html",
-          "hash": "TTvNpiHrxEkV4zWNnamomAL3swXlDBxATAXIbg82N8c="
+          "relative_path": "CONTRIBUTING.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -32,11 +28,9 @@
       "source_relative_path": "GTiff2Tiles.Benchmarks/benchmarks-index.md",
       "output": {
         ".html": {
-          "relative_path": "benchmarks-index.html",
-          "hash": "Do/MslHl9QdNZ+NkaiultuvKIFC5dMxdCQKb6XoyoNI="
+          "relative_path": "benchmarks-index.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -44,11 +38,9 @@
       "source_relative_path": "GTiff2Tiles.Console/console-index.md",
       "output": {
         ".html": {
-          "relative_path": "console-index.html",
-          "hash": "T5HAX8x58Wi18Z6d5YC0wkDz0OgCD2OydRfXDI8X4xE="
+          "relative_path": "console-index.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -56,11 +48,9 @@
       "source_relative_path": "GTiff2Tiles.Core/index.md",
       "output": {
         ".html": {
-          "relative_path": "api/index.html",
-          "hash": "EAYkdS8J0lgQGlr2oUeI36hka3hm7iB+Kp1RpW/Ai2Y="
+          "relative_path": "api/index.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -71,7 +61,6 @@
           "relative_path": "images/Icon.png"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -82,7 +71,6 @@
           "relative_path": "images/icon.ico"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -93,7 +81,6 @@
           "relative_path": "images/MainPage.png"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -104,11 +91,9 @@
       "source_relative_path": "GTiff2Tiles.GUI/gui-index.md",
       "output": {
         ".html": {
-          "relative_path": "gui-index.html",
-          "hash": "jvXbvVl3uVufP5WybDNc+BShc7FXi+czofdF7dIX9YU="
+          "relative_path": "gui-index.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -116,11 +101,9 @@
       "source_relative_path": "GTiff2Tiles.Tests/tests-index.md",
       "output": {
         ".html": {
-          "relative_path": "tests-index.html",
-          "hash": "4B4KjazFAWAopvdKckQeMBmX47qMlaB9QBj63Y+B45Q="
+          "relative_path": "tests-index.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -128,11 +111,9 @@
       "source_relative_path": "LICENSE.md",
       "output": {
         ".html": {
-          "relative_path": "LICENSE.html",
-          "hash": "S1br2fCykuRv5dAkfUqchmzymiJYlgkhexWXNoocpAA="
+          "relative_path": "LICENSE.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -140,11 +121,9 @@
       "source_relative_path": "_docs/api/GTiff2Tiles.Core.Args.IWriteTilesArgs.yml",
       "output": {
         ".html": {
-          "relative_path": "api/GTiff2Tiles.Core.Args.IWriteTilesArgs.html",
-          "hash": "/+cjsdEa24tVGoNCgm/QI3gIJ9Jqu//5cGuDYQbEszI="
+          "relative_path": "api/GTiff2Tiles.Core.Args.IWriteTilesArgs.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -152,11 +131,9 @@
       "source_relative_path": "_docs/api/GTiff2Tiles.Core.Args.WriteRasterTilesArgs.PrintTime.yml",
       "output": {
         ".html": {
-          "relative_path": "api/GTiff2Tiles.Core.Args.WriteRasterTilesArgs.PrintTime.html",
-          "hash": "Lnb0eC/CdiyKUIVBWxYUnVvFXdwxBkZi6o2JWBkuCi4="
+          "relative_path": "api/GTiff2Tiles.Core.Args.WriteRasterTilesArgs.PrintTime.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -164,11 +141,9 @@
       "source_relative_path": "_docs/api/GTiff2Tiles.Core.Args.WriteRasterTilesArgs.yml",
       "output": {
         ".html": {
-          "relative_path": "api/GTiff2Tiles.Core.Args.WriteRasterTilesArgs.html",
-          "hash": "TE2KnSusrzBksg0qV6p+oQ/F61BTBffkUCRwbnyf2Tc="
+          "relative_path": "api/GTiff2Tiles.Core.Args.WriteRasterTilesArgs.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -176,11 +151,9 @@
       "source_relative_path": "_docs/api/GTiff2Tiles.Core.Args.yml",
       "output": {
         ".html": {
-          "relative_path": "api/GTiff2Tiles.Core.Args.html",
-          "hash": "t7og1i0EvapiwoeRSGNZhw08IbM4Hd+uBQoWG15flMY="
+          "relative_path": "api/GTiff2Tiles.Core.Args.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -188,11 +161,9 @@
       "source_relative_path": "_docs/api/GTiff2Tiles.Core.Constants.DateTimePatterns.yml",
       "output": {
         ".html": {
-          "relative_path": "api/GTiff2Tiles.Core.Constants.DateTimePatterns.html",
-          "hash": "ZH1/Qbb4bzFppYiEbzNNV1IVZIK1v26iJikxB9LkZOM="
+          "relative_path": "api/GTiff2Tiles.Core.Constants.DateTimePatterns.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -200,11 +171,9 @@
       "source_relative_path": "_docs/api/GTiff2Tiles.Core.Constants.FileExtensions.yml",
       "output": {
         ".html": {
-          "relative_path": "api/GTiff2Tiles.Core.Constants.FileExtensions.html",
-          "hash": "bfDfuIsnKC1dFdSwqq/tV5ufxebFkMhhKnNKn80lz2I="
+          "relative_path": "api/GTiff2Tiles.Core.Constants.FileExtensions.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -212,11 +181,9 @@
       "source_relative_path": "_docs/api/GTiff2Tiles.Core.Constants.Geodesic.yml",
       "output": {
         ".html": {
-          "relative_path": "api/GTiff2Tiles.Core.Constants.Geodesic.html",
-          "hash": "a+MWmK2L8NpENFrpu3lv7Qkrjfp6tD90hJK29FwaqTI="
+          "relative_path": "api/GTiff2Tiles.Core.Constants.Geodesic.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -224,11 +191,9 @@
       "source_relative_path": "_docs/api/GTiff2Tiles.Core.Constants.Proj.yml",
       "output": {
         ".html": {
-          "relative_path": "api/GTiff2Tiles.Core.Constants.Proj.html",
-          "hash": "kJ42Wah9h3bRIZxlD1PcJ5X4Iq23C/wLj2UhlvoqMYE="
+          "relative_path": "api/GTiff2Tiles.Core.Constants.Proj.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -236,11 +201,9 @@
       "source_relative_path": "_docs/api/GTiff2Tiles.Core.Constants.yml",
       "output": {
         ".html": {
-          "relative_path": "api/GTiff2Tiles.Core.Constants.html",
-          "hash": "nh1zuu1SmKICc/cpsgCfBtyAQjXhpGcBU1K8f9IwYEM="
+          "relative_path": "api/GTiff2Tiles.Core.Constants.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -248,11 +211,9 @@
       "source_relative_path": "_docs/api/GTiff2Tiles.Core.Coordinates.Coordinate.yml",
       "output": {
         ".html": {
-          "relative_path": "api/GTiff2Tiles.Core.Coordinates.Coordinate.html",
-          "hash": "Wl5Gysm7VVufSW5ml6xEhPK9bRXeCPoISXg5W78Hg6A="
+          "relative_path": "api/GTiff2Tiles.Core.Coordinates.Coordinate.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -260,11 +221,9 @@
       "source_relative_path": "_docs/api/GTiff2Tiles.Core.Coordinates.GeoCoordinate.yml",
       "output": {
         ".html": {
-          "relative_path": "api/GTiff2Tiles.Core.Coordinates.GeoCoordinate.html",
-          "hash": "not3OxCPEE0Bnf7TmBGBRbh/t6zkCUezUrI+7cVc+/c="
+          "relative_path": "api/GTiff2Tiles.Core.Coordinates.GeoCoordinate.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -272,11 +231,9 @@
       "source_relative_path": "_docs/api/GTiff2Tiles.Core.Coordinates.GeodeticCoordinate.yml",
       "output": {
         ".html": {
-          "relative_path": "api/GTiff2Tiles.Core.Coordinates.GeodeticCoordinate.html",
-          "hash": "rLKIeVI8eJUdKo1jMGHFEuwYqBc9Fuo5OptBJDBDX0Q="
+          "relative_path": "api/GTiff2Tiles.Core.Coordinates.GeodeticCoordinate.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -284,11 +241,9 @@
       "source_relative_path": "_docs/api/GTiff2Tiles.Core.Coordinates.ICoordinate.yml",
       "output": {
         ".html": {
-          "relative_path": "api/GTiff2Tiles.Core.Coordinates.ICoordinate.html",
-          "hash": "Qrx5xRiRWIJ1k89sRF+EL6/VQ7je3l0iTs5XeQ/RKPQ="
+          "relative_path": "api/GTiff2Tiles.Core.Coordinates.ICoordinate.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -296,11 +251,9 @@
       "source_relative_path": "_docs/api/GTiff2Tiles.Core.Coordinates.MercatorCoordinate.yml",
       "output": {
         ".html": {
-          "relative_path": "api/GTiff2Tiles.Core.Coordinates.MercatorCoordinate.html",
-          "hash": "flc0ChTwZInGpfA/0rorrBKfXDywHj4GCb4Prng183Y="
+          "relative_path": "api/GTiff2Tiles.Core.Coordinates.MercatorCoordinate.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -308,11 +261,9 @@
       "source_relative_path": "_docs/api/GTiff2Tiles.Core.Coordinates.PixelCoordinate.yml",
       "output": {
         ".html": {
-          "relative_path": "api/GTiff2Tiles.Core.Coordinates.PixelCoordinate.html",
-          "hash": "XrtEVa1Rtiq5Fzx9ZGmeUyfKAC5oFX59fD9NDTtZsss="
+          "relative_path": "api/GTiff2Tiles.Core.Coordinates.PixelCoordinate.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -320,11 +271,9 @@
       "source_relative_path": "_docs/api/GTiff2Tiles.Core.Coordinates.yml",
       "output": {
         ".html": {
-          "relative_path": "api/GTiff2Tiles.Core.Coordinates.html",
-          "hash": "p8sbFwZOLvOt74yZ1s0OO35/r+z4DYB7UVG23g5m2vE="
+          "relative_path": "api/GTiff2Tiles.Core.Coordinates.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -332,11 +281,9 @@
       "source_relative_path": "_docs/api/GTiff2Tiles.Core.Enums.CoordinateSystem.yml",
       "output": {
         ".html": {
-          "relative_path": "api/GTiff2Tiles.Core.Enums.CoordinateSystem.html",
-          "hash": "J3Olbuv9tBbW1xT9jgHUznRA6KQhlFMz6G+Ga/rMUOA="
+          "relative_path": "api/GTiff2Tiles.Core.Enums.CoordinateSystem.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -344,11 +291,9 @@
       "source_relative_path": "_docs/api/GTiff2Tiles.Core.Enums.TileExtension.yml",
       "output": {
         ".html": {
-          "relative_path": "api/GTiff2Tiles.Core.Enums.TileExtension.html",
-          "hash": "4IwjpBXTN0+SAI4axjJ+2JlgmKG3HaO0h07LbrwxtjA="
+          "relative_path": "api/GTiff2Tiles.Core.Enums.TileExtension.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -356,11 +301,9 @@
       "source_relative_path": "_docs/api/GTiff2Tiles.Core.Enums.yml",
       "output": {
         ".html": {
-          "relative_path": "api/GTiff2Tiles.Core.Enums.html",
-          "hash": "wOa7xmf+M/MpW2vF82s89hCTcasP+btZUmiWOkZcAG4="
+          "relative_path": "api/GTiff2Tiles.Core.Enums.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -368,11 +311,9 @@
       "source_relative_path": "_docs/api/GTiff2Tiles.Core.Exceptions.DirectoryException.yml",
       "output": {
         ".html": {
-          "relative_path": "api/GTiff2Tiles.Core.Exceptions.DirectoryException.html",
-          "hash": "pzvfXZkEXvf44CyaL2opWLjbudtJEcTlHEqG6i1Ekvk="
+          "relative_path": "api/GTiff2Tiles.Core.Exceptions.DirectoryException.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -380,11 +321,9 @@
       "source_relative_path": "_docs/api/GTiff2Tiles.Core.Exceptions.FileException.yml",
       "output": {
         ".html": {
-          "relative_path": "api/GTiff2Tiles.Core.Exceptions.FileException.html",
-          "hash": "5cX/bTF8PvCVf30vAd46NDeTswB7uRZKJ7T9n6+4THU="
+          "relative_path": "api/GTiff2Tiles.Core.Exceptions.FileException.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -392,11 +331,9 @@
       "source_relative_path": "_docs/api/GTiff2Tiles.Core.Exceptions.RasterException.yml",
       "output": {
         ".html": {
-          "relative_path": "api/GTiff2Tiles.Core.Exceptions.RasterException.html",
-          "hash": "tcunU5k2GPciiuKi13+TmV57vvzISQr45CMbCkiSAIU="
+          "relative_path": "api/GTiff2Tiles.Core.Exceptions.RasterException.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -404,11 +341,9 @@
       "source_relative_path": "_docs/api/GTiff2Tiles.Core.Exceptions.yml",
       "output": {
         ".html": {
-          "relative_path": "api/GTiff2Tiles.Core.Exceptions.html",
-          "hash": "vN8lxmvXBjSwg6FoH2b4yUkIC1oZEdutsYLCDVzEDqU="
+          "relative_path": "api/GTiff2Tiles.Core.Exceptions.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -416,11 +351,9 @@
       "source_relative_path": "_docs/api/GTiff2Tiles.Core.GdalWorker.yml",
       "output": {
         ".html": {
-          "relative_path": "api/GTiff2Tiles.Core.GdalWorker.html",
-          "hash": "fUzcbX5auaiUoGgQ7+tiUI61U4CGIFTeWJ31rsQJgeU="
+          "relative_path": "api/GTiff2Tiles.Core.GdalWorker.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -428,11 +361,9 @@
       "source_relative_path": "_docs/api/GTiff2Tiles.Core.GeoTiffs.GeoTiff.yml",
       "output": {
         ".html": {
-          "relative_path": "api/GTiff2Tiles.Core.GeoTiffs.GeoTiff.html",
-          "hash": "b2SK8b8usTV8Xd5nXqAAvTDwMwdCKDBUaixMQRtnO94="
+          "relative_path": "api/GTiff2Tiles.Core.GeoTiffs.GeoTiff.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -440,11 +371,9 @@
       "source_relative_path": "_docs/api/GTiff2Tiles.Core.GeoTiffs.IGeoTiff.yml",
       "output": {
         ".html": {
-          "relative_path": "api/GTiff2Tiles.Core.GeoTiffs.IGeoTiff.html",
-          "hash": "muCrqgCQGmLwfVqxQH5Mi8RHHWaccIr9Z8aezlKwmEg="
+          "relative_path": "api/GTiff2Tiles.Core.GeoTiffs.IGeoTiff.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -452,11 +381,9 @@
       "source_relative_path": "_docs/api/GTiff2Tiles.Core.GeoTiffs.Raster.yml",
       "output": {
         ".html": {
-          "relative_path": "api/GTiff2Tiles.Core.GeoTiffs.Raster.html",
-          "hash": "737K/Mkt0d5B2GJmLz5qd+BnZRmn4ix7FQkW66Tmkws="
+          "relative_path": "api/GTiff2Tiles.Core.GeoTiffs.Raster.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -464,11 +391,9 @@
       "source_relative_path": "_docs/api/GTiff2Tiles.Core.GeoTiffs.yml",
       "output": {
         ".html": {
-          "relative_path": "api/GTiff2Tiles.Core.GeoTiffs.html",
-          "hash": "8ZsU5Cfy2n9Fpk8OzVoqjXybfaCoRcOp8QCeZ5SA/no="
+          "relative_path": "api/GTiff2Tiles.Core.GeoTiffs.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -476,11 +401,9 @@
       "source_relative_path": "_docs/api/GTiff2Tiles.Core.Helpers.CheckHelper.yml",
       "output": {
         ".html": {
-          "relative_path": "api/GTiff2Tiles.Core.Helpers.CheckHelper.html",
-          "hash": "h/xDKazNw0djYERbXWNAYVMYzUWZ/dyWFPFnzBCyWLw="
+          "relative_path": "api/GTiff2Tiles.Core.Helpers.CheckHelper.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -488,11 +411,9 @@
       "source_relative_path": "_docs/api/GTiff2Tiles.Core.Helpers.NetVipsHelper.yml",
       "output": {
         ".html": {
-          "relative_path": "api/GTiff2Tiles.Core.Helpers.NetVipsHelper.html",
-          "hash": "tPwwN/nhFdgnK7wVLaHcR+VO9b+d9ah7cCEuPHjfo3Q="
+          "relative_path": "api/GTiff2Tiles.Core.Helpers.NetVipsHelper.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -500,11 +421,9 @@
       "source_relative_path": "_docs/api/GTiff2Tiles.Core.Helpers.ProgressHelper.yml",
       "output": {
         ".html": {
-          "relative_path": "api/GTiff2Tiles.Core.Helpers.ProgressHelper.html",
-          "hash": "ix0Omc53AqodsRc5ZnLhLCS+CLYg8GaQUVzk1k/tRv4="
+          "relative_path": "api/GTiff2Tiles.Core.Helpers.ProgressHelper.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -512,11 +431,9 @@
       "source_relative_path": "_docs/api/GTiff2Tiles.Core.Helpers.yml",
       "output": {
         ".html": {
-          "relative_path": "api/GTiff2Tiles.Core.Helpers.html",
-          "hash": "ygnoZqmrUf4zxPxIBO9xBggxcDQOoI+83v65sVwCaH0="
+          "relative_path": "api/GTiff2Tiles.Core.Helpers.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -524,11 +441,9 @@
       "source_relative_path": "_docs/api/GTiff2Tiles.Core.Images.Area.yml",
       "output": {
         ".html": {
-          "relative_path": "api/GTiff2Tiles.Core.Images.Area.html",
-          "hash": "LV5Q3gq22WrZxQLtKLcDgqGyGKFKa2XVDozvS7hOXH8="
+          "relative_path": "api/GTiff2Tiles.Core.Images.Area.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -536,11 +451,9 @@
       "source_relative_path": "_docs/api/GTiff2Tiles.Core.Images.Band.yml",
       "output": {
         ".html": {
-          "relative_path": "api/GTiff2Tiles.Core.Images.Band.html",
-          "hash": "XwMnVlGX0uwYIAVMyY5LRlwMHQnfxOgN3fuSr6751/g="
+          "relative_path": "api/GTiff2Tiles.Core.Images.Band.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -548,11 +461,9 @@
       "source_relative_path": "_docs/api/GTiff2Tiles.Core.Images.Size.yml",
       "output": {
         ".html": {
-          "relative_path": "api/GTiff2Tiles.Core.Images.Size.html",
-          "hash": "XD7agOJTHgk1f7BqDKbiF/soPe64kkGX2ufu7H25hjY="
+          "relative_path": "api/GTiff2Tiles.Core.Images.Size.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -560,11 +471,9 @@
       "source_relative_path": "_docs/api/GTiff2Tiles.Core.Images.yml",
       "output": {
         ".html": {
-          "relative_path": "api/GTiff2Tiles.Core.Images.html",
-          "hash": "PWV4AOuzT14vqohRMzusikDb6rvmK/dVjXuc6mMrAUc="
+          "relative_path": "api/GTiff2Tiles.Core.Images.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -572,11 +481,9 @@
       "source_relative_path": "_docs/api/GTiff2Tiles.Core.TileGenerator.yml",
       "output": {
         ".html": {
-          "relative_path": "api/GTiff2Tiles.Core.TileGenerator.html",
-          "hash": "IakrDqMmu5XiVelQ9R/LbN8nAv2gq91mry+Q1nwXzBY="
+          "relative_path": "api/GTiff2Tiles.Core.TileGenerator.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -584,11 +491,9 @@
       "source_relative_path": "_docs/api/GTiff2Tiles.Core.TileMapResource.BoundingBox.yml",
       "output": {
         ".html": {
-          "relative_path": "api/GTiff2Tiles.Core.TileMapResource.BoundingBox.html",
-          "hash": "fDimQSE1kroz2bM3Ir6RT0VOE6r0liVZpTJ6R870vXI="
+          "relative_path": "api/GTiff2Tiles.Core.TileMapResource.BoundingBox.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -596,11 +501,9 @@
       "source_relative_path": "_docs/api/GTiff2Tiles.Core.TileMapResource.Origin.yml",
       "output": {
         ".html": {
-          "relative_path": "api/GTiff2Tiles.Core.TileMapResource.Origin.html",
-          "hash": "wiPwfhO65iBzRVqq6kQq1hcYHfW/8vlyqekJ5dT7KrI="
+          "relative_path": "api/GTiff2Tiles.Core.TileMapResource.Origin.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -608,11 +511,9 @@
       "source_relative_path": "_docs/api/GTiff2Tiles.Core.TileMapResource.TileFormat.yml",
       "output": {
         ".html": {
-          "relative_path": "api/GTiff2Tiles.Core.TileMapResource.TileFormat.html",
-          "hash": "fzXrtK+q/w3kDDHB6fPiAXJvuOrC5kJ20G43mxh553k="
+          "relative_path": "api/GTiff2Tiles.Core.TileMapResource.TileFormat.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -620,11 +521,9 @@
       "source_relative_path": "_docs/api/GTiff2Tiles.Core.TileMapResource.TileMap.yml",
       "output": {
         ".html": {
-          "relative_path": "api/GTiff2Tiles.Core.TileMapResource.TileMap.html",
-          "hash": "5tq457BKrLt1GvEMGjdxuIJ+3FYQBJk1T+G2LFaXf58="
+          "relative_path": "api/GTiff2Tiles.Core.TileMapResource.TileMap.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -632,11 +531,9 @@
       "source_relative_path": "_docs/api/GTiff2Tiles.Core.TileMapResource.TileSet.yml",
       "output": {
         ".html": {
-          "relative_path": "api/GTiff2Tiles.Core.TileMapResource.TileSet.html",
-          "hash": "1SNv2s+vTswjEP9AP+vGwr0ecUuK+duz0O1xS0o7Drg="
+          "relative_path": "api/GTiff2Tiles.Core.TileMapResource.TileSet.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -644,11 +541,9 @@
       "source_relative_path": "_docs/api/GTiff2Tiles.Core.TileMapResource.TileSets.yml",
       "output": {
         ".html": {
-          "relative_path": "api/GTiff2Tiles.Core.TileMapResource.TileSets.html",
-          "hash": "X1o/pQadpu86l2Wx8q3/1QjR9918dC2AfeRFWinaMPY="
+          "relative_path": "api/GTiff2Tiles.Core.TileMapResource.TileSets.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -656,11 +551,9 @@
       "source_relative_path": "_docs/api/GTiff2Tiles.Core.TileMapResource.yml",
       "output": {
         ".html": {
-          "relative_path": "api/GTiff2Tiles.Core.TileMapResource.html",
-          "hash": "I8zneURnXApspOvr4i2ekDBb6xCfTRzCljBLfiu++NU="
+          "relative_path": "api/GTiff2Tiles.Core.TileMapResource.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -668,11 +561,9 @@
       "source_relative_path": "_docs/api/GTiff2Tiles.Core.Tiles.ITile.yml",
       "output": {
         ".html": {
-          "relative_path": "api/GTiff2Tiles.Core.Tiles.ITile.html",
-          "hash": "HkS76YVWX7lgdhhK2jshphMJlpHKdxHR6UBz26noDQw="
+          "relative_path": "api/GTiff2Tiles.Core.Tiles.ITile.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -680,11 +571,9 @@
       "source_relative_path": "_docs/api/GTiff2Tiles.Core.Tiles.Number.yml",
       "output": {
         ".html": {
-          "relative_path": "api/GTiff2Tiles.Core.Tiles.Number.html",
-          "hash": "qS//T08abnswF4UBkn0xVVqT2tD/g4CP+OtRxdEk3wc="
+          "relative_path": "api/GTiff2Tiles.Core.Tiles.Number.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -692,11 +581,9 @@
       "source_relative_path": "_docs/api/GTiff2Tiles.Core.Tiles.RasterTile.yml",
       "output": {
         ".html": {
-          "relative_path": "api/GTiff2Tiles.Core.Tiles.RasterTile.html",
-          "hash": "lGsqhJpEStnIl5NPUQXhPN9DC8l84kK7JofTt3TtRYE="
+          "relative_path": "api/GTiff2Tiles.Core.Tiles.RasterTile.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -704,11 +591,9 @@
       "source_relative_path": "_docs/api/GTiff2Tiles.Core.Tiles.Tile.yml",
       "output": {
         ".html": {
-          "relative_path": "api/GTiff2Tiles.Core.Tiles.Tile.html",
-          "hash": "AB6hYeun8fLUYt4w930deEa0DOOH7xsLuJv0Hpg8tf8="
+          "relative_path": "api/GTiff2Tiles.Core.Tiles.Tile.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -716,11 +601,9 @@
       "source_relative_path": "_docs/api/GTiff2Tiles.Core.Tiles.yml",
       "output": {
         ".html": {
-          "relative_path": "api/GTiff2Tiles.Core.Tiles.html",
-          "hash": "8yYYPRT9lCSKrh35fSjyrLeakf7tHQilkQBRsRrx3yw="
+          "relative_path": "api/GTiff2Tiles.Core.Tiles.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -728,11 +611,9 @@
       "source_relative_path": "_docs/api/GTiff2Tiles.Core.yml",
       "output": {
         ".html": {
-          "relative_path": "api/GTiff2Tiles.Core.html",
-          "hash": "lOXfE1zyZ34GPGVpUFEY+bwE3no4Mb8M1WOKNKM0lBU="
+          "relative_path": "api/GTiff2Tiles.Core.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -740,11 +621,9 @@
       "source_relative_path": "_docs/api/toc.yml",
       "output": {
         ".html": {
-          "relative_path": "api/toc.html",
-          "hash": "UbYP/m4mzGWVaqWCvDr5wo42dygagew4SgJTW1lBBmo="
+          "relative_path": "api/toc.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -755,11 +634,9 @@
       "source_relative_path": "_docs/index.md",
       "output": {
         ".html": {
-          "relative_path": "index.html",
-          "hash": "k+h4a4JJYGvVP4ckxKMwkdzEaxXke8U+YmTDHcGP88A="
+          "relative_path": "index.html"
         }
       },
-      "is_incremental": false,
       "version": ""
     },
     {
@@ -767,62 +644,10 @@
       "source_relative_path": "_docs/toc.yml",
       "output": {
         ".html": {
-          "relative_path": "toc.html",
-          "hash": "K/WGMSyIT36MLX6piRZnx1vSOTlUJ6mGLpbS95GtOgQ="
+          "relative_path": "toc.html"
         }
       },
-      "is_incremental": false,
       "version": ""
-    }
-  ],
-  "incremental_info": [
-    {
-      "status": {
-        "can_incremental": false,
-        "details": "Cannot build incrementally because config changed.",
-        "incrementalPhase": "build",
-        "total_file_count": 0,
-        "skipped_file_count": 0,
-        "full_build_reason_code": "ConfigChanged"
-      },
-      "processors": {
-        "ConceptualDocumentProcessor": {
-          "can_incremental": false,
-          "incrementalPhase": "build",
-          "total_file_count": 9,
-          "skipped_file_count": 0
-        },
-        "ManagedReferenceDocumentProcessor": {
-          "can_incremental": false,
-          "incrementalPhase": "build",
-          "total_file_count": 50,
-          "skipped_file_count": 0
-        },
-        "ResourceDocumentProcessor": {
-          "can_incremental": false,
-          "details": "Processor ResourceDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
-          "incrementalPhase": "build",
-          "total_file_count": 0,
-          "skipped_file_count": 0
-        },
-        "TocDocumentProcessor": {
-          "can_incremental": false,
-          "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
-          "incrementalPhase": "build",
-          "total_file_count": 0,
-          "skipped_file_count": 0
-        }
-      }
-    },
-    {
-      "status": {
-        "can_incremental": true,
-        "details": "Can support incremental post processing.",
-        "incrementalPhase": "postProcessing",
-        "total_file_count": 0,
-        "skipped_file_count": 0
-      },
-      "processors": {}
     }
   ],
   "version_info": {},
