@@ -9,425 +9,427 @@
     xmlns:viewModels="clr-namespace:GTiff2Tiles.GUI.ViewModels"
     xmlns:views="clr-namespace:GTiff2Tiles.GUI.Views"
     mc:Ignorable="d"
-
     Background="{DynamicResource MaterialDesignPaper}"
     FontFamily="{DynamicResource MaterialDesignFont}"
     TextElement.Foreground="{DynamicResource MaterialDesignBody}"
     TextElement.FontSize="18"
     TextOptions.TextFormattingMode="Ideal"
     TextOptions.TextRenderingMode="Auto"
-    ResizeMode="CanMinimize"
+    ResizeMode="CanResize"
     Title="GTiff2Tiles"
-    Height="700"
-    Width="675"
-    SizeToContent="Height"
+    Height="600"
+    MinHeight="200"
+    Width="450"
+    MinWidth="200"
     WindowStartupLocation="CenterScreen"
     Icon="/GTiff2Tiles.GUI;component/Resources/Icon.ico">
     <materialDesignExtensions:MaterialWindow.DataContext>
-        <viewModels:MainViewModel/>
+        <viewModels:MainViewModel />
     </materialDesignExtensions:MaterialWindow.DataContext>
     <materialDesignExtensions:MaterialWindow.Resources>
         <ResourceDictionary>
             <DataTemplate DataType="{x:Type viewModels:MessageBoxDialogViewModel}">
-                <views:MessageBoxDialogView/>
+                <views:MessageBoxDialogView />
             </DataTemplate>
             <GridLength x:Key="MainMargin">20.0</GridLength>
             <GridLength x:Key="InnerMargin">20.0</GridLength>
         </ResourceDictionary>
     </materialDesignExtensions:MaterialWindow.Resources>
-    <materialDesignThemes:DialogHost 
+    <materialDesignThemes:DialogHost
         DialogTheme="{Binding BaseDialogTheme}">
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="{StaticResource MainMargin}"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="{StaticResource MainMargin}"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="{StaticResource MainMargin}"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="{StaticResource MainMargin}"/>
-            </Grid.ColumnDefinitions>
-
-            <!-- Main Grid -->
-            <Grid Grid.Row="1" Grid.Column="1"
-                  IsEnabled="{Binding IsMainGridEnabled}">
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="{StaticResource InnerMargin}"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="{StaticResource InnerMargin}"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="{StaticResource InnerMargin}"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="{StaticResource InnerMargin}"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="{StaticResource InnerMargin}"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="{StaticResource InnerMargin}"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="{StaticResource InnerMargin}"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="{StaticResource InnerMargin}"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="{StaticResource InnerMargin}"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="{StaticResource InnerMargin}"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="{StaticResource InnerMargin}"/>
-                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="{StaticResource MainMargin}" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="{StaticResource MainMargin}" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="{StaticResource InnerMargin}"/>
-                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="{StaticResource MainMargin}" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="{StaticResource MainMargin}" />
                 </Grid.ColumnDefinitions>
 
-                <!-- Input file / Grid.Row="0" -->
-                <TextBox Grid.Row="0" Grid.Column="0"
-                         VerticalContentAlignment="Bottom"
-                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                         Text="{Binding InputFilePath}">
-                    <materialDesignThemes:HintAssist.Hint>
-                        <StackPanel Orientation="Horizontal">
-                            <materialDesignThemes:PackIcon Kind="Image"/>
-                            <TextBlock Text="{Binding InputFileHint}"/>
-                        </StackPanel>
-                    </materialDesignThemes:HintAssist.Hint>
-                </TextBox>
-                <Button Grid.Row="0" Grid.Column="2"
-                        Content="{materialDesignThemes:PackIcon Image}"
-                        Command="{Binding InputFileButtonCommand}"/>
-
-                <!-- Output directory / Grid.Row="2" -->
-                <TextBox Grid.Row="2" Grid.Column="0"
-                         VerticalContentAlignment="Bottom"
-                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                         Text="{Binding OutputDirectoryPath}">
-                    <materialDesignThemes:HintAssist.Hint>
-                        <StackPanel Orientation="Horizontal">
-                            <materialDesignThemes:PackIcon Kind="Folder"/>
-                            <TextBlock Text="{Binding OutputDirectoryHint}"/>
-                        </StackPanel>
-                    </materialDesignThemes:HintAssist.Hint>
-                </TextBox>
-                <Button Grid.Row="2" Grid.Column="2"
-                        Content="{materialDesignThemes:PackIcon Folder}"
-                        Command="{Binding OutputDirectoryButtonCommand}"/>
-
-                <!-- Temp directory / Grid.Row="4" -->
-                <TextBox Grid.Row="4" Grid.Column="0"
-                         VerticalContentAlignment="Bottom"
-                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                         Text="{Binding TempDirectoryPath}">
-                    <materialDesignThemes:HintAssist.Hint>
-                        <StackPanel Orientation="Horizontal">
-                            <materialDesignThemes:PackIcon Kind="Folder"/>
-                            <TextBlock Text="{Binding TempDirectoryHint}"/>
-                        </StackPanel>
-                    </materialDesignThemes:HintAssist.Hint>
-                </TextBox>
-                <Button Grid.Row="4" Grid.Column="2"
-                        Content="{materialDesignThemes:PackIcon Folder}"
-                        Command="{Binding TempDirectoryButtonCommand}"/>
-
-                <!-- Zooms / Grid.Row="6" -->
-                <Grid Grid.Row="6" Grid.Column="0"
-                      Grid.ColumnSpan="3">
+                <!-- Main Grid -->
+                <Grid Grid.Row="1" Grid.Column="1"
+                    IsEnabled="{Binding IsMainGridEnabled}">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="{StaticResource InnerMargin}" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="{StaticResource InnerMargin}" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="{StaticResource InnerMargin}" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="{StaticResource InnerMargin}" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="{StaticResource InnerMargin}" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="{StaticResource InnerMargin}" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="{StaticResource InnerMargin}" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="{StaticResource InnerMargin}" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="{StaticResource InnerMargin}" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="{StaticResource InnerMargin}" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="{StaticResource InnerMargin}" />
+                        <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="{StaticResource InnerMargin}"/>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="{StaticResource InnerMargin}" />
+                        <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
 
-                    <!-- MinZ -->
+                    <!-- Input file / Grid.Row="0" -->
                     <TextBox Grid.Row="0" Grid.Column="0"
-                             VerticalContentAlignment="Bottom"
-                             Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                             Text="{Binding MinZ}">
+                        VerticalContentAlignment="Bottom"
+                        Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                        Text="{Binding InputFilePath}">
                         <materialDesignThemes:HintAssist.Hint>
                             <StackPanel Orientation="Horizontal">
-                                <materialDesignThemes:PackIcon Kind="ZoomOut"/>
-                                <TextBlock Text="{Binding MinZHint}"/>
+                                <materialDesignThemes:PackIcon Kind="Image" />
+                                <TextBlock Text="{Binding InputFileHint}" />
                             </StackPanel>
                         </materialDesignThemes:HintAssist.Hint>
                     </TextBox>
+                    <Button Grid.Row="0" Grid.Column="2"
+                        Content="{materialDesignThemes:PackIcon Image}"
+                        Command="{Binding InputFileButtonCommand}" />
 
-                    <!-- MaxZ -->
-                    <TextBox Grid.Row="0" Grid.Column="2"
-                             VerticalContentAlignment="Bottom"
-                             Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                             Text="{Binding MaxZ}">
+                    <!-- Output directory / Grid.Row="2" -->
+                    <TextBox Grid.Row="2" Grid.Column="0"
+                        VerticalContentAlignment="Bottom"
+                        Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                        Text="{Binding OutputDirectoryPath}">
                         <materialDesignThemes:HintAssist.Hint>
                             <StackPanel Orientation="Horizontal">
-                                <materialDesignThemes:PackIcon Kind="ZoomIn"/>
-                                <TextBlock Text="{Binding MaxZHint}"/>
+                                <materialDesignThemes:PackIcon Kind="Folder" />
+                                <TextBlock Text="{Binding OutputDirectoryHint}" />
                             </StackPanel>
                         </materialDesignThemes:HintAssist.Hint>
                     </TextBox>
-                </Grid>
+                    <Button Grid.Row="2" Grid.Column="2"
+                        Content="{materialDesignThemes:PackIcon Folder}"
+                        Command="{Binding OutputDirectoryButtonCommand}" />
 
-                <!-- Tile extension / Coordinate system / Grid.Row="8" -->
-                <Grid Grid.Row="8" Grid.Column="0"
-                      Grid.ColumnSpan="3">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="{StaticResource InnerMargin}"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <!-- Tile extension -->
-                    <ComboBox Grid.Row="0" Grid.Column="0"
-                              VerticalContentAlignment="Bottom"
-                              Style="{StaticResource MaterialDesignFloatingHintComboBox}"
-                              ItemsSource="{Binding TileExtensions}"
-                              SelectedItem="{Binding TargetTileExtension}">
+                    <!-- Temp directory / Grid.Row="4" -->
+                    <TextBox Grid.Row="4" Grid.Column="0"
+                        VerticalContentAlignment="Bottom"
+                        Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                        Text="{Binding TempDirectoryPath}">
                         <materialDesignThemes:HintAssist.Hint>
                             <StackPanel Orientation="Horizontal">
-                                <materialDesignThemes:PackIcon Kind="ViewList"/>
-                                <TextBlock Text="{Binding TileExtensionsHint}"/>
-                            </StackPanel>
-                        </materialDesignThemes:HintAssist.Hint>
-                    </ComboBox>
-
-                    <!-- Coordinate system -->
-                    <ComboBox Grid.Row="0" Grid.Column="2"
-                              VerticalContentAlignment="Bottom"
-                              Style="{StaticResource MaterialDesignFloatingHintComboBox}"
-                              ItemsSource="{Binding CoordinateSystems}"
-                              SelectedItem="{Binding TargetCoordinateSystem}">
-                        <materialDesignThemes:HintAssist.Hint>
-                            <StackPanel Orientation="Horizontal">
-                                <materialDesignThemes:PackIcon Kind="ViewList"/>
-                                <TextBlock Text="{Binding CoordinateSystemsHint}"/>
-                            </StackPanel>
-                        </materialDesignThemes:HintAssist.Hint>
-                    </ComboBox>
-                </Grid>
-
-                <!-- Interpolation / Bands count / Grid.Row="10" -->
-                <Grid Grid.Row="10" Grid.Column="0"
-                      Grid.ColumnSpan="3">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="{StaticResource InnerMargin}"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <!-- Interpolation -->
-                    <ComboBox Grid.Row="0" Grid.Column="0"
-                          VerticalContentAlignment="Bottom"
-                          Style="{StaticResource MaterialDesignFloatingHintComboBox}"
-                          ItemsSource="{Binding Interpolations}"
-                          SelectedItem="{Binding TargetInterpolation}">
-                        <materialDesignThemes:HintAssist.Hint>
-                            <StackPanel Orientation="Horizontal">
-                                <materialDesignThemes:PackIcon Kind="ViewList"/>
-                                <TextBlock Text="{Binding InterpolationsHint}"/>
-                            </StackPanel>
-                        </materialDesignThemes:HintAssist.Hint>
-                    </ComboBox>
-
-                    <!-- Bands count -->
-                    <TextBox Grid.Row="0" Grid.Column="2"
-                         VerticalContentAlignment="Bottom"
-                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                         Text="{Binding BandsCount}">
-                        <materialDesignThemes:HintAssist.Hint>
-                            <StackPanel Orientation="Horizontal">
-                                <materialDesignThemes:PackIcon Kind="Satellite"/>
-                                <TextBlock Text="{Binding BandsHint}"/>
+                                <materialDesignThemes:PackIcon Kind="Folder" />
+                                <TextBlock Text="{Binding TempDirectoryHint}" />
                             </StackPanel>
                         </materialDesignThemes:HintAssist.Hint>
                     </TextBox>
+                    <Button Grid.Row="4" Grid.Column="2"
+                        Content="{materialDesignThemes:PackIcon Folder}"
+                        Command="{Binding TempDirectoryButtonCommand}" />
 
-                </Grid>
-
-                <!-- Tms compatible / Grid.Row="12" -->
-                <CheckBox Grid.Row="12" Grid.Column="0"
-                          Style="{StaticResource MaterialDesignCheckBox}"
-                          IsChecked="{Binding TmsCompatible}"
-                          Content="{Binding TmsCheckBoxContent}"/>
-
-                <!-- Expander with additional settings / Grid.Row="14" -->
-                <Expander Grid.Row="14" Grid.Column="0"
-                          Grid.ColumnSpan="3"
-                          HorizontalContentAlignment="Stretch"
-                          VerticalContentAlignment="Stretch"
-                          FontSize="18"
-                          Style="{StaticResource MaterialDesignExpander}"
-                          Header="{Binding ExpanderHeader}">
-                    <Grid>
+                    <!-- Zooms / Grid.Row="6" -->
+                    <Grid Grid.Row="6" Grid.Column="0"
+                        Grid.ColumnSpan="3">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="{StaticResource InnerMargin}"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="{StaticResource InnerMargin}"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="{StaticResource InnerMargin}"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="{StaticResource InnerMargin}"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="{StaticResource InnerMargin}"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="{StaticResource InnerMargin}"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="{StaticResource InnerMargin}"/>
-                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="{StaticResource InnerMargin}" />
+                            <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
 
-                        <!-- Theme -->
-                        <ComboBox Grid.Row="0" Grid.Column="0"
-                                  Grid.ColumnSpan="3"
-                                  VerticalContentAlignment="Bottom"
-                                  Style="{StaticResource MaterialDesignFloatingHintComboBox}"
-                                  ItemsSource="{Binding Themes}"
-                                  SelectedItem="{Binding Theme}">
+                        <!-- MinZ -->
+                        <TextBox Grid.Row="0" Grid.Column="0"
+                            VerticalContentAlignment="Bottom"
+                            Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                            Text="{Binding MinZ}">
                             <materialDesignThemes:HintAssist.Hint>
                                 <StackPanel Orientation="Horizontal">
-                                    <materialDesignThemes:PackIcon Kind="ViewList"/>
-                                    <TextBlock Text="{Binding ThemesHint}"/>
+                                    <materialDesignThemes:PackIcon Kind="ZoomOut" />
+                                    <TextBlock Text="{Binding MinZHint}" />
+                                </StackPanel>
+                            </materialDesignThemes:HintAssist.Hint>
+                        </TextBox>
+
+                        <!-- MaxZ -->
+                        <TextBox Grid.Row="0" Grid.Column="2"
+                            VerticalContentAlignment="Bottom"
+                            Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                            Text="{Binding MaxZ}">
+                            <materialDesignThemes:HintAssist.Hint>
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesignThemes:PackIcon Kind="ZoomIn" />
+                                    <TextBlock Text="{Binding MaxZHint}" />
+                                </StackPanel>
+                            </materialDesignThemes:HintAssist.Hint>
+                        </TextBox>
+                    </Grid>
+
+                    <!-- Tile extension / Coordinate system / Grid.Row="8" -->
+                    <Grid Grid.Row="8" Grid.Column="0"
+                        Grid.ColumnSpan="3">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="{StaticResource InnerMargin}" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <!-- Tile extension -->
+                        <ComboBox Grid.Row="0" Grid.Column="0"
+                            VerticalContentAlignment="Bottom"
+                            Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                            ItemsSource="{Binding TileExtensions}"
+                            SelectedItem="{Binding TargetTileExtension}">
+                            <materialDesignThemes:HintAssist.Hint>
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesignThemes:PackIcon Kind="ViewList" />
+                                    <TextBlock Text="{Binding TileExtensionsHint}" />
                                 </StackPanel>
                             </materialDesignThemes:HintAssist.Hint>
                         </ComboBox>
 
-                        <!-- Tile side size -->
-                        <TextBox Grid.Row="2" Grid.Column="0"
-                                 Grid.ColumnSpan="3"
-                                 VerticalContentAlignment="Bottom"
-                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                                 Text="{Binding TileSideSize}">
+                        <!-- Coordinate system -->
+                        <ComboBox Grid.Row="0" Grid.Column="2"
+                            VerticalContentAlignment="Bottom"
+                            Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                            ItemsSource="{Binding CoordinateSystems}"
+                            SelectedItem="{Binding TargetCoordinateSystem}">
                             <materialDesignThemes:HintAssist.Hint>
                                 <StackPanel Orientation="Horizontal">
-                                    <materialDesignThemes:PackIcon Kind="Satellite"/>
-                                    <TextBlock Text="{Binding TileSizeHint}"/>
+                                    <materialDesignThemes:PackIcon Kind="ViewList" />
+                                    <TextBlock Text="{Binding CoordinateSystemsHint}" />
+                                </StackPanel>
+                            </materialDesignThemes:HintAssist.Hint>
+                        </ComboBox>
+                    </Grid>
+
+                    <!-- Interpolation / Bands count / Grid.Row="10" -->
+                    <Grid Grid.Row="10" Grid.Column="0"
+                        Grid.ColumnSpan="3">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="{StaticResource InnerMargin}" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <!-- Interpolation -->
+                        <ComboBox Grid.Row="0" Grid.Column="0"
+                            VerticalContentAlignment="Bottom"
+                            Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                            ItemsSource="{Binding Interpolations}"
+                            SelectedItem="{Binding TargetInterpolation}">
+                            <materialDesignThemes:HintAssist.Hint>
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesignThemes:PackIcon Kind="ViewList" />
+                                    <TextBlock Text="{Binding InterpolationsHint}" />
+                                </StackPanel>
+                            </materialDesignThemes:HintAssist.Hint>
+                        </ComboBox>
+
+                        <!-- Bands count -->
+                        <TextBox Grid.Row="0" Grid.Column="2"
+                            VerticalContentAlignment="Bottom"
+                            Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                            Text="{Binding BandsCount}">
+                            <materialDesignThemes:HintAssist.Hint>
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesignThemes:PackIcon Kind="Satellite" />
+                                    <TextBlock Text="{Binding BandsHint}" />
                                 </StackPanel>
                             </materialDesignThemes:HintAssist.Hint>
                         </TextBox>
 
-                        <!-- Threads -->
-                        <CheckBox Grid.Row="4" Grid.Column="0"
-                                  Style="{StaticResource MaterialDesignCheckBox}"
-                                  IsChecked="{Binding IsAutoThreads}"
-                                  Content="{Binding IsAutoThreadsContent}"/>
-                        <TextBox Grid.Row="4" Grid.Column="2"
-                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                                 Text="{Binding ThreadsCount}"
-                                 Visibility="{Binding ThreadsCountVisibility}">
-                            <materialDesignThemes:HintAssist.Hint>
-                                <StackPanel Orientation="Horizontal">
-                                    <materialDesignThemes:PackIcon Kind="Memory"/>
-                                    <TextBlock Text="{Binding ThreadsCountHint}"/>
-                                </StackPanel>
-                            </materialDesignThemes:HintAssist.Hint>
-                        </TextBox>
+                    </Grid>
 
-                        <!-- Tile cache -->
-                        <TextBox Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="3"
-                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                                 Text="{Binding TileCache}">
-                            <materialDesignThemes:HintAssist.Hint>
-                                <StackPanel Orientation="Horizontal">
-                                    <materialDesignThemes:PackIcon Kind="Memory"/>
-                                    <TextBlock Text="{Binding TileCacheHint}"/>
-                                </StackPanel>
-                            </materialDesignThemes:HintAssist.Hint>
-                        </TextBox>
+                    <!-- Tms compatible / Grid.Row="12" -->
+                    <CheckBox Grid.Row="12" Grid.Column="0"
+                        Style="{StaticResource MaterialDesignCheckBox}"
+                        IsChecked="{Binding TmsCompatible}"
+                        Content="{Binding TmsCheckBoxContent}" />
 
-                        <!-- Memory -->
-                        <TextBox Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="3"
-                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                                 Text="{Binding Memory}">
-                            <materialDesignThemes:HintAssist.Hint>
-                                <StackPanel Orientation="Horizontal">
-                                    <materialDesignThemes:PackIcon Kind="Memory"/>
-                                    <TextBlock Text="{Binding MemoryHint}"/>
-                                </StackPanel>
-                            </materialDesignThemes:HintAssist.Hint>
-                        </TextBox>
+                    <!-- Expander with additional settings / Grid.Row="14" -->
+                    <Expander Grid.Row="14" Grid.Column="0"
+                        Grid.ColumnSpan="3"
+                        HorizontalContentAlignment="Stretch"
+                        VerticalContentAlignment="Stretch"
+                        FontSize="18"
+                        Style="{StaticResource MaterialDesignExpander}"
+                        Header="{Binding ExpanderHeader}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="{StaticResource InnerMargin}" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="{StaticResource InnerMargin}" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="{StaticResource InnerMargin}" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="{StaticResource InnerMargin}" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="{StaticResource InnerMargin}" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="{StaticResource InnerMargin}" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="{StaticResource InnerMargin}" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
 
-                        <!-- TileMapResource -->
-                        <CheckBox Grid.Row="10" Grid.Column="0"
-                                  Grid.ColumnSpan="3"
-                                  VerticalContentAlignment="Bottom"
-                                  Style="{StaticResource MaterialDesignCheckBox}"
-                                  IsChecked="{Binding IsTmr}"
-                                  Content="{Binding TmrCheckBoxContent}"/>
+                            <!-- Theme -->
+                            <ComboBox Grid.Row="0" Grid.Column="0"
+                                Grid.ColumnSpan="3"
+                                VerticalContentAlignment="Bottom"
+                                Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                                ItemsSource="{Binding Themes}"
+                                SelectedItem="{Binding Theme}">
+                                <materialDesignThemes:HintAssist.Hint>
+                                    <StackPanel Orientation="Horizontal">
+                                        <materialDesignThemes:PackIcon Kind="ViewList" />
+                                        <TextBlock Text="{Binding ThemesHint}" />
+                                    </StackPanel>
+                                </materialDesignThemes:HintAssist.Hint>
+                            </ComboBox>
 
-                        <!-- Save settings button -->
-                        <Button Grid.Row="12" Grid.Column="0"
+                            <!-- Tile side size -->
+                            <TextBox Grid.Row="2" Grid.Column="0"
+                                Grid.ColumnSpan="3"
+                                VerticalContentAlignment="Bottom"
+                                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                Text="{Binding TileSideSize}">
+                                <materialDesignThemes:HintAssist.Hint>
+                                    <StackPanel Orientation="Horizontal">
+                                        <materialDesignThemes:PackIcon Kind="Satellite" />
+                                        <TextBlock Text="{Binding TileSizeHint}" />
+                                    </StackPanel>
+                                </materialDesignThemes:HintAssist.Hint>
+                            </TextBox>
+
+                            <!-- Threads -->
+                            <CheckBox Grid.Row="4" Grid.Column="0"
+                                Style="{StaticResource MaterialDesignCheckBox}"
+                                IsChecked="{Binding IsAutoThreads}"
+                                Content="{Binding IsAutoThreadsContent}" />
+                            <TextBox Grid.Row="4" Grid.Column="2"
+                                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                Text="{Binding ThreadsCount}"
+                                Visibility="{Binding ThreadsCountVisibility}">
+                                <materialDesignThemes:HintAssist.Hint>
+                                    <StackPanel Orientation="Horizontal">
+                                        <materialDesignThemes:PackIcon Kind="Memory" />
+                                        <TextBlock Text="{Binding ThreadsCountHint}" />
+                                    </StackPanel>
+                                </materialDesignThemes:HintAssist.Hint>
+                            </TextBox>
+
+                            <!-- Tile cache -->
+                            <TextBox Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="3"
+                                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                Text="{Binding TileCache}">
+                                <materialDesignThemes:HintAssist.Hint>
+                                    <StackPanel Orientation="Horizontal">
+                                        <materialDesignThemes:PackIcon Kind="Memory" />
+                                        <TextBlock Text="{Binding TileCacheHint}" />
+                                    </StackPanel>
+                                </materialDesignThemes:HintAssist.Hint>
+                            </TextBox>
+
+                            <!-- Memory -->
+                            <TextBox Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="3"
+                                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                Text="{Binding Memory}">
+                                <materialDesignThemes:HintAssist.Hint>
+                                    <StackPanel Orientation="Horizontal">
+                                        <materialDesignThemes:PackIcon Kind="Memory" />
+                                        <TextBlock Text="{Binding MemoryHint}" />
+                                    </StackPanel>
+                                </materialDesignThemes:HintAssist.Hint>
+                            </TextBox>
+
+                            <!-- TileMapResource -->
+                            <CheckBox Grid.Row="10" Grid.Column="0"
+                                Grid.ColumnSpan="3"
+                                VerticalContentAlignment="Bottom"
+                                Style="{StaticResource MaterialDesignCheckBox}"
+                                IsChecked="{Binding IsTmr}"
+                                Content="{Binding TmrCheckBoxContent}" />
+
+                            <!-- Save settings button -->
+                            <Button Grid.Row="12" Grid.Column="0"
                                 Grid.ColumnSpan="3"
                                 FontSize="18"
                                 Content="{Binding SaveSettingsButtonContent}"
-                                Command="{Binding SaveSettingsButtonCommand}"/>
-                    </Grid>
-                </Expander>
+                                Command="{Binding SaveSettingsButtonCommand}" />
+                        </Grid>
+                    </Expander>
 
-                <!-- Start button / Grid.Row="16" -->
-                <Button Grid.Row="16" Grid.Column="0"
+                    <!-- Start button / Grid.Row="16" -->
+                    <Button Grid.Row="16" Grid.Column="0"
                         Grid.ColumnSpan="3"
                         FontSize="18"
                         Content="{Binding StartButtonContent}"
-                        Command="{Binding StartButtonCommand}"/>
+                        Command="{Binding StartButtonCommand}" />
 
-                <!-- Progress bar / Grid.Row="18" -->
-                <ProgressBar Grid.Row="18" Grid.Column="0"
-                             Grid.ColumnSpan="3"
-                             Height="25"
-                             Value="{Binding ProgressBarValue}"/>
+                    <!-- Progress bar / Grid.Row="18" -->
+                    <ProgressBar Grid.Row="18" Grid.Column="0"
+                        Grid.ColumnSpan="3"
+                        Height="25"
+                        Value="{Binding ProgressBarValue}" />
 
-                <!-- Progress bar text / Time passed / Grid.Row="20" -->
-                <Grid Grid.Row="20" Grid.Column="0"
-                      Grid.ColumnSpan="3">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="{StaticResource InnerMargin}"/>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="{StaticResource InnerMargin}"/>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
+                    <!-- Progress bar text / Time passed / Grid.Row="20" -->
+                    <Grid Grid.Row="20" Grid.Column="0"
+                        Grid.ColumnSpan="3">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="{StaticResource InnerMargin}" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="{StaticResource InnerMargin}" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
 
-                    <TextBlock Grid.Row="0" Grid.Column="0"
-                               Text="{Binding ProgressTextBlock}"/>
-                    <TextBlock Grid.Row="0" Grid.Column="2"
-                               Text="{Binding ProgressBarValue}"/>
-                    <TextBlock Grid.Row="0" Grid.Column="4"
-                               HorizontalAlignment="Right"
-                               Text="{Binding TimePassedTextBlock}"/>
-                    <TextBlock Grid.Row="0" Grid.Column="6"
-                               HorizontalAlignment="Right"
-                               Text="{Binding TimePassedValue}"/>
+                        <TextBlock Grid.Row="0" Grid.Column="0"
+                            Text="{Binding ProgressTextBlock}" />
+                        <TextBlock Grid.Row="0" Grid.Column="2"
+                            Text="{Binding ProgressBarValue}" />
+                        <TextBlock Grid.Row="0" Grid.Column="4"
+                            HorizontalAlignment="Right"
+                            Text="{Binding TimePassedTextBlock}" />
+                        <TextBlock Grid.Row="0" Grid.Column="6"
+                            HorizontalAlignment="Right"
+                            Text="{Binding TimePassedValue}" />
+                    </Grid>
+
+                    <!-- Meta info / Grid.Row="22" -->
+                    <TextBlock Grid.Row="22" Grid.Column="0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Bottom"
+                        Text="{Binding Copyright}" />
+                    <TextBlock Grid.Row="22" Grid.Column="0"
+                        Grid.ColumnSpan="3"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Bottom"
+                        Text="{Binding Version}" />
                 </Grid>
-
-                <!-- Meta info / Grid.Row="22" -->
-                <TextBlock Grid.Row="22" Grid.Column="0"
-                           HorizontalAlignment="Left"
-                           VerticalAlignment="Bottom"
-                           Text="{Binding Copyright}"/>
-                <TextBlock Grid.Row="22" Grid.Column="0"
-                           Grid.ColumnSpan="3"
-                           HorizontalAlignment="Right"
-                           VerticalAlignment="Bottom"
-                           Text="{Binding Version}"/>
             </Grid>
-        </Grid>
+        </ScrollViewer>
     </materialDesignThemes:DialogHost>
 </materialDesignExtensions:MaterialWindow>
