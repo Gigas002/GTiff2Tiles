@@ -3,19 +3,18 @@
     {
       "src": [
         {
-          "files": [
-            "GTiff2Tiles.Core/**.csproj"
-          ],
-          "exclude": [
-            "**/bin/**",
-            "**/obj/**",
-            "**/docs/**"
-          ]
+          "files": ["GTiff2Tiles.Core/**.csproj"],
+          "exclude": ["**/bin/**", "**/obj/**"]
         }
       ],
       "dest": "_docs/api",
+      "includePrivateMembers": false,
       "disableGitFeatures": false,
       "disableDefaultFilter": false,
+      "noRestore": false,
+      "namespaceLayout": "flattened",
+      "memberLayout": "samePage",
+      "allowCompilationErrors": false,
       "properties":{
         "Platform": "x64"
       }
@@ -24,70 +23,26 @@
   "build": {
     "content": [
       {
-        "files": [
-          "**"
-        ],
+        "files": ["**"],
         "src": "_docs/api",
         "dest": "api"
       },
       {
-        "files": [
-          "CHANGELOG.md",
-          "CONTRIBUTING.md",
-          "LICENSE.md"
-        ]
-      },
-      {
-        "files": [
-          "index.md",
-          "toc.yml"
-        ],
+        "files": ["articles/**.md", "articles/**/toc.yml", "toc.yml", "*.md"],
         "src": "_docs"
       },
       {
-        "files": [
-          "*.md"
-        ],
-        "src": "GTiff2Tiles.Benchmarks"
-      },
-      {
-        "files": [
-          "*.md"
-        ],
-        "src": "GTiff2Tiles.Console"
-      },
-      {
-        "files": [
-          "*.md"
-        ],
-        "src": "GTiff2Tiles.Core",
-        "dest": "api"
-      },
-      {
-        "files": [
-          "*.md"
-        ],
-        "src": "GTiff2Tiles.GUI"
-      },
-      {
-        "files": [
-          "*.md"
-        ],
-        "src": "GTiff2Tiles.Tests"
+        "files": ["*.md"]
       }
     ],
     "resource": [
       {
-        "files": [
-          "**"
-        ],
+        "files": ["**"],
         "src": "GTiff2Tiles.GUI/Resources",
         "dest": "images"
       },
       {
-        "files": [
-          "**"
-        ],
+        "files": ["**"],
         "src": "GTiff2Tiles.GUI/Screenshots",
         "dest": "images"
       }
@@ -96,46 +51,13 @@
       "_appFaviconPath": "images/Icon.ico",
       "_appLogoPath": "images/Icon.png"
     },
-    "overwrite": [],
-    "dest": "docs",
+
+    "output": "docs",
     "globalMetadataFiles": [],
     "fileMetadataFiles": [],
-    "template": [
-      "default"
-    ],
+    "template": ["default", "modern"],
     "postProcessors": [],
-    "markdownEngineName": "markdig",
-    "noLangKeyword": false,
     "keepFileLink": false,
-    "cleanupCacheHistory": false,
     "disableGitFeatures": false
-  },
-  "pdf": {
-    "content": [
-      {
-        "files": [
-          "*.yml"
-        ],
-        "exclude": [
-          "toc.yml"
-        ],
-        "src": "_docs/api"
-      },
-      {
-        "files": [
-          "*.md"
-        ],
-        "src": "GTiff2Tiles.Console"
-      },
-      {
-        "files": [
-          "toc.yml"
-        ],
-        "src": "_docs/pdf"
-      }
-    ],
-    "resource": [],
-    "overwrite": [],
-    "dest": "docs/pdf"
   }
 }

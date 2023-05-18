@@ -1,6 +1,6 @@
 {
   "homepages": [],
-  "source_base_path": "C:/Users/Pushkin Andrei/Documents/GTiff2Tiles",
+  "source_base_path": "/home/gigas/documents/repos/GTiff2Tiles",
   "xrefmap": "xrefmap.yml",
   "files": [
     {
@@ -15,40 +15,20 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "CODE_OF_CONDUCT.md",
+      "output": {
+        ".html": {
+          "relative_path": "CODE_OF_CONDUCT.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "CONTRIBUTING.md",
       "output": {
         ".html": {
           "relative_path": "CONTRIBUTING.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "GTiff2Tiles.Benchmarks/benchmarks-index.md",
-      "output": {
-        ".html": {
-          "relative_path": "benchmarks-index.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "GTiff2Tiles.Console/console-index.md",
-      "output": {
-        ".html": {
-          "relative_path": "console-index.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "GTiff2Tiles.Core/index.md",
-      "output": {
-        ".html": {
-          "relative_path": "api/index.html"
         }
       },
       "version": ""
@@ -84,34 +64,24 @@
       "version": ""
     },
     {
-      "log_codes": [
-        "InvalidFileLink"
-      ],
-      "type": "Conceptual",
-      "source_relative_path": "GTiff2Tiles.GUI/gui-index.md",
-      "output": {
-        ".html": {
-          "relative_path": "gui-index.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "GTiff2Tiles.Tests/tests-index.md",
-      "output": {
-        ".html": {
-          "relative_path": "tests-index.html"
-        }
-      },
-      "version": ""
-    },
-    {
       "type": "Conceptual",
       "source_relative_path": "LICENSE.md",
       "output": {
         ".html": {
           "relative_path": "LICENSE.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "log_codes": [
+        "InvalidFileLink"
+      ],
+      "type": "Conceptual",
+      "source_relative_path": "README.md",
+      "output": {
+        ".html": {
+          "relative_path": "README.html"
         }
       },
       "version": ""
@@ -617,11 +587,54 @@
       "version": ""
     },
     {
-      "type": "Toc",
-      "source_relative_path": "_docs/api/toc.yml",
+      "type": "Conceptual",
+      "source_relative_path": "_docs/articles/benchmarks-index.md",
       "output": {
         ".html": {
-          "relative_path": "api/toc.html"
+          "relative_path": "articles/benchmarks-index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "_docs/articles/console-index.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/console-index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "_docs/articles/core-index.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/core-index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "log_codes": [
+        "InvalidFileLink"
+      ],
+      "type": "Conceptual",
+      "source_relative_path": "_docs/articles/gui-index.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/gui-index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "_docs/articles/tests-index.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/tests-index.html"
         }
       },
       "version": ""
@@ -645,6 +658,9 @@
       "output": {
         ".html": {
           "relative_path": "toc.html"
+        },
+        ".json": {
+          "relative_path": "toc.json"
         }
       },
       "version": ""

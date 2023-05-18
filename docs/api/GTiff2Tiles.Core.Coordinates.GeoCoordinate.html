@@ -1,96 +1,131 @@
 ﻿<!DOCTYPE html>
-<!--[if IE]><![endif]-->
 <html>
-
   <head>
     <meta charset="utf-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
       <title>Class GeoCoordinate
  </title>
-      <meta name="viewport" content="width=device-width">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Class GeoCoordinate
  ">
-    
-      <link rel="shortcut icon" href="../images/Icon.ico">
-      <link rel="stylesheet" href="../styles/docfx.vendor.min.css">
-      <link rel="stylesheet" href="../styles/docfx.css">
-      <link rel="stylesheet" href="../styles/main.css">
-      <meta property="docfx:navrel" content="../toc.html">
-      <meta property="docfx:tocrel" content="toc.html">
-    
-    
-    
+      
+      <link rel="icon" href="../images/Icon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Gigas002/GTiff2Tiles/new/master/apiSpec/new?filename=GTiff2Tiles_Core_Coordinates_GeoCoordinate.md&amp;value=---%0Auid%3A%20GTiff2Tiles.Core.Coordinates.GeoCoordinate%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
   </head>
-  <body data-spy="scroll" data-target="#affix" data-offset="120">
-    <div id="wrapper">
-      <header>
 
-        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
-          <div class="container">
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
+  <script type="module">
+    import options from './../public/main.js'
+    import { init } from './../public/docfx.min.js'
+    init(options)
+  </script>
 
-              <a class="navbar-brand" href="../index.html">
-                <img id="logo" class="svg" src="../images/Icon.png" alt="">
-              </a>
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/Icon.png" alt="">
+            
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
             </div>
-            <div class="collapse navbar-collapse" id="navbar">
-              <form class="navbar-form navbar-right" role="search" id="search">
-                <div class="form-group">
-                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
-                </div>
-              </form>
-            </div>
-          </div>
-        </nav>
-
-        <div class="subnav navbar navbar-default">
-          <div class="container hide-when-search" id="breadcrumb">
-            <ul class="breadcrumb">
-              <li></li>
-            </ul>
           </div>
         </div>
-      </header>
-      <div role="main" class="container body-content hide-when-search">
+      </nav>
+    </header>
 
-        <div class="sidenav hide-when-search">
-          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
-          <div class="sidetoggle collapse" id="sidetoggle">
-            <div id="sidetoc"></div>
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
           </div>
         </div>
-        <div class="article row grid-right">
-          <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="GTiff2Tiles.Core.Coordinates.GeoCoordinate">
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="GTiff2Tiles.Core.Coordinates.GeoCoordinate">
 
 
 
-  <h1 id="GTiff2Tiles_Core_Coordinates_GeoCoordinate" data-uid="GTiff2Tiles.Core.Coordinates.GeoCoordinate" class="text-break">Class GeoCoordinate
-</h1>
-  <div class="markdown level0 summary"><p>Class for geographical coordinates</p>
+  <h1 id="GTiff2Tiles_Core_Coordinates_GeoCoordinate" data-uid="GTiff2Tiles.Core.Coordinates.GeoCoordinate" class="text-break">
+    Class GeoCoordinate
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Coordinates/GeoCoordinate.cs/#L15"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="GTiff2Tiles.html">GTiff2Tiles</a>.<a class="xref" href="GTiff2Tiles.Core.html">Core</a>.<a class="xref" href="GTiff2Tiles.Core.Coordinates.html">Coordinates</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>GTiff2Tiles.Core.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Class for geographical coordinates</p>
 </div>
-  <div class="markdown level0 conceptual"></div>
-  <div class="inheritance">
-    <h5>Inheritance</h5>
-    <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
-    <div class="level1"><a class="xref" href="GTiff2Tiles.Core.Coordinates.Coordinate.html">Coordinate</a></div>
-    <div class="level2"><span class="xref">GeoCoordinate</span></div>
-      <div class="level3"><a class="xref" href="GTiff2Tiles.Core.Coordinates.GeodeticCoordinate.html">GeodeticCoordinate</a></div>
-      <div class="level3"><a class="xref" href="GTiff2Tiles.Core.Coordinates.MercatorCoordinate.html">MercatorCoordinate</a></div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class GeoCoordinate : Coordinate, ICoordinate, IEquatable&lt;ICoordinate&gt;</code></pre>
   </div>
-  <div class="implements">
-    <h5>Implements</h5>
-    <div><a class="xref" href="GTiff2Tiles.Core.Coordinates.ICoordinate.html">ICoordinate</a></div>
-    <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable</a>&lt;<a class="xref" href="GTiff2Tiles.Core.Coordinates.ICoordinate.html">ICoordinate</a>&gt;</div>
-  </div>
-  <div class="inheritedMembers">
-    <h5>Inherited Members</h5>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><a class="xref" href="GTiff2Tiles.Core.Coordinates.Coordinate.html">Coordinate</a></div>
+      <div><span class="xref">GeoCoordinate</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="GTiff2Tiles.Core.Coordinates.ICoordinate.html">ICoordinate</a></div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable</a>&lt;<a class="xref" href="GTiff2Tiles.Core.Coordinates.ICoordinate.html">ICoordinate</a>&gt;</div>
+    </dd>
+  </dl>
+
+  <dl class="typelist derived">
+    <dt>Derived</dt>
+    <dd>
+      <div><a class="xref" href="GTiff2Tiles.Core.Coordinates.GeodeticCoordinate.html">GeodeticCoordinate</a></div>
+      <div><a class="xref" href="GTiff2Tiles.Core.Coordinates.MercatorCoordinate.html">MercatorCoordinate</a></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist derived">
+    <dt>Inherited Members</dt>
+    <dd>
     <div>
       <a class="xref" href="GTiff2Tiles.Core.Coordinates.Coordinate.html#GTiff2Tiles_Core_Coordinates_Coordinate_X">Coordinate.X</a>
     </div>
@@ -145,476 +180,334 @@
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
     </div>
-  </div>
-  <h6><strong>Namespace</strong>: <a class="xref" href="GTiff2Tiles.html">GTiff2Tiles</a>.<a class="xref" href="GTiff2Tiles.Core.html">Core</a>.<a class="xref" href="GTiff2Tiles.Core.Coordinates.html">Coordinates</a></h6>
-  <h6><strong>Assembly</strong>: GTiff2Tiles.Core.dll</h6>
-  <h5 id="GTiff2Tiles_Core_Coordinates_GeoCoordinate_syntax">Syntax</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class GeoCoordinate : Coordinate, ICoordinate, IEquatable&lt;ICoordinate&gt;</code></pre>
-  </div>
-  <h3 id="constructors">Constructors
-</h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/Gigas002/GTiff2Tiles/new/master/apiSpec/new?filename=GTiff2Tiles_Core_Coordinates_GeoCoordinate__ctor_System_Double_System_Double_.md&amp;value=---%0Auid%3A%20GTiff2Tiles.Core.Coordinates.GeoCoordinate.%23ctor(System.Double%2CSystem.Double)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Coordinates/GeoCoordinate.cs/#L20">View Source</a>
-  </span>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
   <a id="GTiff2Tiles_Core_Coordinates_GeoCoordinate__ctor_" data-uid="GTiff2Tiles.Core.Coordinates.GeoCoordinate.#ctor*"></a>
-  <h4 id="GTiff2Tiles_Core_Coordinates_GeoCoordinate__ctor_System_Double_System_Double_" data-uid="GTiff2Tiles.Core.Coordinates.GeoCoordinate.#ctor(System.Double,System.Double)">GeoCoordinate(double, double)</h4>
+
+  <h3 id="GTiff2Tiles_Core_Coordinates_GeoCoordinate__ctor_System_Double_System_Double_" data-uid="GTiff2Tiles.Core.Coordinates.GeoCoordinate.#ctor(System.Double,System.Double)">
+  GeoCoordinate(double, double)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Coordinates/GeoCoordinate.cs/#L20"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"><p>Create instance of class</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">protected GeoCoordinate(double x, double y)</code></pre>
   </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></td>
-        <td><span class="parametername">x</span></td>
-        <td><p>X coordinate value</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></td>
-        <td><span class="parametername">y</span></td>
-        <td><p>Y coordinate value</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h3 id="methods">Methods
-</h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/Gigas002/GTiff2Tiles/new/master/apiSpec/new?filename=GTiff2Tiles_Core_Coordinates_GeoCoordinate_GetNumbers_GTiff2Tiles_Core_Coordinates_GeoCoordinate_GTiff2Tiles_Core_Coordinates_GeoCoordinate_System_Int32_GTiff2Tiles_Core_Images_Size_System_Boolean_.md&amp;value=---%0Auid%3A%20GTiff2Tiles.Core.Coordinates.GeoCoordinate.GetNumbers(GTiff2Tiles.Core.Coordinates.GeoCoordinate%2CGTiff2Tiles.Core.Coordinates.GeoCoordinate%2CSystem.Int32%2CGTiff2Tiles.Core.Images.Size%2CSystem.Boolean)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Coordinates/GeoCoordinate.cs/#L51">View Source</a>
-  </span>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>x</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd><p>X coordinate value</p>
+</dd>
+    <dt><code>y</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd><p>Y coordinate value</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
   <a id="GTiff2Tiles_Core_Coordinates_GeoCoordinate_GetNumbers_" data-uid="GTiff2Tiles.Core.Coordinates.GeoCoordinate.GetNumbers*"></a>
-  <h4 id="GTiff2Tiles_Core_Coordinates_GeoCoordinate_GetNumbers_GTiff2Tiles_Core_Coordinates_GeoCoordinate_GTiff2Tiles_Core_Coordinates_GeoCoordinate_System_Int32_GTiff2Tiles_Core_Images_Size_System_Boolean_" data-uid="GTiff2Tiles.Core.Coordinates.GeoCoordinate.GetNumbers(GTiff2Tiles.Core.Coordinates.GeoCoordinate,GTiff2Tiles.Core.Coordinates.GeoCoordinate,System.Int32,GTiff2Tiles.Core.Images.Size,System.Boolean)">GetNumbers(GeoCoordinate, GeoCoordinate, int, Size, bool)</h4>
+
+  <h3 id="GTiff2Tiles_Core_Coordinates_GeoCoordinate_GetNumbers_GTiff2Tiles_Core_Coordinates_GeoCoordinate_GTiff2Tiles_Core_Coordinates_GeoCoordinate_System_Int32_GTiff2Tiles_Core_Images_Size_System_Boolean_" data-uid="GTiff2Tiles.Core.Coordinates.GeoCoordinate.GetNumbers(GTiff2Tiles.Core.Coordinates.GeoCoordinate,GTiff2Tiles.Core.Coordinates.GeoCoordinate,System.Int32,GTiff2Tiles.Core.Images.Size,System.Boolean)">
+  GetNumbers(GeoCoordinate, GeoCoordinate, int, Size, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Coordinates/GeoCoordinate.cs/#L51"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"><p>Gets <a class="xref" href="GTiff2Tiles.Core.Tiles.Number.html">Number</a>s for specified <a class="xref" href="GTiff2Tiles.Core.Coordinates.GeoCoordinate.html">GeoCoordinate</a>s</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public static (Number minNumber, Number maxNumber) GetNumbers(GeoCoordinate minCoordinate, GeoCoordinate maxCoordinate, int z, Size tileSize, bool tmsCompatible)</code></pre>
   </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="GTiff2Tiles.Core.Coordinates.GeoCoordinate.html">GeoCoordinate</a></td>
-        <td><span class="parametername">minCoordinate</span></td>
-        <td><p>Minimal <a class="xref" href="GTiff2Tiles.Core.Coordinates.GeoCoordinate.html">GeoCoordinate</a></p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="GTiff2Tiles.Core.Coordinates.GeoCoordinate.html">GeoCoordinate</a></td>
-        <td><span class="parametername">maxCoordinate</span></td>
-        <td><p>Maximal <a class="xref" href="GTiff2Tiles.Core.Coordinates.GeoCoordinate.html">GeoCoordinate</a></p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
-        <td><span class="parametername">z</span></td>
-        <td><p>Zoom</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="GTiff2Tiles.Core.Images.Size.html">Size</a></td>
-        <td><span class="parametername">tileSize</span></td>
-        <td><p><a class="xref" href="GTiff2Tiles.Core.Tiles.ITile.html">ITile</a>'s size
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>minCoordinate</code> <a class="xref" href="GTiff2Tiles.Core.Coordinates.GeoCoordinate.html">GeoCoordinate</a></dt>
+    <dd><p>Minimal <a class="xref" href="GTiff2Tiles.Core.Coordinates.GeoCoordinate.html">GeoCoordinate</a></p>
+</dd>
+    <dt><code>maxCoordinate</code> <a class="xref" href="GTiff2Tiles.Core.Coordinates.GeoCoordinate.html">GeoCoordinate</a></dt>
+    <dd><p>Maximal <a class="xref" href="GTiff2Tiles.Core.Coordinates.GeoCoordinate.html">GeoCoordinate</a></p>
+</dd>
+    <dt><code>z</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>Zoom</p>
+</dd>
+    <dt><code>tileSize</code> <a class="xref" href="GTiff2Tiles.Core.Images.Size.html">Size</a></dt>
+    <dd><p><a class="xref" href="GTiff2Tiles.Core.Tiles.ITile.html">ITile</a>'s size
 <remarks><p></p>Must be square</remarks></p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
-        <td><span class="parametername">tmsCompatible</span></td>
-        <td><p>Is <a class="xref" href="GTiff2Tiles.Core.Tiles.ITile.html">ITile</a> tms compatible?</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>(<a class="xref" href="GTiff2Tiles.Core.Tiles.Number.html">Number</a> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-gtiff2tiles.core.tiles.number,gtiff2tiles.core.tiles.number-.minnumber">minNumber</a>, <a class="xref" href="GTiff2Tiles.Core.Tiles.Number.html">Number</a> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-gtiff2tiles.core.tiles.number,gtiff2tiles.core.tiles.number-.maxnumber">maxNumber</a>)</td>
-        <td><p><span class="xref">(T1, T2)</span> of <a class="xref" href="GTiff2Tiles.Core.Tiles.Number.html">Number</a>s</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/Gigas002/GTiff2Tiles/new/master/apiSpec/new?filename=GTiff2Tiles_Core_Coordinates_GeoCoordinate_Resolution_System_Int32_GTiff2Tiles_Core_Images_Size_GTiff2Tiles_Core_Enums_CoordinateSystem_.md&amp;value=---%0Auid%3A%20GTiff2Tiles.Core.Coordinates.GeoCoordinate.Resolution(System.Int32%2CGTiff2Tiles.Core.Images.Size%2CGTiff2Tiles.Core.Enums.CoordinateSystem)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Coordinates/GeoCoordinate.cs/#L95">View Source</a>
-  </span>
+</dd>
+    <dt><code>tmsCompatible</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Is <a class="xref" href="GTiff2Tiles.Core.Tiles.ITile.html">ITile</a> tms compatible?</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt>(<a class="xref" href="GTiff2Tiles.Core.Tiles.Number.html">Number</a> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-gtiff2tiles.core.tiles.number,gtiff2tiles.core.tiles.number-.minnumber">minNumber</a>, <a class="xref" href="GTiff2Tiles.Core.Tiles.Number.html">Number</a> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-gtiff2tiles.core.tiles.number,gtiff2tiles.core.tiles.number-.maxnumber">maxNumber</a>)</dt>
+    <dd><p><span class="xref">(T1, T2)</span> of <a class="xref" href="GTiff2Tiles.Core.Tiles.Number.html">Number</a>s</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
   <a id="GTiff2Tiles_Core_Coordinates_GeoCoordinate_Resolution_" data-uid="GTiff2Tiles.Core.Coordinates.GeoCoordinate.Resolution*"></a>
-  <h4 id="GTiff2Tiles_Core_Coordinates_GeoCoordinate_Resolution_System_Int32_GTiff2Tiles_Core_Images_Size_GTiff2Tiles_Core_Enums_CoordinateSystem_" data-uid="GTiff2Tiles.Core.Coordinates.GeoCoordinate.Resolution(System.Int32,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.CoordinateSystem)">Resolution(int, Size, CoordinateSystem)</h4>
+
+  <h3 id="GTiff2Tiles_Core_Coordinates_GeoCoordinate_Resolution_System_Int32_GTiff2Tiles_Core_Images_Size_GTiff2Tiles_Core_Enums_CoordinateSystem_" data-uid="GTiff2Tiles.Core.Coordinates.GeoCoordinate.Resolution(System.Int32,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.CoordinateSystem)">
+  Resolution(int, Size, CoordinateSystem)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Coordinates/GeoCoordinate.cs/#L95"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"><p>Resolution for given zoom level (measured at Equator)</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public static double Resolution(int z, Size tileSize, CoordinateSystem coordinateSystem)</code></pre>
   </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
-        <td><span class="parametername">z</span></td>
-        <td><p>Zoom
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>z</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>Zoom
 <remarks><p></p>Must be &gt;= 0</remarks></p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="GTiff2Tiles.Core.Images.Size.html">Size</a></td>
-        <td><span class="parametername">tileSize</span></td>
-        <td><p><a class="xref" href="GTiff2Tiles.Core.Tiles.ITile.html">ITile</a>'s size
+</dd>
+    <dt><code>tileSize</code> <a class="xref" href="GTiff2Tiles.Core.Images.Size.html">Size</a></dt>
+    <dd><p><a class="xref" href="GTiff2Tiles.Core.Tiles.ITile.html">ITile</a>'s size
 <remarks><p></p>Must be square</remarks></p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="GTiff2Tiles.Core.Enums.CoordinateSystem.html">CoordinateSystem</a></td>
-        <td><span class="parametername">coordinateSystem</span></td>
-        <td><p>Coordinate system</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></td>
-        <td><p>Resolution value or -1.0 if something goes wrong</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/Gigas002/GTiff2Tiles/new/master/apiSpec/new?filename=GTiff2Tiles_Core_Coordinates_GeoCoordinate_ToNumber_System_Int32_GTiff2Tiles_Core_Images_Size_System_Boolean_.md&amp;value=---%0Auid%3A%20GTiff2Tiles.Core.Coordinates.GeoCoordinate.ToNumber(System.Int32%2CGTiff2Tiles.Core.Images.Size%2CSystem.Boolean)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Coordinates/GeoCoordinate.cs/#L28">View Source</a>
-  </span>
+</dd>
+    <dt><code>coordinateSystem</code> <a class="xref" href="GTiff2Tiles.Core.Enums.CoordinateSystem.html">CoordinateSystem</a></dt>
+    <dd><p>Coordinate system</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd><p>Resolution value or -1.0 if something goes wrong</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
   <a id="GTiff2Tiles_Core_Coordinates_GeoCoordinate_ToNumber_" data-uid="GTiff2Tiles.Core.Coordinates.GeoCoordinate.ToNumber*"></a>
-  <h4 id="GTiff2Tiles_Core_Coordinates_GeoCoordinate_ToNumber_System_Int32_GTiff2Tiles_Core_Images_Size_System_Boolean_" data-uid="GTiff2Tiles.Core.Coordinates.GeoCoordinate.ToNumber(System.Int32,GTiff2Tiles.Core.Images.Size,System.Boolean)">ToNumber(int, Size, bool)</h4>
+
+  <h3 id="GTiff2Tiles_Core_Coordinates_GeoCoordinate_ToNumber_System_Int32_GTiff2Tiles_Core_Images_Size_System_Boolean_" data-uid="GTiff2Tiles.Core.Coordinates.GeoCoordinate.ToNumber(System.Int32,GTiff2Tiles.Core.Images.Size,System.Boolean)">
+  ToNumber(int, Size, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Coordinates/GeoCoordinate.cs/#L28"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"><p>Calculate <a class="xref" href="GTiff2Tiles.Core.Tiles.Number.html">Number</a> for current <a class="xref" href="GTiff2Tiles.Core.Coordinates.ICoordinate.html">ICoordinate</a></p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public override Number ToNumber(int z, Size tileSize, bool tmsCompatible)</code></pre>
   </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
-        <td><span class="parametername">z</span></td>
-        <td><p>Zoom
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>z</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>Zoom
 <remarks><p></p>Must be &gt;= 0</remarks></p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="GTiff2Tiles.Core.Images.Size.html">Size</a></td>
-        <td><span class="parametername">tileSize</span></td>
-        <td><p><a class="xref" href="GTiff2Tiles.Core.Tiles.ITile.html">ITile</a>'s size</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
-        <td><span class="parametername">tmsCompatible</span></td>
-        <td><p>Is <a class="xref" href="GTiff2Tiles.Core.Tiles.ITile.html">ITile</a> tms compatible?</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="GTiff2Tiles.Core.Tiles.Number.html">Number</a></td>
-        <td><p><a class="xref" href="GTiff2Tiles.Core.Tiles.Number.html">Number</a> in which this <a class="xref" href="GTiff2Tiles.Core.Coordinates.ICoordinate.html">ICoordinate</a> belongs</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="GTiff2Tiles.Core.Coordinates.Coordinate.html#GTiff2Tiles_Core_Coordinates_Coordinate_ToNumber_System_Int32_GTiff2Tiles_Core_Images_Size_System_Boolean_">Coordinate.ToNumber(int, Size, bool)</a></div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/Gigas002/GTiff2Tiles/new/master/apiSpec/new?filename=GTiff2Tiles_Core_Coordinates_GeoCoordinate_ToPixelCoordinate_System_Int32_GTiff2Tiles_Core_Images_Size_.md&amp;value=---%0Auid%3A%20GTiff2Tiles.Core.Coordinates.GeoCoordinate.ToPixelCoordinate(System.Int32%2CGTiff2Tiles.Core.Images.Size)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Coordinates/GeoCoordinate.cs/#L83">View Source</a>
-  </span>
+</dd>
+    <dt><code>tileSize</code> <a class="xref" href="GTiff2Tiles.Core.Images.Size.html">Size</a></dt>
+    <dd><p><a class="xref" href="GTiff2Tiles.Core.Tiles.ITile.html">ITile</a>'s size</p>
+</dd>
+    <dt><code>tmsCompatible</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Is <a class="xref" href="GTiff2Tiles.Core.Tiles.ITile.html">ITile</a> tms compatible?</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GTiff2Tiles.Core.Tiles.Number.html">Number</a></dt>
+    <dd><p><a class="xref" href="GTiff2Tiles.Core.Tiles.Number.html">Number</a> in which this <a class="xref" href="GTiff2Tiles.Core.Coordinates.ICoordinate.html">ICoordinate</a> belongs</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
   <a id="GTiff2Tiles_Core_Coordinates_GeoCoordinate_ToPixelCoordinate_" data-uid="GTiff2Tiles.Core.Coordinates.GeoCoordinate.ToPixelCoordinate*"></a>
-  <h4 id="GTiff2Tiles_Core_Coordinates_GeoCoordinate_ToPixelCoordinate_System_Int32_GTiff2Tiles_Core_Images_Size_" data-uid="GTiff2Tiles.Core.Coordinates.GeoCoordinate.ToPixelCoordinate(System.Int32,GTiff2Tiles.Core.Images.Size)">ToPixelCoordinate(int, Size)</h4>
+
+  <h3 id="GTiff2Tiles_Core_Coordinates_GeoCoordinate_ToPixelCoordinate_System_Int32_GTiff2Tiles_Core_Images_Size_" data-uid="GTiff2Tiles.Core.Coordinates.GeoCoordinate.ToPixelCoordinate(System.Int32,GTiff2Tiles.Core.Images.Size)">
+  ToPixelCoordinate(int, Size)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Coordinates/GeoCoordinate.cs/#L83"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"><p>Convert current <a class="xref" href="GTiff2Tiles.Core.Coordinates.GeoCoordinate.html">GeoCoordinate</a> to <a class="xref" href="GTiff2Tiles.Core.Coordinates.PixelCoordinate.html">PixelCoordinate</a></p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public virtual PixelCoordinate ToPixelCoordinate(int z, Size tileSize)</code></pre>
   </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
-        <td><span class="parametername">z</span></td>
-        <td><p>Zoom
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>z</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>Zoom
 <remarks><p></p>Must be &gt;= 0</remarks></p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="GTiff2Tiles.Core.Images.Size.html">Size</a></td>
-        <td><span class="parametername">tileSize</span></td>
-        <td><p><a class="xref" href="GTiff2Tiles.Core.Tiles.ITile.html">ITile</a>'s size
+</dd>
+    <dt><code>tileSize</code> <a class="xref" href="GTiff2Tiles.Core.Images.Size.html">Size</a></dt>
+    <dd><p><a class="xref" href="GTiff2Tiles.Core.Tiles.ITile.html">ITile</a>'s size
 <remarks><p></p>Must be square</remarks></p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="GTiff2Tiles.Core.Coordinates.PixelCoordinate.html">PixelCoordinate</a></td>
-        <td><p>Converted <a class="xref" href="GTiff2Tiles.Core.Coordinates.PixelCoordinate.html">PixelCoordinate</a></p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/Gigas002/GTiff2Tiles/new/master/apiSpec/new?filename=GTiff2Tiles_Core_Coordinates_GeoCoordinate_ZoomForPixelSize_System_Int32_GTiff2Tiles_Core_Images_Size_GTiff2Tiles_Core_Enums_CoordinateSystem_System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20GTiff2Tiles.Core.Coordinates.GeoCoordinate.ZoomForPixelSize(System.Int32%2CGTiff2Tiles.Core.Images.Size%2CGTiff2Tiles.Core.Enums.CoordinateSystem%2CSystem.Int32%2CSystem.Int32)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Coordinates/GeoCoordinate.cs/#L117">View Source</a>
-  </span>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GTiff2Tiles.Core.Coordinates.PixelCoordinate.html">PixelCoordinate</a></dt>
+    <dd><p>Converted <a class="xref" href="GTiff2Tiles.Core.Coordinates.PixelCoordinate.html">PixelCoordinate</a></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
   <a id="GTiff2Tiles_Core_Coordinates_GeoCoordinate_ZoomForPixelSize_" data-uid="GTiff2Tiles.Core.Coordinates.GeoCoordinate.ZoomForPixelSize*"></a>
-  <h4 id="GTiff2Tiles_Core_Coordinates_GeoCoordinate_ZoomForPixelSize_System_Int32_GTiff2Tiles_Core_Images_Size_GTiff2Tiles_Core_Enums_CoordinateSystem_System_Int32_System_Int32_" data-uid="GTiff2Tiles.Core.Coordinates.GeoCoordinate.ZoomForPixelSize(System.Int32,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.CoordinateSystem,System.Int32,System.Int32)">ZoomForPixelSize(int, Size, CoordinateSystem, int, int)</h4>
+
+  <h3 id="GTiff2Tiles_Core_Coordinates_GeoCoordinate_ZoomForPixelSize_System_Int32_GTiff2Tiles_Core_Images_Size_GTiff2Tiles_Core_Enums_CoordinateSystem_System_Int32_System_Int32_" data-uid="GTiff2Tiles.Core.Coordinates.GeoCoordinate.ZoomForPixelSize(System.Int32,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.CoordinateSystem,System.Int32,System.Int32)">
+  ZoomForPixelSize(int, Size, CoordinateSystem, int, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Coordinates/GeoCoordinate.cs/#L117"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"><p>Calculate zoom from known pixel size</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public static int ZoomForPixelSize(int pixelSize, Size tileSize, CoordinateSystem coordinateSystem, int minZ = 0, int maxZ = 32)</code></pre>
   </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
-        <td><span class="parametername">pixelSize</span></td>
-        <td><p>Pixel size</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="GTiff2Tiles.Core.Images.Size.html">Size</a></td>
-        <td><span class="parametername">tileSize</span></td>
-        <td><p><a class="xref" href="GTiff2Tiles.Core.Tiles.ITile.html">ITile</a>'s size
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>pixelSize</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>Pixel size</p>
+</dd>
+    <dt><code>tileSize</code> <a class="xref" href="GTiff2Tiles.Core.Images.Size.html">Size</a></dt>
+    <dd><p><a class="xref" href="GTiff2Tiles.Core.Tiles.ITile.html">ITile</a>'s size
 <remarks><p></p>Must be square</remarks></p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="GTiff2Tiles.Core.Enums.CoordinateSystem.html">CoordinateSystem</a></td>
-        <td><span class="parametername">coordinateSystem</span></td>
-        <td><p>Coordinate system</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
-        <td><span class="parametername">minZ</span></td>
-        <td><p>Minimal zoom
+</dd>
+    <dt><code>coordinateSystem</code> <a class="xref" href="GTiff2Tiles.Core.Enums.CoordinateSystem.html">CoordinateSystem</a></dt>
+    <dd><p>Coordinate system</p>
+</dd>
+    <dt><code>minZ</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>Minimal zoom
 <p></p>Must be &gt;= 0 and lesser or equal, than <code class="paramref">maxZ</code>
 <p></p>0 by default
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
-        <td><span class="parametername">maxZ</span></td>
-        <td><p>Maximal zoom
+</dd>
+    <dt><code>maxZ</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>Maximal zoom
 <p></p>Must be &gt;= 0 and bigger or equal, than <code class="paramref">minZ</code>
 <p></p>32 by default
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
-        <td><p>Approximate zoom value</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h3 id="implements">Implements</h3>
-  <div>
-      <a class="xref" href="GTiff2Tiles.Core.Coordinates.ICoordinate.html">ICoordinate</a>
-  </div>
-  <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable&lt;T&gt;</a>
-  </div>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>Approximate zoom value</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
 
 </article>
-          </div>
 
-          <div class="hidden-sm col-md-2" role="complementary">
-            <div class="sideaffix">
-              <div class="contribution">
-                <ul class="nav">
-                  <li>
-                    <a href="https://github.com/Gigas002/GTiff2Tiles/new/master/apiSpec/new?filename=GTiff2Tiles_Core_Coordinates_GeoCoordinate.md&amp;value=---%0Auid%3A%20GTiff2Tiles.Core.Coordinates.GeoCoordinate%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
-                  </li>
-                  <li>
-                    <a href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Coordinates/GeoCoordinate.cs/#L15" class="contribution-link">View Source</a>
-                  </li>
-                </ul>
-              </div>
-              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
-                <h5>In This Article</h5>
-                <div></div>
-              </nav>
-            </div>
-          </div>
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Coordinates/GeoCoordinate.cs/#L15" class="edit-link">Edit this page</a>
         </div>
+
+        
       </div>
 
-      <footer>
-        <div class="grad-bottom"></div>
-        <div class="footer">
-          <div class="container">
-            <span class="pull-right">
-              <a href="#top">Back to top</a>
-            </span>
-      
-      <span>Generated by <strong>DocFX</strong></span>
-          </div>
-        </div>
-      </footer>
-    </div>
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
 
-    <script type="text/javascript" src="../styles/docfx.vendor.min.js"></script>
-    <script type="text/javascript" src="../styles/docfx.js"></script>
-    <script type="text/javascript" src="../styles/main.js"></script>
+
+    <footer class="border-top">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>

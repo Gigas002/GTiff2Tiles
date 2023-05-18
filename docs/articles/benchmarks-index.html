@@ -1,0 +1,205 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>GTiff2Tiles.Benchmarks </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="GTiff2Tiles.Benchmarks ">
+      
+      <link rel="icon" href="../images/Icon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Gigas002/GTiff2Tiles/blob/master/_docs/articles/benchmarks-index.md/#L1">
+  </head>
+
+  <script type="module">
+    import options from './../public/main.js'
+    import { init } from './../public/docfx.min.js'
+    init(options)
+  </script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/Icon.png" alt="">
+            
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="gtiff2tilesbenchmarks">GTiff2Tiles.Benchmarks</h1>
+
+<p><strong>GTiff2Tiles.Benchmarks</strong> is a benchmarking project for <strong>GTiff2Tiles.Core</strong>.</p>
+<p>The following benchmarks were run at <strong>25.08.2020</strong>.</p>
+<h2 id="requirements">Requirements</h2>
+<ul>
+<li>Docker</li>
+<li>Linux x64/Win 10+ x64</li>
+</ul>
+<h2 id="build-dependencies">Build dependencies</h2>
+<ul>
+<li>GTiff2Tiles.Core;</li>
+<li><a href="https://www.nuget.org/packages/BenchmarkDotNet/">BenchmarkDotNet</a> – 0.13.5;</li>
+<li><a href="https://www.nuget.org/packages/CommandLineParser/">CommandLineParser</a> – 2.9.1;</li>
+<li><a href="https://www.nuget.org/packages/MaxRev.Gdal.LinuxRuntime.Minimal/">MaxRev.Gdal.LinuxRuntime.Minimal</a> – 3.7.0.100;</li>
+<li><a href="https://www.nuget.org/packages/MaxRev.Gdal.WindowsRuntime.Minimal/">MaxRev.Gdal.WindowsRuntime.Minimal</a> – 3.7.0.100;</li>
+<li><a href="https://www.nuget.org/packages/MaxRev.Gdal.MacosRuntime.Minimal.x64/">MaxRev.Gdal.MacosRuntime.Minimal.x64</a> – 3.7.0.217;</li>
+<li><a href="https://www.nuget.org/packages/NetVips.Native.win-x64">NetVips.Native</a> – 8.14.2;</li>
+</ul>
+<h2 id="running-by-yourself">Running by yourself</h2>
+<p>To run the benchmarks by yourself you should build the app <strong>in Release x64 configuration</strong> first. See <a href="https://gigas002.github.io/GTiff2Tiles/">main</a> and <a href="https://gigas002.github.io/GTiff2Tiles/api/index.html">core</a> pages to learn how to build the soultion.</p>
+<p>Benchmarks uses the installed docker to pull the <strong>latest</strong> images of <strong>maptiler/engine</strong> and <strong>osgeo/gdal</strong> and then runs the <strong>GTiff2Tiles.Core</strong> benchmarks agains them.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Short</th>
+<th style="text-align: center;">Long</th>
+<th style="text-align: center;">Description</th>
+<th style="text-align: center;">Required?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">-i</td>
+<td style="text-align: center;">--input</td>
+<td style="text-align: center;">Path to input file</td>
+<td style="text-align: center;">No</td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">--version</td>
+<td style="text-align: center;">Current version</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">--help</td>
+<td style="text-align: center;">Message about console options</td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<p><strong>-i/--input</strong> is <code>string</code>, representing path to input <strong>GeoTIFF</strong> file. Please, specify the path in double quotes (<code>“like this”</code>) if it contains spaces. The path is <strong>optional</strong>, by default app uses the <code>(repo_home)/Examples/Input/Benchmarks.tif</code>. <strong>USE ONLY EPSG:4326 GEOTIFF AS INPUT</strong>!</p>
+<p>Simple example (for <strong>pwsh with admin rights</strong>) looks like this: <code>./GTiff2Tiles.Benchmarks</code></p>
+<p>Also take a look at <a href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Benchmarks/Start.ps1">Start.ps1</a> <strong>PowerShell</strong> script for automating and simplifying the work. Note, that running this script requires installed <strong>PowerShell</strong> or <strong><a href="https://github.com/PowerShell/PowerShell">PowerShell Core</a></strong> (also available on <strong>Linux</strong>/<strong>OSX</strong> systems!).</p>
+<p>And last but not the least: if you're changing the <code>SimpleJob</code> arguments, not overdo it. <strong>BenchmarkDotNet</strong> can create <strong>VERY BIG</strong> log file in process (<em>I had a 130Gb file on my system drive while running it and I had to stop</em>). I also don't recommend to add memory/threading attributes, since they don't analyze inner docker processes and it's kind of useless for this app.</p>
+<h2 id="offline-docs">Offline docs</h2>
+<p>Offline docs are also available as <a href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Benchmarks/benchmarks-index.pdf">pdf</a> and distributed alongside the application.</p>
+<h2 id="results">Results</h2>
+<p><strong>Docker Desktop</strong> version is an <strong>edge release 2.3.5.0</strong>; uses <strong>WSL2</strong> features.</p>
+<p>Used <strong>MapTiler Engine</strong> version is <strong>10.3</strong>, used <strong>gdal2tiles.py</strong> version is <strong>GDAL 3.2.0dev-38e9587ed7fc34d8e145b03a86ca0a2ec655fcce, released 2020/08/25</strong>, used <strong>GTiff2Tiles.Core</strong> version is <strong>2.0.0.589</strong>.</p>
+<p>Benchmarks create the <strong>geodetic</strong> <strong>png</strong> <strong>256x256</strong> <strong>non-tmscompatible</strong> tiles from <strong>EPSG:4326</strong> input GEOTIFF, resampling is <strong>cubic</strong>, zooms <strong>0-15</strong>, process counter <strong>8</strong>.</p>
+<p><strong>maptiler</strong> was running with the following arguments: <code>-srs EPSG:4326 -preset geodetic -resampling cubic -zoom 0 15 -P 8 -f png32 -o outDir in.tif</code>.</p>
+<p><strong>gdal2tiles.py</strong> was running with the following arguments: <code>-s EPSG:4326 -p geodetic -r cubic -z 0-15 --processes 8 in.tif outDir</code>.</p>
+<pre><code class="lang-ini">BenchmarkDotNet=v0.12.1, OS=Windows 10.0.19041.450 (2004/?/20H1)
+Intel Core i7-6700K CPU 4.00GHz (Skylake), 1 CPU, 8 logical and 4 physical cores
+.NET Core SDK=5.0.100-preview.7.20366.6
+  [Host]     : .NET Core 5.0.0 (CoreCLR 5.0.20.36411, CoreFX 5.0.20.36411), X64 RyuJIT
+  Job-GYLFGH : .NET Core 5.0.0 (CoreCLR 5.0.20.36411, CoreFX 5.0.20.36411), X64 RyuJIT
+
+IterationCount=10  LaunchCount=10  WarmupCount=10  
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th style="text-align: right;">Mean</th>
+<th style="text-align: right;">Error</th>
+<th style="text-align: right;">StdDev</th>
+<th style="text-align: right;">Median</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RunGTiff2Tiles</td>
+<td style="text-align: right;">2.255 s</td>
+<td style="text-align: right;">0.0233 s</td>
+<td style="text-align: right;">0.0672 s</td>
+<td style="text-align: right;">2.250 s</td>
+</tr>
+<tr>
+<td>RunGdal2Tiles</td>
+<td style="text-align: right;">12.989 s</td>
+<td style="text-align: right;">0.1660 s</td>
+<td style="text-align: right;">0.4711 s</td>
+<td style="text-align: right;">12.885 s</td>
+</tr>
+<tr>
+<td>RunMaptiler</td>
+<td style="text-align: right;">4.948 s</td>
+<td style="text-align: right;">0.0958 s</td>
+<td style="text-align: right;">0.2716 s</td>
+<td style="text-align: right;">4.840 s</td>
+</tr>
+</tbody>
+</table>
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Gigas002/GTiff2Tiles/blob/master/_docs/articles/benchmarks-index.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+        
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

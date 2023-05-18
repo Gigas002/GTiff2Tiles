@@ -1,93 +1,124 @@
 ﻿<!DOCTYPE html>
-<!--[if IE]><![endif]-->
 <html>
-
   <head>
     <meta charset="utf-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
       <title>Class TileMap
  </title>
-      <meta name="viewport" content="width=device-width">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Class TileMap
  ">
-    
-      <link rel="shortcut icon" href="../images/Icon.ico">
-      <link rel="stylesheet" href="../styles/docfx.vendor.min.css">
-      <link rel="stylesheet" href="../styles/docfx.css">
-      <link rel="stylesheet" href="../styles/main.css">
-      <meta property="docfx:navrel" content="../toc.html">
-      <meta property="docfx:tocrel" content="toc.html">
-    
-    
-    
+      
+      <link rel="icon" href="../images/Icon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Gigas002/GTiff2Tiles/new/master/apiSpec/new?filename=GTiff2Tiles_Core_TileMapResource_TileMap.md&amp;value=---%0Auid%3A%20GTiff2Tiles.Core.TileMapResource.TileMap%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
   </head>
-  <body data-spy="scroll" data-target="#affix" data-offset="120">
-    <div id="wrapper">
-      <header>
 
-        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
-          <div class="container">
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
+  <script type="module">
+    import options from './../public/main.js'
+    import { init } from './../public/docfx.min.js'
+    init(options)
+  </script>
 
-              <a class="navbar-brand" href="../index.html">
-                <img id="logo" class="svg" src="../images/Icon.png" alt="">
-              </a>
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/Icon.png" alt="">
+            
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
             </div>
-            <div class="collapse navbar-collapse" id="navbar">
-              <form class="navbar-form navbar-right" role="search" id="search">
-                <div class="form-group">
-                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
-                </div>
-              </form>
-            </div>
-          </div>
-        </nav>
-
-        <div class="subnav navbar navbar-default">
-          <div class="container hide-when-search" id="breadcrumb">
-            <ul class="breadcrumb">
-              <li></li>
-            </ul>
           </div>
         </div>
-      </header>
-      <div role="main" class="container body-content hide-when-search">
+      </nav>
+    </header>
 
-        <div class="sidenav hide-when-search">
-          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
-          <div class="sidetoggle collapse" id="sidetoggle">
-            <div id="sidetoc"></div>
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
           </div>
         </div>
-        <div class="article row grid-right">
-          <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="GTiff2Tiles.Core.TileMapResource.TileMap">
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="GTiff2Tiles.Core.TileMapResource.TileMap">
 
 
 
-  <h1 id="GTiff2Tiles_Core_TileMapResource_TileMap" data-uid="GTiff2Tiles.Core.TileMapResource.TileMap" class="text-break">Class TileMap
-</h1>
-  <div class="markdown level0 summary"><p>TileMapResource's root
+  <h1 id="GTiff2Tiles_Core_TileMapResource_TileMap" data-uid="GTiff2Tiles.Core.TileMapResource.TileMap" class="text-break">
+    Class TileMap
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/TileMapResource/TileMap.cs/#L13"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="GTiff2Tiles.html">GTiff2Tiles</a>.<a class="xref" href="GTiff2Tiles.Core.html">Core</a>.<a class="xref" href="GTiff2Tiles.Core.TileMapResource.html">TileMapResource</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>GTiff2Tiles.Core.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>TileMapResource's root
 <remarks><p></p>Based on produced by MapTiler tilemapresource.xml</remarks></p>
 </div>
-  <div class="markdown level0 conceptual"></div>
-  <div class="inheritance">
-    <h5>Inheritance</h5>
-    <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
-    <div class="level1"><span class="xref">TileMap</span></div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Serializable]
+public record TileMap : IEquatable&lt;TileMap&gt;</code></pre>
   </div>
-  <div class="implements">
-    <h5>Implements</h5>
-    <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable</a>&lt;<a class="xref" href="GTiff2Tiles.Core.TileMapResource.TileMap.html">TileMap</a>&gt;</div>
-  </div>
-  <div class="inheritedMembers">
-    <h5>Inherited Members</h5>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">TileMap</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable</a>&lt;<a class="xref" href="GTiff2Tiles.Core.TileMapResource.TileMap.html">TileMap</a>&gt;</div>
+    </dd>
+  </dl>
+
+
+  <dl class="typelist derived">
+    <dt>Inherited Members</dt>
+    <dd>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
     </div>
@@ -109,621 +140,534 @@
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
     </div>
-  </div>
-  <h6><strong>Namespace</strong>: <a class="xref" href="GTiff2Tiles.html">GTiff2Tiles</a>.<a class="xref" href="GTiff2Tiles.Core.html">Core</a>.<a class="xref" href="GTiff2Tiles.Core.TileMapResource.html">TileMapResource</a></h6>
-  <h6><strong>Assembly</strong>: GTiff2Tiles.Core.dll</h6>
-  <h5 id="GTiff2Tiles_Core_TileMapResource_TileMap_syntax">Syntax</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Serializable]
-public record TileMap : IEquatable&lt;TileMap&gt;</code></pre>
-  </div>
-  <h3 id="constructors">Constructors
-</h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/Gigas002/GTiff2Tiles/new/master/apiSpec/new?filename=GTiff2Tiles_Core_TileMapResource_TileMap__ctor.md&amp;value=---%0Auid%3A%20GTiff2Tiles.Core.TileMapResource.TileMap.%23ctor%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/TileMapResource/TileMap.cs/#L87">View Source</a>
-  </span>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
   <a id="GTiff2Tiles_Core_TileMapResource_TileMap__ctor_" data-uid="GTiff2Tiles.Core.TileMapResource.TileMap.#ctor*"></a>
-  <h4 id="GTiff2Tiles_Core_TileMapResource_TileMap__ctor" data-uid="GTiff2Tiles.Core.TileMapResource.TileMap.#ctor">TileMap()</h4>
+
+  <h3 id="GTiff2Tiles_Core_TileMapResource_TileMap__ctor" data-uid="GTiff2Tiles.Core.TileMapResource.TileMap.#ctor">
+  TileMap()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/TileMapResource/TileMap.cs/#L87"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"><p>Default constructor</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public TileMap()</code></pre>
   </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/Gigas002/GTiff2Tiles/new/master/apiSpec/new?filename=GTiff2Tiles_Core_TileMapResource_TileMap__ctor_GTiff2Tiles_Core_Coordinates_ICoordinate_GTiff2Tiles_Core_Coordinates_ICoordinate_GTiff2Tiles_Core_Images_Size_GTiff2Tiles_Core_Enums_TileExtension_System_Collections_Generic_IEnumerable_GTiff2Tiles_Core_TileMapResource_TileSet__GTiff2Tiles_Core_Enums_CoordinateSystem_System_String_System_String_GTiff2Tiles_Core_Coordinates_ICoordinate_.md&amp;value=---%0Auid%3A%20GTiff2Tiles.Core.TileMapResource.TileMap.%23ctor(GTiff2Tiles.Core.Coordinates.ICoordinate%2CGTiff2Tiles.Core.Coordinates.ICoordinate%2CGTiff2Tiles.Core.Images.Size%2CGTiff2Tiles.Core.Enums.TileExtension%2CSystem.Collections.Generic.IEnumerable%7BGTiff2Tiles.Core.TileMapResource.TileSet%7D%2CGTiff2Tiles.Core.Enums.CoordinateSystem%2CSystem.String%2CSystem.String%2CGTiff2Tiles.Core.Coordinates.ICoordinate)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/TileMapResource/TileMap.cs/#L121">View Source</a>
-  </span>
+
+
+
+
+
+
+
+
+
+
+
+
+
   <a id="GTiff2Tiles_Core_TileMapResource_TileMap__ctor_" data-uid="GTiff2Tiles.Core.TileMapResource.TileMap.#ctor*"></a>
-  <h4 id="GTiff2Tiles_Core_TileMapResource_TileMap__ctor_GTiff2Tiles_Core_Coordinates_ICoordinate_GTiff2Tiles_Core_Coordinates_ICoordinate_GTiff2Tiles_Core_Images_Size_GTiff2Tiles_Core_Enums_TileExtension_System_Collections_Generic_IEnumerable_GTiff2Tiles_Core_TileMapResource_TileSet__GTiff2Tiles_Core_Enums_CoordinateSystem_System_String_System_String_GTiff2Tiles_Core_Coordinates_ICoordinate_" data-uid="GTiff2Tiles.Core.TileMapResource.TileMap.#ctor(GTiff2Tiles.Core.Coordinates.ICoordinate,GTiff2Tiles.Core.Coordinates.ICoordinate,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.TileExtension,System.Collections.Generic.IEnumerable{GTiff2Tiles.Core.TileMapResource.TileSet},GTiff2Tiles.Core.Enums.CoordinateSystem,System.String,System.String,GTiff2Tiles.Core.Coordinates.ICoordinate)">TileMap(ICoordinate, ICoordinate, Size, TileExtension, IEnumerable&lt;TileSet&gt;, CoordinateSystem, string, string, ICoordinate)</h4>
+
+  <h3 id="GTiff2Tiles_Core_TileMapResource_TileMap__ctor_GTiff2Tiles_Core_Coordinates_ICoordinate_GTiff2Tiles_Core_Coordinates_ICoordinate_GTiff2Tiles_Core_Images_Size_GTiff2Tiles_Core_Enums_TileExtension_System_Collections_Generic_IEnumerable_GTiff2Tiles_Core_TileMapResource_TileSet__GTiff2Tiles_Core_Enums_CoordinateSystem_System_String_System_String_GTiff2Tiles_Core_Coordinates_ICoordinate_" data-uid="GTiff2Tiles.Core.TileMapResource.TileMap.#ctor(GTiff2Tiles.Core.Coordinates.ICoordinate,GTiff2Tiles.Core.Coordinates.ICoordinate,GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Enums.TileExtension,System.Collections.Generic.IEnumerable{GTiff2Tiles.Core.TileMapResource.TileSet},GTiff2Tiles.Core.Enums.CoordinateSystem,System.String,System.String,GTiff2Tiles.Core.Coordinates.ICoordinate)">
+  TileMap(ICoordinate, ICoordinate, Size, TileExtension, IEnumerable&lt;TileSet&gt;, CoordinateSystem, string, string, ICoordinate)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/TileMapResource/TileMap.cs/#L121"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"><p>Initialize a new tile map</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public TileMap(ICoordinate minCoordinate, ICoordinate maxCoordinate, Size tileSize, TileExtension tileExtension, IEnumerable&lt;TileSet&gt; tileSetCollection, CoordinateSystem coordinateSystem, string version = &quot;1.0.0&quot;, string tileMapServiceLink = &quot;http://tms.osgeo.org/1.0.0&quot;, ICoordinate originCoordinate = null)</code></pre>
   </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="GTiff2Tiles.Core.Coordinates.ICoordinate.html">ICoordinate</a></td>
-        <td><span class="parametername">minCoordinate</span></td>
-        <td><p>Minimal coordinate for bounding box</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="GTiff2Tiles.Core.Coordinates.ICoordinate.html">ICoordinate</a></td>
-        <td><span class="parametername">maxCoordinate</span></td>
-        <td><p>Maximal coordinate for bounding box</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="GTiff2Tiles.Core.Images.Size.html">Size</a></td>
-        <td><span class="parametername">tileSize</span></td>
-        <td><p>Tile's size</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="GTiff2Tiles.Core.Enums.TileExtension.html">TileExtension</a></td>
-        <td><span class="parametername">tileExtension</span></td>
-        <td><p>Tile's extension</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="GTiff2Tiles.Core.TileMapResource.TileSet.html">TileSet</a>&gt;</td>
-        <td><span class="parametername">tileSetCollection</span></td>
-        <td><p>Collection of <a class="xref" href="GTiff2Tiles.Core.TileMapResource.TileSet.html">TileSet</a>s</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="GTiff2Tiles.Core.Enums.CoordinateSystem.html">CoordinateSystem</a></td>
-        <td><span class="parametername">coordinateSystem</span></td>
-        <td><p>Tile's coordinate system</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td><span class="parametername">version</span></td>
-        <td><p>Standard version
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>minCoordinate</code> <a class="xref" href="GTiff2Tiles.Core.Coordinates.ICoordinate.html">ICoordinate</a></dt>
+    <dd><p>Minimal coordinate for bounding box</p>
+</dd>
+    <dt><code>maxCoordinate</code> <a class="xref" href="GTiff2Tiles.Core.Coordinates.ICoordinate.html">ICoordinate</a></dt>
+    <dd><p>Maximal coordinate for bounding box</p>
+</dd>
+    <dt><code>tileSize</code> <a class="xref" href="GTiff2Tiles.Core.Images.Size.html">Size</a></dt>
+    <dd><p>Tile's size</p>
+</dd>
+    <dt><code>tileExtension</code> <a class="xref" href="GTiff2Tiles.Core.Enums.TileExtension.html">TileExtension</a></dt>
+    <dd><p>Tile's extension</p>
+</dd>
+    <dt><code>tileSetCollection</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="GTiff2Tiles.Core.TileMapResource.TileSet.html">TileSet</a>&gt;</dt>
+    <dd><p>Collection of <a class="xref" href="GTiff2Tiles.Core.TileMapResource.TileSet.html">TileSet</a>s</p>
+</dd>
+    <dt><code>coordinateSystem</code> <a class="xref" href="GTiff2Tiles.Core.Enums.CoordinateSystem.html">CoordinateSystem</a></dt>
+    <dd><p>Tile's coordinate system</p>
+</dd>
+    <dt><code>version</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>Standard version
 <remarks><p></p>1.0.0 by default</remarks></p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td><span class="parametername">tileMapServiceLink</span></td>
-        <td><p>Link to standard
+</dd>
+    <dt><code>tileMapServiceLink</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>Link to standard
 <remarks><p></p>http://tms.osgeo.org/1.0.0 by default</remarks></p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="GTiff2Tiles.Core.Coordinates.ICoordinate.html">ICoordinate</a></td>
-        <td><span class="parametername">originCoordinate</span></td>
-        <td><p>Origin coordinate
+</dd>
+    <dt><code>originCoordinate</code> <a class="xref" href="GTiff2Tiles.Core.Coordinates.ICoordinate.html">ICoordinate</a></dt>
+    <dd><p>Origin coordinate
 <remarks><p></p>-180.0, -90.0 by default</remarks></p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/Gigas002/GTiff2Tiles/new/master/apiSpec/new?filename=GTiff2Tiles_Core_TileMapResource_TileMap__ctor_System_String_GTiff2Tiles_Core_TileMapResource_BoundingBox_GTiff2Tiles_Core_TileMapResource_Origin_GTiff2Tiles_Core_TileMapResource_TileFormat_GTiff2Tiles_Core_TileMapResource_TileSets_System_String_System_String_.md&amp;value=---%0Auid%3A%20GTiff2Tiles.Core.TileMapResource.TileMap.%23ctor(System.String%2CGTiff2Tiles.Core.TileMapResource.BoundingBox%2CGTiff2Tiles.Core.TileMapResource.Origin%2CGTiff2Tiles.Core.TileMapResource.TileFormat%2CGTiff2Tiles.Core.TileMapResource.TileSets%2CSystem.String%2CSystem.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/TileMapResource/TileMap.cs/#L101">View Source</a>
-  </span>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
   <a id="GTiff2Tiles_Core_TileMapResource_TileMap__ctor_" data-uid="GTiff2Tiles.Core.TileMapResource.TileMap.#ctor*"></a>
-  <h4 id="GTiff2Tiles_Core_TileMapResource_TileMap__ctor_System_String_GTiff2Tiles_Core_TileMapResource_BoundingBox_GTiff2Tiles_Core_TileMapResource_Origin_GTiff2Tiles_Core_TileMapResource_TileFormat_GTiff2Tiles_Core_TileMapResource_TileSets_System_String_System_String_" data-uid="GTiff2Tiles.Core.TileMapResource.TileMap.#ctor(System.String,GTiff2Tiles.Core.TileMapResource.BoundingBox,GTiff2Tiles.Core.TileMapResource.Origin,GTiff2Tiles.Core.TileMapResource.TileFormat,GTiff2Tiles.Core.TileMapResource.TileSets,System.String,System.String)">TileMap(string, BoundingBox, Origin, TileFormat, TileSets, string, string)</h4>
+
+  <h3 id="GTiff2Tiles_Core_TileMapResource_TileMap__ctor_System_String_GTiff2Tiles_Core_TileMapResource_BoundingBox_GTiff2Tiles_Core_TileMapResource_Origin_GTiff2Tiles_Core_TileMapResource_TileFormat_GTiff2Tiles_Core_TileMapResource_TileSets_System_String_System_String_" data-uid="GTiff2Tiles.Core.TileMapResource.TileMap.#ctor(System.String,GTiff2Tiles.Core.TileMapResource.BoundingBox,GTiff2Tiles.Core.TileMapResource.Origin,GTiff2Tiles.Core.TileMapResource.TileFormat,GTiff2Tiles.Core.TileMapResource.TileSets,System.String,System.String)">
+  TileMap(string, BoundingBox, Origin, TileFormat, TileSets, string, string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/TileMapResource/TileMap.cs/#L101"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"><p>Initialize a new tile map</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public TileMap(string srs, BoundingBox boundingBox, Origin origin, TileFormat tileFormat, TileSets tileSets, string version = &quot;1.0.0&quot;, string tileMapServiceLink = &quot;http://tms.osgeo.org/1.0.0&quot;)</code></pre>
   </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td><span class="parametername">srs</span></td>
-        <td><p>Coordinate system</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="GTiff2Tiles.Core.TileMapResource.BoundingBox.html">BoundingBox</a></td>
-        <td><span class="parametername">boundingBox</span></td>
-        <td><p>Bounding box</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="GTiff2Tiles.Core.TileMapResource.Origin.html">Origin</a></td>
-        <td><span class="parametername">origin</span></td>
-        <td><p>Origin</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="GTiff2Tiles.Core.TileMapResource.TileFormat.html">TileFormat</a></td>
-        <td><span class="parametername">tileFormat</span></td>
-        <td><p>Tile format</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="GTiff2Tiles.Core.TileMapResource.TileSets.html">TileSets</a></td>
-        <td><span class="parametername">tileSets</span></td>
-        <td><p>Tiles sets</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td><span class="parametername">version</span></td>
-        <td><p>Standard version
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>srs</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>Coordinate system</p>
+</dd>
+    <dt><code>boundingBox</code> <a class="xref" href="GTiff2Tiles.Core.TileMapResource.BoundingBox.html">BoundingBox</a></dt>
+    <dd><p>Bounding box</p>
+</dd>
+    <dt><code>origin</code> <a class="xref" href="GTiff2Tiles.Core.TileMapResource.Origin.html">Origin</a></dt>
+    <dd><p>Origin</p>
+</dd>
+    <dt><code>tileFormat</code> <a class="xref" href="GTiff2Tiles.Core.TileMapResource.TileFormat.html">TileFormat</a></dt>
+    <dd><p>Tile format</p>
+</dd>
+    <dt><code>tileSets</code> <a class="xref" href="GTiff2Tiles.Core.TileMapResource.TileSets.html">TileSets</a></dt>
+    <dd><p>Tiles sets</p>
+</dd>
+    <dt><code>version</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>Standard version
 <remarks><p></p>1.0.0 by default</remarks></p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td><span class="parametername">tileMapServiceLink</span></td>
-        <td><p>Link to standard
+</dd>
+    <dt><code>tileMapServiceLink</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>Link to standard
 <remarks><p></p>http://tms.osgeo.org/1.0.0 by default</remarks></p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h3 id="properties">Properties
-</h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/Gigas002/GTiff2Tiles/new/master/apiSpec/new?filename=GTiff2Tiles_Core_TileMapResource_TileMap_BoundingBox.md&amp;value=---%0Auid%3A%20GTiff2Tiles.Core.TileMapResource.TileMap.BoundingBox%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/TileMapResource/TileMap.cs/#L59">View Source</a>
-  </span>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
   <a id="GTiff2Tiles_Core_TileMapResource_TileMap_BoundingBox_" data-uid="GTiff2Tiles.Core.TileMapResource.TileMap.BoundingBox*"></a>
-  <h4 id="GTiff2Tiles_Core_TileMapResource_TileMap_BoundingBox" data-uid="GTiff2Tiles.Core.TileMapResource.TileMap.BoundingBox">BoundingBox</h4>
+
+  <h3 id="GTiff2Tiles_Core_TileMapResource_TileMap_BoundingBox" data-uid="GTiff2Tiles.Core.TileMapResource.TileMap.BoundingBox">
+  BoundingBox
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/TileMapResource/TileMap.cs/#L59"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"><p>Bounding box</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public BoundingBox BoundingBox { get; init; }</code></pre>
   </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="GTiff2Tiles.Core.TileMapResource.BoundingBox.html">BoundingBox</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/Gigas002/GTiff2Tiles/new/master/apiSpec/new?filename=GTiff2Tiles_Core_TileMapResource_TileMap_Origin.md&amp;value=---%0Auid%3A%20GTiff2Tiles.Core.TileMapResource.TileMap.Origin%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/TileMapResource/TileMap.cs/#L65">View Source</a>
-  </span>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GTiff2Tiles.Core.TileMapResource.BoundingBox.html">BoundingBox</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <a id="GTiff2Tiles_Core_TileMapResource_TileMap_Origin_" data-uid="GTiff2Tiles.Core.TileMapResource.TileMap.Origin*"></a>
-  <h4 id="GTiff2Tiles_Core_TileMapResource_TileMap_Origin" data-uid="GTiff2Tiles.Core.TileMapResource.TileMap.Origin">Origin</h4>
+
+  <h3 id="GTiff2Tiles_Core_TileMapResource_TileMap_Origin" data-uid="GTiff2Tiles.Core.TileMapResource.TileMap.Origin">
+  Origin
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/TileMapResource/TileMap.cs/#L65"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"><p>Origin</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public Origin Origin { get; init; }</code></pre>
   </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="GTiff2Tiles.Core.TileMapResource.Origin.html">Origin</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/Gigas002/GTiff2Tiles/new/master/apiSpec/new?filename=GTiff2Tiles_Core_TileMapResource_TileMap_Srs.md&amp;value=---%0Auid%3A%20GTiff2Tiles.Core.TileMapResource.TileMap.Srs%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/TileMapResource/TileMap.cs/#L53">View Source</a>
-  </span>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GTiff2Tiles.Core.TileMapResource.Origin.html">Origin</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <a id="GTiff2Tiles_Core_TileMapResource_TileMap_Srs_" data-uid="GTiff2Tiles.Core.TileMapResource.TileMap.Srs*"></a>
-  <h4 id="GTiff2Tiles_Core_TileMapResource_TileMap_Srs" data-uid="GTiff2Tiles.Core.TileMapResource.TileMap.Srs">Srs</h4>
+
+  <h3 id="GTiff2Tiles_Core_TileMapResource_TileMap_Srs" data-uid="GTiff2Tiles.Core.TileMapResource.TileMap.Srs">
+  Srs
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/TileMapResource/TileMap.cs/#L53"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"><p>Coordinate system</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public string Srs { get; init; }</code></pre>
   </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/Gigas002/GTiff2Tiles/new/master/apiSpec/new?filename=GTiff2Tiles_Core_TileMapResource_TileMap_TileFormat.md&amp;value=---%0Auid%3A%20GTiff2Tiles.Core.TileMapResource.TileMap.TileFormat%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/TileMapResource/TileMap.cs/#L71">View Source</a>
-  </span>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <a id="GTiff2Tiles_Core_TileMapResource_TileMap_TileFormat_" data-uid="GTiff2Tiles.Core.TileMapResource.TileMap.TileFormat*"></a>
-  <h4 id="GTiff2Tiles_Core_TileMapResource_TileMap_TileFormat" data-uid="GTiff2Tiles.Core.TileMapResource.TileMap.TileFormat">TileFormat</h4>
+
+  <h3 id="GTiff2Tiles_Core_TileMapResource_TileMap_TileFormat" data-uid="GTiff2Tiles.Core.TileMapResource.TileMap.TileFormat">
+  TileFormat
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/TileMapResource/TileMap.cs/#L71"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"><p>Tile format</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public TileFormat TileFormat { get; init; }</code></pre>
   </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="GTiff2Tiles.Core.TileMapResource.TileFormat.html">TileFormat</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/Gigas002/GTiff2Tiles/new/master/apiSpec/new?filename=GTiff2Tiles_Core_TileMapResource_TileMap_TileMapServiceLink.md&amp;value=---%0Auid%3A%20GTiff2Tiles.Core.TileMapResource.TileMap.TileMapServiceLink%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/TileMapResource/TileMap.cs/#L47">View Source</a>
-  </span>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GTiff2Tiles.Core.TileMapResource.TileFormat.html">TileFormat</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <a id="GTiff2Tiles_Core_TileMapResource_TileMap_TileMapServiceLink_" data-uid="GTiff2Tiles.Core.TileMapResource.TileMap.TileMapServiceLink*"></a>
-  <h4 id="GTiff2Tiles_Core_TileMapResource_TileMap_TileMapServiceLink" data-uid="GTiff2Tiles.Core.TileMapResource.TileMap.TileMapServiceLink">TileMapServiceLink</h4>
+
+  <h3 id="GTiff2Tiles_Core_TileMapResource_TileMap_TileMapServiceLink" data-uid="GTiff2Tiles.Core.TileMapResource.TileMap.TileMapServiceLink">
+  TileMapServiceLink
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/TileMapResource/TileMap.cs/#L47"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"><p>Link to standard</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public string TileMapServiceLink { get; init; }</code></pre>
   </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/Gigas002/GTiff2Tiles/new/master/apiSpec/new?filename=GTiff2Tiles_Core_TileMapResource_TileMap_TileSets.md&amp;value=---%0Auid%3A%20GTiff2Tiles.Core.TileMapResource.TileMap.TileSets%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/TileMapResource/TileMap.cs/#L77">View Source</a>
-  </span>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <a id="GTiff2Tiles_Core_TileMapResource_TileMap_TileSets_" data-uid="GTiff2Tiles.Core.TileMapResource.TileMap.TileSets*"></a>
-  <h4 id="GTiff2Tiles_Core_TileMapResource_TileMap_TileSets" data-uid="GTiff2Tiles.Core.TileMapResource.TileMap.TileSets">TileSets</h4>
+
+  <h3 id="GTiff2Tiles_Core_TileMapResource_TileMap_TileSets" data-uid="GTiff2Tiles.Core.TileMapResource.TileMap.TileSets">
+  TileSets
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/TileMapResource/TileMap.cs/#L77"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"><p>Tiles sets</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public TileSets TileSets { get; init; }</code></pre>
   </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="GTiff2Tiles.Core.TileMapResource.TileSets.html">TileSets</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/Gigas002/GTiff2Tiles/new/master/apiSpec/new?filename=GTiff2Tiles_Core_TileMapResource_TileMap_Version.md&amp;value=---%0Auid%3A%20GTiff2Tiles.Core.TileMapResource.TileMap.Version%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/TileMapResource/TileMap.cs/#L41">View Source</a>
-  </span>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GTiff2Tiles.Core.TileMapResource.TileSets.html">TileSets</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <a id="GTiff2Tiles_Core_TileMapResource_TileMap_Version_" data-uid="GTiff2Tiles.Core.TileMapResource.TileMap.Version*"></a>
-  <h4 id="GTiff2Tiles_Core_TileMapResource_TileMap_Version" data-uid="GTiff2Tiles.Core.TileMapResource.TileMap.Version">Version</h4>
+
+  <h3 id="GTiff2Tiles_Core_TileMapResource_TileMap_Version" data-uid="GTiff2Tiles.Core.TileMapResource.TileMap.Version">
+  Version
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/TileMapResource/TileMap.cs/#L41"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"><p>TileMap's standard version</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public string Version { get; init; }</code></pre>
   </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h3 id="methods">Methods
-</h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/Gigas002/GTiff2Tiles/new/master/apiSpec/new?filename=GTiff2Tiles_Core_TileMapResource_TileMap_Deserialize_System_IO_Stream_.md&amp;value=---%0Auid%3A%20GTiff2Tiles.Core.TileMapResource.TileMap.Deserialize(System.IO.Stream)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/TileMapResource/TileMap.cs/#L174">View Source</a>
-  </span>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
   <a id="GTiff2Tiles_Core_TileMapResource_TileMap_Deserialize_" data-uid="GTiff2Tiles.Core.TileMapResource.TileMap.Deserialize*"></a>
-  <h4 id="GTiff2Tiles_Core_TileMapResource_TileMap_Deserialize_System_IO_Stream_" data-uid="GTiff2Tiles.Core.TileMapResource.TileMap.Deserialize(System.IO.Stream)">Deserialize(Stream)</h4>
+
+  <h3 id="GTiff2Tiles_Core_TileMapResource_TileMap_Deserialize_System_IO_Stream_" data-uid="GTiff2Tiles.Core.TileMapResource.TileMap.Deserialize(System.IO.Stream)">
+  Deserialize(Stream)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/TileMapResource/TileMap.cs/#L174"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"><p>Deserializes <a class="xref" href="GTiff2Tiles.Core.TileMapResource.TileMap.html">TileMap</a> from <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream">Stream</a></p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public static TileMap Deserialize(Stream stream)</code></pre>
   </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream">Stream</a></td>
-        <td><span class="parametername">stream</span></td>
-        <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream">Stream</a>, from which the xml is taken</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="GTiff2Tiles.Core.TileMapResource.TileMap.html">TileMap</a></td>
-        <td><p>Deserialized <a class="xref" href="GTiff2Tiles.Core.TileMapResource.TileMap.html">TileMap</a></p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/Gigas002/GTiff2Tiles/new/master/apiSpec/new?filename=GTiff2Tiles_Core_TileMapResource_TileMap_GetSrs_GTiff2Tiles_Core_Enums_CoordinateSystem_.md&amp;value=---%0Auid%3A%20GTiff2Tiles.Core.TileMapResource.TileMap.GetSrs(GTiff2Tiles.Core.Enums.CoordinateSystem)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/TileMapResource/TileMap.cs/#L145">View Source</a>
-  </span>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>stream</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream">Stream</a></dt>
+    <dd><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream">Stream</a>, from which the xml is taken</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GTiff2Tiles.Core.TileMapResource.TileMap.html">TileMap</a></dt>
+    <dd><p>Deserialized <a class="xref" href="GTiff2Tiles.Core.TileMapResource.TileMap.html">TileMap</a></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
   <a id="GTiff2Tiles_Core_TileMapResource_TileMap_GetSrs_" data-uid="GTiff2Tiles.Core.TileMapResource.TileMap.GetSrs*"></a>
-  <h4 id="GTiff2Tiles_Core_TileMapResource_TileMap_GetSrs_GTiff2Tiles_Core_Enums_CoordinateSystem_" data-uid="GTiff2Tiles.Core.TileMapResource.TileMap.GetSrs(GTiff2Tiles.Core.Enums.CoordinateSystem)">GetSrs(CoordinateSystem)</h4>
+
+  <h3 id="GTiff2Tiles_Core_TileMapResource_TileMap_GetSrs_GTiff2Tiles_Core_Enums_CoordinateSystem_" data-uid="GTiff2Tiles.Core.TileMapResource.TileMap.GetSrs(GTiff2Tiles.Core.Enums.CoordinateSystem)">
+  GetSrs(CoordinateSystem)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/TileMapResource/TileMap.cs/#L145"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"><p>Convert <a class="xref" href="GTiff2Tiles.Core.Enums.CoordinateSystem.html">CoordinateSystem</a> into SRS string</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public static string GetSrs(CoordinateSystem coordinateSystem)</code></pre>
   </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="GTiff2Tiles.Core.Enums.CoordinateSystem.html">CoordinateSystem</a></td>
-        <td><span class="parametername">coordinateSystem</span></td>
-        <td><p>Coordinate system</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td><p>Srs string;
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>coordinateSystem</code> <a class="xref" href="GTiff2Tiles.Core.Enums.CoordinateSystem.html">CoordinateSystem</a></dt>
+    <dd><p>Coordinate system</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>Srs string;
 <remarks><p></p>Empty string, if coordinate
 system is not supported</remarks></p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/Gigas002/GTiff2Tiles/new/master/apiSpec/new?filename=GTiff2Tiles_Core_TileMapResource_TileMap_Serialize_System_IO_Stream_.md&amp;value=---%0Auid%3A%20GTiff2Tiles.Core.TileMapResource.TileMap.Serialize(System.IO.Stream)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/TileMapResource/TileMap.cs/#L157">View Source</a>
-  </span>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
   <a id="GTiff2Tiles_Core_TileMapResource_TileMap_Serialize_" data-uid="GTiff2Tiles.Core.TileMapResource.TileMap.Serialize*"></a>
-  <h4 id="GTiff2Tiles_Core_TileMapResource_TileMap_Serialize_System_IO_Stream_" data-uid="GTiff2Tiles.Core.TileMapResource.TileMap.Serialize(System.IO.Stream)">Serialize(Stream)</h4>
+
+  <h3 id="GTiff2Tiles_Core_TileMapResource_TileMap_Serialize_System_IO_Stream_" data-uid="GTiff2Tiles.Core.TileMapResource.TileMap.Serialize(System.IO.Stream)">
+  Serialize(Stream)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/TileMapResource/TileMap.cs/#L157"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"><p>Serializes this <a class="xref" href="GTiff2Tiles.Core.TileMapResource.TileMap.html">TileMap</a> into <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream">Stream</a></p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void Serialize(Stream stream)</code></pre>
   </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream">Stream</a></td>
-        <td><span class="parametername">stream</span></td>
-        <td><p>Target <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream">Stream</a></p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h3 id="implements">Implements</h3>
-  <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable&lt;T&gt;</a>
-  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>stream</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream">Stream</a></dt>
+    <dd><p>Target <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream">Stream</a></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
 
 </article>
-          </div>
 
-          <div class="hidden-sm col-md-2" role="complementary">
-            <div class="sideaffix">
-              <div class="contribution">
-                <ul class="nav">
-                  <li>
-                    <a href="https://github.com/Gigas002/GTiff2Tiles/new/master/apiSpec/new?filename=GTiff2Tiles_Core_TileMapResource_TileMap.md&amp;value=---%0Auid%3A%20GTiff2Tiles.Core.TileMapResource.TileMap%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
-                  </li>
-                  <li>
-                    <a href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/TileMapResource/TileMap.cs/#L13" class="contribution-link">View Source</a>
-                  </li>
-                </ul>
-              </div>
-              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
-                <h5>In This Article</h5>
-                <div></div>
-              </nav>
-            </div>
-          </div>
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/TileMapResource/TileMap.cs/#L13" class="edit-link">Edit this page</a>
         </div>
+
+        
       </div>
 
-      <footer>
-        <div class="grad-bottom"></div>
-        <div class="footer">
-          <div class="container">
-            <span class="pull-right">
-              <a href="#top">Back to top</a>
-            </span>
-      
-      <span>Generated by <strong>DocFX</strong></span>
-          </div>
-        </div>
-      </footer>
-    </div>
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
 
-    <script type="text/javascript" src="../styles/docfx.vendor.min.js"></script>
-    <script type="text/javascript" src="../styles/docfx.js"></script>
-    <script type="text/javascript" src="../styles/main.js"></script>
+
+    <footer class="border-top">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>
