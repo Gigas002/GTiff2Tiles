@@ -1,0 +1,675 @@
+{
+  "homepages": [],
+  "source_base_path": "/home/runner/work/GTiff2Tiles/GTiff2Tiles",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "Conceptual",
+      "source_relative_path": "CHANGELOG.md",
+      "output": {
+        ".html": {
+          "relative_path": "CHANGELOG.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "CODE_OF_CONDUCT.md",
+      "output": {
+        ".html": {
+          "relative_path": "CODE_OF_CONDUCT.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "CONTRIBUTING.md",
+      "output": {
+        ".html": {
+          "relative_path": "CONTRIBUTING.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "GTiff2Tiles.GUI/Resources/Icon.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/Icon.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "GTiff2Tiles.GUI/Resources/icon.ico",
+      "output": {
+        "resource": {
+          "relative_path": "images/icon.ico"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "GTiff2Tiles.GUI/Screenshots/MainPage.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/MainPage.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "LICENSE.md",
+      "output": {
+        ".html": {
+          "relative_path": "LICENSE.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "log_codes": [
+        "InvalidFileLink"
+      ],
+      "type": "Conceptual",
+      "source_relative_path": "README.md",
+      "output": {
+        ".html": {
+          "relative_path": "README.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "_docs/api/GTiff2Tiles.Core.Args.IWriteTilesArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GTiff2Tiles.Core.Args.IWriteTilesArgs.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "_docs/api/GTiff2Tiles.Core.Args.WriteRasterTilesArgs.PrintTime.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GTiff2Tiles.Core.Args.WriteRasterTilesArgs.PrintTime.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "_docs/api/GTiff2Tiles.Core.Args.WriteRasterTilesArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GTiff2Tiles.Core.Args.WriteRasterTilesArgs.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "_docs/api/GTiff2Tiles.Core.Args.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GTiff2Tiles.Core.Args.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "_docs/api/GTiff2Tiles.Core.Constants.DateTimePatterns.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GTiff2Tiles.Core.Constants.DateTimePatterns.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "_docs/api/GTiff2Tiles.Core.Constants.FileExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GTiff2Tiles.Core.Constants.FileExtensions.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "_docs/api/GTiff2Tiles.Core.Constants.Geodesic.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GTiff2Tiles.Core.Constants.Geodesic.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "_docs/api/GTiff2Tiles.Core.Constants.Proj.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GTiff2Tiles.Core.Constants.Proj.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "_docs/api/GTiff2Tiles.Core.Constants.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GTiff2Tiles.Core.Constants.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "_docs/api/GTiff2Tiles.Core.Coordinates.Coordinate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GTiff2Tiles.Core.Coordinates.Coordinate.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "_docs/api/GTiff2Tiles.Core.Coordinates.GeoCoordinate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GTiff2Tiles.Core.Coordinates.GeoCoordinate.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "_docs/api/GTiff2Tiles.Core.Coordinates.GeodeticCoordinate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GTiff2Tiles.Core.Coordinates.GeodeticCoordinate.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "_docs/api/GTiff2Tiles.Core.Coordinates.ICoordinate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GTiff2Tiles.Core.Coordinates.ICoordinate.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "_docs/api/GTiff2Tiles.Core.Coordinates.MercatorCoordinate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GTiff2Tiles.Core.Coordinates.MercatorCoordinate.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "_docs/api/GTiff2Tiles.Core.Coordinates.PixelCoordinate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GTiff2Tiles.Core.Coordinates.PixelCoordinate.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "_docs/api/GTiff2Tiles.Core.Coordinates.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GTiff2Tiles.Core.Coordinates.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "_docs/api/GTiff2Tiles.Core.Enums.CoordinateSystem.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GTiff2Tiles.Core.Enums.CoordinateSystem.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "_docs/api/GTiff2Tiles.Core.Enums.TileExtension.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GTiff2Tiles.Core.Enums.TileExtension.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "_docs/api/GTiff2Tiles.Core.Enums.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GTiff2Tiles.Core.Enums.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "_docs/api/GTiff2Tiles.Core.Exceptions.DirectoryException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GTiff2Tiles.Core.Exceptions.DirectoryException.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "_docs/api/GTiff2Tiles.Core.Exceptions.FileException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GTiff2Tiles.Core.Exceptions.FileException.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "_docs/api/GTiff2Tiles.Core.Exceptions.RasterException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GTiff2Tiles.Core.Exceptions.RasterException.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "_docs/api/GTiff2Tiles.Core.Exceptions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GTiff2Tiles.Core.Exceptions.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "_docs/api/GTiff2Tiles.Core.GdalWorker.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GTiff2Tiles.Core.GdalWorker.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "_docs/api/GTiff2Tiles.Core.GeoTiffs.GeoTiff.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GTiff2Tiles.Core.GeoTiffs.GeoTiff.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "_docs/api/GTiff2Tiles.Core.GeoTiffs.IGeoTiff.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GTiff2Tiles.Core.GeoTiffs.IGeoTiff.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "_docs/api/GTiff2Tiles.Core.GeoTiffs.Raster.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GTiff2Tiles.Core.GeoTiffs.Raster.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "_docs/api/GTiff2Tiles.Core.GeoTiffs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GTiff2Tiles.Core.GeoTiffs.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "_docs/api/GTiff2Tiles.Core.Helpers.CheckHelper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GTiff2Tiles.Core.Helpers.CheckHelper.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "_docs/api/GTiff2Tiles.Core.Helpers.NetVipsHelper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GTiff2Tiles.Core.Helpers.NetVipsHelper.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "_docs/api/GTiff2Tiles.Core.Helpers.ProgressHelper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GTiff2Tiles.Core.Helpers.ProgressHelper.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "_docs/api/GTiff2Tiles.Core.Helpers.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GTiff2Tiles.Core.Helpers.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "_docs/api/GTiff2Tiles.Core.Images.Area.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GTiff2Tiles.Core.Images.Area.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "_docs/api/GTiff2Tiles.Core.Images.Band.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GTiff2Tiles.Core.Images.Band.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "_docs/api/GTiff2Tiles.Core.Images.Size.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GTiff2Tiles.Core.Images.Size.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "_docs/api/GTiff2Tiles.Core.Images.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GTiff2Tiles.Core.Images.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "_docs/api/GTiff2Tiles.Core.TileGenerator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GTiff2Tiles.Core.TileGenerator.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "_docs/api/GTiff2Tiles.Core.TileMapResource.BoundingBox.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GTiff2Tiles.Core.TileMapResource.BoundingBox.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "_docs/api/GTiff2Tiles.Core.TileMapResource.Origin.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GTiff2Tiles.Core.TileMapResource.Origin.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "_docs/api/GTiff2Tiles.Core.TileMapResource.TileFormat.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GTiff2Tiles.Core.TileMapResource.TileFormat.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "_docs/api/GTiff2Tiles.Core.TileMapResource.TileMap.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GTiff2Tiles.Core.TileMapResource.TileMap.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "_docs/api/GTiff2Tiles.Core.TileMapResource.TileSet.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GTiff2Tiles.Core.TileMapResource.TileSet.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "_docs/api/GTiff2Tiles.Core.TileMapResource.TileSets.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GTiff2Tiles.Core.TileMapResource.TileSets.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "_docs/api/GTiff2Tiles.Core.TileMapResource.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GTiff2Tiles.Core.TileMapResource.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "_docs/api/GTiff2Tiles.Core.Tiles.ITile.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GTiff2Tiles.Core.Tiles.ITile.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "_docs/api/GTiff2Tiles.Core.Tiles.Number.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GTiff2Tiles.Core.Tiles.Number.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "_docs/api/GTiff2Tiles.Core.Tiles.RasterTile.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GTiff2Tiles.Core.Tiles.RasterTile.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "_docs/api/GTiff2Tiles.Core.Tiles.Tile.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GTiff2Tiles.Core.Tiles.Tile.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "_docs/api/GTiff2Tiles.Core.Tiles.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GTiff2Tiles.Core.Tiles.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "_docs/api/GTiff2Tiles.Core.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GTiff2Tiles.Core.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "_docs/articles/benchmarks-index.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/benchmarks-index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "_docs/articles/console-index.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/console-index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "_docs/articles/core-index.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/core-index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "log_codes": [
+        "InvalidFileLink"
+      ],
+      "type": "Conceptual",
+      "source_relative_path": "_docs/articles/gui-index.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/gui-index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "_docs/articles/tests-index.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/tests-index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "log_codes": [
+        "InvalidFileLink"
+      ],
+      "type": "Conceptual",
+      "source_relative_path": "_docs/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "_docs/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "toc.html"
+        },
+        ".json": {
+          "relative_path": "toc.json"
+        }
+      },
+      "version": ""
+    }
+  ],
+  "version_info": {},
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}

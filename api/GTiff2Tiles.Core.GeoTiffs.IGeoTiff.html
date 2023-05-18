@@ -1,0 +1,308 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Interface IGeoTiff
+ </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Interface IGeoTiff
+ ">
+      
+      <link rel="icon" href="../images/Icon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Gigas002/GTiff2Tiles/new/master/apiSpec/new?filename=GTiff2Tiles_Core_GeoTiffs_IGeoTiff.md&amp;value=---%0Auid%3A%20GTiff2Tiles.Core.GeoTiffs.IGeoTiff%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+  </head>
+
+  <script type="module">
+    import options from './../public/main.js'
+    import { init } from './../public/docfx.min.js'
+    init(options)
+  </script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/Icon.png" alt="">
+            
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="GTiff2Tiles.Core.GeoTiffs.IGeoTiff">
+
+
+
+  <h1 id="GTiff2Tiles_Core_GeoTiffs_IGeoTiff" data-uid="GTiff2Tiles.Core.GeoTiffs.IGeoTiff" class="text-break">
+    Interface IGeoTiff
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/GeoTiffs/IGeoTiff.cs/#L14"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="GTiff2Tiles.html">GTiff2Tiles</a>.<a class="xref" href="GTiff2Tiles.Core.html">Core</a>.<a class="xref" href="GTiff2Tiles.Core.GeoTiffs.html">GeoTiffs</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>GTiff2Tiles.Core.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Main interface for different type of GeoTiffs and <a class="xref" href="GTiff2Tiles.Core.Tiles.ITile.html">ITile</a></p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public interface IGeoTiff : IAsyncDisposable, IDisposable</code></pre>
+  </div>
+
+
+
+
+
+
+
+  <dl class="typelist derived">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iasyncdisposable.disposeasync">IAsyncDisposable.DisposeAsync()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable.dispose">IDisposable.Dispose()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="GTiff2Tiles_Core_GeoTiffs_IGeoTiff_GeoCoordinateSystem_" data-uid="GTiff2Tiles.Core.GeoTiffs.IGeoTiff.GeoCoordinateSystem*"></a>
+
+  <h3 id="GTiff2Tiles_Core_GeoTiffs_IGeoTiff_GeoCoordinateSystem" data-uid="GTiff2Tiles.Core.GeoTiffs.IGeoTiff.GeoCoordinateSystem">
+  GeoCoordinateSystem
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/GeoTiffs/IGeoTiff.cs/#L41"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Type of desired <a class="xref" href="GTiff2Tiles.Core.Enums.CoordinateSystem.html">CoordinateSystem</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">CoordinateSystem GeoCoordinateSystem { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GTiff2Tiles.Core.Enums.CoordinateSystem.html">CoordinateSystem</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="GTiff2Tiles_Core_GeoTiffs_IGeoTiff_IsDisposed_" data-uid="GTiff2Tiles.Core.GeoTiffs.IGeoTiff.IsDisposed*"></a>
+
+  <h3 id="GTiff2Tiles_Core_GeoTiffs_IGeoTiff_IsDisposed" data-uid="GTiff2Tiles.Core.GeoTiffs.IGeoTiff.IsDisposed">
+  IsDisposed
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/GeoTiffs/IGeoTiff.cs/#L21"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Shows if resources have already been disposed</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool IsDisposed { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="GTiff2Tiles_Core_GeoTiffs_IGeoTiff_MaxCoordinate_" data-uid="GTiff2Tiles.Core.GeoTiffs.IGeoTiff.MaxCoordinate*"></a>
+
+  <h3 id="GTiff2Tiles_Core_GeoTiffs_IGeoTiff_MaxCoordinate" data-uid="GTiff2Tiles.Core.GeoTiffs.IGeoTiff.MaxCoordinate">
+  MaxCoordinate
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/GeoTiffs/IGeoTiff.cs/#L36"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Maximal <a class="xref" href="GTiff2Tiles.Core.Coordinates.GeoCoordinate.html">GeoCoordinate</a> of this <a class="xref" href="GTiff2Tiles.Core.GeoTiffs.IGeoTiff.html">IGeoTiff</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">GeoCoordinate MaxCoordinate { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GTiff2Tiles.Core.Coordinates.GeoCoordinate.html">GeoCoordinate</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="GTiff2Tiles_Core_GeoTiffs_IGeoTiff_MinCoordinate_" data-uid="GTiff2Tiles.Core.GeoTiffs.IGeoTiff.MinCoordinate*"></a>
+
+  <h3 id="GTiff2Tiles_Core_GeoTiffs_IGeoTiff_MinCoordinate" data-uid="GTiff2Tiles.Core.GeoTiffs.IGeoTiff.MinCoordinate">
+  MinCoordinate
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/GeoTiffs/IGeoTiff.cs/#L31"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Minimal <a class="xref" href="GTiff2Tiles.Core.Coordinates.GeoCoordinate.html">GeoCoordinate</a> of this <a class="xref" href="GTiff2Tiles.Core.GeoTiffs.IGeoTiff.html">IGeoTiff</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">GeoCoordinate MinCoordinate { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GTiff2Tiles.Core.Coordinates.GeoCoordinate.html">GeoCoordinate</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="GTiff2Tiles_Core_GeoTiffs_IGeoTiff_Size_" data-uid="GTiff2Tiles.Core.GeoTiffs.IGeoTiff.Size*"></a>
+
+  <h3 id="GTiff2Tiles_Core_GeoTiffs_IGeoTiff_Size" data-uid="GTiff2Tiles.Core.GeoTiffs.IGeoTiff.Size">
+  Size
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/GeoTiffs/IGeoTiff.cs/#L26"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Image's <a class="xref" href="GTiff2Tiles.Core.Images.Size.html">Size</a> (width and height)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Size Size { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="GTiff2Tiles.Core.Images.Size.html">Size</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/GeoTiffs/IGeoTiff.cs/#L14" class="edit-link">Edit this page</a>
+        </div>
+
+        
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

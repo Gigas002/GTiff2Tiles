@@ -1,0 +1,734 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class RasterTile
+ </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class RasterTile
+ ">
+      
+      <link rel="icon" href="../images/Icon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Gigas002/GTiff2Tiles/new/master/apiSpec/new?filename=GTiff2Tiles_Core_Tiles_RasterTile.md&amp;value=---%0Auid%3A%20GTiff2Tiles.Core.Tiles.RasterTile%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+  </head>
+
+  <script type="module">
+    import options from './../public/main.js'
+    import { init } from './../public/docfx.min.js'
+    init(options)
+  </script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/Icon.png" alt="">
+            
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="GTiff2Tiles.Core.Tiles.RasterTile">
+
+
+
+  <h1 id="GTiff2Tiles_Core_Tiles_RasterTile" data-uid="GTiff2Tiles.Core.Tiles.RasterTile" class="text-break">
+    Class RasterTile
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Tiles/RasterTile.cs/#L18"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="GTiff2Tiles.html">GTiff2Tiles</a>.<a class="xref" href="GTiff2Tiles.Core.html">Core</a>.<a class="xref" href="GTiff2Tiles.Core.Tiles.html">Tiles</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>GTiff2Tiles.Core.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p><a class="xref" href="GTiff2Tiles.Core.GeoTiffs.Raster.html">Raster</a> <a class="xref" href="GTiff2Tiles.Core.Tiles.Tile.html">Tile</a></p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class RasterTile : Tile, ITile, IDisposable, IAsyncDisposable</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><a class="xref" href="GTiff2Tiles.Core.Tiles.Tile.html">Tile</a></div>
+      <div><span class="xref">RasterTile</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="GTiff2Tiles.Core.Tiles.ITile.html">ITile</a></div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iasyncdisposable">IAsyncDisposable</a></div>
+    </dd>
+  </dl>
+
+
+  <dl class="typelist derived">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="GTiff2Tiles.Core.Tiles.Tile.html#GTiff2Tiles_Core_Tiles_Tile_DefaultSize">Tile.DefaultSize</a>
+    </div>
+    <div>
+      <a class="xref" href="GTiff2Tiles.Core.Tiles.Tile.html#GTiff2Tiles_Core_Tiles_Tile_IsDisposed">Tile.IsDisposed</a>
+    </div>
+    <div>
+      <a class="xref" href="GTiff2Tiles.Core.Tiles.Tile.html#GTiff2Tiles_Core_Tiles_Tile_CoordinateSystem">Tile.CoordinateSystem</a>
+    </div>
+    <div>
+      <a class="xref" href="GTiff2Tiles.Core.Tiles.Tile.html#GTiff2Tiles_Core_Tiles_Tile_MinCoordinate">Tile.MinCoordinate</a>
+    </div>
+    <div>
+      <a class="xref" href="GTiff2Tiles.Core.Tiles.Tile.html#GTiff2Tiles_Core_Tiles_Tile_MaxCoordinate">Tile.MaxCoordinate</a>
+    </div>
+    <div>
+      <a class="xref" href="GTiff2Tiles.Core.Tiles.Tile.html#GTiff2Tiles_Core_Tiles_Tile_Number">Tile.Number</a>
+    </div>
+    <div>
+      <a class="xref" href="GTiff2Tiles.Core.Tiles.Tile.html#GTiff2Tiles_Core_Tiles_Tile_Bytes">Tile.Bytes</a>
+    </div>
+    <div>
+      <a class="xref" href="GTiff2Tiles.Core.Tiles.Tile.html#GTiff2Tiles_Core_Tiles_Tile_Size">Tile.Size</a>
+    </div>
+    <div>
+      <a class="xref" href="GTiff2Tiles.Core.Tiles.Tile.html#GTiff2Tiles_Core_Tiles_Tile_Path">Tile.Path</a>
+    </div>
+    <div>
+      <a class="xref" href="GTiff2Tiles.Core.Tiles.Tile.html#GTiff2Tiles_Core_Tiles_Tile_Extension">Tile.Extension</a>
+    </div>
+    <div>
+      <a class="xref" href="GTiff2Tiles.Core.Tiles.Tile.html#GTiff2Tiles_Core_Tiles_Tile_TmsCompatible">Tile.TmsCompatible</a>
+    </div>
+    <div>
+      <a class="xref" href="GTiff2Tiles.Core.Tiles.Tile.html#GTiff2Tiles_Core_Tiles_Tile_MinimalBytesCount">Tile.MinimalBytesCount</a>
+    </div>
+    <div>
+      <a class="xref" href="GTiff2Tiles.Core.Tiles.Tile.html#GTiff2Tiles_Core_Tiles_Tile_Dispose">Tile.Dispose()</a>
+    </div>
+    <div>
+      <a class="xref" href="GTiff2Tiles.Core.Tiles.Tile.html#GTiff2Tiles_Core_Tiles_Tile_Dispose_System_Boolean_">Tile.Dispose(bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="GTiff2Tiles.Core.Tiles.Tile.html#GTiff2Tiles_Core_Tiles_Tile_DisposeAsync">Tile.DisposeAsync()</a>
+    </div>
+    <div>
+      <a class="xref" href="GTiff2Tiles.Core.Tiles.Tile.html#GTiff2Tiles_Core_Tiles_Tile_Validate_System_Boolean_">Tile.Validate(bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="GTiff2Tiles.Core.Tiles.Tile.html#GTiff2Tiles_Core_Tiles_Tile_Validate_GTiff2Tiles_Core_Tiles_ITile_System_Boolean_">Tile.Validate(ITile, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="GTiff2Tiles.Core.Tiles.Tile.html#GTiff2Tiles_Core_Tiles_Tile_CalculatePosition">Tile.CalculatePosition()</a>
+    </div>
+    <div>
+      <a class="xref" href="GTiff2Tiles.Core.Tiles.Tile.html#GTiff2Tiles_Core_Tiles_Tile_CalculatePosition_GTiff2Tiles_Core_Tiles_Number_System_Boolean_">Tile.CalculatePosition(Number, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="GTiff2Tiles.Core.Tiles.Tile.html#GTiff2Tiles_Core_Tiles_Tile_GetExtensionString">Tile.GetExtensionString()</a>
+    </div>
+    <div>
+      <a class="xref" href="GTiff2Tiles.Core.Tiles.Tile.html#GTiff2Tiles_Core_Tiles_Tile_GetExtensionString_GTiff2Tiles_Core_Enums_TileExtension_">Tile.GetExtensionString(TileExtension)</a>
+    </div>
+    <div>
+      <a class="xref" href="GTiff2Tiles.Core.Tiles.Tile.html#GTiff2Tiles_Core_Tiles_Tile_WriteToFile_System_String_">Tile.WriteToFile(string)</a>
+    </div>
+    <div>
+      <a class="xref" href="GTiff2Tiles.Core.Tiles.Tile.html#GTiff2Tiles_Core_Tiles_Tile_WriteToFile_GTiff2Tiles_Core_Tiles_ITile_System_String_">Tile.WriteToFile(ITile, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="GTiff2Tiles_Core_Tiles_RasterTile__ctor_" data-uid="GTiff2Tiles.Core.Tiles.RasterTile.#ctor*"></a>
+
+  <h3 id="GTiff2Tiles_Core_Tiles_RasterTile__ctor_GTiff2Tiles_Core_Coordinates_GeoCoordinate_GTiff2Tiles_Core_Coordinates_GeoCoordinate_System_Int32_GTiff2Tiles_Core_Images_Size_System_Boolean_" data-uid="GTiff2Tiles.Core.Tiles.RasterTile.#ctor(GTiff2Tiles.Core.Coordinates.GeoCoordinate,GTiff2Tiles.Core.Coordinates.GeoCoordinate,System.Int32,GTiff2Tiles.Core.Images.Size,System.Boolean)">
+  RasterTile(GeoCoordinate, GeoCoordinate, int, Size, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Tiles/RasterTile.cs/#L70"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates new <a class="xref" href="GTiff2Tiles.Core.Tiles.Tile.html">Tile</a> from <a class="xref" href="GTiff2Tiles.Core.Coordinates.GeoCoordinate.html">GeoCoordinate</a> values</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public RasterTile(GeoCoordinate minCoordinate, GeoCoordinate maxCoordinate, int zoom, Size size = null, bool tmsCompatible = false)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>minCoordinate</code> <a class="xref" href="GTiff2Tiles.Core.Coordinates.GeoCoordinate.html">GeoCoordinate</a></dt>
+    <dd><p>Minimal <a class="xref" href="GTiff2Tiles.Core.Coordinates.GeoCoordinate.html">GeoCoordinate</a></p>
+</dd>
+    <dt><code>maxCoordinate</code> <a class="xref" href="GTiff2Tiles.Core.Coordinates.GeoCoordinate.html">GeoCoordinate</a></dt>
+    <dd><p>Maximal <a class="xref" href="GTiff2Tiles.Core.Coordinates.GeoCoordinate.html">GeoCoordinate</a></p>
+</dd>
+    <dt><code>zoom</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>Zoom</p>
+</dd>
+    <dt><code>size</code> <a class="xref" href="GTiff2Tiles.Core.Images.Size.html">Size</a></dt>
+    <dd><p><a class="xref" href="GTiff2Tiles.Core.Tiles.Tile.html#GTiff2Tiles_Core_Tiles_Tile_Size">Size</a>;
+<remarks>should be a square, e.g. 256x256;
+<p></p>If set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>, uses <a class="xref" href="GTiff2Tiles.Core.Tiles.Tile.html#GTiff2Tiles_Core_Tiles_Tile_DefaultSize">DefaultSize</a>
+as value</remarks></p>
+</dd>
+    <dt><code>tmsCompatible</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Is tms compatible?</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
+    <dd></dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+  <a id="GTiff2Tiles_Core_Tiles_RasterTile__ctor_" data-uid="GTiff2Tiles.Core.Tiles.RasterTile.#ctor*"></a>
+
+  <h3 id="GTiff2Tiles_Core_Tiles_RasterTile__ctor_GTiff2Tiles_Core_Tiles_Number_GTiff2Tiles_Core_Enums_CoordinateSystem_GTiff2Tiles_Core_Images_Size_System_Boolean_" data-uid="GTiff2Tiles.Core.Tiles.RasterTile.#ctor(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Enums.CoordinateSystem,GTiff2Tiles.Core.Images.Size,System.Boolean)">
+  RasterTile(Number, CoordinateSystem, Size, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Tiles/RasterTile.cs/#L61"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates new <a class="xref" href="GTiff2Tiles.Core.Tiles.Tile.html">Tile</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public RasterTile(Number number, CoordinateSystem coordinateSystem, Size size = null, bool tmsCompatible = false)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>number</code> <a class="xref" href="GTiff2Tiles.Core.Tiles.Number.html">Number</a></dt>
+    <dd><p><a class="xref" href="GTiff2Tiles.Core.Tiles.Tile.html#GTiff2Tiles_Core_Tiles_Tile_Number">Number</a></p>
+</dd>
+    <dt><code>coordinateSystem</code> <a class="xref" href="GTiff2Tiles.Core.Enums.CoordinateSystem.html">CoordinateSystem</a></dt>
+    <dd><p>Desired coordinate system</p>
+</dd>
+    <dt><code>size</code> <a class="xref" href="GTiff2Tiles.Core.Images.Size.html">Size</a></dt>
+    <dd><p><a class="xref" href="GTiff2Tiles.Core.Tiles.Tile.html#GTiff2Tiles_Core_Tiles_Tile_Size">Size</a>;
+<remarks>should be a square, e.g. 256x256;
+<p></p>If set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>, uses <a class="xref" href="GTiff2Tiles.Core.Tiles.Tile.html#GTiff2Tiles_Core_Tiles_Tile_DefaultSize">DefaultSize</a>
+as value</remarks></p>
+</dd>
+    <dt><code>tmsCompatible</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Is tms compatible?</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
+    <dd></dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="GTiff2Tiles_Core_Tiles_RasterTile_DefaultBandsCount" data-uid="GTiff2Tiles.Core.Tiles.RasterTile.DefaultBandsCount">
+  DefaultBandsCount
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Tiles/RasterTile.cs/#L30"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Default count of bands</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const int DefaultBandsCount = 4</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="GTiff2Tiles_Core_Tiles_RasterTile_BandsCount_" data-uid="GTiff2Tiles.Core.Tiles.RasterTile.BandsCount*"></a>
+
+  <h3 id="GTiff2Tiles_Core_Tiles_RasterTile_BandsCount" data-uid="GTiff2Tiles.Core.Tiles.RasterTile.BandsCount">
+  BandsCount
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Tiles/RasterTile.cs/#L35"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Count of bands in <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterTile</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int BandsCount { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="GTiff2Tiles_Core_Tiles_RasterTile_Interpolation_" data-uid="GTiff2Tiles.Core.Tiles.RasterTile.Interpolation*"></a>
+
+  <h3 id="GTiff2Tiles_Core_Tiles_RasterTile_Interpolation" data-uid="GTiff2Tiles.Core.Tiles.RasterTile.Interpolation">
+  Interpolation
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Tiles/RasterTile.cs/#L49"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Interpolation of this <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterTile</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Enums.Kernel Interpolation { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Enums</span>.<span class="xref">Kernel</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="GTiff2Tiles_Core_Tiles_RasterTile_CreateImage_" data-uid="GTiff2Tiles.Core.Tiles.RasterTile.CreateImage*"></a>
+
+  <h3 id="GTiff2Tiles_Core_Tiles_RasterTile_CreateImage_GTiff2Tiles_Core_GeoTiffs_IGeoTiff_NetVips_Image_" data-uid="GTiff2Tiles.Core.Tiles.RasterTile.CreateImage(GTiff2Tiles.Core.GeoTiffs.IGeoTiff,NetVips.Image)">
+  CreateImage(IGeoTiff, Image)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Tiles/RasterTile.cs/#L88"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Create <span class="xref">NetVips.Image</span> for one <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterTile</a>
+from input <span class="xref">NetVips.Image</span> or tile cache</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Image CreateImage(IGeoTiff sourceGeoTiff, Image tileCache)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>sourceGeoTiff</code> <a class="xref" href="GTiff2Tiles.Core.GeoTiffs.IGeoTiff.html">IGeoTiff</a></dt>
+    <dd><p>Source <a class="xref" href="GTiff2Tiles.Core.GeoTiffs.IGeoTiff.html">IGeoTiff</a></p>
+</dd>
+    <dt><code>tileCache</code> <span class="xref">Image</span></dt>
+    <dd><p>Source <span class="xref">NetVips.Image</span>
+or tile cache</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Image</span></dt>
+    <dd><p>Ready <span class="xref">NetVips.Image</span> for <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterTile</a></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd></dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+  <a id="GTiff2Tiles_Core_Tiles_RasterTile_WriteOverviewTileBytes_" data-uid="GTiff2Tiles.Core.Tiles.RasterTile.WriteOverviewTileBytes*"></a>
+
+  <h3 id="GTiff2Tiles_Core_Tiles_RasterTile_WriteOverviewTileBytes__1___0___" data-uid="GTiff2Tiles.Core.Tiles.RasterTile.WriteOverviewTileBytes``1(``0[])">
+  WriteOverviewTileBytes&lt;T&gt;(T[])
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Tiles/RasterTile.cs/#L149"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Create overview bytes for current <a class="xref" href="GTiff2Tiles.Core.Tiles.ITile.html">ITile</a> from source <a class="xref" href="GTiff2Tiles.Core.Tiles.ITile.html">ITile</a>s</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override IEnumerable&lt;byte&gt; WriteOverviewTileBytes&lt;T&gt;(T[] allBaseTiles) where T : class, ITile</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>allBaseTiles</code> T[]</dt>
+    <dd><p>Array of all tiles to search 4 correlating</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</dt>
+    <dd><p>Bytes of overview tile</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>Inheritors of <a class="xref" href="GTiff2Tiles.Core.Tiles.ITile.html">ITile</a></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GTiff2Tiles_Core_Tiles_RasterTile_WriteOverviewTileImage_" data-uid="GTiff2Tiles.Core.Tiles.RasterTile.WriteOverviewTileImage*"></a>
+
+  <h3 id="GTiff2Tiles_Core_Tiles_RasterTile_WriteOverviewTileImage__1___0___System_Boolean_" data-uid="GTiff2Tiles.Core.Tiles.RasterTile.WriteOverviewTileImage``1(``0[],System.Boolean)">
+  WriteOverviewTileImage&lt;T&gt;(T[], bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Tiles/RasterTile.cs/#L174"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Create <span class="xref">NetVips.Image</span> from 4 underlying lower tiles</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Image WriteOverviewTileImage&lt;T&gt;(T[] fourBaseTiles, bool isBuffered) where T : class, ITile</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>fourBaseTiles</code> T[]</dt>
+    <dd><p>4 lower tiles</p>
+</dd>
+    <dt><code>isBuffered</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Do base tiles have bytes or they use paths?</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Image</span></dt>
+    <dd><p>Upper tile <span class="xref">NetVips.Image</span></p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>Inheritors of <a class="xref" href="GTiff2Tiles.Core.Tiles.ITile.html">ITile</a></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GTiff2Tiles_Core_Tiles_RasterTile_WriteToChannel_" data-uid="GTiff2Tiles.Core.Tiles.RasterTile.WriteToChannel*"></a>
+
+  <h3 id="GTiff2Tiles_Core_Tiles_RasterTile_WriteToChannel__1_GTiff2Tiles_Core_GeoTiffs_IGeoTiff_System_Threading_Channels_ChannelWriter___0__GTiff2Tiles_Core_Args_IWriteTilesArgs_" data-uid="GTiff2Tiles.Core.Tiles.RasterTile.WriteToChannel``1(GTiff2Tiles.Core.GeoTiffs.IGeoTiff,System.Threading.Channels.ChannelWriter{``0},GTiff2Tiles.Core.Args.IWriteTilesArgs)">
+  WriteToChannel&lt;T&gt;(IGeoTiff, ChannelWriter&lt;T&gt;, IWriteTilesArgs)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Tiles/RasterTile.cs/#L140"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Write tile to channel, using source geotiff and corresponding args</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override bool WriteToChannel&lt;T&gt;(IGeoTiff sourceGeoTiff, ChannelWriter&lt;T&gt; tileWriter, IWriteTilesArgs args) where T : class, ITile</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>sourceGeoTiff</code> <a class="xref" href="GTiff2Tiles.Core.GeoTiffs.IGeoTiff.html">IGeoTiff</a></dt>
+    <dd><p>Source <a class="xref" href="GTiff2Tiles.Core.GeoTiffs.IGeoTiff.html">IGeoTiff</a></p>
+</dd>
+    <dt><code>tileWriter</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.channels.channelwriter-1">ChannelWriter</a>&lt;T&gt;</dt>
+    <dd><p>Target <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.channels.channelwriter-1">ChannelWriter&lt;T&gt;</a></p>
+</dd>
+    <dt><code>args</code> <a class="xref" href="GTiff2Tiles.Core.Args.IWriteTilesArgs.html">IWriteTilesArgs</a></dt>
+    <dd><p>Additional arguments</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p><a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if no errors happened; <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a> otherwse</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>Inheritors of <a class="xref" href="GTiff2Tiles.Core.Tiles.ITile.html">ITile</a></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="GTiff2Tiles_Core_Tiles_RasterTile_WriteToEnumerable_" data-uid="GTiff2Tiles.Core.Tiles.RasterTile.WriteToEnumerable*"></a>
+
+  <h3 id="GTiff2Tiles_Core_Tiles_RasterTile_WriteToEnumerable_GTiff2Tiles_Core_GeoTiffs_IGeoTiff_GTiff2Tiles_Core_Args_IWriteTilesArgs_" data-uid="GTiff2Tiles.Core.Tiles.RasterTile.WriteToEnumerable(GTiff2Tiles.Core.GeoTiffs.IGeoTiff,GTiff2Tiles.Core.Args.IWriteTilesArgs)">
+  WriteToEnumerable(IGeoTiff, IWriteTilesArgs)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Tiles/RasterTile.cs/#L130"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Write tile to enumerable of bytes, using source geotiff and corresponding args</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override IEnumerable&lt;byte&gt; WriteToEnumerable(IGeoTiff sourceGeoTiff, IWriteTilesArgs args)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>sourceGeoTiff</code> <a class="xref" href="GTiff2Tiles.Core.GeoTiffs.IGeoTiff.html">IGeoTiff</a></dt>
+    <dd><p>Source <a class="xref" href="GTiff2Tiles.Core.GeoTiffs.IGeoTiff.html">IGeoTiff</a></p>
+</dd>
+    <dt><code>args</code> <a class="xref" href="GTiff2Tiles.Core.Args.IWriteTilesArgs.html">IWriteTilesArgs</a></dt>
+    <dd><p>Additional arguments</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="GTiff2Tiles_Core_Tiles_RasterTile_WriteToFile_" data-uid="GTiff2Tiles.Core.Tiles.RasterTile.WriteToFile*"></a>
+
+  <h3 id="GTiff2Tiles_Core_Tiles_RasterTile_WriteToFile_GTiff2Tiles_Core_GeoTiffs_IGeoTiff_GTiff2Tiles_Core_Args_IWriteTilesArgs_" data-uid="GTiff2Tiles.Core.Tiles.RasterTile.WriteToFile(GTiff2Tiles.Core.GeoTiffs.IGeoTiff,GTiff2Tiles.Core.Args.IWriteTilesArgs)">
+  WriteToFile(IGeoTiff, IWriteTilesArgs)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Tiles/RasterTile.cs/#L120"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Write tile to file, using source geotiff and corresponding args</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void WriteToFile(IGeoTiff sourceGeoTiff, IWriteTilesArgs args)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>sourceGeoTiff</code> <a class="xref" href="GTiff2Tiles.Core.GeoTiffs.IGeoTiff.html">IGeoTiff</a></dt>
+    <dd><p>Source <a class="xref" href="GTiff2Tiles.Core.GeoTiffs.IGeoTiff.html">IGeoTiff</a></p>
+</dd>
+    <dt><code>args</code> <a class="xref" href="GTiff2Tiles.Core.Args.IWriteTilesArgs.html">IWriteTilesArgs</a></dt>
+    <dd><p>Additional arguments</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Tiles/RasterTile.cs/#L18" class="edit-link">Edit this page</a>
+        </div>
+
+        
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
