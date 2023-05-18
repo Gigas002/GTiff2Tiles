@@ -1,0 +1,40 @@
+name: Deploy GitHub Pages
+
+on:
+  push:
+    branches: ["master"]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+# see: https://docs.github.com/en/actions/using-jobs/assigning-permissions-to-jobs
+permissions: write-all
+
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+concurrency:
+  group: "pages"
+
+jobs:
+
+  deploy-pages:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Chekout
+      uses: actions/checkout@v3
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 6.x
+
+    - run: dotnet tool update -g docfx
+    - run: |
+        docfx metadata
+        docfx build
+         
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{secrets.GITHUB_TOKEN}}
+        publish_dir: docs
+
