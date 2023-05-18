@@ -38,18 +38,16 @@ Write-Output "Removing all *.pdb files from Publish directory"
 Get-ChildItem "Publish/" -Include *.pdb -Recurse | Remove-Item
 
 # Copy docs, etc to published directories before zipping them
-Write-Output "Copying docs, LICENSE.md, etc to published directories"
+Write-Output "Copying LICENSE.md, etc to published directories"
 
 # win-x64
 if ($IsWindows -or $buildAll)
 {
     # GTiff2Tiles.Console
-    Copy-Item -Path "GTiff2Tiles.Console/console-index.pdf" -Destination "Publish/GTiff2Tiles.Console/win-x64/console-index.pdf"
     Copy-Item -Path "LICENSE.md" -Destination "Publish/GTiff2Tiles.Console/win-x64/LICENSE.md"
     Copy-Item -Path "CHANGELOG.md" -Destination "Publish/GTiff2Tiles.Console/win-x64/CHANGELOG.md"
 
     # GTiff2Tiles.GUI
-    Copy-Item -Path "GTiff2Tiles.GUI/gui-index.pdf" -Destination "Publish/GTiff2Tiles.GUI/win-x64/gui-index.pdf"
     Copy-Item -Path "LICENSE.md" -Destination "Publish/GTiff2Tiles.GUI/win-x64/LICENSE.md"
     Copy-Item -Path "CHANGELOG.md" -Destination "Publish/GTiff2Tiles.GUI/win-x64/CHANGELOG.md"
 }
@@ -58,7 +56,6 @@ if ($IsWindows -or $buildAll)
 if ($IsLinux -or $buildAll)
 {
     # linux-x64-console
-    Copy-Item -Path "GTiff2Tiles.Console/console-index.pdf" -Destination "Publish/GTiff2Tiles.Console/linux-x64/console-index.pdf"
     Copy-Item -Path "LICENSE.md" -Destination "Publish/GTiff2Tiles.Console/linux-x64/LICENSE.md"
     Copy-Item -Path "CHANGELOG.md" -Destination "Publish/GTiff2Tiles.Console/linux-x64/CHANGELOG.md"
 }
