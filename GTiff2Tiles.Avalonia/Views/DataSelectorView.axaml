@@ -1,0 +1,25 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:GTiff2Tiles.Avalonia.ViewModels"
+             mc:Ignorable="d"
+             x:Class="GTiff2Tiles.Avalonia.Views.DataSelectorView">
+  <Design.DataContext>
+    <vm:DataSelectorViewModel/>
+  </Design.DataContext>
+
+  <Grid RowDefinitions="Auto" ColumnDefinitions="*,10,Auto"
+        IsEnabled="{Binding IsSelectorEnabled}">
+
+    <TextBox Grid.Row="0" Grid.Column="0"
+             Watermark="{Binding SelectorTip}"
+             ToolTip.Tip="{Binding SelectorTip}"
+             Text="{Binding SelectorPath}" />
+    <Button Grid.Row="0" Grid.Column="2"
+            ToolTip.Tip="{Binding SelectorTip}"
+            Content="{Binding SelectorButtonText}"
+            Command="{Binding SelectorButton}"/>
+  </Grid>
+
+</UserControl>

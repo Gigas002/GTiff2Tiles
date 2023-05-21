@@ -1,0 +1,61 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:GTiff2Tiles.Avalonia.ViewModels"
+             xmlns:models="using:GTiff2Tiles.Avalonia.Models"
+             mc:Ignorable="d"
+             x:Class="GTiff2Tiles.Avalonia.Views.DataRunnerView">
+    <Design.DataContext>
+        <vm:DataRunnerViewModel/>
+    </Design.DataContext>
+    <UserControl.DataTemplates>
+        <DataTemplate DataType="models:ComboBoxItemModel">
+            <ComboBoxItem Content="{Binding ContentString}"/>
+        </DataTemplate>
+    </UserControl.DataTemplates>
+
+    <ScrollViewer>
+        <Grid RowDefinitions="*,Auto" ColumnDefinitions="*">
+
+            <Grid Grid.Row="0" Grid.Column="0" IsEnabled="{Binding IsCurrentGridEnabled}"
+                  RowDefinitions="Auto,10,Auto,10,Auto,*,Auto,10,Auto"
+                  ColumnDefinitions="*,10,*">
+
+                <UserControl Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3"
+                             Content="{Binding InputDataSelector}"/>
+
+                <UserControl Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3"
+                             Content="{Binding OutputDataSelector}"/>
+
+                <TextBox Grid.Row="4" Grid.Column="0"
+                         Watermark="{Binding SelectZoomTip}"
+                         ToolTip.Tip="{Binding SelectZoomTip}"
+                         Text="{Binding MinZoom}"/>
+                <TextBox Grid.Row="4" Grid.Column="2"
+                         Watermark="{Binding SelectZoomTip}"
+                         ToolTip.Tip="{Binding SelectZoomTip}"
+                         Text="{Binding MaxZoom}"/>
+
+                <Button Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="3"
+                        HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"
+                        VerticalAlignment="Stretch" VerticalContentAlignment="Center"
+                        IsEnabled="{Binding IsStartButtonEnabled}"
+                        Content="{Binding StartButtonText}"
+                        Command="{Binding StartButton}" />
+
+                <UserControl Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="3"
+                             Content="{Binding ProgressPresenter}"/>
+            </Grid>
+
+            <Button Grid.Row="1" Grid.Column="0"
+                    HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"
+                    VerticalAlignment="Stretch" VerticalContentAlignment="Center"
+                    IsEnabled="{Binding IsCancelButtonEnabled}"
+                    Content="{Binding CancelButtonText}"
+                    Command="{Binding CancelButton}"/>
+
+        </Grid>
+    </ScrollViewer>
+
+</UserControl>

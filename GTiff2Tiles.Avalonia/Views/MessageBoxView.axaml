@@ -1,0 +1,44 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:GTiff2Tiles.Avalonia.ViewModels"
+             MaxHeight="500"
+             MaxWidth="500"
+             mc:Ignorable="d"
+             x:Class="GTiff2Tiles.Avalonia.Views.MessageBoxView">
+    <Design.DataContext>
+        <vm:MessageBoxViewModel/>
+    </Design.DataContext>
+
+    <ScrollViewer>
+        <Grid RowDefinitions="*,10,*,10,Auto" ColumnDefinitions="*,10,*">
+            <!-- <ExperimentalAcrylicBorder Grid.Row="0" Grid.Column="0" Grid.RowSpan="5" Grid.ColumnSpan="3" IsHitTestVisible="False">
+      <ExperimentalAcrylicBorder.Material>
+        <ExperimentalAcrylicMaterial BackgroundSource="Digger" TintColor="Black" MaterialOpacity="0.65" TintOpacity="1.0" />
+      </ExperimentalAcrylicBorder.Material>
+    </ExperimentalAcrylicBorder> -->
+            <!-- <Image Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Height="190" Width="190" -->
+            <!--        VerticalAlignment="Center" HorizontalAlignment="Center" -->
+            <!--        Source="{Binding ConditionImage}"/> -->
+
+            <ScrollViewer Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3">
+                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap"
+                           Text="{Binding Message}"/>
+            </ScrollViewer>
+
+            <Button Grid.Row="4" Grid.Column="0"
+                    HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"
+                    VerticalAlignment="Stretch" VerticalContentAlignment="Center"
+                    Content="{Binding OkButtonText}"
+                    Command="{Binding OkButton}"/>
+            <Button Grid.Row="4" Grid.Column="2"
+                    HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"
+                    VerticalAlignment="Stretch" VerticalContentAlignment="Center"
+                    IsEnabled="{Binding IsCancelButtonEnabled}"
+                    Content="{Binding CancelButtonText}"
+                    Command="{Binding CancelButton}"/>
+        </Grid>
+    </ScrollViewer>
+
+</UserControl>

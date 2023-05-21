@@ -1,0 +1,56 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:GTiff2Tiles.Avalonia.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:dialogHostAvalonia="using:DialogHostAvalonia"
+        mc:Ignorable="d"
+        MinHeight="460"
+        MinWidth="580"
+        Height="750"
+        Width="780"
+        WindowStartupLocation="CenterScreen"
+        x:Class="GTiff2Tiles.Avalonia.Views.MainWindow"
+        Icon="/Assets/icon.ico"
+        Title="{Binding AppTitle}"
+        TransparencyLevelHint="AcrylicBlur"
+        Background="Transparent"
+        ExtendClientAreaToDecorationsHint="True">
+    <Design.DataContext>
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+    <Window.Styles>
+        <Style Selector="TabControl WrapPanel">
+            <Setter Property="Background" Value="Black"/>
+        </Style>
+    </Window.Styles>
+
+    <Grid RowDefinitions="40,*" ColumnDefinitions="Auto,*">
+        <ExperimentalAcrylicBorder Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2" IsHitTestVisible="False">
+            <ExperimentalAcrylicBorder.Material>
+                <ExperimentalAcrylicMaterial BackgroundSource="Digger" TintColor="Black" MaterialOpacity="0.65" TintOpacity="1.0" />
+            </ExperimentalAcrylicBorder.Material>
+        </ExperimentalAcrylicBorder>
+        <Rectangle Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+                   IsHitTestVisible="False" Fill="Black"/>
+        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center"
+                   TextAlignment="Center" FontSize="30" IsHitTestVisible="False" Text="{Binding AppTitle}"/>
+
+        <TabControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" TabStripPlacement="Left" Items="{Binding Tabs}">
+            <TabControl.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Header}"/>
+                </DataTemplate>
+            </TabControl.ItemTemplate>
+            <TabControl.ContentTemplate>
+                <DataTemplate DataType="vm:TabItemViewModel">
+                    <UserControl Content="{Binding ViewModel}" Margin="0 10 0 10"/>
+                </DataTemplate>
+            </TabControl.ContentTemplate>
+        </TabControl>
+
+        <dialogHostAvalonia:DialogHost Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2" Identifier="{Binding MainDialogHostId}"/>
+
+    </Grid>
+
+</Window>
