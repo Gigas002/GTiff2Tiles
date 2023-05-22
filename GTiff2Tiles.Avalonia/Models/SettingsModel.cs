@@ -9,8 +9,6 @@ using static NetVips.Enums;
 
 namespace GTiff2Tiles.Avalonia.Models;
 
-// TODO: TMR
-
 /// <summary>
 /// Basic implementation of ISettings
 /// </summary>
@@ -41,6 +39,12 @@ public class SettingsModel
     [JsonConverter(typeof(StringToEnumJsonConverter<CoordinateSystem>))]
     public CoordinateSystem CoordinateSystem { get; set; } = CoordinateSystem.Epsg4326;
 
+    [JsonPropertyName("temp_path")]
+    public string TempPath { get; set; } = "temp";
+
+    [JsonPropertyName("tmr")]
+    public bool Tmr { get; set; }
+
     #endregion
 
     #region Performance settings
@@ -52,7 +56,7 @@ public class SettingsModel
     public int TileCacheCount { get; set; } = 1000;
 
     [JsonPropertyName("minimal_bytes_count")]
-    public int MinimalBytesCount { get; set; } = 356;
+    public int MinimalBytesCount { get; set; } = 355;
 
     [JsonPropertyName("throw_on_override")]
     public bool ThrowOnOverride { get; set; } = true;
@@ -131,7 +135,7 @@ public class SettingsModel
         File.WriteAllText(path, json);
     }
 
-    public object Clone() => new SettingsModel
+    public SettingsModel Clone() => new SettingsModel
     {
         RasterTileSize = RasterTileSize,
         RasterTileExtension = RasterTileExtension,
@@ -139,7 +143,9 @@ public class SettingsModel
         BandsCount = BandsCount,
         TmsCompatible = TmsCompatible,
         CoordinateSystem = CoordinateSystem,
-        
+        TempPath = TempPath,
+        Tmr = Tmr,
+
         MaxTiffMemoryCache = MaxTiffMemoryCache,
         TileCacheCount = TileCacheCount,
         MinimalBytesCount = MinimalBytesCount,

@@ -4,6 +4,10 @@ using GTiff2Tiles.Avalonia.Models;
 using GTiff2Tiles.Core.Constants;
 using GTiff2Tiles.Core.Helpers;
 using GTiff2Tiles.Core.Tiles;
+using GTiff2Tiles.Core;
+using GTiff2Tiles.Core.GeoTiffs;
+using GTiff2Tiles.Core.TileMapResource;
+using System.Globalization;
 
 #pragma warning disable CA1031 // Do not catch general exception types
 
@@ -25,7 +29,12 @@ public class DataRunnerViewModel : ViewModelBase, IDisposable
     public int MinZoom
     {
         get => _minZoom;
-        set => this.RaiseAndSetIfChanged(ref _minZoom, value);
+        set
+        {
+            value = value < 0 ? 0 : value;
+
+            this.RaiseAndSetIfChanged(ref _minZoom, value);
+        }
     }
 
     private int _maxZoom = 11;
@@ -36,7 +45,12 @@ public class DataRunnerViewModel : ViewModelBase, IDisposable
     public int MaxZoom
     {
         get => _maxZoom;
-        set => this.RaiseAndSetIfChanged(ref _maxZoom, value);
+        set
+        {
+            value = value < 0 ? 0 : value;
+
+            this.RaiseAndSetIfChanged(ref _maxZoom, value);
+        }
     }
 
     public ProgressViewModel ProgressPresenter { get; set; } = new();
@@ -266,7 +280,7 @@ public class DataRunnerViewModel : ViewModelBase, IDisposable
             CancellationToken.ThrowIfCancellationRequested();
 
             double percentage = i / iterationCount * 100.0;
-            await Task.Delay(1, CancellationToken).ConfigureAwait(true);
+            await Task.Delay(1).ConfigureAwait(true);
             Progress.Report(percentage);
         }
     });
@@ -280,7 +294,7 @@ public class DataRunnerViewModel : ViewModelBase, IDisposable
         // Freeze settings for current run
         var runSettings = Settings.Clone();
 
-        PreExecutionTask("message");
+        PreExecutionTask("Task in process");
 
         // Simulate work
         const double iterationCount = 10000.0;
@@ -298,9 +312,9 @@ public class DataRunnerViewModel : ViewModelBase, IDisposable
             return;
         }
 
-        PostExecutionTask("message");
+        PostExecutionTask("Task complete");
 
-        await MessageBoxViewModel.ShowAsync("message", false).ConfigureAwait(true);
+        await MessageBoxViewModel.ShowAsync("Task complete", false).ConfigureAwait(true);
     }
 
     #endregion
@@ -319,133 +333,93 @@ public class DataRunnerViewModel : ViewModelBase, IDisposable
     }
 
     
-    /*
-     Copy-paste from GTiff2Tiles.GUI
+    
+    // Copy-paste from GTiff2Tiles.GUI
      
-     
-    public async ValueTask StartButtonAsync()
+    public async ValueTask StartButton2()
     {
-        #region Preconditions checks
+        // Freeze settings for current run
+        var runSettings = Settings.Clone();
 
-        if (!await CheckPropertiesAsync().ConfigureAwait(true)) return;
+        PreExecutionTask("Generating tiles");
 
-        #endregion
-
-        // Start timer after checks passed
-        Stopwatch stopwatch = Stopwatch.StartNew();
-        _timer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(1.0) };
-        _timer.Tick += (_, _) =>
-            TimePassedValue = string.Format(CultureInfo.InvariantCulture, Strings.TimePassedValue, stopwatch.Elapsed.Days,
-                                            stopwatch.Elapsed.Hours, stopwatch.Elapsed.Minutes,
-                                            stopwatch.Elapsed.Seconds);
-        _timer.Start();
-
-        // Create temp directory object
-        string tempDirectoryPath = Path.Combine(TempDirectoryPath, DateTime.Now.ToString(DateTimePatterns.LongWithMs, CultureInfo.InvariantCulture));
-        CheckHelper.CheckDirectory(tempDirectoryPath, true);
-
-        // Create progress reporter
-        IProgress<double> progress = new Progress<double>(value => ProgressBarValue = Math.Round(value, 4));
-
-        // Because we need to check input file it's better to use temprorary value
-        string inputFilePath = InputFilePath;
-
-        // Threads should be calculated automatically if checked
-        int threadsCount = IsAutoThreads ? 0 : ThreadsCount;
-
-        // Run tiling asynchroniously
         try
         {
-            if (!await CheckHelper.CheckInputFileAsync(inputFilePath, TargetCoordinateSystem).ConfigureAwait(true))
+            await GenerateTiles(runSettings);
+        }
+        catch (Exception exception)
+        {
+            PostExecutionTask(OperationCancelledOrErrorOccuredMessage);
+
+            await MessageBoxViewModel.ShowAsync(exception).ConfigureAwait(true);
+
+            return;
+        }
+
+        PostExecutionTask("Complete");
+
+        await MessageBoxViewModel.ShowAsync("Task is done", false).ConfigureAwait(true);
+    }
+
+    public Task GenerateTiles(SettingsModel runSettings) => Task.Run(async () =>
+    {
+            ValidateData(runSettings);
+
+            // Create temp directory object
+            string tempDirectoryPath = Path.Combine(runSettings.TempPath, DateTime.Now.ToString(DateTimePatterns.LongWithMs, CultureInfo.InvariantCulture));
+            CheckHelper.CheckDirectory(tempDirectoryPath, true);
+
+            // Because we need to check input file it's better to use temprorary value
+            string inputFilePath = InputDataSelectorText;
+
+            if (!await CheckHelper.CheckInputFileAsync(inputFilePath, runSettings.CoordinateSystem).ConfigureAwait(true))
             {
                 string tempFilePath = Path.Combine(tempDirectoryPath, GdalWorker.TempFileName);
 
                 await GdalWorker.ConvertGeoTiffToTargetSystemAsync(inputFilePath, tempFilePath,
-                                                                   TargetCoordinateSystem, progress)
+                                                                   runSettings.CoordinateSystem, Progress)
                                 .ConfigureAwait(true);
                 inputFilePath = tempFilePath;
             }
 
-            using Raster image = new(inputFilePath, TargetCoordinateSystem);
+            using Raster image = new(inputFilePath, runSettings.CoordinateSystem);
+
+            var tileSize = new Core.Images.Size(runSettings.RasterTileSize, runSettings.RasterTileSize);
 
             // Generate tiles
-            await image.WriteTilesToDirectoryAsync(OutputDirectoryPath, MinZ, MaxZ, TmsCompatible, TileSize,
-                                                   TargetTileExtension, TargetInterpolation, BandsCount, TileCache,
-                                                   threadsCount, progress).ConfigureAwait(true);
+            await image.WriteTilesToDirectoryAsync(OutputDataSelectorText, MinZoom, MaxZoom,
+                runSettings.TmsCompatible, tileSize, runSettings.RasterTileExtension,
+                runSettings.RasterTileInterpolation, runSettings.BandsCount, runSettings.TileCacheCount,
+                runSettings.ThreadsCount, Progress).ConfigureAwait(true);
 
             // Generate tilemapresource if needed
-            if (IsTmr)
+            if (runSettings.Tmr)
             {
-                IEnumerable<TileSet> tileSets = TileSets.GenerateTileSetCollection(MinZ, MaxZ, TileSize, TargetCoordinateSystem);
-                TileMap tileMap = new(image.MinCoordinate, image.MaxCoordinate, TileSize, TargetTileExtension, tileSets,
-                                      TargetCoordinateSystem);
+                IEnumerable<TileSet> tileSets = TileSets.GenerateTileSetCollection(MinZoom, MaxZoom,
+                    tileSize, runSettings.CoordinateSystem);
+                TileMap tileMap = new(image.MinCoordinate, image.MaxCoordinate, tileSize,
+                    runSettings.RasterTileExtension, tileSets, runSettings.CoordinateSystem);
 
-                string xmlPath = $"{OutputDirectoryPath}/{TmrName}";
+                string xmlPath = $"{OutputDataSelectorText}/tilemapresource.xml";
                 using FileStream fs = File.OpenWrite(xmlPath);
                 tileMap.Serialize(fs);
             }
-        }
-        catch (Exception exception)
-        {
-            await Helpers.ErrorHelper.ShowExceptionAsync(exception).ConfigureAwait(true);
 
-            return;
-        }
-        finally
-        {
-            // Enable controls and stop timer
-            IsMainGridEnabled = true;
-            stopwatch.Stop();
-            _timer.Stop();
-        }
-
-        await DialogHost.Show(new MessageBoxDialogViewModel(Strings.Done)).ConfigureAwait(true);
-    }
+    }, CancellationToken);
      
-     
-    /// <summary>
-    /// Checks properties for errors and set some before starting
-    /// </summary>
-    /// <returns><see langword="true"/> if no errors occured;
-    /// <see langword="false"/> otherwise</returns>
-    private async ValueTask<bool> ValidateProperties()
+    private void ValidateData(SettingsModel settings)
     {
-        try
-        {
-            // Check paths
-            CheckHelper.CheckFile(InputFilePath, true, FileExtensions.Tif);
-            CheckHelper.CheckDirectory(OutputDirectoryPath, true);
-            CheckHelper.CheckDirectory(TempDirectoryPath);
+        // Check paths
+        CheckHelper.CheckFile(InputDataSelectorText, true, FileExtensions.Tif);
+        CheckHelper.CheckDirectory(OutputDataSelectorText);
+        CheckHelper.CheckDirectory(settings.TempPath);
 
-            // Required params
-            if (MinZoom < 0) throw new ArgumentOutOfRangeException(nameof(MinZoom));
-            if (MaxZoom < MinZoom) throw new ArgumentOutOfRangeException(nameof(MaxZoom));
-            if (BandsCount < 1 || BandsCount > 4) throw new ArgumentOutOfRangeException(nameof(BandsCount));
+        // Required params
+        if (MaxZoom < MinZoom) throw new ArgumentOutOfRangeException(nameof(MaxZoom));
 
-            // Optional params
-            if (TileSideSize <= 0) TileSideSize = Tile.DefaultSize.Width;
-            if (ThreadsCount <= 0) ThreadsCount = Environment.ProcessorCount;
-            if (TileCache < 0) TileCache = 1000;
-
-            // Need to set explicitly
-            if (Memory <= 0) throw new ArgumentOutOfRangeException(nameof(Memory));
-        }
-        catch (Exception exception)
-        {
-            await MessageBoxViewModel.ShowAsync(exception);
-
-            return false;
-        }
-
-        // Disable grid while working if no errors in args
-        IsCurrentGridEnabled = false;
-
-        // Set default progress bar value for each run
-        ProgressBarValue = 0.0;
-
-        return true;
+        // Optional params
+        if (settings.IsAutoThreads) settings.ThreadsCount = Environment.ProcessorCount;
     }
-    */
 
     #endregion
 }

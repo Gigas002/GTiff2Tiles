@@ -16,12 +16,12 @@
     </UserControl.DataTemplates>
 
     <ScrollViewer>
-        <Grid RowDefinitions="Auto,10,Auto,10,Auto,10,Auto,10,Auto,10,Auto,10,Auto,*,Auto" ColumnDefinitions="*">
+        <Grid RowDefinitions="Auto,10,Auto,10,Auto,10,Auto,*,Auto,10,Auto" ColumnDefinitions="*">
             <TextBlock Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center"
                        VerticalAlignment="Center" Text="{Binding DataSettingsText}"/>
 
             <Grid Grid.Row="2" Grid.Column="0"
-                RowDefinitions="Auto,10,Auto,10,Auto,10,Auto,10,Auto,10,Auto,10,Auto,*"
+                RowDefinitions="Auto,10,Auto,10,Auto,*"
                 ColumnDefinitions="Auto,10,*,10,Auto,10,*">
 
                 <!-- Left columns -->
@@ -32,44 +32,56 @@
                          Watermark="{Binding RasterTileSizeTip}"
                          ToolTip.Tip="{Binding RasterTileSizeTip}"
                          Text="{Binding RasterTileSize}"/>
-                <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center"
+
+                <TextBlock Grid.Row="0" Grid.Column="4" VerticalAlignment="Center"
                            Text="{Binding RasterTileExtensionTip}"/>
-                <ComboBox Grid.Row="2" Grid.Column="2" VerticalContentAlignment="Center"
+                <ComboBox Grid.Row="0" Grid.Column="6" VerticalContentAlignment="Center"
                           ToolTip.Tip="{Binding RasterTileExtensionTip}"
                           SelectedItem="{Binding RasterTileExtension}"
                           Items="{Binding RasterTileExtensions}"/>
-                <TextBlock Grid.Row="6" Grid.Column="0" VerticalAlignment="Center"
+
+                <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center"
                            Text="{Binding RasterTileInterpolationTip}"/>
-                <ComboBox Grid.Row="6" Grid.Column="2" VerticalContentAlignment="Center"
+                <ComboBox Grid.Row="2" Grid.Column="2" VerticalContentAlignment="Center"
                           ToolTip.Tip="{Binding RasterTileInterpolationTip}"
                           SelectedItem="{Binding RasterTileInterpolation}"
                           Items="{Binding RasterTileInterpolations}"/>
-                <TextBlock Grid.Row="10" Grid.Column="0" VerticalAlignment="Center"
-                           Text="{Binding BandsCountTextBlock}"/>
-                <TextBox Grid.Row="10" Grid.Column="2" VerticalContentAlignment="Center"
-                         Watermark="{Binding BandsCountTextBlock}"
-                         ToolTip.Tip="{Binding ZeroOrLesserTip}"
-                         Text="{Binding BandsCount}"/>
-                <TextBlock Grid.Row="12" Grid.Column="0" VerticalAlignment="Center"
+
+                <TextBlock Grid.Row="2" Grid.Column="4" VerticalAlignment="Center"
                            Text="{Binding CoordinateSystemTip}"/>
-                <ComboBox Grid.Row="12" Grid.Column="2" VerticalContentAlignment="Center"
+                <ComboBox Grid.Row="2" Grid.Column="6" VerticalContentAlignment="Center"
                           ToolTip.Tip="{Binding CoordinateSystemTip}"
                           SelectedItem="{Binding SelectedCoordinateSystem}"
                           Items="{Binding CoordinateSystems}"/>
-                <TextBlock Grid.Row="10" Grid.Column="4" VerticalAlignment="Center"
+
+                <TextBlock Grid.Row="4" Grid.Column="0" VerticalAlignment="Center"
+                           Text="{Binding BandsCountTextBlock}"/>
+                <TextBox Grid.Row="4" Grid.Column="2" VerticalContentAlignment="Center"
+                         Watermark="{Binding BandsCountTextBlock}"
+                         ToolTip.Tip="{Binding ZeroOrLesserTip}"
+                         Text="{Binding BandsCount}"/>
+
+                <TextBlock Grid.Row="4" Grid.Column="4" VerticalAlignment="Center"
                            Text="{Binding TmsCompatibleText}"/>
-                <ToggleSwitch Grid.Row="10" Grid.Column="6" VerticalContentAlignment="Center"
+                <ToggleSwitch Grid.Row="4" Grid.Column="6" VerticalContentAlignment="Center"
                               IsChecked="{Binding TmsCompatible}"/>
             </Grid>
             
-            <TextBlock Grid.Row="8" Grid.Column="0" HorizontalAlignment="Center"
+            <TextBlock Grid.Row="4" Grid.Column="0" HorizontalAlignment="Center"
                        VerticalAlignment="Center" Text="{Binding PerformanceSettingsText}"/>
 
-            <Grid Grid.Row="10" Grid.Column="0"
+            <Grid Grid.Row="6" Grid.Column="0"
                   RowDefinitions="Auto,10,Auto,10,Auto,10,Auto,*"
                   ColumnDefinitions="Auto,10,*,10,Auto,10,*">
 
-                <!-- Left columns -->
+                <TextBlock Grid.Row="0" Grid.Column="0"
+                           VerticalAlignment="Center"
+                           Text="{Binding TempPathTip}"/>
+                <TextBox Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="5"
+                         VerticalContentAlignment="Center"
+                         Watermark="{Binding TempPathTip}"
+                         ToolTip.Tip="{Binding TempPathTip}"
+                         Text="{Binding TempPath}"/>
                 
                 <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center"
                            Text="{Binding MaxTiffMemoryCacheTip}"/>
@@ -77,40 +89,35 @@
                          Watermark="{Binding MaxTiffMemoryCacheTip}"
                          ToolTip.Tip="{Binding MaxTiffMemoryCacheTip}"
                          Text="{Binding MaxTiffMemoryCache}"/>
-                <TextBlock Grid.Row="4" Grid.Column="0" VerticalAlignment="Center"
-                           Text="{Binding MinimalBytesCountTip}"/>
-                <TextBox Grid.Row="4" Grid.Column="2" VerticalContentAlignment="Center"
-                         Watermark="{Binding MinimalBytesCountTip}"
-                         ToolTip.Tip="{Binding MinimalBytesCountTip}"
-                         Text="{Binding MinimalBytesCount}"/>
-                <TextBlock Grid.Row="6" Grid.Column="0" VerticalAlignment="Center"
-                           Text="{Binding ThreadsCountText}"/>
-                <TextBox Grid.Row="6" Grid.Column="2" VerticalContentAlignment="Center"
-                         Watermark="{Binding ThreadsCountText}"
-                         ToolTip.Tip="{Binding ZeroOrLesserTip}"
-                         Text="{Binding ThreadsCount}"/>
 
-                <!-- Right columns -->
-
-                <TextBlock Grid.Row="0" Grid.Column="4" VerticalAlignment="Center"
-                           Text="{Binding TileCachePathTip}"/>
-                <TextBox Grid.Row="0" Grid.Column="6" VerticalContentAlignment="Center"
-                         Watermark="{Binding TileCachePathTip}"
-                         ToolTip.Tip="{Binding TileCachePathTip}"
-                         Text="{Binding TileCachePath}"/>
                 <TextBlock Grid.Row="2" Grid.Column="4" VerticalAlignment="Center"
                            Text="{Binding TileCacheCountTip}"/>
                 <TextBox Grid.Row="2" Grid.Column="6" VerticalContentAlignment="Center"
                          Watermark="{Binding TileCacheCountTip}"
                          ToolTip.Tip="{Binding TileCacheCountTip}"
                          Text="{Binding TileCacheCount}"/>
+
+                <TextBlock Grid.Row="4" Grid.Column="0" VerticalAlignment="Center"
+                           Text="{Binding MinimalBytesCountTip}"/>
+                <TextBox Grid.Row="4" Grid.Column="2" VerticalContentAlignment="Center"
+                         Watermark="{Binding MinimalBytesCountTip}"
+                         ToolTip.Tip="{Binding MinimalBytesCountTip}"
+                         Text="{Binding MinimalBytesCount}"/>
+
                 <TextBlock Grid.Row="4" Grid.Column="4" VerticalAlignment="Center"
-                           Text="{Binding ThrowOnOverrideText}"/>
+                           Text="{Binding TmrText}"/>
                 <ToggleSwitch Grid.Row="4" Grid.Column="6" VerticalContentAlignment="Center"
-                              IsChecked="{Binding ThrowOnOverride}"/>
+                              IsChecked="{Binding Tmr}"/>
+
+                <TextBlock Grid.Row="6" Grid.Column="0" VerticalAlignment="Center"
+                           Text="{Binding ThreadsCountText}"/>
+                <TextBox Grid.Row="6" Grid.Column="2" VerticalContentAlignment="Center"
+                         Watermark="{Binding ThreadsCountText}"
+                         ToolTip.Tip="{Binding ZeroOrLesserTip}"
+                         Text="{Binding ThreadsCount}"/>
             </Grid>
 
-            <Grid Grid.Row="12" Grid.Column="0"
+            <Grid Grid.Row="8" Grid.Column="0"
                   RowDefinitions="*"
                   ColumnDefinitions="*,10,*">
                 <Button Grid.Row="0" Grid.Column="0"
@@ -125,7 +132,7 @@
                         Command="{Binding SaveSettings}"/>
             </Grid>
 
-            <TextBlock Grid.Row="14" Grid.Column="0" HorizontalAlignment="Center"
+            <TextBlock Grid.Row="10" Grid.Column="0" HorizontalAlignment="Center"
                        VerticalAlignment="Center" Text="{Binding CurrentSettingsName}"/>
         </Grid>
     </ScrollViewer>

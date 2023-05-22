@@ -129,6 +129,9 @@ public class MessageBoxViewModel : ViewModelBase //, IDisposable
     /// <returns></returns>
     public async Task<DialogResult> ShowAsync()
     {
+        // do not block the thread
+        await Task.Delay(1).ConfigureAwait(true);
+
         var dialogResult = await DialogHost.Show(this, DialogHostId).ConfigureAwait(true);
 
         if (dialogResult == null) throw new ArgumentOutOfRangeException(nameof(dialogResult));

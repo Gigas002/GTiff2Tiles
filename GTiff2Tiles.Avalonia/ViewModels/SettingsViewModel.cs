@@ -16,6 +16,8 @@ public class SettingsViewModel : ViewModelBase
 
     #region Data settings
     
+    #region RasterTileSize
+
     private int _rasterTileSize;
 
     /// <summary>
@@ -31,6 +33,8 @@ public class SettingsViewModel : ViewModelBase
             this.RaiseAndSetIfChanged(ref _rasterTileSize, value);
         }
     }
+
+    #endregion
 
     #region RasterTileExtension
 
@@ -95,7 +99,12 @@ public class SettingsViewModel : ViewModelBase
     public int BandsCount
     {
         get => _bandsCount;
-        set => this.RaiseAndSetIfChanged(ref _bandsCount, value);
+        set
+        {
+            value = value < 1 || value > 4 ? 4 : value;
+
+            this.RaiseAndSetIfChanged(ref _bandsCount, value);
+        }
     }
 
     #endregion
@@ -141,22 +150,37 @@ public class SettingsViewModel : ViewModelBase
 
     #endregion
 
-    #region Performance settings
+    #region TempPath
 
-    #region TileCachePath
-
-    private string _tileCachePath;
+    private string _tempPath;
 
     /// <summary>
-    /// Tile cache path
+    /// Temp data path
     /// </summary>
-    public string TileCachePath
+    public string TempPath
     {
-        get => _tileCachePath;
-        set => this.RaiseAndSetIfChanged(ref _tileCachePath, value);
+        get => _tempPath;
+        set => this.RaiseAndSetIfChanged(ref _tempPath, value);
     }
 
     #endregion
+
+    #region Tmr
+
+    private bool _tmr;
+
+    /// <summary>
+    /// TileMapResource
+    /// </summary>
+    public bool Tmr
+    {
+        get => _tmr;
+        set => this.RaiseAndSetIfChanged(ref _tmr, value);
+    }
+
+    #endregion
+
+    #region Performance settings
 
     #region MaxTiffMemoryCache
 
@@ -168,7 +192,12 @@ public class SettingsViewModel : ViewModelBase
     public long MaxTiffMemoryCache
     {
         get => _maxTiffMemoryCache;
-        set => this.RaiseAndSetIfChanged(ref _maxTiffMemoryCache, value);
+        set
+        {
+            value = value <= 0 ? 2147483648 : value;
+
+            this.RaiseAndSetIfChanged(ref _maxTiffMemoryCache, value);
+        }
     }
 
     #endregion
@@ -286,17 +315,22 @@ public class SettingsViewModel : ViewModelBase
 
     #endregion
 
+    /// <summary>
+    /// Tile cache path
+    /// </summary>
+    public static string TempPathTip => "Temp data path";
+
+    /// <summary>
+    /// Create TMR
+    /// </summary>
+    public static string TmrText => "Create TMR";
+
     #region Performance settings
 
     /// <summary>
     /// PERFORMANCE SETTINGS
     /// </summary>
     public static string PerformanceSettingsText => "PERFORMANCE SETTINGS";
-
-    /// <summary>
-    /// Tile cache path
-    /// </summary>
-    public static string TileCachePathTip => "Tile cache path";
 
     /// <summary>
     /// Max tiff memory cache
@@ -390,6 +424,8 @@ public class SettingsViewModel : ViewModelBase
         Settings.BandsCount = BandsCount;
         Settings.TmsCompatible = TmsCompatible;
         Settings.CoordinateSystem = SelectedCoordinateSystem.GetRealContent<CoordinateSystem>();
+        Settings.TempPath = TempPath;
+        Settings.Tmr = Tmr;
 
         Settings.MaxTiffMemoryCache = MaxTiffMemoryCache;
         Settings.TileCacheCount = TileCacheCount;
@@ -453,6 +489,8 @@ public class SettingsViewModel : ViewModelBase
         BandsCount = Settings.BandsCount;
         TmsCompatible = Settings.TmsCompatible;
         SelectedCoordinateSystem = FindEnumInCollection(CoordinateSystems, Settings.CoordinateSystem);
+        TempPath = Settings.TempPath;
+        Tmr = Settings.Tmr;
 
         MaxTiffMemoryCache = Settings.MaxTiffMemoryCache;
         TileCacheCount = Settings.TileCacheCount;

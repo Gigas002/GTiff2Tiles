@@ -1,0 +1,15 @@
+{
+  "raster_tile_size": 256,
+  "raster_tile_extension": "webp",
+  "raster_tile_interpolation": "lanczos3",
+  "bands_count": 4,
+  "tms_compatible": false,
+  "coordinate_system": "epsg4326",
+  "temp_path": "temp",
+  "tmr": false,
+  "max_tiff_memory_cache": 2147483648,
+  "tile_cache_count": 1000,
+  "minimal_bytes_count": 355,
+  "throw_on_override": true,
+  "threads_count": 0
+}

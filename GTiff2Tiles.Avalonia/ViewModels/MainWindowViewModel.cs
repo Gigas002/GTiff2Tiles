@@ -49,11 +49,13 @@ public class MainWindowViewModel : ViewModelBase
     /// <inheritdoc/>
     public MainWindowViewModel()
     {
+        // Init settings first
+        var settingsViewModel = new SettingsViewModel();
+
 #pragma warning disable CA2000 // Dispose objects before losing scope
         var dataRunnerViewModel = new DataRunnerViewModel();
 #pragma warning restore CA2000 // Dispose objects before losing scope
 
-        var settingsViewModel = new SettingsViewModel();
         // var aboutViewModel = new AboutViewModel();
 
         Tabs.Add(new TabItemViewModel(MainTabName, dataRunnerViewModel));
