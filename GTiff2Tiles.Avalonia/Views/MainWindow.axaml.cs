@@ -8,13 +8,7 @@ namespace GTiff2Tiles.Avalonia.Views;
 public partial class MainWindow : Window
 {
     /// <inheritdoc/>
-    public MainWindow()
-    {
-        InitializeComponent();
-        #if DEBUG
-        this.AttachDevTools();
-        #endif
-    }
+    public MainWindow() => InitializeComponent();
 
     private void InitializeComponent() => AvaloniaXamlLoader.Load(this);
 }

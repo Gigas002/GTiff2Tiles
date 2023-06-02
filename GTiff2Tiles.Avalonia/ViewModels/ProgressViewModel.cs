@@ -109,7 +109,11 @@ public class ProgressViewModel : ViewModelBase
         TimerValue = _timerValue.Add(timer.Interval).ToString();
     }
 
-    private void InitializeTimer() => Timer = new DispatcherTimer(TimeSpan.FromSeconds(1), default, TimerTick);
+    private void InitializeTimer()
+    {
+        Timer = new DispatcherTimer(TimeSpan.FromSeconds(1), default, TimerTick);
+        Timer.Stop();
+    }
 
     /// <summary>
     /// Starts timer

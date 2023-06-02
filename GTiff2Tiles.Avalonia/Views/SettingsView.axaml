@@ -38,21 +38,21 @@
                 <ComboBox Grid.Row="0" Grid.Column="6" VerticalContentAlignment="Center"
                           ToolTip.Tip="{Binding RasterTileExtensionTip}"
                           SelectedItem="{Binding RasterTileExtension}"
-                          Items="{Binding RasterTileExtensions}"/>
+                          ItemsSource="{Binding RasterTileExtensions}"/>
 
                 <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center"
                            Text="{Binding RasterTileInterpolationTip}"/>
                 <ComboBox Grid.Row="2" Grid.Column="2" VerticalContentAlignment="Center"
                           ToolTip.Tip="{Binding RasterTileInterpolationTip}"
                           SelectedItem="{Binding RasterTileInterpolation}"
-                          Items="{Binding RasterTileInterpolations}"/>
+                          ItemsSource="{Binding RasterTileInterpolations}"/>
 
                 <TextBlock Grid.Row="2" Grid.Column="4" VerticalAlignment="Center"
                            Text="{Binding CoordinateSystemTip}"/>
                 <ComboBox Grid.Row="2" Grid.Column="6" VerticalContentAlignment="Center"
                           ToolTip.Tip="{Binding CoordinateSystemTip}"
                           SelectedItem="{Binding SelectedCoordinateSystem}"
-                          Items="{Binding CoordinateSystems}"/>
+                          ItemsSource="{Binding CoordinateSystems}"/>
 
                 <TextBlock Grid.Row="4" Grid.Column="0" VerticalAlignment="Center"
                            Text="{Binding BandsCountTextBlock}"/>

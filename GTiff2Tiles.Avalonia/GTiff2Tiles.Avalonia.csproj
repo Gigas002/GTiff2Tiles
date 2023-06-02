@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<OutputType>WinExe</OutputType>
-		<TargetFramework>net6.0</TargetFramework>
+		<TargetFramework>net7.0</TargetFramework>
         <VersionPrefix>3.0.0</VersionPrefix>
         <VersionSuffix>preview.0</VersionSuffix>
         <AssemblyVersion>3.0.0.1</AssemblyVersion>
@@ -46,15 +46,15 @@
 
 	<ItemGroup>
 		<!-- External dependencies -->
-		<PackageReference Include="Avalonia" Version="11.0.0-preview6" />
-		<PackageReference Include="Avalonia.Desktop" Version="11.0.0-preview6" />
-		<PackageReference Include="Avalonia.Diagnostics" Version="11.0.0-preview6" />
-		<PackageReference Include="Avalonia.ReactiveUI" Version="11.0.0-preview6" />
-		<PackageReference Include="Avalonia.Themes.Fluent" Version="11.0.0-preview6" />
-		<!-- <PackageReference Include="Avalonia.Themes.Simple" Version="11.0.0-preview6" /> -->
-		<PackageReference Include="DialogHost.Avalonia" Version="0.7.3" />
+		<PackageReference Include="Avalonia" Version="11.0.0-rc1.1" />
+		<PackageReference Include="Avalonia.Desktop" Version="11.0.0-rc1.1" />
+		<PackageReference Include="Avalonia.Diagnostics" Version="11.0.0-rc1.1" />
+		<PackageReference Include="Avalonia.ReactiveUI" Version="11.0.0-rc1.1" />
+		<PackageReference Include="Avalonia.Themes.Fluent" Version="11.0.0-rc1.1" />
+		<PackageReference Include="DialogHost.Avalonia" Version="0.7.4" />
 		<PackageReference Include="MaxRev.Gdal.LinuxRuntime.Minimal" Version="3.7.0.100" />
-		<!-- <PackageReference Include="MaxRev.Gdal.WindowsRuntime.Minimal" Version="3.7.0.100" /> -->
+		<PackageReference Include="MaxRev.Gdal.WindowsRuntime.Minimal" Version="3.7.0.100" />
+        <PackageReference Include="MaxRev.Gdal.MacosRuntime.Minimal.x64" Version="3.7.0.217" />
 		<PackageReference Include="NetVips.Native" Version="8.14.2" />
 
 		<!-- Internal dependencies -->
