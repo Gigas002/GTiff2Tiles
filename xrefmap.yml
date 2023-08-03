@@ -699,6 +699,102 @@ references:
   isSpec: "True"
   fullName: GTiff2Tiles.Core.Coordinates.Coordinate.Multiply
   nameWithType: Coordinate.Multiply
+- uid: GTiff2Tiles.Core.Coordinates.Coordinate.RadiansToDegrees(System.Double)
+  name: RadiansToDegrees(double)
+  href: api/GTiff2Tiles.Core.Coordinates.Coordinate.html#GTiff2Tiles_Core_Coordinates_Coordinate_RadiansToDegrees_System_Double_
+  commentId: M:GTiff2Tiles.Core.Coordinates.Coordinate.RadiansToDegrees(System.Double)
+  name.vb: RadiansToDegrees(Double)
+  fullName: GTiff2Tiles.Core.Coordinates.Coordinate.RadiansToDegrees(double)
+  fullName.vb: GTiff2Tiles.Core.Coordinates.Coordinate.RadiansToDegrees(Double)
+  nameWithType: Coordinate.RadiansToDegrees(double)
+  nameWithType.vb: Coordinate.RadiansToDegrees(Double)
+- uid: GTiff2Tiles.Core.Coordinates.Coordinate.RadiansToDegrees*
+  name: RadiansToDegrees
+  href: api/GTiff2Tiles.Core.Coordinates.Coordinate.html#GTiff2Tiles_Core_Coordinates_Coordinate_RadiansToDegrees_
+  commentId: Overload:GTiff2Tiles.Core.Coordinates.Coordinate.RadiansToDegrees
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.Coordinates.Coordinate.RadiansToDegrees
+  nameWithType: Coordinate.RadiansToDegrees
+- uid: GTiff2Tiles.Core.Coordinates.Coordinate.Round*
+  name: Round
+  href: api/GTiff2Tiles.Core.Coordinates.Coordinate.html#GTiff2Tiles_Core_Coordinates_Coordinate_Round_
+  commentId: Overload:GTiff2Tiles.Core.Coordinates.Coordinate.Round
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.Coordinates.Coordinate.Round
+  nameWithType: Coordinate.Round
+- uid: GTiff2Tiles.Core.Coordinates.Coordinate.Round``1(System.Int32)
+  name: Round<T>(int)
+  href: api/GTiff2Tiles.Core.Coordinates.Coordinate.html#GTiff2Tiles_Core_Coordinates_Coordinate_Round__1_System_Int32_
+  commentId: M:GTiff2Tiles.Core.Coordinates.Coordinate.Round``1(System.Int32)
+  name.vb: Round(Of T)(Integer)
+  fullName: GTiff2Tiles.Core.Coordinates.Coordinate.Round<T>(int)
+  fullName.vb: GTiff2Tiles.Core.Coordinates.Coordinate.Round(Of T)(Integer)
+  nameWithType: Coordinate.Round<T>(int)
+  nameWithType.vb: Coordinate.Round(Of T)(Integer)
+- uid: GTiff2Tiles.Core.Coordinates.Coordinate.Round``1(``0,System.Int32)
+  name: Round<T>(T, int)
+  href: api/GTiff2Tiles.Core.Coordinates.Coordinate.html#GTiff2Tiles_Core_Coordinates_Coordinate_Round__1___0_System_Int32_
+  commentId: M:GTiff2Tiles.Core.Coordinates.Coordinate.Round``1(``0,System.Int32)
+  name.vb: Round(Of T)(T, Integer)
+  fullName: GTiff2Tiles.Core.Coordinates.Coordinate.Round<T>(T, int)
+  fullName.vb: GTiff2Tiles.Core.Coordinates.Coordinate.Round(Of T)(T, Integer)
+  nameWithType: Coordinate.Round<T>(T, int)
+  nameWithType.vb: Coordinate.Round(Of T)(T, Integer)
+- uid: GTiff2Tiles.Core.Coordinates.Coordinate.Subtract(GTiff2Tiles.Core.Coordinates.Coordinate)
+  name: Subtract(Coordinate)
+  href: api/GTiff2Tiles.Core.Coordinates.Coordinate.html#GTiff2Tiles_Core_Coordinates_Coordinate_Subtract_GTiff2Tiles_Core_Coordinates_Coordinate_
+  commentId: M:GTiff2Tiles.Core.Coordinates.Coordinate.Subtract(GTiff2Tiles.Core.Coordinates.Coordinate)
+  fullName: GTiff2Tiles.Core.Coordinates.Coordinate.Subtract(GTiff2Tiles.Core.Coordinates.Coordinate)
+  nameWithType: Coordinate.Subtract(Coordinate)
+- uid: GTiff2Tiles.Core.Coordinates.Coordinate.Subtract*
+  name: Subtract
+  href: api/GTiff2Tiles.Core.Coordinates.Coordinate.html#GTiff2Tiles_Core_Coordinates_Coordinate_Subtract_
+  commentId: Overload:GTiff2Tiles.Core.Coordinates.Coordinate.Subtract
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.Coordinates.Coordinate.Subtract
+  nameWithType: Coordinate.Subtract
+- uid: GTiff2Tiles.Core.Coordinates.Coordinate.ToNumber(System.Int32,GTiff2Tiles.Core.Images.Size,System.Boolean)
+  name: ToNumber(int, Size, bool)
+  href: api/GTiff2Tiles.Core.Coordinates.Coordinate.html#GTiff2Tiles_Core_Coordinates_Coordinate_ToNumber_System_Int32_GTiff2Tiles_Core_Images_Size_System_Boolean_
+  commentId: M:GTiff2Tiles.Core.Coordinates.Coordinate.ToNumber(System.Int32,GTiff2Tiles.Core.Images.Size,System.Boolean)
+  name.vb: ToNumber(Integer, Size, Boolean)
+  fullName: GTiff2Tiles.Core.Coordinates.Coordinate.ToNumber(int, GTiff2Tiles.Core.Images.Size, bool)
+  fullName.vb: GTiff2Tiles.Core.Coordinates.Coordinate.ToNumber(Integer, GTiff2Tiles.Core.Images.Size, Boolean)
+  nameWithType: Coordinate.ToNumber(int, Size, bool)
+  nameWithType.vb: Coordinate.ToNumber(Integer, Size, Boolean)
+- uid: GTiff2Tiles.Core.Coordinates.Coordinate.ToNumber*
+  name: ToNumber
+  href: api/GTiff2Tiles.Core.Coordinates.Coordinate.html#GTiff2Tiles_Core_Coordinates_Coordinate_ToNumber_
+  commentId: Overload:GTiff2Tiles.Core.Coordinates.Coordinate.ToNumber
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.Coordinates.Coordinate.ToNumber
+  nameWithType: Coordinate.ToNumber
+- uid: GTiff2Tiles.Core.Coordinates.Coordinate.X
+  name: X
+  href: api/GTiff2Tiles.Core.Coordinates.Coordinate.html#GTiff2Tiles_Core_Coordinates_Coordinate_X
+  commentId: P:GTiff2Tiles.Core.Coordinates.Coordinate.X
+  fullName: GTiff2Tiles.Core.Coordinates.Coordinate.X
+  nameWithType: Coordinate.X
+- uid: GTiff2Tiles.Core.Coordinates.Coordinate.X*
+  name: X
+  href: api/GTiff2Tiles.Core.Coordinates.Coordinate.html#GTiff2Tiles_Core_Coordinates_Coordinate_X_
+  commentId: Overload:GTiff2Tiles.Core.Coordinates.Coordinate.X
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.Coordinates.Coordinate.X
+  nameWithType: Coordinate.X
+- uid: GTiff2Tiles.Core.Coordinates.Coordinate.Y
+  name: Y
+  href: api/GTiff2Tiles.Core.Coordinates.Coordinate.html#GTiff2Tiles_Core_Coordinates_Coordinate_Y
+  commentId: P:GTiff2Tiles.Core.Coordinates.Coordinate.Y
+  fullName: GTiff2Tiles.Core.Coordinates.Coordinate.Y
+  nameWithType: Coordinate.Y
+- uid: GTiff2Tiles.Core.Coordinates.Coordinate.Y*
+  name: Y
+  href: api/GTiff2Tiles.Core.Coordinates.Coordinate.html#GTiff2Tiles_Core_Coordinates_Coordinate_Y_
+  commentId: Overload:GTiff2Tiles.Core.Coordinates.Coordinate.Y
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.Coordinates.Coordinate.Y
+  nameWithType: Coordinate.Y
 - uid: GTiff2Tiles.Core.Coordinates.Coordinate.op_Addition(GTiff2Tiles.Core.Coordinates.Coordinate,GTiff2Tiles.Core.Coordinates.Coordinate)
   name: operator +(Coordinate, Coordinate)
   href: api/GTiff2Tiles.Core.Coordinates.Coordinate.html#GTiff2Tiles_Core_Coordinates_Coordinate_op_Addition_GTiff2Tiles_Core_Coordinates_Coordinate_GTiff2Tiles_Core_Coordinates_Coordinate_
@@ -813,102 +909,6 @@ references:
   fullName.vb: GTiff2Tiles.Core.Coordinates.Coordinate.-
   nameWithType: Coordinate.operator -
   nameWithType.vb: Coordinate.-
-- uid: GTiff2Tiles.Core.Coordinates.Coordinate.RadiansToDegrees(System.Double)
-  name: RadiansToDegrees(double)
-  href: api/GTiff2Tiles.Core.Coordinates.Coordinate.html#GTiff2Tiles_Core_Coordinates_Coordinate_RadiansToDegrees_System_Double_
-  commentId: M:GTiff2Tiles.Core.Coordinates.Coordinate.RadiansToDegrees(System.Double)
-  name.vb: RadiansToDegrees(Double)
-  fullName: GTiff2Tiles.Core.Coordinates.Coordinate.RadiansToDegrees(double)
-  fullName.vb: GTiff2Tiles.Core.Coordinates.Coordinate.RadiansToDegrees(Double)
-  nameWithType: Coordinate.RadiansToDegrees(double)
-  nameWithType.vb: Coordinate.RadiansToDegrees(Double)
-- uid: GTiff2Tiles.Core.Coordinates.Coordinate.RadiansToDegrees*
-  name: RadiansToDegrees
-  href: api/GTiff2Tiles.Core.Coordinates.Coordinate.html#GTiff2Tiles_Core_Coordinates_Coordinate_RadiansToDegrees_
-  commentId: Overload:GTiff2Tiles.Core.Coordinates.Coordinate.RadiansToDegrees
-  isSpec: "True"
-  fullName: GTiff2Tiles.Core.Coordinates.Coordinate.RadiansToDegrees
-  nameWithType: Coordinate.RadiansToDegrees
-- uid: GTiff2Tiles.Core.Coordinates.Coordinate.Round*
-  name: Round
-  href: api/GTiff2Tiles.Core.Coordinates.Coordinate.html#GTiff2Tiles_Core_Coordinates_Coordinate_Round_
-  commentId: Overload:GTiff2Tiles.Core.Coordinates.Coordinate.Round
-  isSpec: "True"
-  fullName: GTiff2Tiles.Core.Coordinates.Coordinate.Round
-  nameWithType: Coordinate.Round
-- uid: GTiff2Tiles.Core.Coordinates.Coordinate.Round``1(``0,System.Int32)
-  name: Round<T>(T, int)
-  href: api/GTiff2Tiles.Core.Coordinates.Coordinate.html#GTiff2Tiles_Core_Coordinates_Coordinate_Round__1___0_System_Int32_
-  commentId: M:GTiff2Tiles.Core.Coordinates.Coordinate.Round``1(``0,System.Int32)
-  name.vb: Round(Of T)(T, Integer)
-  fullName: GTiff2Tiles.Core.Coordinates.Coordinate.Round<T>(T, int)
-  fullName.vb: GTiff2Tiles.Core.Coordinates.Coordinate.Round(Of T)(T, Integer)
-  nameWithType: Coordinate.Round<T>(T, int)
-  nameWithType.vb: Coordinate.Round(Of T)(T, Integer)
-- uid: GTiff2Tiles.Core.Coordinates.Coordinate.Round``1(System.Int32)
-  name: Round<T>(int)
-  href: api/GTiff2Tiles.Core.Coordinates.Coordinate.html#GTiff2Tiles_Core_Coordinates_Coordinate_Round__1_System_Int32_
-  commentId: M:GTiff2Tiles.Core.Coordinates.Coordinate.Round``1(System.Int32)
-  name.vb: Round(Of T)(Integer)
-  fullName: GTiff2Tiles.Core.Coordinates.Coordinate.Round<T>(int)
-  fullName.vb: GTiff2Tiles.Core.Coordinates.Coordinate.Round(Of T)(Integer)
-  nameWithType: Coordinate.Round<T>(int)
-  nameWithType.vb: Coordinate.Round(Of T)(Integer)
-- uid: GTiff2Tiles.Core.Coordinates.Coordinate.Subtract(GTiff2Tiles.Core.Coordinates.Coordinate)
-  name: Subtract(Coordinate)
-  href: api/GTiff2Tiles.Core.Coordinates.Coordinate.html#GTiff2Tiles_Core_Coordinates_Coordinate_Subtract_GTiff2Tiles_Core_Coordinates_Coordinate_
-  commentId: M:GTiff2Tiles.Core.Coordinates.Coordinate.Subtract(GTiff2Tiles.Core.Coordinates.Coordinate)
-  fullName: GTiff2Tiles.Core.Coordinates.Coordinate.Subtract(GTiff2Tiles.Core.Coordinates.Coordinate)
-  nameWithType: Coordinate.Subtract(Coordinate)
-- uid: GTiff2Tiles.Core.Coordinates.Coordinate.Subtract*
-  name: Subtract
-  href: api/GTiff2Tiles.Core.Coordinates.Coordinate.html#GTiff2Tiles_Core_Coordinates_Coordinate_Subtract_
-  commentId: Overload:GTiff2Tiles.Core.Coordinates.Coordinate.Subtract
-  isSpec: "True"
-  fullName: GTiff2Tiles.Core.Coordinates.Coordinate.Subtract
-  nameWithType: Coordinate.Subtract
-- uid: GTiff2Tiles.Core.Coordinates.Coordinate.ToNumber(System.Int32,GTiff2Tiles.Core.Images.Size,System.Boolean)
-  name: ToNumber(int, Size, bool)
-  href: api/GTiff2Tiles.Core.Coordinates.Coordinate.html#GTiff2Tiles_Core_Coordinates_Coordinate_ToNumber_System_Int32_GTiff2Tiles_Core_Images_Size_System_Boolean_
-  commentId: M:GTiff2Tiles.Core.Coordinates.Coordinate.ToNumber(System.Int32,GTiff2Tiles.Core.Images.Size,System.Boolean)
-  name.vb: ToNumber(Integer, Size, Boolean)
-  fullName: GTiff2Tiles.Core.Coordinates.Coordinate.ToNumber(int, GTiff2Tiles.Core.Images.Size, bool)
-  fullName.vb: GTiff2Tiles.Core.Coordinates.Coordinate.ToNumber(Integer, GTiff2Tiles.Core.Images.Size, Boolean)
-  nameWithType: Coordinate.ToNumber(int, Size, bool)
-  nameWithType.vb: Coordinate.ToNumber(Integer, Size, Boolean)
-- uid: GTiff2Tiles.Core.Coordinates.Coordinate.ToNumber*
-  name: ToNumber
-  href: api/GTiff2Tiles.Core.Coordinates.Coordinate.html#GTiff2Tiles_Core_Coordinates_Coordinate_ToNumber_
-  commentId: Overload:GTiff2Tiles.Core.Coordinates.Coordinate.ToNumber
-  isSpec: "True"
-  fullName: GTiff2Tiles.Core.Coordinates.Coordinate.ToNumber
-  nameWithType: Coordinate.ToNumber
-- uid: GTiff2Tiles.Core.Coordinates.Coordinate.X
-  name: X
-  href: api/GTiff2Tiles.Core.Coordinates.Coordinate.html#GTiff2Tiles_Core_Coordinates_Coordinate_X
-  commentId: P:GTiff2Tiles.Core.Coordinates.Coordinate.X
-  fullName: GTiff2Tiles.Core.Coordinates.Coordinate.X
-  nameWithType: Coordinate.X
-- uid: GTiff2Tiles.Core.Coordinates.Coordinate.X*
-  name: X
-  href: api/GTiff2Tiles.Core.Coordinates.Coordinate.html#GTiff2Tiles_Core_Coordinates_Coordinate_X_
-  commentId: Overload:GTiff2Tiles.Core.Coordinates.Coordinate.X
-  isSpec: "True"
-  fullName: GTiff2Tiles.Core.Coordinates.Coordinate.X
-  nameWithType: Coordinate.X
-- uid: GTiff2Tiles.Core.Coordinates.Coordinate.Y
-  name: Y
-  href: api/GTiff2Tiles.Core.Coordinates.Coordinate.html#GTiff2Tiles_Core_Coordinates_Coordinate_Y
-  commentId: P:GTiff2Tiles.Core.Coordinates.Coordinate.Y
-  fullName: GTiff2Tiles.Core.Coordinates.Coordinate.Y
-  nameWithType: Coordinate.Y
-- uid: GTiff2Tiles.Core.Coordinates.Coordinate.Y*
-  name: Y
-  href: api/GTiff2Tiles.Core.Coordinates.Coordinate.html#GTiff2Tiles_Core_Coordinates_Coordinate_Y_
-  commentId: Overload:GTiff2Tiles.Core.Coordinates.Coordinate.Y
-  isSpec: "True"
-  fullName: GTiff2Tiles.Core.Coordinates.Coordinate.Y
-  nameWithType: Coordinate.Y
 - uid: GTiff2Tiles.Core.Coordinates.GeoCoordinate
   name: GeoCoordinate
   href: api/GTiff2Tiles.Core.Coordinates.GeoCoordinate.html
@@ -1514,15 +1514,6 @@ references:
   fullName.vb: GTiff2Tiles.Core.Exceptions.DirectoryException.New()
   nameWithType: DirectoryException.DirectoryException()
   nameWithType.vb: DirectoryException.New()
-- uid: GTiff2Tiles.Core.Exceptions.DirectoryException.#ctor(System.String,System.Exception)
-  name: DirectoryException(string, Exception)
-  href: api/GTiff2Tiles.Core.Exceptions.DirectoryException.html#GTiff2Tiles_Core_Exceptions_DirectoryException__ctor_System_String_System_Exception_
-  commentId: M:GTiff2Tiles.Core.Exceptions.DirectoryException.#ctor(System.String,System.Exception)
-  name.vb: New(String, Exception)
-  fullName: GTiff2Tiles.Core.Exceptions.DirectoryException.DirectoryException(string, System.Exception)
-  fullName.vb: GTiff2Tiles.Core.Exceptions.DirectoryException.New(String, System.Exception)
-  nameWithType: DirectoryException.DirectoryException(string, Exception)
-  nameWithType.vb: DirectoryException.New(String, Exception)
 - uid: GTiff2Tiles.Core.Exceptions.DirectoryException.#ctor(System.String)
   name: DirectoryException(string)
   href: api/GTiff2Tiles.Core.Exceptions.DirectoryException.html#GTiff2Tiles_Core_Exceptions_DirectoryException__ctor_System_String_
@@ -1532,6 +1523,15 @@ references:
   fullName.vb: GTiff2Tiles.Core.Exceptions.DirectoryException.New(String)
   nameWithType: DirectoryException.DirectoryException(string)
   nameWithType.vb: DirectoryException.New(String)
+- uid: GTiff2Tiles.Core.Exceptions.DirectoryException.#ctor(System.String,System.Exception)
+  name: DirectoryException(string, Exception)
+  href: api/GTiff2Tiles.Core.Exceptions.DirectoryException.html#GTiff2Tiles_Core_Exceptions_DirectoryException__ctor_System_String_System_Exception_
+  commentId: M:GTiff2Tiles.Core.Exceptions.DirectoryException.#ctor(System.String,System.Exception)
+  name.vb: New(String, Exception)
+  fullName: GTiff2Tiles.Core.Exceptions.DirectoryException.DirectoryException(string, System.Exception)
+  fullName.vb: GTiff2Tiles.Core.Exceptions.DirectoryException.New(String, System.Exception)
+  nameWithType: DirectoryException.DirectoryException(string, Exception)
+  nameWithType.vb: DirectoryException.New(String, Exception)
 - uid: GTiff2Tiles.Core.Exceptions.DirectoryException.#ctor*
   name: DirectoryException
   href: api/GTiff2Tiles.Core.Exceptions.DirectoryException.html#GTiff2Tiles_Core_Exceptions_DirectoryException__ctor_
@@ -1557,15 +1557,6 @@ references:
   fullName.vb: GTiff2Tiles.Core.Exceptions.FileException.New()
   nameWithType: FileException.FileException()
   nameWithType.vb: FileException.New()
-- uid: GTiff2Tiles.Core.Exceptions.FileException.#ctor(System.String,System.Exception)
-  name: FileException(string, Exception)
-  href: api/GTiff2Tiles.Core.Exceptions.FileException.html#GTiff2Tiles_Core_Exceptions_FileException__ctor_System_String_System_Exception_
-  commentId: M:GTiff2Tiles.Core.Exceptions.FileException.#ctor(System.String,System.Exception)
-  name.vb: New(String, Exception)
-  fullName: GTiff2Tiles.Core.Exceptions.FileException.FileException(string, System.Exception)
-  fullName.vb: GTiff2Tiles.Core.Exceptions.FileException.New(String, System.Exception)
-  nameWithType: FileException.FileException(string, Exception)
-  nameWithType.vb: FileException.New(String, Exception)
 - uid: GTiff2Tiles.Core.Exceptions.FileException.#ctor(System.String)
   name: FileException(string)
   href: api/GTiff2Tiles.Core.Exceptions.FileException.html#GTiff2Tiles_Core_Exceptions_FileException__ctor_System_String_
@@ -1575,6 +1566,15 @@ references:
   fullName.vb: GTiff2Tiles.Core.Exceptions.FileException.New(String)
   nameWithType: FileException.FileException(string)
   nameWithType.vb: FileException.New(String)
+- uid: GTiff2Tiles.Core.Exceptions.FileException.#ctor(System.String,System.Exception)
+  name: FileException(string, Exception)
+  href: api/GTiff2Tiles.Core.Exceptions.FileException.html#GTiff2Tiles_Core_Exceptions_FileException__ctor_System_String_System_Exception_
+  commentId: M:GTiff2Tiles.Core.Exceptions.FileException.#ctor(System.String,System.Exception)
+  name.vb: New(String, Exception)
+  fullName: GTiff2Tiles.Core.Exceptions.FileException.FileException(string, System.Exception)
+  fullName.vb: GTiff2Tiles.Core.Exceptions.FileException.New(String, System.Exception)
+  nameWithType: FileException.FileException(string, Exception)
+  nameWithType.vb: FileException.New(String, Exception)
 - uid: GTiff2Tiles.Core.Exceptions.FileException.#ctor*
   name: FileException
   href: api/GTiff2Tiles.Core.Exceptions.FileException.html#GTiff2Tiles_Core_Exceptions_FileException__ctor_
@@ -1600,15 +1600,6 @@ references:
   fullName.vb: GTiff2Tiles.Core.Exceptions.RasterException.New()
   nameWithType: RasterException.RasterException()
   nameWithType.vb: RasterException.New()
-- uid: GTiff2Tiles.Core.Exceptions.RasterException.#ctor(System.String,System.Exception)
-  name: RasterException(string, Exception)
-  href: api/GTiff2Tiles.Core.Exceptions.RasterException.html#GTiff2Tiles_Core_Exceptions_RasterException__ctor_System_String_System_Exception_
-  commentId: M:GTiff2Tiles.Core.Exceptions.RasterException.#ctor(System.String,System.Exception)
-  name.vb: New(String, Exception)
-  fullName: GTiff2Tiles.Core.Exceptions.RasterException.RasterException(string, System.Exception)
-  fullName.vb: GTiff2Tiles.Core.Exceptions.RasterException.New(String, System.Exception)
-  nameWithType: RasterException.RasterException(string, Exception)
-  nameWithType.vb: RasterException.New(String, Exception)
 - uid: GTiff2Tiles.Core.Exceptions.RasterException.#ctor(System.String)
   name: RasterException(string)
   href: api/GTiff2Tiles.Core.Exceptions.RasterException.html#GTiff2Tiles_Core_Exceptions_RasterException__ctor_System_String_
@@ -1618,6 +1609,15 @@ references:
   fullName.vb: GTiff2Tiles.Core.Exceptions.RasterException.New(String)
   nameWithType: RasterException.RasterException(string)
   nameWithType.vb: RasterException.New(String)
+- uid: GTiff2Tiles.Core.Exceptions.RasterException.#ctor(System.String,System.Exception)
+  name: RasterException(string, Exception)
+  href: api/GTiff2Tiles.Core.Exceptions.RasterException.html#GTiff2Tiles_Core_Exceptions_RasterException__ctor_System_String_System_Exception_
+  commentId: M:GTiff2Tiles.Core.Exceptions.RasterException.#ctor(System.String,System.Exception)
+  name.vb: New(String, Exception)
+  fullName: GTiff2Tiles.Core.Exceptions.RasterException.RasterException(string, System.Exception)
+  fullName.vb: GTiff2Tiles.Core.Exceptions.RasterException.New(String, System.Exception)
+  nameWithType: RasterException.RasterException(string, Exception)
+  nameWithType.vb: RasterException.New(String, Exception)
 - uid: GTiff2Tiles.Core.Exceptions.RasterException.#ctor*
   name: RasterException
   href: api/GTiff2Tiles.Core.Exceptions.RasterException.html#GTiff2Tiles_Core_Exceptions_RasterException__ctor_
@@ -2246,6 +2246,77 @@ references:
   isSpec: "True"
   fullName: GTiff2Tiles.Core.GeoTiffs.Raster.JoinTilesIntoImageAsync
   nameWithType: Raster.JoinTilesIntoImageAsync
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToChannel(NetVips.Image,GTiff2Tiles.Core.Tiles.RasterTile,System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.RasterTile})
+  name: WriteTileToChannel(Image, RasterTile, ChannelWriter<RasterTile>)
+  href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_WriteTileToChannel_NetVips_Image_GTiff2Tiles_Core_Tiles_RasterTile_System_Threading_Channels_ChannelWriter_GTiff2Tiles_Core_Tiles_RasterTile__
+  commentId: M:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToChannel(NetVips.Image,GTiff2Tiles.Core.Tiles.RasterTile,System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.RasterTile})
+  name.vb: WriteTileToChannel(Image, RasterTile, ChannelWriter(Of RasterTile))
+  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToChannel(NetVips.Image, GTiff2Tiles.Core.Tiles.RasterTile, System.Threading.Channels.ChannelWriter<GTiff2Tiles.Core.Tiles.RasterTile>)
+  fullName.vb: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToChannel(NetVips.Image, GTiff2Tiles.Core.Tiles.RasterTile, System.Threading.Channels.ChannelWriter(Of GTiff2Tiles.Core.Tiles.RasterTile))
+  nameWithType: Raster.WriteTileToChannel(Image, RasterTile, ChannelWriter<RasterTile>)
+  nameWithType.vb: Raster.WriteTileToChannel(Image, RasterTile, ChannelWriter(Of RasterTile))
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToChannel*
+  name: WriteTileToChannel
+  href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_WriteTileToChannel_
+  commentId: Overload:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToChannel
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToChannel
+  nameWithType: Raster.WriteTileToChannel
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToChannelAsync(NetVips.Image,GTiff2Tiles.Core.Tiles.RasterTile,System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.RasterTile})
+  name: WriteTileToChannelAsync(Image, RasterTile, ChannelWriter<RasterTile>)
+  href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_WriteTileToChannelAsync_NetVips_Image_GTiff2Tiles_Core_Tiles_RasterTile_System_Threading_Channels_ChannelWriter_GTiff2Tiles_Core_Tiles_RasterTile__
+  commentId: M:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToChannelAsync(NetVips.Image,GTiff2Tiles.Core.Tiles.RasterTile,System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.RasterTile})
+  name.vb: WriteTileToChannelAsync(Image, RasterTile, ChannelWriter(Of RasterTile))
+  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToChannelAsync(NetVips.Image, GTiff2Tiles.Core.Tiles.RasterTile, System.Threading.Channels.ChannelWriter<GTiff2Tiles.Core.Tiles.RasterTile>)
+  fullName.vb: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToChannelAsync(NetVips.Image, GTiff2Tiles.Core.Tiles.RasterTile, System.Threading.Channels.ChannelWriter(Of GTiff2Tiles.Core.Tiles.RasterTile))
+  nameWithType: Raster.WriteTileToChannelAsync(Image, RasterTile, ChannelWriter<RasterTile>)
+  nameWithType.vb: Raster.WriteTileToChannelAsync(Image, RasterTile, ChannelWriter(Of RasterTile))
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToChannelAsync*
+  name: WriteTileToChannelAsync
+  href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_WriteTileToChannelAsync_
+  commentId: Overload:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToChannelAsync
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToChannelAsync
+  nameWithType: Raster.WriteTileToChannelAsync
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToEnumerable(NetVips.Image,GTiff2Tiles.Core.Tiles.RasterTile)
+  name: WriteTileToEnumerable(Image, RasterTile)
+  href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_WriteTileToEnumerable_NetVips_Image_GTiff2Tiles_Core_Tiles_RasterTile_
+  commentId: M:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToEnumerable(NetVips.Image,GTiff2Tiles.Core.Tiles.RasterTile)
+  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToEnumerable(NetVips.Image, GTiff2Tiles.Core.Tiles.RasterTile)
+  nameWithType: Raster.WriteTileToEnumerable(Image, RasterTile)
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToEnumerable*
+  name: WriteTileToEnumerable
+  href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_WriteTileToEnumerable_
+  commentId: Overload:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToEnumerable
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToEnumerable
+  nameWithType: Raster.WriteTileToEnumerable
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToFile(NetVips.Image,GTiff2Tiles.Core.Tiles.RasterTile)
+  name: WriteTileToFile(Image, RasterTile)
+  href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_WriteTileToFile_NetVips_Image_GTiff2Tiles_Core_Tiles_RasterTile_
+  commentId: M:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToFile(NetVips.Image,GTiff2Tiles.Core.Tiles.RasterTile)
+  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToFile(NetVips.Image, GTiff2Tiles.Core.Tiles.RasterTile)
+  nameWithType: Raster.WriteTileToFile(Image, RasterTile)
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToFile*
+  name: WriteTileToFile
+  href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_WriteTileToFile_
+  commentId: Overload:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToFile
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToFile
+  nameWithType: Raster.WriteTileToFile
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToFileAsync(NetVips.Image,GTiff2Tiles.Core.Tiles.RasterTile)
+  name: WriteTileToFileAsync(Image, RasterTile)
+  href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_WriteTileToFileAsync_NetVips_Image_GTiff2Tiles_Core_Tiles_RasterTile_
+  commentId: M:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToFileAsync(NetVips.Image,GTiff2Tiles.Core.Tiles.RasterTile)
+  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToFileAsync(NetVips.Image, GTiff2Tiles.Core.Tiles.RasterTile)
+  nameWithType: Raster.WriteTileToFileAsync(Image, RasterTile)
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToFileAsync*
+  name: WriteTileToFileAsync
+  href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_WriteTileToFileAsync_
+  commentId: Overload:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToFileAsync
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToFileAsync
+  nameWithType: Raster.WriteTileToFileAsync
 - uid: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToAsyncEnumerable(System.Int32,System.Int32,System.Boolean,GTiff2Tiles.Core.Images.Size,NetVips.Enums.Kernel,System.Int32,System.Int32,System.Int32,System.IProgress{System.Double},System.Action{System.String})
   name: WriteTilesToAsyncEnumerable(int, int, bool, Size, Kernel, int, int, int, IProgress<double>, Action<string>)
   href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_WriteTilesToAsyncEnumerable_System_Int32_System_Int32_System_Boolean_GTiff2Tiles_Core_Images_Size_NetVips_Enums_Kernel_System_Int32_System_Int32_System_Int32_System_IProgress_System_Double__System_Action_System_String__
@@ -2342,77 +2413,6 @@ references:
   isSpec: "True"
   fullName: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTilesToEnumerable
   nameWithType: Raster.WriteTilesToEnumerable
-- uid: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToChannel(NetVips.Image,GTiff2Tiles.Core.Tiles.RasterTile,System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.RasterTile})
-  name: WriteTileToChannel(Image, RasterTile, ChannelWriter<RasterTile>)
-  href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_WriteTileToChannel_NetVips_Image_GTiff2Tiles_Core_Tiles_RasterTile_System_Threading_Channels_ChannelWriter_GTiff2Tiles_Core_Tiles_RasterTile__
-  commentId: M:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToChannel(NetVips.Image,GTiff2Tiles.Core.Tiles.RasterTile,System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.RasterTile})
-  name.vb: WriteTileToChannel(Image, RasterTile, ChannelWriter(Of RasterTile))
-  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToChannel(NetVips.Image, GTiff2Tiles.Core.Tiles.RasterTile, System.Threading.Channels.ChannelWriter<GTiff2Tiles.Core.Tiles.RasterTile>)
-  fullName.vb: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToChannel(NetVips.Image, GTiff2Tiles.Core.Tiles.RasterTile, System.Threading.Channels.ChannelWriter(Of GTiff2Tiles.Core.Tiles.RasterTile))
-  nameWithType: Raster.WriteTileToChannel(Image, RasterTile, ChannelWriter<RasterTile>)
-  nameWithType.vb: Raster.WriteTileToChannel(Image, RasterTile, ChannelWriter(Of RasterTile))
-- uid: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToChannel*
-  name: WriteTileToChannel
-  href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_WriteTileToChannel_
-  commentId: Overload:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToChannel
-  isSpec: "True"
-  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToChannel
-  nameWithType: Raster.WriteTileToChannel
-- uid: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToChannelAsync(NetVips.Image,GTiff2Tiles.Core.Tiles.RasterTile,System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.RasterTile})
-  name: WriteTileToChannelAsync(Image, RasterTile, ChannelWriter<RasterTile>)
-  href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_WriteTileToChannelAsync_NetVips_Image_GTiff2Tiles_Core_Tiles_RasterTile_System_Threading_Channels_ChannelWriter_GTiff2Tiles_Core_Tiles_RasterTile__
-  commentId: M:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToChannelAsync(NetVips.Image,GTiff2Tiles.Core.Tiles.RasterTile,System.Threading.Channels.ChannelWriter{GTiff2Tiles.Core.Tiles.RasterTile})
-  name.vb: WriteTileToChannelAsync(Image, RasterTile, ChannelWriter(Of RasterTile))
-  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToChannelAsync(NetVips.Image, GTiff2Tiles.Core.Tiles.RasterTile, System.Threading.Channels.ChannelWriter<GTiff2Tiles.Core.Tiles.RasterTile>)
-  fullName.vb: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToChannelAsync(NetVips.Image, GTiff2Tiles.Core.Tiles.RasterTile, System.Threading.Channels.ChannelWriter(Of GTiff2Tiles.Core.Tiles.RasterTile))
-  nameWithType: Raster.WriteTileToChannelAsync(Image, RasterTile, ChannelWriter<RasterTile>)
-  nameWithType.vb: Raster.WriteTileToChannelAsync(Image, RasterTile, ChannelWriter(Of RasterTile))
-- uid: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToChannelAsync*
-  name: WriteTileToChannelAsync
-  href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_WriteTileToChannelAsync_
-  commentId: Overload:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToChannelAsync
-  isSpec: "True"
-  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToChannelAsync
-  nameWithType: Raster.WriteTileToChannelAsync
-- uid: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToEnumerable(NetVips.Image,GTiff2Tiles.Core.Tiles.RasterTile)
-  name: WriteTileToEnumerable(Image, RasterTile)
-  href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_WriteTileToEnumerable_NetVips_Image_GTiff2Tiles_Core_Tiles_RasterTile_
-  commentId: M:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToEnumerable(NetVips.Image,GTiff2Tiles.Core.Tiles.RasterTile)
-  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToEnumerable(NetVips.Image, GTiff2Tiles.Core.Tiles.RasterTile)
-  nameWithType: Raster.WriteTileToEnumerable(Image, RasterTile)
-- uid: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToEnumerable*
-  name: WriteTileToEnumerable
-  href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_WriteTileToEnumerable_
-  commentId: Overload:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToEnumerable
-  isSpec: "True"
-  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToEnumerable
-  nameWithType: Raster.WriteTileToEnumerable
-- uid: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToFile(NetVips.Image,GTiff2Tiles.Core.Tiles.RasterTile)
-  name: WriteTileToFile(Image, RasterTile)
-  href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_WriteTileToFile_NetVips_Image_GTiff2Tiles_Core_Tiles_RasterTile_
-  commentId: M:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToFile(NetVips.Image,GTiff2Tiles.Core.Tiles.RasterTile)
-  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToFile(NetVips.Image, GTiff2Tiles.Core.Tiles.RasterTile)
-  nameWithType: Raster.WriteTileToFile(Image, RasterTile)
-- uid: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToFile*
-  name: WriteTileToFile
-  href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_WriteTileToFile_
-  commentId: Overload:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToFile
-  isSpec: "True"
-  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToFile
-  nameWithType: Raster.WriteTileToFile
-- uid: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToFileAsync(NetVips.Image,GTiff2Tiles.Core.Tiles.RasterTile)
-  name: WriteTileToFileAsync(Image, RasterTile)
-  href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_WriteTileToFileAsync_NetVips_Image_GTiff2Tiles_Core_Tiles_RasterTile_
-  commentId: M:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToFileAsync(NetVips.Image,GTiff2Tiles.Core.Tiles.RasterTile)
-  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToFileAsync(NetVips.Image, GTiff2Tiles.Core.Tiles.RasterTile)
-  nameWithType: Raster.WriteTileToFileAsync(Image, RasterTile)
-- uid: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToFileAsync*
-  name: WriteTileToFileAsync
-  href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_WriteTileToFileAsync_
-  commentId: Overload:GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToFileAsync
-  isSpec: "True"
-  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.WriteTileToFileAsync
-  nameWithType: Raster.WriteTileToFileAsync
 - uid: GTiff2Tiles.Core.Helpers
   name: GTiff2Tiles.Core.Helpers
   href: api/GTiff2Tiles.Core.Helpers.html
@@ -2807,6 +2807,45 @@ references:
   isSpec: "True"
   fullName: GTiff2Tiles.Core.Images.Size.Multiply
   nameWithType: Size.Multiply
+- uid: GTiff2Tiles.Core.Images.Size.Resolution
+  name: Resolution
+  href: api/GTiff2Tiles.Core.Images.Size.html#GTiff2Tiles_Core_Images_Size_Resolution
+  commentId: P:GTiff2Tiles.Core.Images.Size.Resolution
+  fullName: GTiff2Tiles.Core.Images.Size.Resolution
+  nameWithType: Size.Resolution
+- uid: GTiff2Tiles.Core.Images.Size.Resolution*
+  name: Resolution
+  href: api/GTiff2Tiles.Core.Images.Size.html#GTiff2Tiles_Core_Images_Size_Resolution_
+  commentId: Overload:GTiff2Tiles.Core.Images.Size.Resolution
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.Images.Size.Resolution
+  nameWithType: Size.Resolution
+- uid: GTiff2Tiles.Core.Images.Size.Subtract(GTiff2Tiles.Core.Images.Size)
+  name: Subtract(Size)
+  href: api/GTiff2Tiles.Core.Images.Size.html#GTiff2Tiles_Core_Images_Size_Subtract_GTiff2Tiles_Core_Images_Size_
+  commentId: M:GTiff2Tiles.Core.Images.Size.Subtract(GTiff2Tiles.Core.Images.Size)
+  fullName: GTiff2Tiles.Core.Images.Size.Subtract(GTiff2Tiles.Core.Images.Size)
+  nameWithType: Size.Subtract(Size)
+- uid: GTiff2Tiles.Core.Images.Size.Subtract*
+  name: Subtract
+  href: api/GTiff2Tiles.Core.Images.Size.html#GTiff2Tiles_Core_Images_Size_Subtract_
+  commentId: Overload:GTiff2Tiles.Core.Images.Size.Subtract
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.Images.Size.Subtract
+  nameWithType: Size.Subtract
+- uid: GTiff2Tiles.Core.Images.Size.Width
+  name: Width
+  href: api/GTiff2Tiles.Core.Images.Size.html#GTiff2Tiles_Core_Images_Size_Width
+  commentId: P:GTiff2Tiles.Core.Images.Size.Width
+  fullName: GTiff2Tiles.Core.Images.Size.Width
+  nameWithType: Size.Width
+- uid: GTiff2Tiles.Core.Images.Size.Width*
+  name: Width
+  href: api/GTiff2Tiles.Core.Images.Size.html#GTiff2Tiles_Core_Images_Size_Width_
+  commentId: Overload:GTiff2Tiles.Core.Images.Size.Width
+  isSpec: "True"
+  fullName: GTiff2Tiles.Core.Images.Size.Width
+  nameWithType: Size.Width
 - uid: GTiff2Tiles.Core.Images.Size.op_Addition(GTiff2Tiles.Core.Images.Size,GTiff2Tiles.Core.Images.Size)
   name: operator +(Size, Size)
   href: api/GTiff2Tiles.Core.Images.Size.html#GTiff2Tiles_Core_Images_Size_op_Addition_GTiff2Tiles_Core_Images_Size_GTiff2Tiles_Core_Images_Size_
@@ -2921,45 +2960,6 @@ references:
   fullName.vb: GTiff2Tiles.Core.Images.Size.-
   nameWithType: Size.operator -
   nameWithType.vb: Size.-
-- uid: GTiff2Tiles.Core.Images.Size.Resolution
-  name: Resolution
-  href: api/GTiff2Tiles.Core.Images.Size.html#GTiff2Tiles_Core_Images_Size_Resolution
-  commentId: P:GTiff2Tiles.Core.Images.Size.Resolution
-  fullName: GTiff2Tiles.Core.Images.Size.Resolution
-  nameWithType: Size.Resolution
-- uid: GTiff2Tiles.Core.Images.Size.Resolution*
-  name: Resolution
-  href: api/GTiff2Tiles.Core.Images.Size.html#GTiff2Tiles_Core_Images_Size_Resolution_
-  commentId: Overload:GTiff2Tiles.Core.Images.Size.Resolution
-  isSpec: "True"
-  fullName: GTiff2Tiles.Core.Images.Size.Resolution
-  nameWithType: Size.Resolution
-- uid: GTiff2Tiles.Core.Images.Size.Subtract(GTiff2Tiles.Core.Images.Size)
-  name: Subtract(Size)
-  href: api/GTiff2Tiles.Core.Images.Size.html#GTiff2Tiles_Core_Images_Size_Subtract_GTiff2Tiles_Core_Images_Size_
-  commentId: M:GTiff2Tiles.Core.Images.Size.Subtract(GTiff2Tiles.Core.Images.Size)
-  fullName: GTiff2Tiles.Core.Images.Size.Subtract(GTiff2Tiles.Core.Images.Size)
-  nameWithType: Size.Subtract(Size)
-- uid: GTiff2Tiles.Core.Images.Size.Subtract*
-  name: Subtract
-  href: api/GTiff2Tiles.Core.Images.Size.html#GTiff2Tiles_Core_Images_Size_Subtract_
-  commentId: Overload:GTiff2Tiles.Core.Images.Size.Subtract
-  isSpec: "True"
-  fullName: GTiff2Tiles.Core.Images.Size.Subtract
-  nameWithType: Size.Subtract
-- uid: GTiff2Tiles.Core.Images.Size.Width
-  name: Width
-  href: api/GTiff2Tiles.Core.Images.Size.html#GTiff2Tiles_Core_Images_Size_Width
-  commentId: P:GTiff2Tiles.Core.Images.Size.Width
-  fullName: GTiff2Tiles.Core.Images.Size.Width
-  nameWithType: Size.Width
-- uid: GTiff2Tiles.Core.Images.Size.Width*
-  name: Width
-  href: api/GTiff2Tiles.Core.Images.Size.html#GTiff2Tiles_Core_Images_Size_Width_
-  commentId: Overload:GTiff2Tiles.Core.Images.Size.Width
-  isSpec: "True"
-  fullName: GTiff2Tiles.Core.Images.Size.Width
-  nameWithType: Size.Width
 - uid: GTiff2Tiles.Core.TileGenerator
   name: TileGenerator
   href: api/GTiff2Tiles.Core.TileGenerator.html
@@ -4024,6 +4024,12 @@ references:
   commentId: M:GTiff2Tiles.Core.Tiles.Number.GetLowerNumbers
   fullName: GTiff2Tiles.Core.Tiles.Number.GetLowerNumbers()
   nameWithType: Number.GetLowerNumbers()
+- uid: GTiff2Tiles.Core.Tiles.Number.GetLowerNumbers(GTiff2Tiles.Core.Tiles.Number)
+  name: GetLowerNumbers(Number)
+  href: api/GTiff2Tiles.Core.Tiles.Number.html#GTiff2Tiles_Core_Tiles_Number_GetLowerNumbers_GTiff2Tiles_Core_Tiles_Number_
+  commentId: M:GTiff2Tiles.Core.Tiles.Number.GetLowerNumbers(GTiff2Tiles.Core.Tiles.Number)
+  fullName: GTiff2Tiles.Core.Tiles.Number.GetLowerNumbers(GTiff2Tiles.Core.Tiles.Number)
+  nameWithType: Number.GetLowerNumbers(Number)
 - uid: GTiff2Tiles.Core.Tiles.Number.GetLowerNumbers(GTiff2Tiles.Core.Tiles.Number,System.Int32)
   name: GetLowerNumbers(Number, int)
   href: api/GTiff2Tiles.Core.Tiles.Number.html#GTiff2Tiles_Core_Tiles_Number_GetLowerNumbers_GTiff2Tiles_Core_Tiles_Number_System_Int32_
@@ -4033,12 +4039,6 @@ references:
   fullName.vb: GTiff2Tiles.Core.Tiles.Number.GetLowerNumbers(GTiff2Tiles.Core.Tiles.Number, Integer)
   nameWithType: Number.GetLowerNumbers(Number, int)
   nameWithType.vb: Number.GetLowerNumbers(Number, Integer)
-- uid: GTiff2Tiles.Core.Tiles.Number.GetLowerNumbers(GTiff2Tiles.Core.Tiles.Number)
-  name: GetLowerNumbers(Number)
-  href: api/GTiff2Tiles.Core.Tiles.Number.html#GTiff2Tiles_Core_Tiles_Number_GetLowerNumbers_GTiff2Tiles_Core_Tiles_Number_
-  commentId: M:GTiff2Tiles.Core.Tiles.Number.GetLowerNumbers(GTiff2Tiles.Core.Tiles.Number)
-  fullName: GTiff2Tiles.Core.Tiles.Number.GetLowerNumbers(GTiff2Tiles.Core.Tiles.Number)
-  nameWithType: Number.GetLowerNumbers(Number)
 - uid: GTiff2Tiles.Core.Tiles.Number.GetLowerNumbers(System.Int32)
   name: GetLowerNumbers(int)
   href: api/GTiff2Tiles.Core.Tiles.Number.html#GTiff2Tiles_Core_Tiles_Number_GetLowerNumbers_System_Int32_
@@ -4068,120 +4068,6 @@ references:
   isSpec: "True"
   fullName: GTiff2Tiles.Core.Tiles.Number.Multiply
   nameWithType: Number.Multiply
-- uid: GTiff2Tiles.Core.Tiles.Number.op_Addition(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Tiles.Number)
-  name: operator +(Number, Number)
-  href: api/GTiff2Tiles.Core.Tiles.Number.html#GTiff2Tiles_Core_Tiles_Number_op_Addition_GTiff2Tiles_Core_Tiles_Number_GTiff2Tiles_Core_Tiles_Number_
-  commentId: M:GTiff2Tiles.Core.Tiles.Number.op_Addition(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Tiles.Number)
-  name.vb: +(Number, Number)
-  fullName: GTiff2Tiles.Core.Tiles.Number.operator +(GTiff2Tiles.Core.Tiles.Number, GTiff2Tiles.Core.Tiles.Number)
-  fullName.vb: GTiff2Tiles.Core.Tiles.Number.+(GTiff2Tiles.Core.Tiles.Number, GTiff2Tiles.Core.Tiles.Number)
-  nameWithType: Number.operator +(Number, Number)
-  nameWithType.vb: Number.+(Number, Number)
-- uid: GTiff2Tiles.Core.Tiles.Number.op_Addition*
-  name: operator +
-  href: api/GTiff2Tiles.Core.Tiles.Number.html#GTiff2Tiles_Core_Tiles_Number_op_Addition_
-  commentId: Overload:GTiff2Tiles.Core.Tiles.Number.op_Addition
-  isSpec: "True"
-  name.vb: +
-  fullName: GTiff2Tiles.Core.Tiles.Number.operator +
-  fullName.vb: GTiff2Tiles.Core.Tiles.Number.+
-  nameWithType: Number.operator +
-  nameWithType.vb: Number.+
-- uid: GTiff2Tiles.Core.Tiles.Number.op_Division(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Tiles.Number)
-  name: operator /(Number, Number)
-  href: api/GTiff2Tiles.Core.Tiles.Number.html#GTiff2Tiles_Core_Tiles_Number_op_Division_GTiff2Tiles_Core_Tiles_Number_GTiff2Tiles_Core_Tiles_Number_
-  commentId: M:GTiff2Tiles.Core.Tiles.Number.op_Division(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Tiles.Number)
-  name.vb: /(Number, Number)
-  fullName: GTiff2Tiles.Core.Tiles.Number.operator /(GTiff2Tiles.Core.Tiles.Number, GTiff2Tiles.Core.Tiles.Number)
-  fullName.vb: GTiff2Tiles.Core.Tiles.Number./(GTiff2Tiles.Core.Tiles.Number, GTiff2Tiles.Core.Tiles.Number)
-  nameWithType: Number.operator /(Number, Number)
-  nameWithType.vb: Number./(Number, Number)
-- uid: GTiff2Tiles.Core.Tiles.Number.op_Division*
-  name: operator /
-  href: api/GTiff2Tiles.Core.Tiles.Number.html#GTiff2Tiles_Core_Tiles_Number_op_Division_
-  commentId: Overload:GTiff2Tiles.Core.Tiles.Number.op_Division
-  isSpec: "True"
-  name.vb: /
-  fullName: GTiff2Tiles.Core.Tiles.Number.operator /
-  fullName.vb: GTiff2Tiles.Core.Tiles.Number./
-  nameWithType: Number.operator /
-  nameWithType.vb: Number./
-- uid: GTiff2Tiles.Core.Tiles.Number.op_Equality(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Tiles.Number)
-  name: operator ==(Number, Number)
-  href: api/GTiff2Tiles.Core.Tiles.Number.html#GTiff2Tiles_Core_Tiles_Number_op_Equality_GTiff2Tiles_Core_Tiles_Number_GTiff2Tiles_Core_Tiles_Number_
-  commentId: M:GTiff2Tiles.Core.Tiles.Number.op_Equality(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Tiles.Number)
-  name.vb: =(Number, Number)
-  fullName: GTiff2Tiles.Core.Tiles.Number.operator ==(GTiff2Tiles.Core.Tiles.Number, GTiff2Tiles.Core.Tiles.Number)
-  fullName.vb: GTiff2Tiles.Core.Tiles.Number.=(GTiff2Tiles.Core.Tiles.Number, GTiff2Tiles.Core.Tiles.Number)
-  nameWithType: Number.operator ==(Number, Number)
-  nameWithType.vb: Number.=(Number, Number)
-- uid: GTiff2Tiles.Core.Tiles.Number.op_Equality*
-  name: operator ==
-  href: api/GTiff2Tiles.Core.Tiles.Number.html#GTiff2Tiles_Core_Tiles_Number_op_Equality_
-  commentId: Overload:GTiff2Tiles.Core.Tiles.Number.op_Equality
-  isSpec: "True"
-  name.vb: =
-  fullName: GTiff2Tiles.Core.Tiles.Number.operator ==
-  fullName.vb: GTiff2Tiles.Core.Tiles.Number.=
-  nameWithType: Number.operator ==
-  nameWithType.vb: Number.=
-- uid: GTiff2Tiles.Core.Tiles.Number.op_Inequality(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Tiles.Number)
-  name: operator !=(Number, Number)
-  href: api/GTiff2Tiles.Core.Tiles.Number.html#GTiff2Tiles_Core_Tiles_Number_op_Inequality_GTiff2Tiles_Core_Tiles_Number_GTiff2Tiles_Core_Tiles_Number_
-  commentId: M:GTiff2Tiles.Core.Tiles.Number.op_Inequality(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Tiles.Number)
-  name.vb: <>(Number, Number)
-  fullName: GTiff2Tiles.Core.Tiles.Number.operator !=(GTiff2Tiles.Core.Tiles.Number, GTiff2Tiles.Core.Tiles.Number)
-  fullName.vb: GTiff2Tiles.Core.Tiles.Number.<>(GTiff2Tiles.Core.Tiles.Number, GTiff2Tiles.Core.Tiles.Number)
-  nameWithType: Number.operator !=(Number, Number)
-  nameWithType.vb: Number.<>(Number, Number)
-- uid: GTiff2Tiles.Core.Tiles.Number.op_Inequality*
-  name: operator !=
-  href: api/GTiff2Tiles.Core.Tiles.Number.html#GTiff2Tiles_Core_Tiles_Number_op_Inequality_
-  commentId: Overload:GTiff2Tiles.Core.Tiles.Number.op_Inequality
-  isSpec: "True"
-  name.vb: <>
-  fullName: GTiff2Tiles.Core.Tiles.Number.operator !=
-  fullName.vb: GTiff2Tiles.Core.Tiles.Number.<>
-  nameWithType: Number.operator !=
-  nameWithType.vb: Number.<>
-- uid: GTiff2Tiles.Core.Tiles.Number.op_Multiply(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Tiles.Number)
-  name: operator *(Number, Number)
-  href: api/GTiff2Tiles.Core.Tiles.Number.html#GTiff2Tiles_Core_Tiles_Number_op_Multiply_GTiff2Tiles_Core_Tiles_Number_GTiff2Tiles_Core_Tiles_Number_
-  commentId: M:GTiff2Tiles.Core.Tiles.Number.op_Multiply(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Tiles.Number)
-  name.vb: '*(Number, Number)'
-  fullName: GTiff2Tiles.Core.Tiles.Number.operator *(GTiff2Tiles.Core.Tiles.Number, GTiff2Tiles.Core.Tiles.Number)
-  fullName.vb: GTiff2Tiles.Core.Tiles.Number.*(GTiff2Tiles.Core.Tiles.Number, GTiff2Tiles.Core.Tiles.Number)
-  nameWithType: Number.operator *(Number, Number)
-  nameWithType.vb: Number.*(Number, Number)
-- uid: GTiff2Tiles.Core.Tiles.Number.op_Multiply*
-  name: operator *
-  href: api/GTiff2Tiles.Core.Tiles.Number.html#GTiff2Tiles_Core_Tiles_Number_op_Multiply_
-  commentId: Overload:GTiff2Tiles.Core.Tiles.Number.op_Multiply
-  isSpec: "True"
-  name.vb: '*'
-  fullName: GTiff2Tiles.Core.Tiles.Number.operator *
-  fullName.vb: GTiff2Tiles.Core.Tiles.Number.*
-  nameWithType: Number.operator *
-  nameWithType.vb: Number.*
-- uid: GTiff2Tiles.Core.Tiles.Number.op_Subtraction(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Tiles.Number)
-  name: operator -(Number, Number)
-  href: api/GTiff2Tiles.Core.Tiles.Number.html#GTiff2Tiles_Core_Tiles_Number_op_Subtraction_GTiff2Tiles_Core_Tiles_Number_GTiff2Tiles_Core_Tiles_Number_
-  commentId: M:GTiff2Tiles.Core.Tiles.Number.op_Subtraction(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Tiles.Number)
-  name.vb: -(Number, Number)
-  fullName: GTiff2Tiles.Core.Tiles.Number.operator -(GTiff2Tiles.Core.Tiles.Number, GTiff2Tiles.Core.Tiles.Number)
-  fullName.vb: GTiff2Tiles.Core.Tiles.Number.-(GTiff2Tiles.Core.Tiles.Number, GTiff2Tiles.Core.Tiles.Number)
-  nameWithType: Number.operator -(Number, Number)
-  nameWithType.vb: Number.-(Number, Number)
-- uid: GTiff2Tiles.Core.Tiles.Number.op_Subtraction*
-  name: operator -
-  href: api/GTiff2Tiles.Core.Tiles.Number.html#GTiff2Tiles_Core_Tiles_Number_op_Subtraction_
-  commentId: Overload:GTiff2Tiles.Core.Tiles.Number.op_Subtraction
-  isSpec: "True"
-  name.vb: '-'
-  fullName: GTiff2Tiles.Core.Tiles.Number.operator -
-  fullName.vb: GTiff2Tiles.Core.Tiles.Number.-
-  nameWithType: Number.operator -
-  nameWithType.vb: Number.-
 - uid: GTiff2Tiles.Core.Tiles.Number.Subtract(GTiff2Tiles.Core.Tiles.Number)
   name: Subtract(Number)
   href: api/GTiff2Tiles.Core.Tiles.Number.html#GTiff2Tiles_Core_Tiles_Number_Subtract_GTiff2Tiles_Core_Tiles_Number_
@@ -4309,6 +4195,120 @@ references:
   isSpec: "True"
   fullName: GTiff2Tiles.Core.Tiles.Number.Z
   nameWithType: Number.Z
+- uid: GTiff2Tiles.Core.Tiles.Number.op_Addition(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Tiles.Number)
+  name: operator +(Number, Number)
+  href: api/GTiff2Tiles.Core.Tiles.Number.html#GTiff2Tiles_Core_Tiles_Number_op_Addition_GTiff2Tiles_Core_Tiles_Number_GTiff2Tiles_Core_Tiles_Number_
+  commentId: M:GTiff2Tiles.Core.Tiles.Number.op_Addition(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Tiles.Number)
+  name.vb: +(Number, Number)
+  fullName: GTiff2Tiles.Core.Tiles.Number.operator +(GTiff2Tiles.Core.Tiles.Number, GTiff2Tiles.Core.Tiles.Number)
+  fullName.vb: GTiff2Tiles.Core.Tiles.Number.+(GTiff2Tiles.Core.Tiles.Number, GTiff2Tiles.Core.Tiles.Number)
+  nameWithType: Number.operator +(Number, Number)
+  nameWithType.vb: Number.+(Number, Number)
+- uid: GTiff2Tiles.Core.Tiles.Number.op_Addition*
+  name: operator +
+  href: api/GTiff2Tiles.Core.Tiles.Number.html#GTiff2Tiles_Core_Tiles_Number_op_Addition_
+  commentId: Overload:GTiff2Tiles.Core.Tiles.Number.op_Addition
+  isSpec: "True"
+  name.vb: +
+  fullName: GTiff2Tiles.Core.Tiles.Number.operator +
+  fullName.vb: GTiff2Tiles.Core.Tiles.Number.+
+  nameWithType: Number.operator +
+  nameWithType.vb: Number.+
+- uid: GTiff2Tiles.Core.Tiles.Number.op_Division(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Tiles.Number)
+  name: operator /(Number, Number)
+  href: api/GTiff2Tiles.Core.Tiles.Number.html#GTiff2Tiles_Core_Tiles_Number_op_Division_GTiff2Tiles_Core_Tiles_Number_GTiff2Tiles_Core_Tiles_Number_
+  commentId: M:GTiff2Tiles.Core.Tiles.Number.op_Division(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Tiles.Number)
+  name.vb: /(Number, Number)
+  fullName: GTiff2Tiles.Core.Tiles.Number.operator /(GTiff2Tiles.Core.Tiles.Number, GTiff2Tiles.Core.Tiles.Number)
+  fullName.vb: GTiff2Tiles.Core.Tiles.Number./(GTiff2Tiles.Core.Tiles.Number, GTiff2Tiles.Core.Tiles.Number)
+  nameWithType: Number.operator /(Number, Number)
+  nameWithType.vb: Number./(Number, Number)
+- uid: GTiff2Tiles.Core.Tiles.Number.op_Division*
+  name: operator /
+  href: api/GTiff2Tiles.Core.Tiles.Number.html#GTiff2Tiles_Core_Tiles_Number_op_Division_
+  commentId: Overload:GTiff2Tiles.Core.Tiles.Number.op_Division
+  isSpec: "True"
+  name.vb: /
+  fullName: GTiff2Tiles.Core.Tiles.Number.operator /
+  fullName.vb: GTiff2Tiles.Core.Tiles.Number./
+  nameWithType: Number.operator /
+  nameWithType.vb: Number./
+- uid: GTiff2Tiles.Core.Tiles.Number.op_Equality(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Tiles.Number)
+  name: operator ==(Number, Number)
+  href: api/GTiff2Tiles.Core.Tiles.Number.html#GTiff2Tiles_Core_Tiles_Number_op_Equality_GTiff2Tiles_Core_Tiles_Number_GTiff2Tiles_Core_Tiles_Number_
+  commentId: M:GTiff2Tiles.Core.Tiles.Number.op_Equality(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Tiles.Number)
+  name.vb: =(Number, Number)
+  fullName: GTiff2Tiles.Core.Tiles.Number.operator ==(GTiff2Tiles.Core.Tiles.Number, GTiff2Tiles.Core.Tiles.Number)
+  fullName.vb: GTiff2Tiles.Core.Tiles.Number.=(GTiff2Tiles.Core.Tiles.Number, GTiff2Tiles.Core.Tiles.Number)
+  nameWithType: Number.operator ==(Number, Number)
+  nameWithType.vb: Number.=(Number, Number)
+- uid: GTiff2Tiles.Core.Tiles.Number.op_Equality*
+  name: operator ==
+  href: api/GTiff2Tiles.Core.Tiles.Number.html#GTiff2Tiles_Core_Tiles_Number_op_Equality_
+  commentId: Overload:GTiff2Tiles.Core.Tiles.Number.op_Equality
+  isSpec: "True"
+  name.vb: =
+  fullName: GTiff2Tiles.Core.Tiles.Number.operator ==
+  fullName.vb: GTiff2Tiles.Core.Tiles.Number.=
+  nameWithType: Number.operator ==
+  nameWithType.vb: Number.=
+- uid: GTiff2Tiles.Core.Tiles.Number.op_Inequality(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Tiles.Number)
+  name: operator !=(Number, Number)
+  href: api/GTiff2Tiles.Core.Tiles.Number.html#GTiff2Tiles_Core_Tiles_Number_op_Inequality_GTiff2Tiles_Core_Tiles_Number_GTiff2Tiles_Core_Tiles_Number_
+  commentId: M:GTiff2Tiles.Core.Tiles.Number.op_Inequality(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Tiles.Number)
+  name.vb: <>(Number, Number)
+  fullName: GTiff2Tiles.Core.Tiles.Number.operator !=(GTiff2Tiles.Core.Tiles.Number, GTiff2Tiles.Core.Tiles.Number)
+  fullName.vb: GTiff2Tiles.Core.Tiles.Number.<>(GTiff2Tiles.Core.Tiles.Number, GTiff2Tiles.Core.Tiles.Number)
+  nameWithType: Number.operator !=(Number, Number)
+  nameWithType.vb: Number.<>(Number, Number)
+- uid: GTiff2Tiles.Core.Tiles.Number.op_Inequality*
+  name: operator !=
+  href: api/GTiff2Tiles.Core.Tiles.Number.html#GTiff2Tiles_Core_Tiles_Number_op_Inequality_
+  commentId: Overload:GTiff2Tiles.Core.Tiles.Number.op_Inequality
+  isSpec: "True"
+  name.vb: <>
+  fullName: GTiff2Tiles.Core.Tiles.Number.operator !=
+  fullName.vb: GTiff2Tiles.Core.Tiles.Number.<>
+  nameWithType: Number.operator !=
+  nameWithType.vb: Number.<>
+- uid: GTiff2Tiles.Core.Tiles.Number.op_Multiply(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Tiles.Number)
+  name: operator *(Number, Number)
+  href: api/GTiff2Tiles.Core.Tiles.Number.html#GTiff2Tiles_Core_Tiles_Number_op_Multiply_GTiff2Tiles_Core_Tiles_Number_GTiff2Tiles_Core_Tiles_Number_
+  commentId: M:GTiff2Tiles.Core.Tiles.Number.op_Multiply(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Tiles.Number)
+  name.vb: '*(Number, Number)'
+  fullName: GTiff2Tiles.Core.Tiles.Number.operator *(GTiff2Tiles.Core.Tiles.Number, GTiff2Tiles.Core.Tiles.Number)
+  fullName.vb: GTiff2Tiles.Core.Tiles.Number.*(GTiff2Tiles.Core.Tiles.Number, GTiff2Tiles.Core.Tiles.Number)
+  nameWithType: Number.operator *(Number, Number)
+  nameWithType.vb: Number.*(Number, Number)
+- uid: GTiff2Tiles.Core.Tiles.Number.op_Multiply*
+  name: operator *
+  href: api/GTiff2Tiles.Core.Tiles.Number.html#GTiff2Tiles_Core_Tiles_Number_op_Multiply_
+  commentId: Overload:GTiff2Tiles.Core.Tiles.Number.op_Multiply
+  isSpec: "True"
+  name.vb: '*'
+  fullName: GTiff2Tiles.Core.Tiles.Number.operator *
+  fullName.vb: GTiff2Tiles.Core.Tiles.Number.*
+  nameWithType: Number.operator *
+  nameWithType.vb: Number.*
+- uid: GTiff2Tiles.Core.Tiles.Number.op_Subtraction(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Tiles.Number)
+  name: operator -(Number, Number)
+  href: api/GTiff2Tiles.Core.Tiles.Number.html#GTiff2Tiles_Core_Tiles_Number_op_Subtraction_GTiff2Tiles_Core_Tiles_Number_GTiff2Tiles_Core_Tiles_Number_
+  commentId: M:GTiff2Tiles.Core.Tiles.Number.op_Subtraction(GTiff2Tiles.Core.Tiles.Number,GTiff2Tiles.Core.Tiles.Number)
+  name.vb: -(Number, Number)
+  fullName: GTiff2Tiles.Core.Tiles.Number.operator -(GTiff2Tiles.Core.Tiles.Number, GTiff2Tiles.Core.Tiles.Number)
+  fullName.vb: GTiff2Tiles.Core.Tiles.Number.-(GTiff2Tiles.Core.Tiles.Number, GTiff2Tiles.Core.Tiles.Number)
+  nameWithType: Number.operator -(Number, Number)
+  nameWithType.vb: Number.-(Number, Number)
+- uid: GTiff2Tiles.Core.Tiles.Number.op_Subtraction*
+  name: operator -
+  href: api/GTiff2Tiles.Core.Tiles.Number.html#GTiff2Tiles_Core_Tiles_Number_op_Subtraction_
+  commentId: Overload:GTiff2Tiles.Core.Tiles.Number.op_Subtraction
+  isSpec: "True"
+  name.vb: '-'
+  fullName: GTiff2Tiles.Core.Tiles.Number.operator -
+  fullName.vb: GTiff2Tiles.Core.Tiles.Number.-
+  nameWithType: Number.operator -
+  nameWithType.vb: Number.-
 - uid: GTiff2Tiles.Core.Tiles.RasterTile
   name: RasterTile
   href: api/GTiff2Tiles.Core.Tiles.RasterTile.html
