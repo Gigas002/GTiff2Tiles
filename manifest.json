@@ -1,5 +1,4 @@
 {
-  "homepages": [],
   "source_base_path": "/home/runner/work/GTiff2Tiles/GTiff2Tiles",
   "xrefmap": "xrefmap.yml",
   "files": [
@@ -666,7 +665,6 @@
       "version": ""
     }
   ],
-  "version_info": {},
   "groups": [
     {
       "xrefmap": "xrefmap.yml"
