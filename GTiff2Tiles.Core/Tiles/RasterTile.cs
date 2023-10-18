@@ -96,24 +96,29 @@ public class RasterTile : Tile
         #endregion
 
         // Get postitions and sizes for current tile
-        (Area readArea, Area writeArea) = Area.GetAreas(sourceGeoTiff, this);
+        (Area readArea, Area writeArea)? areas = Area.GetAreas(sourceGeoTiff, this);
 
-        // Scaling calculations
-        double xScale = (double)writeArea.Size.Width / readArea.Size.Width;
-        double yScale = (double)writeArea.Size.Height / readArea.Size.Height;
+        var image = Image.Black(Size.Width, Size.Height).NewFromImage(new int[BandsCount]);
 
-        // Crop and resize tile
-        Image tempTileImage = tileCache.Crop((int)readArea.OriginCoordinate.X, (int)readArea.OriginCoordinate.Y,
-                                             readArea.Size.Width, readArea.Size.Height)
-                                       .Resize(xScale, Interpolation, yScale);
+        if (areas != null)
+        {
+            (Area readArea, Area writeArea) = areas.Value;
+            // Scaling calculations
+            double xScale = (double)writeArea.Size.Width / readArea.Size.Width;
+            double yScale = (double)writeArea.Size.Height / readArea.Size.Height;
 
-        // Add alpha channel if needed
-        Band.AddDefaultBands(ref tempTileImage, BandsCount);
+            // Crop and resize tile
+            Image tempTileImage = tileCache.Crop((int)readArea.OriginCoordinate.X, (int)readArea.OriginCoordinate.Y,
+                                                 readArea.Size.Width, readArea.Size.Height)
+                                           .Resize(xScale, Interpolation, yScale);
+
+            // Add alpha channel if needed
+            Band.AddDefaultBands(ref tempTileImage, BandsCount);
+            image=image.Insert(tempTileImage, (int)writeArea.OriginCoordinate.X, (int)writeArea.OriginCoordinate.Y);
+        }
 
         // Make transparent image and insert tile
-        return Image.Black(Size.Width, Size.Height).NewFromImage(new int[BandsCount])
-                    .Insert(tempTileImage, (int)writeArea.OriginCoordinate.X,
-                            (int)writeArea.OriginCoordinate.Y);
+        return image;
     }
 
     /// <inheritdoc />

@@ -200,24 +200,32 @@ public class Raster : GeoTiff
         #endregion
 
         // Get postitions and sizes for current tile
-        (Area readArea, Area writeArea) = Area.GetAreas(this, tile);
+        (Area readArea, Area writeArea)? areas = Area.GetAreas(this, tile);
 
-        // Scaling calculations
-        double xScale = (double)writeArea.Size.Width / readArea.Size.Width;
-        double yScale = (double)writeArea.Size.Height / readArea.Size.Height;
+        Image image = Image.Black(tile.Size.Width, tile.Size.Height).NewFromImage(new int[tile.BandsCount]);
 
-        // Crop and resize tile
-        Image tempTileImage = tileCache.Crop((int)readArea.OriginCoordinate.X, (int)readArea.OriginCoordinate.Y,
-                                             readArea.Size.Width, readArea.Size.Height)
-                                       .Resize(xScale, tile.Interpolation, null, yScale);
 
-        // Add alpha channel if needed
-        Band.AddDefaultBands(ref tempTileImage, tile.BandsCount);
+        if (areas != null)
+        {
+            (Area readArea, Area writeArea) = areas.Value;
 
-        // Make transparent image and insert tile
-        return Image.Black(tile.Size.Width, tile.Size.Height).NewFromImage(new int[tile.BandsCount])
-                    .Insert(tempTileImage, (int)writeArea.OriginCoordinate.X,
-                            (int)writeArea.OriginCoordinate.Y);
+            // Scaling calculations
+            double xScale = (double)writeArea.Size.Width / readArea.Size.Width;
+            double yScale = (double)writeArea.Size.Height / readArea.Size.Height;
+
+            // Crop and resize tile
+            Image tempTileImage = tileCache.Crop((int)readArea.OriginCoordinate.X, (int)readArea.OriginCoordinate.Y,
+                                                 readArea.Size.Width, readArea.Size.Height)
+                                           .Resize(xScale, tile.Interpolation, null, yScale);
+
+            // Add alpha channel if needed
+            Band.AddDefaultBands(ref tempTileImage, tile.BandsCount);
+
+            // Insert tile
+            image = image.Insert(tempTileImage, (int)writeArea.OriginCoordinate.X, (int)writeArea.OriginCoordinate.Y);
+        }
+
+        return image;
     }
 
     #endregion
@@ -343,13 +351,11 @@ public class Raster : GeoTiff
     /// <param name="printTimeAction"></param>
     /// <exception cref="ArgumentOutOfRangeException"/>
     /// <exception cref="RasterException"/>
-    public void WriteTilesToDirectory(string outputDirectoryPath, int minZ, int maxZ,
-                                      bool tmsCompatible = false, Size tileSize = null,
-                                      TileExtension tileExtension = TileExtension.Png,
+    public void WriteTilesToDirectory(string outputDirectoryPath, int minZ, int maxZ, bool tmsCompatible = false,
+                                      Size tileSize = null, TileExtension tileExtension = TileExtension.Png,
                                       NetVips.Enums.Kernel interpolation = NetVips.Enums.Kernel.Lanczos3,
-                                      int bandsCount = RasterTile.DefaultBandsCount,
-                                      int tileCacheCount = 1000, int threadsCount = 0,
-                                      IProgress<double> progress = null,
+                                      int bandsCount = RasterTile.DefaultBandsCount, int tileCacheCount = 1000,
+                                      int threadsCount = 0, IProgress<double> progress = null,
                                       Action<string> printTimeAction = null)
     {
         #region Preconditions checks
@@ -391,9 +397,7 @@ public class Raster : GeoTiff
             Number tileNumber = new(x, y, z);
             RasterTile tile = new(tileNumber, GeoCoordinateSystem, tileSize, tmsCompatible)
             {
-                Extension = tileExtension,
-                BandsCount = bandsCount,
-                Interpolation = interpolation
+                Extension = tileExtension, BandsCount = bandsCount, Interpolation = interpolation
             };
 
             // Important: OpenLayers requires replacement of tileY to tileY+1
@@ -416,7 +420,7 @@ public class Raster : GeoTiff
         {
             // Get tiles min/max numbers
             (Number minNumber, Number maxNumber) = GeoCoordinate.GetNumbers(MinCoordinate, MaxCoordinate,
-                    zoom, tileSize, tmsCompatible);
+                                                                            zoom, tileSize, tmsCompatible);
 
             // For each tile on given zoom calculate positions/sizes and save as file
             for (int tileY = minNumber.Y; tileY <= maxNumber.Y; tileY++)
@@ -430,17 +434,15 @@ public class Raster : GeoTiff
     }
 
     /// <inheritdoc cref="WriteTilesToDirectory"/>
-    public Task WriteTilesToDirectoryAsync(string outputDirectoryPath, int minZ, int maxZ,
-                                           bool tmsCompatible = false, Size tileSize = null,
-                                           TileExtension tileExtension = TileExtension.Png,
+    public Task WriteTilesToDirectoryAsync(string outputDirectoryPath, int minZ, int maxZ, bool tmsCompatible = false,
+                                           Size tileSize = null, TileExtension tileExtension = TileExtension.Png,
                                            NetVips.Enums.Kernel interpolation = NetVips.Enums.Kernel.Lanczos3,
-                                           int bandsCount = RasterTile.DefaultBandsCount,
-                                           int tileCacheCount = 1000, int threadsCount = 0,
-                                           IProgress<double> progress = null,
+                                           int bandsCount = RasterTile.DefaultBandsCount, int tileCacheCount = 1000,
+                                           int threadsCount = 0, IProgress<double> progress = null,
                                            Action<string> printTimeAction = null) =>
-        Task.Run(() => WriteTilesToDirectory(outputDirectoryPath, minZ, maxZ, tmsCompatible, tileSize,
-                                         tileExtension, interpolation, bandsCount, tileCacheCount,
-                                         threadsCount, progress, printTimeAction));
+        Task.Run(() => WriteTilesToDirectory(outputDirectoryPath, minZ, maxZ, tmsCompatible, tileSize, tileExtension,
+                                             interpolation, bandsCount, tileCacheCount, threadsCount, progress,
+                                             printTimeAction));
 
     /// <summary>
     /// Crops current <see cref="Raster"/> on <see cref="RasterTile"/>s
@@ -463,9 +465,8 @@ public class Raster : GeoTiff
     public void WriteTilesToChannel(ChannelWriter<RasterTile> channelWriter, int minZ, int maxZ,
                                     bool tmsCompatible = false, Size tileSize = null,
                                     NetVips.Enums.Kernel interpolation = NetVips.Enums.Kernel.Lanczos3,
-                                    int bandsCount = RasterTile.DefaultBandsCount,
-                                    int tileCacheCount = 1000, int threadsCount = 0,
-                                    IProgress<double> progress = null,
+                                    int bandsCount = RasterTile.DefaultBandsCount, int tileCacheCount = 1000,
+                                    int threadsCount = 0, IProgress<double> progress = null,
                                     Action<string> printTimeAction = null)
     {
         #region Preconditions checks
@@ -523,7 +524,7 @@ public class Raster : GeoTiff
         {
             // Get tiles min/max numbers
             (Number minNumber, Number maxNumber) = GeoCoordinate.GetNumbers(MinCoordinate, MaxCoordinate,
-                zoom, tileSize, tmsCompatible);
+                                                                            zoom, tileSize, tmsCompatible);
 
             // For each tile on given zoom calculate positions/sizes and save as file
             for (int tileY = minNumber.Y; tileY <= maxNumber.Y; tileY++)
@@ -540,13 +541,11 @@ public class Raster : GeoTiff
     public Task WriteTilesToChannelAsync(ChannelWriter<RasterTile> channelWriter, int minZ, int maxZ,
                                          bool tmsCompatible = false, Size tileSize = null,
                                          NetVips.Enums.Kernel interpolation = NetVips.Enums.Kernel.Lanczos3,
-                                         int bandsCount = RasterTile.DefaultBandsCount,
-                                         int tileCacheCount = 1000, int threadsCount = 0,
-                                         IProgress<double> progress = null,
+                                         int bandsCount = RasterTile.DefaultBandsCount, int tileCacheCount = 1000,
+                                         int threadsCount = 0, IProgress<double> progress = null,
                                          Action<string> printTimeAction = null) =>
-        Task.Run(() => WriteTilesToChannel(channelWriter, minZ, maxZ, tmsCompatible, tileSize,
-                                       interpolation, bandsCount, tileCacheCount, threadsCount,
-                                       progress, printTimeAction));
+        Task.Run(() => WriteTilesToChannel(channelWriter, minZ, maxZ, tmsCompatible, tileSize, interpolation,
+                                           bandsCount, tileCacheCount, threadsCount, progress, printTimeAction));
 
     /// <summary>
     /// Crops current <see cref="Raster"/> on <see cref="RasterTile"/>s
@@ -554,13 +553,13 @@ public class Raster : GeoTiff
     /// </summary>
     /// <returns><see cref="IEnumerable{T}"/> of <see cref="RasterTile"/>s</returns>
     /// <inheritdoc cref="WriteTilesToAsyncEnumerable"/>
-    public IEnumerable<RasterTile> WriteTilesToEnumerable(int minZ, int maxZ,
-                                                     bool tmsCompatible = false, Size tileSize = null,
-                                                     NetVips.Enums.Kernel interpolation = NetVips.Enums.Kernel.Lanczos3,
-                                                     int bandsCount = RasterTile.DefaultBandsCount,
-                                                     int tileCacheCount = 1000,
-                                                     IProgress<double> progress = null,
-                                                     Action<string> printTimeAction = null)
+    public IEnumerable<RasterTile> WriteTilesToEnumerable(int minZ, int maxZ, bool tmsCompatible = false,
+                                                          Size tileSize = null,
+                                                          NetVips.Enums.Kernel interpolation =
+                                                              NetVips.Enums.Kernel.Lanczos3,
+                                                          int bandsCount = RasterTile.DefaultBandsCount,
+                                                          int tileCacheCount = 1000, IProgress<double> progress = null,
+                                                          Action<string> printTimeAction = null)
     {
         #region Preconditions checks
 
@@ -613,13 +612,12 @@ public class Raster : GeoTiff
         {
             // Get tiles min/max numbers
             (Number minNumber, Number maxNumber) = GeoCoordinate.GetNumbers(MinCoordinate, MaxCoordinate,
-                    zoom, tileSize, tmsCompatible);
+                                                                            zoom, tileSize, tmsCompatible);
 
             // For each tile on given zoom calculate positions/sizes and save as file
             for (int tileY = minNumber.Y; tileY <= maxNumber.Y; tileY++)
             {
-                for (int tileX = minNumber.X; tileX <= maxNumber.X; tileX++)
-                    yield return MakeTile(tileX, tileY, zoom);
+                for (int tileX = minNumber.X; tileX <= maxNumber.X; tileX++) yield return MakeTile(tileX, tileY, zoom);
             }
         }
     }
@@ -654,9 +652,10 @@ public class Raster : GeoTiff
     /// <returns><see cref="IAsyncEnumerable{T}"/> of <see cref="RasterTile"/>s</returns>
     /// <exception cref="ArgumentOutOfRangeException"/>
     /// <exception cref="RasterException"/>
-    public IAsyncEnumerable<RasterTile> WriteTilesToAsyncEnumerable(int minZ, int maxZ,
-                                                                    bool tmsCompatible = false, Size tileSize = null,
-                                                                    NetVips.Enums.Kernel interpolation = NetVips.Enums.Kernel.Lanczos3,
+    public IAsyncEnumerable<RasterTile> WriteTilesToAsyncEnumerable(int minZ, int maxZ, bool tmsCompatible = false,
+                                                                    Size tileSize = null,
+                                                                    NetVips.Enums.Kernel interpolation =
+                                                                        NetVips.Enums.Kernel.Lanczos3,
                                                                     int bandsCount = RasterTile.DefaultBandsCount,
                                                                     int tileCacheCount = 1000, int threadsCount = 0,
                                                                     IProgress<double> progress = null,
@@ -666,9 +665,8 @@ public class Raster : GeoTiff
 
         Channel<RasterTile> channel = Channel.CreateUnbounded<RasterTile>();
 
-        WriteTilesToChannelAsync(channel.Writer, minZ, maxZ, tmsCompatible, tileSize,
-                                 interpolation, bandsCount, tileCacheCount,
-                                 threadsCount, progress, printTimeAction)
+        WriteTilesToChannelAsync(channel.Writer, minZ, maxZ, tmsCompatible, tileSize, interpolation, bandsCount,
+                                 tileCacheCount, threadsCount, progress, printTimeAction)
            .ContinueWith(_ => channel.Writer.Complete(), TaskScheduler.Current);
 
         return channel.Reader.ReadAllAsync();
@@ -745,10 +743,11 @@ public class Raster : GeoTiff
 
     /// <inheritdoc cref="CreateOverviewTiles"/>
     public Task CreateOverviewTilesAsync(ChannelWriter<RasterTile> channelWriter, int minZ, int maxZ,
-                                    HashSet<RasterTile> tiles, bool isBuffered, CoordinateSystem coordinateSystem,
-                                    Size tileSize = null, TileExtension extension = TileExtension.Png,
-                                    bool tmsCompatible = false, int bandsCount = 4) => Task.Run(() => CreateOverviewTiles(channelWriter, minZ, maxZ, tiles, isBuffered, coordinateSystem,
-        tileSize, extension, tmsCompatible, bandsCount));
+                                         HashSet<RasterTile> tiles, bool isBuffered, CoordinateSystem coordinateSystem,
+                                         Size tileSize = null, TileExtension extension = TileExtension.Png,
+                                         bool tmsCompatible = false, int bandsCount = 4) =>
+        Task.Run(() => CreateOverviewTiles(channelWriter, minZ, maxZ, tiles, isBuffered, coordinateSystem, tileSize,
+                                           extension, tmsCompatible, bandsCount));
 
     #endregion
 
@@ -765,8 +764,7 @@ public class Raster : GeoTiff
     /// <remarks><para/>If set to <see langword="false"/>, will use
     /// <see cref="ITile.Path"/> to get input tiles's data</remarks></param>
     /// <exception cref="ArgumentNullException"/>
-    public static void CreateOverviewTile(ref RasterTile targetTile, HashSet<RasterTile> baseTiles,
-                                          bool isBuffered)
+    public static void CreateOverviewTile(ref RasterTile targetTile, HashSet<RasterTile> baseTiles, bool isBuffered)
     {
         #region Preconditions checks
 
@@ -831,8 +829,8 @@ public class Raster : GeoTiff
     /// <param name="bandsCount"></param>
     /// <param name="extension"><see cref="TileExtension"/> of ready <see cref="RasterTile"/></param>
     public static IEnumerable<byte> JoinTilesIntoBytes(RasterTile tile0, RasterTile tile1, RasterTile tile2,
-                                                       RasterTile tile3, bool isBuffered, Size tileSize,
-                                                       int bandsCount, TileExtension extension)
+                                                       RasterTile tile3, bool isBuffered, Size tileSize, int bandsCount,
+                                                       TileExtension extension)
     {
         Image image = JoinTilesIntoImage(tile0, tile1, tile2, tile3, isBuffered, tileSize, bandsCount);
 
@@ -874,27 +872,23 @@ public class Raster : GeoTiff
     /// <param name="bandsCount">Count of bands in target <see cref="RasterTile"/>
     /// <remarks><para/>must be in range (0-5)</remarks></param>
     /// <returns>Ready <see cref="Image"/></returns>
-    public static Image JoinTilesIntoImage(RasterTile tile0, RasterTile tile1,
-                                           RasterTile tile2, RasterTile tile3,
-                                           bool isBuffered, Size tileSize,
-                                           int bandsCount)
+    public static Image JoinTilesIntoImage(RasterTile tile0, RasterTile tile1, RasterTile tile2, RasterTile tile3,
+                                           bool isBuffered, Size tileSize, int bandsCount)
     {
         // ReSharper disable once RemoveRedundantBraces
         if (isBuffered)
         {
-            return JoinTilesIntoImage(tile0?.Bytes, tile1?.Bytes,
-                                      tile2?.Bytes, tile3?.Bytes,
-                                      tileSize, bandsCount);
+            return JoinTilesIntoImage(tile0?.Bytes, tile1?.Bytes, tile2?.Bytes, tile3?.Bytes, tileSize, bandsCount);
         }
 
-        return JoinTilesIntoImage(tile0?.Path, tile1?.Path, tile2?.Path, tile3?.Path,
-                                  tileSize, bandsCount);
+        return JoinTilesIntoImage(tile0?.Path, tile1?.Path, tile2?.Path, tile3?.Path, tileSize, bandsCount);
     }
 
     /// <inheritdoc cref="JoinTilesIntoImage(RasterTile,RasterTile,RasterTile,RasterTile,bool,Images.Size,int)"/>
     public static Task<Image> JoinTilesIntoImageAsync(RasterTile tile0, RasterTile tile1, RasterTile tile2,
                                                       RasterTile tile3, bool isBuffered, Size tileSize,
-                                                      int bandsCount) => Task.Run(() => JoinTilesIntoImage(tile0, tile1, tile2, tile3, isBuffered, tileSize, bandsCount));
+                                                      int bandsCount) =>
+        Task.Run(() => JoinTilesIntoImage(tile0, tile1, tile2, tile3, isBuffered, tileSize, bandsCount));
 
     /// <summary>
     /// Join arrays of <see cref="byte"/> of
@@ -923,8 +917,8 @@ public class Raster : GeoTiff
     /// <exception cref="ArgumentNullException"/>
     /// <exception cref="ArgumentOutOfRangeException"/>
     public static Image JoinTilesIntoImage(IEnumerable<byte> tile0Bytes, IEnumerable<byte> tile1Bytes,
-                                           IEnumerable<byte> tile2Bytes, IEnumerable<byte> tile3Bytes,
-                                           Size tileSize, int bandsCount)
+                                           IEnumerable<byte> tile2Bytes, IEnumerable<byte> tile3Bytes, Size tileSize,
+                                           int bandsCount)
     {
         #region Preconditions checks
 
@@ -951,10 +945,7 @@ public class Raster : GeoTiff
                 empty = false;
                 images[i] = Image.NewFromBuffer(bytes[i]).ThumbnailImage(size.Width, size.Height);
             }
-            else
-            {
-                images[i] = Image.Black(size.Width, size.Height, bandsCount);
-            }
+            else { images[i] = Image.Black(size.Width, size.Height, bandsCount); }
         }
 
         return empty ? null : Image.Arrayjoin(images, 2);
@@ -963,7 +954,8 @@ public class Raster : GeoTiff
     /// <inheritdoc cref="JoinTilesIntoImage(IEnumerable{byte},IEnumerable{byte},IEnumerable{byte},IEnumerable{byte},Images.Size,int)"/>
     public static Task<Image> JoinTilesIntoImageAsync(IEnumerable<byte> tile0Bytes, IEnumerable<byte> tile1Bytes,
                                                       IEnumerable<byte> tile2Bytes, IEnumerable<byte> tile3Bytes,
-                                                      Size tileSize, int bandsCount) => Task.Run(() => JoinTilesIntoImage(tile0Bytes, tile1Bytes, tile2Bytes, tile3Bytes, tileSize, bandsCount));
+                                                      Size tileSize, int bandsCount) =>
+        Task.Run(() => JoinTilesIntoImage(tile0Bytes, tile1Bytes, tile2Bytes, tile3Bytes, tileSize, bandsCount));
 
     /// <summary>
     /// Join 4 <see cref="RasterTile"/>s into
@@ -990,8 +982,7 @@ public class Raster : GeoTiff
     /// <returns>Ready <see cref="Image"/></returns>
     /// <exception cref="ArgumentNullException"/>
     /// <exception cref="ArgumentOutOfRangeException"/>
-    public static Image JoinTilesIntoImage(string tile0Path, string tile1Path,
-                                           string tile2Path, string tile3Path,
+    public static Image JoinTilesIntoImage(string tile0Path, string tile1Path, string tile2Path, string tile3Path,
                                            Size tileSize, int bandsCount)
     {
         #region Preconditions checks
@@ -1025,19 +1016,16 @@ public class Raster : GeoTiff
                 byte[] bytes = File.ReadAllBytes(paths[i]);
                 images[i] = Image.NewFromBuffer(bytes).ThumbnailImage(size.Width, size.Height);
             }
-            else
-            {
-                images[i] = Image.Black(size.Width, size.Height, bandsCount);
-            }
+            else { images[i] = Image.Black(size.Width, size.Height, bandsCount); }
         }
 
         return empty ? null : Image.Arrayjoin(images, 2);
     }
 
     /// <inheritdoc cref="JoinTilesIntoImage(string,string,string,string,Images.Size,int)"/>
-    public static Task<Image> JoinTilesIntoImageAsync(string tile0Path, string tile1Path, string tile2Path, string tile3Path,
-                                                      Size tileSize, int bandsCount) => Task.Run(() => JoinTilesIntoImage(tile0Path, tile1Path, tile2Path, tile3Path, tileSize,
-        bandsCount));
+    public static Task<Image> JoinTilesIntoImageAsync(string tile0Path, string tile1Path, string tile2Path,
+                                                      string tile3Path, Size tileSize, int bandsCount) =>
+        Task.Run(() => JoinTilesIntoImage(tile0Path, tile1Path, tile2Path, tile3Path, tileSize, bandsCount));
 
     #endregion
 
