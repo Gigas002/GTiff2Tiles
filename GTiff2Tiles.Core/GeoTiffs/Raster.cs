@@ -190,7 +190,7 @@ public class Raster : GeoTiff
     /// <returns>Ready <see cref="Image"/> for <see cref="RasterTile"/></returns>
     /// <exception cref="ArgumentNullException"/>
     /// <exception cref="ArgumentException"/>
-    public Image CreateTileImage(Image tileCache, RasterTile tile)
+    public Image CreateTileImage(Image tileCache, RasterTile tile, Area readArea, Area writeArea)
     {
         #region Preconditions checks
 
@@ -199,33 +199,22 @@ public class Raster : GeoTiff
 
         #endregion
 
-        // Get postitions and sizes for current tile
-        (Area readArea, Area writeArea)? areas = Area.GetAreas(this, tile);
 
-        Image image = Image.Black(tile.Size.Width, tile.Size.Height).NewFromImage(new int[tile.BandsCount]);
+        // Scaling calculations
+        double xScale = (double)writeArea.Size.Width / readArea.Size.Width;
+        double yScale = (double)writeArea.Size.Height / readArea.Size.Height;
 
+        // Crop and resize tile
+        Image tempTileImage = tileCache.Crop((int)readArea.OriginCoordinate.X, (int)readArea.OriginCoordinate.Y,
+                                             readArea.Size.Width, readArea.Size.Height)
+                                       .Resize(xScale, tile.Interpolation, null, yScale);
 
-        if (areas != null)
-        {
-            (Area readArea, Area writeArea) = areas.Value;
+        // Add alpha channel if needed
+        Band.AddDefaultBands(ref tempTileImage, tile.BandsCount);
 
-            // Scaling calculations
-            double xScale = (double)writeArea.Size.Width / readArea.Size.Width;
-            double yScale = (double)writeArea.Size.Height / readArea.Size.Height;
-
-            // Crop and resize tile
-            Image tempTileImage = tileCache.Crop((int)readArea.OriginCoordinate.X, (int)readArea.OriginCoordinate.Y,
-                                                 readArea.Size.Width, readArea.Size.Height)
-                                           .Resize(xScale, tile.Interpolation, null, yScale);
-
-            // Add alpha channel if needed
-            Band.AddDefaultBands(ref tempTileImage, tile.BandsCount);
-
-            // Insert tile
-            image = image.Insert(tempTileImage, (int)writeArea.OriginCoordinate.X, (int)writeArea.OriginCoordinate.Y);
-        }
-
-        return image;
+        // Insert tile
+        return Image.Black(tile.Size.Width, tile.Size.Height).NewFromImage(new int[tile.BandsCount])
+                    .Insert(tempTileImage, (int)writeArea.OriginCoordinate.X, (int)writeArea.OriginCoordinate.Y);
     }
 
     #endregion
@@ -254,7 +243,14 @@ public class Raster : GeoTiff
 
         // Preconditions checked inside CreateTileImage, don't need to check anything here
 
-        using Image tileImage = CreateTileImage(tileCache, tile);
+        // Get postitions and sizes for current tile
+        (Area readArea, Area writeArea)? areas = Area.GetAreas(this, tile);
+
+        if (areas == null) return;
+
+        (Area readArea, Area writeArea) = areas.Value;
+
+        using Image tileImage = CreateTileImage(tileCache, tile, readArea, writeArea);
 
         tileImage.WriteToFile(tile.Path);
     }
@@ -276,7 +272,14 @@ public class Raster : GeoTiff
     {
         // Preconditions checked inside CreateTileImage, don't need to check anything here
 
-        using Image tileImage = CreateTileImage(tileCache, tile);
+        // Get postitions and sizes for current tile
+        (Area readArea, Area writeArea)? areas = Area.GetAreas(this, tile);
+
+        if (areas == null) return null;
+
+        (Area readArea, Area writeArea) = areas.Value;
+
+        using Image tileImage = CreateTileImage(tileCache, tile, readArea, writeArea);
 
         return tileImage.WriteToBuffer(tile.GetExtensionString());
     }
@@ -306,7 +309,7 @@ public class Raster : GeoTiff
 
         tile.Bytes = WriteTileToEnumerable(tileCache, tile);
 
-        return tile.Validate(false) && channelWriter.TryWrite(tile);
+        return tile.Bytes != null && tile.Validate(false) && channelWriter.TryWrite(tile);
     }
 
     /// <returns></returns>
@@ -324,7 +327,7 @@ public class Raster : GeoTiff
 
         tile.Bytes = WriteTileToEnumerable(tileCache, tile);
 
-        return tile.Validate(false) ? channelWriter.WriteAsync(tile) : ValueTask.CompletedTask;
+        return tile.Bytes != null && tile.Validate(false) ? channelWriter.WriteAsync(tile) : ValueTask.CompletedTask;
     }
 
     #endregion

@@ -1035,7 +1035,7 @@
         <member name="M:GTiff2Tiles.Core.GeoTiffs.Raster.Dispose(System.Boolean)">
             <inheritdoc />
         </member>
-        <member name="M:GTiff2Tiles.Core.GeoTiffs.Raster.CreateTileImage(NetVips.Image,GTiff2Tiles.Core.Tiles.RasterTile)">
+        <member name="M:GTiff2Tiles.Core.GeoTiffs.Raster.CreateTileImage(NetVips.Image,GTiff2Tiles.Core.Tiles.RasterTile,GTiff2Tiles.Core.Images.Area,GTiff2Tiles.Core.Images.Area)">
             <summary>
             Create <see cref="T:NetVips.Image"/> for one <see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/>
             from input <see cref="T:NetVips.Image"/> or tile cache
@@ -2445,7 +2445,7 @@
             <param name="tmsCompatible"></param>
             <exception cref="T:System.ArgumentOutOfRangeException"/>
         </member>
-        <member name="M:GTiff2Tiles.Core.Tiles.RasterTile.CreateImage(GTiff2Tiles.Core.GeoTiffs.IGeoTiff,NetVips.Image)">
+        <member name="M:GTiff2Tiles.Core.Tiles.RasterTile.CreateImage(GTiff2Tiles.Core.GeoTiffs.IGeoTiff,NetVips.Image,GTiff2Tiles.Core.Images.Area,GTiff2Tiles.Core.Images.Area)">
             <summary>
             Create <see cref="T:NetVips.Image"/> for one <see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/>
             from input <see cref="T:NetVips.Image"/> or tile cache
@@ -2453,6 +2453,8 @@
             <param name="sourceGeoTiff">Source <see cref="T:GTiff2Tiles.Core.GeoTiffs.IGeoTiff"/></param>
             <param name="tileCache">Source <see cref="T:NetVips.Image"/>
             or tile cache</param>
+            <param name="readArea">Source area</param>
+            <param name="writeArea">Tile write area</param>
             <returns>Ready <see cref="T:NetVips.Image"/> for <see cref="T:GTiff2Tiles.Core.Tiles.RasterTile"/></returns>
             <exception cref="T:System.ArgumentNullException"/>
             <exception cref="T:System.ArgumentException"/>
