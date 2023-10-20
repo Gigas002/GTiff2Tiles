@@ -58,7 +58,8 @@ public class RasterTile : Tile
     /// <param name="size"></param>
     /// <param name="tmsCompatible"></param>
     /// <exception cref="ArgumentOutOfRangeException"/>
-    public RasterTile(Number number, CoordinateSystem coordinateSystem, Size size = null, bool tmsCompatible = false) : base(number, coordinateSystem, size, tmsCompatible) { }
+    public RasterTile(Number number, CoordinateSystem coordinateSystem, Size size = null, bool tmsCompatible = false) :
+        base(number, coordinateSystem, size, tmsCompatible) { }
 
     /// <inheritdoc cref="Tile(GeoCoordinate,GeoCoordinate,int,Size,bool)"/>
     /// <param name="minCoordinate"></param>
@@ -67,7 +68,8 @@ public class RasterTile : Tile
     /// <param name="size"></param>
     /// <param name="tmsCompatible"></param>
     /// <exception cref="ArgumentOutOfRangeException"/>
-    public RasterTile(GeoCoordinate minCoordinate, GeoCoordinate maxCoordinate, int zoom, Size size = null, bool tmsCompatible = false) : base(minCoordinate, maxCoordinate, zoom, size, tmsCompatible) { }
+    public RasterTile(GeoCoordinate minCoordinate, GeoCoordinate maxCoordinate, int zoom, Size size = null,
+                      bool tmsCompatible = false) : base(minCoordinate, maxCoordinate, zoom, size, tmsCompatible) { }
 
     #endregion
 
@@ -82,21 +84,23 @@ public class RasterTile : Tile
     /// <param name="sourceGeoTiff">Source <see cref="IGeoTiff"/></param>
     /// <param name="tileCache">Source <see cref="Image"/>
     /// or tile cache</param>
+    /// <param name="readArea">Source area</param>
+    /// <param name="writeArea">Tile write area</param>
     /// <returns>Ready <see cref="Image"/> for <see cref="RasterTile"/></returns>
     /// <exception cref="ArgumentNullException"/>
     /// <exception cref="ArgumentException"/>
-    public Image CreateImage(IGeoTiff sourceGeoTiff, Image tileCache)
+    public Image CreateImage(IGeoTiff sourceGeoTiff, Image tileCache, Area readArea, Area writeArea)
     {
         // TODO: check geotiff?
 
         #region Preconditions checks
 
         if (tileCache == null) throw new ArgumentNullException(nameof(tileCache));
+        if (readArea == null) throw new ArgumentNullException(nameof(readArea));
+        if (writeArea == null) throw new ArgumentNullException(nameof(writeArea));
 
         #endregion
 
-        // Get postitions and sizes for current tile
-        (Area readArea, Area writeArea) = Area.GetAreas(sourceGeoTiff, this);
 
         // Scaling calculations
         double xScale = (double)writeArea.Size.Width / readArea.Size.Width;
@@ -112,16 +116,21 @@ public class RasterTile : Tile
 
         // Make transparent image and insert tile
         return Image.Black(Size.Width, Size.Height).NewFromImage(new int[BandsCount])
-                    .Insert(tempTileImage, (int)writeArea.OriginCoordinate.X,
-                            (int)writeArea.OriginCoordinate.Y);
+                    .Insert(tempTileImage, (int)writeArea.OriginCoordinate.X, (int)writeArea.OriginCoordinate.Y);
     }
 
     /// <inheritdoc />
     public override void WriteToFile(IGeoTiff sourceGeoTiff, IWriteTilesArgs args)
     {
+        // Get postitions and sizes for current tile
+        (Area readArea, Area writeArea)? areas = Area.GetAreas(sourceGeoTiff, this);
+
+        if (areas == null) return;
+
+        (Area readArea, Area writeArea) = areas.Value;
         WriteRasterTilesArgs rasterArgs = (WriteRasterTilesArgs)args;
 
-        using Image tileImage = CreateImage(sourceGeoTiff, rasterArgs.TileCache);
+        using Image tileImage = CreateImage(sourceGeoTiff, rasterArgs.TileCache, readArea, writeArea);
 
         tileImage.WriteToFile(Path);
     }
@@ -129,20 +138,26 @@ public class RasterTile : Tile
     /// <inheritdoc />
     public override IEnumerable<byte> WriteToEnumerable(IGeoTiff sourceGeoTiff, IWriteTilesArgs args)
     {
+        // Get postitions and sizes for current tile
+        (Area readArea, Area writeArea)? areas = Area.GetAreas(sourceGeoTiff, this);
+
+        if (areas == null) return null;
+
+        (Area readArea, Area writeArea) = areas.Value;
+
         WriteRasterTilesArgs rasterArgs = args as WriteRasterTilesArgs;
 
-        using Image tileImage = CreateImage(sourceGeoTiff, rasterArgs.TileCache);
+        using Image tileImage = CreateImage(sourceGeoTiff, rasterArgs.TileCache, readArea, writeArea);
 
         return tileImage.WriteToBuffer(GetExtensionString());
     }
 
     /// <inheritdoc />
-    public override bool WriteToChannel<T>(IGeoTiff sourceGeoTiff, ChannelWriter<T> tileWriter,
-                                           IWriteTilesArgs args)
+    public override bool WriteToChannel<T>(IGeoTiff sourceGeoTiff, ChannelWriter<T> tileWriter, IWriteTilesArgs args)
     {
         Bytes = WriteToEnumerable(sourceGeoTiff, args);
 
-        return Validate(false) && tileWriter.TryWrite(this as T);
+        return Bytes != null && Validate(false) && tileWriter.TryWrite(this as T);
     }
 
     /// <inheritdoc />
@@ -175,8 +190,7 @@ public class RasterTile : Tile
     {
         if (!isBuffered)
         {
-            foreach (T tile in fourBaseTiles)
-                tile.Bytes = File.ReadAllBytes(tile.Path);
+            foreach (T tile in fourBaseTiles) tile.Bytes = File.ReadAllBytes(tile.Path);
         }
 
         Image[] images = new Image[4];
@@ -193,10 +207,7 @@ public class RasterTile : Tile
                 empty = false;
                 images[i] = Image.NewFromBuffer(bytes).ThumbnailImage(size.Width, size.Height);
             }
-            else
-            {
-                images[i] = Image.Black(size.Width, size.Height, BandsCount);
-            }
+            else { images[i] = Image.Black(size.Width, size.Height, BandsCount); }
         }
 
         return empty ? null : Image.Arrayjoin(images, 2);

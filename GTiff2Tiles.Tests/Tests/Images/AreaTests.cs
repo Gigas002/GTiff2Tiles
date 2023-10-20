@@ -95,7 +95,13 @@ public sealed class AreaTests
         Area calcReadArea = null;
         Area calcWriteArea = null;
 
-        Assert.DoesNotThrow(() => (calcReadArea, calcWriteArea) = Area.GetAreas(minImgCoord, maxImgCoord, _in4326Size, minTileCoord, maxTileCoord, tileSize));
+        Assert.DoesNotThrow(() =>
+        {
+            (Area readArea, Area writeArea)? areas =
+                Area.GetAreas(minImgCoord, maxImgCoord, _in4326Size, minTileCoord, maxTileCoord, tileSize);
+
+            (calcReadArea, calcWriteArea) = areas.Value;
+        });
         Assert.True(calcReadArea.OriginCoordinate == expectedReadCoord && calcReadArea.Size == expectedReadSize);
         Assert.True(calcWriteArea.OriginCoordinate == expectedWriteCoord && calcWriteArea.Size == expectedWriteSize);
     }
@@ -113,7 +119,8 @@ public sealed class AreaTests
         Assert.Throws<ArgumentNullException>(() =>
         {
             // ReSharper disable once ConvertToLambdaExpressionWhenPossible
-            (Area readArea, Area writeArea) = Area.GetAreas(null, maxImgCoord, imgSize, minTileCoord, maxTileCoord, tileSize);
+            (Area readArea, Area writeArea)? areas =
+                Area.GetAreas(null, maxImgCoord, imgSize, minTileCoord, maxTileCoord, tileSize);
         });
     }
 
@@ -130,7 +137,8 @@ public sealed class AreaTests
         Assert.Throws<ArgumentNullException>(() =>
         {
             // ReSharper disable once ConvertToLambdaExpressionWhenPossible
-            (Area readArea, Area writeArea) = Area.GetAreas(minImgCoord, null, imgSize, minTileCoord, maxTileCoord, tileSize);
+            (Area readArea, Area writeArea)? areas =
+                Area.GetAreas(minImgCoord, null, imgSize, minTileCoord, maxTileCoord, tileSize);
         });
     }
 
@@ -148,7 +156,8 @@ public sealed class AreaTests
         Assert.Throws<ArgumentException>(() =>
         {
             // ReSharper disable once ConvertToLambdaExpressionWhenPossible
-            (Area readArea, Area writeArea) = Area.GetAreas(minImgCoord, maxImgCoord, imgSize, minTileCoord, maxTileCoord, tileSize);
+            (Area readArea, Area writeArea)? areas =
+                Area.GetAreas(minImgCoord, maxImgCoord, imgSize, minTileCoord, maxTileCoord, tileSize);
         });
     }
 
@@ -165,7 +174,8 @@ public sealed class AreaTests
         Assert.Throws<ArgumentNullException>(() =>
         {
             // ReSharper disable once ConvertToLambdaExpressionWhenPossible
-            (Area readArea, Area writeArea) = Area.GetAreas(minImgCoord, maxImgCoord, null, minTileCoord, maxTileCoord, tileSize);
+            (Area readArea, Area writeArea)? areas =
+                Area.GetAreas(minImgCoord, maxImgCoord, null, minTileCoord, maxTileCoord, tileSize);
         });
     }
 
@@ -182,7 +192,8 @@ public sealed class AreaTests
         Assert.Throws<ArgumentNullException>(() =>
         {
             // ReSharper disable once ConvertToLambdaExpressionWhenPossible
-            (Area readArea, Area writeArea) = Area.GetAreas(minImgCoord, maxImgCoord, imgSize, null, maxTileCoord, tileSize);
+            (Area readArea, Area writeArea)? areas =
+                Area.GetAreas(minImgCoord, maxImgCoord, imgSize, null, maxTileCoord, tileSize);
         });
     }
 
@@ -199,7 +210,8 @@ public sealed class AreaTests
         Assert.Throws<ArgumentNullException>(() =>
         {
             // ReSharper disable once ConvertToLambdaExpressionWhenPossible
-            (Area readArea, Area writeArea) = Area.GetAreas(minImgCoord, maxImgCoord, imgSize, minTileCoord, null, tileSize);
+            (Area readArea, Area writeArea)? areas =
+                Area.GetAreas(minImgCoord, maxImgCoord, imgSize, minTileCoord, null, tileSize);
         });
     }
 
@@ -217,7 +229,8 @@ public sealed class AreaTests
         Assert.Throws<ArgumentException>(() =>
         {
             // ReSharper disable once ConvertToLambdaExpressionWhenPossible
-            (Area readArea, Area writeArea) = Area.GetAreas(minImgCoord, maxImgCoord, imgSize, minTileCoord, maxTileCoord, tileSize);
+            (Area readArea, Area writeArea)? areas =
+                Area.GetAreas(minImgCoord, maxImgCoord, imgSize, minTileCoord, maxTileCoord, tileSize);
         });
     }
 
@@ -234,7 +247,8 @@ public sealed class AreaTests
         Assert.Throws<ArgumentNullException>(() =>
         {
             // ReSharper disable once ConvertToLambdaExpressionWhenPossible
-            (Area readArea, Area writeArea) = Area.GetAreas(minImgCoord, maxImgCoord, imgSize, minTileCoord, maxTileCoord, null);
+            (Area readArea, Area writeArea)? areas =
+                Area.GetAreas(minImgCoord, maxImgCoord, imgSize, minTileCoord, maxTileCoord, null);
         });
     }
 
@@ -247,8 +261,8 @@ public sealed class AreaTests
     {
         using IGeoTiff image = new Raster(_in4326, Cs4326);
 
-        using ITile tile = new RasterTile(Locations.TokyoGeodeticTmsNumber,
-                                          image.GeoCoordinateSystem, tmsCompatible: true);
+        using ITile tile = new RasterTile(Locations.TokyoGeodeticTmsNumber, image.GeoCoordinateSystem,
+                                          tmsCompatible: true);
 
         PixelCoordinate expectedReadCoord = new(0.0, 218.0);
         PixelCoordinate expectedWriteCoord = new(5.6875, 0.0);
@@ -258,7 +272,11 @@ public sealed class AreaTests
         Area calcReadArea = null;
         Area calcWriteArea = null;
 
-        Assert.DoesNotThrow(() => (calcReadArea, calcWriteArea) = Area.GetAreas(image, tile));
+        Assert.DoesNotThrow(() =>
+        {
+            (Area readArea, Area writeArea)? areas = Area.GetAreas(image, tile);
+            (calcReadArea, calcWriteArea) = areas.Value;
+        });
         Assert.True(calcReadArea.OriginCoordinate == expectedReadCoord && calcReadArea.Size == expectedReadSize);
         Assert.True(calcWriteArea.OriginCoordinate == expectedWriteCoord && calcWriteArea.Size == expectedWriteSize);
     }

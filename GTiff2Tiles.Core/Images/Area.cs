@@ -64,7 +64,7 @@ public class Area
     /// <returns></returns>
     /// <exception cref="ArgumentNullException"/>
     /// <exception cref="ArgumentException"/>
-    public static (Area readArea, Area writeArea) GetAreas(GeoCoordinate imageMinCoordinate,
+    public static (Area readArea, Area writeArea)? GetAreas(GeoCoordinate imageMinCoordinate,
                                                            GeoCoordinate imageMaxCoordinate, Size imageSize,
                                                            GeoCoordinate tileMinCoordinate,
                                                            GeoCoordinate tileMaxCoordinate, Size tileSize)
@@ -145,6 +145,9 @@ public class Area
 
         PixelCoordinate readOriginCoordinate = new(readPosMinX, readPosMinY);
         PixelCoordinate writeOriginCoordinate = new(writePosMinX, writePosMinY);
+
+        if (readXSize < 1 || readYSize < 1 || writeXSize < 1 || writeYSize < 1) return null;
+        
         Size readSize = new((int)readXSize, (int)readYSize);
         Size writeSize = new((int)writeXSize, (int)writeYSize);
 
@@ -162,7 +165,7 @@ public class Area
     /// <param name="tile">Target <see cref="ITile"/></param>
     /// <returns><see cref="ValueTuple{T1, T2}"/> of <see cref="Area"/>s to read and write</returns>
     /// <exception cref="ArgumentNullException"/>
-    public static (Area readArea, Area writeArea) GetAreas(IGeoTiff image, ITile tile)
+    public static (Area readArea, Area writeArea)? GetAreas(IGeoTiff image, ITile tile)
     {
         #region Preconditions checks
 
