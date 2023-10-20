@@ -2104,12 +2104,12 @@ references:
   isSpec: "True"
   fullName: GTiff2Tiles.Core.GeoTiffs.Raster.CreateOverviewTilesAsync
   nameWithType: Raster.CreateOverviewTilesAsync
-- uid: GTiff2Tiles.Core.GeoTiffs.Raster.CreateTileImage(NetVips.Image,GTiff2Tiles.Core.Tiles.RasterTile)
-  name: CreateTileImage(Image, RasterTile)
-  href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_CreateTileImage_NetVips_Image_GTiff2Tiles_Core_Tiles_RasterTile_
-  commentId: M:GTiff2Tiles.Core.GeoTiffs.Raster.CreateTileImage(NetVips.Image,GTiff2Tiles.Core.Tiles.RasterTile)
-  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.CreateTileImage(NetVips.Image, GTiff2Tiles.Core.Tiles.RasterTile)
-  nameWithType: Raster.CreateTileImage(Image, RasterTile)
+- uid: GTiff2Tiles.Core.GeoTiffs.Raster.CreateTileImage(NetVips.Image,GTiff2Tiles.Core.Tiles.RasterTile,GTiff2Tiles.Core.Images.Area,GTiff2Tiles.Core.Images.Area)
+  name: CreateTileImage(Image, RasterTile, Area, Area)
+  href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_CreateTileImage_NetVips_Image_GTiff2Tiles_Core_Tiles_RasterTile_GTiff2Tiles_Core_Images_Area_GTiff2Tiles_Core_Images_Area_
+  commentId: M:GTiff2Tiles.Core.GeoTiffs.Raster.CreateTileImage(NetVips.Image,GTiff2Tiles.Core.Tiles.RasterTile,GTiff2Tiles.Core.Images.Area,GTiff2Tiles.Core.Images.Area)
+  fullName: GTiff2Tiles.Core.GeoTiffs.Raster.CreateTileImage(NetVips.Image, GTiff2Tiles.Core.Tiles.RasterTile, GTiff2Tiles.Core.Images.Area, GTiff2Tiles.Core.Images.Area)
+  nameWithType: Raster.CreateTileImage(Image, RasterTile, Area, Area)
 - uid: GTiff2Tiles.Core.GeoTiffs.Raster.CreateTileImage*
   name: CreateTileImage
   href: api/GTiff2Tiles.Core.GeoTiffs.Raster.html#GTiff2Tiles_Core_GeoTiffs_Raster_CreateTileImage_
@@ -4356,12 +4356,12 @@ references:
   isSpec: "True"
   fullName: GTiff2Tiles.Core.Tiles.RasterTile.BandsCount
   nameWithType: RasterTile.BandsCount
-- uid: GTiff2Tiles.Core.Tiles.RasterTile.CreateImage(GTiff2Tiles.Core.GeoTiffs.IGeoTiff,NetVips.Image)
-  name: CreateImage(IGeoTiff, Image)
-  href: api/GTiff2Tiles.Core.Tiles.RasterTile.html#GTiff2Tiles_Core_Tiles_RasterTile_CreateImage_GTiff2Tiles_Core_GeoTiffs_IGeoTiff_NetVips_Image_
-  commentId: M:GTiff2Tiles.Core.Tiles.RasterTile.CreateImage(GTiff2Tiles.Core.GeoTiffs.IGeoTiff,NetVips.Image)
-  fullName: GTiff2Tiles.Core.Tiles.RasterTile.CreateImage(GTiff2Tiles.Core.GeoTiffs.IGeoTiff, NetVips.Image)
-  nameWithType: RasterTile.CreateImage(IGeoTiff, Image)
+- uid: GTiff2Tiles.Core.Tiles.RasterTile.CreateImage(GTiff2Tiles.Core.GeoTiffs.IGeoTiff,NetVips.Image,GTiff2Tiles.Core.Images.Area,GTiff2Tiles.Core.Images.Area)
+  name: CreateImage(IGeoTiff, Image, Area, Area)
+  href: api/GTiff2Tiles.Core.Tiles.RasterTile.html#GTiff2Tiles_Core_Tiles_RasterTile_CreateImage_GTiff2Tiles_Core_GeoTiffs_IGeoTiff_NetVips_Image_GTiff2Tiles_Core_Images_Area_GTiff2Tiles_Core_Images_Area_
+  commentId: M:GTiff2Tiles.Core.Tiles.RasterTile.CreateImage(GTiff2Tiles.Core.GeoTiffs.IGeoTiff,NetVips.Image,GTiff2Tiles.Core.Images.Area,GTiff2Tiles.Core.Images.Area)
+  fullName: GTiff2Tiles.Core.Tiles.RasterTile.CreateImage(GTiff2Tiles.Core.GeoTiffs.IGeoTiff, NetVips.Image, GTiff2Tiles.Core.Images.Area, GTiff2Tiles.Core.Images.Area)
+  nameWithType: RasterTile.CreateImage(IGeoTiff, Image, Area, Area)
 - uid: GTiff2Tiles.Core.Tiles.RasterTile.CreateImage*
   name: CreateImage
   href: api/GTiff2Tiles.Core.Tiles.RasterTile.html#GTiff2Tiles_Core_Tiles_RasterTile_CreateImage_

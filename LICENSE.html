@@ -29,11 +29,7 @@
       <meta name="loc:copy" content="Copy">
   </head>
 
-  <script type="module">
-    import options from './public/main.js'
-    import { init } from './public/docfx.min.js'
-    init(options)
-  </script>
+  <script type="module" src="./public/docfx.min.js"></script>
 
   <script>
     const theme = localStorage.getItem('theme') || 'auto'
@@ -106,6 +102,7 @@ TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION</p>
 <li><p>Code is provided with no warranty. Using somebody else's code and bitching when it goes wrong makes you a DONKEY dick. Fix the problem yourself. A non-dick would submit the fix back or submit a <a href="https://www.chiark.greenend.org.uk/%7Esgtatham/bugs.html">bug report</a></p>
 </li>
 </ol>
+
 </article>
 
         <div class="contribution d-print-none">
@@ -113,7 +110,7 @@ TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION</p>
         </div>
 
         <div class="next-article d-print-none border-top" id="nextArticle"></div>
-        
+
       </div>
 
       <div class="affix">

@@ -29,11 +29,7 @@
       <meta name="loc:copy" content="Copy">
   </head>
 
-  <script type="module">
-    import options from './../public/main.js'
-    import { init } from './../public/docfx.min.js'
-    init(options)
-  </script>
+  <script type="module" src="./../public/docfx.min.js"></script>
 
   <script>
     const theme = localStorage.getItem('theme') || 'auto'
@@ -249,6 +245,7 @@ Any <strong>GeoTIFF</strong> (with less, than <strong>5 bands</strong>) on input
 <li><a href="https://www.nuget.org/packages/MaxRev.Gdal.MacosRuntime.Minimal.x64/">MaxRev.Gdal.MacosRuntime.Minimal.x64</a> – 3.7.0.217;</li>
 <li><a href="https://www.nuget.org/packages/NetVips.Native.win-x64">NetVips.Native</a> – 8.14.2;</li>
 </ul>
+
 </article>
 
         <div class="contribution d-print-none">
@@ -256,7 +253,7 @@ Any <strong>GeoTIFF</strong> (with less, than <strong>5 bands</strong>) on input
         </div>
 
         <div class="next-article d-print-none border-top" id="nextArticle"></div>
-        
+
       </div>
 
       <div class="affix">

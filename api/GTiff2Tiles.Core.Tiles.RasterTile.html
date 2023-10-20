@@ -31,11 +31,7 @@
       <meta name="loc:copy" content="Copy">
   </head>
 
-  <script type="module">
-    import options from './../public/main.js'
-    import { init } from './../public/docfx.min.js'
-    init(options)
-  </script>
+  <script type="module" src="./../public/docfx.min.js"></script>
 
   <script>
     const theme = localStorage.getItem('theme') || 'auto'
@@ -236,7 +232,7 @@
 
   <h3 id="GTiff2Tiles_Core_Tiles_RasterTile__ctor_GTiff2Tiles_Core_Coordinates_GeoCoordinate_GTiff2Tiles_Core_Coordinates_GeoCoordinate_System_Int32_GTiff2Tiles_Core_Images_Size_System_Boolean_" data-uid="GTiff2Tiles.Core.Tiles.RasterTile.#ctor(GTiff2Tiles.Core.Coordinates.GeoCoordinate,GTiff2Tiles.Core.Coordinates.GeoCoordinate,System.Int32,GTiff2Tiles.Core.Images.Size,System.Boolean)">
   RasterTile(GeoCoordinate, GeoCoordinate, int, Size, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Tiles/RasterTile.cs/#L70"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Tiles/RasterTile.cs/#L71"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Creates new <a class="xref" href="GTiff2Tiles.Core.Tiles.Tile.html">Tile</a> from <a class="xref" href="GTiff2Tiles.Core.Coordinates.GeoCoordinate.html">GeoCoordinate</a> values</p>
@@ -448,9 +444,9 @@ as value</remarks></p>
 
   <a id="GTiff2Tiles_Core_Tiles_RasterTile_CreateImage_" data-uid="GTiff2Tiles.Core.Tiles.RasterTile.CreateImage*"></a>
 
-  <h3 id="GTiff2Tiles_Core_Tiles_RasterTile_CreateImage_GTiff2Tiles_Core_GeoTiffs_IGeoTiff_NetVips_Image_" data-uid="GTiff2Tiles.Core.Tiles.RasterTile.CreateImage(GTiff2Tiles.Core.GeoTiffs.IGeoTiff,NetVips.Image)">
-  CreateImage(IGeoTiff, Image)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Tiles/RasterTile.cs/#L88"><i class="bi bi-code-slash"></i></a>
+  <h3 id="GTiff2Tiles_Core_Tiles_RasterTile_CreateImage_GTiff2Tiles_Core_GeoTiffs_IGeoTiff_NetVips_Image_GTiff2Tiles_Core_Images_Area_GTiff2Tiles_Core_Images_Area_" data-uid="GTiff2Tiles.Core.Tiles.RasterTile.CreateImage(GTiff2Tiles.Core.GeoTiffs.IGeoTiff,NetVips.Image,GTiff2Tiles.Core.Images.Area,GTiff2Tiles.Core.Images.Area)">
+  CreateImage(IGeoTiff, Image, Area, Area)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Tiles/RasterTile.cs/#L92"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Create <span class="xref">NetVips.Image</span> for one <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterTile</a>
@@ -459,7 +455,7 @@ from input <span class="xref">NetVips.Image</span> or tile cache</p>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Image CreateImage(IGeoTiff sourceGeoTiff, Image tileCache)</code></pre>
+    <pre><code class="lang-csharp hljs">public Image CreateImage(IGeoTiff sourceGeoTiff, Image tileCache, Area readArea, Area writeArea)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -470,6 +466,12 @@ from input <span class="xref">NetVips.Image</span> or tile cache</p>
     <dt><code>tileCache</code> <span class="xref">Image</span></dt>
     <dd><p>Source <span class="xref">NetVips.Image</span>
 or tile cache</p>
+</dd>
+    <dt><code>readArea</code> <a class="xref" href="GTiff2Tiles.Core.Images.Area.html">Area</a></dt>
+    <dd><p>Source area</p>
+</dd>
+    <dt><code>writeArea</code> <a class="xref" href="GTiff2Tiles.Core.Images.Area.html">Area</a></dt>
+    <dd><p>Tile write area</p>
 </dd>
   </dl>
 
@@ -501,7 +503,7 @@ or tile cache</p>
 
   <h3 id="GTiff2Tiles_Core_Tiles_RasterTile_WriteOverviewTileBytes__1___0___" data-uid="GTiff2Tiles.Core.Tiles.RasterTile.WriteOverviewTileBytes``1(``0[])">
   WriteOverviewTileBytes&lt;T&gt;(T[])
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Tiles/RasterTile.cs/#L149"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Tiles/RasterTile.cs/#L164"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Create overview bytes for current <a class="xref" href="GTiff2Tiles.Core.Tiles.ITile.html">ITile</a> from source <a class="xref" href="GTiff2Tiles.Core.Tiles.ITile.html">ITile</a>s</p>
@@ -546,7 +548,7 @@ or tile cache</p>
 
   <h3 id="GTiff2Tiles_Core_Tiles_RasterTile_WriteOverviewTileImage__1___0___System_Boolean_" data-uid="GTiff2Tiles.Core.Tiles.RasterTile.WriteOverviewTileImage``1(``0[],System.Boolean)">
   WriteOverviewTileImage&lt;T&gt;(T[], bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Tiles/RasterTile.cs/#L174"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Tiles/RasterTile.cs/#L189"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Create <span class="xref">NetVips.Image</span> from 4 underlying lower tiles</p>
@@ -594,7 +596,7 @@ or tile cache</p>
 
   <h3 id="GTiff2Tiles_Core_Tiles_RasterTile_WriteToChannel__1_GTiff2Tiles_Core_GeoTiffs_IGeoTiff_System_Threading_Channels_ChannelWriter___0__GTiff2Tiles_Core_Args_IWriteTilesArgs_" data-uid="GTiff2Tiles.Core.Tiles.RasterTile.WriteToChannel``1(GTiff2Tiles.Core.GeoTiffs.IGeoTiff,System.Threading.Channels.ChannelWriter{``0},GTiff2Tiles.Core.Args.IWriteTilesArgs)">
   WriteToChannel&lt;T&gt;(IGeoTiff, ChannelWriter&lt;T&gt;, IWriteTilesArgs)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Tiles/RasterTile.cs/#L140"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Tiles/RasterTile.cs/#L156"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Write tile to channel, using source geotiff and corresponding args</p>
@@ -645,7 +647,7 @@ or tile cache</p>
 
   <h3 id="GTiff2Tiles_Core_Tiles_RasterTile_WriteToEnumerable_GTiff2Tiles_Core_GeoTiffs_IGeoTiff_GTiff2Tiles_Core_Args_IWriteTilesArgs_" data-uid="GTiff2Tiles.Core.Tiles.RasterTile.WriteToEnumerable(GTiff2Tiles.Core.GeoTiffs.IGeoTiff,GTiff2Tiles.Core.Args.IWriteTilesArgs)">
   WriteToEnumerable(IGeoTiff, IWriteTilesArgs)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Tiles/RasterTile.cs/#L130"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Tiles/RasterTile.cs/#L139"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Write tile to enumerable of bytes, using source geotiff and corresponding args</p>
@@ -686,7 +688,7 @@ or tile cache</p>
 
   <h3 id="GTiff2Tiles_Core_Tiles_RasterTile_WriteToFile_GTiff2Tiles_Core_GeoTiffs_IGeoTiff_GTiff2Tiles_Core_Args_IWriteTilesArgs_" data-uid="GTiff2Tiles.Core.Tiles.RasterTile.WriteToFile(GTiff2Tiles.Core.GeoTiffs.IGeoTiff,GTiff2Tiles.Core.Args.IWriteTilesArgs)">
   WriteToFile(IGeoTiff, IWriteTilesArgs)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Tiles/RasterTile.cs/#L120"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Tiles/RasterTile.cs/#L123"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Write tile to file, using source geotiff and corresponding args</p>
@@ -725,7 +727,7 @@ or tile cache</p>
           <a href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Tiles/RasterTile.cs/#L18" class="edit-link">Edit this page</a>
         </div>
 
-        
+
       </div>
 
       <div class="affix">

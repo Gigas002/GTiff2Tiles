@@ -31,11 +31,7 @@
       <meta name="loc:copy" content="Copy">
   </head>
 
-  <script type="module">
-    import options from './../public/main.js'
-    import { init } from './../public/docfx.min.js'
-    init(options)
-  </script>
+  <script type="module" src="./../public/docfx.min.js"></script>
 
   <script>
     const theme = localStorage.getItem('theme') || 'auto'
@@ -280,7 +276,7 @@ and to write to target <a class="xref" href="GTiff2Tiles.Core.Tiles.ITile.html">
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static (Area readArea, Area writeArea) GetAreas(GeoCoordinate imageMinCoordinate, GeoCoordinate imageMaxCoordinate, Size imageSize, GeoCoordinate tileMinCoordinate, GeoCoordinate tileMaxCoordinate, Size tileSize)</code></pre>
+    <pre><code class="lang-csharp hljs">public static (Area readArea, Area writeArea)? GetAreas(GeoCoordinate imageMinCoordinate, GeoCoordinate imageMaxCoordinate, Size imageSize, GeoCoordinate tileMinCoordinate, GeoCoordinate tileMaxCoordinate, Size tileSize)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -311,7 +307,7 @@ of <a class="xref" href="GTiff2Tiles.Core.Tiles.ITile.html">ITile</a></p>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
-    <dt>(<a class="xref" href="GTiff2Tiles.Core.Images.Area.html">Area</a> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-gtiff2tiles.core.images.area,gtiff2tiles.core.images.area-.readarea">readArea</a>, <a class="xref" href="GTiff2Tiles.Core.Images.Area.html">Area</a> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-gtiff2tiles.core.images.area,gtiff2tiles.core.images.area-.writearea">writeArea</a>)</dt>
+    <dt>(<a class="xref" href="GTiff2Tiles.Core.Images.Area.html">Area</a> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-gtiff2tiles.core.images.area,gtiff2tiles.core.images.area-.readarea">readArea</a>, <a class="xref" href="GTiff2Tiles.Core.Images.Area.html">Area</a> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-gtiff2tiles.core.images.area,gtiff2tiles.core.images.area-.writearea">writeArea</a>)?</dt>
     <dd><p><span class="xref">(T1, T2)</span> of <a class="xref" href="GTiff2Tiles.Core.Images.Area.html">Area</a>s to read and write</p>
 </dd>
   </dl>
@@ -339,7 +335,7 @@ of <a class="xref" href="GTiff2Tiles.Core.Tiles.ITile.html">ITile</a></p>
 
   <h3 id="GTiff2Tiles_Core_Images_Area_GetAreas_GTiff2Tiles_Core_GeoTiffs_IGeoTiff_GTiff2Tiles_Core_Tiles_ITile_" data-uid="GTiff2Tiles.Core.Images.Area.GetAreas(GTiff2Tiles.Core.GeoTiffs.IGeoTiff,GTiff2Tiles.Core.Tiles.ITile)">
   GetAreas(IGeoTiff, ITile)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Images/Area.cs/#L165"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Images/Area.cs/#L168"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Get <a class="xref" href="GTiff2Tiles.Core.Images.Area.html">Area</a>s to read from input <a class="xref" href="GTiff2Tiles.Core.GeoTiffs.IGeoTiff.html">IGeoTiff</a>
@@ -348,7 +344,7 @@ and to write to target <a class="xref" href="GTiff2Tiles.Core.Tiles.ITile.html">
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static (Area readArea, Area writeArea) GetAreas(IGeoTiff image, ITile tile)</code></pre>
+    <pre><code class="lang-csharp hljs">public static (Area readArea, Area writeArea)? GetAreas(IGeoTiff image, ITile tile)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -363,7 +359,7 @@ and to write to target <a class="xref" href="GTiff2Tiles.Core.Tiles.ITile.html">
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
-    <dt>(<a class="xref" href="GTiff2Tiles.Core.Images.Area.html">Area</a> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-gtiff2tiles.core.images.area,gtiff2tiles.core.images.area-.readarea">readArea</a>, <a class="xref" href="GTiff2Tiles.Core.Images.Area.html">Area</a> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-gtiff2tiles.core.images.area,gtiff2tiles.core.images.area-.writearea">writeArea</a>)</dt>
+    <dt>(<a class="xref" href="GTiff2Tiles.Core.Images.Area.html">Area</a> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-gtiff2tiles.core.images.area,gtiff2tiles.core.images.area-.readarea">readArea</a>, <a class="xref" href="GTiff2Tiles.Core.Images.Area.html">Area</a> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-gtiff2tiles.core.images.area,gtiff2tiles.core.images.area-.writearea">writeArea</a>)?</dt>
     <dd><p><span class="xref">(T1, T2)</span> of <a class="xref" href="GTiff2Tiles.Core.Images.Area.html">Area</a>s to read and write</p>
 </dd>
   </dl>
@@ -390,7 +386,7 @@ and to write to target <a class="xref" href="GTiff2Tiles.Core.Tiles.ITile.html">
           <a href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/Images/Area.cs/#L13" class="edit-link">Edit this page</a>
         </div>
 
-        
+
       </div>
 
       <div class="affix">

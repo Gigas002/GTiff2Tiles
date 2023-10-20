@@ -29,11 +29,7 @@
       <meta name="loc:copy" content="Copy">
   </head>
 
-  <script type="module">
-    import options from './public/main.js'
-    import { init } from './public/docfx.min.js'
-    init(options)
-  </script>
+  <script type="module" src="./public/docfx.min.js"></script>
 
   <script>
     const theme = localStorage.getItem('theme') || 'auto'
@@ -89,6 +85,7 @@
 <h2 id="issues-and-prs">Issues and PRs</h2>
 <p>You're free to create any PR's you think are good, but please create <strong>only one PR per one issue</strong>! That means, that PR should solve only the precise problem.</p>
 <p>If you don't see the issue, that you'd like to fix with your PR, than open the issue first and tell in it's text, that you'd like to work on this feature. Otherwise I'll grab it myself or add the <strong>up-for-grabs</strong> badge. Also, please, don't forget to introduce a <code>Test</code> for your feature and add info in <code>Docs</code> if your PR changes the public API.</p>
+
 </article>
 
         <div class="contribution d-print-none">
@@ -96,7 +93,7 @@
         </div>
 
         <div class="next-article d-print-none border-top" id="nextArticle"></div>
-        
+
       </div>
 
       <div class="affix">
