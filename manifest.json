@@ -586,6 +586,19 @@
       "version": ""
     },
     {
+      "type": "Toc",
+      "source_relative_path": "_docs/api/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/toc.html"
+        },
+        ".json": {
+          "relative_path": "api/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
       "type": "Conceptual",
       "source_relative_path": "_docs/articles/benchmarks-index.md",
       "output": {
