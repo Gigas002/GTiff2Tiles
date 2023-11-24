@@ -1,0 +1,85 @@
+name: snyk-check-docker
+on:
+  workflow_dispatch:
+    inputs:
+      runs-on:
+        description: 'The operating system to run the job on'
+        required: true
+        type: choice
+        options:
+          - ubuntu-latest
+          - windows-latest
+          - macos-latest
+      registry:
+        description: 'Registry to push image'
+        required: true
+        type: string
+      project:
+        description: 'String in ProjectName---DockerfilePath format'
+        required: true
+        type: string
+      username:
+        description: 'Username on publishing platform'
+        required: true
+        type: string
+  workflow_call:
+    inputs:
+      runs-on:
+        description: 'The operating system to run the job on'
+        required: true
+        type: string
+      registry:
+        description: 'Registry to push image'
+        required: true
+        type: string
+      project:
+        description: 'String in ProjectName---DockerfilePath format'
+        required: true
+        type: string
+      username:
+        description: 'Username on publishing platform'
+        required: true
+        type: string
+        
+jobs:
+  scan:
+    runs-on: ${{inputs.runs-on}}
+    defaults:
+      run:
+        shell: pwsh
+    env:
+      image: ''
+      project: ''
+      dockerfile: ''
+    steps:
+      - uses: actions/checkout@v4
+        
+      - name: set-project-name-dockerfile
+        run: |
+          $project = "${{inputs.project}}".Split("---")[0]
+          $dockerfile = "${{inputs.project}}".Split("---")[1]
+          Write-Output "project=$project" >> $env:GITHUB_ENV
+          Write-Output "dockerfile=$dockerfile" >> $env:GITHUB_ENV
+        
+      - name: set-image
+        run: |
+          $image = "${{inputs.registry}}/${{inputs.username}}/${{env.project}}"
+          Write-Output "image=$image" >> $env:GITHUB_ENV
+      
+      - name: snyk-setup
+        uses: snyk/actions/setup@0.4.0
+          
+      - name: snyk-image-test
+        continue-on-error: true
+        uses: snyk/actions/docker@0.4.0
+        env:
+          SNYK_TOKEN: ${{secrets.SNYK_TOKEN}}
+        with:
+          image: ${{env.image}}
+          args: --file=${{env.dockerfile}} --exclude-base-image-vulns=true
+          sarif: true
+          
+      - name: upload-security-report
+        uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: 'snyk.sarif'

@@ -1,0 +1,89 @@
+name: deploy-docker
+on:
+  workflow_call:
+    inputs:
+      runs-on:
+        description: 'The operating system to run the job on'
+        required: true
+        type: string
+      registry:
+        description: 'Registry to push image'
+        required: true
+        type: string
+      project:
+        description: 'String in ProjectName---DockerfilePath format'
+        required: true
+        type: string
+      build-props-path:
+        description: 'Path to Directory.Build.props file'
+        required: false
+        type: string
+        default: 'Directory.Build.props'
+      continious-tag:
+        description: 'Tag for conrinious docker builds'
+        required: false
+        type: string
+        default: 'latest'
+      username:
+        description: 'Username on publishing platform'
+        required: true
+        type: string
+    secrets:
+      TOKEN:
+        required: true
+        
+jobs:
+  deploy:
+    runs-on: ${{inputs.runs-on}}
+    defaults:
+      run:
+        shell: pwsh
+    env:
+      image: ''
+      project: ''
+      dockerfile: ''
+    steps:
+      - uses: actions/checkout@v4
+        
+      - name: set-project-name-dockerfile
+        run: |
+          $project = "${{inputs.project}}".Split("---")[0]
+          $dockerfile = "${{inputs.project}}".Split("---")[1]
+          Write-Output "project=$project" >> $env:GITHUB_ENV
+          Write-Output "dockerfile=$dockerfile" >> $env:GITHUB_ENV
+        
+      - name: read-version
+        id: read-version
+        uses: ./.github/actions/read-version
+        with:
+          build-props-path: ${{inputs.build-props-path}}
+          continious-tag: ${{inputs.continious-tag}}
+        
+      - name: set-image
+        run: |
+          $image = "${{inputs.registry}}/${{inputs.username}}/${{env.project}}"
+          Write-Output "image=$image" >> $env:GITHUB_ENV
+
+      - name: docker-login
+        uses: docker/login-action@v3
+        with:
+          registry: ${{inputs.registry}}
+          username: ${{inputs.username}}
+          password: ${{secrets.TOKEN}}
+          
+      - name: docker-extract-meta
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{env.image}}
+          tags: type=raw,value=${{steps.read-version.outputs.docker-tag}}
+          
+      - name: docker-build-push
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ${{env.dockerfile}}
+          push: ${{github.event_name != 'pull_request'}}
+          tags: ${{steps.meta.outputs.tags}}
+          labels: ${{steps.meta.outputs.labels}}
+          

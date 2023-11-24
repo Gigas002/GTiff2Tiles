@@ -1,0 +1,68 @@
+name: test
+on:
+  workflow_dispatch:
+   inputs:
+      runs-on:
+        description: 'The operating system to run the job on'
+        required: true
+        type: choice
+        options:
+          - ubuntu-latest
+          - windows-latest
+          - macos-latest
+      projects:
+        description: 'Array of projects to publish'
+        required: true
+        type: string
+      dotnet-version:
+        description: 'dotnet sdk version'
+        required: false
+        type: string
+        default: '8.x'
+  workflow_call:
+    inputs:
+      runs-on:
+        description: 'The operating system to run the job on'
+        required: true
+        type: string
+      projects:
+        description: 'Array of projects to publish'
+        required: true
+        type: string
+      dotnet-version:
+        description: 'dotnet sdk version'
+        required: false
+        type: string
+        default: '8.x'
+ 
+jobs:
+
+  test:
+    runs-on: ${{inputs.runs-on}}
+    defaults:
+      run:
+        shell: pwsh
+    strategy:
+      matrix:
+        project: ${{fromJson(inputs.projects)}}
+    steps:
+        - uses: actions/checkout@v4
+                              
+        - name: dotnet-setup
+          uses: actions/setup-dotnet@v3
+          with:
+            dotnet-version: ${{inputs.dotnet-version}}
+
+        - name: dotnet-restore
+          run: dotnet restore "${{matrix.project}}"
+        
+        - name: dotnet-build
+          run: dotnet build "${{matrix.project}}" --no-restore -c Release
+        
+        - name: dotnet-test
+          run: dotnet test "${{matrix.project}}" --no-restore -c Release --collect:"XPlat Code Coverage;SkipAutoProps=true"
+        
+        - name: codecov
+          uses: codecov/codecov-action@v3
+          with:
+            token: ${{secrets.CODECOV_TOKEN}}        

@@ -1,0 +1,100 @@
+name: deploy-src
+on:
+  workflow_dispatch:
+   inputs:
+      runs-on:
+        description: 'The operating system to run the job on'
+        required: true
+        type: choice
+        options:
+          - ubuntu-latest
+          - windows-latest
+          - macos-latest
+      publish-base:
+        description: 'Base path to publish artifact'
+        required: false
+        type: string
+        default: 'publish'
+      continious-tag:
+        description: 'Tag name for continious builds'
+        required: false
+        type: string
+        default: 'continious'
+      build-props-path:
+        description: 'Path to Directory.Build.props file'
+        required: false
+        type: string
+        default: 'Directory.Build.props'
+  workflow_call:
+    inputs:
+      runs-on:
+        description: 'The operating system to run the job on'
+        required: true
+        type: string
+      publish-base:
+        description: 'Base path to publish artifact'
+        required: false
+        type: string
+        default: 'publish'
+      continious-tag:
+        description: 'Tag name for continious builds'
+        required: false
+        type: string
+        default: 'continious'
+      build-props-path:
+        description: 'Path to Directory.Build.props file'
+        required: false
+        type: string
+        default: 'Directory.Build.props'
+ 
+jobs:
+
+  deploy:
+    runs-on: ${{inputs.runs-on}}
+    defaults:
+      run:
+        shell: pwsh
+    env:
+      tag: ''
+      prerelease: true
+      src-path: ''
+    steps:
+        - uses: actions/checkout@v4
+            
+        - name: read-version
+          id: read-version
+          uses: ./.github/actions/read-version
+          with:
+            build-props-path: ${{inputs.build-props-path}}
+            
+        - name: set-deploy-properties
+          run: |
+            if ("${{steps.read-version.outputs.suffix}}")
+            {
+                Write-Output "tag=${{inputs.continious-tag}}" >> $env:GITHUB_ENV
+                Write-Output "prerelease=true" >> $env:GITHUB_ENV
+            }
+            else
+            {
+                Write-Output "tag=v${{steps.read-version.outputs.prefix}}" >> $env:GITHUB_ENV
+                Write-Output "prerelease=false" >> $env:GITHUB_ENV
+            }
+ 
+# Alternative by using powershell only
+# Compress-Archive -Path .\* -DestinationPath "$srcPath"
+        - name: zip-src
+          run: |
+            New-Item -Path "${{inputs.publish-base}}" -Type Directory
+            $srcPath = "${{inputs.publish-base}}/src-${{env.tag}}.zip"
+            git archive HEAD -o "$srcPath" --worktree-attributes -v
+            Write-Output "src-path=$srcPath" >> $env:GITHUB_ENV
+
+        - name: deploy-src
+          uses: softprops/action-gh-release@v1
+          with:
+            tag_name: ${{env.tag}}
+            generate_release_notes: ${{env.prerelease == 'false'}}
+            files: ${{env.src-path}}
+            token: ${{secrets.GITHUB_TOKEN}}
+            prerelease: ${{env.prerelease}}
+        
