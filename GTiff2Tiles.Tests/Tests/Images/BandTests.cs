@@ -69,7 +69,7 @@ public sealed class BandTests
 
         int countOfBands = image.Bands;
         Assert.DoesNotThrow(() => Band.AddBands(ref image, bands));
-        Assert.True(image.Bands > countOfBands);
+        Assert.That(image.Bands, Is.GreaterThan(countOfBands));
 
         image.Dispose();
     }
@@ -105,7 +105,7 @@ public sealed class BandTests
 
         int countOfBands = image.Bands;
         Assert.DoesNotThrow(() => Band.AddDefaultBands(ref image, bandsCount));
-        Assert.True(image.Bands == countOfBands);
+        Assert.That(image.Bands, Is.EqualTo(countOfBands));
 
         image.Dispose();
     }
@@ -118,7 +118,7 @@ public sealed class BandTests
 
         int countOfBands = image.Bands;
         Assert.DoesNotThrow(() => Band.AddDefaultBands(ref image, bandsCount));
-        Assert.True(image.Bands > countOfBands);
+        Assert.That(image.Bands, Is.GreaterThan(countOfBands));
 
         image.Dispose();
     }

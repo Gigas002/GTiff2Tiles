@@ -58,9 +58,9 @@ public sealed class TileSetsTests
 
         Assert.DoesNotThrow(() => tileSets = new(_tileSetCollection, GeodeticProfile));
 
-        foreach (TileSet baseTs in _tileSetCollection) Assert.True(tileSets.TileSetCollection.Contains(baseTs));
+        foreach (TileSet baseTs in _tileSetCollection) Assert.That(tileSets.TileSetCollection.Contains(baseTs), Is.True);
 
-        Assert.True(tileSets.Profile.Equals(GeodeticProfile, StringComparison.Ordinal));
+        Assert.That(tileSets.Profile.Equals(GeodeticProfile, StringComparison.Ordinal), Is.True);
     }
 
     [Test]
@@ -70,9 +70,9 @@ public sealed class TileSetsTests
 
         Assert.DoesNotThrow(() => tileSets = new(_tileSetCollection, Cs4326));
 
-        foreach (TileSet baseTs in _tileSetCollection) Assert.True(tileSets.TileSetCollection.Contains(baseTs));
+        foreach (TileSet baseTs in _tileSetCollection) Assert.That(tileSets.TileSetCollection.Contains(baseTs), Is.True);
 
-        Assert.True(tileSets.Profile.Equals(GeodeticProfile, StringComparison.Ordinal));
+        Assert.That(tileSets.Profile.Equals(GeodeticProfile, StringComparison.Ordinal), Is.True);
     }
 
     [Test]
@@ -82,9 +82,9 @@ public sealed class TileSetsTests
 
         Assert.DoesNotThrow(() => tileSets = new(_tileSetCollection, Cs3857));
 
-        foreach (TileSet baseTs in _tileSetCollection) Assert.True(tileSets.TileSetCollection.Contains(baseTs));
+        foreach (TileSet baseTs in _tileSetCollection) Assert.That(tileSets.TileSetCollection.Contains(baseTs), Is.True);
 
-        Assert.True(tileSets.Profile.Equals(MercatorProfile, StringComparison.Ordinal));
+        Assert.That(tileSets.Profile.Equals(MercatorProfile, StringComparison.Ordinal), Is.True);
     }
 
     [Test]

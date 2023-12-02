@@ -28,9 +28,9 @@ public sealed class TileSetTests
 
         Assert.DoesNotThrow(() => tileSet = new(Href, Units, Order));
 
-        Assert.True(tileSet.Href.Equals(Href, StringComparison.Ordinal) &&
+        Assert.That(tileSet.Href.Equals(Href, StringComparison.Ordinal) &&
                     Math.Abs(tileSet.UnitsPerPixel - Units) < double.Epsilon &&
-                    tileSet.Order == Order);
+                    tileSet.Order == Order, Is.True);
     }
 
     #endregion

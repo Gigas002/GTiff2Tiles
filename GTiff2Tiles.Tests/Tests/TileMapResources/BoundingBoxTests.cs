@@ -29,11 +29,15 @@ public sealed class BoundingBoxTests
         Assert.DoesNotThrow(() => boundingBox = new(_tokyoGeodeticMin.X, _tokyoGeodeticMin.Y, _tokyoGeodeticMax.X,
                                                     _tokyoGeodeticMax.Y));
 
-        Assert.True(Math.Abs(boundingBox.MinX - _tokyoGeodeticMin.X) < double.Epsilon &&
-                    Math.Abs(boundingBox.MinY - _tokyoGeodeticMin.Y) < double.Epsilon);
+        Assert.Multiple(() =>
+        {
+            Assert.That(Math.Abs(boundingBox.MinX - _tokyoGeodeticMin.X) < double.Epsilon &&
+                            Math.Abs(boundingBox.MinY - _tokyoGeodeticMin.Y) < double.Epsilon, Is.True);
 
-        Assert.True(Math.Abs(boundingBox.MaxX - _tokyoGeodeticMax.X) < double.Epsilon &&
-                    Math.Abs(boundingBox.MaxY - _tokyoGeodeticMax.Y) < double.Epsilon);
+            Assert.That(Math.Abs(boundingBox.MaxX - _tokyoGeodeticMax.X) < double.Epsilon &&
+                        Math.Abs(boundingBox.MaxY - _tokyoGeodeticMax.Y) < double.Epsilon, Is.True);
+        });
+
     }
 
     [Test]
@@ -43,11 +47,14 @@ public sealed class BoundingBoxTests
 
         Assert.DoesNotThrow(() => boundingBox = new(_tokyoGeodeticMin, _tokyoGeodeticMax));
 
-        Assert.True(Math.Abs(boundingBox.MinX - _tokyoGeodeticMin.X) < double.Epsilon &&
-                    Math.Abs(boundingBox.MinY - _tokyoGeodeticMin.Y) < double.Epsilon);
+        Assert.Multiple(() =>
+        {
+            Assert.That(Math.Abs(boundingBox.MinX - _tokyoGeodeticMin.X) < double.Epsilon &&
+                            Math.Abs(boundingBox.MinY - _tokyoGeodeticMin.Y) < double.Epsilon, Is.True);
 
-        Assert.True(Math.Abs(boundingBox.MaxX - _tokyoGeodeticMax.X) < double.Epsilon &&
-                    Math.Abs(boundingBox.MaxY - _tokyoGeodeticMax.Y) < double.Epsilon);
+            Assert.That(Math.Abs(boundingBox.MaxX - _tokyoGeodeticMax.X) < double.Epsilon &&
+                        Math.Abs(boundingBox.MaxY - _tokyoGeodeticMax.Y) < double.Epsilon, Is.True);
+        });
     }
 
     [Test]

@@ -1,6 +1,4 @@
-﻿#pragma warning disable CA1508 // Avoid dead conditional code
-
-using GTiff2Tiles.Core.Images;
+﻿using GTiff2Tiles.Core.Images;
 using NUnit.Framework;
 
 // ReSharper disable UnusedVariable
@@ -72,7 +70,7 @@ public sealed class SizeTests
         Size size1 = new(10, 10);
         Size size2 = new(10, 10);
 
-        Assert.True(size1.Equals((object)size2));
+        Assert.That(size1, Is.EqualTo(size2));
     }
 
     [Test]
@@ -81,7 +79,7 @@ public sealed class SizeTests
         Size size1 = new(10, 10);
         Size size2 = size1;
 
-        Assert.True(size1.Equals((object)size2));
+        Assert.That(size1, Is.EqualTo(size2));
     }
 
     [Test]
@@ -89,7 +87,7 @@ public sealed class SizeTests
     {
         Size size1 = new(10, 10);
 
-        Assert.False(size1.Equals(null));
+        Assert.That(size1, Is.Not.Null);
     }
 
     #region Equal operator
@@ -100,7 +98,7 @@ public sealed class SizeTests
         Size size1 = new(10, 10);
         Size size2 = new(10, 10);
 
-        Assert.True(size1 == size2);
+        Assert.That(size1, Is.EqualTo(size2));
     }
 
     [Test]
@@ -109,7 +107,7 @@ public sealed class SizeTests
         Size size1 = new(10, 10);
         Size size2 = new(11, 10);
 
-        Assert.False(size1 == size2);
+        Assert.That(size1, Is.Not.EqualTo(size2));
     }
 
     [Test]
@@ -117,7 +115,7 @@ public sealed class SizeTests
     {
         Size size2 = new(10, 10);
 
-        Assert.False(null == size2);
+        Assert.That(size2, Is.Not.Null);
     }
 
     [Test]
@@ -125,7 +123,7 @@ public sealed class SizeTests
     {
         Size size1 = new(10, 10);
 
-        Assert.False(size1 == null);
+        Assert.That(size1, Is.Not.Null);
     }
 
     #endregion
@@ -138,7 +136,7 @@ public sealed class SizeTests
         Size size1 = new(10, 10);
         Size size2 = new(11, 10);
 
-        Assert.True(size1 != size2);
+        Assert.That(size1, Is.Not.EqualTo(size2));
     }
 
     [Test]
@@ -147,7 +145,7 @@ public sealed class SizeTests
         Size size1 = new(10, 10);
         Size size2 = new(10, 10);
 
-        Assert.False(size1 != size2);
+        Assert.That(size1, Is.EqualTo(size2));
     }
 
     [Test]
@@ -155,7 +153,7 @@ public sealed class SizeTests
     {
         Size size2 = new(10, 10);
 
-        Assert.True(null != size2);
+        Assert.That(size2, Is.Not.Null);
     }
 
     [Test]
@@ -163,7 +161,7 @@ public sealed class SizeTests
     {
         Size size1 = new(10, 10);
 
-        Assert.True(size1 != null);
+        Assert.That(size1, Is.Not.Null);
     }
 
     #endregion
@@ -184,7 +182,7 @@ public sealed class SizeTests
         Size result = new(3, 3);
 
         Size add = size1.Add(size2);
-        Assert.True(add == result);
+        Assert.That(add, Is.EqualTo(result));
     }
 
     [Test]
@@ -218,7 +216,7 @@ public sealed class SizeTests
         Size result = new(1, 1);
 
         Size sub = size1.Subtract(size2);
-        Assert.True(sub == result);
+        Assert.That(sub, Is.EqualTo(result));
     }
 
     [Test]
@@ -252,7 +250,7 @@ public sealed class SizeTests
         Size result = new(2, 2);
 
         Size mul = size1.Multiply(size2);
-        Assert.True(mul == result);
+        Assert.That(mul, Is.EqualTo(result));
     }
 
     [Test]
@@ -286,7 +284,7 @@ public sealed class SizeTests
         Size result = new(2, 2);
 
         Size div = size1.Divide(size2);
-        Assert.True(div == result);
+        Assert.That(div, Is.EqualTo(result));
     }
 
     [Test]
@@ -312,5 +310,3 @@ public sealed class SizeTests
 
     #endregion
 }
-
-#pragma warning restore CA1508 // Avoid dead conditional code

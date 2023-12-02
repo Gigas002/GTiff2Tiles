@@ -44,9 +44,12 @@ public sealed class TileFormatTests
 
         Assert.DoesNotThrow(() => tileFormat = new TileFormat(_tileSize.Width, _tileSize.Height, PngMimeType, PngExtensionString));
 
-        Assert.True(tileFormat.Width == _tileSize.Width && tileFormat.Height == _tileSize.Height);
-        Assert.True(tileFormat.MimeType.Equals(PngMimeType, StringComparison.Ordinal));
-        Assert.True(tileFormat.Extension.Equals(PngExtensionString, StringComparison.Ordinal));
+        Assert.Multiple(() =>
+        {
+            Assert.That(tileFormat.Width == _tileSize.Width && tileFormat.Height == _tileSize.Height, Is.True);
+            Assert.That(tileFormat.MimeType.Equals(PngMimeType, StringComparison.Ordinal), Is.True);
+            Assert.That(tileFormat.Extension.Equals(PngExtensionString, StringComparison.Ordinal), Is.True);
+        });
     }
 
     [Test]
@@ -56,9 +59,13 @@ public sealed class TileFormatTests
 
         Assert.DoesNotThrow(() => tileFormat = new TileFormat(_tileSize, PngExtension));
 
-        Assert.True(tileFormat.Width == _tileSize.Width && tileFormat.Height == _tileSize.Height);
-        Assert.True(tileFormat.MimeType.Equals(PngMimeType, StringComparison.Ordinal));
-        Assert.True(tileFormat.Extension.Equals(PngExtensionString, StringComparison.Ordinal));
+        Assert.Multiple(() =>
+        {
+            Assert.That(tileFormat.Width == _tileSize.Width && tileFormat.Height == _tileSize.Height, Is.True);
+            Assert.That(tileFormat.MimeType.Equals(PngMimeType, StringComparison.Ordinal), Is.True);
+            Assert.That(tileFormat.Extension.Equals(PngExtensionString, StringComparison.Ordinal), Is.True);
+        });
+
     }
 
     [Test]
@@ -68,9 +75,13 @@ public sealed class TileFormatTests
 
         Assert.DoesNotThrow(() => tileFormat = new TileFormat(_tileSize, WebpExtension));
 
-        Assert.True(tileFormat.Width == _tileSize.Width && tileFormat.Height == _tileSize.Height);
-        Assert.True(tileFormat.MimeType.Equals(WebpMimeType, StringComparison.Ordinal));
-        Assert.True(tileFormat.Extension.Equals(WebpExtensionString, StringComparison.Ordinal));
+        Assert.Multiple(() =>
+        {
+            Assert.That(tileFormat.Width == _tileSize.Width && tileFormat.Height == _tileSize.Height, Is.True);
+            Assert.That(tileFormat.MimeType.Equals(WebpMimeType, StringComparison.Ordinal), Is.True);
+            Assert.That(tileFormat.Extension.Equals(WebpExtensionString, StringComparison.Ordinal), Is.True);
+        });
+
     }
 
     [Test]
@@ -80,9 +91,13 @@ public sealed class TileFormatTests
 
         Assert.DoesNotThrow(() => tileFormat = new TileFormat(_tileSize, JpgExtension));
 
-        Assert.True(tileFormat.Width == _tileSize.Width && tileFormat.Height == _tileSize.Height);
-        Assert.True(tileFormat.MimeType.Equals(JpegMimeType, StringComparison.Ordinal));
-        Assert.True(tileFormat.Extension.Equals(JpgExtensionString, StringComparison.Ordinal));
+        Assert.Multiple(() =>
+        {
+            Assert.That(tileFormat.Width == _tileSize.Width && tileFormat.Height == _tileSize.Height, Is.True);
+            Assert.That(tileFormat.MimeType.Equals(JpegMimeType, StringComparison.Ordinal), Is.True);
+            Assert.That(tileFormat.Extension.Equals(JpgExtensionString, StringComparison.Ordinal), Is.True);
+        });
+
     }
 
     [Test]

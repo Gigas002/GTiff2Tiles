@@ -102,8 +102,8 @@ public sealed class AreaTests
 
             (calcReadArea, calcWriteArea) = areas.Value;
         });
-        Assert.True(calcReadArea.OriginCoordinate == expectedReadCoord && calcReadArea.Size == expectedReadSize);
-        Assert.True(calcWriteArea.OriginCoordinate == expectedWriteCoord && calcWriteArea.Size == expectedWriteSize);
+        Assert.That(calcReadArea.OriginCoordinate == expectedReadCoord && calcReadArea.Size == expectedReadSize, Is.True);
+        Assert.That(calcWriteArea.OriginCoordinate == expectedWriteCoord && calcWriteArea.Size == expectedWriteSize, Is.True);
     }
 
     [Test]
@@ -277,8 +277,8 @@ public sealed class AreaTests
             (Area readArea, Area writeArea)? areas = Area.GetAreas(image, tile);
             (calcReadArea, calcWriteArea) = areas.Value;
         });
-        Assert.True(calcReadArea.OriginCoordinate == expectedReadCoord && calcReadArea.Size == expectedReadSize);
-        Assert.True(calcWriteArea.OriginCoordinate == expectedWriteCoord && calcWriteArea.Size == expectedWriteSize);
+        Assert.That(calcReadArea.OriginCoordinate == expectedReadCoord && calcReadArea.Size == expectedReadSize, Is.True);
+        Assert.That(calcWriteArea.OriginCoordinate == expectedWriteCoord && calcWriteArea.Size == expectedWriteSize, Is.True);
     }
 
     [Test]

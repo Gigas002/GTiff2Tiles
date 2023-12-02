@@ -143,7 +143,7 @@ public sealed class ArgsTests
 
         Assert.DoesNotThrow(() => args.Dispose());
 
-        Assert.True(args.IsDisposed);
+        Assert.That(args.IsDisposed, Is.True);
     }
 
     #endregion

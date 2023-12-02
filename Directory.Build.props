@@ -26,7 +26,7 @@
       <!-- additional build props -->
       <LangVersion>latest</LangVersion>
       <ImplicitUsings>enable</ImplicitUsings>
-      <Nullable>enable</Nullable>
+      <Nullable>disable</Nullable>
       <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
       <AnalysisMode>AllEnabledByDefault</AnalysisMode>
       <EnableNETAnalyzers>true</EnableNETAnalyzers>

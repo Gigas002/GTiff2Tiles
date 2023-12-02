@@ -74,7 +74,7 @@ public sealed class MercatorCoordinateTests
 
         Assert.DoesNotThrow(() => pCoord = Locations.TokyoMercatorCoordinate
                                                     .ToPixelCoordinate(10, Tile.DefaultSize));
-        Assert.True(pCoord == Locations.TokyoMercatorPixelCoordinate);
+        Assert.That(pCoord, Is.EqualTo(Locations.TokyoMercatorPixelCoordinate));
     }
 
     [Test]
@@ -84,7 +84,7 @@ public sealed class MercatorCoordinateTests
 
         Assert.DoesNotThrow(() => gCoord = Coordinate.Round(Locations.TokyoMercatorCoordinate
                                                                      .ToGeodeticCoordinate(), 6));
-        Assert.True(gCoord == Locations.TokyoGeodeticCoordinate);
+        Assert.That(gCoord, Is.EqualTo(Locations.TokyoGeodeticCoordinate));
     }
 
     [Test]
@@ -94,7 +94,7 @@ public sealed class MercatorCoordinateTests
 
         Assert.DoesNotThrow(() => number = Locations.TokyoMercatorCoordinate
                                                     .ToNumber(10, Tile.DefaultSize, false));
-        Assert.True(number == Locations.TokyoMercatorNtmsNumber);
+        Assert.That(number, Is.EqualTo(Locations.TokyoMercatorNtmsNumber));
     }
 
     #region Resolution

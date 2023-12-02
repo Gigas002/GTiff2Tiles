@@ -86,13 +86,17 @@ public sealed class TileMapTests
         Assert.DoesNotThrow(() => tileMap = new TileMap(Srs, _boundingBox, _origin, _tileFormat, _tileSets, Version,
                                                         TmsLink));
 
-        Assert.True(tileMap.Version.Equals(Version, StringComparison.Ordinal));
-        Assert.True(tileMap.TileMapServiceLink.Equals(TmsLink, StringComparison.Ordinal));
-        Assert.True(tileMap.Srs.Equals(Srs, StringComparison.Ordinal));
-        Assert.True(tileMap.BoundingBox == _boundingBox);
-        Assert.True(tileMap.Origin == _origin);
-        Assert.True(tileMap.TileFormat == _tileFormat);
-        Assert.True(tileMap.TileSets == _tileSets);
+        Assert.Multiple(() =>
+        {
+            Assert.That(tileMap.Version.Equals(Version, StringComparison.Ordinal), Is.True);
+            Assert.That(tileMap.TileMapServiceLink.Equals(TmsLink, StringComparison.Ordinal), Is.True);
+            Assert.That(tileMap.Srs.Equals(Srs, StringComparison.Ordinal), Is.True);
+            Assert.That(tileMap.BoundingBox, Is.EqualTo(_boundingBox));
+            Assert.That(tileMap.Origin, Is.EqualTo(_origin));
+            Assert.That(tileMap.TileFormat, Is.EqualTo(_tileFormat));
+            Assert.That(tileMap.TileSets, Is.EqualTo(_tileSets));
+        });
+
     }
 
     [Test]
@@ -107,13 +111,13 @@ public sealed class TileMapTests
     #region GetSrs
 
     [Test]
-    public void GetSrs4326() => Assert.True(TileMap.GetSrs(Cs4326).Equals(Srs, StringComparison.Ordinal));
+    public void GetSrs4326() => Assert.That(TileMap.GetSrs(Cs4326).Equals(Srs, StringComparison.Ordinal), Is.True);
 
     [Test]
-    public void GetSrs3857() => Assert.True(TileMap.GetSrs(CoordinateSystem.Epsg3857).Equals("EPSG:3857", StringComparison.Ordinal));
+    public void GetSrs3857() => Assert.That(TileMap.GetSrs(CoordinateSystem.Epsg3857).Equals("EPSG:3857", StringComparison.Ordinal), Is.True);
 
     [Test]
-    public void GetSrsOther() => Assert.True(string.IsNullOrWhiteSpace(TileMap.GetSrs(CoordinateSystem.Other)));
+    public void GetSrsOther() => Assert.That(string.IsNullOrWhiteSpace(TileMap.GetSrs(CoordinateSystem.Other)), Is.True);
 
     #endregion
 
@@ -150,14 +154,18 @@ public sealed class TileMapTests
 
         TileMap tileMap = TileMap.Deserialize(fileStream);
 
-        Assert.True(tileMap.Version.Equals(Version, StringComparison.Ordinal));
-        Assert.True(tileMap.TileMapServiceLink.Equals(TmsLink, StringComparison.Ordinal));
-        Assert.True(tileMap.Srs.Equals(Srs, StringComparison.Ordinal));
-        Assert.True(tileMap.BoundingBox == _boundingBox);
-        Assert.True(tileMap.Origin == _origin);
-        Assert.True(tileMap.TileFormat == _tileFormat);
+        Assert.Multiple(() =>
+        {
+            Assert.That(tileMap.Version.Equals(Version, StringComparison.Ordinal), Is.True);
+            Assert.That(tileMap.TileMapServiceLink.Equals(TmsLink, StringComparison.Ordinal), Is.True);
+            Assert.That(tileMap.Srs.Equals(Srs, StringComparison.Ordinal), Is.True);
+            Assert.That(tileMap.BoundingBox, Is.EqualTo(_boundingBox));
+            Assert.That(tileMap.Origin, Is.EqualTo(_origin));
+            Assert.That(tileMap.TileFormat, Is.EqualTo(_tileFormat));
+        });
 
-        foreach (TileSet baseTs in _tileSetCollection) Assert.True(tileMap.TileSets.TileSetCollection.Contains(baseTs));
+
+        foreach (TileSet baseTs in _tileSetCollection) Assert.That(tileMap.TileSets.TileSetCollection, Does.Contain(baseTs));
     }
 
     [Test]

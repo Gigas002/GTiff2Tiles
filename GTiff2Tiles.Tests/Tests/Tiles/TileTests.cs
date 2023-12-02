@@ -1,4 +1,5 @@
 ﻿#pragma warning disable CS0219 // The variable is assigned but it's value is never used
+#pragma warning disable CA1859 // Use concrete types when possible for improved performance
 
 using System.Globalization;
 using GTiff2Tiles.Core.Coordinates;
@@ -135,7 +136,7 @@ public sealed class TileTests
         using ITile tile = new RasterTile(Locations.TokyoGeodeticNtmsNumber, Cs4326);
 
         Assert.DoesNotThrow(() => tile.Dispose());
-        Assert.True(tile.IsDisposed);
+        Assert.That(tile.IsDisposed, Is.True);
     }
 
     [Test]
@@ -144,7 +145,7 @@ public sealed class TileTests
         using ITile tile = new RasterTile(Locations.TokyoGeodeticNtmsNumber, Cs4326);
 
         Assert.DoesNotThrowAsync(async () => await tile.DisposeAsync().ConfigureAwait(false));
-        Assert.True(tile.IsDisposed);
+        Assert.That(tile.IsDisposed, Is.True);
     }
 
     #endregion
@@ -225,7 +226,7 @@ public sealed class TileTests
 
         tile.Bytes = new byte[tile.MinimalBytesCount + 1];
 
-        Assert.True(tile.Validate(false));
+        Assert.That(tile.Validate(false), Is.True);
     }
 
     [Test]
@@ -241,20 +242,20 @@ public sealed class TileTests
         tile.Bytes = new byte[tile.MinimalBytesCount + 1];
         tile.Path = tilePath;
 
-        Assert.True(tile.Validate(true));
+        Assert.That(tile.Validate(true), Is.True);
 
         File.Delete(tilePath);
     }
 
     [Test]
-    public void ValidateNullTile() => Assert.False(Tile.Validate(null, false));
+    public void ValidateNullTile() => Assert.That(Tile.Validate(null, false), Is.False);
 
     [Test]
     public void ValidateNullBytes()
     {
         using ITile tile = new RasterTile(Locations.TokyoGeodeticNtmsNumber, Cs4326);
 
-        Assert.False(tile.Validate(false));
+        Assert.That(tile.Validate(false), Is.False);
     }
 
     [Test]
@@ -264,7 +265,7 @@ public sealed class TileTests
 
         tile.Bytes = new byte[tile.MinimalBytesCount - 1];
 
-        Assert.False(tile.Validate(false));
+        Assert.That(tile.Validate(false), Is.False);
     }
 
     [Test]
@@ -274,7 +275,7 @@ public sealed class TileTests
 
         tile.Bytes = new byte[tile.MinimalBytesCount + 1];
 
-        Assert.False(tile.Validate(true));
+        Assert.That(tile.Validate(true), Is.False);
     }
 
     #endregion
@@ -298,7 +299,7 @@ public sealed class TileTests
         using ITile tile3 = new RasterTile(new Number(number.X + 1, number.Y + 1, number.Z), Cs4326);
         int pos0 = tile3.CalculatePosition();
 
-        Assert.True(pos0 == 0 && pos1 == 1 && pos2 == 2 && pos3 == 3);
+        Assert.That(pos0 == 0 && pos1 == 1 && pos2 == 2 && pos3 == 3, Is.True);
     }
 
     [Test]
@@ -316,9 +317,13 @@ public sealed class TileTests
 
         tile.GetExtensionString();
 
-        Assert.True(Tile.GetExtensionString(TileExtension.Png) == Core.Constants.FileExtensions.Png);
-        Assert.True(Tile.GetExtensionString(TileExtension.Jpg) == Core.Constants.FileExtensions.Jpg);
-        Assert.True(Tile.GetExtensionString(TileExtension.Webp) == Core.Constants.FileExtensions.Webp);
+        Assert.Multiple(() =>
+        {
+            Assert.That(Tile.GetExtensionString(TileExtension.Png), Is.EqualTo(Core.Constants.FileExtensions.Png));
+            Assert.That(Tile.GetExtensionString(TileExtension.Jpg), Is.EqualTo(Core.Constants.FileExtensions.Jpg));
+            Assert.That(Tile.GetExtensionString(TileExtension.Webp), Is.EqualTo(Core.Constants.FileExtensions.Webp));
+        });
+
     }
 
     #endregion

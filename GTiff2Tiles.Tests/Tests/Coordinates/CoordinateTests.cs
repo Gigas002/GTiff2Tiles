@@ -1,5 +1,5 @@
 ﻿#pragma warning disable IDE0059 // Unnecessary assignment of a value
-#pragma warning disable CA1508 // Avoid dead conditional code
+#pragma warning disable CA1859 // Use concrete types when possible for improved performance
 
 using GTiff2Tiles.Core.Coordinates;
 using NUnit.Framework;
@@ -21,7 +21,7 @@ public sealed class CoordinateTests
         const double expected = 1.5708;
         double res = Math.Round(Coordinate.DegreesToRadians(90.0), 4);
 
-        Assert.True(Math.Abs(expected - res) < double.Epsilon);
+        Assert.That(Math.Abs(expected - res), Is.LessThan(double.Epsilon));
     }
 
     [Test]
@@ -30,7 +30,7 @@ public sealed class CoordinateTests
         const double expected = 57.2958;
         double res = Math.Round(Coordinate.RadiansToDegrees(1.0), 4);
 
-        Assert.True(Math.Abs(expected - res) < double.Epsilon);
+        Assert.That(Math.Abs(expected - res), Is.LessThan(double.Epsilon));
     }
 
     #region Round
@@ -42,7 +42,7 @@ public sealed class CoordinateTests
         Coordinate round = Coordinate.Round((GeodeticCoordinate)coord, 2);
         Coordinate expected = new GeodeticCoordinate(12.34, 13.56);
 
-        Assert.True(round == expected);
+        Assert.That(round, Is.EqualTo(expected));
     }
 
     [Test]
@@ -83,7 +83,7 @@ public sealed class CoordinateTests
         Coordinate coordinate1 = new GeodeticCoordinate(10.0, 10.0);
         Coordinate coordinate2 = new GeodeticCoordinate(10.0, 10.0);
 
-        Assert.True(coordinate1.Equals((object)coordinate2));
+        Assert.That(coordinate1, Is.EqualTo(coordinate2));
     }
 
     [Test]
@@ -92,7 +92,7 @@ public sealed class CoordinateTests
         Coordinate coordinate1 = new GeodeticCoordinate(10.0, 10.0);
         Coordinate coordinate2 = coordinate1;
 
-        Assert.True(coordinate1.Equals((object)coordinate2));
+        Assert.That(coordinate1, Is.EqualTo(coordinate2));
     }
 
     [Test]
@@ -100,7 +100,7 @@ public sealed class CoordinateTests
     {
         Coordinate coordinate1 = new GeodeticCoordinate(10.0, 10.0);
 
-        Assert.False(coordinate1.Equals(null));
+        Assert.That(coordinate1, Is.Not.Null);
     }
 
     #region Equal operator
@@ -111,7 +111,7 @@ public sealed class CoordinateTests
         Coordinate coordinate1 = new GeodeticCoordinate(10.0, 10.0);
         Coordinate coordinate2 = new GeodeticCoordinate(10.0, 10.0);
 
-        Assert.True(coordinate1 == coordinate2);
+        Assert.That(coordinate1, Is.EqualTo(coordinate2));
     }
 
     [Test]
@@ -120,7 +120,7 @@ public sealed class CoordinateTests
         Coordinate coordinate1 = new GeodeticCoordinate(10.0, 10.0);
         Coordinate coordinate2 = new GeodeticCoordinate(11.0, 10.0);
 
-        Assert.False(coordinate1 == coordinate2);
+        Assert.That(coordinate1, Is.Not.EqualTo(coordinate2));
     }
 
     [Test]
@@ -128,7 +128,7 @@ public sealed class CoordinateTests
     {
         Coordinate coordinate2 = new GeodeticCoordinate(10.0, 10.0);
 
-        Assert.False(null == coordinate2);
+        Assert.That(coordinate2, Is.Not.Null);
     }
 
     [Test]
@@ -136,7 +136,7 @@ public sealed class CoordinateTests
     {
         Coordinate coordinate1 = new GeodeticCoordinate(10.0, 10.0);
 
-        Assert.False(coordinate1 == null);
+        Assert.That(coordinate1, Is.Not.Null);
     }
 
     #endregion
@@ -149,7 +149,7 @@ public sealed class CoordinateTests
         Coordinate coordinate1 = new GeodeticCoordinate(10.0, 10.0);
         Coordinate coordinate2 = new GeodeticCoordinate(11.0, 10.0);
 
-        Assert.True(coordinate1 != coordinate2);
+        Assert.That(coordinate1, Is.Not.EqualTo(coordinate2));
     }
 
     [Test]
@@ -158,7 +158,7 @@ public sealed class CoordinateTests
         Coordinate coordinate1 = new GeodeticCoordinate(10.0, 10.0);
         Coordinate coordinate2 = new GeodeticCoordinate(10.0, 10.0);
 
-        Assert.False(coordinate1 != coordinate2);
+        Assert.That(coordinate1, Is.EqualTo(coordinate2));
     }
 
     [Test]
@@ -166,7 +166,7 @@ public sealed class CoordinateTests
     {
         Coordinate coordinate2 = new GeodeticCoordinate(10.0, 10.0);
 
-        Assert.True(null != coordinate2);
+        Assert.That(coordinate2, Is.Not.Null);
     }
 
     [Test]
@@ -174,7 +174,7 @@ public sealed class CoordinateTests
     {
         Coordinate coordinate1 = new GeodeticCoordinate(10.0, 10.0);
 
-        Assert.True(coordinate1 != null);
+        Assert.That(coordinate1, Is.Not.Null);
     }
 
     #endregion
@@ -195,7 +195,7 @@ public sealed class CoordinateTests
         Coordinate result = new GeodeticCoordinate(3.0, 3.0);
 
         Coordinate add = coordinate1.Add(coordinate2);
-        Assert.True(add == result);
+        Assert.That(add, Is.EqualTo(result));
     }
 
     [Test]
@@ -229,7 +229,7 @@ public sealed class CoordinateTests
         Coordinate result = new GeodeticCoordinate(1.0, 1.0);
 
         Coordinate sub = coordinate1.Subtract(coordinate2);
-        Assert.True(sub == result);
+        Assert.That(sub, Is.EqualTo(result));
     }
 
     [Test]
@@ -263,7 +263,7 @@ public sealed class CoordinateTests
         Coordinate result = new GeodeticCoordinate(2.0, 2.0);
 
         Coordinate mul = coordinate1.Multiply(coordinate2);
-        Assert.True(mul == result);
+        Assert.That(mul, Is.EqualTo(result));
     }
 
     [Test]
@@ -297,7 +297,7 @@ public sealed class CoordinateTests
         Coordinate result = new GeodeticCoordinate(2.0, 2.0);
 
         Coordinate div = coordinate1.Divide(coordinate2);
-        Assert.True(div == result);
+        Assert.That(div, Is.EqualTo(result));
     }
 
     [Test]
@@ -325,4 +325,3 @@ public sealed class CoordinateTests
 }
 
 #pragma warning restore IDE0059 // Unnecessary assignment of a value
-#pragma warning restore CA1508 // Avoid dead conditional code

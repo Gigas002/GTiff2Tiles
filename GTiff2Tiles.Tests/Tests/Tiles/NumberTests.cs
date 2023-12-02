@@ -1,6 +1,4 @@
-﻿#pragma warning disable CA1508 // Avoid dead conditional code
-
-using GTiff2Tiles.Core.Coordinates;
+﻿using GTiff2Tiles.Core.Coordinates;
 using GTiff2Tiles.Core.Enums;
 using GTiff2Tiles.Core.Tiles;
 using GTiff2Tiles.Tests.Constants;
@@ -58,9 +56,9 @@ public sealed class NumberTests
     {
         Number number = new(Locations.TokyoGeodeticNumberX, Locations.TokyoGeodeticNumberNtmsY, 10);
 
-        Assert.True(number.X == Locations.TokyoGeodeticNumberX);
-        Assert.True(number.Y == Locations.TokyoGeodeticNumberNtmsY);
-        Assert.True(number.Z == 10);
+        Assert.That(number.X, Is.EqualTo(Locations.TokyoGeodeticNumberX));
+        Assert.That(number.Y, Is.EqualTo(Locations.TokyoGeodeticNumberNtmsY));
+        Assert.That(number.Z, Is.EqualTo(10));
     }
 
     #endregion
@@ -76,7 +74,7 @@ public sealed class NumberTests
         Number result = null;
 
         Assert.DoesNotThrow(() => result = number.Flip());
-        Assert.True(result == Locations.TokyoGeodeticTmsNumber);
+        Assert.That(result, Is.EqualTo(Locations.TokyoGeodeticTmsNumber));
     }
 
     [Test]
@@ -86,7 +84,7 @@ public sealed class NumberTests
         Number result = null;
 
         Assert.DoesNotThrow(() => result = number.Flip());
-        Assert.True(result == Locations.TokyoMercatorTmsNumber);
+        Assert.That(result, Is.EqualTo(Locations.TokyoMercatorTmsNumber));
     }
 
     [Test]
@@ -110,7 +108,7 @@ public sealed class NumberTests
         GeodeticCoordinate min = Coordinate.Round(minCoordinate, 6);
         GeodeticCoordinate max = Coordinate.Round(maxCoordinate, 6);
 
-        Assert.True(min == Locations.TokyoGeodeticMin && max == Locations.TokyoGeodeticMax);
+        Assert.That(min == Locations.TokyoGeodeticMin && max == Locations.TokyoGeodeticMax, Is.True);
     }
 
     [Test]
@@ -137,7 +135,7 @@ public sealed class NumberTests
         MercatorCoordinate min = Coordinate.Round(minCoordinate, 2);
         MercatorCoordinate max = Coordinate.Round(maxCoordinate, 2);
 
-        Assert.True(min == Locations.TokyoMercatorMin && max == Locations.TokyoMercatorMax);
+        Assert.That(min == Locations.TokyoMercatorMin && max == Locations.TokyoMercatorMax, Is.True);
     }
 
     [Test]
@@ -164,7 +162,7 @@ public sealed class NumberTests
         GeodeticCoordinate min = Coordinate.Round((GeodeticCoordinate)minCoordinate, 6);
         GeodeticCoordinate max = Coordinate.Round((GeodeticCoordinate)maxCoordinate, 6);
 
-        Assert.True(min == Locations.TokyoGeodeticMin && max == Locations.TokyoGeodeticMax);
+        Assert.That(min == Locations.TokyoGeodeticMin && max == Locations.TokyoGeodeticMax, Is.True);
     }
 
     [Test]
@@ -179,7 +177,7 @@ public sealed class NumberTests
         MercatorCoordinate min = Coordinate.Round((MercatorCoordinate)minCoordinate, 2);
         MercatorCoordinate max = Coordinate.Round((MercatorCoordinate)maxCoordinate, 2);
 
-        Assert.True(min == Locations.TokyoMercatorMin && max == Locations.TokyoMercatorMax);
+        Assert.That(min == Locations.TokyoMercatorMin && max == Locations.TokyoMercatorMax, Is.True);
     }
 
     [Test]
@@ -204,7 +202,7 @@ public sealed class NumberTests
 
         (Number minNumber, Number maxNumber) = Locations.TokyoGeodeticNtmsNumber.GetLowerNumbers(11);
 
-        Assert.True(minNumber == minExpected && maxNumber == maxExpected);
+        Assert.That(minNumber == minExpected && maxNumber == maxExpected, Is.True);
     }
 
     [Test]
@@ -219,16 +217,16 @@ public sealed class NumberTests
     {
         Number[] numbers = Locations.TokyoGeodeticNtmsNumber.GetLowerNumbers();
         Number num0 = new(3638, 618, 11);
-        Assert.True(numbers[0] == num0);
+        Assert.That(numbers[0], Is.EqualTo(num0));
 
         Number num1 = new(3639, 618, 11);
-        Assert.True(numbers[1] == num1);
+        Assert.That(numbers[1], Is.EqualTo(num1));
 
         Number num2 = new(3638, 619, 11);
-        Assert.True(numbers[2] == num2);
+        Assert.That(numbers[2], Is.EqualTo(num2));
 
         Number num3 = new(3639, 619, 11);
-        Assert.True(numbers[3] == num3);
+        Assert.That(numbers[3], Is.EqualTo(num3));
 
         Assert.Pass();
     }
@@ -247,7 +245,7 @@ public sealed class NumberTests
 
         Assert.DoesNotThrow(() => count = Number.GetCount(Locations.TokyoGeodeticMin, Locations.TokyoGeodeticMax,
                                                           0, 12, false, Tile.DefaultSize));
-        Assert.True(count > 0);
+        Assert.That(count, Is.GreaterThan(0));
     }
 
     [Test]
@@ -299,7 +297,7 @@ public sealed class NumberTests
         Number number1 = new(Locations.TokyoGeodeticNumberX, Locations.TokyoGeodeticNumberNtmsY, 10);
         Number number2 = new(Locations.TokyoGeodeticNumberX, Locations.TokyoGeodeticNumberNtmsY, 10);
 
-        Assert.True(number1.Equals((object)number2));
+        Assert.That(number1, Is.EqualTo(number2));
     }
 
     [Test]
@@ -308,7 +306,7 @@ public sealed class NumberTests
         Number number1 = new(Locations.TokyoGeodeticNumberX, Locations.TokyoGeodeticNumberNtmsY, 10);
         Number number2 = number1;
 
-        Assert.True(number1.Equals((object)number2));
+        Assert.That(number1, Is.EqualTo(number2));
     }
 
     [Test]
@@ -316,7 +314,7 @@ public sealed class NumberTests
     {
         Number number1 = new(Locations.TokyoGeodeticNumberX, Locations.TokyoGeodeticNumberNtmsY, 10);
 
-        Assert.False(number1.Equals(null));
+        Assert.That(number1, Is.Not.Null);
     }
 
     #region Equal operator
@@ -327,7 +325,7 @@ public sealed class NumberTests
         Number number1 = new(Locations.TokyoGeodeticNumberX, Locations.TokyoGeodeticNumberNtmsY, 10);
         Number number2 = new(Locations.TokyoGeodeticNumberX, Locations.TokyoGeodeticNumberNtmsY, 10);
 
-        Assert.True(number1 == number2);
+        Assert.That(number1, Is.EqualTo(number2));
     }
 
     [Test]
@@ -336,7 +334,7 @@ public sealed class NumberTests
         Number number1 = new(Locations.TokyoGeodeticNumberX, Locations.TokyoGeodeticNumberNtmsY, 10);
         Number number2 = new(Locations.TokyoGeodeticNumberX + 1, Locations.TokyoGeodeticNumberNtmsY, 10);
 
-        Assert.False(number1 == number2);
+        Assert.That(number1, Is.Not.EqualTo(number2));
     }
 
     [Test]
@@ -344,7 +342,7 @@ public sealed class NumberTests
     {
         Number number2 = new(Locations.TokyoGeodeticNumberX, Locations.TokyoGeodeticNumberNtmsY, 10);
 
-        Assert.False(null == number2);
+        Assert.That(number2, Is.Not.Null);
     }
 
     [Test]
@@ -352,7 +350,7 @@ public sealed class NumberTests
     {
         Number number1 = new(Locations.TokyoGeodeticNumberX, Locations.TokyoGeodeticNumberNtmsY, 10);
 
-        Assert.False(number1 == null);
+        Assert.That(number1, Is.Not.Null);
     }
 
     #endregion
@@ -365,7 +363,7 @@ public sealed class NumberTests
         Number number1 = new(Locations.TokyoGeodeticNumberX, Locations.TokyoGeodeticNumberNtmsY, 10);
         Number number2 = new(Locations.TokyoGeodeticNumberX + 1, Locations.TokyoGeodeticNumberNtmsY, 10);
 
-        Assert.True(number1 != number2);
+        Assert.That(number1, Is.Not.EqualTo(number2));
     }
 
     [Test]
@@ -374,7 +372,7 @@ public sealed class NumberTests
         Number number1 = new(Locations.TokyoGeodeticNumberX, Locations.TokyoGeodeticNumberNtmsY, 10);
         Number number2 = new(Locations.TokyoGeodeticNumberX, Locations.TokyoGeodeticNumberNtmsY, 10);
 
-        Assert.False(number1 != number2);
+        Assert.That(number1, Is.EqualTo(number2));
     }
 
     [Test]
@@ -382,7 +380,7 @@ public sealed class NumberTests
     {
         Number number2 = new(Locations.TokyoGeodeticNumberX, Locations.TokyoGeodeticNumberNtmsY, 10);
 
-        Assert.True(null != number2);
+        Assert.That(number2, Is.Not.Null);
     }
 
     [Test]
@@ -390,7 +388,7 @@ public sealed class NumberTests
     {
         Number number1 = new(Locations.TokyoGeodeticNumberX, Locations.TokyoGeodeticNumberNtmsY, 10);
 
-        Assert.True(number1 != null);
+        Assert.That(number1, Is.Not.Null);
     }
 
     #endregion
@@ -411,7 +409,7 @@ public sealed class NumberTests
         Number result = new(1, 1, 0);
 
         Number add = number1.Add(number2);
-        Assert.True(add == result);
+        Assert.That(add, Is.EqualTo(result));
     }
 
     [Test]
@@ -454,7 +452,7 @@ public sealed class NumberTests
         Number result = new(1, 1, 0);
 
         Number sub = number1.Subtract(number2);
-        Assert.True(sub == result);
+        Assert.That(sub, Is.EqualTo(result));
     }
 
     [Test]
@@ -497,7 +495,7 @@ public sealed class NumberTests
         Number result = new(0, 0, 0);
 
         Number mul = number1.Multiply(number2);
-        Assert.True(mul == result);
+        Assert.That(mul, Is.EqualTo(result));
     }
 
     [Test]
@@ -540,7 +538,7 @@ public sealed class NumberTests
         Number result = new(0, 0, 0);
 
         Number div = number1.Divide(number2);
-        Assert.True(div == result);
+        Assert.That(div, Is.EqualTo(result));
     }
 
     [Test]
@@ -575,5 +573,3 @@ public sealed class NumberTests
 
     #endregion
 }
-
-#pragma warning restore CA1508 // Avoid dead conditional code

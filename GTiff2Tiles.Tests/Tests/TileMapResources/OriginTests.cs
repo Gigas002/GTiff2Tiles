@@ -25,8 +25,8 @@ public sealed class Origintests
 
         Assert.DoesNotThrow(() => origin = new(_originCoordinate.X, _originCoordinate.Y));
 
-        Assert.True(Math.Abs(origin.X - _originCoordinate.X) < double.Epsilon &&
-                    Math.Abs(origin.Y - _originCoordinate.Y) < double.Epsilon);
+        Assert.That(Math.Abs(origin.X - _originCoordinate.X) < double.Epsilon &&
+                    Math.Abs(origin.Y - _originCoordinate.Y) < double.Epsilon, Is.True);
     }
 
     [Test]
@@ -36,8 +36,8 @@ public sealed class Origintests
 
         Assert.DoesNotThrow(() => origin = new(_originCoordinate));
 
-        Assert.True(Math.Abs(origin.X - _originCoordinate.X) < double.Epsilon &&
-                    Math.Abs(origin.Y - _originCoordinate.Y) < double.Epsilon);
+        Assert.That(Math.Abs(origin.X - _originCoordinate.X) < double.Epsilon &&
+                    Math.Abs(origin.Y - _originCoordinate.Y) < double.Epsilon, Is.True);
     }
 
     [Test]
