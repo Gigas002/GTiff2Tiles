@@ -34,26 +34,6 @@
     },
     {
       "type": "Resource",
-      "source_relative_path": "GTiff2Tiles.GUI/Resources/Icon.png",
-      "output": {
-        "resource": {
-          "relative_path": "images/Icon.png"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Resource",
-      "source_relative_path": "GTiff2Tiles.GUI/Resources/icon.ico",
-      "output": {
-        "resource": {
-          "relative_path": "images/icon.ico"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Resource",
       "source_relative_path": "GTiff2Tiles.GUI/Screenshots/MainPage.png",
       "output": {
         "resource": {
@@ -73,9 +53,6 @@
       "version": ""
     },
     {
-      "log_codes": [
-        "InvalidFileLink"
-      ],
       "type": "Conceptual",
       "source_relative_path": "README.md",
       "output": {
@@ -629,9 +606,6 @@
       "version": ""
     },
     {
-      "log_codes": [
-        "InvalidFileLink"
-      ],
       "type": "Conceptual",
       "source_relative_path": "_docs/articles/gui-index.md",
       "output": {
@@ -652,9 +626,6 @@
       "version": ""
     },
     {
-      "log_codes": [
-        "InvalidFileLink"
-      ],
       "type": "Conceptual",
       "source_relative_path": "_docs/index.md",
       "output": {
