@@ -1,4 +1,6 @@
-﻿using GTiff2Tiles.Core.Coordinates;
+﻿#pragma warning disable CA1859 // Use concrete types when possible for improved performance
+
+using GTiff2Tiles.Core.Coordinates;
 using GTiff2Tiles.Core.Enums;
 using GTiff2Tiles.Core.Tiles;
 using GTiff2Tiles.Tests.Constants;

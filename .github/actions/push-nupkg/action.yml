@@ -1,0 +1,21 @@
+name: 'Push nupkg'
+description: 'Pushes nuget package to feed'
+inputs:
+  publish-base:
+    description: 'Directory with publish artifacts (nupkgs/snupkgs)'
+  api-key:
+    description: 'API key'
+  package-feed:
+    description: 'Package feed'
+        
+runs:
+  using: "composite"
+  steps:
+    - id: dotnet-nuget-push
+      run: |
+          foreach($file in (Get-ChildItem "${{inputs.publish-base}}/" -Recurse -Include *.nupkg))
+          {
+              dotnet nuget push $file -k "${{inputs.api-key}}" -s "${{inputs.package-feed}}" --skip-duplicate
+          }
+
+      shell: pwsh

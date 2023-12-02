@@ -1,0 +1,58 @@
+# refer to read_version.ps1 for standalone script
+
+name: 'Read version'
+description: 'Reads version prefix and suffix'
+inputs:
+  build-props-path:
+    description: 'Path to Directory.Build.props file'
+    required: false
+    type: string
+    default: 'Directory.Build.props'
+  continious-tag:
+    description: 'Tag for conrinious docker builds'
+    required: false
+    type: string
+    default: 'latest'
+outputs:
+  prefix:
+    description: 'Version prefix'
+    value: ${{steps.version.outputs.prefix}}
+  suffix:
+    description: 'Version suffix'
+    value: ${{steps.version.outputs.suffix}}
+  build:
+    description: 'Build number, taken from AssemblyVersion'
+    value: ${{steps.version.outputs.build}}
+  docker-tag:
+    description: 'Latest for ci, vprefix for release'
+    value: ${{steps.version.outputs.docker-tag}}
+        
+runs:
+  using: "composite"
+  steps:
+    - id: version
+      run: |
+        $path = "${{inputs.build-props-path}}"
+        Set-Variable VersionPrefixPath -Option ReadOnly -Value "/Project/PropertyGroup/VersionPrefix"
+        Set-Variable VersionSuffixPath -Option ReadOnly -Value "/Project/PropertyGroup/VersionSuffix"
+        Set-Variable AssemblyVersionPath -Option ReadOnly -Value "/Project/PropertyGroup/AssemblyVersion"
+
+        $versionPrefix = (Select-Xml -Path "$path" -XPath $VersionPrefixPath).Node.InnerText
+        $versionSuffix = (Select-Xml -Path "$path" -XPath $VersionSuffixPath).Node.InnerText
+        $assemblyVersion = (Select-Xml -Path "$path" -XPath $AssemblyVersionPath).Node.InnerText
+        $buildVersion = $assemblyVersion.Split('.')[-1]
+        $dockerTag = ""
+
+        if ("$versionSuffix") {
+            $dockerTag = "${{inputs.continious-tag}}"
+        }
+        else {
+            $dockerTag = "v$versionPrefix"
+        }
+
+        Write-Output "prefix=$versionPrefix" >> $env:GITHUB_OUTPUT
+        Write-Output "suffix=$versionSuffix" >> $env:GITHUB_OUTPUT
+        Write-Output "build=$buildVersion" >> $env:GITHUB_OUTPUT
+        Write-Output "docker-tag=$dockerTag" >> $env:GITHUB_OUTPUT
+
+      shell: pwsh

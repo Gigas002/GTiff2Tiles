@@ -1,6 +1,4 @@
-﻿#pragma warning disable CA1508 // Avoid dead conditional code
-
-using System.Globalization;
+﻿using System.Globalization;
 using GTiff2Tiles.Core;
 using GTiff2Tiles.Core.Coordinates;
 using GTiff2Tiles.Core.Enums;
@@ -197,7 +195,7 @@ public sealed class GdalWorkerTests
 
         Assert.DoesNotThrowAsync(async () => gdalInfo = await GdalWorker.InfoAsync(_in4326).ConfigureAwait(false));
 
-        Assert.False(string.IsNullOrWhiteSpace(gdalInfo));
+        Assert.That(string.IsNullOrWhiteSpace(gdalInfo), Is.False);
     }
 
     [Test]
@@ -219,7 +217,7 @@ public sealed class GdalWorkerTests
 
         Assert.DoesNotThrowAsync(async () => proj = await GdalWorker.GetProjStringAsync(_in4326).ConfigureAwait(false));
 
-        Assert.False(string.IsNullOrWhiteSpace(proj));
+        Assert.That(string.IsNullOrWhiteSpace(proj), Is.False);
     }
 
     [Test]
@@ -332,21 +330,21 @@ public sealed class GdalWorkerTests
             proj = await GdalWorker.GetProjStringAsync(_in4326).ConfigureAwait(false);
             cs = GdalWorker.GetCoordinateSystem(proj);
         });
-        Assert.True(cs == Cs4326);
+        Assert.That(cs, Is.EqualTo(Cs4326));
 
         Assert.DoesNotThrowAsync(async () =>
         {
             proj = await GdalWorker.GetProjStringAsync(_in3785).ConfigureAwait(false);
             cs = GdalWorker.GetCoordinateSystem(proj);
         });
-        Assert.True(cs == Cs3857);
+        Assert.That(cs, Is.EqualTo(Cs3857));
 
         Assert.DoesNotThrowAsync(async () =>
         {
             proj = await GdalWorker.GetProjStringAsync(_in3395).ConfigureAwait(false);
             cs = GdalWorker.GetCoordinateSystem(proj);
         });
-        Assert.True(cs == CsOther);
+        Assert.That(cs, Is.EqualTo(CsOther));
     }
 
     #endregion
@@ -359,7 +357,7 @@ public sealed class GdalWorkerTests
         double[] gt = null;
 
         Assert.DoesNotThrow(() => gt = GdalWorker.GetGeoTransform(_in4326));
-        Assert.True(gt?.Any());
+        Assert.That(gt, Is.Not.Empty);
     }
 
     [Test]
@@ -386,7 +384,7 @@ public sealed class GdalWorkerTests
         GeoCoordinate maxCoordinate = null;
 
         Assert.DoesNotThrow(() => (minCoordinate, maxCoordinate) = GdalWorker.GetImageBorders(_in4326, size, cs));
-        Assert.True(minCoordinate is GeodeticCoordinate && maxCoordinate is GeodeticCoordinate);
+        Assert.That(minCoordinate is GeodeticCoordinate && maxCoordinate is GeodeticCoordinate, Is.True);
     }
 
     [Test]
@@ -463,5 +461,3 @@ public sealed class GdalWorkerTests
 
     #endregion
 }
-
-#pragma warning restore CA1508 // Avoid dead conditional code

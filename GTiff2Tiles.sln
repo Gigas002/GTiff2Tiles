@@ -1,59 +1,46 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29009.5
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GTiff2Tiles.Benchmarks", "GTiff2Tiles.Benchmarks\GTiff2Tiles.Benchmarks.csproj", "{84C247B9-1F9F-4807-B9E9-2F1A2FE0019D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GTiff2Tiles.Core", "GTiff2Tiles.Core\GTiff2Tiles.Core.csproj", "{DC6D961C-6863-44DC-B6B1-0C7232B7F777}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GTiff2Tiles.Console", "GTiff2Tiles.Console\GTiff2Tiles.Console.csproj", "{598B1298-0160-487D-A02F-B733C5C045B6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GTiff2Tiles.Avalonia", "GTiff2Tiles.Avalonia\GTiff2Tiles.Avalonia.csproj", "{9139B034-2C6B-4A6D-8F94-7B92DB4BECBE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GTiff2Tiles.Core", "GTiff2Tiles.Core\GTiff2Tiles.Core.csproj", "{DA0D64F0-A6B8-4120-8425-5A88FFBC5612}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GTiff2Tiles.Benchmarks", "GTiff2Tiles.Benchmarks\GTiff2Tiles.Benchmarks.csproj", "{1032BE03-36E8-4DEE-B691-A29D8B4C4AD4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GTiff2Tiles.GUI", "GTiff2Tiles.GUI\GTiff2Tiles.GUI.csproj", "{D93B50C8-9CCE-443D-A6D5-B87B0B411BAC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GTiff2Tiles.Console", "GTiff2Tiles.Console\GTiff2Tiles.Console.csproj", "{9BB64568-02CD-44EB-90DB-E7BE29502040}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GTiff2Tiles.Tests", "GTiff2Tiles.Tests\GTiff2Tiles.Tests.csproj", "{C6352D5B-8FA7-4536-B2AC-BCD555B76170}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GTiff2Tiles.Tests", "GTiff2Tiles.Tests\GTiff2Tiles.Tests.csproj", "{9615AF93-1F5A-491F-9AB0-E6BBFDD11A65}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Appveyor|x64 = Appveyor|x64
 		Debug|x64 = Debug|x64
 		Release|x64 = Release|x64
-	EndGlobalSection
-	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{84C247B9-1F9F-4807-B9E9-2F1A2FE0019D}.Appveyor|x64.ActiveCfg = Appveyor|x64
-		{84C247B9-1F9F-4807-B9E9-2F1A2FE0019D}.Appveyor|x64.Build.0 = Appveyor|x64
-		{84C247B9-1F9F-4807-B9E9-2F1A2FE0019D}.Debug|x64.ActiveCfg = Debug|x64
-		{84C247B9-1F9F-4807-B9E9-2F1A2FE0019D}.Debug|x64.Build.0 = Debug|x64
-		{84C247B9-1F9F-4807-B9E9-2F1A2FE0019D}.Release|x64.ActiveCfg = Release|x64
-		{84C247B9-1F9F-4807-B9E9-2F1A2FE0019D}.Release|x64.Build.0 = Release|x64
-		{598B1298-0160-487D-A02F-B733C5C045B6}.Appveyor|x64.ActiveCfg = Appveyor|x64
-		{598B1298-0160-487D-A02F-B733C5C045B6}.Appveyor|x64.Build.0 = Appveyor|x64
-		{598B1298-0160-487D-A02F-B733C5C045B6}.Debug|x64.ActiveCfg = Debug|x64
-		{598B1298-0160-487D-A02F-B733C5C045B6}.Debug|x64.Build.0 = Debug|x64
-		{598B1298-0160-487D-A02F-B733C5C045B6}.Release|x64.ActiveCfg = Release|x64
-		{598B1298-0160-487D-A02F-B733C5C045B6}.Release|x64.Build.0 = Release|x64
-		{DA0D64F0-A6B8-4120-8425-5A88FFBC5612}.Appveyor|x64.ActiveCfg = Appveyor|x64
-		{DA0D64F0-A6B8-4120-8425-5A88FFBC5612}.Appveyor|x64.Build.0 = Appveyor|x64
-		{DA0D64F0-A6B8-4120-8425-5A88FFBC5612}.Debug|x64.ActiveCfg = Debug|x64
-		{DA0D64F0-A6B8-4120-8425-5A88FFBC5612}.Debug|x64.Build.0 = Debug|x64
-		{DA0D64F0-A6B8-4120-8425-5A88FFBC5612}.Release|x64.ActiveCfg = Release|x64
-		{DA0D64F0-A6B8-4120-8425-5A88FFBC5612}.Release|x64.Build.0 = Release|x64
-		{D93B50C8-9CCE-443D-A6D5-B87B0B411BAC}.Appveyor|x64.ActiveCfg = Appveyor|x64
-		{D93B50C8-9CCE-443D-A6D5-B87B0B411BAC}.Debug|x64.ActiveCfg = Debug|x64
-		{D93B50C8-9CCE-443D-A6D5-B87B0B411BAC}.Debug|x64.Build.0 = Debug|x64
-		{D93B50C8-9CCE-443D-A6D5-B87B0B411BAC}.Release|x64.ActiveCfg = Release|x64
-		{D93B50C8-9CCE-443D-A6D5-B87B0B411BAC}.Release|x64.Build.0 = Release|x64
-		{C6352D5B-8FA7-4536-B2AC-BCD555B76170}.Appveyor|x64.ActiveCfg = Appveyor|x64
-		{C6352D5B-8FA7-4536-B2AC-BCD555B76170}.Appveyor|x64.Build.0 = Appveyor|x64
-		{C6352D5B-8FA7-4536-B2AC-BCD555B76170}.Debug|x64.ActiveCfg = Debug|x64
-		{C6352D5B-8FA7-4536-B2AC-BCD555B76170}.Debug|x64.Build.0 = Debug|x64
-		{C6352D5B-8FA7-4536-B2AC-BCD555B76170}.Release|x64.ActiveCfg = Release|x64
-		{C6352D5B-8FA7-4536-B2AC-BCD555B76170}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {273FD8EC-E055-41E2-B5B3-C321B9721DEF}
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DC6D961C-6863-44DC-B6B1-0C7232B7F777}.Debug|x64.ActiveCfg = Debug|x64
+		{DC6D961C-6863-44DC-B6B1-0C7232B7F777}.Debug|x64.Build.0 = Debug|x64
+		{DC6D961C-6863-44DC-B6B1-0C7232B7F777}.Release|x64.ActiveCfg = Release|x64
+		{DC6D961C-6863-44DC-B6B1-0C7232B7F777}.Release|x64.Build.0 = Release|x64
+		{9139B034-2C6B-4A6D-8F94-7B92DB4BECBE}.Debug|x64.ActiveCfg = Debug|x64
+		{9139B034-2C6B-4A6D-8F94-7B92DB4BECBE}.Debug|x64.Build.0 = Debug|x64
+		{9139B034-2C6B-4A6D-8F94-7B92DB4BECBE}.Release|x64.ActiveCfg = Release|x64
+		{9139B034-2C6B-4A6D-8F94-7B92DB4BECBE}.Release|x64.Build.0 = Release|x64
+		{1032BE03-36E8-4DEE-B691-A29D8B4C4AD4}.Debug|x64.ActiveCfg = Debug|x64
+		{1032BE03-36E8-4DEE-B691-A29D8B4C4AD4}.Debug|x64.Build.0 = Debug|x64
+		{1032BE03-36E8-4DEE-B691-A29D8B4C4AD4}.Release|x64.ActiveCfg = Release|x64
+		{1032BE03-36E8-4DEE-B691-A29D8B4C4AD4}.Release|x64.Build.0 = Release|x64
+		{9BB64568-02CD-44EB-90DB-E7BE29502040}.Debug|x64.ActiveCfg = Debug|x64
+		{9BB64568-02CD-44EB-90DB-E7BE29502040}.Debug|x64.Build.0 = Debug|x64
+		{9BB64568-02CD-44EB-90DB-E7BE29502040}.Release|x64.ActiveCfg = Release|x64
+		{9BB64568-02CD-44EB-90DB-E7BE29502040}.Release|x64.Build.0 = Release|x64
+		{9615AF93-1F5A-491F-9AB0-E6BBFDD11A65}.Debug|x64.ActiveCfg = Debug|x64
+		{9615AF93-1F5A-491F-9AB0-E6BBFDD11A65}.Debug|x64.Build.0 = Debug|x64
+		{9615AF93-1F5A-491F-9AB0-E6BBFDD11A65}.Release|x64.ActiveCfg = Release|x64
+		{9615AF93-1F5A-491F-9AB0-E6BBFDD11A65}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 EndGlobal

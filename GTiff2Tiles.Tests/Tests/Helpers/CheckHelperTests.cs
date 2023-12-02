@@ -115,10 +115,10 @@ public sealed class CheckHelperTests
     #region CheckInputFileAsync
 
     [Test]
-    public async Task CheckInputFileAsyncTrue() => Assert.True(await CheckHelper.CheckInputFileAsync(_in4326, Cs4326).ConfigureAwait(false));
+    public async Task CheckInputFileAsyncTrue() => Assert.That(await CheckHelper.CheckInputFileAsync(_in4326, Cs4326).ConfigureAwait(false), Is.True);
 
     [Test]
-    public async Task CheckInputFileAsyncFalse() => Assert.False(await CheckHelper.CheckInputFileAsync(_in4326, Cs3857).ConfigureAwait(false));
+    public async Task CheckInputFileAsyncFalse() => Assert.That(await CheckHelper.CheckInputFileAsync(_in4326, Cs3857).ConfigureAwait(false), Is.False);
 
     #endregion
 }

@@ -1,0 +1,78 @@
+name: deploy-pages
+on:
+  workflow_dispatch:
+    inputs:
+      runs-on:
+        description: 'The operating system to run the job on'
+        required: true
+        type: choice
+        options:
+          - ubuntu-latest
+          - windows-latest
+          - macos-latest
+      dotnet-version:
+        description: 'dotnet sdk version'
+        required: false
+        type: string
+        default: '8.x'
+      docfx-json-path:
+        description: 'Path to docfx.json file'
+        required: false
+        type: string
+        default: 'docfx.json'
+      publish-dir:
+        description: 'Path for built docs (same as declared in docfx.json!)'
+        required: false
+        type: string
+        default: 'docs'
+  workflow_call:
+    inputs:
+      runs-on:
+        description: 'The operating system to run the job on'
+        required: true
+        type: string
+      dotnet-version:
+        description: 'dotnet sdk version'
+        required: false
+        type: string
+        default: '8.x'
+      docfx-json-path:
+        description: 'Path to docfx.json file'
+        required: false
+        type: string
+        default: 'docfx.json'
+      publish-dir:
+        description: 'Path for built docs (same as declared in docfx.json!)'
+        required: false
+        type: string
+        default: 'docs'
+ 
+jobs:
+
+  deploy:
+    runs-on: ${{inputs.runs-on}}
+    defaults:
+      run:
+        shell: pwsh
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: dotnet-setup
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: ${{inputs.dotnet-version}}
+
+    - name: dotnet-install-docfx
+      run: dotnet tool update -g docfx
+      
+    - name: docfx-metadata-build
+      run: |
+        cp README.md _docs/index.md
+        docfx metadata "${{inputs.docfx-json-path}}"
+        docfx build "${{inputs.docfx-json-path}}"
+         
+    - name: pages-deploy
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{secrets.GITHUB_TOKEN}}
+        publish_dir: "${{inputs.publish-dir}}"

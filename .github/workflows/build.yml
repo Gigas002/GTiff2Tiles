@@ -1,0 +1,46 @@
+name: build
+on:
+  workflow_dispatch:
+   inputs:
+      runs-on:
+        description: 'The operating system to run the job on'
+        required: true
+        type: choice
+        options:
+          - ubuntu-latest
+          - windows-latest
+          - macos-latest
+      dotnet-version:
+        description: 'dotnet sdk version'
+        required: false
+        type: string
+        default: '8.x'
+  workflow_call:
+    inputs:
+      runs-on:
+        description: 'The operating system to run the job on'
+        required: true
+        type: string
+      dotnet-version:
+        description: 'dotnet sdk version'
+        required: false
+        type: string
+        default: '8.x'
+ 
+jobs:
+
+  build:
+    runs-on: ${{inputs.runs-on}}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: dotnet-setup
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: ${{inputs.dotnet-version}}
+
+      - name: dotnet-restore
+        run: dotnet restore
+
+      - name: dotnet-build
+        run: dotnet build --no-restore -c Release

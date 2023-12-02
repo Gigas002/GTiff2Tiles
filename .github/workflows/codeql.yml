@@ -1,0 +1,30 @@
+name: "codeql"
+
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+
+concurrency:
+  group: "codeql"
+  cancel-in-progress: false
+
+jobs:
+  analyze:
+    name: analyze
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: init-codeql
+      uses: github/codeql-action/init@v2
+      with:
+        languages: csharp
+
+    - name: autobuild
+      uses: github/codeql-action/autobuild@v2
+
+    - name: codeql-analyze
+      uses: github/codeql-action/analyze@v2

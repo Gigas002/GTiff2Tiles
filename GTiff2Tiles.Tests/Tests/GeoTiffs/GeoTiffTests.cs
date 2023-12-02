@@ -1,6 +1,4 @@
-﻿#pragma warning disable CA1508 // Avoid dead conditional code
-
-using System.Globalization;
+﻿using System.Globalization;
 using System.Threading.Channels;
 using GTiff2Tiles.Core;
 using GTiff2Tiles.Core.Coordinates;
@@ -171,7 +169,7 @@ public sealed class GeoTiffTests
 
         Assert.DoesNotThrow(() => raster.Dispose());
 
-        Assert.True(raster.IsDisposed);
+        Assert.That(raster.IsDisposed, Is.True);
     }
 
     [Test]
@@ -181,7 +179,7 @@ public sealed class GeoTiffTests
 
         Assert.DoesNotThrowAsync(async () => await raster.DisposeAsync().ConfigureAwait(false));
 
-        Assert.True(raster.IsDisposed);
+        Assert.That(raster.IsDisposed, Is.True);
     }
 
     #endregion
@@ -297,7 +295,7 @@ public sealed class GeoTiffTests
         IEnumerable<byte> tileBytes = null;
 
         Assert.DoesNotThrow(() => tileBytes = raster.WriteTileToEnumerable(raster.Data, tile));
-        Assert.True(tileBytes?.Any() == true);
+        Assert.That(tileBytes?.Any(), Is.True);
     }
 
     #region WriteToChannel
@@ -310,7 +308,7 @@ public sealed class GeoTiffTests
 
         Channel<RasterTile> channel = Channel.CreateUnbounded<RasterTile>();
 
-        Assert.True(raster.WriteTileToChannel(raster.Data, tile, channel.Writer));
+        Assert.That(raster.WriteTileToChannel(raster.Data, tile, channel.Writer), Is.True);
     }
 
     [Test]
@@ -599,7 +597,7 @@ public sealed class GeoTiffTests
         IEnumerable<ITile> tiles = null;
         Assert.DoesNotThrow(() => tiles = raster.WriteTilesToEnumerable(0, 11));
 
-        Assert.True(tiles?.Any());
+        Assert.That(tiles?.Any(), Is.True);
     }
 
     [Test]
@@ -616,7 +614,7 @@ public sealed class GeoTiffTests
                                                                         NetVips.Enums.Kernel.Mitchell, 3, 999,
                                                                         new Progress<double>(), Reporter));
 
-        Assert.True(tiles?.Any());
+        Assert.That(tiles?.Any(), Is.True);
     }
 
     [Test]
@@ -691,7 +689,7 @@ public sealed class GeoTiffTests
 
         Assert.DoesNotThrow(() => (min, max) = Raster.GetBorders(fs, Cs4326));
 
-        Assert.True(min == expectedMin && max == expectedMax);
+        Assert.That(min == expectedMin && max == expectedMax, Is.True);
     }
 
     [Test]
@@ -707,7 +705,7 @@ public sealed class GeoTiffTests
 
         Assert.DoesNotThrow(() => (min, max) = Raster.GetBorders(fs, Cs3857));
 
-        Assert.True(min == expectedMin && max == expectedMax);
+        Assert.That(min == expectedMin && max == expectedMax, Is.True);
     }
 
     [Test]
@@ -746,7 +744,7 @@ public sealed class GeoTiffTests
 
         Assert.DoesNotThrow(() => (min, max) = Raster.GetBorders(_in4326, Cs4326));
 
-        Assert.True(min == expectedMin && max == expectedMax);
+        Assert.That(min == expectedMin && max == expectedMax, Is.True);
     }
 
     [Test]
@@ -760,7 +758,7 @@ public sealed class GeoTiffTests
 
         Assert.DoesNotThrow(() => (min, max) = Raster.GetBorders(_in3785, Cs3857));
 
-        Assert.True(min == expectedMin && max == expectedMax);
+        Assert.That(min == expectedMin && max == expectedMax, Is.True);
     }
 
     [Test]
@@ -800,7 +798,7 @@ public sealed class GeoTiffTests
 
     [Test]
     public void JoinTilesIntoImagePathsNullPaths() =>
-        Assert.True(Raster.JoinTilesIntoImage(tile0Path: null, null, null, null, Tile.DefaultSize, 4) == null);
+        Assert.That(Raster.JoinTilesIntoImage(tile0Path: null, null, null, null, Tile.DefaultSize, 4), Is.Null);
 
     [Test]
     public void JoinTilesIntoImagePathsNullSize() =>
@@ -841,7 +839,7 @@ public sealed class GeoTiffTests
 
     [Test]
     public void JoinTilesIntoImageBytesNullArrays() =>
-        Assert.True(Raster.JoinTilesIntoImage(tile0Bytes: null, null, null, null, Tile.DefaultSize, 4) == null);
+        Assert.That(Raster.JoinTilesIntoImage(tile0Bytes: null, null, null, null, Tile.DefaultSize, 4), Is.Null);
 
     [Test]
     public void JoinTilesIntoImageBytesNullSize() =>
@@ -951,7 +949,7 @@ public sealed class GeoTiffTests
         //string outPath = Path.Combine(path, "tile.png");
         //File.WriteAllBytes(outPath, bytes.ToArray());
 
-        Assert.True(bytes?.Any() == true);
+        Assert.That(bytes?.Any(), Is.True);
     }
 
     [Test]
@@ -967,7 +965,7 @@ public sealed class GeoTiffTests
         Assert.DoesNotThrow(() => bytes = Raster.JoinTilesIntoBytes(null, null, null, null, isBuffered, tileSize,
                                                                     bandsCount, tileExtension));
 
-        Assert.True(bytes == null);
+        Assert.That(bytes, Is.Null);
     }
 
     #endregion
@@ -997,7 +995,7 @@ public sealed class GeoTiffTests
         //string outPath = Path.Combine(path, "tile.png");
         //File.WriteAllBytes(outPath, target.Bytes.ToArray());
 
-        Assert.True(target.Bytes?.Any() == true);
+        Assert.That(target.Bytes?.Any(), Is.True);
 
         target.Dispose();
     }
@@ -1032,7 +1030,7 @@ public sealed class GeoTiffTests
         //string outPath = Path.Combine(path, "tile.png");
         //File.WriteAllBytes(outPath, target.Bytes.ToArray());
 
-        Assert.True(target.Bytes?.Any() == true);
+        Assert.That(target.Bytes?.Any(), Is.True);
 
         target.Dispose();
     }
@@ -1124,5 +1122,3 @@ public sealed class GeoTiffTests
 
     #endregion
 }
-
-#pragma warning restore CA1508 // Avoid dead conditional code

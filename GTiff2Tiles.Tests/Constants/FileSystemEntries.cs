@@ -13,7 +13,7 @@ internal static class FileSystemEntries
         get
         {
             DirectoryInfo di = new DirectoryInfo(Assembly.GetExecutingAssembly().Location)
-                              .Parent?.Parent?.Parent?.Parent?.Parent?.Parent;
+                              .Parent?.Parent?.Parent?.Parent?.Parent;
 
             return Path.Combine(di?.FullName ?? throw new InvalidOperationException(), ExamplesDirectoryName);
         }

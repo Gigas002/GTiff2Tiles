@@ -57,7 +57,7 @@ public sealed class PixelCoordinateTests
 
         Assert.DoesNotThrow(() => res = Locations.TokyoGeodeticPixelCoordinate
                                                  .ToNumber(10, Tile.DefaultSize, false));
-        Assert.True(res == Locations.TokyoGeodeticNtmsNumber);
+        Assert.That(res, Is.EqualTo(Locations.TokyoGeodeticNtmsNumber));
     }
 
     [Test]
@@ -95,8 +95,8 @@ public sealed class PixelCoordinateTests
                                                                 .ToGeoCoordinate(Cs4326, Cs3857, 10, Tile.DefaultSize).Round<MercatorCoordinate>(2));
 
 
-        Assert.True(geodeticCoordinate == Locations.TokyoGeodeticCoordinate);
-        Assert.True(mercatorCoordinate == Locations.TokyoMercatorCoordinate);
+        Assert.That(geodeticCoordinate, Is.EqualTo(Locations.TokyoGeodeticCoordinate));
+        Assert.That(mercatorCoordinate, Is.EqualTo(Locations.TokyoMercatorCoordinate));
 
         Assert.Throws<NotSupportedException>(() => Locations.TokyoGeodeticPixelCoordinate
                                                             .ToGeoCoordinate(Cs4326, CsOther, 10, Tile.DefaultSize));
@@ -113,8 +113,8 @@ public sealed class PixelCoordinateTests
         Assert.DoesNotThrow(() => mercatorCoordinate = Coordinate.Round((MercatorCoordinate)Locations.TokyoMercatorPixelCoordinate
                                                                            .ToGeoCoordinate(Cs3857, Cs3857, 10, Tile.DefaultSize), 2));
 
-        Assert.True(geodeticCoordinate == Locations.TokyoGeodeticCoordinate);
-        Assert.True(mercatorCoordinate == Locations.TokyoMercatorCoordinate);
+        Assert.That(geodeticCoordinate, Is.EqualTo(Locations.TokyoGeodeticCoordinate));
+        Assert.That(mercatorCoordinate, Is.EqualTo(Locations.TokyoMercatorCoordinate));
 
         Assert.Throws<NotSupportedException>(() => Locations.TokyoMercatorPixelCoordinate
                                                             .ToGeoCoordinate(Cs3857, CsOther, 10, Tile.DefaultSize));
@@ -131,7 +131,7 @@ public sealed class PixelCoordinateTests
 
         Assert.DoesNotThrow(() => res = Coordinate.Round(Locations.TokyoGeodeticPixelCoordinate
                                                                   .ToGeodeticCoordinate(Cs4326, 10, Tile.DefaultSize), 6));
-        Assert.True(res == Locations.TokyoGeodeticCoordinate);
+        Assert.That(res, Is.EqualTo(Locations.TokyoGeodeticCoordinate));
     }
 
     [Test]
@@ -153,7 +153,7 @@ public sealed class PixelCoordinateTests
 
         Assert.DoesNotThrow(() => res = Coordinate.Round(Locations.TokyoMercatorPixelCoordinate
                                                                   .ToMercatorCoordinate(Cs3857, 10, Tile.DefaultSize), 2));
-        Assert.True(res == Locations.TokyoMercatorCoordinate);
+        Assert.That(res, Is.EqualTo(Locations.TokyoMercatorCoordinate));
     }
 
     [Test]

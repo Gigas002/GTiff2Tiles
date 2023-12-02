@@ -76,7 +76,7 @@ public sealed class GeodeticCoordinateTests
 
         Assert.DoesNotThrow(() => pCoord = Locations.TokyoGeodeticCoordinate
                                                     .ToPixelCoordinate(10, Tile.DefaultSize));
-        Assert.True(pCoord == Locations.TokyoGeodeticPixelCoordinate);
+        Assert.That(pCoord, Is.EqualTo(Locations.TokyoGeodeticPixelCoordinate));
     }
 
     [Test]
@@ -86,7 +86,7 @@ public sealed class GeodeticCoordinateTests
 
         Assert.DoesNotThrow(() => mCoord = Coordinate.Round(Locations.TokyoGeodeticCoordinate
                                                                      .ToMercatorCoordinate(), 2));
-        Assert.True(mCoord == Locations.TokyoMercatorCoordinate);
+        Assert.That(mCoord, Is.EqualTo(Locations.TokyoMercatorCoordinate));
     }
 
     [Test]
@@ -96,7 +96,7 @@ public sealed class GeodeticCoordinateTests
 
         Assert.DoesNotThrow(() => number = Locations.TokyoGeodeticCoordinate
                                                     .ToNumber(10, Tile.DefaultSize, false));
-        Assert.True(number == Locations.TokyoGeodeticNtmsNumber);
+        Assert.That(number, Is.EqualTo(Locations.TokyoGeodeticNtmsNumber));
     }
 
     #region Resolution
