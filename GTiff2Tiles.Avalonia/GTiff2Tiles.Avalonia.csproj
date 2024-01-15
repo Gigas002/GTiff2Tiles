@@ -16,7 +16,7 @@
         <PackageReference Include="MaxRev.Gdal.LinuxRuntime.Minimal" Version="3.7.0.100" />
         <PackageReference Include="MaxRev.Gdal.WindowsRuntime.Minimal" Version="3.7.0.100" />
         <PackageReference Include="MaxRev.Gdal.MacosRuntime.Minimal.x64" Version="3.7.0.217" />
-        <PackageReference Include="NetVips.Native" Version="8.15.0" />
+        <PackageReference Include="NetVips.Native" Version="8.15.1" />
 
         <!-- Internal dependencies -->
         <ProjectReference Include="..\GTiff2Tiles.Core\GTiff2Tiles.Core.csproj" />
