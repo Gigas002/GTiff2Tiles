@@ -16,7 +16,7 @@
     </PackageReference>
     <PackageReference Include="MaxRev.Gdal.LinuxRuntime.Minimal" Version="3.8.3.286" />
     <PackageReference Include="MaxRev.Gdal.WindowsRuntime.Minimal" Version="3.8.3.259" />
-    <PackageReference Include="MaxRev.Gdal.MacosRuntime.Minimal.x64" Version="3.7.0.217" />
+    <PackageReference Include="MaxRev.Gdal.MacosRuntime.Minimal.x64" Version="3.8.3.391" />
     <PackageReference Include="NetVips.Native" Version="8.15.1" />
     <PackageReference Include="NUnit" Version="4.0.1" />
     <PackageReference Include="NUnit3TestAdapter" Version="4.5.0">
