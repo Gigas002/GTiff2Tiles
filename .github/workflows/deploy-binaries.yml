@@ -138,7 +138,7 @@ jobs:
           run: Compress-Archive -Path "${{env.publish-path}}/*" -Destination "${{env.artifact-path}}"
 
         - name: deploy-binaries
-          uses: softprops/action-gh-release@v1
+          uses: softprops/action-gh-release@v2
           with:
             tag_name: ${{env.tag}}
             generate_release_notes: ${{env.prerelease == 'false'}}

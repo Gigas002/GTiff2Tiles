@@ -90,7 +90,7 @@ jobs:
             Write-Output "src-path=$srcPath" >> $env:GITHUB_ENV
 
         - name: deploy-src
-          uses: softprops/action-gh-release@v1
+          uses: softprops/action-gh-release@v2
           with:
             tag_name: ${{env.tag}}
             generate_release_notes: ${{env.prerelease == 'false'}}
