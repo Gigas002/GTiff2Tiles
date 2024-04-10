@@ -29,15 +29,15 @@
       <meta name="loc:changeTheme" content="Change theme">
       <meta name="loc:copy" content="Copy">
       <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
   </head>
-
-  <script type="module" src="./../public/docfx.min.js"></script>
-
-  <script>
-    const theme = localStorage.getItem('theme') || 'auto'
-    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
-  </script>
-
 
   <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
     <header class="bg-body border-bottom">
@@ -59,23 +59,9 @@
     </header>
 
     <main class="container-xxl">
-      <div class="toc-offcanvas">
-        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
-          <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
-          </div>
-          <div class="offcanvas-body">
-            <nav class="toc" id="toc"></nav>
-          </div>
-        </div>
-      </div>
 
       <div class="content">
         <div class="actionbar">
-          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
-            <i class="bi bi-list"></i>
-          </button>
 
           <nav id="breadcrumb"></nav>
         </div>
@@ -93,7 +79,8 @@ Class RasterTile  <a class="header-action link-secondary" title="View source" hr
   <dl><dt>Assembly</dt><dd>GTiff2Tiles.Core.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"><p><a class="xref" href="GTiff2Tiles.Core.GeoTiffs.Raster.html">Raster</a> <a class="xref" href="GTiff2Tiles.Core.Tiles.Tile.html">Tile</a></p>
+  <div class="markdown summary"><p><a class="xref" href="GTiff2Tiles.Core.GeoTiffs.Raster.html">Raster</a>
+<a class="xref" href="GTiff2Tiles.Core.Tiles.Tile.html">Tile</a></p>
 </div>
   <div class="markdown conceptual"></div>
 
@@ -255,9 +242,9 @@ Class RasterTile  <a class="header-action link-secondary" title="View source" hr
 </dd>
     <dt><code>size</code> <a class="xref" href="GTiff2Tiles.Core.Images.Size.html">Size</a></dt>
     <dd><p><a class="xref" href="GTiff2Tiles.Core.Tiles.Tile.html#GTiff2Tiles_Core_Tiles_Tile_Size">Size</a>;
-<remarks>should be a square, e.g. 256x256;
+<remarks>should be a square, e.g. 256x256;</remarks></p>
 <p></p>If set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>, uses <a class="xref" href="GTiff2Tiles.Core.Tiles.Tile.html#GTiff2Tiles_Core_Tiles_Tile_DefaultSize">DefaultSize</a>
-as value</remarks></p>
+as value
 </dd>
     <dt><code>tmsCompatible</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
     <dd><p>Is tms compatible?</p>
@@ -307,9 +294,9 @@ as value</remarks></p>
 </dd>
     <dt><code>size</code> <a class="xref" href="GTiff2Tiles.Core.Images.Size.html">Size</a></dt>
     <dd><p><a class="xref" href="GTiff2Tiles.Core.Tiles.Tile.html#GTiff2Tiles_Core_Tiles_Tile_Size">Size</a>;
-<remarks>should be a square, e.g. 256x256;
+<remarks>should be a square, e.g. 256x256;</remarks></p>
 <p></p>If set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>, uses <a class="xref" href="GTiff2Tiles.Core.Tiles.Tile.html#GTiff2Tiles_Core_Tiles_Tile_DefaultSize">DefaultSize</a>
-as value</remarks></p>
+as value
 </dd>
     <dt><code>tmsCompatible</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
     <dd><p>Is tms compatible?</p>
