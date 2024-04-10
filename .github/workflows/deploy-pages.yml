@@ -72,7 +72,7 @@ jobs:
         docfx build "${{inputs.docfx-json-path}}"
          
     - name: pages-deploy
-      uses: peaceiris/actions-gh-pages@v3
+      uses: peaceiris/actions-gh-pages@v4
       with:
         github_token: ${{secrets.GITHUB_TOKEN}}
         publish_dir: "${{inputs.publish-dir}}"
