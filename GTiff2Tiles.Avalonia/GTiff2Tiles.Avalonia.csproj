@@ -10,7 +10,7 @@
         <PackageReference Include="Avalonia" Version="11.1.2" />
         <PackageReference Include="Avalonia.Desktop" Version="11.1.2" />
         <PackageReference Include="Avalonia.Diagnostics" Version="11.0.10" />
-        <PackageReference Include="Avalonia.ReactiveUI" Version="11.0.10" />
+        <PackageReference Include="Avalonia.ReactiveUI" Version="11.1.2" />
         <PackageReference Include="Avalonia.Themes.Fluent" Version="11.0.10" />
         <PackageReference Include="DialogHost.Avalonia" Version="0.7.9" />
         <PackageReference Include="MaxRev.Gdal.Universal" Version="3.9.0.218" />
