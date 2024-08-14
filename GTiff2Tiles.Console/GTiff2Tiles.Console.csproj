@@ -6,7 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="CommandLineParser" Version="2.9.1" />
-    <PackageReference Include="MaxRev.Gdal.Universal" Version="3.9.0.218" />
+    <PackageReference Include="MaxRev.Gdal.Universal" Version="3.9.1.247" />
     <PackageReference Include="NetVips.Native" Version="8.15.2" />
   </ItemGroup>
 
