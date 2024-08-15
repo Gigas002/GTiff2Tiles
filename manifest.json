@@ -13,41 +13,11 @@
       "version": ""
     },
     {
-      "type": "Conceptual",
-      "source_relative_path": "CODE_OF_CONDUCT.md",
-      "output": {
-        ".html": {
-          "relative_path": "CODE_OF_CONDUCT.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "CONTRIBUTING.md",
-      "output": {
-        ".html": {
-          "relative_path": "CONTRIBUTING.html"
-        }
-      },
-      "version": ""
-    },
-    {
       "type": "Resource",
       "source_relative_path": "GTiff2Tiles.GUI/Screenshots/MainPage.png",
       "output": {
         "resource": {
           "relative_path": "images/MainPage.png"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "LICENSE.md",
-      "output": {
-        ".html": {
-          "relative_path": "LICENSE.html"
         }
       },
       "version": ""
