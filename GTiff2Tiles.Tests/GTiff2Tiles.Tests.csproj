@@ -15,7 +15,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="MaxRev.Gdal.Universal" Version="3.9.1.247" />
-    <PackageReference Include="NetVips.Native" Version="8.15.2" />
+    <PackageReference Include="NetVips.Native" Version="8.15.3" />
     <PackageReference Include="NUnit" Version="4.1.0" />
     <PackageReference Include="NUnit3TestAdapter" Version="4.6.0">
       <PrivateAssets>all</PrivateAssets>
