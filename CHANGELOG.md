@@ -30,7 +30,6 @@ This is a new major release of **GTiff2Tiles**. There are a lot of incompatible 
 - Rewritten and added new publish scripts;
 - Bump **.NET Core**/**.NET** version to **6.0.100 LTS**;
 - Fixed localization files's names;
-- Moved to **[DBAD](https://dbad-license.org/)** license;
 - Drop support of **.NET Framework** and **.NET Standard**;
 - Add **appveyor** configuration;
 - Add a lot more metadata to `.csproj` files;

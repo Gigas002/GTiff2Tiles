@@ -34,7 +34,7 @@ Feel free to contribute if you want to, I'll review everything
 
 ## License
 
-Project is licensed under [DBAD](LICENSE.md) license.
+Project is licensed under [WTFPL](LICENSE.txt) license
 
 ## 3rd party resources
 

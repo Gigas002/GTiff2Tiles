@@ -35,7 +35,7 @@
       <DebugType>portable</DebugType>
       <DebugSymbols>true</DebugSymbols>
       <PackageIcon>Icon.png</PackageIcon>
-      <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
+      <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
       <PackageReadmeFile>README.md</PackageReadmeFile>
   
       <!-- TODO: this is ignored -->
@@ -53,7 +53,7 @@
     </PropertyGroup>
   
     <ItemGroup>
-      <None Include="..\LICENSE.md" Pack="true" PackagePath="\" />
+      <None Include="..\LICENSE.txt" Pack="true" PackagePath="\" />
       <None Include="..\README.md" Pack="true" PackagePath="\" />
       <None Include="..\Resources\Icon.png" Pack="true" PackagePath="\" />
     </ItemGroup>
