@@ -13,6 +13,9 @@
 [![Docker](https://img.shields.io/docker/v/gigas002/gtiff2tiles-console
 )](https://hub.docker.com/r/gigas002/gtiff2tiles-console)
 
+## Project state
+
+I'm not developing this project actively, so don't expect any new features. I'm keeping it alive, merging some dependencies bump stuff and will review any PRs that are suggested. There's a cross-platofrm GUI Avalonia app WIP, so you can contribute here, if you really want to
 
 ## Versions and .NET Framework support
 
