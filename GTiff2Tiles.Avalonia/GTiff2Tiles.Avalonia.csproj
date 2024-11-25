@@ -13,7 +13,7 @@
         <PackageReference Include="Avalonia.ReactiveUI" Version="11.1.4" />
         <PackageReference Include="Avalonia.Themes.Fluent" Version="11.1.4" />
         <PackageReference Include="DialogHost.Avalonia" Version="0.8.1" />
-        <PackageReference Include="MaxRev.Gdal.Universal" Version="3.10.0.296" />
+        <PackageReference Include="MaxRev.Gdal.Universal" Version="3.10.0.306" />
         <PackageReference Include="NetVips.Native" Version="8.16.0" />
 
         <!-- Internal dependencies -->
