@@ -40,7 +40,11 @@
           "relative_path": "api/GTiff2Tiles.Core.Args.IWriteTilesArgs.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GTiff2Tiles.Core.Args.IWriteTilesArgs",
+      "Summary": "<p sourcefile=\"_docs/api/GTiff2Tiles.Core.Args.IWriteTilesArgs.yml\" sourcestartlinenumber=\"1\">Interface with args for creating different kind of tiles</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -50,7 +54,11 @@
           "relative_path": "api/GTiff2Tiles.Core.Args.WriteRasterTilesArgs.PrintTime.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GTiff2Tiles.Core.Args.WriteRasterTilesArgs.PrintTime",
+      "Summary": "<p sourcefile=\"_docs/api/GTiff2Tiles.Core.Args.WriteRasterTilesArgs.PrintTime.yml\" sourcestartlinenumber=\"1\">Prints estimated time left</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -60,7 +68,11 @@
           "relative_path": "api/GTiff2Tiles.Core.Args.WriteRasterTilesArgs.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GTiff2Tiles.Core.Args.WriteRasterTilesArgs",
+      "Summary": "<p sourcefile=\"_docs/api/GTiff2Tiles.Core.Args.WriteRasterTilesArgs.yml\" sourcestartlinenumber=\"1\">Class with args for creating raster tiles</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -70,7 +82,11 @@
           "relative_path": "api/GTiff2Tiles.Core.Args.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GTiff2Tiles.Core.Args",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -80,7 +96,11 @@
           "relative_path": "api/GTiff2Tiles.Core.Constants.DateTimePatterns.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GTiff2Tiles.Core.Constants.DateTimePatterns",
+      "Summary": "<p sourcefile=\"_docs/api/GTiff2Tiles.Core.Constants.DateTimePatterns.yml\" sourcestartlinenumber=\"1\">String patterns for <xref href=\"System.DateTime\" data-throw-if-not-resolved=\"false\"></xref></p>\n"
     },
     {
       "type": "ManagedReference",
@@ -90,7 +110,11 @@
           "relative_path": "api/GTiff2Tiles.Core.Constants.FileExtensions.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GTiff2Tiles.Core.Constants.FileExtensions",
+      "Summary": "<p sourcefile=\"_docs/api/GTiff2Tiles.Core.Constants.FileExtensions.yml\" sourcestartlinenumber=\"1\">Used extensions</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -100,7 +124,11 @@
           "relative_path": "api/GTiff2Tiles.Core.Constants.Geodesic.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GTiff2Tiles.Core.Constants.Geodesic",
+      "Summary": "<p sourcefile=\"_docs/api/GTiff2Tiles.Core.Constants.Geodesic.yml\" sourcestartlinenumber=\"1\">Some geo-related constants</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -110,7 +138,11 @@
           "relative_path": "api/GTiff2Tiles.Core.Constants.Proj.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GTiff2Tiles.Core.Constants.Proj",
+      "Summary": "<p sourcefile=\"_docs/api/GTiff2Tiles.Core.Constants.Proj.yml\" sourcestartlinenumber=\"1\">Proj constants</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -120,7 +152,11 @@
           "relative_path": "api/GTiff2Tiles.Core.Constants.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GTiff2Tiles.Core.Constants",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -130,7 +166,11 @@
           "relative_path": "api/GTiff2Tiles.Core.Coordinates.Coordinate.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GTiff2Tiles.Core.Coordinates.Coordinate",
+      "Summary": "<p sourcefile=\"_docs/api/GTiff2Tiles.Core.Coordinates.Coordinate.yml\" sourcestartlinenumber=\"1\">Basic implementation of <xref href=\"GTiff2Tiles.Core.Coordinates.ICoordinate\" data-throw-if-not-resolved=\"false\"></xref> interface</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -140,7 +180,11 @@
           "relative_path": "api/GTiff2Tiles.Core.Coordinates.GeoCoordinate.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GTiff2Tiles.Core.Coordinates.GeoCoordinate",
+      "Summary": "<p sourcefile=\"_docs/api/GTiff2Tiles.Core.Coordinates.GeoCoordinate.yml\" sourcestartlinenumber=\"1\">Class for geographical coordinates</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -150,7 +194,11 @@
           "relative_path": "api/GTiff2Tiles.Core.Coordinates.GeodeticCoordinate.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GTiff2Tiles.Core.Coordinates.GeodeticCoordinate",
+      "Summary": "<p sourcefile=\"_docs/api/GTiff2Tiles.Core.Coordinates.GeodeticCoordinate.yml\" sourcestartlinenumber=\"1\">Class for EPSG:4326 coordinates</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -160,7 +208,11 @@
           "relative_path": "api/GTiff2Tiles.Core.Coordinates.ICoordinate.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GTiff2Tiles.Core.Coordinates.ICoordinate",
+      "Summary": "<p sourcefile=\"_docs/api/GTiff2Tiles.Core.Coordinates.ICoordinate.yml\" sourcestartlinenumber=\"1\">Interface for any coordinate</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -170,7 +222,11 @@
           "relative_path": "api/GTiff2Tiles.Core.Coordinates.MercatorCoordinate.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GTiff2Tiles.Core.Coordinates.MercatorCoordinate",
+      "Summary": "<p sourcefile=\"_docs/api/GTiff2Tiles.Core.Coordinates.MercatorCoordinate.yml\" sourcestartlinenumber=\"1\">Class for EPSG:3857 coordinates</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -180,7 +236,11 @@
           "relative_path": "api/GTiff2Tiles.Core.Coordinates.PixelCoordinate.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GTiff2Tiles.Core.Coordinates.PixelCoordinate",
+      "Summary": "<p sourcefile=\"_docs/api/GTiff2Tiles.Core.Coordinates.PixelCoordinate.yml\" sourcestartlinenumber=\"1\">Coordinates in pixels</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -190,7 +250,11 @@
           "relative_path": "api/GTiff2Tiles.Core.Coordinates.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GTiff2Tiles.Core.Coordinates",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -200,7 +264,11 @@
           "relative_path": "api/GTiff2Tiles.Core.Enums.CoordinateSystem.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GTiff2Tiles.Core.Enums.CoordinateSystem",
+      "Summary": "<p sourcefile=\"_docs/api/GTiff2Tiles.Core.Enums.CoordinateSystem.yml\" sourcestartlinenumber=\"1\">Supported EPSG coordinate systems</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -210,7 +278,11 @@
           "relative_path": "api/GTiff2Tiles.Core.Enums.TileExtension.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GTiff2Tiles.Core.Enums.TileExtension",
+      "Summary": "<p sourcefile=\"_docs/api/GTiff2Tiles.Core.Enums.TileExtension.yml\" sourcestartlinenumber=\"1\">Extensions of ready tiles</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -220,7 +292,11 @@
           "relative_path": "api/GTiff2Tiles.Core.Enums.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GTiff2Tiles.Core.Enums",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -230,7 +306,11 @@
           "relative_path": "api/GTiff2Tiles.Core.Exceptions.DirectoryException.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GTiff2Tiles.Core.Exceptions.DirectoryException",
+      "Summary": "<p sourcefile=\"_docs/api/GTiff2Tiles.Core.Exceptions.DirectoryException.yml\" sourcestartlinenumber=\"1\">Represents errors that occur during application execution.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -240,7 +320,11 @@
           "relative_path": "api/GTiff2Tiles.Core.Exceptions.FileException.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GTiff2Tiles.Core.Exceptions.FileException",
+      "Summary": "<p sourcefile=\"_docs/api/GTiff2Tiles.Core.Exceptions.FileException.yml\" sourcestartlinenumber=\"1\">Represents errors that occur during application execution.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -250,7 +334,11 @@
           "relative_path": "api/GTiff2Tiles.Core.Exceptions.RasterException.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GTiff2Tiles.Core.Exceptions.RasterException",
+      "Summary": "<p sourcefile=\"_docs/api/GTiff2Tiles.Core.Exceptions.RasterException.yml\" sourcestartlinenumber=\"1\">Represents errors that occur during application execution.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -260,7 +348,11 @@
           "relative_path": "api/GTiff2Tiles.Core.Exceptions.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GTiff2Tiles.Core.Exceptions",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -270,7 +362,11 @@
           "relative_path": "api/GTiff2Tiles.Core.GdalWorker.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GTiff2Tiles.Core.GdalWorker",
+      "Summary": "<p sourcefile=\"_docs/api/GTiff2Tiles.Core.GdalWorker.yml\" sourcestartlinenumber=\"1\">Gdal's methods to work with input files</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -280,7 +376,11 @@
           "relative_path": "api/GTiff2Tiles.Core.GeoTiffs.GeoTiff.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GTiff2Tiles.Core.GeoTiffs.GeoTiff",
+      "Summary": "<p sourcefile=\"_docs/api/GTiff2Tiles.Core.GeoTiffs.GeoTiff.yml\" sourcestartlinenumber=\"1\">Base abstract class for GeoTiffs</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -290,7 +390,11 @@
           "relative_path": "api/GTiff2Tiles.Core.GeoTiffs.IGeoTiff.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GTiff2Tiles.Core.GeoTiffs.IGeoTiff",
+      "Summary": "<p sourcefile=\"_docs/api/GTiff2Tiles.Core.GeoTiffs.IGeoTiff.yml\" sourcestartlinenumber=\"1\">Main interface for different type of GeoTiffs and <xref href=\"GTiff2Tiles.Core.Tiles.ITile\" data-throw-if-not-resolved=\"false\"></xref></p>\n"
     },
     {
       "type": "ManagedReference",
@@ -300,7 +404,11 @@
           "relative_path": "api/GTiff2Tiles.Core.GeoTiffs.Raster.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GTiff2Tiles.Core.GeoTiffs.Raster",
+      "Summary": "<p sourcefile=\"_docs/api/GTiff2Tiles.Core.GeoTiffs.Raster.yml\" sourcestartlinenumber=\"1\">Class, representing <xref href=\"GTiff2Tiles.Core.GeoTiffs.Raster\" data-throw-if-not-resolved=\"false\"></xref> GeoTiff.\nUsed for creating <xref href=\"GTiff2Tiles.Core.Tiles.RasterTile\" data-throw-if-not-resolved=\"false\"></xref>s</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -310,7 +418,11 @@
           "relative_path": "api/GTiff2Tiles.Core.GeoTiffs.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GTiff2Tiles.Core.GeoTiffs",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -320,7 +432,11 @@
           "relative_path": "api/GTiff2Tiles.Core.Helpers.CheckHelper.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GTiff2Tiles.Core.Helpers.CheckHelper",
+      "Summary": "<p sourcefile=\"_docs/api/GTiff2Tiles.Core.Helpers.CheckHelper.yml\" sourcestartlinenumber=\"1\">Class with static methods to check for errors</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -330,7 +446,11 @@
           "relative_path": "api/GTiff2Tiles.Core.Helpers.NetVipsHelper.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GTiff2Tiles.Core.Helpers.NetVipsHelper",
+      "Summary": "<p sourcefile=\"_docs/api/GTiff2Tiles.Core.Helpers.NetVipsHelper.yml\" sourcestartlinenumber=\"1\">Some additional methods for NetVips</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -340,7 +460,11 @@
           "relative_path": "api/GTiff2Tiles.Core.Helpers.ProgressHelper.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GTiff2Tiles.Core.Helpers.ProgressHelper",
+      "Summary": "<p sourcefile=\"_docs/api/GTiff2Tiles.Core.Helpers.ProgressHelper.yml\" sourcestartlinenumber=\"1\">Class with methods to simplify progress-reporting</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -350,7 +474,11 @@
           "relative_path": "api/GTiff2Tiles.Core.Helpers.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GTiff2Tiles.Core.Helpers",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -360,7 +488,11 @@
           "relative_path": "api/GTiff2Tiles.Core.Images.Area.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GTiff2Tiles.Core.Images.Area",
+      "Summary": "<p sourcefile=\"_docs/api/GTiff2Tiles.Core.Images.Area.yml\" sourcestartlinenumber=\"1\">Represents read/write <xref href=\"GTiff2Tiles.Core.Images.Area\" data-throw-if-not-resolved=\"false\"></xref>s of image</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -370,7 +502,11 @@
           "relative_path": "api/GTiff2Tiles.Core.Images.Band.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GTiff2Tiles.Core.Images.Band",
+      "Summary": "<p sourcefile=\"_docs/api/GTiff2Tiles.Core.Images.Band.yml\" sourcestartlinenumber=\"1\">Represents image's band</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -380,7 +516,11 @@
           "relative_path": "api/GTiff2Tiles.Core.Images.Size.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GTiff2Tiles.Core.Images.Size",
+      "Summary": "<p sourcefile=\"_docs/api/GTiff2Tiles.Core.Images.Size.yml\" sourcestartlinenumber=\"1\"><xref href=\"GTiff2Tiles.Core.Images.Size\" data-throw-if-not-resolved=\"false\"></xref> of any image</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -390,7 +530,11 @@
           "relative_path": "api/GTiff2Tiles.Core.Images.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GTiff2Tiles.Core.Images",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -400,7 +544,11 @@
           "relative_path": "api/GTiff2Tiles.Core.TileGenerator.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GTiff2Tiles.Core.TileGenerator",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -410,7 +558,11 @@
           "relative_path": "api/GTiff2Tiles.Core.TileMapResource.BoundingBox.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GTiff2Tiles.Core.TileMapResource.BoundingBox",
+      "Summary": "<p sourcefile=\"_docs/api/GTiff2Tiles.Core.TileMapResource.BoundingBox.yml\" sourcestartlinenumber=\"1\">TileMap's bounding box</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -420,7 +572,11 @@
           "relative_path": "api/GTiff2Tiles.Core.TileMapResource.Origin.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GTiff2Tiles.Core.TileMapResource.Origin",
+      "Summary": "<p sourcefile=\"_docs/api/GTiff2Tiles.Core.TileMapResource.Origin.yml\" sourcestartlinenumber=\"1\">TileMap's origin</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -430,7 +586,11 @@
           "relative_path": "api/GTiff2Tiles.Core.TileMapResource.TileFormat.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GTiff2Tiles.Core.TileMapResource.TileFormat",
+      "Summary": "<p sourcefile=\"_docs/api/GTiff2Tiles.Core.TileMapResource.TileFormat.yml\" sourcestartlinenumber=\"1\">TileMap's TileFormat</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -440,7 +600,11 @@
           "relative_path": "api/GTiff2Tiles.Core.TileMapResource.TileMap.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GTiff2Tiles.Core.TileMapResource.TileMap",
+      "Summary": "<p sourcefile=\"_docs/api/GTiff2Tiles.Core.TileMapResource.TileMap.yml\" sourcestartlinenumber=\"1\">TileMapResource's root\n<remarks><p></p>Based on produced by MapTiler tilemapresource.xml</remarks></p>\n"
     },
     {
       "type": "ManagedReference",
@@ -450,7 +614,11 @@
           "relative_path": "api/GTiff2Tiles.Core.TileMapResource.TileSet.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GTiff2Tiles.Core.TileMapResource.TileSet",
+      "Summary": "<p sourcefile=\"_docs/api/GTiff2Tiles.Core.TileMapResource.TileSet.yml\" sourcestartlinenumber=\"1\">TileMap's TileSets's TileSet</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -460,7 +628,11 @@
           "relative_path": "api/GTiff2Tiles.Core.TileMapResource.TileSets.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GTiff2Tiles.Core.TileMapResource.TileSets",
+      "Summary": "<p sourcefile=\"_docs/api/GTiff2Tiles.Core.TileMapResource.TileSets.yml\" sourcestartlinenumber=\"1\">TileMap's TileSets</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -470,7 +642,11 @@
           "relative_path": "api/GTiff2Tiles.Core.TileMapResource.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GTiff2Tiles.Core.TileMapResource",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -480,7 +656,11 @@
           "relative_path": "api/GTiff2Tiles.Core.Tiles.ITile.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GTiff2Tiles.Core.Tiles.ITile",
+      "Summary": "<p sourcefile=\"_docs/api/GTiff2Tiles.Core.Tiles.ITile.yml\" sourcestartlinenumber=\"1\">Interface for all tiles</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -490,7 +670,11 @@
           "relative_path": "api/GTiff2Tiles.Core.Tiles.Number.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GTiff2Tiles.Core.Tiles.Number",
+      "Summary": "<p sourcefile=\"_docs/api/GTiff2Tiles.Core.Tiles.Number.yml\" sourcestartlinenumber=\"1\"><xref href=\"GTiff2Tiles.Core.Tiles.Number\" data-throw-if-not-resolved=\"false\"></xref> of <xref href=\"GTiff2Tiles.Core.Tiles.ITile\" data-throw-if-not-resolved=\"false\"></xref></p>\n"
     },
     {
       "type": "ManagedReference",
@@ -500,7 +684,11 @@
           "relative_path": "api/GTiff2Tiles.Core.Tiles.RasterTile.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GTiff2Tiles.Core.Tiles.RasterTile",
+      "Summary": "<p sourcefile=\"_docs/api/GTiff2Tiles.Core.Tiles.RasterTile.yml\" sourcestartlinenumber=\"1\"><xref href=\"GTiff2Tiles.Core.GeoTiffs.Raster\" data-throw-if-not-resolved=\"false\"></xref> <xref href=\"GTiff2Tiles.Core.Tiles.Tile\" data-throw-if-not-resolved=\"false\"></xref></p>\n"
     },
     {
       "type": "ManagedReference",
@@ -510,7 +698,11 @@
           "relative_path": "api/GTiff2Tiles.Core.Tiles.Tile.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GTiff2Tiles.Core.Tiles.Tile",
+      "Summary": "<p sourcefile=\"_docs/api/GTiff2Tiles.Core.Tiles.Tile.yml\" sourcestartlinenumber=\"1\">Basic implementation of <xref href=\"GTiff2Tiles.Core.Tiles.ITile\" data-throw-if-not-resolved=\"false\"></xref> interface</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -520,7 +712,11 @@
           "relative_path": "api/GTiff2Tiles.Core.Tiles.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GTiff2Tiles.Core.Tiles",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -530,7 +726,11 @@
           "relative_path": "api/GTiff2Tiles.Core.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "GTiff2Tiles.Core",
+      "Summary": null
     },
     {
       "type": "Toc",
