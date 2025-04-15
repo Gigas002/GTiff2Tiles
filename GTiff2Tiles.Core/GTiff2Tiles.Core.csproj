@@ -16,7 +16,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
-    <PackageReference Include="MaxRev.Gdal.Core" Version="3.10.2.324" />
+    <PackageReference Include="MaxRev.Gdal.Core" Version="3.10.3.327" />
     <PackageReference Include="NetVips" Version="3.0.0" />
   </ItemGroup>
 
