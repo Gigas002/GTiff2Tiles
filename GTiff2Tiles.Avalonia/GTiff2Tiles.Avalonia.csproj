@@ -7,11 +7,11 @@
 
     <ItemGroup>
         <!-- External dependencies -->
-        <PackageReference Include="Avalonia" Version="11.3.1" />
-        <PackageReference Include="Avalonia.Desktop" Version="11.3.1" />
-        <PackageReference Include="Avalonia.Diagnostics" Version="11.3.1" />
-        <PackageReference Include="Avalonia.ReactiveUI" Version="11.3.1" />
-        <PackageReference Include="Avalonia.Themes.Fluent" Version="11.3.1" />
+        <PackageReference Include="Avalonia" Version="11.3.2" />
+        <PackageReference Include="Avalonia.Desktop" Version="11.3.2" />
+        <PackageReference Include="Avalonia.Diagnostics" Version="11.3.2" />
+        <PackageReference Include="Avalonia.ReactiveUI" Version="11.3.2" />
+        <PackageReference Include="Avalonia.Themes.Fluent" Version="11.3.2" />
         <PackageReference Include="DialogHost.Avalonia" Version="0.9.3" />
         <PackageReference Include="MaxRev.Gdal.Universal" Version="3.11.0.335" />
         <PackageReference Include="NetVips.Native" Version="8.17.0.1" />
