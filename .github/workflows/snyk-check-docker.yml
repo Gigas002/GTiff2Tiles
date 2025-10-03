@@ -67,11 +67,11 @@ jobs:
           Write-Output "image=$image" >> $env:GITHUB_ENV
       
       - name: snyk-setup
-        uses: snyk/actions/setup@0.4.0
+        uses: snyk/actions/setup@v1.0.0
           
       - name: snyk-image-test
         continue-on-error: true
-        uses: snyk/actions/docker@0.4.0
+        uses: snyk/actions/docker@v1.0.0
         env:
           SNYK_TOKEN: ${{secrets.SNYK_TOKEN}}
         with:
