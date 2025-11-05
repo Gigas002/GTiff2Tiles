@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="BenchmarkDotNet" Version="0.15.5" />
+    <PackageReference Include="BenchmarkDotNet" Version="0.15.6" />
     <PackageReference Include="CommandLineParser" Version="2.9.1" />
     <PackageReference Include="MaxRev.Gdal.Universal" Version="3.11.4.387" />
     <PackageReference Include="NetVips.Native" Version="8.17.3" />
