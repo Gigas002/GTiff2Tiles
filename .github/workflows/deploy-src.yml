@@ -59,7 +59,7 @@ jobs:
       prerelease: true
       src-path: ''
     steps:
-        - uses: actions/checkout@v5
+        - uses: actions/checkout@v6
             
         - name: read-version
           id: read-version
