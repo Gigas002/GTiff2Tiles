@@ -83,7 +83,7 @@ jobs:
       matrix:
         project: ${{fromJson(inputs.projects)}}
     steps:
-        - uses: actions/checkout@v5
+        - uses: actions/checkout@v6
       
         - name: set-env
           run: |
