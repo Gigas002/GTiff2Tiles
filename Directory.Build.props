@@ -2,7 +2,7 @@
 
     <PropertyGroup>
       <!-- essential build info -->
-      <TargetFramework>net8.0</TargetFramework>
+      <TargetFramework>net10.0</TargetFramework>
       <UseArtifactsOutput>true</UseArtifactsOutput>
       <Platofrms>x64</Platofrms>
       <VersionPrefix>2.0.0</VersionPrefix>
