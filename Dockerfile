@@ -1,5 +1,5 @@
 # https://hub.docker.com/_/microsoft-dotnet-sdk
-FROM mcr.microsoft.com/dotnet/sdk:8.0-alpine AS build
+FROM mcr.microsoft.com/dotnet/sdk:10.0-alpine AS build
 WORKDIR /GTiff2Tiles
 
 # copy csproj and restore as distinct layers
@@ -10,7 +10,7 @@ RUN dotnet restore GTiff2Tiles.Console/GTiff2Tiles.Console.csproj -r linux-x64
 RUN dotnet publish GTiff2Tiles.Console/GTiff2Tiles.Console.csproj -c Release -o /app -r linux-x64 --self-contained false --no-restore
 
 # final stage/image
-FROM mcr.microsoft.com/dotnet/runtime:8.0-jammy-chiseled
+FROM mcr.microsoft.com/dotnet/runtime:10.0-noble-chiseled
 WORKDIR /app
 COPY --from=build /app .
 ENTRYPOINT ["./GTiff2Tiles.Console"]
