@@ -11,7 +11,7 @@
         <PackageReference Include="Avalonia.Desktop" Version="11.3.11" />
         <PackageReference Include="Avalonia.Diagnostics" Version="11.3.11" />
         <PackageReference Include="Avalonia.ReactiveUI" Version="11.3.8" />
-        <PackageReference Include="Avalonia.Themes.Fluent" Version="11.3.10" />
+        <PackageReference Include="Avalonia.Themes.Fluent" Version="11.3.11" />
         <PackageReference Include="DialogHost.Avalonia" Version="0.10.4" />
         <PackageReference Include="MaxRev.Gdal.Universal" Version="3.12.1.440" />
         <PackageReference Include="NetVips.Native" Version="8.18.0" />
