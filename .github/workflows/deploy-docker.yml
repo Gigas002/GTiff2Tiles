@@ -73,7 +73,7 @@ jobs:
           
       - name: docker-extract-meta
         id: meta
-        uses: docker/metadata-action@v5
+        uses: docker/metadata-action@v6
         with:
           images: ${{env.image}}
           tags: type=raw,value=${{steps.read-version.outputs.docker-tag}}
