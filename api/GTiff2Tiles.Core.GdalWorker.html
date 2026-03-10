@@ -141,10 +141,13 @@ Class GdalWorker  <a class="header-action link-secondary" title="View source" hr
   <a class="header-action link-secondary" title="View source" href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/GdalWorker.cs/#L55"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Options for GdalWarp to convert GeoTiff's coordinate system;
-<remarks><p></p>Requires you to add target system param (-t_srs).
-Included default args: <pre><code class="lang-csharp">-overwrite -multi -srcnodata 0
--of GTiff -ot Byte</code></pre></remarks></p>
+  <div class="markdown level1 summary"><pre><code>Options for GdalWarp to convert GeoTiff's coordinate system;
+&lt;remarks&gt;&lt;p&gt;&lt;/p&gt;
+</code></pre>
+<p>Requires you to add target system param (-t_srs).
+Included default args:</p>
+<pre><code class="lang-csharp">-overwrite -multi -srcnodata 0
+    -of GTiff -ot Byte</code></pre>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -237,9 +240,11 @@ Included default args: <pre><code class="lang-csharp">-overwrite -multi -srcnoda
   <a class="header-action link-secondary" title="View source" href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/GdalWorker.cs/#L67"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Name for temporary (converted) GeoTiff
-<remarks><p></p>Includes .tif extension,
-looks like: _tmp_converted.tif</remarks></p>
+  <div class="markdown level1 summary"><pre><code>Name for temporary (converted) GeoTiff
+&lt;remarks&gt;&lt;p&gt;&lt;/p&gt;
+</code></pre>
+<p>Includes .tif extension,
+looks like: _tmp_converted.tif</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -418,8 +423,9 @@ through GdalWarp</p>
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a>[]</dt>
-    <dd><p>Array of double coordinates and pixel sizes if everything is OK;
-<p></p><a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a> otherwise
+    <dd><p>Array of double coordinates and pixel sizes if everything is OK;</p>
+<pre><code>&lt;p&gt;&lt;/p&gt;&lt;a href=&quot;https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null&quot;&gt;null&lt;/a&gt; otherwise
+</code></pre>
 </dd>
   </dl>
 
@@ -511,8 +517,9 @@ through GdalWarp</p>
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>Proj <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a> if everything OK;
-<p></p><a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a> otherwise
+    <dd><p>Proj <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a> if everything OK;</p>
+<pre><code>&lt;p&gt;&lt;/p&gt;&lt;a href=&quot;https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null&quot;&gt;null&lt;/a&gt; otherwise
+</code></pre>
 </dd>
   </dl>
 
@@ -551,8 +558,9 @@ through GdalWarp</p>
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
-    <dd><p>Proj <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a> if everything OK;
-<p></p><a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a> otherwise
+    <dd><p>Proj <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a> if everything OK;</p>
+<pre><code>&lt;p&gt;&lt;/p&gt;&lt;a href=&quot;https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null&quot;&gt;null&lt;/a&gt; otherwise
+</code></pre>
 </dd>
   </dl>
 
@@ -595,8 +603,9 @@ through GdalWarp</p>
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
-    <dd><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a> from GdalInfo if everything OK;
-<p></p><a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a> otherwise
+    <dd><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a> from GdalInfo if everything OK;</p>
+<pre><code>&lt;p&gt;&lt;/p&gt;&lt;a href=&quot;https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null&quot;&gt;null&lt;/a&gt; otherwise
+</code></pre>
 </dd>
   </dl>
 
@@ -635,7 +644,8 @@ through GdalWarp</p>
 </dd>
     <dt><code>options</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>[]</dt>
     <dd><p>Array of string parameters
-<remarks><p></p>See <a class="xref" href="GTiff2Tiles.Core.GdalWorker.html#GTiff2Tiles_Core_GdalWorker_ConvertCoordinateSystemOptions">ConvertCoordinateSystemOptions</a> field for
+<remarks><p></p>
+See <a class="xref" href="GTiff2Tiles.Core.GdalWorker.html#GTiff2Tiles_Core_GdalWorker_ConvertCoordinateSystemOptions">ConvertCoordinateSystemOptions</a> field for
 more info</remarks></p>
 </dd>
     <dt><code>progress</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iprogress-1">IProgress</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a>&gt;</dt>

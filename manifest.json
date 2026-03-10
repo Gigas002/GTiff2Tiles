@@ -604,7 +604,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "GTiff2Tiles.Core.TileMapResource.TileMap",
-      "Summary": "<p sourcefile=\"_docs/api/GTiff2Tiles.Core.TileMapResource.TileMap.yml\" sourcestartlinenumber=\"1\">TileMapResource's root\n<remarks><p></p>Based on produced by MapTiler tilemapresource.xml</remarks></p>\n"
+      "Summary": "<pre><code sourcefile=\"_docs/api/GTiff2Tiles.Core.TileMapResource.TileMap.yml\" sourcestartlinenumber=\"1\">TileMapResource's root\n&lt;remarks&gt;&lt;p&gt;&lt;/p&gt;\n</code></pre>\n<p sourcefile=\"_docs/api/GTiff2Tiles.Core.TileMapResource.TileMap.yml\" sourcestartlinenumber=\"3\">Based on produced by MapTiler tilemapresource.xml</p>\n"
     },
     {
       "type": "ManagedReference",

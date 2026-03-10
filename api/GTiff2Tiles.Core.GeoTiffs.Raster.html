@@ -194,7 +194,8 @@ Used for creating <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">
 </dd>
     <dt><code>coordinateSystem</code> <a class="xref" href="GTiff2Tiles.Core.Enums.CoordinateSystem.html">CoordinateSystem</a></dt>
     <dd><p>GeoTiff's coordinate system
-<remarks><p></p>If set to <a class="xref" href="GTiff2Tiles.Core.Enums.CoordinateSystem.html#GTiff2Tiles_Core_Enums_CoordinateSystem_Other">Other</a>
+<remarks><p></p>
+If set to <a class="xref" href="GTiff2Tiles.Core.Enums.CoordinateSystem.html#GTiff2Tiles_Core_Enums_CoordinateSystem_Other">Other</a>
 throws <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></remarks></p>
 </dd>
   </dl>
@@ -236,16 +237,19 @@ throws <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argum
   <dl class="parameters">
     <dt><code>inputFilePath</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
     <dd><p>Input GeoTiff's path
-<remarks><p></p>Must have .tif extension</remarks></p>
+<remarks><p></p>
+Must have .tif extension</remarks></p>
 </dd>
     <dt><code>coordinateSystem</code> <a class="xref" href="GTiff2Tiles.Core.Enums.CoordinateSystem.html">CoordinateSystem</a></dt>
     <dd><p>GeoTiff's coordinate system
-<remarks><p></p>If set to <a class="xref" href="GTiff2Tiles.Core.Enums.CoordinateSystem.html#GTiff2Tiles_Core_Enums_CoordinateSystem_Other">Other</a>
+<remarks><p></p>
+If set to <a class="xref" href="GTiff2Tiles.Core.Enums.CoordinateSystem.html#GTiff2Tiles_Core_Enums_CoordinateSystem_Other">Other</a>
 throws <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></remarks></p>
 </dd>
     <dt><code>maxMemoryCache</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
     <dd><p>Max size of input image to store in RAM
-<remarks><p></p>Must be &gt; 0. 2GB by default</remarks></p>
+<remarks><p></p>
+Must be &gt; 0. 2GB by default</remarks></p>
 </dd>
   </dl>
 
@@ -274,9 +278,11 @@ throws <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argum
   <a class="header-action link-secondary" title="View source" href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/GeoTiffs/Raster.cs/#L44"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Creates new <a class="xref" href="GTiff2Tiles.Core.GeoTiffs.Raster.html">Raster</a> object
-<remarks><p></p>Use this version ONLY if you don't know the <a class="xref" href="GTiff2Tiles.Core.Enums.CoordinateSystem.html">CoordinateSystem</a>
-of this <a class="xref" href="GTiff2Tiles.Core.GeoTiffs.Raster.html">Raster</a>. In other cases, prefer using other constructors!</remarks></p>
+  <div class="markdown level1 summary"><pre><code>Creates new &lt;xref href=&quot;GTiff2Tiles.Core.GeoTiffs.Raster&quot; data-throw-if-not-resolved=&quot;false&quot;&gt;&lt;/xref&gt; object
+&lt;remarks&gt;&lt;p&gt;&lt;/p&gt;
+</code></pre>
+<p>Use this version ONLY if you don't know the <a class="xref" href="GTiff2Tiles.Core.Enums.CoordinateSystem.html">CoordinateSystem</a>
+of this <a class="xref" href="GTiff2Tiles.Core.GeoTiffs.Raster.html">Raster</a>. In other cases, prefer using other constructors!</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -288,11 +294,13 @@ of this <a class="xref" href="GTiff2Tiles.Core.GeoTiffs.Raster.html">Raster</a>.
   <dl class="parameters">
     <dt><code>inputFilePath</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
     <dd><p>Input GeoTiff's path
-<remarks><p></p>Must have .tif extension</remarks></p>
+<remarks><p></p>
+Must have .tif extension</remarks></p>
 </dd>
     <dt><code>maxMemoryCache</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
     <dd><p>Max size of input image to store in RAM
-<remarks><p></p>Must be &gt; 0. 2GB by default</remarks></p>
+<remarks><p></p>
+Must be &gt; 0. 2GB by default</remarks></p>
 </dd>
   </dl>
 
@@ -377,28 +385,33 @@ from 4 lower <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">Raste
 </dd>
     <dt><code>tile0</code> <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterTile</a></dt>
     <dd><p>Upper-left <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterTile</a>
-<remarks><p></p>if set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>,
+<remarks><p></p>
+if set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>,
 empty tile will be created</remarks></p>
 </dd>
     <dt><code>tile1</code> <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterTile</a></dt>
     <dd><p>Upper-right <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterTile</a>
-<remarks><p></p>if set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>,
+<remarks><p></p>
+if set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>,
 empty tile will be created</remarks></p>
 </dd>
     <dt><code>tile2</code> <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterTile</a></dt>
     <dd><p>Lower-left <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterTile</a>
-<remarks><p></p>if set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>,
+<remarks><p></p>
+if set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>,
 empty tile will be created</remarks></p>
 </dd>
     <dt><code>tile3</code> <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterTile</a></dt>
     <dd><p>Lower-right <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterTile</a>
-<remarks><p></p>if set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>,
+<remarks><p></p>
+if set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>,
 empty tile will be created</remarks></p>
 </dd>
     <dt><code>isBuffered</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
     <dd><p>Is input <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterTile</a>s contains
 data inside <a class="xref" href="GTiff2Tiles.Core.Tiles.ITile.html#GTiff2Tiles_Core_Tiles_ITile_Bytes">Bytes</a> property?
-<remarks><p></p>If set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>, will use
+<remarks><p></p>
+If set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>, will use
 <a class="xref" href="GTiff2Tiles.Core.Tiles.ITile.html#GTiff2Tiles_Core_Tiles_ITile_Path">Path</a> to get input tiles's data</remarks></p>
 </dd>
   </dl>
@@ -446,7 +459,8 @@ from array of lower <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html
     <dt><code>isBuffered</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
     <dd><p>Is input <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterTile</a>s contains
 data inside <a class="xref" href="GTiff2Tiles.Core.Tiles.ITile.html#GTiff2Tiles_Core_Tiles_ITile_Bytes">Bytes</a> property?
-<remarks><p></p>If set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>, will use
+<remarks><p></p>
+If set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>, will use
 <a class="xref" href="GTiff2Tiles.Core.Tiles.ITile.html#GTiff2Tiles_Core_Tiles_ITile_Path">Path</a> to get input tiles's data</remarks></p>
 </dd>
   </dl>
@@ -503,7 +517,8 @@ overview will be created</p>
     <dt><code>isBuffered</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
     <dd><p>Is input <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterTile</a>s contains
 data inside <a class="xref" href="GTiff2Tiles.Core.Tiles.ITile.html#GTiff2Tiles_Core_Tiles_ITile_Bytes">Bytes</a> property?
-<remarks><p></p>If set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>, will use
+<remarks><p></p>
+If set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>, will use
 <a class="xref" href="GTiff2Tiles.Core.Tiles.ITile.html#GTiff2Tiles_Core_Tiles_ITile_Path">Path</a> to get input tiles's data</remarks></p>
 </dd>
     <dt><code>coordinateSystem</code> <a class="xref" href="GTiff2Tiles.Core.Enums.CoordinateSystem.html">CoordinateSystem</a></dt>
@@ -522,7 +537,8 @@ and target <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterT
 </dd>
     <dt><code>bandsCount</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
     <dd><p>Count of bands in target <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterTile</a>
-<remarks><p></p>must be in range (0-5)</remarks></p>
+<remarks><p></p>
+must be in range (0-5)</remarks></p>
 </dd>
   </dl>
 
@@ -580,7 +596,8 @@ overview will be created</p>
     <dt><code>isBuffered</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
     <dd><p>Is input <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterTile</a>s contains
 data inside <a class="xref" href="GTiff2Tiles.Core.Tiles.ITile.html#GTiff2Tiles_Core_Tiles_ITile_Bytes">Bytes</a> property?
-<remarks><p></p>If set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>, will use
+<remarks><p></p>
+If set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>, will use
 <a class="xref" href="GTiff2Tiles.Core.Tiles.ITile.html#GTiff2Tiles_Core_Tiles_ITile_Path">Path</a> to get input tiles's data</remarks></p>
 </dd>
     <dt><code>coordinateSystem</code> <a class="xref" href="GTiff2Tiles.Core.Enums.CoordinateSystem.html">CoordinateSystem</a></dt>
@@ -599,7 +616,8 @@ and target <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterT
 </dd>
     <dt><code>bandsCount</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
     <dd><p>Count of bands in target <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterTile</a>
-<remarks><p></p>must be in range (0-5)</remarks></p>
+<remarks><p></p>
+must be in range (0-5)</remarks></p>
 </dd>
   </dl>
 
@@ -749,10 +767,13 @@ or tile cache</p>
   <a class="header-action link-secondary" title="View source" href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/GeoTiffs/Raster.cs/#L834"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Join 4 <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterTile</a>s into
-collection of <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>s</p>
-<p></p>if all <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterTile</a>s are
-<a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a> -- returns <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>
+  <div class="markdown level1 summary"><pre><code>Join 4 &lt;xref href=&quot;GTiff2Tiles.Core.Tiles.RasterTile&quot; data-throw-if-not-resolved=&quot;false&quot;&gt;&lt;/xref&gt;s into
+collection of &lt;xref href=&quot;System.Byte&quot; data-throw-if-not-resolved=&quot;false&quot;&gt;&lt;/xref&gt;s
+
+&lt;p&gt;&lt;/p&gt;
+</code></pre>
+<p>if all <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterTile</a>s are
+<a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a> -- returns <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a></p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -764,28 +785,33 @@ collection of <a class="xref" href="https://learn.microsoft.com/dotnet/api/syste
   <dl class="parameters">
     <dt><code>tile0</code> <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterTile</a></dt>
     <dd><p>Upper-left <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterTile</a>
-<remarks><p></p>if set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>,
+<remarks><p></p>
+if set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>,
 empty tile will be created</remarks></p>
 </dd>
     <dt><code>tile1</code> <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterTile</a></dt>
     <dd><p>Upper-right <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterTile</a>
-<remarks><p></p>if set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>,
+<remarks><p></p>
+if set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>,
 empty tile will be created</remarks></p>
 </dd>
     <dt><code>tile2</code> <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterTile</a></dt>
     <dd><p>Lower-left <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterTile</a>
-<remarks><p></p>if set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>,
+<remarks><p></p>
+if set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>,
 empty tile will be created</remarks></p>
 </dd>
     <dt><code>tile3</code> <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterTile</a></dt>
     <dd><p>Lower-right <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterTile</a>
-<remarks><p></p>if set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>,
+<remarks><p></p>
+if set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>,
 empty tile will be created</remarks></p>
 </dd>
     <dt><code>isBuffered</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
     <dd><p>Is input <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterTile</a>s contains
 data inside <a class="xref" href="GTiff2Tiles.Core.Tiles.ITile.html#GTiff2Tiles_Core_Tiles_ITile_Bytes">Bytes</a> property?
-<remarks><p></p>If set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>, will use
+<remarks><p></p>
+If set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>, will use
 <a class="xref" href="GTiff2Tiles.Core.Tiles.ITile.html#GTiff2Tiles_Core_Tiles_ITile_Path">Path</a> to get input tiles's data</remarks></p>
 </dd>
     <dt><code>tileSize</code> <a class="xref" href="GTiff2Tiles.Core.Images.Size.html">Size</a></dt>
@@ -794,7 +820,8 @@ and target <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterT
 </dd>
     <dt><code>bandsCount</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
     <dd><p>Count of bands in target <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterTile</a>
-<remarks><p></p>must be in range (0-5)</remarks></p>
+<remarks><p></p>
+must be in range (0-5)</remarks></p>
 </dd>
     <dt><code>extension</code> <a class="xref" href="GTiff2Tiles.Core.Enums.TileExtension.html">TileExtension</a></dt>
     <dd><p><a class="xref" href="GTiff2Tiles.Core.Enums.TileExtension.html">TileExtension</a> of ready <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterTile</a></p>
@@ -825,10 +852,13 @@ and target <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterT
   <a class="header-action link-secondary" title="View source" href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/GeoTiffs/Raster.cs/#L878"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Join 4 <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterTile</a>s into
-one <span class="xref">NetVips.Image</span>;</p>
-<p></p>if all <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterTile</a>s are
-<a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a> -- returns <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>
+  <div class="markdown level1 summary"><pre><code>Join 4 &lt;xref href=&quot;GTiff2Tiles.Core.Tiles.RasterTile&quot; data-throw-if-not-resolved=&quot;false&quot;&gt;&lt;/xref&gt;s into
+one &lt;xref href=&quot;NetVips.Image&quot; data-throw-if-not-resolved=&quot;false&quot;&gt;&lt;/xref&gt;;
+
+&lt;p&gt;&lt;/p&gt;
+</code></pre>
+<p>if all <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterTile</a>s are
+<a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a> -- returns <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a></p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -840,28 +870,33 @@ one <span class="xref">NetVips.Image</span>;</p>
   <dl class="parameters">
     <dt><code>tile0</code> <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterTile</a></dt>
     <dd><p>Upper-left <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterTile</a>
-<remarks><p></p>if set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>,
+<remarks><p></p>
+if set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>,
 empty tile will be created</remarks></p>
 </dd>
     <dt><code>tile1</code> <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterTile</a></dt>
     <dd><p>Upper-right <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterTile</a>
-<remarks><p></p>if set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>,
+<remarks><p></p>
+if set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>,
 empty tile will be created</remarks></p>
 </dd>
     <dt><code>tile2</code> <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterTile</a></dt>
     <dd><p>Lower-left <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterTile</a>
-<remarks><p></p>if set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>,
+<remarks><p></p>
+if set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>,
 empty tile will be created</remarks></p>
 </dd>
     <dt><code>tile3</code> <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterTile</a></dt>
     <dd><p>Lower-right <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterTile</a>
-<remarks><p></p>if set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>,
+<remarks><p></p>
+if set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>,
 empty tile will be created</remarks></p>
 </dd>
     <dt><code>isBuffered</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
     <dd><p>Is input <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterTile</a>s contains
 data inside <a class="xref" href="GTiff2Tiles.Core.Tiles.ITile.html#GTiff2Tiles_Core_Tiles_ITile_Bytes">Bytes</a> property?
-<remarks><p></p>If set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>, will use
+<remarks><p></p>
+If set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>, will use
 <a class="xref" href="GTiff2Tiles.Core.Tiles.ITile.html#GTiff2Tiles_Core_Tiles_ITile_Path">Path</a> to get input tiles's data</remarks></p>
 </dd>
     <dt><code>tileSize</code> <a class="xref" href="GTiff2Tiles.Core.Images.Size.html">Size</a></dt>
@@ -870,7 +905,8 @@ and target <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterT
 </dd>
     <dt><code>bandsCount</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
     <dd><p>Count of bands in target <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterTile</a>
-<remarks><p></p>must be in range (0-5)</remarks></p>
+<remarks><p></p>
+must be in range (0-5)</remarks></p>
 </dd>
   </dl>
 
@@ -898,11 +934,13 @@ and target <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterT
   <a class="header-action link-secondary" title="View source" href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/GeoTiffs/Raster.cs/#L922"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Join arrays of <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a> of
-4 <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterTile</a>s into
-one <span class="xref">NetVips.Image</span>
-<remarks><p></p>if all arrays are <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>
-or empty -- returns <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a></remarks></p>
+  <div class="markdown level1 summary"><pre><code>Join arrays of &lt;xref href=&quot;System.Byte&quot; data-throw-if-not-resolved=&quot;false&quot;&gt;&lt;/xref&gt; of
+4 &lt;xref href=&quot;GTiff2Tiles.Core.Tiles.RasterTile&quot; data-throw-if-not-resolved=&quot;false&quot;&gt;&lt;/xref&gt;s into
+one &lt;xref href=&quot;NetVips.Image&quot; data-throw-if-not-resolved=&quot;false&quot;&gt;&lt;/xref&gt;
+&lt;remarks&gt;&lt;p&gt;&lt;/p&gt;
+</code></pre>
+<p>if all arrays are <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>
+or empty -- returns <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a></p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -914,22 +952,26 @@ or empty -- returns <a href="https://learn.microsoft.com/dotnet/csharp/language-
   <dl class="parameters">
     <dt><code>tile0Bytes</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</dt>
     <dd><p>Bytes of upper-left <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterTile</a>
-<remarks><p></p>if set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>,
+<remarks><p></p>
+if set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>,
 empty tile will be created</remarks></p>
 </dd>
     <dt><code>tile1Bytes</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</dt>
     <dd><p>Bytes of upper-right <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterTile</a>
-<remarks><p></p>if set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>,
+<remarks><p></p>
+if set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>,
 empty tile will be created</remarks></p>
 </dd>
     <dt><code>tile2Bytes</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</dt>
     <dd><p>Bytes of lower-left <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterTile</a>
-<remarks><p></p>if set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>,
+<remarks><p></p>
+if set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>,
 empty tile will be created</remarks></p>
 </dd>
     <dt><code>tile3Bytes</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</dt>
     <dd><p>Bytes of lower-right <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterTile</a>
-<remarks><p></p>if set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>,
+<remarks><p></p>
+if set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>,
 empty tile will be created</remarks></p>
 </dd>
     <dt><code>tileSize</code> <a class="xref" href="GTiff2Tiles.Core.Images.Size.html">Size</a></dt>
@@ -938,7 +980,8 @@ and target <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterT
 </dd>
     <dt><code>bandsCount</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
     <dd><p>Count of bands in target <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterTile</a>
-<remarks><p></p>must be in range (0-5)</remarks></p>
+<remarks><p></p>
+must be in range (0-5)</remarks></p>
 </dd>
   </dl>
 
@@ -973,10 +1016,12 @@ and target <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterT
   <a class="header-action link-secondary" title="View source" href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/GeoTiffs/Raster.cs/#L988"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Join 4 <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterTile</a>s into
-one <span class="xref">NetVips.Image</span>
-<remarks><p></p>if all 4 paths are <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>
-or empty <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>s -- returns <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a></remarks></p>
+  <div class="markdown level1 summary"><pre><code>Join 4 &lt;xref href=&quot;GTiff2Tiles.Core.Tiles.RasterTile&quot; data-throw-if-not-resolved=&quot;false&quot;&gt;&lt;/xref&gt;s into
+one &lt;xref href=&quot;NetVips.Image&quot; data-throw-if-not-resolved=&quot;false&quot;&gt;&lt;/xref&gt;
+&lt;remarks&gt;&lt;p&gt;&lt;/p&gt;
+</code></pre>
+<p>if all 4 paths are <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>
+or empty <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>s -- returns <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a></p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -988,22 +1033,26 @@ or empty <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.str
   <dl class="parameters">
     <dt><code>tile0Path</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
     <dd><p>Path of upper-left <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterTile</a>
-<remarks><p></p>if set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>,
+<remarks><p></p>
+if set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>,
 empty tile will be created</remarks></p>
 </dd>
     <dt><code>tile1Path</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
     <dd><p>Path of upper-right <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterTile</a>
-<remarks><p></p>if set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>,
+<remarks><p></p>
+if set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>,
 empty tile will be created</remarks></p>
 </dd>
     <dt><code>tile2Path</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
     <dd><p>Path of lower-left <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterTile</a>
-<remarks><p></p>if set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>,
+<remarks><p></p>
+if set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>,
 empty tile will be created</remarks></p>
 </dd>
     <dt><code>tile3Path</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
     <dd><p>Path of lower-right <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterTile</a>
-<remarks><p></p>if set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>,
+<remarks><p></p>
+if set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>,
 empty tile will be created</remarks></p>
 </dd>
     <dt><code>tileSize</code> <a class="xref" href="GTiff2Tiles.Core.Images.Size.html">Size</a></dt>
@@ -1012,7 +1061,8 @@ and target <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterT
 </dd>
     <dt><code>bandsCount</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
     <dd><p>Count of bands in target <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterTile</a>
-<remarks><p></p>must be in range (0-5)</remarks></p>
+<remarks><p></p>
+must be in range (0-5)</remarks></p>
 </dd>
   </dl>
 
@@ -1047,10 +1097,13 @@ and target <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterT
   <a class="header-action link-secondary" title="View source" href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/GeoTiffs/Raster.cs/#L891"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Join 4 <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterTile</a>s into
-one <span class="xref">NetVips.Image</span>;</p>
-<p></p>if all <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterTile</a>s are
-<a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a> -- returns <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>
+  <div class="markdown level1 summary"><pre><code>Join 4 &lt;xref href=&quot;GTiff2Tiles.Core.Tiles.RasterTile&quot; data-throw-if-not-resolved=&quot;false&quot;&gt;&lt;/xref&gt;s into
+one &lt;xref href=&quot;NetVips.Image&quot; data-throw-if-not-resolved=&quot;false&quot;&gt;&lt;/xref&gt;;
+
+&lt;p&gt;&lt;/p&gt;
+</code></pre>
+<p>if all <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterTile</a>s are
+<a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a> -- returns <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a></p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -1062,28 +1115,33 @@ one <span class="xref">NetVips.Image</span>;</p>
   <dl class="parameters">
     <dt><code>tile0</code> <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterTile</a></dt>
     <dd><p>Upper-left <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterTile</a>
-<remarks><p></p>if set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>,
+<remarks><p></p>
+if set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>,
 empty tile will be created</remarks></p>
 </dd>
     <dt><code>tile1</code> <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterTile</a></dt>
     <dd><p>Upper-right <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterTile</a>
-<remarks><p></p>if set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>,
+<remarks><p></p>
+if set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>,
 empty tile will be created</remarks></p>
 </dd>
     <dt><code>tile2</code> <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterTile</a></dt>
     <dd><p>Lower-left <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterTile</a>
-<remarks><p></p>if set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>,
+<remarks><p></p>
+if set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>,
 empty tile will be created</remarks></p>
 </dd>
     <dt><code>tile3</code> <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterTile</a></dt>
     <dd><p>Lower-right <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterTile</a>
-<remarks><p></p>if set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>,
+<remarks><p></p>
+if set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>,
 empty tile will be created</remarks></p>
 </dd>
     <dt><code>isBuffered</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
     <dd><p>Is input <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterTile</a>s contains
 data inside <a class="xref" href="GTiff2Tiles.Core.Tiles.ITile.html#GTiff2Tiles_Core_Tiles_ITile_Bytes">Bytes</a> property?
-<remarks><p></p>If set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>, will use
+<remarks><p></p>
+If set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>, will use
 <a class="xref" href="GTiff2Tiles.Core.Tiles.ITile.html#GTiff2Tiles_Core_Tiles_ITile_Path">Path</a> to get input tiles's data</remarks></p>
 </dd>
     <dt><code>tileSize</code> <a class="xref" href="GTiff2Tiles.Core.Images.Size.html">Size</a></dt>
@@ -1092,7 +1150,8 @@ and target <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterT
 </dd>
     <dt><code>bandsCount</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
     <dd><p>Count of bands in target <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterTile</a>
-<remarks><p></p>must be in range (0-5)</remarks></p>
+<remarks><p></p>
+must be in range (0-5)</remarks></p>
 </dd>
   </dl>
 
@@ -1120,11 +1179,13 @@ and target <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterT
   <a class="header-action link-secondary" title="View source" href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/GeoTiffs/Raster.cs/#L958"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Join arrays of <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a> of
-4 <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterTile</a>s into
-one <span class="xref">NetVips.Image</span>
-<remarks><p></p>if all arrays are <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>
-or empty -- returns <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a></remarks></p>
+  <div class="markdown level1 summary"><pre><code>Join arrays of &lt;xref href=&quot;System.Byte&quot; data-throw-if-not-resolved=&quot;false&quot;&gt;&lt;/xref&gt; of
+4 &lt;xref href=&quot;GTiff2Tiles.Core.Tiles.RasterTile&quot; data-throw-if-not-resolved=&quot;false&quot;&gt;&lt;/xref&gt;s into
+one &lt;xref href=&quot;NetVips.Image&quot; data-throw-if-not-resolved=&quot;false&quot;&gt;&lt;/xref&gt;
+&lt;remarks&gt;&lt;p&gt;&lt;/p&gt;
+</code></pre>
+<p>if all arrays are <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>
+or empty -- returns <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a></p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -1136,22 +1197,26 @@ or empty -- returns <a href="https://learn.microsoft.com/dotnet/csharp/language-
   <dl class="parameters">
     <dt><code>tile0Bytes</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</dt>
     <dd><p>Bytes of upper-left <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterTile</a>
-<remarks><p></p>if set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>,
+<remarks><p></p>
+if set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>,
 empty tile will be created</remarks></p>
 </dd>
     <dt><code>tile1Bytes</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</dt>
     <dd><p>Bytes of upper-right <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterTile</a>
-<remarks><p></p>if set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>,
+<remarks><p></p>
+if set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>,
 empty tile will be created</remarks></p>
 </dd>
     <dt><code>tile2Bytes</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</dt>
     <dd><p>Bytes of lower-left <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterTile</a>
-<remarks><p></p>if set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>,
+<remarks><p></p>
+if set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>,
 empty tile will be created</remarks></p>
 </dd>
     <dt><code>tile3Bytes</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</dt>
     <dd><p>Bytes of lower-right <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterTile</a>
-<remarks><p></p>if set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>,
+<remarks><p></p>
+if set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>,
 empty tile will be created</remarks></p>
 </dd>
     <dt><code>tileSize</code> <a class="xref" href="GTiff2Tiles.Core.Images.Size.html">Size</a></dt>
@@ -1160,7 +1225,8 @@ and target <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterT
 </dd>
     <dt><code>bandsCount</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
     <dd><p>Count of bands in target <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterTile</a>
-<remarks><p></p>must be in range (0-5)</remarks></p>
+<remarks><p></p>
+must be in range (0-5)</remarks></p>
 </dd>
   </dl>
 
@@ -1195,10 +1261,12 @@ and target <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterT
   <a class="header-action link-secondary" title="View source" href="https://github.com/Gigas002/GTiff2Tiles/blob/master/GTiff2Tiles.Core/GeoTiffs/Raster.cs/#L1029"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Join 4 <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterTile</a>s into
-one <span class="xref">NetVips.Image</span>
-<remarks><p></p>if all 4 paths are <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>
-or empty <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>s -- returns <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a></remarks></p>
+  <div class="markdown level1 summary"><pre><code>Join 4 &lt;xref href=&quot;GTiff2Tiles.Core.Tiles.RasterTile&quot; data-throw-if-not-resolved=&quot;false&quot;&gt;&lt;/xref&gt;s into
+one &lt;xref href=&quot;NetVips.Image&quot; data-throw-if-not-resolved=&quot;false&quot;&gt;&lt;/xref&gt;
+&lt;remarks&gt;&lt;p&gt;&lt;/p&gt;
+</code></pre>
+<p>if all 4 paths are <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>
+or empty <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>s -- returns <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a></p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -1210,22 +1278,26 @@ or empty <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.str
   <dl class="parameters">
     <dt><code>tile0Path</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
     <dd><p>Path of upper-left <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterTile</a>
-<remarks><p></p>if set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>,
+<remarks><p></p>
+if set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>,
 empty tile will be created</remarks></p>
 </dd>
     <dt><code>tile1Path</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
     <dd><p>Path of upper-right <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterTile</a>
-<remarks><p></p>if set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>,
+<remarks><p></p>
+if set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>,
 empty tile will be created</remarks></p>
 </dd>
     <dt><code>tile2Path</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
     <dd><p>Path of lower-left <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterTile</a>
-<remarks><p></p>if set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>,
+<remarks><p></p>
+if set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>,
 empty tile will be created</remarks></p>
 </dd>
     <dt><code>tile3Path</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
     <dd><p>Path of lower-right <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterTile</a>
-<remarks><p></p>if set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>,
+<remarks><p></p>
+if set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>,
 empty tile will be created</remarks></p>
 </dd>
     <dt><code>tileSize</code> <a class="xref" href="GTiff2Tiles.Core.Images.Size.html">Size</a></dt>
@@ -1234,7 +1306,8 @@ and target <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterT
 </dd>
     <dt><code>bandsCount</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
     <dd><p>Count of bands in target <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterTile</a>
-<remarks><p></p>must be in range (0-5)</remarks></p>
+<remarks><p></p>
+must be in range (0-5)</remarks></p>
 </dd>
   </dl>
 
@@ -1528,12 +1601,14 @@ and writes them to <a class="xref" href="https://learn.microsoft.com/dotnet/api/
   <dl class="parameters">
     <dt><code>minZ</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
     <dd><p>Minimum cropped zoom
-<remarks><p></p>Should be &gt;= 0 and lesser or equal, than <code class="paramref">maxZ</code>
+<remarks><p></p>
+Should be &gt;= 0 and lesser or equal, than <code class="paramref">maxZ</code>
 </remarks></p>
 </dd>
     <dt><code>maxZ</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
     <dd><p>Maximum cropped zoom
-<remarks><p></p>Should be &gt;= 0 and bigger or equal, than <code class="paramref">minZ</code>
+<remarks><p></p>
+Should be &gt;= 0 and bigger or equal, than <code class="paramref">minZ</code>
 </remarks></p>
 </dd>
     <dt><code>tmsCompatible</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
@@ -1542,7 +1617,8 @@ and writes them to <a class="xref" href="https://learn.microsoft.com/dotnet/api/
 </dd>
     <dt><code>tileSize</code> <a class="xref" href="GTiff2Tiles.Core.Images.Size.html">Size</a></dt>
     <dd><p><a class="xref" href="GTiff2Tiles.Core.Images.Size.html">Size</a> of <a class="xref" href="GTiff2Tiles.Core.Tiles.ITile.html">ITile</a>s
-<remarks><p></p>256x256 by default</remarks></p>
+<remarks><p></p>
+256x256 by default</remarks></p>
 </dd>
     <dt><code>interpolation</code> <span class="xref">Enums</span>.<span class="xref">Kernel</span></dt>
     <dd><p>Interpolation of ready tiles
@@ -1550,15 +1626,18 @@ and writes them to <a class="xref" href="https://learn.microsoft.com/dotnet/api/
 </dd>
     <dt><code>bandsCount</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
     <dd><p>Count of <a class="xref" href="GTiff2Tiles.Core.Images.Band.html">Band</a>s in ready <a class="xref" href="GTiff2Tiles.Core.Tiles.ITile.html">ITile</a>s
-<remarks><p></p>4 by default</remarks></p>
+<remarks><p></p>
+4 by default</remarks></p>
 </dd>
     <dt><code>tileCacheCount</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
     <dd><p>Count of <a class="xref" href="GTiff2Tiles.Core.Tiles.ITile.html">ITile</a> to be in cache
-<remarks><p></p>1000 by default</remarks></p>
+<remarks><p></p>
+1000 by default</remarks></p>
 </dd>
     <dt><code>threadsCount</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
     <dd><p>Threads count
-<remarks><p></p>Calculates automatically by default</remarks></p>
+<remarks><p></p>
+Calculates automatically by default</remarks></p>
 </dd>
     <dt><code>progress</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iprogress-1">IProgress</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a>&gt;</dt>
     <dd><p>Progress-reporter
@@ -1618,12 +1697,14 @@ and writes them to <code class="paramref">channelWriter</code></p>
 </dd>
     <dt><code>minZ</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
     <dd><p>Minimum cropped zoom
-<remarks><p></p>Should be &gt;= 0 and lesser or equal, than <code class="paramref">maxZ</code>
+<remarks><p></p>
+Should be &gt;= 0 and lesser or equal, than <code class="paramref">maxZ</code>
 </remarks></p>
 </dd>
     <dt><code>maxZ</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
     <dd><p>Maximum cropped zoom
-<remarks><p></p>Should be &gt;= 0 and bigger or equal, than <code class="paramref">minZ</code>
+<remarks><p></p>
+Should be &gt;= 0 and bigger or equal, than <code class="paramref">minZ</code>
 </remarks></p>
 </dd>
     <dt><code>tmsCompatible</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
@@ -1632,7 +1713,8 @@ and writes them to <code class="paramref">channelWriter</code></p>
 </dd>
     <dt><code>tileSize</code> <a class="xref" href="GTiff2Tiles.Core.Images.Size.html">Size</a></dt>
     <dd><p><a class="xref" href="GTiff2Tiles.Core.Images.Size.html">Size</a> of <a class="xref" href="GTiff2Tiles.Core.Tiles.ITile.html">ITile</a>s
-<remarks><p></p>256x256 by default</remarks></p>
+<remarks><p></p>
+256x256 by default</remarks></p>
 </dd>
     <dt><code>interpolation</code> <span class="xref">Enums</span>.<span class="xref">Kernel</span></dt>
     <dd><p>Interpolation of ready tiles
@@ -1640,15 +1722,18 @@ and writes them to <code class="paramref">channelWriter</code></p>
 </dd>
     <dt><code>bandsCount</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
     <dd><p>Count of <a class="xref" href="GTiff2Tiles.Core.Images.Band.html">Band</a>s in ready <a class="xref" href="GTiff2Tiles.Core.Tiles.ITile.html">ITile</a>s
-<remarks><p></p>4 by default</remarks></p>
+<remarks><p></p>
+4 by default</remarks></p>
 </dd>
     <dt><code>tileCacheCount</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
     <dd><p>Count of <a class="xref" href="GTiff2Tiles.Core.Tiles.ITile.html">ITile</a> to be in cache
-<remarks><p></p>1000 by default</remarks></p>
+<remarks><p></p>
+1000 by default</remarks></p>
 </dd>
     <dt><code>threadsCount</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
     <dd><p>Threads count
-<remarks><p></p>Calculates automatically by default</remarks></p>
+<remarks><p></p>
+Calculates automatically by default</remarks></p>
 </dd>
     <dt><code>progress</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iprogress-1">IProgress</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a>&gt;</dt>
     <dd><p>Progress-reporter
@@ -1706,12 +1791,14 @@ and writes them to <code class="paramref">channelWriter</code></p>
 </dd>
     <dt><code>minZ</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
     <dd><p>Minimum cropped zoom
-<remarks><p></p>Should be &gt;= 0 and lesser or equal, than <code class="paramref">maxZ</code>
+<remarks><p></p>
+Should be &gt;= 0 and lesser or equal, than <code class="paramref">maxZ</code>
 </remarks></p>
 </dd>
     <dt><code>maxZ</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
     <dd><p>Maximum cropped zoom
-<remarks><p></p>Should be &gt;= 0 and bigger or equal, than <code class="paramref">minZ</code>
+<remarks><p></p>
+Should be &gt;= 0 and bigger or equal, than <code class="paramref">minZ</code>
 </remarks></p>
 </dd>
     <dt><code>tmsCompatible</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
@@ -1720,7 +1807,8 @@ and writes them to <code class="paramref">channelWriter</code></p>
 </dd>
     <dt><code>tileSize</code> <a class="xref" href="GTiff2Tiles.Core.Images.Size.html">Size</a></dt>
     <dd><p><a class="xref" href="GTiff2Tiles.Core.Images.Size.html">Size</a> of <a class="xref" href="GTiff2Tiles.Core.Tiles.ITile.html">ITile</a>s
-<remarks><p></p>256x256 by default</remarks></p>
+<remarks><p></p>
+256x256 by default</remarks></p>
 </dd>
     <dt><code>interpolation</code> <span class="xref">Enums</span>.<span class="xref">Kernel</span></dt>
     <dd><p>Interpolation of ready tiles
@@ -1728,15 +1816,18 @@ and writes them to <code class="paramref">channelWriter</code></p>
 </dd>
     <dt><code>bandsCount</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
     <dd><p>Count of <a class="xref" href="GTiff2Tiles.Core.Images.Band.html">Band</a>s in ready <a class="xref" href="GTiff2Tiles.Core.Tiles.ITile.html">ITile</a>s
-<remarks><p></p>4 by default</remarks></p>
+<remarks><p></p>
+4 by default</remarks></p>
 </dd>
     <dt><code>tileCacheCount</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
     <dd><p>Count of <a class="xref" href="GTiff2Tiles.Core.Tiles.ITile.html">ITile</a> to be in cache
-<remarks><p></p>1000 by default</remarks></p>
+<remarks><p></p>
+1000 by default</remarks></p>
 </dd>
     <dt><code>threadsCount</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
     <dd><p>Threads count
-<remarks><p></p>Calculates automatically by default</remarks></p>
+<remarks><p></p>
+Calculates automatically by default</remarks></p>
 </dd>
     <dt><code>progress</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iprogress-1">IProgress</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a>&gt;</dt>
     <dd><p>Progress-reporter
@@ -1800,12 +1891,14 @@ and writes them to <code class="paramref">outputDirectoryPath</code></p>
 </dd>
     <dt><code>minZ</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
     <dd><p>Minimum cropped zoom
-<remarks><p></p>Should be &gt;= 0 and lesser or equal, than <code class="paramref">maxZ</code>
+<remarks><p></p>
+Should be &gt;= 0 and lesser or equal, than <code class="paramref">maxZ</code>
 </remarks></p>
 </dd>
     <dt><code>maxZ</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
     <dd><p>Maximum cropped zoom
-<remarks><p></p>Should be &gt;= 0 and bigger or equal, than <code class="paramref">minZ</code>
+<remarks><p></p>
+Should be &gt;= 0 and bigger or equal, than <code class="paramref">minZ</code>
 </remarks></p>
 </dd>
     <dt><code>tmsCompatible</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
@@ -1814,11 +1907,13 @@ and writes them to <code class="paramref">outputDirectoryPath</code></p>
 </dd>
     <dt><code>tileSize</code> <a class="xref" href="GTiff2Tiles.Core.Images.Size.html">Size</a></dt>
     <dd><p><a class="xref" href="GTiff2Tiles.Core.Images.Size.html">Size</a> of <a class="xref" href="GTiff2Tiles.Core.Tiles.ITile.html">ITile</a>s
-<remarks><p></p>256x256 by default</remarks></p>
+<remarks><p></p>
+256x256 by default</remarks></p>
 </dd>
     <dt><code>tileExtension</code> <a class="xref" href="GTiff2Tiles.Core.Enums.TileExtension.html">TileExtension</a></dt>
     <dd><p>Extension of ready <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterTile</a>s
-<remarks><p></p>.png by default</remarks></p>
+<remarks><p></p>
+.png by default</remarks></p>
 </dd>
     <dt><code>interpolation</code> <span class="xref">Enums</span>.<span class="xref">Kernel</span></dt>
     <dd><p>Interpolation of ready tiles
@@ -1826,15 +1921,18 @@ and writes them to <code class="paramref">outputDirectoryPath</code></p>
 </dd>
     <dt><code>bandsCount</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
     <dd><p>Count of <a class="xref" href="GTiff2Tiles.Core.Images.Band.html">Band</a>s in ready <a class="xref" href="GTiff2Tiles.Core.Tiles.ITile.html">ITile</a>s
-<remarks><p></p>4 by default</remarks></p>
+<remarks><p></p>
+4 by default</remarks></p>
 </dd>
     <dt><code>tileCacheCount</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
     <dd><p>Count of <a class="xref" href="GTiff2Tiles.Core.Tiles.ITile.html">ITile</a> to be in cache
-<remarks><p></p>1000 by default</remarks></p>
+<remarks><p></p>
+1000 by default</remarks></p>
 </dd>
     <dt><code>threadsCount</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
     <dd><p>Threads count
-<remarks><p></p>Calculates automatically by default</remarks></p>
+<remarks><p></p>
+Calculates automatically by default</remarks></p>
 </dd>
     <dt><code>progress</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iprogress-1">IProgress</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a>&gt;</dt>
     <dd><p>Progress-reporter
@@ -1892,12 +1990,14 @@ and writes them to <code class="paramref">outputDirectoryPath</code></p>
 </dd>
     <dt><code>minZ</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
     <dd><p>Minimum cropped zoom
-<remarks><p></p>Should be &gt;= 0 and lesser or equal, than <code class="paramref">maxZ</code>
+<remarks><p></p>
+Should be &gt;= 0 and lesser or equal, than <code class="paramref">maxZ</code>
 </remarks></p>
 </dd>
     <dt><code>maxZ</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
     <dd><p>Maximum cropped zoom
-<remarks><p></p>Should be &gt;= 0 and bigger or equal, than <code class="paramref">minZ</code>
+<remarks><p></p>
+Should be &gt;= 0 and bigger or equal, than <code class="paramref">minZ</code>
 </remarks></p>
 </dd>
     <dt><code>tmsCompatible</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
@@ -1906,11 +2006,13 @@ and writes them to <code class="paramref">outputDirectoryPath</code></p>
 </dd>
     <dt><code>tileSize</code> <a class="xref" href="GTiff2Tiles.Core.Images.Size.html">Size</a></dt>
     <dd><p><a class="xref" href="GTiff2Tiles.Core.Images.Size.html">Size</a> of <a class="xref" href="GTiff2Tiles.Core.Tiles.ITile.html">ITile</a>s
-<remarks><p></p>256x256 by default</remarks></p>
+<remarks><p></p>
+256x256 by default</remarks></p>
 </dd>
     <dt><code>tileExtension</code> <a class="xref" href="GTiff2Tiles.Core.Enums.TileExtension.html">TileExtension</a></dt>
     <dd><p>Extension of ready <a class="xref" href="GTiff2Tiles.Core.Tiles.RasterTile.html">RasterTile</a>s
-<remarks><p></p>.png by default</remarks></p>
+<remarks><p></p>
+.png by default</remarks></p>
 </dd>
     <dt><code>interpolation</code> <span class="xref">Enums</span>.<span class="xref">Kernel</span></dt>
     <dd><p>Interpolation of ready tiles
@@ -1918,15 +2020,18 @@ and writes them to <code class="paramref">outputDirectoryPath</code></p>
 </dd>
     <dt><code>bandsCount</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
     <dd><p>Count of <a class="xref" href="GTiff2Tiles.Core.Images.Band.html">Band</a>s in ready <a class="xref" href="GTiff2Tiles.Core.Tiles.ITile.html">ITile</a>s
-<remarks><p></p>4 by default</remarks></p>
+<remarks><p></p>
+4 by default</remarks></p>
 </dd>
     <dt><code>tileCacheCount</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
     <dd><p>Count of <a class="xref" href="GTiff2Tiles.Core.Tiles.ITile.html">ITile</a> to be in cache
-<remarks><p></p>1000 by default</remarks></p>
+<remarks><p></p>
+1000 by default</remarks></p>
 </dd>
     <dt><code>threadsCount</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
     <dd><p>Threads count
-<remarks><p></p>Calculates automatically by default</remarks></p>
+<remarks><p></p>
+Calculates automatically by default</remarks></p>
 </dd>
     <dt><code>progress</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iprogress-1">IProgress</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a>&gt;</dt>
     <dd><p>Progress-reporter
@@ -1987,12 +2092,14 @@ and writes them to <a class="xref" href="https://learn.microsoft.com/dotnet/api/
   <dl class="parameters">
     <dt><code>minZ</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
     <dd><p>Minimum cropped zoom
-<remarks><p></p>Should be &gt;= 0 and lesser or equal, than <code class="paramref">maxZ</code>
+<remarks><p></p>
+Should be &gt;= 0 and lesser or equal, than <code class="paramref">maxZ</code>
 </remarks></p>
 </dd>
     <dt><code>maxZ</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
     <dd><p>Maximum cropped zoom
-<remarks><p></p>Should be &gt;= 0 and bigger or equal, than <code class="paramref">minZ</code>
+<remarks><p></p>
+Should be &gt;= 0 and bigger or equal, than <code class="paramref">minZ</code>
 </remarks></p>
 </dd>
     <dt><code>tmsCompatible</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
@@ -2001,7 +2108,8 @@ and writes them to <a class="xref" href="https://learn.microsoft.com/dotnet/api/
 </dd>
     <dt><code>tileSize</code> <a class="xref" href="GTiff2Tiles.Core.Images.Size.html">Size</a></dt>
     <dd><p><a class="xref" href="GTiff2Tiles.Core.Images.Size.html">Size</a> of <a class="xref" href="GTiff2Tiles.Core.Tiles.ITile.html">ITile</a>s
-<remarks><p></p>256x256 by default</remarks></p>
+<remarks><p></p>
+256x256 by default</remarks></p>
 </dd>
     <dt><code>interpolation</code> <span class="xref">Enums</span>.<span class="xref">Kernel</span></dt>
     <dd><p>Interpolation of ready tiles
@@ -2009,11 +2117,13 @@ and writes them to <a class="xref" href="https://learn.microsoft.com/dotnet/api/
 </dd>
     <dt><code>bandsCount</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
     <dd><p>Count of <a class="xref" href="GTiff2Tiles.Core.Images.Band.html">Band</a>s in ready <a class="xref" href="GTiff2Tiles.Core.Tiles.ITile.html">ITile</a>s
-<remarks><p></p>4 by default</remarks></p>
+<remarks><p></p>
+4 by default</remarks></p>
 </dd>
     <dt><code>tileCacheCount</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
     <dd><p>Count of <a class="xref" href="GTiff2Tiles.Core.Tiles.ITile.html">ITile</a> to be in cache
-<remarks><p></p>1000 by default</remarks></p>
+<remarks><p></p>
+1000 by default</remarks></p>
 </dd>
     <dt><code>progress</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iprogress-1">IProgress</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a>&gt;</dt>
     <dd><p>Progress-reporter
