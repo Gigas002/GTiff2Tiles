@@ -4,8 +4,17 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
+    groups:
+      action-updates:
+        patterns:
+          - "*"
 
   - package-ecosystem: "nuget"
     directory: "/"
     schedule:
       interval: "daily"
+    groups:
+      nuget-updates:
+        patterns:
+          - "*"
+          
