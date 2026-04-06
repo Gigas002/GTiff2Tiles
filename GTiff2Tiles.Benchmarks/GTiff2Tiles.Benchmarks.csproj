@@ -8,7 +8,7 @@
     <PackageReference Include="BenchmarkDotNet" Version="0.15.8" />
     <PackageReference Include="CommandLineParser" Version="2.9.1" />
     <PackageReference Include="MaxRev.Gdal.Universal" Version="3.12.3.496" />
-    <PackageReference Include="NetVips.Native" Version="8.18.1" />
+    <PackageReference Include="NetVips.Native" Version="8.18.2" />
   </ItemGroup>
 
   <ItemGroup>
