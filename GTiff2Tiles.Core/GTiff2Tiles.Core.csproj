@@ -12,11 +12,11 @@
   
   <ItemGroup>
     <PackageReference Include="BitMiracle.LibTiff.NET" Version="2.4.660" />
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="10.0.201">
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="10.0.203">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
-    <PackageReference Include="MaxRev.Gdal.Core" Version="3.12.3.499" />
+    <PackageReference Include="MaxRev.Gdal.Core" Version="3.12.4.520" />
     <PackageReference Include="NetVips" Version="3.2.0" />
   </ItemGroup>
 
